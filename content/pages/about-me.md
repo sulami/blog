@@ -1,6 +1,6 @@
 Title: About me
 
-I am Robin, also known as sulami. This is my blog, where I keep my thoughts
+I am Robin Schroer, also known as sulami. This is my blog, where I keep my thoughts
 sort of organized. Here are some links to my stuff:
 
 - [Github](https://github.com/sulami "Github")
@@ -8,7 +8,18 @@ sort of organized. Here are some links to my stuff:
 - [Peerwire](http://peerwire.org "Peerwire")
 > One of my bigger projects I am working on currently
 
-You can reach me at sulamiification [at] gmail [dot] com.
+I mainly write C and Python code using Vim and Git, as Python user I love
+[Django](http://djangoproject.com), [Flask](http://flask.pocoo.org) and
+[Pelican](http://getpelican.com) (which is what powers this blog).
+
+I also know my ways around Linux and \*BSD, various web-centered technologies
+and databases. I love
+[TDD](http://en.wikipedia.org/wiki/Test-driven_development).
+
+If you are in need of someone like me, contact me in any way you want to,
+although I prefer email.
+
+You can reach me at [sulami@peerwire.org](mailto:sulami@peerwire.org).
 
 If you feel the need to, you can also use my PGP-Key:
 

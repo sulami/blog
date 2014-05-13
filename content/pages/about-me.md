@@ -1,7 +1,7 @@
 Title: About me
 
-I am Robin Schroer, also known as sulami. This is my blog, where I keep my thoughts
-sort of organized. Here are some links to my stuff:
+I am Robin Schroer, also known as sulami. This is my blog, where I keep my
+thoughts sort of organized. Here are some links to my stuff:
 
 - [Github](https://github.com/sulami "Github")
 > Where I mirror some of my less important git repos
@@ -15,6 +15,9 @@ I mainly write C and Python code using Vim and Git, as Python user I love
 I also know my ways around Linux and \*BSD, various web-centered technologies
 and databases. I love
 [TDD](http://en.wikipedia.org/wiki/Test-driven_development).
+
+Offline I like mountainbiking, as well as reading a good book, both fiction and
+non-fiction.
 
 If you are in need of someone like me, contact me in any way you want to,
 although I prefer email.

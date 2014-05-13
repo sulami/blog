@@ -16,8 +16,8 @@ I also know my ways around Linux and \*BSD, various web-centered technologies
 and databases. I love
 [TDD](http://en.wikipedia.org/wiki/Test-driven_development).
 
-Offline I like mountainbiking, as well as reading a good book, both fiction and
-non-fiction.
+Offline I like mountainbiking, photography, as well as reading a good book,
+both fiction and non-fiction.
 
 If you are in need of someone like me, contact me in any way you want to,
 although I prefer email.

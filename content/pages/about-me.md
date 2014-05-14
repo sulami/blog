@@ -7,6 +7,9 @@ thoughts sort of organized. Here are some links to my stuff:
 > Where I mirror some of my less important git repos
 - [Peerwire](http://peerwire.org "Peerwire")
 > One of my bigger projects I am working on currently
+- [GitDocs](http://peerwire.de/gitdocs/ "GitDocs")
+> Just a small brittle sideproject which versions GitHub readmes and presents
+> them in a nicer way
 
 I mainly write C and Python code using Vim and Git, as Python user I love
 [Django](http://djangoproject.com), [Flask](http://flask.pocoo.org) and

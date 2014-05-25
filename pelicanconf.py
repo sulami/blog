@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'sulami'
 SITENAME = u'sulami\'s blog'
-SITEURL = 'http://peerwire.de'
+SITEURL = 'https://sulami.github.io'
 
 TIMEZONE = 'Europe/Paris'
 
@@ -29,7 +29,6 @@ MD_EXTENSIONS = (['codehilite(noclasses=true,pygments_style=friendly)'])
 
 STATIC_PATHS = ['images', 'download']
 
-SITEURL = 'http://peerwire.de'
 GOOGLE_ANALYTICS = 'UA-38330260-4'
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL

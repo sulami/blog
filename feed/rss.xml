@@ -1,0 +1,1689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>http://peerwire.de/</link><description></description><atom:link href="http://peerwire.de/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 25 May 2014 16:00:00 +0200</lastBuildDate><item><title>Running Gnome Shell on a Netbook</title><link>http://peerwire.de/running-gnome-shell-on-a-netbook.html</link><description>&lt;p&gt;I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
+cheap machine with a 1.66 GHz Intel Atom and 1 GB of RAM. I thought a lot about
+which DE/WM to use. On one side, performance is key, and I mostly use it to
+work in a shell, browse the web and read PDFs, so a tiling WM was my first
+choice. I still chose the default Gnome 3 installation, as it provides a lot of
+utility and is a slow but almost always working fallback.&lt;/p&gt;
+&lt;p&gt;I have used a lot of tiling WMs over the years, mainly i3, bspwm, dwm and
+monsterwm (chronologically). While monsterwm is still my favourite for an
+absolute riced machine, i3 and dwm are more usable without a great deal of
+configuration when adding i3bar/i3status and dmenu. Because dwm is a lot
+faster (although they are both pretty fast compared to anything else, we are
+talking running complete systems on 30 MB of RAM, including the Kernel), I
+installed it and used it for an evening to pull down the Kernel sources and
+set up my work environment.&lt;/p&gt;
+&lt;p&gt;While being quite fast and leaving most of the system's resources to the
+application running on top, dwm does not provide much features in terms of
+mobility, namely a way to connect to WiFi-Networks. Managing ethernet via cli
+is not a big deal to me, but when using WiFi, I prefer a GUI just becuase
+wicd-curses tends to take some minutes until it finally connects to a secured
+(WPA2) network, do not ask me why.&lt;/p&gt;
+&lt;p&gt;So I figured, I might just try out running Gnome Shell on it, with some
+tweaking it could be pretty lightweight, and I do not like the "light" DEs.
+Also I can maintain consistency, as my main workstation runs Gnome Shell as
+well. Well, it ran, sort of. Clicking the "X" and waiting 3 seconds for the
+window to actually close was not what I imagined. And using 440 MB of RAM
+without caches while idling was not either. Back to the drawing board.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 25 May 2014 16:00:00 +0200</pubDate><guid>tag:peerwire.de,2014-05-25:running-gnome-shell-on-a-netbook.html</guid><category>gnome</category><category>netbook</category></item><item><title>On Python performance</title><link>http://peerwire.de/on-python-performance.html</link><description>&lt;p&gt;I recently wrote &lt;a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"&gt;Conway's Game of
+Life&lt;/a&gt; in both
+performance optimized Python 3.3 and C99, compiled with clang, without
+optimizations. I usually say to people that Python is quite fast when properly
+optimized, and amongst interpreted languages this is true. But after this
+experiment, I understand how big the difference can be und the right
+conditions. Here are the runtimes of my Games of Life, generating a 120x40
+screen and printing it out for 5000 cycles:&lt;/p&gt;
+&lt;p&gt;Python 3.3, fairly optimized: 2:05,73 minutes&lt;/p&gt;
+&lt;p&gt;C, not optimized: 9,413 seconds&lt;/p&gt;
+&lt;p&gt;This is a pretty big difference, ~1330%. This should explain, why, besides the
+stellar portability, Kernels and generally all performance critical software is
+written in some form of C.&lt;/p&gt;
+&lt;p&gt;Huge parts of this are actually printing the screen, looks like Python's print
+is quite slow. Without printing it, generating 5000 cycles takes 32,244
+seconds, which is still more than three times as much as C needs with printing.&lt;/p&gt;
+&lt;p&gt;For most operations, Python's speed is more than needed, but sometimes you just
+need that extra bit of speed, and this is why you can &lt;a href="https://docs.python.org/3.4/library/ctypes.html"&gt;use C from within
+Python&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 12 May 2014 02:15:00 +0200</pubDate><guid>tag:peerwire.de,2014-05-12:on-python-performance.html</guid><category>python</category><category>c</category></item><item><title>Test-driven development in vim</title><link>http://peerwire.de/test-driven-development-in-vim.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (TDD)&lt;/a&gt; is a way of developing software by using
+tests over and over again. When I first was introduced to this concept, I
+thought, automated tests are a nice idea, why not? Then I read a book about
+TDD, which proceeded to explain how you start your project by writing a test
+that (obviously) fails, then start your actual project, and test again. At this
+point in time, we have a something that returns a default webpage, or zero. Not
+even printing "Hello World" or "Success!". The next step is to write another
+test, which checks for some actual content or functionality. After this test
+fails (which by the way is important, as it shows that the test will hopefully
+not produce false positives), we write the piece of content or functionality.&lt;/p&gt;
+&lt;p&gt;In the beginning, this way of writing code seems (and is) incredibly slow, and
+I find myself skipping the first five tests until I have something that
+actually produces useful output. This is sort of okay, I do not think it will
+hurt my code in any major way. But after those initial skipped tests, say 10
+minutes into the project, I start to religiously write tests for everything
+that happens, which is way easier than implementing proper tests for all the
+different stages and levels when you wrote code for several hours and start
+wasting time by manually testing changes. I think, everything that takes more
+than 30 minutes to code benefits from TDD.&lt;/p&gt;
+&lt;p&gt;But let's have a look at some actual TDD using vim and C. C is not often
+written using TDD, but giving usually rather poor debugging output compared to
+interpreted languages, TDD is even more useful, as you will instantaneously see
+when a change breaks any functionality. To make testing easier, we will define
+a keyboard mapping to start our tests from within vim.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #902000"&gt;map&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;lt;&lt;/span&gt;Leader&lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt;&lt;span style="color: #007020"&gt;t&lt;/span&gt; :&lt;span style="color: #666666"&gt;!&lt;/span&gt;make &lt;span style="color: #4070a0"&gt;-B&lt;/span&gt; tests &lt;span style="color: #666666"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./tests&lt;span style="color: #666666"&gt;&amp;lt;&lt;/span&gt;CR&lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This mapping will call make in a shell (which means you have to have make
+installed), compile our &lt;em&gt;tests.c&lt;/em&gt; file and run it. Depending on which language
+you are using, which kind of application you are developing and how your tests
+work, you might want to change this a bit. I am testing a library I am writing,
+which gets included in &lt;em&gt;tests.c&lt;/em&gt;.  The basic structure looks like this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;/* Tests for my library */&lt;/span&gt;
+&lt;span style="color: #007020"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span style="color: #007020"&gt;#include &amp;lt;assert.h&amp;gt;&lt;/span&gt;
+&lt;span style="color: #007020"&gt;#include &amp;quot;mylib.h&amp;quot;&lt;/span&gt;
+
+&lt;span style="color: #007020"&gt;#define run_test(fn_name) \&lt;/span&gt;
+&lt;span style="color: #007020"&gt;    printf(&amp;quot;%s\n&amp;quot;, #fn_name); \&lt;/span&gt;
+&lt;span style="color: #007020"&gt;    fn_name();&lt;/span&gt;
+
+&lt;span style="color: #902000"&gt;void&lt;/span&gt; &lt;span style="color: #06287e"&gt;test_example_test&lt;/span&gt;() {
+    &lt;span style="color: #902000"&gt;int&lt;/span&gt; test &lt;span style="color: #666666"&gt;=&lt;/span&gt; fancy_function(&lt;span style="color: #40a070"&gt;42&lt;/span&gt;);
+    assert(test &lt;span style="color: #666666"&gt;==&lt;/span&gt; &lt;span style="color: #40a070"&gt;15&lt;/span&gt;);
+}
+
+&lt;span style="color: #902000"&gt;int&lt;/span&gt; &lt;span style="color: #06287e"&gt;main&lt;/span&gt;() {
+    printf(&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;Running tests:&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;);
+    run_test(test_example_test);
+    printf(&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt; =&amp;gt; All tests successful!&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;);
+    &lt;span style="color: #007020; font-weight: bold"&gt;return&lt;/span&gt;(&lt;span style="color: #40a070"&gt;0&lt;/span&gt;);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We include &lt;em&gt;stdio&lt;/em&gt; for printing and &lt;em&gt;assert&lt;/em&gt; for the actual testing. The way
+assert works is if the statement assert gets passed is false, which means it
+can also be a function call, assert stops the whole program and prints out the
+line which produced the error. If everything works as intended, it prints all
+the tests it ran, prompts for enter and returns us to vim.  An important part
+is to only delete old tests, when the condition they test for is no longer
+wanted, so you always test for basic functionality as well as the final
+results.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 05 May 2014 14:50:00 +0200</pubDate><guid>tag:peerwire.de,2014-05-05:test-driven-development-in-vim.html</guid><category>vim</category><category>cli</category></item><item><title>Say hello to Peerwire</title><link>http://peerwire.de/say-hello-to-peerwire.html</link><description>&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
+go check it out. It is a platform which helps people find (open source) projects
+suited for them, based on various factors, and also helps project managers
+distribute tasks among them, so collaborative work is more organized overall.&lt;/p&gt;
+&lt;p&gt;Right now, it is empty aside from my demo-project, which is Peerwire itself,
+which kind of defeats the purpose for coders, but project owners can start right
+away to add their projects, so they can be found easily by coders.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 27 Apr 2014 14:45:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-27:say-hello-to-peerwire.html</guid><category>news</category><category>peerwire</category></item><item><title>Django Tweaking: custom user model fixes</title><link>http://peerwire.de/django-tweaking-custom-user-model-fixes.html</link><description>&lt;p&gt;I am currently finishing the initial coding of my newest, project, which will
+be Peerwire (yes, another one), and because I like it, it is written in Python
+using Django, specifically Django 1.6. Now I am using a custom user model to
+add some additional fields, which is the only reason, I have to modify existing
+apps I use and even Django itself. Here are some of the modifications I did so
+far, in case someone encounters the same problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3&gt;Making Emails mandatory and unique&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Edit &lt;em&gt;django/contrib/auth/models.py&lt;/em&gt;, search for AbstractUser and change&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;email &lt;span style="color: #666666"&gt;=&lt;/span&gt; ...(blank&lt;span style="color: #666666"&gt;=&lt;/span&gt;True)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;email &lt;span style="color: #666666"&gt;=&lt;/span&gt; ...(unique&lt;span style="color: #666666"&gt;=&lt;/span&gt;True)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3&gt;Using Cache Machine with your custom user model&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Edit &lt;em&gt;django/contrib/auth/backends.py&lt;/em&gt;, go to line 16 (I think) and change&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;user &lt;span style="color: #666666"&gt;=&lt;/span&gt; UserModel._default_manager.get_by_natural_key(username)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;user &lt;span style="color: #666666"&gt;=&lt;/span&gt; UserModel._default_manager.get(username&lt;span style="color: #666666"&gt;=&lt;/span&gt;username)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3&gt;Using django-registration with your custom user model&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Edit &lt;em&gt;registration/forms.py&lt;/em&gt;, in the top change&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;from django.contrib.auth.models import User
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;from django.contrib.auth import get_user_model
+User &lt;span style="color: #666666"&gt;=&lt;/span&gt; get_user_model()
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 19 Apr 2014 22:20:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-19:django-tweaking-custom-user-model-fixes.html</guid><category>django</category></item><item><title>Quickie: Markdown syntax highlighting in vim</title><link>http://peerwire.de/quickie-markdown-syntax-highlighting-in-vim.html</link><description>&lt;p&gt;I save my Markdown files using the &lt;em&gt;.md&lt;/em&gt; extension, like probably everyone
+else in this world, which is fine. Not fine is vim interpreting &lt;em&gt;foobar.md&lt;/em&gt; as
+modula2-file, which disables proper syntax highlighting. The fix is quite easy,
+but might not survive updates/patches.&lt;/p&gt;
+&lt;p&gt;Open vim's architecture-independent data directory, usually something along the
+lines of &lt;em&gt;/usr/share/vim/vim74/&lt;/em&gt;. In there, there should be &lt;em&gt;filetype.vim&lt;/em&gt;. If
+you open it (with vim, of course...), search for "markdown", which will bring
+you to the following line:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #4070a0"&gt;&amp;quot; Markdown&lt;/span&gt;
+au BufNewFile,BufRead &lt;span style="color: #666666"&gt;*&lt;/span&gt;.markdown,&lt;span style="color: #666666"&gt;*&lt;/span&gt;.mdown,&lt;span style="color: #666666"&gt;*&lt;/span&gt;.mkd,&lt;span style="color: #666666"&gt;*&lt;/span&gt;.mkdn,README.md  setf markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This line tells vim that those files are probably Markdown files and should be
+interpreted this way. Add *.md to the list. Now search for Modula2, and remove
+the *.md entry from there, so nothing collides. When starting vim the next
+time, it should identify Markdown correctly.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Apr 2014 23:50:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-15:quickie-markdown-syntax-highlighting-in-vim.html</guid><category>vim</category><category>quickie</category><category>markdown</category></item><item><title>Converting to Pelican</title><link>http://peerwire.de/converting-to-pelican.html</link><description>&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
+because I want to get rid of PHP where I can. Previously, this blog was running
+on selfhosted Wordpress, which is quite powerful, but for my blogging needs
+too complicated and oversized.&lt;/p&gt;
+&lt;p&gt;Pelican is a static site generator written in Python, which means I maintain a
+directory on my server with a bunch of markdown files containing my posts and
+whenever needed, Pelican regenerates the whole page to plain static HTML.
+Given that I write maybe one post every week and regenerating takes about 3
+seconds, I save a huge amount of processing power by providing static content
+as opposed to dynamic content. And besides that, Wordpress is a mess to
+administer, now I just pop up vim and start writing, we scrapped the search,
+the spam-filled comments and several MBs of overcomplicated PHP.&lt;/p&gt;
+&lt;p&gt;In my eyes, PHP is sort of dead anyway. Which does not hinder anyone from using
+or even continue developing it, but the concept is just from yesterday. Today,
+we can use full-sized programming languages like Python (Django) and Ruby
+(Rails) to easily develop and maintain complex web-applications with
+centralized, managed configurations. Most of the work gets done by those
+frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Apr 2014 00:40:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-15:converting-to-pelican.html</guid><category>news</category><category>pelican</category><category>python</category></item><item><title>Playing in space on Linux</title><link>http://peerwire.de/playing-in-space-on-linux.html</link><description>&lt;p&gt;While I have been working day and night lately on my (sort of) new
+project, peerwire.org (which currently links to this blog, but will soon
+go live), I have now reached the beta phase which will mostly be
+intensive testing and trying to break the site, as well as some minor
+technical fixes. But this aside, I now have some spare time while I wait
+for some other stuff to happen, so I decided to play a game.&lt;/p&gt;
+&lt;p&gt;I have not played a game for quite some time, if you do not count
+playing for less than 10 minutes, I probably have not played a game this
+year. As I do not have a Windows partition anymore (which I am quite
+proud of, Linux and to some degree BSD achieve everything I need), I
+only have my collection of right now 66 Steam games for Linux (out of
+200 I own). Today I had another look at Kinetic Void, a kickstarted game
+I picked up for 2.50€ when it hit Greenlight some time ago. It is still
+in early alpha and not even close to feature-complete, but it is already
+quite gorgeous if you like spaceships.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot from 2014-04-11 23:50:47" src="/images/Screenshot-from-2014-04-11-235047-1024x576.png" /&gt;&lt;/p&gt;
+&lt;p&gt;There are some other really cool games for Linux on Steam and most of
+them are also rather cheap, but you can sink hundreds of hours into
+some.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/220200/" title="Steam"&gt;Kerbal Space Program&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More spaceships, more simulation. Pretty intensive on the hardware, my
+high-end Intel CPU without dedicated GPU can barely run in, but it
+works. Check the &lt;a href="http://wiki.kerbalspaceprogram.com/wiki/Main_Page" title="KSP Wiki"&gt;Wiki&lt;/a&gt; for infos and how to learn the game, also
+YouTube has some great tutorials.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/sub/12985/" title="Steam"&gt;X3: Reunion, X3: Terran Conflict, X3: Albion Prelude&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have been playing the X-games since the first one, although I do not
+own the latest one yet, as it seems to be the worst yet and I do not
+really game anymore. 4X spaceship sandboxes with some story, huge
+universe, top-notch graphics, really complicated and hard to get into.
+But immense fun. If you start, get TC or AB, Reunion does lack some
+important convenience features. The best resource I know of is
+&lt;a href="http://www.seizewell.de/" title="Seizewell"&gt;Seizewell&lt;/a&gt;, which is German, as X comes from Germany and is played
+there the most.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/212680/" title="Steam"&gt;FTL: Faster Than Light&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is a spaceship rogue-like, which means you select a ship, and start
+on a journey to do whatever, until you either die or complete the story.
+Than you start again. There are some well-made mods around to extend the
+fun.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/107200/" title="Steam"&gt;Space Pirates and Zombies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An interesting space arcade action adventure game which really leads to
+addiction.&lt;/p&gt;
+&lt;p&gt;There are some games for Linux that are more or less space-related I
+have not tested yet, maybe someone can give me a tip on one of those:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/246090/" title="Steam"&gt;Spacebase DF-9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/255500/" title="Steam"&gt;Entropy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/257930/" title="Steam"&gt;Race to Mars&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/212070/" title="Steam"&gt;Star Conflict&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/233250/" title="Steam"&gt;Planetary Annihilation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As I hear, Star Citizen will also be on Linux, which will hopefully be a
+great experience, maybe even a reason for me to install a GPU again. I
+am also still waiting for Planetside 2 to come to Linux, which is really
+fun with a bunch of friends (but also runs like shit)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 11 Apr 2014 23:55:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-11:playing-in-space-on-linux.html</guid><category>games</category><category>steam</category><category>linux</category></item><item><title>OpenSSL-Bug: Update everything you got, like now!</title><link>http://peerwire.de/openssl-bug-update-everything-you-got-like-now.html</link><description>&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
+in the OpenSSL libraries, which basically means everything has to get
+patched immediately, especially webservers, databases, SSH-Daemons,
+anything that sort of relies on network communication. If you haven't
+already patched your stuff, now is the time.&lt;/p&gt;
+&lt;p&gt;If you manage some sort of web- or mailserver, you should also get a new
+certificate, as your old one might be stolen while the bug was not
+discovered yet. All certificates used before OpenSSL was patched are
+considered unsafe.&lt;/p&gt;
+&lt;p&gt;This is, what your bank website's certificate should definetely &lt;strong&gt;not&lt;/strong&gt;
+look like:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/images/Screenshot-from-2014-04-09-145514.png"&gt;&lt;img alt="Screenshot from 2014-04-09 14:55:14" src="/images/Screenshot-from-2014-04-09-145514.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;(Yes, my bank's certificate is just over a year old. No, I will not
+login before it is replaced)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 09 Apr 2014 07:48:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</guid><category>homeserver</category><category>security</category><category>ssh</category><category>SSL</category><category>updates</category></item><item><title>IRC-client showdown, extreme version</title><link>http://peerwire.de/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
+somehow loose my ability to use X. This also enables me to use global
+colorscheme and is performance-wise advantegous. There are many reasons
+to live in the shell (aside from web-browsing, which is a pain), but
+this is not the post to discuss them. Instead I want to make a quick
+comparison of IRC-clients.&lt;/p&gt;
+&lt;p&gt;I admit, I have not used all that many IRC-clients over the years, as
+they are usually indefinetely customizable and I tweak them for months
+before I decide to move on to a different one to start from scratch.
+Currently, I am using irssi, as I have not customized weechat to the
+extend I would like to yet.&lt;/p&gt;
+&lt;p&gt;I prefer irssi as it is simpler and more unix-style, using just one
+config, one theme and perl-extensions for every bit of bonus
+functionality. Weechat works out of the box like a charm. It includes a
+window-list which just has to be activated, automatic indentation of
+nicks, a nicklist which just has to be disabled, colored nicks, a
+trackbar and tons of more useful stuff. But the options are crap. It's
+superior to the irssi djungle of formats, inside formats, inside other
+formats, ... but in my opinion there are not enough ways to change
+low-level stuff, weechat will always look like weechat, no matter what
+you do.&lt;/p&gt;
+&lt;p&gt;But I promised the extreme version in the title of this post, this is
+performance. On Twitch.tv, there is currently a stream called
+'twitchplayspokemon', which is a pokemon hack that accepts button input
+via twitch chat (which is irc). The corrosponding IRC-channel is used by
+35k-38k people at a time, featuring tons of messages. It actually caused
+problems with the Twitch servers, which could not handel the
+concentrated load, but seems to run fine now.&lt;/p&gt;
+&lt;p&gt;Anyway, I tried using this channel with my IRC-clients. Weechat lags out
+on joining, becoming unresponsive while building the nicklist, which is
+hidden, but still active (this is what I mean by irssi is simpler).
+Then, after about a minute, it works. Weechat uses 56.5 MB of RAM on my
+system. That's insane. No fancy plugins, just one server, one channel,
+smart-filter enabled, no nicklist.&lt;/p&gt;
+&lt;p&gt;Irssi works like on any smaller IRC-network, without any noticable
+performance impact, using about 12 MB of RAM, which is more reasonable.
+For comparison though, connecting through netcat uses 644 KB of RAM. Of
+course, this is without logging, formatting or anything except just
+printing what the server sends me, but for IRC, netcat is actually sort
+of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 19:17:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>http://peerwire.de/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
+&lt;h2&gt;The current situation&lt;/h2&gt;
+&lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
+communicating using my phone. This event has made me think about where
+the internet is heading in terms of privacy protection. Right now, I am
+trying to figure out whether Chromium could be a better alternative to
+Firefox, which is working worse and worse on Linux. I purposely do not
+want to use Chrome as Google already uses their own search engine,
+YouTube, Adsense, Analytics and Android/the Play Store, and maybe their
+DNS-servers to track internet users from all around the world. Using
+their partly proprietary browser which is known for phoning home is
+obviously not the best idea.&lt;/p&gt;
+&lt;p&gt;But back to Whatsapp. There are some alternatives, some praising
+encryption, like &lt;a href="https://threema.ch/en/" title="Threema.ch"&gt;Threema&lt;/a&gt; or &lt;a href="https://telegram.org/" title="Telegram.org"&gt;Telegram&lt;/a&gt;. Threema is not free and as
+Google does not utilize any payment method beside credit cards, only few
+people will actually use it, and the only reason to switch to a
+messenger is the userbase. I did not like Whatsapp in the first place,
+but everyone used it, so I had to comply. Now I made the switch to
+ecrypted (called "secure") Telegram messages with some of my closer
+friends, but while it claims to be "open", this only means there is an
+API. And if they sell out one day, say if Facebook or Google offer them
+some millions, all their promises will be worth nothing.&lt;/p&gt;
+&lt;p&gt;Another big part of my concerns, before we come to my ideas for a bright
+future, are email and VoIP. Email right now is de-facto unencrypted,
+usually transmitted via SSL to the provider but that is it. The
+providers usually provide for free and most of them probably scan the
+conversations to sell the information and/or build user profiles
+(*cough* Google *cough*). This can be partially solved by just
+encrypting/signing emails via PGP, which right now only security nerds
+and mafia bosses do. But handling keys is just not ready for the masses,
+it basically should handle keys, en-/decrypt without the average user
+even noticing. But the decentralized way emails are set up is already
+quite good, although there are some really big providers, there is no
+loss in using some small provider you trust or even using your own
+domain and server.&lt;/p&gt;
+&lt;p&gt;VoIP is the real problem right now. I primarily use Skype, which is
+owned by Microsoft since 2011. Skype is known to send all kind of data
+to Redmond, and also allow crazy amounts of script languages for its
+ads, which already resulted in some big security holes. Also the Linux
+client sort of sucks. The interface is okay-ish, but the technical side
+of things is not. But I do not blame Microsoft for this, I am happy for
+the existence of a Linux client at all. So, Skype is bad, alternatives
+are rare. Mumble is nice, but is centred around servers for gaming clans
+and similar communities, using it as messenger is suboptimal. I also
+tried Jabber, the VoIP-protocol with many features, which is actually
+sort of great the way it is, but not end-user friendly enough.&lt;/p&gt;
+&lt;h2&gt;Solutions?&lt;/h2&gt;
+&lt;p&gt;What do I think would be the optimal way to handle this situations and
+prevent some cyberpunk scenario in which Google, Facebook, Microsoft and
+of course the NSA know everything about the average internet user?&lt;/p&gt;
+&lt;p&gt;First, we need to divide. I would keep email, as it is an easy and
+already established way of exchanging information and data in a
+mail-like fashion, which we will still need in the future. But we need
+some way of enabling everyone to encrypt this mail. A simple choice
+would be to establish a service that handles public keys and pairs them
+to accounts. You then get a plugin for Outlook or Thunderbird that
+connects to your account, generates a keypair, uploads the public
+portion, gets the needed public keys of others and handles en- and
+decryption of mails. The downside here would be a pretty big single
+point of failure. If this service is down, or worse, gets hacked, all
+the security is jeopardized. An idea would be to not store this
+information on central servers but instead in a Bitcoin-like blockchain
+which is shared by everyone. Which is probably generating enormous
+amounts of traffic just to synchronize. Also, if no one uses ad-loaded
+webinterfaces or provides unencrypted emails, how are the email
+providers going to survive, and how are they going to justify
+subsidizing the free email services? People will not pay for privacy,
+which is the actual root of the problem.&lt;/p&gt;
+&lt;p&gt;Then we need a new multi-platform messenger, decentralized, encrypted,
+capable of sending pictures, audio, video and of course live calls
+including video and conferences. Basically Skype Premium, but without
+central servers and more in a peer-to-peer fashion. Maybe just define a
+protocol and write an open source reference implementation of a client.
+I already thought about this a while, and most of this is
+accomplishable, Skype already provides most of the functionality across
+Windows, Mac, Linux and a lot of phones. There is the wonderful
+Speex-codec which can be used for calls, video streaming should be no
+problem either. As the content should be completely end-to-end
+encrypted, compression would be sort of useless, so the generated
+traffic will be more, but not by a lot.&lt;/p&gt;
+&lt;p&gt;But here comes the one problem I found rather quickly. You need to be
+able to sync your private keys across devices. As I propose to just
+develop a protocol without a central management, you cannot just enter
+your username and password and get all your stuff from a server, because
+that would mean, your private keys, which are not supposed to ever leave
+your devices would be stored on the server. But I have come up with a
+solution, at least I think so.&lt;/p&gt;
+&lt;p&gt;There will be some server structure involved, which will hold the
+private keys, but in an encrypted form. When starting to use the
+service, you generate your keypair. The public key gets into some sort
+of public key infrastructure I yet have to figure out, maybe
+blockchain-like, maybe not. The private key gets stored on the device,
+protected by a password. A copy of it gets encrypted (say using
+Rijndael/AES or Twofish) and can be stored on third-party servers. Those
+third parties might enforce additional security measures via
+accounts/passwords. If you want to use a second device with the same
+identity, you can get you private key from said server, decrypt it and
+import it. This way, you could basically store your encrypted key inside
+Dropbox. I have to add, that this method relies on strong passwords more
+than anything else, but maybe this will force sensible password policies
+into the heads of the masses.&lt;/p&gt;
+&lt;p&gt;An addition I would make would be some sort of identifier-system,
+comparable to DNS. No one wants to remember numbers or hashes to
+identify people, and names are not unique to a person, so there should
+be some way to (decentralized, of course) link a username or an address
+with a keypair, which can be resolved easily. So if you want to send me
+a message, you send it to "sulami", we resolve the name, get the public
+key and are ready to start an encrypted conversation.&lt;/p&gt;
+&lt;h2&gt;Who will do it?&lt;/h2&gt;
+&lt;p&gt;This is the important question. I would like to work on something like
+this, but obviously the scope is gigantic and there are experts needed
+on crypto, network messaging, development for specific platforms,
+interface designers, and the list goes on. If you read this and are
+interested in starting such a project, do not hesitate to contact me,
+someone has to make the first step. My public key is on the
+contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 05:40:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>http://peerwire.de/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+some conventions I found useful, but there are always people who do not
+follow those conventions, some because they do not want to, but mostly
+they just do not care. I just want to list some (read: non-exhaustive
+list) of these conventions and maybe help you become a better human. In
+my eyes. Which are the only relevant eyes.&lt;/p&gt;
+&lt;h1&gt;General Stuff&lt;/h1&gt;
+&lt;h4&gt;Encoding&lt;/h4&gt;
+&lt;p&gt;UTF-8.&lt;/p&gt;
+&lt;p&gt;There is close to nothing in the western world which does not work with
+unicode, but many thing that will not work without it.&lt;/p&gt;
+&lt;h4&gt;Websites&lt;/h4&gt;
+&lt;p&gt;You own a website? Great. Here are some things to not do:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;overly heavy use of javascript/ajax&lt;/li&gt;
+&lt;li&gt;using POST where GET is usable (POST breaks bookmarks)&lt;/li&gt;
+&lt;li&gt;using GET where POST is required (login information, ...)&lt;/li&gt;
+&lt;li&gt;storing cleartext passwords (salt and hash them, only compare
+    hashes)&lt;/li&gt;
+&lt;li&gt;storing any kind of userdata you do not need (hackers/leaks)&lt;/li&gt;
+&lt;li&gt;using flash for something that is neither a video nor a game&lt;/li&gt;
+&lt;li&gt;use a popup to ask me to like your facebook-page (or some other
+    social bullshit)&lt;/li&gt;
+&lt;li&gt;split your content way to often to generate additional pageviews&lt;/li&gt;
+&lt;li&gt;anything with sound which is not the main point of the site&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Passwords&lt;/h4&gt;
+&lt;p&gt;Use unique, randomly generated passwords for each service, store them in
+some sort of encrypted file (like KeePass). If you prefer to know your
+passwords, choose a scheme to generate passwords for a given service, so
+you do not use the same password everywhere. Also, long passwords are
+better than short ones, special characters are mostly good and no one
+who knows you should be able to guess your passwords, so no names of
+SOs, children, parents, BFFs, ...&lt;/p&gt;
+&lt;h4&gt;Backups&lt;/h4&gt;
+&lt;p&gt;Do regular backups of everything you own. External harddrives, CDs,
+Homservers, whatever. Just no "clouds", you cannot rely on those both in
+terms of security and reliability. Always have at least two copies fully
+under your control. And maybe read &lt;a href="/backup-your-work.html" title="Backup your work"&gt;my post about using git to backup
+your work&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Prefer Open Source&lt;/h4&gt;
+&lt;p&gt;Not (only) for philosophical reasons, but for security reasons. If you
+use a reasonably large open sourced piece of software, even if you are
+not able to write a single word of code, most assuredly some fanatic has
+already checked the whole code for security holes. In proprietary
+software, sometimes only less than ten people have access to the source
+code, and everything they do not catch is a potential way for you to
+loose your access to let's say your bank account. Would suck, would it
+not?&lt;/p&gt;
+&lt;h1&gt;Mail&lt;/h1&gt;
+&lt;p&gt;Mail is a big part of the internet and my life as well. But there are
+some things that really bug me when reading mail.&lt;/p&gt;
+&lt;h4&gt;Do not use HTML-mail&lt;/h4&gt;
+&lt;p&gt;There is no reason at all to use HTML in mails, except you send
+professional advertisements or something like this. But for simple mail,
+just containing text and maybe some attachments, why would you use HTML?
+To make it look prettier? I open my mail in mutt (read: a text console),
+so I get to read around all your fancy HTML-tags.&lt;/p&gt;
+&lt;h4&gt;Do not write in single/ridiculously long lines&lt;/h4&gt;
+&lt;p&gt;This is a big Outlook/Live Mail/whatever it is called right now-issue.
+Even though you see the linebreaks at the end of your writing area,
+there are actually none, Outlook breaks it "live". When using proper
+text-only-mail, this is bad, not like really bad, but somewhat bad. I
+usually correct those, and by "I" I mean vim does it for me, but still.
+I personally prefer breaks at a maximum of 72 characters per line, which
+is a commonly used standard.&lt;/p&gt;
+&lt;h4&gt;Do not TOFU&lt;/h4&gt;
+&lt;p&gt;No, this one is not about your eating habits, TOFU stands for "Text Over
+Fullquote Under". This is what Outlook (sic) does per default.
+Fullquoting is useful in many situations and does not introfuce to much
+overhead when using text-only mail (my mails very rarely exceed 10KB).
+But instead of writing your answer over the mail you received, place it
+below. This way, we both can read the coversation from top to bottom
+while writing our mails.&lt;/p&gt;
+&lt;h1&gt;Coding&lt;/h1&gt;
+&lt;p&gt;If you and I are working together on a software project, there are some
+things I greatly appreciate.&lt;/p&gt;
+&lt;h4&gt;Use a (proper) coding style&lt;/h4&gt;
+&lt;p&gt;Coding styles are everything when coding cooperatively. My favourite
+coding style is the Python one (&lt;a href="http://legacy.python.org/dev/peps/pep-0008/" title="Python.org"&gt;PEP8&lt;/a&gt;/&lt;a href="http://legacy.python.org/dev/peps/pep-0007/" title="Python.org"&gt;PEP7&lt;/a&gt;), which means for most
+languages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;no tabs&lt;/li&gt;
+&lt;li&gt;4 space indentation&lt;/li&gt;
+&lt;li&gt;prefered max line length: 80 characters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Indentation can be tabs alternatively, but &lt;strong&gt;have to&lt;/strong&gt; be standardized.
+In some editors, tabs are 4 spaces long, in others 8, and in some 6.
+This makes code indentation a mess and ruins the readability. The line
+length limit is for sane editing, 100 characters are also acceptable,
+anything more than that is probably poorly readable in most editors and
+screams "bad code".&lt;/p&gt;
+&lt;h4&gt;Use a VCS/SCM&lt;/h4&gt;
+&lt;p&gt;I could have also said "use git". But I see that some people prefer
+mercurial or SVN (why...?), that is okay, too. Even when working alone,
+always use some sort version control software, or you will break your
+code one day and spend hours tracking down the bad change. Diffs and
+rollbacks are vital for efficient coding.&lt;/p&gt;
+&lt;h4&gt;As you are using git, branch&lt;/h4&gt;
+&lt;p&gt;As git is the best vcs, in my opinion, you are using branches, aren't
+you? Never, and I mean never, work on master. Master is for tested code
+only. Always work on "wip", "robin" or "fix". It does not matter how you
+name your branch. If you want to change something, branch, make your
+change, test it(!), and merge back into master if your change breaks
+nothing. This is even more important when coding cooperatively, as I do
+not want to pull your work in progress on master, branch to my work in
+progress and wonder why it is broken. Which brings us to&lt;/p&gt;
+&lt;h4&gt;Work locally&lt;/h4&gt;
+&lt;p&gt;Many devs are used to working directly on a server, and sometimes this
+is the only way to effectively test their changes, as they are missing
+the needed environment for the code. This is okay. But as you are still
+using git, always try to clone a personal copy of the code to work on,
+and only push back your branch(es) and possible changes to master to
+save your work centralized. Otherwise there might be a hell of
+simultaneously edited files and lock-/swap-/backup-files.&lt;/p&gt;
+&lt;h1&gt;Software Recommendations&lt;/h1&gt;
+&lt;p&gt;I have used so much software over the years, I found my favourite
+software for most of my needs, and I compared a lot. My favourites are
+always the first ones.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS: Linux (Fedora/OpenSUSE/Arch) or Windows 7 x64 on desktops,
+    RHEL/CentOS/OpenSUSE/*BSD on servers&lt;/li&gt;
+&lt;li&gt;Password Management: KeePass (version 1, version 2 is not widely
+    available yet)&lt;/li&gt;
+&lt;li&gt;Text editing/coding: vim, Kate, Notepad++ (on Windows)&lt;/li&gt;
+&lt;li&gt;VCS: git&lt;/li&gt;
+&lt;li&gt;Mail: mutt, Thunderbird&lt;/li&gt;
+&lt;li&gt;VoIP: Skype (still searching for a better alternative, not secure in
+    any way), Mumble&lt;/li&gt;
+&lt;li&gt;IRC: irssi, weechat, Quassel&lt;/li&gt;
+&lt;li&gt;VMs: Virt-Manager/QEMU with KVM, Xen (for PVM on hosts without
+    CPU-extensions), VirtualBox (on Windows)&lt;/li&gt;
+&lt;li&gt;Video: VLC&lt;/li&gt;
+&lt;li&gt;Music: ncmpcpp+mpd, Rythmbox, foobar2000 (on Windows)&lt;/li&gt;
+&lt;li&gt;Office: LaTeX for papers, LibreOffice&lt;/li&gt;
+&lt;li&gt;Web: Firefox&lt;/li&gt;
+&lt;li&gt;Webserver: nginx&lt;/li&gt;
+&lt;li&gt;Filesharing: NFS, Samba (FTP is old and cluttered)&lt;/li&gt;
+&lt;li&gt;CMS: Django (anything), Wordpress (blogs), Drupal&lt;/li&gt;
+&lt;li&gt;Programming languages: Python (platform independent, modular, nice
+    to write and read), C(++) (faster, for performance-critical
+    applications)&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 23:59:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>Quickie: custom launchers in Gnome 3</title><link>http://peerwire.de/quickie-custom-launchers-in-gnome-3.html</link><description>&lt;p&gt;Let's say you are using Gnome 3, because it is actually sort of usable
+with some extensions and the alternatives are not to shiny. Let's say
+you want to add some obscure program to the dash or change the icon or
+the startup parameters of an existing one. Let's say, I know how:&lt;/p&gt;
+&lt;p&gt;Navigate to &lt;em&gt;\~/.local/share/applications&lt;/em&gt;, and write a new file named
+&lt;em&gt;yourprogram.desktop&lt;/em&gt;. Fill it with conent like the following:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;{.lang&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt; .decode&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020"&gt;true&lt;/span&gt;}
+[Desktop Entry]
+Name&lt;span style="color: #666666"&gt;=&lt;/span&gt;My Program
+GenericName&lt;span style="color: #666666"&gt;=&lt;/span&gt;Some Program
+Exec&lt;span style="color: #666666"&gt;=&lt;/span&gt;program &lt;span style="color: #666666"&gt;--&lt;/span&gt;foo
+Icon&lt;span style="color: #666666"&gt;=&lt;/span&gt;program
+Terminal&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #007020"&gt;false&lt;/span&gt;
+Type&lt;span style="color: #666666"&gt;=&lt;/span&gt;Application
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you want some sort of custom icon, like a Faenza icon for
+virt-manager (which for some reason does not exist), you can check at
+&lt;em&gt;\~/.icons&lt;/em&gt; for icons. Just name the filename without extension in your
+shortcut.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 22:26:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:quickie-custom-launchers-in-gnome-3.html</guid><category>quickie</category><category>gnome</category></item><item><title>Quickie: force-test virtualhosts</title><link>http://peerwire.de/quickie-force-test-virtualhosts.html</link><description>&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
+most people will know what I mean. You define a new virtualhost/server
+block and point it to your page. But to test it, you usually need to
+update the DNS-records, and this may take hours, depending on your
+situation. But you can force a specific host using wget (or curl, but
+curl is not able to recursively download whole pages).&lt;/p&gt;
+&lt;p&gt;This is quite easy and can be accomplished by manually setting the
+Host-variable in the HTTP-header, like this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;{.lang&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt; .decode&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020"&gt;true&lt;/span&gt;}
+wget &lt;span style="color: #666666"&gt;-&lt;/span&gt;R &lt;span style="color: #666666"&gt;--&lt;/span&gt;header&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;Host: www.google.com&amp;quot;&lt;/span&gt; &lt;span style="color: #40a070"&gt;127.0.0.1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This would trick your local webserver into thinking you resolved
+google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 01:22:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:quickie-force-test-virtualhosts.html</guid><category>quickie</category><category>apache</category><category>nginx</category><category>wget</category></item><item><title>Backup your work</title><link>http://peerwire.de/backup-your-work.html</link><description>&lt;p&gt;When doing serious work involving code (or config files), backups are a
+must-have. What you want to do are backups to (sort of) remote
+locations, like separate harddrives, external drives or other
+computers/servers, which is protecting your precious work from hardware
+failure and to some degree (not so) accidental deletion.&lt;/p&gt;
+&lt;p&gt;You also want to be using a VCS, I will be using git, because it is
+simple, fast and powerful. With git, you can combine version
+controlling/branching and backups pretty easily. Go to your remote
+location, make a directory &lt;em&gt;foobar.git&lt;/em&gt;, init an empty git repo and add
+it as remote to your project. Don't forget to push to it.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;cd &lt;span style="color: #666666"&gt;~/&lt;/span&gt;remote
+mkdir foobar.git
+cd foobar.git
+git init &lt;span style="color: #666666"&gt;--&lt;/span&gt;bare
+cd &lt;span style="color: #666666"&gt;~/&lt;/span&gt;project
+git remote add backup &lt;span style="color: #666666"&gt;~/&lt;/span&gt;remote&lt;span style="color: #666666"&gt;/&lt;/span&gt;foobar.git
+git push backup master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is a minimal example of how to do this. You will want to exclude
+large binary files like images, videos or binaries (duh..), as git can't
+compare those and will compress each version. Instead, you probably want
+to just compress and store them independently, version-wise or just one
+set, depending on the type of files. Consider using tar, rsync and/or
+cron for these backups.&lt;/p&gt;
+&lt;p&gt;In my case, I backup a simple video platform, backing up all the code
+and configs using git and the video files, thumbnails and database in a
+.tar.xz of which I only store the newest version. I store all my work
+multiple times, 2 times on my workstation in case of hardware failure (I
+don't use a RAID at the moment), once on a local server and once on an
+external drive which is offline most of the time, so it even is
+protected against malicious attacks.&lt;/p&gt;
+&lt;p&gt;I personally don't like Dropbox, Google Drive, Skydrive and all those
+other clouds, because I prefer to keep my data on my own. Dropbox is
+nice for syncing PDFs over different devices, but for everything
+slightly important, I use git with a local repo and sometimes GitHub. In
+case you now say, you can't afford your own in-house server, get a
+Raspberry Pi Mod. B with a small SD-card, a power cable and some sort of
+external drive, totalling maybe \$100. It uses near to no power, can run
+24/7 without any noise or noticeble heat and use the external drive to
+save all your stuff on a separate machine. It's that easy.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 10 Mar 2014 23:58:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-10:backup-your-work.html</guid><category>cron</category><category>dropbox</category><category>git</category><category>google drive</category><category>homeserver</category><category>raspberrypi</category><category>security</category></item><item><title>Quickie: paste into vim</title><link>http://peerwire.de/quickie-paste-into-vim.html</link><description>&lt;p&gt;Pasting code into vim is painful, because vim tends to indent every line
+further than the one before, which forces me to unindent everything
+manually. But as I learned today, vim has a paste-mode which circumvents
+this behaviour.&lt;/p&gt;
+&lt;p&gt;Just use the commandline to &lt;em&gt;:set paste&lt;/em&gt;, paste your code and &lt;em&gt;:set
+nopaste&lt;/em&gt; again. Or, even better, bind this to hotkeys.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 05 Mar 2014 13:22:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-05:quickie-paste-into-vim.html</guid><category>quickie</category><category>cli</category><category>vim</category></item><item><title>Get the freaking Humble Bundle!</title><link>http://peerwire.de/get-the-freaking-humble-bundle.html</link><description>&lt;p&gt;If you are a Linux gamer like me (although I barely play games anymore
+as I don't have the free-time I used to have anymore), get the &lt;a href="http://humblebundle.com" title="Humble Bundle"&gt;Humble
+Bundle&lt;/a&gt;. For some dollars you get 6 great games, 5 with native
+Linux-support, one that will get a native Linux version later this year
+for free, all the soundtracks as mp3s and flacs, and there is hidden
+stuff which will be unlocked later on. What are you waiting for?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Feb 2014 15:49:00 +0100</pubDate><guid>tag:peerwire.de,2014-02-19:get-the-freaking-humble-bundle.html</guid><category>gaming</category></item><item><title>Quickie: Yum PS</title><link>http://peerwire.de/quickie-yum-ps.html</link><description>&lt;p&gt;Coming from SUSE I am now primarily using RHEL/CentOS/Fedora-type Linux
+distros, which means the package manager of my choice is yum. While yum
+is quite a bit faster than zypper in almost every situation, it does not
+provide the really useful function of showing you which running
+processes are affected by package changes, which is particularly useful
+on servers which aren't rebooted every few days (my homeserver is now
+running for \~160 days without reboot).&lt;/p&gt;
+&lt;p&gt;But there is a simple helper: get &lt;em&gt;yum-plugin-ps&lt;/em&gt;, a plugin which, who
+would have guessed it, adds the functionality described into yum. Now
+you can run &lt;em&gt;yum ps&lt;/em&gt; and get a list of running processes, ordered by
+changed files they use, so you can reload/restart those services and
+hopefully prevent bad guys from exploiting already patched security
+holes.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Feb 2014 20:16:00 +0100</pubDate><guid>tag:peerwire.de,2014-02-18:quickie-yum-ps.html</guid><category>quickie</category><category>security</category><category>updates</category><category>yum</category></item><item><title>Small update: new machine arrived (mostly)</title><link>http://peerwire.de/small-update-new-machine-arrived-mostly.html</link><description>&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
+the case has not arrived yet. But I ran some quick tests using my normal
+OS, and I can describe it the following way:&lt;/p&gt;
+&lt;p&gt;[![spaceballs_ludicrous_speed][]][spaceballs_ludicrous_speed]&lt;/p&gt;
+&lt;p&gt;It boots from pressing the button to Gnome 3 within 10 seconds, which is
+just flatout amazing. Compared to my 4GHz Thuban, the 3.40GHz Haswell
+Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 29 Jan 2014 17:02:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-29:small-update-new-machine-arrived-mostly.html</guid></item><item><title>Bought my workstation upgrade (read: upgrayyed)</title><link>http://peerwire.de/bought-my-workstation-upgrade-read-upgrayyed.html</link><description>&lt;p&gt;So after I discussed the whole hardware situation for two or three days
+with a good friend and did about 30 hours of research, I decided on a
+specific set of hardware for my new Linux development workstation. &lt;a href="/building-my-new-machine.html" title="Building my new machine"&gt;As I
+mentioned earlier&lt;/a&gt;, I wanted many cores/threads and loads of RAM,
+while using some gpu with enough power for some simple 3D-applications
+on open-source drivers, all tightly packed into a tiny desktop cube.&lt;/p&gt;
+&lt;p&gt;So I got myself an Intel Xeo E3-1245 v3, 4x 3.40GHz and Hyperthreading,
+overclocking to be done, 16GB of DDR3-1600 CL9 RAM with the option to
+upgrade to 32GB if needed/desired, and an ASRock micro-ATX board to hold
+it.&lt;/p&gt;
+&lt;p&gt;My favourite cube-case, the Cooltek Coolcube Maxi was not available
+anywhere, so I decided on a Bitfenix Phenom, which is basically the same
+thing. The CPU-cooler will be a Zalman CNPS8900 Quiet, which is by far
+the best low-profile cooling solution on the market, with the option to
+upgrade to a Corsair H50/H70 or similar if needed, but I highly doubt
+it. SSD and HDDs will be taken from HAL, my current machine, and the PSU
+is some Zalman 500W I had on my shelf.&lt;/p&gt;
+&lt;p&gt;Alternatives discussed were a i5-4670 (no Hyperthreading), i7-4770 (more
+expensive than the Xeon while less features) and an AMD FX-8350 in
+combination with a Radeon HD6570 Silence (cheaper, but probably slower,
+double the TDP of the Xeon). AMD APUs have superior graphics performance
+but are way slower on CPU tasks. Opterons are not available for
+affordable prices.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 27 Jan 2014 00:15:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</guid></item><item><title>My favourite Tech-Talks</title><link>http://peerwire.de/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
+of talks on YouTube and watching them all would take ages, but I
+sometimes watch talks before going to bed instad of watching TV.  So I
+thought, I could compile a small list of my favourite talks featuring
+technical topics for myself and you readers.&lt;/p&gt;
+&lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
+(2012)][] - case studies on how to unrecoverably destroy your data
+within seconds&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/1ffBJ4sVUb4" title="YouTube"&gt;Git for ages 4 and up (2013)&lt;/a&gt; - explains git basics really easy&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/bSAgQqa49nM" title="YouTube"&gt;I wanna be the guy: The arduous path to senior sysadmin (2013)&lt;/a&gt; -
+best practices and advice on how to be a better sysadmin&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/5CWrzVJYLWw" title="YouTube"&gt;No-Tech Hacking (2008)&lt;/a&gt; - real life hacking without use of advanced
+technology, quite funny, too&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/U4oB28ksiIo" title="YouTube"&gt;Pwned by the owner (2010)&lt;/a&gt; - funny story of a hacker whose PC gets
+stolen and how he got it back&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/bQqX3RWn0Yw" title="YouTube"&gt;SELinux for mere mortals (2013)&lt;/a&gt; - what SELinux does, why to use it
+and how to use it&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/RIctzAQOe44" title="YouTube"&gt;The real story behind Wayland and X (2013)&lt;/a&gt; - a Wayland-dev explains
+why X sucks from a technical view and what Wayland actually does&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/Sh-cnaJoGCw" title="YouTube"&gt;Why Linux sucks&lt;/a&gt; / &lt;a href="http://youtu.be/BfLqLK7VdQY" title="YouTube"&gt;Why Linux does not suck (2012)&lt;/a&gt; - watch both in
+this order, funny comment on the state of Linux&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/LLBrBBImJt4" title="YouTube"&gt;Write and submit your first Linux kernel patch (2012)&lt;/a&gt; - how to get
+started on kernel development&lt;/p&gt;
+&lt;p&gt;There are a lot more good talks, but my time is sort of limited and
+sadly I can't really focus on working while watching talks.&lt;/p&gt;
+&lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
+  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 14:49:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category></item><item><title>Building my new machine</title><link>http://peerwire.de/building-my-new-machine.html</link><description>&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
+around 1500€ and is a water-cooled, black red hexa-core monster, it is not 
+really optimized for what I am doing, which is mostly coding and compiling 
+on Linux. Hal9k, what it has been called for many years now, has been 
+incrementally build and does not feature any of it initial parts anymore 
+(IIRC). It has been optimized for gaming on Windows, as this was what my 
+younger self enjoyed the most. So it features only 8GB of RAM, because on 
+Windows, you haven't needed more than this for the past decade, and one of 
+the biggest graphics cards available, an overclocked Radeon HD7970.&lt;/p&gt;
+&lt;p&gt;Here are the problems:&lt;/p&gt;
+&lt;p&gt;I need more RAM. Linux likes to cache everything in
+RAM, so even going up beyond 32GB of RAM can make sense, if you either
+got enough to cache, or use ramdisks. Hell, 32GB of RAM can even be
+enough to load your complete system root to RAM on boot (excluding your
+/home-directory of course). RAM is always good on Linux.&lt;/p&gt;
+&lt;p&gt;The graphics card is horribly oversized for a
+compositing window manager and occasional casual-gaming on Linux. Also,
+open-source drivers for HD7xxx suck, like really suck, catalyst sucks
+even more. Nvidia or Intel are the way to go right now.&lt;/p&gt;
+&lt;p&gt;It is huge. I am using a Cooler Master HAF932 case, which is a big tower, to 
+fit my water cooling completely in the case. It even has wheels, so you can 
+move this 60x60x25cmmonstrosity around. And it sucks up to 700 watts under 
+load.&lt;/p&gt;
+&lt;p&gt;Here is what I plan to do:&lt;/p&gt;
+&lt;p&gt;Build a new machine, nearly from scratch, keeping only my harddrives for
+obvious reasons. The specifics aren't worked out completely, yet, but it
+will probably run either an Intel Haswell quad-, or an AMD Vishera
+octo-core. I decided not to go for server-cpus for pricing reasons
+without real benefits. Loads of RAM, probably 16-32GB, depending on what
+deal I can make. And all fitted onto a micro-ATX mainboard and into a
+neat little cube-case. The Vishera would receive a passively cooled
+Nvidia GPU, as it does not feature an IGP.&lt;/p&gt;
+&lt;p&gt;If I get for HAL what I hope I can get, I even make profit switching, not 
+even calculating the saved energy. If they would sell it for less than 
+2000€, I would even consider a new Mac Pro (killing OSX, of course), but for 
+it to be reasonable to me, they would have to drop the price by at least 
+75%. So I build my hipster-machine myself.&lt;/p&gt;
+&lt;p&gt;One thing that is left after all, is choosing a new name. I figured, as HAL 
+has will be completely sold, except two HDDs andone SSD, I cannot carry the 
+name over. So I need to choose a new hostname for the new machine, which is 
+also WIP right now. But there are some candidates:&lt;/p&gt;
+&lt;p&gt;DeepThought from Hitchiker's Guide (unfortunately, Linux does not allow
+spaces in hostnames, so camelcase)&lt;/p&gt;
+&lt;p&gt;Shodan/Xerxes from System Shock&lt;/p&gt;
+&lt;p&gt;Deus from Shadowrun&lt;/p&gt;
+&lt;p&gt;LINC from Beneath a Steel Sky&lt;/p&gt;
+&lt;p&gt;Not in the list are GLaDOS for being to mainstream (that is even a
+reason? wow... -.-) and the Deus Ex-AIs as they are to generic for my
+taste. Also anything that does not directly refer to the computer I
+thought of, like Fate or Aura.&lt;/p&gt;
+&lt;p&gt;I also sort of like Vger (or V'ger) from Star Trek, but the kernel
+mailing list and stuff...&lt;/p&gt;
+&lt;p&gt;Right now, I am mostly leaning towards Shodan, as it is probably of the
+most badass of those, and maybe the only one that can match HAL.&lt;/p&gt;
+&lt;p&gt;I will now continue to compare benchmarks and prices, like I did for the
+last 4 hours. Take care.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 24 Jan 2014 03:10:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-24:building-my-new-machine.html</guid></item><item><title>Quickie: Gnome 3 dark theme</title><link>http://peerwire.de/quickie-gnome-3-dark-theme.html</link><description>&lt;p&gt;Many people, me included, prefer their computer screen mostly dark. And
+while I quite like the default gtk-theme of Gnome 3, called "Adwaita",
+it is white. Using &lt;em&gt;gnome-tweak-tool&lt;/em&gt;, you can easily color it dark, but
+this only works for Gtk-3 apps, so Firefox for example is still white.
+To fix this, get &lt;em&gt;gtk-murrine-engine&lt;/em&gt; (package name on Fedora) and &lt;a href="http://goo.gl/6dRiC2" title="Dropbox"&gt;this
+theme&lt;/a&gt;. Unpack it to &lt;em&gt;/usr/share/themes&lt;/em&gt;. Then use the tweak-tool and
+&lt;em&gt;gtk-chtheme&lt;/em&gt; (also a Fedora package name), to select "Adwaita-Dark".
+Then login again or reboot for good measure.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 Jan 2014 13:22:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-23:quickie-gnome-3-dark-theme.html</guid><category>quickie</category><category>firefox</category><category>gnome</category></item><item><title>My new desktop</title><link>http://peerwire.de/my-new-desktop.html</link><description>&lt;p&gt;After I lost my SSD to the kraken and got a new one back, I set up a
+completely new system. This time I decided to ditch both openSUSE and
+Arch Linux and go with Fedora.&lt;/p&gt;
+&lt;p&gt;The reasons here are: I love Arch and pacman, but setting it up to a
+degree where it does not need any major maintenance anymore (if this
+ever happens) is a giant pain. OpenSUSE is quite nice as well, and YaST
+is great, but the repos are sort of small and dealing with all the
+user-supplied repos on OBS is just not bearable for a human being. Also,
+KDE is nice but I had some problems with Kwin and I am not willing to
+fix it.&lt;/p&gt;
+&lt;p&gt;So here we got Fedora: packages are reasonably up to date, it is close
+to RHEL which is sort of useful for consistency, and Gnome is well
+integrated.&lt;/p&gt;
+&lt;p&gt;You might have read the word "Gnome". Yep, that's right, I am actually
+using Gnome 3. Using some of the extensions makes it quite usable, even
+for someone like me, who has been using tiling WMs for almost two years
+now (i3 -&gt; bspwm -&gt; monsterwm). This combination is set up and
+configured to my likings within about 8-10 hours and is perfoming quite
+well right now.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 22 Jan 2014 01:12:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-22:my-new-desktop.html</guid><category>desktop</category><category>fedora</category><category>gnome</category></item><item><title>Kudos to OCZ</title><link>http://peerwire.de/kudos-to-ocz.html</link><description>&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
+big of a deal, I've got backups of most of my stuff and hardware failure
+occures sometimes, nothing we can really do something about. But when I
+sent it to the retailer I got it from, Mindfactory, they told me I would
+have to proof, the damage wasn't caused by me. I have no clue how they
+think this is supposed to look like.&lt;/p&gt;
+&lt;p&gt;So I got it back and contacted OCZ directly, who answered my support
+emails within some minutes and then sent me an address to send my SSD
+to. Yesterday I received a refurbished one, same model, including all
+the supplies I didn't send them, and even a new sticker. For free. This
+is customer support.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jan 2014 15:14:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-21:kudos-to-ocz.html</guid><category>ssd</category></item><item><title>Vim-Fu: some tweaks for your setup</title><link>http://peerwire.de/vim-fu-some-tweaks-for-your-setup.html</link><description>&lt;p&gt;Vim is awesome. Fact.&lt;/p&gt;
+&lt;p&gt;But if you like using vim as your main editor for everything, maybe even
+mainly inside tmux inside ssh, like I do, there are lots of
+optimizations available to rapidly increase your productivity.&lt;/p&gt;
+&lt;h4&gt;General vimrc&lt;/h4&gt;
+&lt;p&gt;Things you want to have in your vimrc:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020"&gt;# line numbering&lt;/span&gt;
+set numbers
+&lt;span style="color: #007020"&gt;# indentation python style, 4 spaces&lt;/span&gt;
+set smartindent
+set tabstop&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;4&lt;/span&gt;
+set shiftwidth&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;4&lt;/span&gt;
+set expandtab
+set smarttab
+&lt;span style="color: #007020"&gt;# colored column, better than auto-linebreaks&lt;/span&gt;
+set colorcolumn&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;80&lt;/span&gt;
+&lt;span style="color: #007020"&gt;# less errors&lt;/span&gt;
+silent
+&lt;span style="color: #007020"&gt;# useful stuff, personal preferance&lt;/span&gt;
+set encoding&lt;span style="color: #666666"&gt;=&lt;/span&gt;utf&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;8&lt;/span&gt;
+set fileformats&lt;span style="color: #666666"&gt;=&lt;/span&gt;unix,dos
+&lt;span style="color: #007020"&gt;# use jk to exit insert mode, use whichever key(combination) suits you&lt;/span&gt;
+imap jk 
+&lt;span style="color: #007020"&gt;# new tabs on Ctrl-T&lt;/span&gt;
+map  &lt;span style="color: #666666"&gt;:&lt;/span&gt;tabnew
+&lt;span style="color: #007020"&gt;# file explorer on Ctrl-E&lt;/span&gt;
+map  &lt;span style="color: #666666"&gt;:&lt;/span&gt;Explore
+&lt;span style="color: #007020"&gt;# fix autocompletion, btw, it&amp;#39;s built into vim 7+ and bound to Ctrl-N&lt;/span&gt;
+set completeopt&lt;span style="color: #666666"&gt;=&lt;/span&gt;longest,menuone
+inoremap   pumvisible() &lt;span style="color: #666666"&gt;?&lt;/span&gt; &lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0"&gt; : &amp;quot;&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;\&lt;/span&gt;u&lt;span style="border: 1px solid #FF0000"&gt;\&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;
+inoremap   pumvisible() &lt;span style="color: #666666"&gt;?&lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;pumvisible() &lt;span style="color: #666666"&gt;?&lt;/span&gt; &lt;span style="color: #4070a0"&gt;&amp;quot;\Down&amp;gt;&amp;quot;&lt;/span&gt; &lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #4070a0"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Colors&lt;/h4&gt;
+&lt;p&gt;Let's start off easy with the general vim look. If used in terminals,
+those will handle parts of your coloring, but I will focus on coloring
+vim itself. You probably want to use the same colorscheme for your
+terminal and vim in any case.&lt;/p&gt;
+&lt;p&gt;To color vim use the &lt;em&gt;colo&lt;/em&gt; command, preferably after you get some a
+nice colorscheme from the interwebs. My favourites are &lt;a href="https://github.com/nanotech/jellybeans.vim" title="GitHub"&gt;jellybeans&lt;/a&gt; or
+&lt;a href="https://github.com/chriskempson/base16-vim/blob/master/colors/base16-tomorrow.vim" title="GitHub"&gt;base16-tomorrow&lt;/a&gt; for dark and &lt;a href="https://github.com/chriskempson/base16-vim/blob/master/colors/base16-solarized.vim" title="GitHub"&gt;Solarized light&lt;/a&gt; for light screens.
+There are themes for shells and other stuff in this repo, have a look
+around and read the docs.&lt;/p&gt;
+&lt;p&gt;You also might want to change background to dark using &lt;em&gt;set
+background=dark&lt;/em&gt;.&lt;/p&gt;
+&lt;h4&gt;Pathogen&lt;/h4&gt;
+&lt;p&gt;If you plan on using any plugins for vim, use &lt;a href="https://github.com/tpope/vim-pathogenhttp://" title="GitHub"&gt;Pathogen&lt;/a&gt;. That's it.
+It loads all your plugins automatically and makes installing and
+removing plugins as fast as some seconds. The installation is pretty
+straight-forward, just put pathogen.vim into your autoload directory,
+add &lt;em&gt;execute pathogen#infect()&lt;/em&gt; to your vimrc and you are ready to go.
+All other plugins go into &lt;em&gt;bundle/pluginname&lt;/em&gt; from now on.&lt;/p&gt;
+&lt;h4&gt;Powerline / Airline&lt;/h4&gt;
+&lt;p&gt;One of my favourite plugins is Powerline, but I actually use
+&lt;a href="https://github.com/bling/vim-airline" title="GitHub"&gt;Airline&lt;/a&gt;, which is just written in vimscript and therefore portable
+and does not require Python. Airline extends the status bar by a great
+deal and gives you loads of useful information while looking cool.&lt;/p&gt;
+&lt;p&gt;Airline is sort of hard to install if you haven't done it before. Get it
+and put it into the bundle directory, because you are using Pathogen,
+aren't you? You then need the &lt;a href="https://github.com/Lokaltog/powerline-fontshttp://" title="GitHub"&gt;right fonts&lt;/a&gt; and use them either in
+Gvim (set guifont) or your terminal (Xresources, Xdefaults, whatever
+kind of config you are using).&lt;/p&gt;
+&lt;p&gt;Some hints for your vimrc if you are using Airline:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;let g&lt;span style="color: #666666"&gt;:&lt;/span&gt;airline_powerline_fonts &lt;span style="color: #666666"&gt;=&lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+let g&lt;span style="color: #666666"&gt;:&lt;/span&gt;aireline_theme &lt;span style="color: #666666"&gt;=&lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;jellybeans&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt;#&lt;/span&gt; just my favourite, there is a list on the GitHub pag
+set laststatus&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This fixes some errors I encountered and forces an Airline theme.&lt;/p&gt;
+&lt;h4&gt;Fugitive&lt;/h4&gt;
+&lt;p&gt;Are you using git? If you aren't, you most likely want to. For your
+work, your projects, your dotfiles, for everything. Versioning is nice.
+Get &lt;a href="https://github.com/tpope/vim-fugitive" title="GitHub"&gt;Fugitive&lt;/a&gt;, it adds some git functionality directly into vim, and
+plays nice with Airline.&lt;/p&gt;
+&lt;h4&gt;Vinegar&lt;/h4&gt;
+&lt;p&gt;You might have noticed how I bound Ctrl-E to :Explore. This is because I
+use vim for selecting my files to edit most of the time. &lt;a href="https://github.com/tpope/vim-vinegar" title="GitHub"&gt;Vinegar&lt;/a&gt;
+improves the built-in filebrowser in a few ways and makes it a lot more
+intuitive.&lt;/p&gt;
+&lt;h4&gt;Nerdtree&lt;/h4&gt;
+&lt;p&gt;Probably even better than Vinegar might be &lt;a href="https://github.com/scrooloose/nerdtree" title="GitHub"&gt;Nerdtree&lt;/a&gt;. It adds an
+additional vsplit with an interactive directory tree to quickly select
+files to edit.&lt;/p&gt;
+&lt;h4&gt;Surround&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://github.com/tpope/vim-surround" title="GitHub"&gt;Surround&lt;/a&gt; adds some new commands to vim concerning surrounding
+characters like ",',(,[,{ and \&amp;lt;. You can do stuff like change
+surroundings of where you are from single to double quotation marks by
+hitting cs'" (first single, then double ones). Sort of useful and does
+not hurt.&lt;/p&gt;
+&lt;h4&gt;Commentary&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://github.com/tpope/vim-commentary" title="GitHub"&gt;Commentary&lt;/a&gt; is a plugin that adds some actions regarding comments in
+source code. Easily comment out blocks of code using &lt;em&gt;gc&lt;/em&gt; saves you a
+few seconds everytime, which might add up one day.&lt;/p&gt;
+&lt;h4&gt;Repeat&lt;/h4&gt;
+&lt;p&gt;When using the above plugins, vim does not recognize the added actions
+to repeat them, namely the ones from surround and commentary. &lt;a href="https://github.com/tpope/vim-repeat" title="GitHub"&gt;Repeat&lt;/a&gt;
+fixes this behaviour.&lt;/p&gt;
+&lt;h4&gt;Trailing-Whitespace&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://github.com/bronson/vim-trailing-whitespace" title="GitHub"&gt;Traling-Whitespace&lt;/a&gt; is a simple one. It marks trailing whitespaces in
+red and introduces the &lt;em&gt;:FixWhitespace&lt;/em&gt; command to remove them.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 04 Jan 2014 18:37:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-04:vim-fu-some-tweaks-for-your-setup.html</guid><category>cli</category><category>coding</category><category>typing</category><category>vim</category></item><item><title>Quickie: fix Windows' stupid quotation mark behaviour</title><link>http://peerwire.de/quickie-fix-windows-stupid-quotation-mark-behaviour.html</link><description>&lt;p&gt;Two days ago, my system-SSD died, which happens. Because of this
+incident, I lost both my Arch Linux and my Windows 7 installation. While
+I wait for a new SSD to arrive, I installed some Win 7 Professional I
+found. And while I am German and use the German language for my
+operating systems, I prefer qwerty-keyboards over the German qwertz
+ones. So I installed Win 7 using the "US - International" layout, which
+seemed to work just fine. But it does not.&lt;/p&gt;
+&lt;p&gt;When typing quotation marks like " or ', you have to press another key
+before it actually gets print, which is annoying while coding, but even
+worse for using vim (think ci" or similar). The fix is quite easy:
+change the default layout to just "US", and hitting quotation marks
+instantly prints quotation marks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 29 Dec 2013 22:24:00 +0100</pubDate><guid>tag:peerwire.de,2013-12-29:quickie-fix-windows-stupid-quotation-mark-behaviour.html</guid><category>quickie</category><category>keyboard</category><category>typing</category><category>vim</category></item><item><title>Quickie: fglrx on openSUSE 13.1</title><link>http://peerwire.de/quickie-fglrx-on-opensuse-13-1.html</link><description>&lt;p&gt;Some days ago, openSUSE 13.1 was officially released. The new version
+seems to be pretty nice, but, as usually, breaks fglrx. The temporary
+fix is quite easy:&lt;/p&gt;
+&lt;p&gt;Open YaST and navigate to your software repositories. Edit your
+fglrx-repo and change the domain to
+&lt;em&gt;http://geeko.ioda.net/mirror/amd-fglrx-beta/openSUSE_13.1/&lt;/em&gt; . Now you
+should be able to remove fglrx for 12.3 and install fglrx beta for 13.1.
+In a first test, the beta driver seems to work pretty well.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 22 Nov 2013 14:24:00 +0100</pubDate><guid>tag:peerwire.de,2013-11-22:quickie-fglrx-on-opensuse-13-1.html</guid><category>quickie</category><category>fglrx</category><category>opensuse</category><category>updates</category><category>xorg</category><category>yast</category></item><item><title>Quickie: vim - exit insert mode faster</title><link>http://peerwire.de/quickie-vim-exit-insert-mode-faster.html</link><description>&lt;p&gt;I love vim. It's great. But exiting insert mode by pressing escape (or
+your rebound key, like capslock) takes a good second before you can go
+on being productive. This is all fixed by switching to ctrl-c, which
+exits insert mode instantaneously.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Oct 2013 00:57:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-15:quickie-vim-exit-insert-mode-faster.html</guid><category>quickie</category><category>vim</category></item><item><title>Twitch-IRC - the new way</title><link>http://peerwire.de/twitch-irc-the-new-way.html</link><description>&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
+turns out, twitch.tv changed their IRC-settings. The new way is even
+easier, as they no longer use one server per channel but have all
+channels on one server.&lt;/p&gt;
+&lt;p&gt;Server: irc.twitch.tv 6667&lt;/p&gt;
+&lt;p&gt;Nick: \&amp;lt;your twitch.tv-username&gt;&lt;/p&gt;
+&lt;p&gt;Password: Go to &lt;a href="http://www.twitchapps.com/tmi/"&gt;http://www.twitchapps.com/tmi/&lt;/a&gt; and get an oauth-token.
+Do this only once, as it will change every time you visit the site. This
+token, including the "oauth:"-part is your server password.&lt;/p&gt;
+&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 14:40:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:twitch-irc-the-new-way.html</guid><category>irc</category><category>twitch.tv</category></item><item><title>Using the right open source licenses</title><link>http://peerwire.de/using-the-right-open-source-licenses.html</link><description>&lt;p&gt;When it comes to programming your own stuff, like many people do, at
+some point you might want to thing about licensing. If your code is just
+sitting on GitHub, you probably want to use an open source license, so
+eventually people can contribute easily to your project. But there are
+so many licenses, Apache, BSD, MIT, several GPLs, how is anyone supposed
+to keep track of what they do, and which one should you choose? Easy
+answer: &lt;a href="http://www.tldrlegal.com/" title="TL;DR Legal"&gt;TL;DR Legal&lt;/a&gt;. Just enter your license and it gives you a
+simple overview.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 11:04:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:using-the-right-open-source-licenses.html</guid><category>legal</category><category>licensing</category><category>oss</category></item><item><title>Quickie: disable auto-mute when skyping on PulseAudio</title><link>http://peerwire.de/quickie-disable-auto-mute-when-skyping-on-pulseaudio.html</link><description>&lt;p&gt;When skyping on Linux (and elsewhere) I like to listen to music in the
+background, but PulseAudio automatically mutes my Amarok and other
+players as soon as Skype plays some kind of sound, which is insanely
+irritating. The fix is quite simpe, open &lt;em&gt;/etc/pulse/default.pa&lt;/em&gt; in your
+favourite edior (hopefully vim) and look for "cork" and "phone stream".
+Comment this. Restart PulseAudio/your PC.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;### Cork music/video streams when a phone stream is active&lt;/span&gt;
+&lt;span style="color: #60a0b0; font-style: italic"&gt;#load-module module-role-cork&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 27 Sep 2013 10:12:00 +0200</pubDate><guid>tag:peerwire.de,2013-09-27:quickie-disable-auto-mute-when-skyping-on-pulseaudio.html</guid><category>quickie</category><category>pulseaudio</category><category>skype</category></item><item><title>Quickie: restart Xorg with systemd</title><link>http://peerwire.de/quickie-restart-xorg-with-systemd.html</link><description>&lt;p&gt;As I am using KDE-Plasma on fglrx, I can only run my Xorg-session for
+about two days before running into the unholy "Maximum number of clients
+reached"-error.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;xlsclients &lt;span style="color: #666666"&gt;|&lt;/span&gt; wc &lt;span style="color: #666666"&gt;-&lt;/span&gt;l
+&lt;span style="color: #40a070"&gt;99&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;99 Clients should not be a problem at all, but fglrx sucks, so I need to
+restart X. With systemd, this is pretty easy.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;systemctl isolate multi&lt;span style="color: #666666"&gt;-&lt;/span&gt;user.target
+systemctl isolate graphical.target
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is comparable to &lt;em&gt;init 3&lt;/em&gt; and &lt;em&gt;init 5&lt;/em&gt;, but using systemd-targets.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 12 Sep 2013 12:31:00 +0200</pubDate><guid>tag:peerwire.de,2013-09-12:quickie-restart-xorg-with-systemd.html</guid><category>quickie</category><category>systemd</category><category>xorg</category></item><item><title>Listen to Pandora from your favourite shell</title><link>http://peerwire.de/listen-to-pandora-from-your-favourite-shell.html</link><description>&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
+with Linux. I love listening to music while coding. While I used to
+listen to webradios, there are not really enough webradios for all my
+musical needs. The big downside is, it needs to run in a graphical
+browser, which is not always practical for me (e.g. on my netbook).&lt;/p&gt;
+&lt;p&gt;Now I found pianobar on reddit, a console-client for pandora. There are
+a packages for openSUSE and Arch Linux, my main distros. The usage is
+pretty simple: make a config-file at
+&lt;em&gt;\$XDG_CONFIG_HOME/pianobar/config&lt;/em&gt; or
+&lt;em&gt;\$XDG_CONFIG_HOME/.config/pianobar/config&lt;/em&gt;, add something like this&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;user &lt;span style="color: #666666"&gt;=&lt;/span&gt; abc&lt;span style="border: 1px solid #FF0000"&gt;@&lt;/span&gt;abc.com
+password_command &lt;span style="color: #666666"&gt;=&lt;/span&gt; gpg &lt;span style="color: #666666"&gt;--&lt;/span&gt;decrypt &lt;span style="color: #666666"&gt;~/&lt;/span&gt;passwd
+control_proxy &lt;span style="color: #666666"&gt;=&lt;/span&gt; http&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;//1.2.3.4:8080/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and you are ready to go. Password_command reads your password from a
+encrypted file, because you should never leave unencrypted passwords on
+your computer. Control_proxy is for people outside of the US (like me),
+it only uses the proxy for control mechanisms, the music itself gets
+streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 06 Sep 2013 15:06:00 +0200</pubDate><guid>tag:peerwire.de,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</guid><category>cli</category><category>onlineradio</category><category>pandora</category></item><item><title>Quickie: fix vim in Cygwin</title><link>http://peerwire.de/quickie-fix-vim-in-cygwin.html</link><description>&lt;p&gt;So I was using Windows for some time, and the Windows-port of vim is not
+as good, so I use Cygwin instead. By default, it looks and behaves like
+vi, but even stranger. The fix is simple:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;cp &lt;span style="color: #666666"&gt;/&lt;/span&gt;usr&lt;span style="color: #666666"&gt;/&lt;/span&gt;share&lt;span style="color: #666666"&gt;/&lt;/span&gt;vim&lt;span style="color: #666666"&gt;/&lt;/span&gt;vim73&lt;span style="color: #666666"&gt;/&lt;/span&gt;vimrc_example.vim &lt;span style="color: #666666"&gt;~/&lt;/span&gt;.vimrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Be sure to merge possible own contents of your .vimrc.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 12 Aug 2013 13:51:00 +0200</pubDate><guid>tag:peerwire.de,2013-08-12:quickie-fix-vim-in-cygwin.html</guid><category>quickie</category><category>cli</category><category>cygwin</category><category>vim</category></item><item><title>Quickie: Using KDE-apps on Windows</title><link>http://peerwire.de/quickie-using-kde-apps-on-windows.html</link><description>&lt;p&gt;Well, yes, I occasionally  boot on Windows (8 Pro at the moment, but
+generally I prefer 7) to get some stuff done I cannot do on Linux,
+although I cannot really code on Windows, so I miss out there, too. One
+thing I like are cross-platform apps, such as Firefox, which I can use
+on both OSes. Those apps give me the possibilty to copy over my configs
+and have the same UX all the time. Most of the time, I prefer the
+programs coming from Linux, as those are generally better coded.&lt;/p&gt;
+&lt;p&gt;While I got &lt;a href="http://windows.kde.org/" title="kde.org"&gt;KDE for Windows&lt;/a&gt; a while back, intending to use plasma
+instead of the Windows 8 shell, which has not worked out yet, I can use
+it to run standard KDE-apps such as konqueror, dolphin or amarok on
+Windows. They use the proper Qt-theme and work surprisingly well. The
+documentation is pretty bad, but installing should still be easy enough.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="amarok" src="/images/amarok-1024x609.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 30 Jul 2013 14:54:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-30:quickie-using-kde-apps-on-windows.html</guid><category>quickie</category><category>kde</category></item><item><title>Update several dynamic domains at once</title><link>http://peerwire.de/update-several-dynamic-domains-at-once.html</link><description>&lt;p&gt;As you might have noticed, I am hosting this blog and several other
+websites on my own, and because I do not have a static IP (yet), I need
+to use dynamic domains, which are updates every time I get a IP. Using
+one of these domains is rather easy, but when it comes to updating
+multiple domains at the same time, things can get a bit sketchy. What I
+want to show you today is &lt;a href="https://www.dnsomatic.com/" title="DNS-O-Matic"&gt;DNS-O-Matic&lt;/a&gt;, a service which accepts your
+updates and forwards them to your DynDNS-providers. Now, if you want to
+update it, this is the custom update-url to use:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;http://updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com&amp;amp;myip=\&amp;lt;ipaddr&gt;&amp;amp;wildcard=NOCHG&amp;amp;mx=NOCHG&amp;amp;backmx=NOCHG&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As a hostname to update, I use &lt;em&gt;localhost&lt;/em&gt;, which simply updates
+everything.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jul 2013 14:05:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-24:update-several-dynamic-domains-at-once.html</guid><category>dnsomatic</category><category>dyndns</category><category>homeserver</category></item><item><title>Quickie: Map Wacom graphics-tablet to one screen only</title><link>http://peerwire.de/quickie-map-wacom-graphics-tablet-to-one-screen-only.html</link><description>&lt;p&gt;I just dug out my Wacom Bamboo Pen, a simple cheap graphics-tablet I
+bought on sale some time ago and plugged it into my openSUSE workstation
+to do some graphical work. Awesome as openSUSE is, it automatically
+detects it and everything works out of the box, thanks to preinstalled
+xf86-input-wacom. Now I use two screens and want the tablet mapped to
+only one of them to keep the correct aspect ratio, which I could not
+change in the mouse options, but there is a quick way of setting this
+up. First, get your output devices (screens) using xrandr:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;% xrandr&lt;/span&gt;
+Screen &lt;span style="color: #40a070"&gt;0&lt;/span&gt;: minimum &lt;span style="color: #40a070"&gt;320&lt;/span&gt; x &lt;span style="color: #40a070"&gt;200&lt;/span&gt;, current &lt;span style="color: #40a070"&gt;3840&lt;/span&gt; x &lt;span style="color: #40a070"&gt;1080&lt;/span&gt;, maximum &lt;span style="color: #40a070"&gt;3840&lt;/span&gt; x &lt;span style="color: #40a070"&gt;1920&lt;/span&gt;
+DFP1 disconnected (normal left inverted right x axis y axis)
+DFP2 disconnected (normal left inverted right x axis y axis)
+DFP3 disconnected (normal left inverted right x axis y axis)
+DFP4 disconnected (normal left inverted right x axis y axis)
+DFP5 disconnected (normal left inverted right x axis y axis)
+DFP6 disconnected (normal left inverted right x axis y axis)
+DFP7 disconnected (normal left inverted right x axis y axis)
+DFP8 disconnected (normal left inverted right x axis y axis)
+DFP9 disconnected (normal left inverted right x axis y axis)
+DFP10 connected &lt;span style="color: #40a070"&gt;1920&lt;/span&gt;x1080&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt; (normal left inverted right x axis y axis) &lt;span style="color: #40a070"&gt;598&lt;/span&gt;mm x &lt;span style="color: #40a070"&gt;336&lt;/span&gt;mm
+   &lt;span style="color: #40a070"&gt;1920&lt;/span&gt;x1080      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;&lt;span style="color: #666666"&gt;*+&lt;/span&gt;
+   &lt;span style="color: #40a070"&gt;1680&lt;/span&gt;x1050      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1400&lt;/span&gt;x1050      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1600&lt;/span&gt;x900       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x1024      &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1440&lt;/span&gt;x900       &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;59.9&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x960       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1152&lt;/span&gt;x864       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x768       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x720       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1024&lt;/span&gt;x768       &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;70.1&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;800&lt;/span&gt;x600        &lt;span style="color: #40a070"&gt;72.2&lt;/span&gt;     &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.3&lt;/span&gt;     &lt;span style="color: #40a070"&gt;56.2&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;640&lt;/span&gt;x480        &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;72.8&lt;/span&gt;     &lt;span style="color: #40a070"&gt;67.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;59.9&lt;/span&gt;  
+DFP11 connected &lt;span style="color: #40a070"&gt;1920&lt;/span&gt;x1080&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;1920&lt;/span&gt;&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt; (normal left inverted right x axis y axis) &lt;span style="color: #40a070"&gt;598&lt;/span&gt;mm x &lt;span style="color: #40a070"&gt;336&lt;/span&gt;mm
+   &lt;span style="color: #40a070"&gt;1920&lt;/span&gt;x1080      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;&lt;span style="color: #666666"&gt;*+&lt;/span&gt;
+   &lt;span style="color: #40a070"&gt;1680&lt;/span&gt;x1050      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1400&lt;/span&gt;x1050      &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1600&lt;/span&gt;x900       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x1024      &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1440&lt;/span&gt;x900       &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;59.9&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x960       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1152&lt;/span&gt;x864       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x768       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1280&lt;/span&gt;x720       &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;1024&lt;/span&gt;x768       &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;70.1&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.0&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;800&lt;/span&gt;x600        &lt;span style="color: #40a070"&gt;72.2&lt;/span&gt;     &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;60.3&lt;/span&gt;     &lt;span style="color: #40a070"&gt;56.2&lt;/span&gt;  
+   &lt;span style="color: #40a070"&gt;640&lt;/span&gt;x480        &lt;span style="color: #40a070"&gt;75.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;72.8&lt;/span&gt;     &lt;span style="color: #40a070"&gt;67.0&lt;/span&gt;     &lt;span style="color: #40a070"&gt;59.9&lt;/span&gt;  
+CRT1 disconnected (normal left inverted right x axis y axis)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see, I use DFP10 and DFP11 as my outputs, DFP10 being my main
+screen on the left. Now I use xsetwacom, which comes with
+xf86-input-wacom, to tell the tablet to only use this output.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;% xsetwacom --list devices&lt;/span&gt;
+Wacom Bamboo Pen Finger touch           id: &lt;span style="color: #40a070"&gt;12&lt;/span&gt;  type: TOUCH     
+Wacom Bamboo Pen Finger pad             id: &lt;span style="color: #40a070"&gt;13&lt;/span&gt;  type: PAD       
+Wacom Bamboo Pen Pen stylus             id: &lt;span style="color: #40a070"&gt;14&lt;/span&gt;  type: STYLUS    
+Wacom Bamboo Pen Pen eraser             id: &lt;span style="color: #40a070"&gt;15&lt;/span&gt;  type: ERASER
+&lt;span style="color: #60a0b0; font-style: italic"&gt;% xsetwacom --set &amp;quot;Wacom Bamboo Pen Pen stylus&amp;quot; MapToOutput DPF10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 16 Jul 2013 13:01:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-16:quickie-map-wacom-graphics-tablet-to-one-screen-only.html</guid><category>quickie</category><category>gimp</category><category>wacom</category></item><item><title>Install Firefox Aurora on openSUSE (or most other Linux distros)</title><link>http://peerwire.de/install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html</link><description>&lt;p&gt;When it comes to software, I like to have the new stuff. Like Firefox
+Aurora, the pre-beta version of our favourite webbrowser. There are two
+main problems with getting Aurora to run on openSUSE: first, you have to
+get the right version somewhere, which is harder than it might sound,
+because the official download page only ships the 32bit version, and
+let's be honest here, who still runs 32bits? But do not even start
+searching, Mozilla has binaries ready for us, they are just hiding them
+&lt;a href="https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n/" title="mozilla.org"&gt;here&lt;/a&gt;. You probably want something like
+&lt;em&gt;firefox-\&amp;lt;version&gt;.en-GB-x86_64.tar.bz2&lt;/em&gt;. Now that you got your new
+browser, extract it somewhere (home-directories are a nice place) and
+add a desktop icon (if there is some sort of desktop in your setup), an
+icon can be found at &lt;em&gt;browser/icons&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;You will most likely find one major flaw: there are no plugins, like
+flash or java. Those are located at &lt;em&gt;/usr/lib/browser-plugins&lt;/em&gt;, symlink
+all of them to your new profile like this (edit your profile name, it is
+random):&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;ln &lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #666666"&gt;/&lt;/span&gt;usr&lt;span style="color: #666666"&gt;/&lt;/span&gt;lib64&lt;span style="color: #666666"&gt;/&lt;/span&gt;browser&lt;span style="color: #666666"&gt;-&lt;/span&gt;plugins&lt;span style="color: #666666"&gt;/*&lt;/span&gt; &lt;span style="color: #666666"&gt;~/&lt;/span&gt;.mozilla&lt;span style="color: #666666"&gt;/&lt;/span&gt;firefox&lt;span style="color: #666666"&gt;/&lt;/span&gt;.&lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;/&lt;/span&gt;plugins&lt;span style="color: #666666"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Symlinking will automatically update them when your package manager does
+so, which is crucial for your security. When you are done, it looks
+something like this (I use vimperator, which changes the UI a bit):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="aurora" src="/images/aurora-1024x752.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 11 Jul 2013 23:50:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-11:install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html</guid><category>aurora</category><category>firefox</category><category>flash</category></item><item><title>Quickie: fighting with fglrx</title><link>http://peerwire.de/quickie-fighting-with-fglrx.html</link><description>&lt;p&gt;I started playing games again, so I switched from radeon to fglrx, which
+promptly broke my X11. In case you get stuck at "Reached target
+graphical interface", switch to a different tty (alt+F1) and login. Then
+look at the Xorg-logs at &lt;em&gt;/var/log/Xorg.0.log&lt;/em&gt;, which might say
+something like&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;(WW) fglrx&lt;span style="color: #666666"&gt;:&lt;/span&gt; No matching device section &lt;span style="color: #007020; font-weight: bold"&gt;for&lt;/span&gt; instance (stuff) found
+(EE) No devices detected
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This means in your &lt;em&gt;/etc/X11/xorg.conf&lt;/em&gt; is no section for your
+videocard, which is not to big of a problem. Log into root or use sudo
+to run lspci and then edit xorg.conf and switch the PCI-bus-number to
+the one your card is using. Reboot.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 09 Jul 2013 22:12:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-09:quickie-fighting-with-fglrx.html</guid><category>quickie</category><category>fglrx</category><category>videocard</category><category>xorg</category></item><item><title>Install Cyanogenmod from Linux</title><link>http://peerwire.de/install-cyanogenmod-from-linux.html</link><description>&lt;p&gt;This is what I did today, I installed CM10 on my Sony Xperia Pro, which
+was running CM7 before. There are a lot of guides around the net about
+how to do this, but understandably most of them are written for Windows.
+On openSUSE, flashing your rom is probably even easier than on Windows,
+all you need is &lt;em&gt;android-tools&lt;/em&gt; from the official repos.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;sudo zypper install android&lt;span style="color: #666666"&gt;-&lt;/span&gt;tools
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then you get your rom zip (Xperia phones &lt;a href="http://freexperiaproject.com/" title="FXP"&gt;here&lt;/a&gt;), extract it to your
+phones sd-card and follow the &lt;a href="https://sites.google.com/site/projectfreexperia/download/howto-install" title="FXP"&gt;instructions&lt;/a&gt;. When it comes to
+flashing the CM kernel, first extract it on your PC, start a terminal
+and type the fastboot-command. THEN plug in your phone while holding the
+menu (or volup, depending on device) key. It should look something like
+this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;~/&lt;/span&gt;somefolder &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; fastboot flash boot boot.img
+&lt;span style="color: #666666"&gt;&amp;lt;&lt;/span&gt; waiting &lt;span style="color: #007020; font-weight: bold"&gt;for&lt;/span&gt; device &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt;
+sending &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;boot&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt; (&lt;span style="color: #40a070"&gt;6656&lt;/span&gt; KB)...
+(bootloader) USB download speed was &lt;span style="color: #40a070"&gt;9185&lt;/span&gt;kB&lt;span style="color: #666666"&gt;/&lt;/span&gt;s
+OKAY [ &lt;span style="color: #40a070"&gt;0.750&lt;/span&gt;s]
+writing &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;boot&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;...
+(bootloader) Download buffer format&lt;span style="color: #666666"&gt;:&lt;/span&gt; boot IMG
+(bootloader) Flash of partition &lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;boot&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt; requested
+(bootloader) S1 partID &lt;span style="color: #40a070"&gt;0x00000003&lt;/span&gt;, block &lt;span style="color: #40a070"&gt;0x00000280&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;0x000002e3&lt;/span&gt;
+(bootloader) Erase operation complete, &lt;span style="color: #40a070"&gt;0&lt;/span&gt; bad blocks encountered
+(bootloader) Flashing...
+(bootloader) Flash operation complete
+OKAY [ &lt;span style="color: #40a070"&gt;1.332&lt;/span&gt;s]
+finished. total time&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;2.083&lt;/span&gt;s
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The rest should be like in all other guides, pretty simple.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 01 Jul 2013 16:56:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-01:install-cyanogenmod-from-linux.html</guid><category>cyanogenmod</category><category>phone</category></item><item><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link>http://peerwire.de/chromium-crashes-on-gmail-and-other-html5-sites.html</link><description>&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
+other browser: it cannot handle HTML5. At all. Fixing Gmail is quite
+easy, use any other browser, log into Gmail, go to Settings, Chat and
+click disable chat. Google+ for example is unfixable because you cannot
+disable the chat entirely. For fixes on everything else, I have not
+found a solution yet, besides using a secondary browser (Firefox with
+vimperator is really nice).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 28 Jun 2013 12:16:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</guid><category>chrome</category><category>chromium</category><category>firefox</category><category>html5</category></item><item><title>Quickie: auto-update openSUSE machines</title><link>http://peerwire.de/quickie-auto-update-opensuse-machines.html</link><description>&lt;p&gt;OpenSUSE comes with a predefined cronjob for automatic updating, which
+is great, but it is somewhat hidden, which is not that great. Anyway,
+here you go:&lt;/p&gt;
+&lt;p&gt;Open YaST, select the /etc/sysconfig editor and go here:&lt;/p&gt;
+&lt;p&gt;[![yast][]][yast]&lt;/p&gt;
+&lt;p&gt;There are a small set of settings regarding sending logs to a specified
+email address, but everything should be pretty self-explanatory.&lt;/p&gt;
+&lt;p&gt;[yast]: /images/yast.png&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 24 Jun 2013 10:36:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-24:quickie-auto-update-opensuse-machines.html</guid><category>quickie</category><category>updates</category><category>yast</category></item><item><title>Prism: What to do</title><link>http://peerwire.de/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+everyone else) heard about the NSA and Prism. Now I always distrusted
+big companies, especially the ones from the US, because I know money and
+power are everything over there. If they want to spy on you, they can.
+Now there is &lt;a href="http://prism-break.org/" title="Prism Break"&gt;something you can do&lt;/a&gt; (read this, or this post will make
+less sense) to at least limit the amount of information about yourself
+getting to those people.&lt;/p&gt;
+&lt;p&gt;Obviously, you don't want to use Apple hardware (which I don't anyway,
+but that is another story), as &lt;a href="http://www.southparkstudios.com/full-episodes/s15e01-humancentipad" title="South Park"&gt;Apple is infamous for invading user's
+privacy&lt;/a&gt;. Chrome OS is insecure, as Google makes money of ad
+targeting, which is, you guessed it, gathering your information. And
+Windows, well, who seriously trusts Microsoft? The alternatives listed
+are a bunch of Linuxes and BSDs, although I think they are recommending
+the wrong distros, beginners should try something like &lt;a href="http://www.linuxmint.com/" title="Linux Mint"&gt;Mint&lt;/a&gt;,
+&lt;a href="http://crunchbang.org/" title="Crunchbang"&gt;Crunchbang&lt;/a&gt; or &lt;a href="http://www.opensuse.org/en/" title="openSUSE"&gt;openSUSE&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The browsers are the same story, no Chrome, no Safari, no IE (as if
+anyone would miss it), you don't know, what they are actually doing, and
+while browsing, you give away an awful lot of personal data.
+Technically, your browser could send you whole browsing history
+(including "incognito mode", the only one saying nothing gets saved is
+your browser), your Downloads, your login data and more to someone. The
+right choices here are &lt;a href="http://www.mozilla.org/en-US/" title="Mozilla"&gt;Firefox&lt;/a&gt;, &lt;a href="http://www.chromium.org/Home" title="Chromium Project"&gt;Chromium&lt;/a&gt; (which I guess is okay,
+haven't read the source myself) and smaller browsers like &lt;a href="http://surf.suckless.org/" title="suckless.org"&gt;surf&lt;/a&gt; or
+&lt;a href="http://mason-larobina.github.io/luakit/" title="GitHub"&gt;luakit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The next interesting point is websearching. Again, Google is bad, who
+knew? Yahoo and Bing, too. I'd say, use &lt;a href="http://ddg.gg" title="DuckDuckGo"&gt;DuckDuckGo&lt;/a&gt;. I use it as my
+main search engine for some months now and prefer it over Google. While
+Google sometimes gives me better results, most of the time, DDG does
+good. Be sure to have a look at the &lt;a href="https://duckduckgo.com/bang.html" title="DuckDuckGo"&gt;bang commands&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To make this a bit shorter, be careful, which email provider you use,
+they can read everything you write and receive. Self-hosting is sadly no
+real option here, unless you have access to a static IP and a TLD.
+Cloud-storage providers can access all your files saved to them, you can
+self-host using &lt;a href="http://owncloud.org/" title="ownCloud"&gt;ownCloud&lt;/a&gt; or &lt;a href="http://seafile.com/en/home/" title="Seafile"&gt;Seafile&lt;/a&gt;. Be careful what to enter on
+any social networks, even if "private". You can either opt-out
+completely or stay with the big ones (namely Facebook), as using a small
+social network misses the point.&lt;/p&gt;
+&lt;p&gt;The instant messaging section is quite hard. Safe are IRC, &lt;a href="http://pidgin.im/" title="Pidgin"&gt;Pidgin&lt;/a&gt;,
+&lt;a href="https://crypto.cat/" title="Cryptocat"&gt;Cryptocat&lt;/a&gt;, &lt;a href="http://mumble.sourceforge.net/" title="Mumble"&gt;Mumble&lt;/a&gt;, &lt;a href="https://jitsi.org/" title="Jitsi"&gt;Jitsi&lt;/a&gt;. Unsafe are all big desktop clients
+(GTalk, Skype, MSN/Live Messenger, ...) and Whatsapp as well.&lt;/p&gt;
+&lt;p&gt;There are some more options for the guys with the tin foil hats, such as
+using Tor permanently, only use end-to-end encrypted websites and
+disable all scripts and plugins, then use custom DNS-servers and stuff
+like this, but chances are, someone will see where you are browsing,
+like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 22:41:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Yakuake: handy konsole</title><link>http://peerwire.de/yakuake-handy-konsole.html</link><description>&lt;p&gt;Who knows me somewhat knows that on my screens are always terminals. I
+use the terminals a lot and prefer them for most tasks over graphical
+solutions. But now, that I do not use a tiling window manager anymore
+(well, most of the time), keeping track of all those windows has become
+a bit difficult. Enter yakuake, the KDE/Qt version of Guake, which is
+the Gnome version of the Quake-terminal. The special part here is, it is
+hidden by default and drops down on a keypress (default F12), so it is
+always ready when needed. After getting used to it, it feels a lot
+better than a bunch of regular Konsole sessions.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="yakuake" src="/images/yakuake.png" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, it is tabbed (including mousewheel-switching), and is
+basically a modified Konsole window, even uses the same profiles.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 16 Jun 2013 15:28:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-16:yakuake-handy-konsole.html</guid><category>cli</category><category>kde</category><category>yakuake</category></item><item><title>Quckie: open Skype links in right browser</title><link>http://peerwire.de/quckie-open-skype-links-in-right-browser.html</link><description>&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
+the 11.7 Flash plugin. The downside was that I could not open links in
+Skype conversations by clicking them, as they would just open in
+Firefox, even though Chrome is my default browser. The solution on my
+openSUSE box was quite simple:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings get &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser
+firefox
+&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings set &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser google&lt;span style="color: #666666"&gt;-&lt;/span&gt;chrome.desktop
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 12 Jun 2013 14:34:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-12:quckie-open-skype-links-in-right-browser.html</guid><category>quickie</category><category>chrome</category><category>firefox</category><category>skype</category><category>xdg</category></item><item><title>Quickie: use Python 3 features in Python 2</title><link>http://peerwire.de/quickie-use-python-3-features-in-python-2.html</link><description>&lt;p&gt;I am currently writing on a Python-based program for servers, and being
+servers they usually only bring Python 2.7 or 2.6. But I like the
+improved Python 3 so much, that I import parts of it to Python 2:&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td&gt;&lt;div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"&gt;&lt;pre style="line-height: 125%"&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;#!/usr/bin/env python&lt;/span&gt;
+
+&lt;span style="color: #007020; font-weight: bold"&gt;from&lt;/span&gt; &lt;span style="color: #0e84b5; font-weight: bold"&gt;__future__&lt;/span&gt; &lt;span style="color: #007020; font-weight: bold"&gt;import&lt;/span&gt; print_function
+
+&lt;span style="color: #007020; font-weight: bold"&gt;print&lt;/span&gt;(&lt;span style="color: #4070a0"&gt;&amp;quot;It works!&amp;quot;&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 11 Jun 2013 11:50:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-11:quickie-use-python-3-features-in-python-2.html</guid><category>quickie</category><category>python</category></item><item><title>Linux-powered alarm clock without a RasPi</title><link>http://peerwire.de/linux-powered-alarm-clock-without-a-raspi.html</link><description>&lt;p&gt;My method of using the Raspberry Pi as alarm clock with mplayer-cronjobs
+is also usable on regular desktop machines. To overcome the wasted power
+and noise while sleeping, the computer is going to sleep as well,
+suspending to either ram, disk or both. Then you can use &lt;em&gt;rtcwake&lt;/em&gt; to
+let the hardware clock wake it up automatically just a minute before
+alarm time.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;sudo rtcwake &lt;span style="color: #666666"&gt;-&lt;/span&gt;m no &lt;span style="color: #666666"&gt;-&lt;/span&gt;l &lt;span style="color: #666666"&gt;-&lt;/span&gt;t &lt;span style="border: 1px solid #FF0000"&gt;$&lt;/span&gt;(date &lt;span style="color: #666666"&gt;+%&lt;/span&gt;s &lt;span style="color: #666666"&gt;=&lt;/span&gt;d&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;tomorrow &lt;span style="color: #40a070"&gt;07&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;30&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;&amp;#39;&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;What this does is it prepares the hardware clock to wake, but does not
+initiate the sleep yet, so you can continue using the computer and bring
+it down later, before going to sleep. It is also told that the hardware
+clock is using local time (&lt;em&gt;-l&lt;/em&gt;) and not UTC (&lt;em&gt;-u&lt;/em&gt;) and is given a
+unix-timestamp by &lt;em&gt;date as&lt;/em&gt; the alarm time. For optimal results, have
+your PC wake up a minute before you, so the cronjob does not get cut
+off.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 11 Jun 2013 11:39:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-11:linux-powered-alarm-clock-without-a-raspi.html</guid><category>cron</category><category>mplayer</category><category>onlineradio</category><category>rtcwake</category></item><item><title>Why you should not leave port 22 open if possible</title><link>http://peerwire.de/why-you-should-not-leave-port-22-open-if-possible.html</link><description>&lt;p&gt;&lt;a href="/images/ssh.png"&gt;&lt;img alt="ssh" src="/images/ssh.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Also, if your machine/network is worth anything, do not use port 22 for
+ssh, use some random port instead.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 10 Jun 2013 14:02:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-10:why-you-should-not-leave-port-22-open-if-possible.html</guid><category>security</category><category>ssh</category></item><item><title>Raspberry Pi: an introduction to GPIO</title><link>http://peerwire.de/raspberry-pi-an-introduction-to-gpio.html</link><description>&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
+small size and power consumption of the device, but this small computer
+has another advantage, a set of built-in GPIO pins. Those can be used
+for simple control tasks using switches, leds, speakers and similar
+stuff.&lt;/p&gt;
+&lt;p&gt;First thing you will need is a &lt;a href="http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29" title="elinux.org"&gt;diagram of the pin layout&lt;/a&gt;. On this
+page there are also some easy examples of code in C, Ruby, Perl, Python,
+Java, Bash, Pascal and Basic, so everyone should find a good language
+for themselves, I personally prefer Python for almost every purpose.
+There are some more explanatory examples for Python &lt;a href="https://code.google.com/p/raspberry-gpio-python/wiki/Examples" title="Google Code"&gt;over here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In terms of hardware, you can salvage switches, leds and piezo-speakers
+from old computer cases, or buy them new from shops like Conrad or even
+Amazon. On warning: the GPIO pins only run on 3.3V, 5V will fry your Pi,
+but there is 5V permanent power if needed. Everything bigger than some
+small control elements should be running on an external power supply.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 09 Jun 2013 13:53:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</guid><category>gpio</category><category>python</category><category>raspberrypi</category></item><item><title>Raspberry Pi: Radio-Alarm</title><link>http://peerwire.de/raspberry-pi-radio-alarm.html</link><description>&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
+clocks, but the main problem was having to run the computer all night
+long, which results in high power consumption and noise. While netbooks
+can counter this to a certain degree, the Raspberry Pi is the optimal
+way of achieving our goal. You will need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi model B (+ power cable, SD-card with OS)&lt;/li&gt;
+&lt;li&gt;speakers, preferably 3.5mm jack&lt;/li&gt;
+&lt;li&gt;network/internet access&lt;/li&gt;
+&lt;li&gt;control access directly or via ssh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My RasPi is running &lt;a href="http://www.raspberrypi.org/downloads" title="RasPi"&gt;Raspian&lt;/a&gt; right now, but any Linux should do. You
+connect everything and boot it up, then access a console. We need to
+install mplayer, which will play our stream. If needed, update the
+package lists before installing.&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020"&gt;# Raspian:&lt;/span&gt;
+sudo apt&lt;span style="color: #666666"&gt;-&lt;/span&gt;get install mplayer
+
+&lt;span style="color: #007020"&gt;# ArchARM (as root):&lt;/span&gt;
+pacman &lt;span style="color: #666666"&gt;-&lt;/span&gt;Sy mplayer
+
+&lt;span style="color: #007020"&gt;# Pidora:&lt;/span&gt;
+sudo yum install mplayer
+
+&lt;span style="color: #007020"&gt;# openSUSE:&lt;/span&gt;
+sudo zypper in mplayer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next thing to do is writing a short playlist. The idea is to have a
+fallback if the internet connection or your radio station goes down, so
+you can switch to a local file to play instead. Use any text editor you
+want (vi, vim, emacs, nano, or graphical ones) to write something like
+my &lt;em&gt;playlist.pls&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020; font-weight: bold"&gt;[playlist]&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;File1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;http://mp3.ht-stream.net&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;Title1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;HouseTime&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;Lenght1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;-1&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;File2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;/home/pi/alarm.mp3&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;Title2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;FallbackAlarm&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;Length2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;-1&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;NumberOfEntries&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;2&lt;/span&gt;
+&lt;span style="color: #4070a0"&gt;Version&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Mplayer will try to play File1, my stream, and if it fails, continue to
+play File2, the fallback. You can also add more stations and files and
+use the &lt;em&gt;-shuffle&lt;/em&gt; parameter later on to play random music.&lt;/p&gt;
+&lt;p&gt;Now, ensure that cron is running ("&lt;em&gt;ps aux | grep cron&lt;/em&gt;" should give you
+a hint) and type "&lt;em&gt;crontab -e&lt;/em&gt;" to enter your cronjob (preferably as a
+non-root user). Depending on your OS there will be some comments you can
+ignore. Add a entry like the following:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #40a070"&gt;30&lt;/span&gt; &lt;span style="color: #40a070"&gt;6&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; env DISPLAY&lt;span style="color: #666666"&gt;=:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0.0&lt;/span&gt; &lt;span style="color: #666666"&gt;/&lt;/span&gt;usr&lt;span style="color: #666666"&gt;/&lt;/span&gt;bin&lt;span style="color: #666666"&gt;/&lt;/span&gt;mplayer &lt;span style="color: #666666"&gt;-&lt;/span&gt;playlist &lt;span style="color: #666666"&gt;/&lt;/span&gt;home&lt;span style="color: #666666"&gt;/&lt;/span&gt;pi&lt;span style="color: #666666"&gt;/&lt;/span&gt;playlist.pls &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;/&lt;/span&gt;dev&lt;span style="color: #666666"&gt;/&lt;/span&gt;null
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will fire up mplayer everyday at 6:30 in the morning using the
+provided playlist and then deletes the text-output. Using complete paths
+is crucial here, cron does not use the \$PATH variable. If you read up
+on cron, you can setup complete sets of alarms, depending on days of the
+week and more. The env setting might be needed on some systems which
+won't play and istead send you something like "connection by pulse
+refused" per system-mail. Save the file to install the cronjob.&lt;/p&gt;
+&lt;p&gt;When waking up, you need to kill mplayer, as it is running in the
+background. The easiest way of doing so is via "&lt;em&gt;killall mplayer&lt;/em&gt;",
+which is not the finest way of doing things but should do the job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 12:46:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-07:raspberry-pi-radio-alarm.html</guid><category>cron</category><category>mplayer</category><category>onlineradio</category><category>raspberrypi</category></item><item><title>Quickie: surround sound in KDE/PulseAudio</title><link>http://peerwire.de/quickie-surround-sound-in-kdepulseaudio.html</link><description>&lt;p&gt;When using a surround sound setup like I do, you might want to use the
+right settings for optimal results. On openSUSE, using KDE and
+PulseAudio, there is a simple trick to make it actually work, otherwise
+you won't get any sound output after switching to surround sound. First,
+switch to surround sound on your desired output device in phonon. Then
+you have to set the newly created output to default (on top) like this
+in all lists:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/images/sound.png"&gt;&lt;img alt="sound" src="/images/sound.png" /&gt;&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 05 Jun 2013 15:47:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-05:quickie-surround-sound-in-kdepulseaudio.html</guid><category>quickie</category><category>kde</category><category>pulseaudio</category></item><item><title>Google Drive vs Dropbox - my view</title><link>http://peerwire.de/google-drive-vs-dropbox-my-view.html</link><description>&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
+track of it when reinstalling and just stopped using it. Some time
+later, I wanted to sync some stuff up between my multiple OS's, PC's and
+my phone, and being the Google-fanboy I was I used Google Drive. When I
+switched to Arch Linux as my only OS last year, I found &lt;a href="https://aur.archlinux.org/packages/grive/" title="AUR"&gt;grive&lt;/a&gt;, an
+open-source Drive client which works from a shell, well, most of the
+time. Now, on openSUSE, I had some problems finding a proper client, so
+I rediscovered Dropbox. Now in short, pros and cons of each.&lt;/p&gt;
+&lt;h6&gt;Google Drive:&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;Lots of space for free (15G right now)&lt;/li&gt;
+&lt;li&gt;Clients for Windows, Mac, Android, iOS and community-made Linux&lt;/li&gt;
+&lt;li&gt;Integration with Google Docs&lt;/li&gt;
+&lt;li&gt;Probably high reliability/security (it's Google, these guys are the
+    internet)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;Dropbox:&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;Just 2G for free (still enough for me)&lt;/li&gt;
+&lt;li&gt;Clients for virtually everything, works better on Linux&lt;/li&gt;
+&lt;li&gt;LAN-sync&lt;/li&gt;
+&lt;li&gt;Not as reliable (down one day last week) or secure (there have been
+    leaks)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Grive on Linux is not a daemon, so you should consider running it via
+cron every few minutes, Dropbox works just like on Windows and syncs on
+changes. Because of the better client I tend to prefer Dropbox over
+Google Drive, when Google comes up with a proper client for Linux, this
+is likely to change.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 04 Jun 2013 15:48:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-04:google-drive-vs-dropbox-my-view.html</guid><category>dropbox</category><category>google drive</category></item><item><title>Synchronizing Bookmarks and more across different browsers</title><link>http://peerwire.de/synchronizing-bookmarks-and-more-across-different-browsers.html</link><description>&lt;p&gt;I prefer different browsers depending on which platform I am. On
+Windows, nothing really beats Firefox, but on Linux, I prefer Chrome
+because it is significantly faster and uses a newer Flash version. But
+also important for me are the dozens of bookmarks, which have get
+synchronized automatically, which I realize with &lt;a href="http://www.xmarks.com" title="Xmarks"&gt;Xmarks&lt;/a&gt;. Xmarks
+provides browser addons for the popular browsers and can sync your
+bookmarks, history, passwords and even your currently opened pages. I
+have used it for some years now and am completely satisfied, so if you
+could need it, give it a try.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 31 May 2013 17:30:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</guid><category>chrome</category><category>firefox</category><category>xmarks</category></item><item><title>Running Flash on old CPUs</title><link>http://peerwire.de/running-flash-on-old-cpus.html</link><description>&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
+about 10-12 years old. As Windows XP won't run anymore, I convinced him
+to let me setup some similar Linux distro. I went for openSUSE 12.3 with
+KDE, disabled compositing and it runs surprisingly smooth. Now he needed
+to access some Flash-based web-apps and watching YouTube once in a while
+would be nice aswell, but the Flash-plugin wouldn't load, neither 11.2
+in Firefox nor Chrome, and 11.7 did not even show up anywhere. Firefox
+threw the following error when started from a terminal:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;[Parent][RPCChannel] Error&lt;span style="color: #666666"&gt;:&lt;/span&gt; Channel error&lt;span style="color: #666666"&gt;:&lt;/span&gt; cannot send&lt;span style="color: #666666"&gt;/&lt;/span&gt;recv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a lot of research I found the problem. The CPU is an Athlon XP-M
+2500+, which does not support SSE2 (only SSE), which is needed for "new"
+versions of flash. My workaround is getting an old Flash package and
+replace &lt;em&gt;/usr/lib/flash-plugin/libflashplayer.so &lt;/em&gt;with &lt;a href="/download/libflashplayer.so" title="libflashplayer.so"&gt;the old
+version&lt;/a&gt;. Aside from obvious security problems this runs well and
+should do in most cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 29 May 2013 11:26:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-29:running-flash-on-old-cpus.html</guid><category>flash</category></item><item><title>RasPi: security camera</title><link>http://peerwire.de/raspi-security-camera.html</link><description>&lt;p&gt;Today I dug out my 2011 Raspberry Pi Model B (the first edition with
+256M ram) and reimaged my SD-card. This time I wanted to try out
+&lt;a href="http://www.raspberrypi.org/downloads" title="RasPi"&gt;Raspian&lt;/a&gt;, after only using ArchARM before. WOrked out pretty well, I
+am somewhat lucky because the SSH-server is enabled by default, because
+I happen do not own a HDMI-monitor. My first idea was to use a really
+old webcam (VGA, nearly 10 years old, no Windows drivers existent
+anymore) and stream it to my network. The more or less intelligent
+choice was to use vlc for capturing and encoding, which made it quite
+easy.&lt;/p&gt;
+&lt;p&gt;First, we install vlc on our Pi, I am running headless (without X) via
+SSH:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;sudo apt&lt;span style="color: #666666"&gt;-&lt;/span&gt;get update
+sudo apt&lt;span style="color: #666666"&gt;-&lt;/span&gt;get install vlc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we connect the webcam and start our stream:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;clvc v4l2&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;///dev/video0 --sout &amp;#39;#standard{access=http,mux=ogg,dst=192.168.178.44:8080}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I used HTTP-streaming because it is pretty straight forward and okay for
+my hobby project, UDP multicasts are probably better. The destination-IP
+is the internal IP of the Pi. Then I open vlc on my machine and open a
+network stream (ctrl-n), http://192.168.178.44:8080 and voila:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="picam" src="/images/picam-1024x435.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 24 May 2013 09:56:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-24:raspi-security-camera.html</guid><category>raspberrypi</category><category>vlc</category></item><item><title>Quickie: Fix Skype sound glitches on 64-bit Linux</title><link>http://peerwire.de/quickie-fix-skype-sound-glitches-on-64-bit-linux.html</link><description>&lt;p&gt;After searching for fixed quite a long time, I finally found one that
+actually fixed the occasional sound glitching in Skype with PulseAudio.
+The solution is simple, open /etc/pulse/default.pa and change&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;load&lt;span style="color: #666666"&gt;-&lt;/span&gt;module module&lt;span style="color: #666666"&gt;-&lt;/span&gt;udev&lt;span style="color: #666666"&gt;-&lt;/span&gt;detect
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;load&lt;span style="color: #666666"&gt;-&lt;/span&gt;module module&lt;span style="color: #666666"&gt;-&lt;/span&gt;udev&lt;span style="color: #666666"&gt;-&lt;/span&gt;detect tsched&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just reboot afterwards and everything should be fine.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 May 2013 09:28:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-23:quickie-fix-skype-sound-glitches-on-64-bit-linux.html</guid><category>quickie</category><category>pulseaudio</category><category>skype</category></item><item><title>Zsh: the better bash</title><link>http://peerwire.de/zsh-the-better-bash.html</link><description>&lt;p&gt;When it comes to shell, most people use bash. It is installed and
+selected by default on nearly every *nix system and does the job
+reasonably well. But if you are using the shell a lot, like I do, you
+can do better: get zsh, it is in every repository I know of and provides
+some advantages.&lt;/p&gt;
+&lt;p&gt;First off, it is fully compatible to bash and it's scripts, so nothing
+will suddenly break here. Zsh is faster than bash, which is always good,
+although the only way for me to recognize is to run
+ncmpcpp-visualizations in fullscreen, which results in horrible
+lag/tearing in bash. But the most important advantage for me is the
+stellar tab-completion. Instead of block giant parts of your screen with
+possible completions, it only shows them as long as needed, and
+overwrites the space afterwards with useful content. Also, tapping tab
+multiple times will cycle through the multiple possible completions, as
+you may know from vi(m). It can complete commands, parameters, options,
+users, hostnames, you name it. As if this is not enough, you get stuff
+like prompts on both sides and an optional vi-control-mode using the
+command/insert-model.&lt;/p&gt;
+&lt;p&gt;Zsh can be enhanced even further by using plugins like
+&lt;a href="https://github.com/zsh-users/zsh-syntax-highlighting" title="GitHub"&gt;syntax-highlighting as you type&lt;/a&gt;. Useful and pretty. I also recommend
+having a look at &lt;a href="https://github.com/robbyrussell/oh-my-zsh" title="GitHub"&gt;oh-my-zsh&lt;/a&gt;, which is a framework for managing
+settings, themes and plugins, if you plan to use a lot of them.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 22 May 2013 10:07:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-22:zsh-the-better-bash.html</guid><category>cli</category><category>zsh</category></item><item><title>Efficient Firefox setup</title><link>http://peerwire.de/efficient-firefox-setup.html</link><description>&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
+for me, not only by Addons but also in terms of the general UI. I am
+using a handcrafted layout like this (sorry for the dropdown,
+screenshotting it is quite difficult):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="firefox" src="/images/firefox-1024x576.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Next to the overly long addressbar I have got a set of textless
+bookmarks for my most used sites. Then I use the bookmark menu for more
+specific pages to remember. The addressbar is still usable while using
+only half a screen.&lt;/p&gt;
+&lt;p&gt;Now to addons. I use some addons, currently nine active ones and 16 in
+total. Those include Adblock Edge, Disable Ctrl-Q Shortcut, DuckDuckGo
+Plus (yes, DDG is my primary search engine, the bang-commands are
+incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 20 May 2013 19:44:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-20:efficient-firefox-setup.html</guid><category>firefox</category></item><item><title>Even more Twitch: chat via WeeChat/IRC</title><link>http://peerwire.de/even-more-twitch-chat-via-weechatirc.html</link><description>&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
+Head over to my &lt;a href="/twitch-irc-the-new-way.html" title="Twitch-IRC – the new way"&gt;updated version&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After explaining how to stream to Twitch, here comes the cool way of
+chatting there, using WeeChat, my personal favourite IRC-client. Again,
+we will use a small shell-script to save some time.&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td&gt;&lt;div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"&gt;&lt;pre style="line-height: 125%"&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span style="color: #007020"&gt;read&lt;/span&gt; -p &lt;span style="color: #4070a0"&gt;&amp;quot;Enter Twitch.tv-Channel: &amp;quot;&lt;/span&gt; -e channel
+&lt;span style="color: #bb60d5"&gt;username&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;#39;username&amp;#39;&lt;/span&gt;
+&lt;span style="color: #bb60d5"&gt;password&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;
+&lt;span style="color: #bb60d5"&gt;login&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;/connect irc://$username:$password@$channel.jtvirc.com/#$channel&amp;quot;&lt;/span&gt;
+weechat-curses -r &lt;span style="color: #4070a0"&gt;&amp;quot;$login&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Change username and password to your Twitch-accout-data and be sure to
+store it in a secure environment. Then chmod +x and run it. Enter your
+desired channel and profit!&lt;/p&gt;
+&lt;p&gt;Some additional tips:&lt;/p&gt;
+&lt;p&gt;Your username/password should be letters/numbers only. I had some
+serious headaches escaping special character so I just changed my
+twitch-password to 30 random letters and numbers.&lt;/p&gt;
+&lt;p&gt;When using popular channels (like over a few hundred viewers), your chat
+will be spammed with join-/leave-messages. To fix this just type&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;/&lt;/span&gt;filter add joinquit &lt;span style="color: #666666"&gt;*&lt;/span&gt; irc_join,irc_part,irc_quit &lt;span style="color: #666666"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;inside weechat and it filters this spam. Only once required.&lt;/p&gt;
+&lt;p&gt;Users of other IRC-clients like irssi or XChat can copy the url-syntax
+and feed it into the client.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:28:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:even-more-twitch-chat-via-weechatirc.html</guid><category>irc</category><category>twitch.tv</category><category>weechat</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>http://peerwire.de/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+still got my script, so here you go:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+FPS&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;30&amp;quot;&lt;/span&gt;
+QUAL&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;medium&amp;quot;&lt;/span&gt;
+STREAM_KEY&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;live_123_xxx&amp;quot;&lt;/span&gt;
+
+ffmpeg   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f x11grab   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$INRES&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;r &lt;span style="color: #4070a0"&gt;&amp;quot;$FPS&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i &lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0.0&lt;/span&gt;&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;itsoffset &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;01&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;filter_complex amix&lt;span style="color: #666666"&gt;=&lt;/span&gt;inputs&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;duration&lt;span style="color: #666666"&gt;=&lt;/span&gt;first&lt;span style="color: #666666"&gt;:&lt;/span&gt;dropout_transition&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;af aresample   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;vcodec libx264   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;preset &lt;span style="color: #4070a0"&gt;&amp;quot;$QUAL&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$OUTRES&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;acodec libmp3lame   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;ar &lt;span style="color: #40a070"&gt;44100&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;threads &lt;span style="color: #40a070"&gt;6&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;b&lt;span style="color: #666666"&gt;:&lt;/span&gt;a &lt;span style="color: #40a070"&gt;512&lt;/span&gt;k   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;pix_fmt yuv420p   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f flv &lt;span style="color: #4070a0"&gt;&amp;quot;rtmp://live.justin.tv/app/$STREAM_KEY&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You get your stream key &lt;a href="http://www.twitch.tv/broadcast" title="Twitch"&gt;here&lt;/a&gt;. Adjust resolutions as needed (input
+and output), aswell as FPS. In lines 13-16 you can change your audio
+devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
+microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
+of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:25:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item><item><title>Learning to type properly</title><link>http://peerwire.de/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
+programming, typing properly is a mandatory skill, but basically
+everyone benefits from fast typing. Most people developed some kind of
+2-6-finger system, which might work well, but is still suboptimal
+compared to 10-finger touch typing. There are some ways of learning the
+latter, but my personal favourite approach are websites, as they are
+platform independent and usually require nothing more than a browser
+with flash-plugin. Here are some:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://keybr.com" title="Keybr"&gt;Keybr.com&lt;/a&gt;: Semi-random text, different difficulty levels, language
+settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
+books.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
+every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:18:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item><item><title>Vim pro-tip: swap caps-lock and escape</title><link>http://peerwire.de/vim-pro-tip-swap-caps-lock-and-escape.html</link><description>&lt;p&gt;Whoever uses vim a lot will have witnessed the difficulty to switch out
+of insert-mode by using escape, mainly because it is far away from
+everything else on your average keyboard. While vim already uses hjkl
+instead of the arrow-keys, escape is a big let down. But we have a nice
+alternative, caps-lock. No one really uses it, so why should we not just
+swap those two? It looks like this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;remove Lock &lt;span style="color: #666666"&gt;=&lt;/span&gt; Caps_Lock
+keysym Escape &lt;span style="color: #666666"&gt;=&lt;/span&gt; Caps_Lock
+keysym Caps_Lock &lt;span style="color: #666666"&gt;=&lt;/span&gt; Escape
+add Lock &lt;span style="color: #666666"&gt;=&lt;/span&gt; Caps_Lock
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is a simple script to open with xmodmap (Arch package:
+&lt;a href="https://www.archlinux.org/packages/extra/x86_64/xorg-xmodmap/" title="xmodmap"&gt;xorg-xmodmap&lt;/a&gt;). As it is only session-persistent, add it to .xinitrc
+or equal startup scripts.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:16:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:vim-pro-tip-swap-caps-lock-and-escape.html</guid><category>vim</category></item><item><title>How to identify bad drives in your RAID array</title><link>http://peerwire.de/how-to-identify-bad-drives-in-your-raid-array.html</link><description>&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
+are there are some/a lot of the same disks involved. Especially on
+servers there might be a dozen or even more drives of the same type, one
+just failed and you need to switch it fast because the server is
+critical, so if another drive fails, you loose money and/or lifes.&lt;/p&gt;
+&lt;p&gt;First do&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;cat &lt;span style="color: #666666"&gt;/&lt;/span&gt;proc&lt;span style="color: #666666"&gt;/&lt;/span&gt;mdstat
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to verify that exactly one drive has gone bad. There will be an output
+similar to this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;Personalities : &lt;span style="border: 1px solid #FF0000"&gt;[&lt;/span&gt;raid1&lt;span style="color: #007020"&gt;]&lt;/span&gt; 
+md0 : active raid1 sdb2&lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;1&lt;/span&gt;&lt;span style="color: #007020"&gt;]&lt;/span&gt; sda2&lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="color: #007020"&gt;]&lt;/span&gt;
+      968567676 blocks super 1.1 &lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;/2&lt;span style="color: #007020"&gt;]&lt;/span&gt; &lt;span style="color: #007020"&gt;[&lt;/span&gt;UU&lt;span style="color: #007020"&gt;]&lt;/span&gt;
+      bitmap: 1/8 pages &lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;4&lt;/span&gt;KB&lt;span style="color: #007020"&gt;]&lt;/span&gt;, 65536KB chunk
+
+unused devices: &lt;span style="color: #062873; font-weight: bold"&gt;&amp;lt;none&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is my personal homeserver, running two 1TB-drives in RAID1 (mainly
+becuase it is cheap), and both drives are “up”, indicated by the “[UU]“.
+Everything but an U in this list is bad. Now you still need to know,
+which of the physical drives it is. Even on full hotswappable servers
+you probably want to avoid pulling out every single drive and test it in
+a different machine.&lt;/p&gt;
+&lt;p&gt;Enter smartctl. Installed by default on most systems (SUSE, RHEL, …), it
+prints hardware info of specified devices. Take a look:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020"&gt;# smartctl -a /dev/sda&lt;/span&gt;
+
+smartctl &lt;span style="color: #40a070"&gt;5.43&lt;/span&gt; &lt;span style="color: #40a070"&gt;2012&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;06&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;30&lt;/span&gt; r3573 [x86_64&lt;span style="color: #666666"&gt;-&lt;/span&gt;linux&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;2.6.32&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;358.0.1&lt;/span&gt;.el6.x86_64] (local build)
+Copyright (C) &lt;span style="color: #40a070"&gt;2002&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;12&lt;/span&gt; by Bruce Allen, http&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;//smartmontools.sourceforge.net&lt;/span&gt;
+
+&lt;span style="color: #666666"&gt;===&lt;/span&gt; START OF INFORMATION SECTION &lt;span style="color: #666666"&gt;===&lt;/span&gt;
+Model Family&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; Western Digital RE4 Serial ATA
+Device Model&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; WDC WD1003FBYX&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;01&lt;/span&gt;Y7B1
+Serial Number&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; WD&lt;span style="color: #666666"&gt;-&lt;/span&gt;WMAW30891107
+LU WWN Device Id&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt; &lt;span style="color: #40a070"&gt;0014&lt;/span&gt;ee &lt;span style="color: #40a070"&gt;25&lt;/span&gt;c2357fa
+Firmware Version&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;01.01&lt;/span&gt;V02
+User Capacity&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;,&lt;span style="color: #40a070"&gt;000&lt;/span&gt;,&lt;span style="color: #40a070"&gt;204&lt;/span&gt;,&lt;span style="color: #40a070"&gt;886&lt;/span&gt;,&lt;span style="color: #40a070"&gt;016&lt;/span&gt; bytes [&lt;span style="color: #40a070"&gt;1.00&lt;/span&gt; TB]
+Sector Size&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #40a070"&gt;512&lt;/span&gt; bytes logical&lt;span style="color: #666666"&gt;/&lt;/span&gt;physical
+Device is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; In smartctl database [&lt;span style="color: #007020; font-weight: bold"&gt;for&lt;/span&gt; details use&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;P show]
+ATA Version is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;8&lt;/span&gt;
+ATA Standard is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Exact ATA specification draft version not indicated
+Local Time is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Sun May &lt;span style="color: #40a070"&gt;12&lt;/span&gt; &lt;span style="color: #40a070"&gt;17&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;59&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;04&lt;/span&gt; &lt;span style="color: #40a070"&gt;2013&lt;/span&gt; CEST
+SMART support is&lt;span style="color: #666666"&gt;:&lt;/span&gt; Available &lt;span style="color: #666666"&gt;-&lt;/span&gt; device has SMART capability.
+SMART support is&lt;span style="color: #666666"&gt;:&lt;/span&gt; Enabled
+
+&lt;span style="color: #666666"&gt;===&lt;/span&gt; START OF READ SMART DATA SECTION &lt;span style="color: #666666"&gt;===&lt;/span&gt;
+SMART overall&lt;span style="color: #666666"&gt;-&lt;/span&gt;health self&lt;span style="color: #666666"&gt;-&lt;/span&gt;assessment test result&lt;span style="color: #666666"&gt;:&lt;/span&gt; PASSED
+
+General SMART Values&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                                      &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+Offline data collection status&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x84&lt;/span&gt;) Offline data collection activity
+
+Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test execution status&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;) The previous self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine completed
+
+Total time to complete Offline&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                             &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+data collection&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;               &lt;/span&gt; (&lt;span style="color: #40a070"&gt;16260&lt;/span&gt;) seconds.&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                           &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+Offline data collection&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                                    &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+&lt;span style="color: #002070; font-weight: bold"&gt;capabilities:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;                   &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x7b&lt;/span&gt;) SMART execute Offline immediate.
+
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Conveyance Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Selective Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+SMART capabilities&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;           &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x0003&lt;/span&gt;) Saves SMART data before entering
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; power&lt;span style="color: #666666"&gt;-&lt;/span&gt;saving mode.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Supports SMART &lt;span style="color: #007020; font-weight: bold"&gt;auto&lt;/span&gt; save timer.
+Error logging capability&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x01&lt;/span&gt;) Error logging supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; General Purpose Logging supported.
+Short self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine 
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;2&lt;/span&gt;) minutes.
+Extended self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; ( &lt;span style="color: #40a070"&gt;160&lt;/span&gt;) minutes.
+Conveyance self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt;) minutes.
+SCT capabilities&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;             &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x303f&lt;/span&gt;) SCT Status supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Error Recovery Control supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Feature Control supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Data Table supported.
+
+SMART Attributes Data Structure revision number&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;16&lt;/span&gt;
+Vendor Specific SMART Attributes with Thresholds&lt;span style="color: #666666"&gt;:&lt;/span&gt;
+ID&lt;span style="border: 1px solid #FF0000"&gt;#&lt;/span&gt; ATTRIBUTE_NAME&lt;span style="border: 1px solid #FF0000"&gt;         &lt;/span&gt; FLAG&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; VALUE WORST THRESH TYPE&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; UPDATED&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; WHEN_FAILED RAW_VALUE
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt; Raw_Read_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x002f&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;051&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;3&lt;/span&gt; Spin_Up_Time&lt;span style="border: 1px solid #FF0000"&gt;           &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0027&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;192&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;169&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;021&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;3366&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;4&lt;/span&gt; Start_Stop_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;65&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt; Reallocated_Sector_Ct&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0033&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;140&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;7&lt;/span&gt; Seek_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;        &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x002e&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;9&lt;/span&gt; Power_On_Hours&lt;span style="border: 1px solid #FF0000"&gt;         &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;099&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;098&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;1092&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;10&lt;/span&gt; Spin_Retry_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;11&lt;/span&gt; Calibration_Retry_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;12&lt;/span&gt; Power_Cycle_Count&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;64&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;192&lt;/span&gt; Power&lt;span style="color: #666666"&gt;-&lt;/span&gt;Off_Retract_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;45&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;193&lt;/span&gt; Load_Cycle_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;19&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;194&lt;/span&gt; Temperature_Celsius&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0022&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;106&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;101&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;41&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;196&lt;/span&gt; Reallocated_Event_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;197&lt;/span&gt; Current_Pending_Sector&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;198&lt;/span&gt; Offline_Uncorrectable&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0030&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Offline&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;199&lt;/span&gt; UDMA_CRC_Error_Count&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;200&lt;/span&gt; Multi_Zone_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0008&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Offline&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+
+SMART Error Log Version&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+No Errors Logged
+
+SMART Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test log structure revision number &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+No self&lt;span style="color: #666666"&gt;-&lt;/span&gt;tests have been logged.&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; [To run self&lt;span style="color: #666666"&gt;-&lt;/span&gt;tests, use&lt;span style="color: #666666"&gt;:&lt;/span&gt; smartctl &lt;span style="color: #666666"&gt;-&lt;/span&gt;t]
+
+SMART Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test log data structure revision number &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;SPAN&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; MIN_LBA&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; MAX_LBA&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; CURRENT_TEST_STATUS
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;2&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;3&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;4&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test flags (&lt;span style="color: #40a070"&gt;0x0&lt;/span&gt;)&lt;span style="color: #666666"&gt;:&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; After scanning selected spans, &lt;span style="color: #007020; font-weight: bold"&gt;do&lt;/span&gt; NOT read&lt;span style="color: #666666"&gt;-&lt;/span&gt;scan remainder of disk.
+If Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test is pending on power&lt;span style="color: #666666"&gt;-&lt;/span&gt;up, resume after &lt;span style="color: #40a070"&gt;0&lt;/span&gt; minute delay.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Use it like this as root to get the smart status and serial number of
+your device, so you can find the bad one. Now, you either need to stop
+and open your server and pull out the right drive, or you are smart like
+I am (pun intended) and already got the serial numbers on the outside of
+your HDD-slots, sou you can hotswap the drive and start rebuilding right
+away.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:13:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</guid><category>hdds</category><category>raid</category></item></channel></rss>

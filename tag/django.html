@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>sulami's blog - django</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://peerwire.de/django-tweaking-custom-user-model-fixes.html">Django Tweaking: custom user model fixes</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-04-19T22:20:00">
+                Sa 19 April 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/coding.html">Coding</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/django.html">django</a></p>
+</footer><!-- /.post-info --><p>I am currently finishing the initial coding of my newest, project, which will
+be Peerwire (yes, another one), and because I like it, it is written in Python
+using Django, specifically Django 1.6. Now I am using a custom user model to
+add some additional fields, which is the only reason, I have to modify existing
+apps I use and even Django itself. Here are some of the modifications I did so
+far, in case someone encounters the same problems:</p>
+<ul>
+<li>
+<h3>Making Emails mandatory and unique</h3>
+</li>
+</ul>
+<p>Edit <em>django/contrib/auth/models.py</em>, search for AbstractUser and change</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">email <span style="color: #666666">=</span> ...(blank<span style="color: #666666">=</span>True)
+</pre></div>
+
+
+<p>to</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">email <span style="color: #666666">=</span> ...(unique<span style="color: #666666">=</span>True)
+</pre></div>
+
+
+<ul>
+<li>
+<h3>Using Cache Machine with your custom user model</h3>
+</li>
+</ul>
+<p>Edit <em>django/contrib/auth/backends.py</em>, go to line 16 (I think) and change</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">user <span style="color: #666666">=</span> UserModel._default_manager.get_by_natural_key(username)
+</pre></div>
+
+
+<p>to</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">user <span style="color: #666666">=</span> UserModel._default_manager.get(username<span style="color: #666666">=</span>username)
+</pre></div>
+
+
+<ul>
+<li>
+<h3>Using django-registration with your custom user model</h3>
+</li>
+</ul>
+<p>Edit <em>registration/forms.py</em>, in the top change</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">from django.contrib.auth.models import User
+</pre></div>
+
+
+<p>to</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">from django.contrib.auth import get_user_model
+User <span style="color: #666666">=</span> get_user_model()
+</pre></div>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>http://peerwire.de/</link><description></description><atom:link href="http://peerwire.de/feed/web.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 27 Apr 2014 14:45:00 +0200</lastBuildDate><item><title>Say hello to Peerwire</title><link>http://peerwire.de/say-hello-to-peerwire.html</link><description>&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
+go check it out. It is a platform which helps people find (open source) projects
+suited for them, based on various factors, and also helps project managers
+distribute tasks among them, so collaborative work is more organized overall.&lt;/p&gt;
+&lt;p&gt;Right now, it is empty aside from my demo-project, which is Peerwire itself,
+which kind of defeats the purpose for coders, but project owners can start right
+away to add their projects, so they can be found easily by coders.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 27 Apr 2014 14:45:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-27:say-hello-to-peerwire.html</guid><category>news</category><category>peerwire</category></item><item><title>Converting to Pelican</title><link>http://peerwire.de/converting-to-pelican.html</link><description>&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
+because I want to get rid of PHP where I can. Previously, this blog was running
+on selfhosted Wordpress, which is quite powerful, but for my blogging needs
+too complicated and oversized.&lt;/p&gt;
+&lt;p&gt;Pelican is a static site generator written in Python, which means I maintain a
+directory on my server with a bunch of markdown files containing my posts and
+whenever needed, Pelican regenerates the whole page to plain static HTML.
+Given that I write maybe one post every week and regenerating takes about 3
+seconds, I save a huge amount of processing power by providing static content
+as opposed to dynamic content. And besides that, Wordpress is a mess to
+administer, now I just pop up vim and start writing, we scrapped the search,
+the spam-filled comments and several MBs of overcomplicated PHP.&lt;/p&gt;
+&lt;p&gt;In my eyes, PHP is sort of dead anyway. Which does not hinder anyone from using
+or even continue developing it, but the concept is just from yesterday. Today,
+we can use full-sized programming languages like Python (Django) and Ruby
+(Rails) to easily develop and maintain complex web-applications with
+centralized, managed configurations. Most of the work gets done by those
+frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Apr 2014 00:40:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-15:converting-to-pelican.html</guid><category>news</category><category>pelican</category><category>python</category></item><item><title>OpenSSL-Bug: Update everything you got, like now!</title><link>http://peerwire.de/openssl-bug-update-everything-you-got-like-now.html</link><description>&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
+in the OpenSSL libraries, which basically means everything has to get
+patched immediately, especially webservers, databases, SSH-Daemons,
+anything that sort of relies on network communication. If you haven't
+already patched your stuff, now is the time.&lt;/p&gt;
+&lt;p&gt;If you manage some sort of web- or mailserver, you should also get a new
+certificate, as your old one might be stolen while the bug was not
+discovered yet. All certificates used before OpenSSL was patched are
+considered unsafe.&lt;/p&gt;
+&lt;p&gt;This is, what your bank website's certificate should definetely &lt;strong&gt;not&lt;/strong&gt;
+look like:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/images/Screenshot-from-2014-04-09-145514.png"&gt;&lt;img alt="Screenshot from 2014-04-09 14:55:14" src="/images/Screenshot-from-2014-04-09-145514.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;(Yes, my bank's certificate is just over a year old. No, I will not
+login before it is replaced)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 09 Apr 2014 07:48:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</guid><category>homeserver</category><category>security</category><category>ssh</category><category>SSL</category><category>updates</category></item><item><title>IRC-client showdown, extreme version</title><link>http://peerwire.de/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
+somehow loose my ability to use X. This also enables me to use global
+colorscheme and is performance-wise advantegous. There are many reasons
+to live in the shell (aside from web-browsing, which is a pain), but
+this is not the post to discuss them. Instead I want to make a quick
+comparison of IRC-clients.&lt;/p&gt;
+&lt;p&gt;I admit, I have not used all that many IRC-clients over the years, as
+they are usually indefinetely customizable and I tweak them for months
+before I decide to move on to a different one to start from scratch.
+Currently, I am using irssi, as I have not customized weechat to the
+extend I would like to yet.&lt;/p&gt;
+&lt;p&gt;I prefer irssi as it is simpler and more unix-style, using just one
+config, one theme and perl-extensions for every bit of bonus
+functionality. Weechat works out of the box like a charm. It includes a
+window-list which just has to be activated, automatic indentation of
+nicks, a nicklist which just has to be disabled, colored nicks, a
+trackbar and tons of more useful stuff. But the options are crap. It's
+superior to the irssi djungle of formats, inside formats, inside other
+formats, ... but in my opinion there are not enough ways to change
+low-level stuff, weechat will always look like weechat, no matter what
+you do.&lt;/p&gt;
+&lt;p&gt;But I promised the extreme version in the title of this post, this is
+performance. On Twitch.tv, there is currently a stream called
+'twitchplayspokemon', which is a pokemon hack that accepts button input
+via twitch chat (which is irc). The corrosponding IRC-channel is used by
+35k-38k people at a time, featuring tons of messages. It actually caused
+problems with the Twitch servers, which could not handel the
+concentrated load, but seems to run fine now.&lt;/p&gt;
+&lt;p&gt;Anyway, I tried using this channel with my IRC-clients. Weechat lags out
+on joining, becoming unresponsive while building the nicklist, which is
+hidden, but still active (this is what I mean by irssi is simpler).
+Then, after about a minute, it works. Weechat uses 56.5 MB of RAM on my
+system. That's insane. No fancy plugins, just one server, one channel,
+smart-filter enabled, no nicklist.&lt;/p&gt;
+&lt;p&gt;Irssi works like on any smaller IRC-network, without any noticable
+performance impact, using about 12 MB of RAM, which is more reasonable.
+For comparison though, connecting through netcat uses 644 KB of RAM. Of
+course, this is without logging, formatting or anything except just
+printing what the server sends me, but for IRC, netcat is actually sort
+of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 19:17:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>http://peerwire.de/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
+&lt;h2&gt;The current situation&lt;/h2&gt;
+&lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
+communicating using my phone. This event has made me think about where
+the internet is heading in terms of privacy protection. Right now, I am
+trying to figure out whether Chromium could be a better alternative to
+Firefox, which is working worse and worse on Linux. I purposely do not
+want to use Chrome as Google already uses their own search engine,
+YouTube, Adsense, Analytics and Android/the Play Store, and maybe their
+DNS-servers to track internet users from all around the world. Using
+their partly proprietary browser which is known for phoning home is
+obviously not the best idea.&lt;/p&gt;
+&lt;p&gt;But back to Whatsapp. There are some alternatives, some praising
+encryption, like &lt;a href="https://threema.ch/en/" title="Threema.ch"&gt;Threema&lt;/a&gt; or &lt;a href="https://telegram.org/" title="Telegram.org"&gt;Telegram&lt;/a&gt;. Threema is not free and as
+Google does not utilize any payment method beside credit cards, only few
+people will actually use it, and the only reason to switch to a
+messenger is the userbase. I did not like Whatsapp in the first place,
+but everyone used it, so I had to comply. Now I made the switch to
+ecrypted (called "secure") Telegram messages with some of my closer
+friends, but while it claims to be "open", this only means there is an
+API. And if they sell out one day, say if Facebook or Google offer them
+some millions, all their promises will be worth nothing.&lt;/p&gt;
+&lt;p&gt;Another big part of my concerns, before we come to my ideas for a bright
+future, are email and VoIP. Email right now is de-facto unencrypted,
+usually transmitted via SSL to the provider but that is it. The
+providers usually provide for free and most of them probably scan the
+conversations to sell the information and/or build user profiles
+(*cough* Google *cough*). This can be partially solved by just
+encrypting/signing emails via PGP, which right now only security nerds
+and mafia bosses do. But handling keys is just not ready for the masses,
+it basically should handle keys, en-/decrypt without the average user
+even noticing. But the decentralized way emails are set up is already
+quite good, although there are some really big providers, there is no
+loss in using some small provider you trust or even using your own
+domain and server.&lt;/p&gt;
+&lt;p&gt;VoIP is the real problem right now. I primarily use Skype, which is
+owned by Microsoft since 2011. Skype is known to send all kind of data
+to Redmond, and also allow crazy amounts of script languages for its
+ads, which already resulted in some big security holes. Also the Linux
+client sort of sucks. The interface is okay-ish, but the technical side
+of things is not. But I do not blame Microsoft for this, I am happy for
+the existence of a Linux client at all. So, Skype is bad, alternatives
+are rare. Mumble is nice, but is centred around servers for gaming clans
+and similar communities, using it as messenger is suboptimal. I also
+tried Jabber, the VoIP-protocol with many features, which is actually
+sort of great the way it is, but not end-user friendly enough.&lt;/p&gt;
+&lt;h2&gt;Solutions?&lt;/h2&gt;
+&lt;p&gt;What do I think would be the optimal way to handle this situations and
+prevent some cyberpunk scenario in which Google, Facebook, Microsoft and
+of course the NSA know everything about the average internet user?&lt;/p&gt;
+&lt;p&gt;First, we need to divide. I would keep email, as it is an easy and
+already established way of exchanging information and data in a
+mail-like fashion, which we will still need in the future. But we need
+some way of enabling everyone to encrypt this mail. A simple choice
+would be to establish a service that handles public keys and pairs them
+to accounts. You then get a plugin for Outlook or Thunderbird that
+connects to your account, generates a keypair, uploads the public
+portion, gets the needed public keys of others and handles en- and
+decryption of mails. The downside here would be a pretty big single
+point of failure. If this service is down, or worse, gets hacked, all
+the security is jeopardized. An idea would be to not store this
+information on central servers but instead in a Bitcoin-like blockchain
+which is shared by everyone. Which is probably generating enormous
+amounts of traffic just to synchronize. Also, if no one uses ad-loaded
+webinterfaces or provides unencrypted emails, how are the email
+providers going to survive, and how are they going to justify
+subsidizing the free email services? People will not pay for privacy,
+which is the actual root of the problem.&lt;/p&gt;
+&lt;p&gt;Then we need a new multi-platform messenger, decentralized, encrypted,
+capable of sending pictures, audio, video and of course live calls
+including video and conferences. Basically Skype Premium, but without
+central servers and more in a peer-to-peer fashion. Maybe just define a
+protocol and write an open source reference implementation of a client.
+I already thought about this a while, and most of this is
+accomplishable, Skype already provides most of the functionality across
+Windows, Mac, Linux and a lot of phones. There is the wonderful
+Speex-codec which can be used for calls, video streaming should be no
+problem either. As the content should be completely end-to-end
+encrypted, compression would be sort of useless, so the generated
+traffic will be more, but not by a lot.&lt;/p&gt;
+&lt;p&gt;But here comes the one problem I found rather quickly. You need to be
+able to sync your private keys across devices. As I propose to just
+develop a protocol without a central management, you cannot just enter
+your username and password and get all your stuff from a server, because
+that would mean, your private keys, which are not supposed to ever leave
+your devices would be stored on the server. But I have come up with a
+solution, at least I think so.&lt;/p&gt;
+&lt;p&gt;There will be some server structure involved, which will hold the
+private keys, but in an encrypted form. When starting to use the
+service, you generate your keypair. The public key gets into some sort
+of public key infrastructure I yet have to figure out, maybe
+blockchain-like, maybe not. The private key gets stored on the device,
+protected by a password. A copy of it gets encrypted (say using
+Rijndael/AES or Twofish) and can be stored on third-party servers. Those
+third parties might enforce additional security measures via
+accounts/passwords. If you want to use a second device with the same
+identity, you can get you private key from said server, decrypt it and
+import it. This way, you could basically store your encrypted key inside
+Dropbox. I have to add, that this method relies on strong passwords more
+than anything else, but maybe this will force sensible password policies
+into the heads of the masses.&lt;/p&gt;
+&lt;p&gt;An addition I would make would be some sort of identifier-system,
+comparable to DNS. No one wants to remember numbers or hashes to
+identify people, and names are not unique to a person, so there should
+be some way to (decentralized, of course) link a username or an address
+with a keypair, which can be resolved easily. So if you want to send me
+a message, you send it to "sulami", we resolve the name, get the public
+key and are ready to start an encrypted conversation.&lt;/p&gt;
+&lt;h2&gt;Who will do it?&lt;/h2&gt;
+&lt;p&gt;This is the important question. I would like to work on something like
+this, but obviously the scope is gigantic and there are experts needed
+on crypto, network messaging, development for specific platforms,
+interface designers, and the list goes on. If you read this and are
+interested in starting such a project, do not hesitate to contact me,
+someone has to make the first step. My public key is on the
+contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 05:40:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>http://peerwire.de/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+some conventions I found useful, but there are always people who do not
+follow those conventions, some because they do not want to, but mostly
+they just do not care. I just want to list some (read: non-exhaustive
+list) of these conventions and maybe help you become a better human. In
+my eyes. Which are the only relevant eyes.&lt;/p&gt;
+&lt;h1&gt;General Stuff&lt;/h1&gt;
+&lt;h4&gt;Encoding&lt;/h4&gt;
+&lt;p&gt;UTF-8.&lt;/p&gt;
+&lt;p&gt;There is close to nothing in the western world which does not work with
+unicode, but many thing that will not work without it.&lt;/p&gt;
+&lt;h4&gt;Websites&lt;/h4&gt;
+&lt;p&gt;You own a website? Great. Here are some things to not do:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;overly heavy use of javascript/ajax&lt;/li&gt;
+&lt;li&gt;using POST where GET is usable (POST breaks bookmarks)&lt;/li&gt;
+&lt;li&gt;using GET where POST is required (login information, ...)&lt;/li&gt;
+&lt;li&gt;storing cleartext passwords (salt and hash them, only compare
+    hashes)&lt;/li&gt;
+&lt;li&gt;storing any kind of userdata you do not need (hackers/leaks)&lt;/li&gt;
+&lt;li&gt;using flash for something that is neither a video nor a game&lt;/li&gt;
+&lt;li&gt;use a popup to ask me to like your facebook-page (or some other
+    social bullshit)&lt;/li&gt;
+&lt;li&gt;split your content way to often to generate additional pageviews&lt;/li&gt;
+&lt;li&gt;anything with sound which is not the main point of the site&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Passwords&lt;/h4&gt;
+&lt;p&gt;Use unique, randomly generated passwords for each service, store them in
+some sort of encrypted file (like KeePass). If you prefer to know your
+passwords, choose a scheme to generate passwords for a given service, so
+you do not use the same password everywhere. Also, long passwords are
+better than short ones, special characters are mostly good and no one
+who knows you should be able to guess your passwords, so no names of
+SOs, children, parents, BFFs, ...&lt;/p&gt;
+&lt;h4&gt;Backups&lt;/h4&gt;
+&lt;p&gt;Do regular backups of everything you own. External harddrives, CDs,
+Homservers, whatever. Just no "clouds", you cannot rely on those both in
+terms of security and reliability. Always have at least two copies fully
+under your control. And maybe read &lt;a href="/backup-your-work.html" title="Backup your work"&gt;my post about using git to backup
+your work&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Prefer Open Source&lt;/h4&gt;
+&lt;p&gt;Not (only) for philosophical reasons, but for security reasons. If you
+use a reasonably large open sourced piece of software, even if you are
+not able to write a single word of code, most assuredly some fanatic has
+already checked the whole code for security holes. In proprietary
+software, sometimes only less than ten people have access to the source
+code, and everything they do not catch is a potential way for you to
+loose your access to let's say your bank account. Would suck, would it
+not?&lt;/p&gt;
+&lt;h1&gt;Mail&lt;/h1&gt;
+&lt;p&gt;Mail is a big part of the internet and my life as well. But there are
+some things that really bug me when reading mail.&lt;/p&gt;
+&lt;h4&gt;Do not use HTML-mail&lt;/h4&gt;
+&lt;p&gt;There is no reason at all to use HTML in mails, except you send
+professional advertisements or something like this. But for simple mail,
+just containing text and maybe some attachments, why would you use HTML?
+To make it look prettier? I open my mail in mutt (read: a text console),
+so I get to read around all your fancy HTML-tags.&lt;/p&gt;
+&lt;h4&gt;Do not write in single/ridiculously long lines&lt;/h4&gt;
+&lt;p&gt;This is a big Outlook/Live Mail/whatever it is called right now-issue.
+Even though you see the linebreaks at the end of your writing area,
+there are actually none, Outlook breaks it "live". When using proper
+text-only-mail, this is bad, not like really bad, but somewhat bad. I
+usually correct those, and by "I" I mean vim does it for me, but still.
+I personally prefer breaks at a maximum of 72 characters per line, which
+is a commonly used standard.&lt;/p&gt;
+&lt;h4&gt;Do not TOFU&lt;/h4&gt;
+&lt;p&gt;No, this one is not about your eating habits, TOFU stands for "Text Over
+Fullquote Under". This is what Outlook (sic) does per default.
+Fullquoting is useful in many situations and does not introfuce to much
+overhead when using text-only mail (my mails very rarely exceed 10KB).
+But instead of writing your answer over the mail you received, place it
+below. This way, we both can read the coversation from top to bottom
+while writing our mails.&lt;/p&gt;
+&lt;h1&gt;Coding&lt;/h1&gt;
+&lt;p&gt;If you and I are working together on a software project, there are some
+things I greatly appreciate.&lt;/p&gt;
+&lt;h4&gt;Use a (proper) coding style&lt;/h4&gt;
+&lt;p&gt;Coding styles are everything when coding cooperatively. My favourite
+coding style is the Python one (&lt;a href="http://legacy.python.org/dev/peps/pep-0008/" title="Python.org"&gt;PEP8&lt;/a&gt;/&lt;a href="http://legacy.python.org/dev/peps/pep-0007/" title="Python.org"&gt;PEP7&lt;/a&gt;), which means for most
+languages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;no tabs&lt;/li&gt;
+&lt;li&gt;4 space indentation&lt;/li&gt;
+&lt;li&gt;prefered max line length: 80 characters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Indentation can be tabs alternatively, but &lt;strong&gt;have to&lt;/strong&gt; be standardized.
+In some editors, tabs are 4 spaces long, in others 8, and in some 6.
+This makes code indentation a mess and ruins the readability. The line
+length limit is for sane editing, 100 characters are also acceptable,
+anything more than that is probably poorly readable in most editors and
+screams "bad code".&lt;/p&gt;
+&lt;h4&gt;Use a VCS/SCM&lt;/h4&gt;
+&lt;p&gt;I could have also said "use git". But I see that some people prefer
+mercurial or SVN (why...?), that is okay, too. Even when working alone,
+always use some sort version control software, or you will break your
+code one day and spend hours tracking down the bad change. Diffs and
+rollbacks are vital for efficient coding.&lt;/p&gt;
+&lt;h4&gt;As you are using git, branch&lt;/h4&gt;
+&lt;p&gt;As git is the best vcs, in my opinion, you are using branches, aren't
+you? Never, and I mean never, work on master. Master is for tested code
+only. Always work on "wip", "robin" or "fix". It does not matter how you
+name your branch. If you want to change something, branch, make your
+change, test it(!), and merge back into master if your change breaks
+nothing. This is even more important when coding cooperatively, as I do
+not want to pull your work in progress on master, branch to my work in
+progress and wonder why it is broken. Which brings us to&lt;/p&gt;
+&lt;h4&gt;Work locally&lt;/h4&gt;
+&lt;p&gt;Many devs are used to working directly on a server, and sometimes this
+is the only way to effectively test their changes, as they are missing
+the needed environment for the code. This is okay. But as you are still
+using git, always try to clone a personal copy of the code to work on,
+and only push back your branch(es) and possible changes to master to
+save your work centralized. Otherwise there might be a hell of
+simultaneously edited files and lock-/swap-/backup-files.&lt;/p&gt;
+&lt;h1&gt;Software Recommendations&lt;/h1&gt;
+&lt;p&gt;I have used so much software over the years, I found my favourite
+software for most of my needs, and I compared a lot. My favourites are
+always the first ones.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS: Linux (Fedora/OpenSUSE/Arch) or Windows 7 x64 on desktops,
+    RHEL/CentOS/OpenSUSE/*BSD on servers&lt;/li&gt;
+&lt;li&gt;Password Management: KeePass (version 1, version 2 is not widely
+    available yet)&lt;/li&gt;
+&lt;li&gt;Text editing/coding: vim, Kate, Notepad++ (on Windows)&lt;/li&gt;
+&lt;li&gt;VCS: git&lt;/li&gt;
+&lt;li&gt;Mail: mutt, Thunderbird&lt;/li&gt;
+&lt;li&gt;VoIP: Skype (still searching for a better alternative, not secure in
+    any way), Mumble&lt;/li&gt;
+&lt;li&gt;IRC: irssi, weechat, Quassel&lt;/li&gt;
+&lt;li&gt;VMs: Virt-Manager/QEMU with KVM, Xen (for PVM on hosts without
+    CPU-extensions), VirtualBox (on Windows)&lt;/li&gt;
+&lt;li&gt;Video: VLC&lt;/li&gt;
+&lt;li&gt;Music: ncmpcpp+mpd, Rythmbox, foobar2000 (on Windows)&lt;/li&gt;
+&lt;li&gt;Office: LaTeX for papers, LibreOffice&lt;/li&gt;
+&lt;li&gt;Web: Firefox&lt;/li&gt;
+&lt;li&gt;Webserver: nginx&lt;/li&gt;
+&lt;li&gt;Filesharing: NFS, Samba (FTP is old and cluttered)&lt;/li&gt;
+&lt;li&gt;CMS: Django (anything), Wordpress (blogs), Drupal&lt;/li&gt;
+&lt;li&gt;Programming languages: Python (platform independent, modular, nice
+    to write and read), C(++) (faster, for performance-critical
+    applications)&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 23:59:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>Quickie: force-test virtualhosts</title><link>http://peerwire.de/quickie-force-test-virtualhosts.html</link><description>&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
+most people will know what I mean. You define a new virtualhost/server
+block and point it to your page. But to test it, you usually need to
+update the DNS-records, and this may take hours, depending on your
+situation. But you can force a specific host using wget (or curl, but
+curl is not able to recursively download whole pages).&lt;/p&gt;
+&lt;p&gt;This is quite easy and can be accomplished by manually setting the
+Host-variable in the HTTP-header, like this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;{.lang&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt; .decode&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #007020"&gt;true&lt;/span&gt;}
+wget &lt;span style="color: #666666"&gt;-&lt;/span&gt;R &lt;span style="color: #666666"&gt;--&lt;/span&gt;header&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;Host: www.google.com&amp;quot;&lt;/span&gt; &lt;span style="color: #40a070"&gt;127.0.0.1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This would trick your local webserver into thinking you resolved
+google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 01:22:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:quickie-force-test-virtualhosts.html</guid><category>quickie</category><category>apache</category><category>nginx</category><category>wget</category></item><item><title>My favourite Tech-Talks</title><link>http://peerwire.de/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
+of talks on YouTube and watching them all would take ages, but I
+sometimes watch talks before going to bed instad of watching TV.  So I
+thought, I could compile a small list of my favourite talks featuring
+technical topics for myself and you readers.&lt;/p&gt;
+&lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
+(2012)][] - case studies on how to unrecoverably destroy your data
+within seconds&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/1ffBJ4sVUb4" title="YouTube"&gt;Git for ages 4 and up (2013)&lt;/a&gt; - explains git basics really easy&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/bSAgQqa49nM" title="YouTube"&gt;I wanna be the guy: The arduous path to senior sysadmin (2013)&lt;/a&gt; -
+best practices and advice on how to be a better sysadmin&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/5CWrzVJYLWw" title="YouTube"&gt;No-Tech Hacking (2008)&lt;/a&gt; - real life hacking without use of advanced
+technology, quite funny, too&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/U4oB28ksiIo" title="YouTube"&gt;Pwned by the owner (2010)&lt;/a&gt; - funny story of a hacker whose PC gets
+stolen and how he got it back&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/bQqX3RWn0Yw" title="YouTube"&gt;SELinux for mere mortals (2013)&lt;/a&gt; - what SELinux does, why to use it
+and how to use it&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/RIctzAQOe44" title="YouTube"&gt;The real story behind Wayland and X (2013)&lt;/a&gt; - a Wayland-dev explains
+why X sucks from a technical view and what Wayland actually does&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/Sh-cnaJoGCw" title="YouTube"&gt;Why Linux sucks&lt;/a&gt; / &lt;a href="http://youtu.be/BfLqLK7VdQY" title="YouTube"&gt;Why Linux does not suck (2012)&lt;/a&gt; - watch both in
+this order, funny comment on the state of Linux&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://youtu.be/LLBrBBImJt4" title="YouTube"&gt;Write and submit your first Linux kernel patch (2012)&lt;/a&gt; - how to get
+started on kernel development&lt;/p&gt;
+&lt;p&gt;There are a lot more good talks, but my time is sort of limited and
+sadly I can't really focus on working while watching talks.&lt;/p&gt;
+&lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
+  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 14:49:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category></item><item><title>Twitch-IRC - the new way</title><link>http://peerwire.de/twitch-irc-the-new-way.html</link><description>&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
+turns out, twitch.tv changed their IRC-settings. The new way is even
+easier, as they no longer use one server per channel but have all
+channels on one server.&lt;/p&gt;
+&lt;p&gt;Server: irc.twitch.tv 6667&lt;/p&gt;
+&lt;p&gt;Nick: \&amp;lt;your twitch.tv-username&gt;&lt;/p&gt;
+&lt;p&gt;Password: Go to &lt;a href="http://www.twitchapps.com/tmi/"&gt;http://www.twitchapps.com/tmi/&lt;/a&gt; and get an oauth-token.
+Do this only once, as it will change every time you visit the site. This
+token, including the "oauth:"-part is your server password.&lt;/p&gt;
+&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 14:40:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:twitch-irc-the-new-way.html</guid><category>irc</category><category>twitch.tv</category></item><item><title>Using the right open source licenses</title><link>http://peerwire.de/using-the-right-open-source-licenses.html</link><description>&lt;p&gt;When it comes to programming your own stuff, like many people do, at
+some point you might want to thing about licensing. If your code is just
+sitting on GitHub, you probably want to use an open source license, so
+eventually people can contribute easily to your project. But there are
+so many licenses, Apache, BSD, MIT, several GPLs, how is anyone supposed
+to keep track of what they do, and which one should you choose? Easy
+answer: &lt;a href="http://www.tldrlegal.com/" title="TL;DR Legal"&gt;TL;DR Legal&lt;/a&gt;. Just enter your license and it gives you a
+simple overview.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 11:04:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:using-the-right-open-source-licenses.html</guid><category>legal</category><category>licensing</category><category>oss</category></item><item><title>Listen to Pandora from your favourite shell</title><link>http://peerwire.de/listen-to-pandora-from-your-favourite-shell.html</link><description>&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
+with Linux. I love listening to music while coding. While I used to
+listen to webradios, there are not really enough webradios for all my
+musical needs. The big downside is, it needs to run in a graphical
+browser, which is not always practical for me (e.g. on my netbook).&lt;/p&gt;
+&lt;p&gt;Now I found pianobar on reddit, a console-client for pandora. There are
+a packages for openSUSE and Arch Linux, my main distros. The usage is
+pretty simple: make a config-file at
+&lt;em&gt;\$XDG_CONFIG_HOME/pianobar/config&lt;/em&gt; or
+&lt;em&gt;\$XDG_CONFIG_HOME/.config/pianobar/config&lt;/em&gt;, add something like this&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;user &lt;span style="color: #666666"&gt;=&lt;/span&gt; abc&lt;span style="border: 1px solid #FF0000"&gt;@&lt;/span&gt;abc.com
+password_command &lt;span style="color: #666666"&gt;=&lt;/span&gt; gpg &lt;span style="color: #666666"&gt;--&lt;/span&gt;decrypt &lt;span style="color: #666666"&gt;~/&lt;/span&gt;passwd
+control_proxy &lt;span style="color: #666666"&gt;=&lt;/span&gt; http&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;//1.2.3.4:8080/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and you are ready to go. Password_command reads your password from a
+encrypted file, because you should never leave unencrypted passwords on
+your computer. Control_proxy is for people outside of the US (like me),
+it only uses the proxy for control mechanisms, the music itself gets
+streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 06 Sep 2013 15:06:00 +0200</pubDate><guid>tag:peerwire.de,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</guid><category>cli</category><category>onlineradio</category><category>pandora</category></item><item><title>Update several dynamic domains at once</title><link>http://peerwire.de/update-several-dynamic-domains-at-once.html</link><description>&lt;p&gt;As you might have noticed, I am hosting this blog and several other
+websites on my own, and because I do not have a static IP (yet), I need
+to use dynamic domains, which are updates every time I get a IP. Using
+one of these domains is rather easy, but when it comes to updating
+multiple domains at the same time, things can get a bit sketchy. What I
+want to show you today is &lt;a href="https://www.dnsomatic.com/" title="DNS-O-Matic"&gt;DNS-O-Matic&lt;/a&gt;, a service which accepts your
+updates and forwards them to your DynDNS-providers. Now, if you want to
+update it, this is the custom update-url to use:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;http://updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com&amp;amp;myip=\&amp;lt;ipaddr&gt;&amp;amp;wildcard=NOCHG&amp;amp;mx=NOCHG&amp;amp;backmx=NOCHG&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As a hostname to update, I use &lt;em&gt;localhost&lt;/em&gt;, which simply updates
+everything.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jul 2013 14:05:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-24:update-several-dynamic-domains-at-once.html</guid><category>dnsomatic</category><category>dyndns</category><category>homeserver</category></item><item><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link>http://peerwire.de/chromium-crashes-on-gmail-and-other-html5-sites.html</link><description>&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
+other browser: it cannot handle HTML5. At all. Fixing Gmail is quite
+easy, use any other browser, log into Gmail, go to Settings, Chat and
+click disable chat. Google+ for example is unfixable because you cannot
+disable the chat entirely. For fixes on everything else, I have not
+found a solution yet, besides using a secondary browser (Firefox with
+vimperator is really nice).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 28 Jun 2013 12:16:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</guid><category>chrome</category><category>chromium</category><category>firefox</category><category>html5</category></item><item><title>Prism: What to do</title><link>http://peerwire.de/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+everyone else) heard about the NSA and Prism. Now I always distrusted
+big companies, especially the ones from the US, because I know money and
+power are everything over there. If they want to spy on you, they can.
+Now there is &lt;a href="http://prism-break.org/" title="Prism Break"&gt;something you can do&lt;/a&gt; (read this, or this post will make
+less sense) to at least limit the amount of information about yourself
+getting to those people.&lt;/p&gt;
+&lt;p&gt;Obviously, you don't want to use Apple hardware (which I don't anyway,
+but that is another story), as &lt;a href="http://www.southparkstudios.com/full-episodes/s15e01-humancentipad" title="South Park"&gt;Apple is infamous for invading user's
+privacy&lt;/a&gt;. Chrome OS is insecure, as Google makes money of ad
+targeting, which is, you guessed it, gathering your information. And
+Windows, well, who seriously trusts Microsoft? The alternatives listed
+are a bunch of Linuxes and BSDs, although I think they are recommending
+the wrong distros, beginners should try something like &lt;a href="http://www.linuxmint.com/" title="Linux Mint"&gt;Mint&lt;/a&gt;,
+&lt;a href="http://crunchbang.org/" title="Crunchbang"&gt;Crunchbang&lt;/a&gt; or &lt;a href="http://www.opensuse.org/en/" title="openSUSE"&gt;openSUSE&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The browsers are the same story, no Chrome, no Safari, no IE (as if
+anyone would miss it), you don't know, what they are actually doing, and
+while browsing, you give away an awful lot of personal data.
+Technically, your browser could send you whole browsing history
+(including "incognito mode", the only one saying nothing gets saved is
+your browser), your Downloads, your login data and more to someone. The
+right choices here are &lt;a href="http://www.mozilla.org/en-US/" title="Mozilla"&gt;Firefox&lt;/a&gt;, &lt;a href="http://www.chromium.org/Home" title="Chromium Project"&gt;Chromium&lt;/a&gt; (which I guess is okay,
+haven't read the source myself) and smaller browsers like &lt;a href="http://surf.suckless.org/" title="suckless.org"&gt;surf&lt;/a&gt; or
+&lt;a href="http://mason-larobina.github.io/luakit/" title="GitHub"&gt;luakit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The next interesting point is websearching. Again, Google is bad, who
+knew? Yahoo and Bing, too. I'd say, use &lt;a href="http://ddg.gg" title="DuckDuckGo"&gt;DuckDuckGo&lt;/a&gt;. I use it as my
+main search engine for some months now and prefer it over Google. While
+Google sometimes gives me better results, most of the time, DDG does
+good. Be sure to have a look at the &lt;a href="https://duckduckgo.com/bang.html" title="DuckDuckGo"&gt;bang commands&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To make this a bit shorter, be careful, which email provider you use,
+they can read everything you write and receive. Self-hosting is sadly no
+real option here, unless you have access to a static IP and a TLD.
+Cloud-storage providers can access all your files saved to them, you can
+self-host using &lt;a href="http://owncloud.org/" title="ownCloud"&gt;ownCloud&lt;/a&gt; or &lt;a href="http://seafile.com/en/home/" title="Seafile"&gt;Seafile&lt;/a&gt;. Be careful what to enter on
+any social networks, even if "private". You can either opt-out
+completely or stay with the big ones (namely Facebook), as using a small
+social network misses the point.&lt;/p&gt;
+&lt;p&gt;The instant messaging section is quite hard. Safe are IRC, &lt;a href="http://pidgin.im/" title="Pidgin"&gt;Pidgin&lt;/a&gt;,
+&lt;a href="https://crypto.cat/" title="Cryptocat"&gt;Cryptocat&lt;/a&gt;, &lt;a href="http://mumble.sourceforge.net/" title="Mumble"&gt;Mumble&lt;/a&gt;, &lt;a href="https://jitsi.org/" title="Jitsi"&gt;Jitsi&lt;/a&gt;. Unsafe are all big desktop clients
+(GTalk, Skype, MSN/Live Messenger, ...) and Whatsapp as well.&lt;/p&gt;
+&lt;p&gt;There are some more options for the guys with the tin foil hats, such as
+using Tor permanently, only use end-to-end encrypted websites and
+disable all scripts and plugins, then use custom DNS-servers and stuff
+like this, but chances are, someone will see where you are browsing,
+like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 22:41:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Quckie: open Skype links in right browser</title><link>http://peerwire.de/quckie-open-skype-links-in-right-browser.html</link><description>&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
+the 11.7 Flash plugin. The downside was that I could not open links in
+Skype conversations by clicking them, as they would just open in
+Firefox, even though Chrome is my default browser. The solution on my
+openSUSE box was quite simple:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings get &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser
+firefox
+&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings set &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser google&lt;span style="color: #666666"&gt;-&lt;/span&gt;chrome.desktop
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 12 Jun 2013 14:34:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-12:quckie-open-skype-links-in-right-browser.html</guid><category>quickie</category><category>chrome</category><category>firefox</category><category>skype</category><category>xdg</category></item><item><title>Google Drive vs Dropbox - my view</title><link>http://peerwire.de/google-drive-vs-dropbox-my-view.html</link><description>&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
+track of it when reinstalling and just stopped using it. Some time
+later, I wanted to sync some stuff up between my multiple OS's, PC's and
+my phone, and being the Google-fanboy I was I used Google Drive. When I
+switched to Arch Linux as my only OS last year, I found &lt;a href="https://aur.archlinux.org/packages/grive/" title="AUR"&gt;grive&lt;/a&gt;, an
+open-source Drive client which works from a shell, well, most of the
+time. Now, on openSUSE, I had some problems finding a proper client, so
+I rediscovered Dropbox. Now in short, pros and cons of each.&lt;/p&gt;
+&lt;h6&gt;Google Drive:&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;Lots of space for free (15G right now)&lt;/li&gt;
+&lt;li&gt;Clients for Windows, Mac, Android, iOS and community-made Linux&lt;/li&gt;
+&lt;li&gt;Integration with Google Docs&lt;/li&gt;
+&lt;li&gt;Probably high reliability/security (it's Google, these guys are the
+    internet)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;Dropbox:&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;Just 2G for free (still enough for me)&lt;/li&gt;
+&lt;li&gt;Clients for virtually everything, works better on Linux&lt;/li&gt;
+&lt;li&gt;LAN-sync&lt;/li&gt;
+&lt;li&gt;Not as reliable (down one day last week) or secure (there have been
+    leaks)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Grive on Linux is not a daemon, so you should consider running it via
+cron every few minutes, Dropbox works just like on Windows and syncs on
+changes. Because of the better client I tend to prefer Dropbox over
+Google Drive, when Google comes up with a proper client for Linux, this
+is likely to change.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 04 Jun 2013 15:48:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-04:google-drive-vs-dropbox-my-view.html</guid><category>dropbox</category><category>google drive</category></item><item><title>Synchronizing Bookmarks and more across different browsers</title><link>http://peerwire.de/synchronizing-bookmarks-and-more-across-different-browsers.html</link><description>&lt;p&gt;I prefer different browsers depending on which platform I am. On
+Windows, nothing really beats Firefox, but on Linux, I prefer Chrome
+because it is significantly faster and uses a newer Flash version. But
+also important for me are the dozens of bookmarks, which have get
+synchronized automatically, which I realize with &lt;a href="http://www.xmarks.com" title="Xmarks"&gt;Xmarks&lt;/a&gt;. Xmarks
+provides browser addons for the popular browsers and can sync your
+bookmarks, history, passwords and even your currently opened pages. I
+have used it for some years now and am completely satisfied, so if you
+could need it, give it a try.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 31 May 2013 17:30:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</guid><category>chrome</category><category>firefox</category><category>xmarks</category></item><item><title>Running Flash on old CPUs</title><link>http://peerwire.de/running-flash-on-old-cpus.html</link><description>&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
+about 10-12 years old. As Windows XP won't run anymore, I convinced him
+to let me setup some similar Linux distro. I went for openSUSE 12.3 with
+KDE, disabled compositing and it runs surprisingly smooth. Now he needed
+to access some Flash-based web-apps and watching YouTube once in a while
+would be nice aswell, but the Flash-plugin wouldn't load, neither 11.2
+in Firefox nor Chrome, and 11.7 did not even show up anywhere. Firefox
+threw the following error when started from a terminal:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;[Parent][RPCChannel] Error&lt;span style="color: #666666"&gt;:&lt;/span&gt; Channel error&lt;span style="color: #666666"&gt;:&lt;/span&gt; cannot send&lt;span style="color: #666666"&gt;/&lt;/span&gt;recv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a lot of research I found the problem. The CPU is an Athlon XP-M
+2500+, which does not support SSE2 (only SSE), which is needed for "new"
+versions of flash. My workaround is getting an old Flash package and
+replace &lt;em&gt;/usr/lib/flash-plugin/libflashplayer.so &lt;/em&gt;with &lt;a href="/download/libflashplayer.so" title="libflashplayer.so"&gt;the old
+version&lt;/a&gt;. Aside from obvious security problems this runs well and
+should do in most cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 29 May 2013 11:26:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-29:running-flash-on-old-cpus.html</guid><category>flash</category></item><item><title>Efficient Firefox setup</title><link>http://peerwire.de/efficient-firefox-setup.html</link><description>&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
+for me, not only by Addons but also in terms of the general UI. I am
+using a handcrafted layout like this (sorry for the dropdown,
+screenshotting it is quite difficult):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="firefox" src="/images/firefox-1024x576.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Next to the overly long addressbar I have got a set of textless
+bookmarks for my most used sites. Then I use the bookmark menu for more
+specific pages to remember. The addressbar is still usable while using
+only half a screen.&lt;/p&gt;
+&lt;p&gt;Now to addons. I use some addons, currently nine active ones and 16 in
+total. Those include Adblock Edge, Disable Ctrl-Q Shortcut, DuckDuckGo
+Plus (yes, DDG is my primary search engine, the bang-commands are
+incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 20 May 2013 19:44:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-20:efficient-firefox-setup.html</guid><category>firefox</category></item><item><title>Even more Twitch: chat via WeeChat/IRC</title><link>http://peerwire.de/even-more-twitch-chat-via-weechatirc.html</link><description>&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
+Head over to my &lt;a href="/twitch-irc-the-new-way.html" title="Twitch-IRC – the new way"&gt;updated version&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After explaining how to stream to Twitch, here comes the cool way of
+chatting there, using WeeChat, my personal favourite IRC-client. Again,
+we will use a small shell-script to save some time.&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td&gt;&lt;div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"&gt;&lt;pre style="line-height: 125%"&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span style="color: #007020"&gt;read&lt;/span&gt; -p &lt;span style="color: #4070a0"&gt;&amp;quot;Enter Twitch.tv-Channel: &amp;quot;&lt;/span&gt; -e channel
+&lt;span style="color: #bb60d5"&gt;username&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;#39;username&amp;#39;&lt;/span&gt;
+&lt;span style="color: #bb60d5"&gt;password&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;
+&lt;span style="color: #bb60d5"&gt;login&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;/connect irc://$username:$password@$channel.jtvirc.com/#$channel&amp;quot;&lt;/span&gt;
+weechat-curses -r &lt;span style="color: #4070a0"&gt;&amp;quot;$login&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Change username and password to your Twitch-accout-data and be sure to
+store it in a secure environment. Then chmod +x and run it. Enter your
+desired channel and profit!&lt;/p&gt;
+&lt;p&gt;Some additional tips:&lt;/p&gt;
+&lt;p&gt;Your username/password should be letters/numbers only. I had some
+serious headaches escaping special character so I just changed my
+twitch-password to 30 random letters and numbers.&lt;/p&gt;
+&lt;p&gt;When using popular channels (like over a few hundred viewers), your chat
+will be spammed with join-/leave-messages. To fix this just type&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;/&lt;/span&gt;filter add joinquit &lt;span style="color: #666666"&gt;*&lt;/span&gt; irc_join,irc_part,irc_quit &lt;span style="color: #666666"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;inside weechat and it filters this spam. Only once required.&lt;/p&gt;
+&lt;p&gt;Users of other IRC-clients like irssi or XChat can copy the url-syntax
+and feed it into the client.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:28:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:even-more-twitch-chat-via-weechatirc.html</guid><category>irc</category><category>twitch.tv</category><category>weechat</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>http://peerwire.de/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+still got my script, so here you go:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+FPS&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;30&amp;quot;&lt;/span&gt;
+QUAL&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;medium&amp;quot;&lt;/span&gt;
+STREAM_KEY&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;live_123_xxx&amp;quot;&lt;/span&gt;
+
+ffmpeg   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f x11grab   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$INRES&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;r &lt;span style="color: #4070a0"&gt;&amp;quot;$FPS&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i &lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0.0&lt;/span&gt;&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;itsoffset &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;01&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;filter_complex amix&lt;span style="color: #666666"&gt;=&lt;/span&gt;inputs&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;duration&lt;span style="color: #666666"&gt;=&lt;/span&gt;first&lt;span style="color: #666666"&gt;:&lt;/span&gt;dropout_transition&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;af aresample   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;vcodec libx264   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;preset &lt;span style="color: #4070a0"&gt;&amp;quot;$QUAL&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$OUTRES&amp;quot;&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;acodec libmp3lame   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;ar &lt;span style="color: #40a070"&gt;44100&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;threads &lt;span style="color: #40a070"&gt;6&lt;/span&gt;   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;b&lt;span style="color: #666666"&gt;:&lt;/span&gt;a &lt;span style="color: #40a070"&gt;512&lt;/span&gt;k   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;pix_fmt yuv420p   
+&lt;span style="color: #666666"&gt;-&lt;/span&gt;f flv &lt;span style="color: #4070a0"&gt;&amp;quot;rtmp://live.justin.tv/app/$STREAM_KEY&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You get your stream key &lt;a href="http://www.twitch.tv/broadcast" title="Twitch"&gt;here&lt;/a&gt;. Adjust resolutions as needed (input
+and output), aswell as FPS. In lines 13-16 you can change your audio
+devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
+microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
+of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:25:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item><item><title>Learning to type properly</title><link>http://peerwire.de/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
+programming, typing properly is a mandatory skill, but basically
+everyone benefits from fast typing. Most people developed some kind of
+2-6-finger system, which might work well, but is still suboptimal
+compared to 10-finger touch typing. There are some ways of learning the
+latter, but my personal favourite approach are websites, as they are
+platform independent and usually require nothing more than a browser
+with flash-plugin. Here are some:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://keybr.com" title="Keybr"&gt;Keybr.com&lt;/a&gt;: Semi-random text, different difficulty levels, language
+settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
+books.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
+every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:18:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item></channel></rss>

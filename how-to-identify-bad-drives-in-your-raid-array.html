@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>How to identify bad drives in your RAID array</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li class="active"><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://peerwire.de/how-to-identify-bad-drives-in-your-raid-array.html" rel="bookmark"
+           title="Permalink to How to identify bad drives in your RAID array">How to identify bad drives in your RAID array</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-14T19:13:00">
+                Di 14 Mai 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/hardware.html">Hardware</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/hdds.html">hdds</a><a href="http://peerwire.de/tag/raid.html">raid</a></p>
+</footer><!-- /.post-info -->      <p>If one of the disks in your Linux-driven software-RAID fails, chances
+are there are some/a lot of the same disks involved. Especially on
+servers there might be a dozen or even more drives of the same type, one
+just failed and you need to switch it fast because the server is
+critical, so if another drive fails, you loose money and/or lifes.</p>
+<p>First do</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">cat <span style="color: #666666">/</span>proc<span style="color: #666666">/</span>mdstat
+</pre></div>
+
+
+<p>to verify that exactly one drive has gone bad. There will be an output
+similar to this:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">Personalities : <span style="border: 1px solid #FF0000">[</span>raid1<span style="color: #007020">]</span> 
+md0 : active raid1 sdb2<span style="color: #007020">[</span><span style="color: #40a070">1</span><span style="color: #007020">]</span> sda2<span style="color: #007020">[</span><span style="color: #40a070">0</span><span style="color: #007020">]</span>
+      968567676 blocks super 1.1 <span style="color: #007020">[</span><span style="color: #40a070">2</span>/2<span style="color: #007020">]</span> <span style="color: #007020">[</span>UU<span style="color: #007020">]</span>
+      bitmap: 1/8 pages <span style="color: #007020">[</span><span style="color: #40a070">4</span>KB<span style="color: #007020">]</span>, 65536KB chunk
+
+unused devices: <span style="color: #062873; font-weight: bold">&lt;none&gt;</span>
+</pre></div>
+
+
+<p>This is my personal homeserver, running two 1TB-drives in RAID1 (mainly
+becuase it is cheap), and both drives are “up”, indicated by the “[UU]“.
+Everything but an U in this list is bad. Now you still need to know,
+which of the physical drives it is. Even on full hotswappable servers
+you probably want to avoid pulling out every single drive and test it in
+a different machine.</p>
+<p>Enter smartctl. Installed by default on most systems (SUSE, RHEL, …), it
+prints hardware info of specified devices. Take a look:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020"># smartctl -a /dev/sda</span>
+
+smartctl <span style="color: #40a070">5.43</span> <span style="color: #40a070">2012</span><span style="color: #666666">-</span><span style="color: #40a070">06</span><span style="color: #666666">-</span><span style="color: #40a070">30</span> r3573 [x86_64<span style="color: #666666">-</span>linux<span style="color: #666666">-</span><span style="color: #40a070">2.6.32</span><span style="color: #666666">-</span><span style="color: #40a070">358.0.1</span>.el6.x86_64] (local build)
+Copyright (C) <span style="color: #40a070">2002</span><span style="color: #666666">-</span><span style="color: #40a070">12</span> by Bruce Allen, http<span style="color: #666666">:</span><span style="color: #60a0b0; font-style: italic">//smartmontools.sourceforge.net</span>
+
+<span style="color: #666666">===</span> START OF INFORMATION SECTION <span style="color: #666666">===</span>
+Model Family<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">    </span> Western Digital RE4 Serial ATA
+Device Model<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">    </span> WDC WD1003FBYX<span style="color: #666666">-</span><span style="color: #40a070">01</span>Y7B1
+Serial Number<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">   </span> WD<span style="color: #666666">-</span>WMAW30891107
+LU WWN Device Id<span style="color: #666666">:</span> <span style="color: #40a070">5</span> <span style="color: #40a070">0014</span>ee <span style="color: #40a070">25</span>c2357fa
+Firmware Version<span style="color: #666666">:</span> <span style="color: #40a070">01.01</span>V02
+User Capacity<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">1</span>,<span style="color: #40a070">000</span>,<span style="color: #40a070">204</span>,<span style="color: #40a070">886</span>,<span style="color: #40a070">016</span> bytes [<span style="color: #40a070">1.00</span> TB]
+Sector Size<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">     </span> <span style="color: #40a070">512</span> bytes logical<span style="color: #666666">/</span>physical
+Device is<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">       </span> In smartctl database [<span style="color: #007020; font-weight: bold">for</span> details use<span style="color: #666666">:</span> <span style="color: #666666">-</span>P show]
+ATA Version is<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">8</span>
+ATA Standard is<span style="color: #666666">:</span><span style="border: 1px solid #FF0000"> </span> Exact ATA specification draft version not indicated
+Local Time is<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">   </span> Sun May <span style="color: #40a070">12</span> <span style="color: #40a070">17</span><span style="color: #666666">:</span><span style="color: #40a070">59</span><span style="color: #666666">:</span><span style="color: #40a070">04</span> <span style="color: #40a070">2013</span> CEST
+SMART support is<span style="color: #666666">:</span> Available <span style="color: #666666">-</span> device has SMART capability.
+SMART support is<span style="color: #666666">:</span> Enabled
+
+<span style="color: #666666">===</span> START OF READ SMART DATA SECTION <span style="color: #666666">===</span>
+SMART overall<span style="color: #666666">-</span>health self<span style="color: #666666">-</span>assessment test result<span style="color: #666666">:</span> PASSED
+
+General SMART Values<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">                                                                                                                                                                                                                      </span> <span style="border: 1px solid #FF0000"> </span>
+Offline data collection status<span style="color: #666666">:</span><span style="border: 1px solid #FF0000"> </span> (<span style="color: #40a070">0x84</span>) Offline data collection activity
+
+Self<span style="color: #666666">-</span>test execution status<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">     </span> (<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">0</span>) The previous self<span style="color: #666666">-</span>test routine completed
+
+Total time to complete Offline<span style="border: 1px solid #FF0000">                                                                                                                                                                                                             </span> <span style="border: 1px solid #FF0000"> </span>
+data collection<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">               </span> (<span style="color: #40a070">16260</span>) seconds.<span style="border: 1px solid #FF0000">                                                                                                                                                                                           </span> <span style="border: 1px solid #FF0000"> </span>
+Offline data collection<span style="border: 1px solid #FF0000">                                                                                                                                                                                                                    </span> <span style="border: 1px solid #FF0000"> </span>
+<span style="color: #002070; font-weight: bold">capabilities:</span><span style="border: 1px solid #FF0000">                   </span> (<span style="color: #40a070">0x7b</span>) SMART execute Offline immediate.
+
+<span style="border: 1px solid #FF0000">                                       </span> Self<span style="color: #666666">-</span>test supported.
+<span style="border: 1px solid #FF0000">                                       </span> Conveyance Self<span style="color: #666666">-</span>test supported.
+<span style="border: 1px solid #FF0000">                                       </span> Selective Self<span style="color: #666666">-</span>test supported.
+SMART capabilities<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">           </span> (<span style="color: #40a070">0x0003</span>) Saves SMART data before entering
+<span style="border: 1px solid #FF0000">                                       </span> power<span style="color: #666666">-</span>saving mode.
+<span style="border: 1px solid #FF0000">                                       </span> Supports SMART <span style="color: #007020; font-weight: bold">auto</span> save timer.
+Error logging capability<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">       </span> (<span style="color: #40a070">0x01</span>) Error logging supported.
+<span style="border: 1px solid #FF0000">                                       </span> General Purpose Logging supported.
+Short self<span style="color: #666666">-</span>test routine 
+recommended polling time<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">       </span> (<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">2</span>) minutes.
+Extended self<span style="color: #666666">-</span>test routine
+recommended polling time<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">       </span> ( <span style="color: #40a070">160</span>) minutes.
+Conveyance self<span style="color: #666666">-</span>test routine
+recommended polling time<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">       </span> (<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">5</span>) minutes.
+SCT capabilities<span style="color: #666666">:</span><span style="border: 1px solid #FF0000">             </span> (<span style="color: #40a070">0x303f</span>) SCT Status supported.
+<span style="border: 1px solid #FF0000">                                       </span> SCT Error Recovery Control supported.
+<span style="border: 1px solid #FF0000">                                       </span> SCT Feature Control supported.
+<span style="border: 1px solid #FF0000">                                       </span> SCT Data Table supported.
+
+SMART Attributes Data Structure revision number<span style="color: #666666">:</span> <span style="color: #40a070">16</span>
+Vendor Specific SMART Attributes with Thresholds<span style="color: #666666">:</span>
+ID<span style="border: 1px solid #FF0000">#</span> ATTRIBUTE_NAME<span style="border: 1px solid #FF0000">         </span> FLAG<span style="border: 1px solid #FF0000">    </span> VALUE WORST THRESH TYPE<span style="border: 1px solid #FF0000">     </span> UPDATED<span style="border: 1px solid #FF0000"> </span> WHEN_FAILED RAW_VALUE
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">1</span> Raw_Read_Error_Rate<span style="border: 1px solid #FF0000">    </span> <span style="color: #40a070">0x002f</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">051</span><span style="border: 1px solid #FF0000">   </span> Pre<span style="color: #666666">-</span>fail<span style="border: 1px solid #FF0000"> </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">3</span> Spin_Up_Time<span style="border: 1px solid #FF0000">           </span> <span style="color: #40a070">0x0027</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">192</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">169</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">021</span><span style="border: 1px solid #FF0000">   </span> Pre<span style="color: #666666">-</span>fail<span style="border: 1px solid #FF0000"> </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">3366</span>
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">4</span> Start_Stop_Count<span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">65</span>
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">5</span> Reallocated_Sector_Ct<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">0x0033</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">140</span><span style="border: 1px solid #FF0000">   </span> Pre<span style="color: #666666">-</span>fail<span style="border: 1px solid #FF0000"> </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">7</span> Seek_Error_Rate<span style="border: 1px solid #FF0000">        </span> <span style="color: #40a070">0x002e</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">9</span> Power_On_Hours<span style="border: 1px solid #FF0000">         </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">099</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">098</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">1092</span>
+<span style="border: 1px solid #FF0000"> </span><span style="color: #40a070">10</span> Spin_Retry_Count<span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">253</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="border: 1px solid #FF0000"> </span><span style="color: #40a070">11</span> Calibration_Retry_Count <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">253</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="border: 1px solid #FF0000"> </span><span style="color: #40a070">12</span> Power_Cycle_Count<span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">64</span>
+<span style="color: #40a070">192</span> Power<span style="color: #666666">-</span>Off_Retract_Count <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">45</span>
+<span style="color: #40a070">193</span> Load_Cycle_Count<span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">19</span>
+<span style="color: #40a070">194</span> Temperature_Celsius<span style="border: 1px solid #FF0000">    </span> <span style="color: #40a070">0x0022</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">106</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">101</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">41</span>
+<span style="color: #40a070">196</span> Reallocated_Event_Count <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="color: #40a070">197</span> Current_Pending_Sector<span style="border: 1px solid #FF0000"> </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="color: #40a070">198</span> Offline_Uncorrectable<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">0x0030</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">253</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Offline<span style="border: 1px solid #FF0000">     </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="color: #40a070">199</span> UDMA_CRC_Error_Count<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">0x0032</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">200</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Always<span style="border: 1px solid #FF0000">      </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+<span style="color: #40a070">200</span> Multi_Zone_Error_Rate<span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">0x0008</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">100</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">253</span><span style="border: 1px solid #FF0000">  </span> <span style="color: #40a070">000</span><span style="border: 1px solid #FF0000">   </span> Old_age<span style="border: 1px solid #FF0000">  </span> Offline<span style="border: 1px solid #FF0000">     </span> <span style="color: #666666">-</span><span style="border: 1px solid #FF0000">      </span> <span style="color: #40a070">0</span>
+
+SMART Error Log Version<span style="color: #666666">:</span> <span style="color: #40a070">1</span>
+No Errors Logged
+
+SMART Self<span style="color: #666666">-</span>test log structure revision number <span style="color: #40a070">1</span>
+No self<span style="color: #666666">-</span>tests have been logged.<span style="border: 1px solid #FF0000"> </span> [To run self<span style="color: #666666">-</span>tests, use<span style="color: #666666">:</span> smartctl <span style="color: #666666">-</span>t]
+
+SMART Selective self<span style="color: #666666">-</span>test log data structure revision number <span style="color: #40a070">1</span>
+<span style="border: 1px solid #FF0000"> </span>SPAN<span style="border: 1px solid #FF0000"> </span> MIN_LBA<span style="border: 1px solid #FF0000"> </span> MAX_LBA<span style="border: 1px solid #FF0000"> </span> CURRENT_TEST_STATUS
+<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">1</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000"> </span> Not_testing
+<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">2</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000"> </span> Not_testing
+<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">3</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000"> </span> Not_testing
+<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">4</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000"> </span> Not_testing
+<span style="border: 1px solid #FF0000">   </span> <span style="color: #40a070">5</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000">       </span> <span style="color: #40a070">0</span><span style="border: 1px solid #FF0000"> </span> Not_testing
+Selective self<span style="color: #666666">-</span>test flags (<span style="color: #40a070">0x0</span>)<span style="color: #666666">:</span>
+<span style="border: 1px solid #FF0000"> </span> After scanning selected spans, <span style="color: #007020; font-weight: bold">do</span> NOT read<span style="color: #666666">-</span>scan remainder of disk.
+If Selective self<span style="color: #666666">-</span>test is pending on power<span style="color: #666666">-</span>up, resume after <span style="color: #40a070">0</span> minute delay.
+</pre></div>
+
+
+<p>Use it like this as root to get the smart status and serial number of
+your device, so you can find the bad one. Now, you either need to stop
+and open your server and pull out the right drive, or you are smart like
+I am (pun intended) and already got the serial numbers on the outside of
+your HDD-slots, sou you can hotswap the drive and start rebuilding right
+away.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

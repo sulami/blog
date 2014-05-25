@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>sulami's blog - ffmpeg</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://peerwire.de/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html">Streaming to Twitch.tv using ffmpeg and ALSA</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2013-05-14T19:25:00">
+                Di 14 Mai 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/web.html">Web</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/alsa.html">alsa</a><a href="http://peerwire.de/tag/ffmpeg.html">ffmpeg</a><a href="http://peerwire.de/tag/twitchtv.html">twitch.tv</a></p>
+</footer><!-- /.post-info --><p>Well, as I lost my database, I could not recover this article, but I
+still got my script, so here you go:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">INRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
+OUTRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
+FPS<span style="color: #666666">=</span><span style="color: #4070a0">&quot;30&quot;</span>
+QUAL<span style="color: #666666">=</span><span style="color: #4070a0">&quot;medium&quot;</span>
+STREAM_KEY<span style="color: #666666">=</span><span style="color: #4070a0">&quot;live_123_xxx&quot;</span>
+
+ffmpeg   
+<span style="color: #666666">-</span>f x11grab   
+<span style="color: #666666">-</span>s <span style="color: #4070a0">&quot;$INRES&quot;</span>   
+<span style="color: #666666">-</span>r <span style="color: #4070a0">&quot;$FPS&quot;</span>   
+<span style="color: #666666">-</span>i <span style="color: #666666">:</span><span style="color: #40a070">0.0</span><span style="color: #666666">+</span><span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>   
+<span style="color: #666666">-</span>itsoffset <span style="color: #666666">-</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">01</span>   
+<span style="color: #666666">-</span>f alsa   
+<span style="color: #666666">-</span>i hw<span style="color: #666666">:</span><span style="color: #40a070">3</span>,<span style="color: #40a070">0</span>   
+<span style="color: #666666">-</span>f alsa   
+<span style="color: #666666">-</span>i hw<span style="color: #666666">:</span><span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>   
+<span style="color: #666666">-</span>filter_complex amix<span style="color: #666666">=</span>inputs<span style="color: #666666">=</span><span style="color: #40a070">2</span><span style="color: #666666">:</span>duration<span style="color: #666666">=</span>first<span style="color: #666666">:</span>dropout_transition<span style="color: #666666">=</span><span style="color: #40a070">3</span>   
+<span style="color: #666666">-</span>af aresample   
+<span style="color: #666666">-</span>vcodec libx264   
+<span style="color: #666666">-</span>preset <span style="color: #4070a0">&quot;$QUAL&quot;</span>   
+<span style="color: #666666">-</span>s <span style="color: #4070a0">&quot;$OUTRES&quot;</span>   
+<span style="color: #666666">-</span>acodec libmp3lame   
+<span style="color: #666666">-</span>ar <span style="color: #40a070">44100</span>   
+<span style="color: #666666">-</span>threads <span style="color: #40a070">6</span>   
+<span style="color: #666666">-</span>b<span style="color: #666666">:</span>a <span style="color: #40a070">512</span>k   
+<span style="color: #666666">-</span>pix_fmt yuv420p   
+<span style="color: #666666">-</span>f flv <span style="color: #4070a0">&quot;rtmp://live.justin.tv/app/$STREAM_KEY&quot;</span>
+</pre></div>
+
+
+<p>You get your stream key <a href="http://www.twitch.tv/broadcast" title="Twitch">here</a>. Adjust resolutions as needed (input
+and output), aswell as FPS. In lines 13-16 you can change your audio
+devices (speakers and microphone, get them from "<em>arecord -l" </em>for
+microphones and<em>"aplay -l"</em>for speakers). Adjust threads to the amount
+of CPU cores you want to use to encode.</p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

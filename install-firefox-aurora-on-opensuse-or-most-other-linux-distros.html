@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Install Firefox Aurora on openSUSE (or most other Linux distros)</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li class="active"><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://peerwire.de/install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html" rel="bookmark"
+           title="Permalink to Install Firefox Aurora on openSUSE (or most other Linux distros)">Install Firefox Aurora on openSUSE (or most other Linux distros)</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-11T23:50:00">
+                Do 11 Juli 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/aurora.html">aurora</a><a href="http://peerwire.de/tag/firefox.html">firefox</a><a href="http://peerwire.de/tag/flash.html">flash</a></p>
+</footer><!-- /.post-info -->      <p>When it comes to software, I like to have the new stuff. Like Firefox
+Aurora, the pre-beta version of our favourite webbrowser. There are two
+main problems with getting Aurora to run on openSUSE: first, you have to
+get the right version somewhere, which is harder than it might sound,
+because the official download page only ships the 32bit version, and
+let's be honest here, who still runs 32bits? But do not even start
+searching, Mozilla has binaries ready for us, they are just hiding them
+<a href="https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n/" title="mozilla.org">here</a>. You probably want something like
+<em>firefox-\&lt;version>.en-GB-x86_64.tar.bz2</em>. Now that you got your new
+browser, extract it somewhere (home-directories are a nice place) and
+add a desktop icon (if there is some sort of desktop in your setup), an
+icon can be found at <em>browser/icons</em>.</p>
+<p>You will most likely find one major flaw: there are no plugins, like
+flash or java. Those are located at <em>/usr/lib/browser-plugins</em>, symlink
+all of them to your new profile like this (edit your profile name, it is
+random):</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">ln <span style="color: #666666">-</span>s <span style="color: #666666">/</span>usr<span style="color: #666666">/</span>lib64<span style="color: #666666">/</span>browser<span style="color: #666666">-</span>plugins<span style="color: #666666">/*</span> <span style="color: #666666">~/</span>.mozilla<span style="color: #666666">/</span>firefox<span style="color: #666666">/</span>.<span style="color: #007020; font-weight: bold">default</span><span style="color: #666666">/</span>plugins<span style="color: #666666">/</span>
+</pre></div>
+
+
+<p>Symlinking will automatically update them when your package manager does
+so, which is crucial for your security. When you are done, it looks
+something like this (I use vimperator, which changes the UI a bit):</p>
+<p><img alt="aurora" src="/images/aurora-1024x752.png" /></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

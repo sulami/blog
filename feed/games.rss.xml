@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>http://peerwire.de/</link><description></description><atom:link href="http://peerwire.de/feed/games.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Apr 2014 23:55:00 +0200</lastBuildDate><item><title>Playing in space on Linux</title><link>http://peerwire.de/playing-in-space-on-linux.html</link><description>&lt;p&gt;While I have been working day and night lately on my (sort of) new
+project, peerwire.org (which currently links to this blog, but will soon
+go live), I have now reached the beta phase which will mostly be
+intensive testing and trying to break the site, as well as some minor
+technical fixes. But this aside, I now have some spare time while I wait
+for some other stuff to happen, so I decided to play a game.&lt;/p&gt;
+&lt;p&gt;I have not played a game for quite some time, if you do not count
+playing for less than 10 minutes, I probably have not played a game this
+year. As I do not have a Windows partition anymore (which I am quite
+proud of, Linux and to some degree BSD achieve everything I need), I
+only have my collection of right now 66 Steam games for Linux (out of
+200 I own). Today I had another look at Kinetic Void, a kickstarted game
+I picked up for 2.50€ when it hit Greenlight some time ago. It is still
+in early alpha and not even close to feature-complete, but it is already
+quite gorgeous if you like spaceships.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot from 2014-04-11 23:50:47" src="/images/Screenshot-from-2014-04-11-235047-1024x576.png" /&gt;&lt;/p&gt;
+&lt;p&gt;There are some other really cool games for Linux on Steam and most of
+them are also rather cheap, but you can sink hundreds of hours into
+some.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/220200/" title="Steam"&gt;Kerbal Space Program&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More spaceships, more simulation. Pretty intensive on the hardware, my
+high-end Intel CPU without dedicated GPU can barely run in, but it
+works. Check the &lt;a href="http://wiki.kerbalspaceprogram.com/wiki/Main_Page" title="KSP Wiki"&gt;Wiki&lt;/a&gt; for infos and how to learn the game, also
+YouTube has some great tutorials.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/sub/12985/" title="Steam"&gt;X3: Reunion, X3: Terran Conflict, X3: Albion Prelude&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have been playing the X-games since the first one, although I do not
+own the latest one yet, as it seems to be the worst yet and I do not
+really game anymore. 4X spaceship sandboxes with some story, huge
+universe, top-notch graphics, really complicated and hard to get into.
+But immense fun. If you start, get TC or AB, Reunion does lack some
+important convenience features. The best resource I know of is
+&lt;a href="http://www.seizewell.de/" title="Seizewell"&gt;Seizewell&lt;/a&gt;, which is German, as X comes from Germany and is played
+there the most.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/212680/" title="Steam"&gt;FTL: Faster Than Light&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is a spaceship rogue-like, which means you select a ship, and start
+on a journey to do whatever, until you either die or complete the story.
+Than you start again. There are some well-made mods around to extend the
+fun.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/107200/" title="Steam"&gt;Space Pirates and Zombies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An interesting space arcade action adventure game which really leads to
+addiction.&lt;/p&gt;
+&lt;p&gt;There are some games for Linux that are more or less space-related I
+have not tested yet, maybe someone can give me a tip on one of those:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/246090/" title="Steam"&gt;Spacebase DF-9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/255500/" title="Steam"&gt;Entropy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/257930/" title="Steam"&gt;Race to Mars&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/212070/" title="Steam"&gt;Star Conflict&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://store.steampowered.com/app/233250/" title="Steam"&gt;Planetary Annihilation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As I hear, Star Citizen will also be on Linux, which will hopefully be a
+great experience, maybe even a reason for me to install a GPU again. I
+am also still waiting for Planetside 2 to come to Linux, which is really
+fun with a bunch of friends (but also runs like shit)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 11 Apr 2014 23:55:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-11:playing-in-space-on-linux.html</guid><category>games</category><category>steam</category><category>linux</category></item><item><title>Get the freaking Humble Bundle!</title><link>http://peerwire.de/get-the-freaking-humble-bundle.html</link><description>&lt;p&gt;If you are a Linux gamer like me (although I barely play games anymore
+as I don't have the free-time I used to have anymore), get the &lt;a href="http://humblebundle.com" title="Humble Bundle"&gt;Humble
+Bundle&lt;/a&gt;. For some dollars you get 6 great games, 5 with native
+Linux-support, one that will get a native Linux version later this year
+for free, all the soundtracks as mp3s and flacs, and there is hidden
+stuff which will be unlocked later on. What are you waiting for?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Feb 2014 15:49:00 +0100</pubDate><guid>tag:peerwire.de,2014-02-19:get-the-freaking-humble-bundle.html</guid><category>gaming</category></item></channel></rss>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My take on secure communication</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li class="active"><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://peerwire.de/my-take-on-secure-communication.html" rel="bookmark"
+           title="Permalink to My take on secure communication">My take on secure communication</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-03-19T05:40:00">
+                Mi 19 März 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/web.html">Web</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/google-drive.html">google drive</a><a href="http://peerwire.de/tag/privacy.html">privacy</a><a href="http://peerwire.de/tag/security.html">security</a><a href="http://peerwire.de/tag/skype.html">skype</a></p>
+</footer><!-- /.post-info -->      <p><strong>Disclaimer:</strong> I am not really into crypto (yet?) and everything I
+write here is purely idealistic and probably somewhat unrealistic/stupid</p>
+<h2>The current situation</h2>
+<p>Some time ago, Facebook bought Whatsapp, which was my main way of
+communicating using my phone. This event has made me think about where
+the internet is heading in terms of privacy protection. Right now, I am
+trying to figure out whether Chromium could be a better alternative to
+Firefox, which is working worse and worse on Linux. I purposely do not
+want to use Chrome as Google already uses their own search engine,
+YouTube, Adsense, Analytics and Android/the Play Store, and maybe their
+DNS-servers to track internet users from all around the world. Using
+their partly proprietary browser which is known for phoning home is
+obviously not the best idea.</p>
+<p>But back to Whatsapp. There are some alternatives, some praising
+encryption, like <a href="https://threema.ch/en/" title="Threema.ch">Threema</a> or <a href="https://telegram.org/" title="Telegram.org">Telegram</a>. Threema is not free and as
+Google does not utilize any payment method beside credit cards, only few
+people will actually use it, and the only reason to switch to a
+messenger is the userbase. I did not like Whatsapp in the first place,
+but everyone used it, so I had to comply. Now I made the switch to
+ecrypted (called "secure") Telegram messages with some of my closer
+friends, but while it claims to be "open", this only means there is an
+API. And if they sell out one day, say if Facebook or Google offer them
+some millions, all their promises will be worth nothing.</p>
+<p>Another big part of my concerns, before we come to my ideas for a bright
+future, are email and VoIP. Email right now is de-facto unencrypted,
+usually transmitted via SSL to the provider but that is it. The
+providers usually provide for free and most of them probably scan the
+conversations to sell the information and/or build user profiles
+(*cough* Google *cough*). This can be partially solved by just
+encrypting/signing emails via PGP, which right now only security nerds
+and mafia bosses do. But handling keys is just not ready for the masses,
+it basically should handle keys, en-/decrypt without the average user
+even noticing. But the decentralized way emails are set up is already
+quite good, although there are some really big providers, there is no
+loss in using some small provider you trust or even using your own
+domain and server.</p>
+<p>VoIP is the real problem right now. I primarily use Skype, which is
+owned by Microsoft since 2011. Skype is known to send all kind of data
+to Redmond, and also allow crazy amounts of script languages for its
+ads, which already resulted in some big security holes. Also the Linux
+client sort of sucks. The interface is okay-ish, but the technical side
+of things is not. But I do not blame Microsoft for this, I am happy for
+the existence of a Linux client at all. So, Skype is bad, alternatives
+are rare. Mumble is nice, but is centred around servers for gaming clans
+and similar communities, using it as messenger is suboptimal. I also
+tried Jabber, the VoIP-protocol with many features, which is actually
+sort of great the way it is, but not end-user friendly enough.</p>
+<h2>Solutions?</h2>
+<p>What do I think would be the optimal way to handle this situations and
+prevent some cyberpunk scenario in which Google, Facebook, Microsoft and
+of course the NSA know everything about the average internet user?</p>
+<p>First, we need to divide. I would keep email, as it is an easy and
+already established way of exchanging information and data in a
+mail-like fashion, which we will still need in the future. But we need
+some way of enabling everyone to encrypt this mail. A simple choice
+would be to establish a service that handles public keys and pairs them
+to accounts. You then get a plugin for Outlook or Thunderbird that
+connects to your account, generates a keypair, uploads the public
+portion, gets the needed public keys of others and handles en- and
+decryption of mails. The downside here would be a pretty big single
+point of failure. If this service is down, or worse, gets hacked, all
+the security is jeopardized. An idea would be to not store this
+information on central servers but instead in a Bitcoin-like blockchain
+which is shared by everyone. Which is probably generating enormous
+amounts of traffic just to synchronize. Also, if no one uses ad-loaded
+webinterfaces or provides unencrypted emails, how are the email
+providers going to survive, and how are they going to justify
+subsidizing the free email services? People will not pay for privacy,
+which is the actual root of the problem.</p>
+<p>Then we need a new multi-platform messenger, decentralized, encrypted,
+capable of sending pictures, audio, video and of course live calls
+including video and conferences. Basically Skype Premium, but without
+central servers and more in a peer-to-peer fashion. Maybe just define a
+protocol and write an open source reference implementation of a client.
+I already thought about this a while, and most of this is
+accomplishable, Skype already provides most of the functionality across
+Windows, Mac, Linux and a lot of phones. There is the wonderful
+Speex-codec which can be used for calls, video streaming should be no
+problem either. As the content should be completely end-to-end
+encrypted, compression would be sort of useless, so the generated
+traffic will be more, but not by a lot.</p>
+<p>But here comes the one problem I found rather quickly. You need to be
+able to sync your private keys across devices. As I propose to just
+develop a protocol without a central management, you cannot just enter
+your username and password and get all your stuff from a server, because
+that would mean, your private keys, which are not supposed to ever leave
+your devices would be stored on the server. But I have come up with a
+solution, at least I think so.</p>
+<p>There will be some server structure involved, which will hold the
+private keys, but in an encrypted form. When starting to use the
+service, you generate your keypair. The public key gets into some sort
+of public key infrastructure I yet have to figure out, maybe
+blockchain-like, maybe not. The private key gets stored on the device,
+protected by a password. A copy of it gets encrypted (say using
+Rijndael/AES or Twofish) and can be stored on third-party servers. Those
+third parties might enforce additional security measures via
+accounts/passwords. If you want to use a second device with the same
+identity, you can get you private key from said server, decrypt it and
+import it. This way, you could basically store your encrypted key inside
+Dropbox. I have to add, that this method relies on strong passwords more
+than anything else, but maybe this will force sensible password policies
+into the heads of the masses.</p>
+<p>An addition I would make would be some sort of identifier-system,
+comparable to DNS. No one wants to remember numbers or hashes to
+identify people, and names are not unique to a person, so there should
+be some way to (decentralized, of course) link a username or an address
+with a keypair, which can be resolved easily. So if you want to send me
+a message, you send it to "sulami", we resolve the name, get the public
+key and are ready to start an encrypted conversation.</p>
+<h2>Who will do it?</h2>
+<p>This is the important question. I would like to work on something like
+this, but obviously the scope is gigantic and there are experts needed
+on crypto, network messaging, development for specific platforms,
+interface designers, and the list goes on. If you read this and are
+interested in starting such a project, do not hesitate to contact me,
+someone has to make the first step. My public key is on the
+contact-page...</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

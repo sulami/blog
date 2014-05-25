@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>sulami's blog - gimp</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://peerwire.de/quickie-map-wacom-graphics-tablet-to-one-screen-only.html">Quickie: Map Wacom graphics-tablet to  one screen only</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2013-07-16T13:01:00">
+                Di 16 Juli 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/quickie.html">quickie</a><a href="http://peerwire.de/tag/gimp.html">gimp</a><a href="http://peerwire.de/tag/wacom.html">wacom</a></p>
+</footer><!-- /.post-info --><p>I just dug out my Wacom Bamboo Pen, a simple cheap graphics-tablet I
+bought on sale some time ago and plugged it into my openSUSE workstation
+to do some graphical work. Awesome as openSUSE is, it automatically
+detects it and everything works out of the box, thanks to preinstalled
+xf86-input-wacom. Now I use two screens and want the tablet mapped to
+only one of them to keep the correct aspect ratio, which I could not
+change in the mouse options, but there is a quick way of setting this
+up. First, get your output devices (screens) using xrandr:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #60a0b0; font-style: italic">% xrandr</span>
+Screen <span style="color: #40a070">0</span>: minimum <span style="color: #40a070">320</span> x <span style="color: #40a070">200</span>, current <span style="color: #40a070">3840</span> x <span style="color: #40a070">1080</span>, maximum <span style="color: #40a070">3840</span> x <span style="color: #40a070">1920</span>
+DFP1 disconnected (normal left inverted right x axis y axis)
+DFP2 disconnected (normal left inverted right x axis y axis)
+DFP3 disconnected (normal left inverted right x axis y axis)
+DFP4 disconnected (normal left inverted right x axis y axis)
+DFP5 disconnected (normal left inverted right x axis y axis)
+DFP6 disconnected (normal left inverted right x axis y axis)
+DFP7 disconnected (normal left inverted right x axis y axis)
+DFP8 disconnected (normal left inverted right x axis y axis)
+DFP9 disconnected (normal left inverted right x axis y axis)
+DFP10 connected <span style="color: #40a070">1920</span>x1080<span style="color: #666666">+</span><span style="color: #40a070">0</span><span style="color: #666666">+</span><span style="color: #40a070">0</span> (normal left inverted right x axis y axis) <span style="color: #40a070">598</span>mm x <span style="color: #40a070">336</span>mm
+   <span style="color: #40a070">1920</span>x1080      <span style="color: #40a070">60.0</span><span style="color: #666666">*+</span>
+   <span style="color: #40a070">1680</span>x1050      <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1400</span>x1050      <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1600</span>x900       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1280</span>x1024      <span style="color: #40a070">75.0</span>     <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1440</span>x900       <span style="color: #40a070">75.0</span>     <span style="color: #40a070">59.9</span>  
+   <span style="color: #40a070">1280</span>x960       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1152</span>x864       <span style="color: #40a070">60.0</span>     <span style="color: #40a070">75.0</span>  
+   <span style="color: #40a070">1280</span>x768       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1280</span>x720       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1024</span>x768       <span style="color: #40a070">75.0</span>     <span style="color: #40a070">70.1</span>     <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">800</span>x600        <span style="color: #40a070">72.2</span>     <span style="color: #40a070">75.0</span>     <span style="color: #40a070">60.3</span>     <span style="color: #40a070">56.2</span>  
+   <span style="color: #40a070">640</span>x480        <span style="color: #40a070">75.0</span>     <span style="color: #40a070">72.8</span>     <span style="color: #40a070">67.0</span>     <span style="color: #40a070">59.9</span>  
+DFP11 connected <span style="color: #40a070">1920</span>x1080<span style="color: #666666">+</span><span style="color: #40a070">1920</span><span style="color: #666666">+</span><span style="color: #40a070">0</span> (normal left inverted right x axis y axis) <span style="color: #40a070">598</span>mm x <span style="color: #40a070">336</span>mm
+   <span style="color: #40a070">1920</span>x1080      <span style="color: #40a070">60.0</span><span style="color: #666666">*+</span>
+   <span style="color: #40a070">1680</span>x1050      <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1400</span>x1050      <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1600</span>x900       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1280</span>x1024      <span style="color: #40a070">75.0</span>     <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1440</span>x900       <span style="color: #40a070">75.0</span>     <span style="color: #40a070">59.9</span>  
+   <span style="color: #40a070">1280</span>x960       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1152</span>x864       <span style="color: #40a070">60.0</span>     <span style="color: #40a070">75.0</span>  
+   <span style="color: #40a070">1280</span>x768       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1280</span>x720       <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">1024</span>x768       <span style="color: #40a070">75.0</span>     <span style="color: #40a070">70.1</span>     <span style="color: #40a070">60.0</span>  
+   <span style="color: #40a070">800</span>x600        <span style="color: #40a070">72.2</span>     <span style="color: #40a070">75.0</span>     <span style="color: #40a070">60.3</span>     <span style="color: #40a070">56.2</span>  
+   <span style="color: #40a070">640</span>x480        <span style="color: #40a070">75.0</span>     <span style="color: #40a070">72.8</span>     <span style="color: #40a070">67.0</span>     <span style="color: #40a070">59.9</span>  
+CRT1 disconnected (normal left inverted right x axis y axis)
+</pre></div>
+
+
+<p>As you can see, I use DFP10 and DFP11 as my outputs, DFP10 being my main
+screen on the left. Now I use xsetwacom, which comes with
+xf86-input-wacom, to tell the tablet to only use this output.</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #60a0b0; font-style: italic">% xsetwacom --list devices</span>
+Wacom Bamboo Pen Finger touch           id: <span style="color: #40a070">12</span>  type: TOUCH     
+Wacom Bamboo Pen Finger pad             id: <span style="color: #40a070">13</span>  type: PAD       
+Wacom Bamboo Pen Pen stylus             id: <span style="color: #40a070">14</span>  type: STYLUS    
+Wacom Bamboo Pen Pen eraser             id: <span style="color: #40a070">15</span>  type: ERASER
+<span style="color: #60a0b0; font-style: italic">% xsetwacom --set &quot;Wacom Bamboo Pen Pen stylus&quot; MapToOutput DPF10</span>
+</pre></div>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

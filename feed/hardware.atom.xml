@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sulami's blog</title><link href="http://peerwire.de/" rel="alternate"></link><link href="http://peerwire.de/feed/hardware.atom.xml" rel="self"></link><id>http://peerwire.de/</id><updated>2014-01-29T17:02:00+01:00</updated><entry><title>Small update: new machine arrived (mostly)</title><link href="http://peerwire.de/small-update-new-machine-arrived-mostly.html" rel="alternate"></link><updated>2014-01-29T17:02:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-29:small-update-new-machine-arrived-mostly.html</id><summary type="html">&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
+the case has not arrived yet. But I ran some quick tests using my normal
+OS, and I can describe it the following way:&lt;/p&gt;
+&lt;p&gt;[![spaceballs_ludicrous_speed][]][spaceballs_ludicrous_speed]&lt;/p&gt;
+&lt;p&gt;It boots from pressing the button to Gnome 3 within 10 seconds, which is
+just flatout amazing. Compared to my 4GHz Thuban, the 3.40GHz Haswell
+Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</summary></entry><entry><title>Bought my workstation upgrade (read: upgrayyed)</title><link href="http://peerwire.de/bought-my-workstation-upgrade-read-upgrayyed.html" rel="alternate"></link><updated>2014-01-27T00:15:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</id><summary type="html">&lt;p&gt;So after I discussed the whole hardware situation for two or three days
+with a good friend and did about 30 hours of research, I decided on a
+specific set of hardware for my new Linux development workstation. &lt;a href="/building-my-new-machine.html" title="Building my new machine"&gt;As I
+mentioned earlier&lt;/a&gt;, I wanted many cores/threads and loads of RAM,
+while using some gpu with enough power for some simple 3D-applications
+on open-source drivers, all tightly packed into a tiny desktop cube.&lt;/p&gt;
+&lt;p&gt;So I got myself an Intel Xeo E3-1245 v3, 4x 3.40GHz and Hyperthreading,
+overclocking to be done, 16GB of DDR3-1600 CL9 RAM with the option to
+upgrade to 32GB if needed/desired, and an ASRock micro-ATX board to hold
+it.&lt;/p&gt;
+&lt;p&gt;My favourite cube-case, the Cooltek Coolcube Maxi was not available
+anywhere, so I decided on a Bitfenix Phenom, which is basically the same
+thing. The CPU-cooler will be a Zalman CNPS8900 Quiet, which is by far
+the best low-profile cooling solution on the market, with the option to
+upgrade to a Corsair H50/H70 or similar if needed, but I highly doubt
+it. SSD and HDDs will be taken from HAL, my current machine, and the PSU
+is some Zalman 500W I had on my shelf.&lt;/p&gt;
+&lt;p&gt;Alternatives discussed were a i5-4670 (no Hyperthreading), i7-4770 (more
+expensive than the Xeon while less features) and an AMD FX-8350 in
+combination with a Radeon HD6570 Silence (cheaper, but probably slower,
+double the TDP of the Xeon). AMD APUs have superior graphics performance
+but are way slower on CPU tasks. Opterons are not available for
+affordable prices.&lt;/p&gt;</summary></entry><entry><title>Building my new machine</title><link href="http://peerwire.de/building-my-new-machine.html" rel="alternate"></link><updated>2014-01-24T03:10:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-24:building-my-new-machine.html</id><summary type="html">&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
+around 1500€ and is a water-cooled, black red hexa-core monster, it is not 
+really optimized for what I am doing, which is mostly coding and compiling 
+on Linux. Hal9k, what it has been called for many years now, has been 
+incrementally build and does not feature any of it initial parts anymore 
+(IIRC). It has been optimized for gaming on Windows, as this was what my 
+younger self enjoyed the most. So it features only 8GB of RAM, because on 
+Windows, you haven't needed more than this for the past decade, and one of 
+the biggest graphics cards available, an overclocked Radeon HD7970.&lt;/p&gt;
+&lt;p&gt;Here are the problems:&lt;/p&gt;
+&lt;p&gt;I need more RAM. Linux likes to cache everything in
+RAM, so even going up beyond 32GB of RAM can make sense, if you either
+got enough to cache, or use ramdisks. Hell, 32GB of RAM can even be
+enough to load your complete system root to RAM on boot (excluding your
+/home-directory of course). RAM is always good on Linux.&lt;/p&gt;
+&lt;p&gt;The graphics card is horribly oversized for a
+compositing window manager and occasional casual-gaming on Linux. Also,
+open-source drivers for HD7xxx suck, like really suck, catalyst sucks
+even more. Nvidia or Intel are the way to go right now.&lt;/p&gt;
+&lt;p&gt;It is huge. I am using a Cooler Master HAF932 case, which is a big tower, to 
+fit my water cooling completely in the case. It even has wheels, so you can 
+move this 60x60x25cmmonstrosity around. And it sucks up to 700 watts under 
+load.&lt;/p&gt;
+&lt;p&gt;Here is what I plan to do:&lt;/p&gt;
+&lt;p&gt;Build a new machine, nearly from scratch, keeping only my harddrives for
+obvious reasons. The specifics aren't worked out completely, yet, but it
+will probably run either an Intel Haswell quad-, or an AMD Vishera
+octo-core. I decided not to go for server-cpus for pricing reasons
+without real benefits. Loads of RAM, probably 16-32GB, depending on what
+deal I can make. And all fitted onto a micro-ATX mainboard and into a
+neat little cube-case. The Vishera would receive a passively cooled
+Nvidia GPU, as it does not feature an IGP.&lt;/p&gt;
+&lt;p&gt;If I get for HAL what I hope I can get, I even make profit switching, not 
+even calculating the saved energy. If they would sell it for less than 
+2000€, I would even consider a new Mac Pro (killing OSX, of course), but for 
+it to be reasonable to me, they would have to drop the price by at least 
+75%. So I build my hipster-machine myself.&lt;/p&gt;
+&lt;p&gt;One thing that is left after all, is choosing a new name. I figured, as HAL 
+has will be completely sold, except two HDDs andone SSD, I cannot carry the 
+name over. So I need to choose a new hostname for the new machine, which is 
+also WIP right now. But there are some candidates:&lt;/p&gt;
+&lt;p&gt;DeepThought from Hitchiker's Guide (unfortunately, Linux does not allow
+spaces in hostnames, so camelcase)&lt;/p&gt;
+&lt;p&gt;Shodan/Xerxes from System Shock&lt;/p&gt;
+&lt;p&gt;Deus from Shadowrun&lt;/p&gt;
+&lt;p&gt;LINC from Beneath a Steel Sky&lt;/p&gt;
+&lt;p&gt;Not in the list are GLaDOS for being to mainstream (that is even a
+reason? wow... -.-) and the Deus Ex-AIs as they are to generic for my
+taste. Also anything that does not directly refer to the computer I
+thought of, like Fate or Aura.&lt;/p&gt;
+&lt;p&gt;I also sort of like Vger (or V'ger) from Star Trek, but the kernel
+mailing list and stuff...&lt;/p&gt;
+&lt;p&gt;Right now, I am mostly leaning towards Shodan, as it is probably of the
+most badass of those, and maybe the only one that can match HAL.&lt;/p&gt;
+&lt;p&gt;I will now continue to compare benchmarks and prices, like I did for the
+last 4 hours. Take care.&lt;/p&gt;</summary></entry><entry><title>Kudos to OCZ</title><link href="http://peerwire.de/kudos-to-ocz.html" rel="alternate"></link><updated>2014-01-21T15:14:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-21:kudos-to-ocz.html</id><summary type="html">&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
+big of a deal, I've got backups of most of my stuff and hardware failure
+occures sometimes, nothing we can really do something about. But when I
+sent it to the retailer I got it from, Mindfactory, they told me I would
+have to proof, the damage wasn't caused by me. I have no clue how they
+think this is supposed to look like.&lt;/p&gt;
+&lt;p&gt;So I got it back and contacted OCZ directly, who answered my support
+emails within some minutes and then sent me an address to send my SSD
+to. Yesterday I received a refurbished one, same model, including all
+the supplies I didn't send them, and even a new sticker. For free. This
+is customer support.&lt;/p&gt;</summary><category term="ssd"></category></entry><entry><title>Raspberry Pi: an introduction to GPIO</title><link href="http://peerwire.de/raspberry-pi-an-introduction-to-gpio.html" rel="alternate"></link><updated>2013-06-09T13:53:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</id><summary type="html">&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
+small size and power consumption of the device, but this small computer
+has another advantage, a set of built-in GPIO pins. Those can be used
+for simple control tasks using switches, leds, speakers and similar
+stuff.&lt;/p&gt;
+&lt;p&gt;First thing you will need is a &lt;a href="http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29" title="elinux.org"&gt;diagram of the pin layout&lt;/a&gt;. On this
+page there are also some easy examples of code in C, Ruby, Perl, Python,
+Java, Bash, Pascal and Basic, so everyone should find a good language
+for themselves, I personally prefer Python for almost every purpose.
+There are some more explanatory examples for Python &lt;a href="https://code.google.com/p/raspberry-gpio-python/wiki/Examples" title="Google Code"&gt;over here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In terms of hardware, you can salvage switches, leds and piezo-speakers
+from old computer cases, or buy them new from shops like Conrad or even
+Amazon. On warning: the GPIO pins only run on 3.3V, 5V will fry your Pi,
+but there is 5V permanent power if needed. Everything bigger than some
+small control elements should be running on an external power supply.&lt;/p&gt;</summary><category term="gpio"></category><category term="python"></category><category term="raspberrypi"></category></entry><entry><title>How to identify bad drives in your RAID array</title><link href="http://peerwire.de/how-to-identify-bad-drives-in-your-raid-array.html" rel="alternate"></link><updated>2013-05-14T19:13:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</id><summary type="html">&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
+are there are some/a lot of the same disks involved. Especially on
+servers there might be a dozen or even more drives of the same type, one
+just failed and you need to switch it fast because the server is
+critical, so if another drive fails, you loose money and/or lifes.&lt;/p&gt;
+&lt;p&gt;First do&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;cat &lt;span style="color: #666666"&gt;/&lt;/span&gt;proc&lt;span style="color: #666666"&gt;/&lt;/span&gt;mdstat
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to verify that exactly one drive has gone bad. There will be an output
+similar to this:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;Personalities : &lt;span style="border: 1px solid #FF0000"&gt;[&lt;/span&gt;raid1&lt;span style="color: #007020"&gt;]&lt;/span&gt; 
+md0 : active raid1 sdb2&lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;1&lt;/span&gt;&lt;span style="color: #007020"&gt;]&lt;/span&gt; sda2&lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="color: #007020"&gt;]&lt;/span&gt;
+      968567676 blocks super 1.1 &lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;/2&lt;span style="color: #007020"&gt;]&lt;/span&gt; &lt;span style="color: #007020"&gt;[&lt;/span&gt;UU&lt;span style="color: #007020"&gt;]&lt;/span&gt;
+      bitmap: 1/8 pages &lt;span style="color: #007020"&gt;[&lt;/span&gt;&lt;span style="color: #40a070"&gt;4&lt;/span&gt;KB&lt;span style="color: #007020"&gt;]&lt;/span&gt;, 65536KB chunk
+
+unused devices: &lt;span style="color: #062873; font-weight: bold"&gt;&amp;lt;none&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is my personal homeserver, running two 1TB-drives in RAID1 (mainly
+becuase it is cheap), and both drives are “up”, indicated by the “[UU]“.
+Everything but an U in this list is bad. Now you still need to know,
+which of the physical drives it is. Even on full hotswappable servers
+you probably want to avoid pulling out every single drive and test it in
+a different machine.&lt;/p&gt;
+&lt;p&gt;Enter smartctl. Installed by default on most systems (SUSE, RHEL, …), it
+prints hardware info of specified devices. Take a look:&lt;/p&gt;
+&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020"&gt;# smartctl -a /dev/sda&lt;/span&gt;
+
+smartctl &lt;span style="color: #40a070"&gt;5.43&lt;/span&gt; &lt;span style="color: #40a070"&gt;2012&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;06&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;30&lt;/span&gt; r3573 [x86_64&lt;span style="color: #666666"&gt;-&lt;/span&gt;linux&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;2.6.32&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;358.0.1&lt;/span&gt;.el6.x86_64] (local build)
+Copyright (C) &lt;span style="color: #40a070"&gt;2002&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;12&lt;/span&gt; by Bruce Allen, http&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;//smartmontools.sourceforge.net&lt;/span&gt;
+
+&lt;span style="color: #666666"&gt;===&lt;/span&gt; START OF INFORMATION SECTION &lt;span style="color: #666666"&gt;===&lt;/span&gt;
+Model Family&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; Western Digital RE4 Serial ATA
+Device Model&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; WDC WD1003FBYX&lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;01&lt;/span&gt;Y7B1
+Serial Number&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; WD&lt;span style="color: #666666"&gt;-&lt;/span&gt;WMAW30891107
+LU WWN Device Id&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt; &lt;span style="color: #40a070"&gt;0014&lt;/span&gt;ee &lt;span style="color: #40a070"&gt;25&lt;/span&gt;c2357fa
+Firmware Version&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;01.01&lt;/span&gt;V02
+User Capacity&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;,&lt;span style="color: #40a070"&gt;000&lt;/span&gt;,&lt;span style="color: #40a070"&gt;204&lt;/span&gt;,&lt;span style="color: #40a070"&gt;886&lt;/span&gt;,&lt;span style="color: #40a070"&gt;016&lt;/span&gt; bytes [&lt;span style="color: #40a070"&gt;1.00&lt;/span&gt; TB]
+Sector Size&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #40a070"&gt;512&lt;/span&gt; bytes logical&lt;span style="color: #666666"&gt;/&lt;/span&gt;physical
+Device is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; In smartctl database [&lt;span style="color: #007020; font-weight: bold"&gt;for&lt;/span&gt; details use&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;P show]
+ATA Version is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;8&lt;/span&gt;
+ATA Standard is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Exact ATA specification draft version not indicated
+Local Time is&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Sun May &lt;span style="color: #40a070"&gt;12&lt;/span&gt; &lt;span style="color: #40a070"&gt;17&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;59&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;04&lt;/span&gt; &lt;span style="color: #40a070"&gt;2013&lt;/span&gt; CEST
+SMART support is&lt;span style="color: #666666"&gt;:&lt;/span&gt; Available &lt;span style="color: #666666"&gt;-&lt;/span&gt; device has SMART capability.
+SMART support is&lt;span style="color: #666666"&gt;:&lt;/span&gt; Enabled
+
+&lt;span style="color: #666666"&gt;===&lt;/span&gt; START OF READ SMART DATA SECTION &lt;span style="color: #666666"&gt;===&lt;/span&gt;
+SMART overall&lt;span style="color: #666666"&gt;-&lt;/span&gt;health self&lt;span style="color: #666666"&gt;-&lt;/span&gt;assessment test result&lt;span style="color: #666666"&gt;:&lt;/span&gt; PASSED
+
+General SMART Values&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                                      &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+Offline data collection status&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x84&lt;/span&gt;) Offline data collection activity
+
+Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test execution status&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;) The previous self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine completed
+
+Total time to complete Offline&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                             &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+data collection&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;               &lt;/span&gt; (&lt;span style="color: #40a070"&gt;16260&lt;/span&gt;) seconds.&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                           &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+Offline data collection&lt;span style="border: 1px solid #FF0000"&gt;                                                                                                                                                                                                                    &lt;/span&gt; &lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;
+&lt;span style="color: #002070; font-weight: bold"&gt;capabilities:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;                   &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x7b&lt;/span&gt;) SMART execute Offline immediate.
+
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Conveyance Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Selective Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test supported.
+SMART capabilities&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;           &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x0003&lt;/span&gt;) Saves SMART data before entering
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; power&lt;span style="color: #666666"&gt;-&lt;/span&gt;saving mode.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; Supports SMART &lt;span style="color: #007020; font-weight: bold"&gt;auto&lt;/span&gt; save timer.
+Error logging capability&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x01&lt;/span&gt;) Error logging supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; General Purpose Logging supported.
+Short self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine 
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;2&lt;/span&gt;) minutes.
+Extended self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; ( &lt;span style="color: #40a070"&gt;160&lt;/span&gt;) minutes.
+Conveyance self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test routine
+recommended polling time&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; (&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt;) minutes.
+SCT capabilities&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;             &lt;/span&gt; (&lt;span style="color: #40a070"&gt;0x303f&lt;/span&gt;) SCT Status supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Error Recovery Control supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Feature Control supported.
+&lt;span style="border: 1px solid #FF0000"&gt;                                       &lt;/span&gt; SCT Data Table supported.
+
+SMART Attributes Data Structure revision number&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;16&lt;/span&gt;
+Vendor Specific SMART Attributes with Thresholds&lt;span style="color: #666666"&gt;:&lt;/span&gt;
+ID&lt;span style="border: 1px solid #FF0000"&gt;#&lt;/span&gt; ATTRIBUTE_NAME&lt;span style="border: 1px solid #FF0000"&gt;         &lt;/span&gt; FLAG&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; VALUE WORST THRESH TYPE&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; UPDATED&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; WHEN_FAILED RAW_VALUE
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt; Raw_Read_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x002f&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;051&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;3&lt;/span&gt; Spin_Up_Time&lt;span style="border: 1px solid #FF0000"&gt;           &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0027&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;192&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;169&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;021&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;3366&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;4&lt;/span&gt; Start_Stop_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;65&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt; Reallocated_Sector_Ct&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0033&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;140&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Pre&lt;span style="color: #666666"&gt;-&lt;/span&gt;fail&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;7&lt;/span&gt; Seek_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;        &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x002e&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;9&lt;/span&gt; Power_On_Hours&lt;span style="border: 1px solid #FF0000"&gt;         &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;099&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;098&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;1092&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;10&lt;/span&gt; Spin_Retry_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;11&lt;/span&gt; Calibration_Retry_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;&lt;span style="color: #40a070"&gt;12&lt;/span&gt; Power_Cycle_Count&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;64&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;192&lt;/span&gt; Power&lt;span style="color: #666666"&gt;-&lt;/span&gt;Off_Retract_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;45&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;193&lt;/span&gt; Load_Cycle_Count&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;19&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;194&lt;/span&gt; Temperature_Celsius&lt;span style="border: 1px solid #FF0000"&gt;    &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0022&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;106&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;101&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;41&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;196&lt;/span&gt; Reallocated_Event_Count &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;197&lt;/span&gt; Current_Pending_Sector&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;198&lt;/span&gt; Offline_Uncorrectable&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0030&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Offline&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;199&lt;/span&gt; UDMA_CRC_Error_Count&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0032&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;200&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Always&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+&lt;span style="color: #40a070"&gt;200&lt;/span&gt; Multi_Zone_Error_Rate&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;0x0008&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;100&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;253&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; &lt;span style="color: #40a070"&gt;000&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; Old_age&lt;span style="border: 1px solid #FF0000"&gt;  &lt;/span&gt; Offline&lt;span style="border: 1px solid #FF0000"&gt;     &lt;/span&gt; &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;      &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;
+
+SMART Error Log Version&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+No Errors Logged
+
+SMART Self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test log structure revision number &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+No self&lt;span style="color: #666666"&gt;-&lt;/span&gt;tests have been logged.&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; [To run self&lt;span style="color: #666666"&gt;-&lt;/span&gt;tests, use&lt;span style="color: #666666"&gt;:&lt;/span&gt; smartctl &lt;span style="color: #666666"&gt;-&lt;/span&gt;t]
+
+SMART Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test log data structure revision number &lt;span style="color: #40a070"&gt;1&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt;SPAN&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; MIN_LBA&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; MAX_LBA&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; CURRENT_TEST_STATUS
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;1&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;2&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;3&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;4&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+&lt;span style="border: 1px solid #FF0000"&gt;   &lt;/span&gt; &lt;span style="color: #40a070"&gt;5&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt;       &lt;/span&gt; &lt;span style="color: #40a070"&gt;0&lt;/span&gt;&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; Not_testing
+Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test flags (&lt;span style="color: #40a070"&gt;0x0&lt;/span&gt;)&lt;span style="color: #666666"&gt;:&lt;/span&gt;
+&lt;span style="border: 1px solid #FF0000"&gt; &lt;/span&gt; After scanning selected spans, &lt;span style="color: #007020; font-weight: bold"&gt;do&lt;/span&gt; NOT read&lt;span style="color: #666666"&gt;-&lt;/span&gt;scan remainder of disk.
+If Selective self&lt;span style="color: #666666"&gt;-&lt;/span&gt;test is pending on power&lt;span style="color: #666666"&gt;-&lt;/span&gt;up, resume after &lt;span style="color: #40a070"&gt;0&lt;/span&gt; minute delay.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Use it like this as root to get the smart status and serial number of
+your device, so you can find the bad one. Now, you either need to stop
+and open your server and pull out the right drive, or you are smart like
+I am (pun intended) and already got the serial numbers on the outside of
+your HDD-slots, sou you can hotswap the drive and start rebuilding right
+away.&lt;/p&gt;</summary><category term="hdds"></category><category term="raid"></category></entry></feed>

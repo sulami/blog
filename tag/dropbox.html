@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>sulami's blog - dropbox</title>
+        <link rel="stylesheet" href="http://peerwire.de/theme/css/main.css" />
+        <link href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+        <link href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://peerwire.de/">sulami's blog </a></h1>
+                <nav><ul>
+                    <li><a href="http://peerwire.de/pages/about-me.html">About me</a></li>
+                    <li><a href="http://peerwire.de/category/coding.html">Coding</a></li>
+                    <li><a href="http://peerwire.de/category/games.html">Games</a></li>
+                    <li><a href="http://peerwire.de/category/hardware.html">Hardware</a></li>
+                    <li><a href="http://peerwire.de/category/linux.html">Linux</a></li>
+                    <li><a href="http://peerwire.de/category/web.html">Web</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://peerwire.de/backup-your-work.html">Backup your work</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-03-10T23:58:00">
+                Mo 10 März 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/coding.html">Coding</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/cron.html">cron</a><a href="http://peerwire.de/tag/dropbox.html">dropbox</a><a href="http://peerwire.de/tag/git.html">git</a><a href="http://peerwire.de/tag/google-drive.html">google drive</a><a href="http://peerwire.de/tag/homeserver.html">homeserver</a><a href="http://peerwire.de/tag/raspberrypi.html">raspberrypi</a><a href="http://peerwire.de/tag/security.html">security</a></p>
+</footer><!-- /.post-info --><p>When doing serious work involving code (or config files), backups are a
+must-have. What you want to do are backups to (sort of) remote
+locations, like separate harddrives, external drives or other
+computers/servers, which is protecting your precious work from hardware
+failure and to some degree (not so) accidental deletion.</p>
+<p>You also want to be using a VCS, I will be using git, because it is
+simple, fast and powerful. With git, you can combine version
+controlling/branching and backups pretty easily. Go to your remote
+location, make a directory <em>foobar.git</em>, init an empty git repo and add
+it as remote to your project. Don't forget to push to it.</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">cd <span style="color: #666666">~/</span>remote
+mkdir foobar.git
+cd foobar.git
+git init <span style="color: #666666">--</span>bare
+cd <span style="color: #666666">~/</span>project
+git remote add backup <span style="color: #666666">~/</span>remote<span style="color: #666666">/</span>foobar.git
+git push backup master
+</pre></div>
+
+
+<p>This is a minimal example of how to do this. You will want to exclude
+large binary files like images, videos or binaries (duh..), as git can't
+compare those and will compress each version. Instead, you probably want
+to just compress and store them independently, version-wise or just one
+set, depending on the type of files. Consider using tar, rsync and/or
+cron for these backups.</p>
+<p>In my case, I backup a simple video platform, backing up all the code
+and configs using git and the video files, thumbnails and database in a
+.tar.xz of which I only store the newest version. I store all my work
+multiple times, 2 times on my workstation in case of hardware failure (I
+don't use a RAID at the moment), once on a local server and once on an
+external drive which is offline most of the time, so it even is
+protected against malicious attacks.</p>
+<p>I personally don't like Dropbox, Google Drive, Skydrive and all those
+other clouds, because I prefer to keep my data on my own. Dropbox is
+nice for syncing PDFs over different devices, but for everything
+slightly important, I use git with a local repo and sometimes GitHub. In
+case you now say, you can't afford your own in-house server, get a
+Raspberry Pi Mod. B with a small SD-card, a power cable and some sort of
+external drive, totalling maybe \$100. It uses near to no power, can run
+24/7 without any noise or noticeble heat and use the external drive to
+save all your stuff on a separate machine. It's that easy.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://peerwire.de/google-drive-vs-dropbox-my-view.html" rel="bookmark"
+                           title="Permalink to Google Drive vs Dropbox - my view">Google Drive vs Dropbox - my view</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-06-04T15:48:00">
+                Di 04 Juni 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://peerwire.de/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="http://peerwire.de/category/web.html">Web</a>. </p>
+<p>tags: <a href="http://peerwire.de/tag/dropbox.html">dropbox</a><a href="http://peerwire.de/tag/google-drive.html">google drive</a></p>
+</footer><!-- /.post-info -->                <p>I used to use Dropbox some years ago when it came up but somehow lost
+track of it when reinstalling and just stopped using it. Some time
+later, I wanted to sync some stuff up between my multiple OS's, PC's and
+my phone, and being the Google-fanboy I ...</p>
+                <a class="readmore" href="http://peerwire.de/google-drive-vs-dropbox-my-view.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://peerwire.de/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://peerwire.de/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38330260-4']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

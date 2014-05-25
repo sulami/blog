@@ -37,5 +37,3 @@ FEED_ALL_RSS = 'feed/rss.xml'
 CATEGORY_FEED_ATOM = 'feed/%s.atom.xml'
 CATEGORY_FEED_RSS = 'feed/%s.rss.xml'
 
-DELETE_OUTPUT_DIRECTORY = True
-

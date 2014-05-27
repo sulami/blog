@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sulami's blog</title><link href="http://peerwire.de/" rel="alternate"></link><link href="http://peerwire.de/feed/hardware.atom.xml" rel="self"></link><id>http://peerwire.de/</id><updated>2014-01-29T17:02:00+01:00</updated><entry><title>Small update: new machine arrived (mostly)</title><link href="http://peerwire.de/small-update-new-machine-arrived-mostly.html" rel="alternate"></link><updated>2014-01-29T17:02:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-29:small-update-new-machine-arrived-mostly.html</id><summary type="html">&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sulami's blog</title><link href="https://sulami.github.io/" rel="alternate"></link><link href="https://sulami.github.io/feed/hardware.atom.xml" rel="self"></link><id>https://sulami.github.io/</id><updated>2014-01-29T17:02:00+01:00</updated><entry><title>Small update: new machine arrived (mostly)</title><link href="https://sulami.github.io/small-update-new-machine-arrived-mostly.html" rel="alternate"></link><updated>2014-01-29T17:02:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-29:small-update-new-machine-arrived-mostly.html</id><summary type="html">&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
 the case has not arrived yet. But I ran some quick tests using my normal
 OS, and I can describe it the following way:&lt;/p&gt;
 &lt;p&gt;[![spaceballs_ludicrous_speed][]][spaceballs_ludicrous_speed]&lt;/p&gt;
 &lt;p&gt;It boots from pressing the button to Gnome 3 within 10 seconds, which is
 just flatout amazing. Compared to my 4GHz Thuban, the 3.40GHz Haswell
-Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</summary></entry><entry><title>Bought my workstation upgrade (read: upgrayyed)</title><link href="http://peerwire.de/bought-my-workstation-upgrade-read-upgrayyed.html" rel="alternate"></link><updated>2014-01-27T00:15:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</id><summary type="html">&lt;p&gt;So after I discussed the whole hardware situation for two or three days
+Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</summary></entry><entry><title>Bought my workstation upgrade (read: upgrayyed)</title><link href="https://sulami.github.io/bought-my-workstation-upgrade-read-upgrayyed.html" rel="alternate"></link><updated>2014-01-27T00:15:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</id><summary type="html">&lt;p&gt;So after I discussed the whole hardware situation for two or three days
 with a good friend and did about 30 hours of research, I decided on a
 specific set of hardware for my new Linux development workstation. &lt;a href="/building-my-new-machine.html" title="Building my new machine"&gt;As I
 mentioned earlier&lt;/a&gt;, I wanted many cores/threads and loads of RAM,
@@ -27,7 +27,7 @@ expensive than the Xeon while less features) and an AMD FX-8350 in
 combination with a Radeon HD6570 Silence (cheaper, but probably slower,
 double the TDP of the Xeon). AMD APUs have superior graphics performance
 but are way slower on CPU tasks. Opterons are not available for
-affordable prices.&lt;/p&gt;</summary></entry><entry><title>Building my new machine</title><link href="http://peerwire.de/building-my-new-machine.html" rel="alternate"></link><updated>2014-01-24T03:10:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-24:building-my-new-machine.html</id><summary type="html">&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
+affordable prices.&lt;/p&gt;</summary></entry><entry><title>Building my new machine</title><link href="https://sulami.github.io/building-my-new-machine.html" rel="alternate"></link><updated>2014-01-24T03:10:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-24:building-my-new-machine.html</id><summary type="html">&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
 around 1500€ and is a water-cooled, black red hexa-core monster, it is not 
 really optimized for what I am doing, which is mostly coding and compiling 
 on Linux. Hal9k, what it has been called for many years now, has been 
@@ -82,7 +82,7 @@ mailing list and stuff...&lt;/p&gt;
 &lt;p&gt;Right now, I am mostly leaning towards Shodan, as it is probably of the
 most badass of those, and maybe the only one that can match HAL.&lt;/p&gt;
 &lt;p&gt;I will now continue to compare benchmarks and prices, like I did for the
-last 4 hours. Take care.&lt;/p&gt;</summary></entry><entry><title>Kudos to OCZ</title><link href="http://peerwire.de/kudos-to-ocz.html" rel="alternate"></link><updated>2014-01-21T15:14:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-21:kudos-to-ocz.html</id><summary type="html">&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
+last 4 hours. Take care.&lt;/p&gt;</summary></entry><entry><title>Kudos to OCZ</title><link href="https://sulami.github.io/kudos-to-ocz.html" rel="alternate"></link><updated>2014-01-21T15:14:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-21:kudos-to-ocz.html</id><summary type="html">&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
 big of a deal, I've got backups of most of my stuff and hardware failure
 occures sometimes, nothing we can really do something about. But when I
 sent it to the retailer I got it from, Mindfactory, they told me I would
@@ -92,7 +92,7 @@ think this is supposed to look like.&lt;/p&gt;
 emails within some minutes and then sent me an address to send my SSD
 to. Yesterday I received a refurbished one, same model, including all
 the supplies I didn't send them, and even a new sticker. For free. This
-is customer support.&lt;/p&gt;</summary><category term="ssd"></category></entry><entry><title>Raspberry Pi: an introduction to GPIO</title><link href="http://peerwire.de/raspberry-pi-an-introduction-to-gpio.html" rel="alternate"></link><updated>2013-06-09T13:53:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</id><summary type="html">&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
+is customer support.&lt;/p&gt;</summary><category term="ssd"></category></entry><entry><title>Raspberry Pi: an introduction to GPIO</title><link href="https://sulami.github.io/raspberry-pi-an-introduction-to-gpio.html" rel="alternate"></link><updated>2013-06-09T13:53:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</id><summary type="html">&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
 small size and power consumption of the device, but this small computer
 has another advantage, a set of built-in GPIO pins. Those can be used
 for simple control tasks using switches, leds, speakers and similar
@@ -106,7 +106,7 @@ There are some more explanatory examples for Python &lt;a href="https://code.goo
 from old computer cases, or buy them new from shops like Conrad or even
 Amazon. On warning: the GPIO pins only run on 3.3V, 5V will fry your Pi,
 but there is 5V permanent power if needed. Everything bigger than some
-small control elements should be running on an external power supply.&lt;/p&gt;</summary><category term="gpio"></category><category term="python"></category><category term="raspberrypi"></category></entry><entry><title>How to identify bad drives in your RAID array</title><link href="http://peerwire.de/how-to-identify-bad-drives-in-your-raid-array.html" rel="alternate"></link><updated>2013-05-14T19:13:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</id><summary type="html">&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
+small control elements should be running on an external power supply.&lt;/p&gt;</summary><category term="gpio"></category><category term="python"></category><category term="raspberrypi"></category></entry><entry><title>How to identify bad drives in your RAID array</title><link href="https://sulami.github.io/how-to-identify-bad-drives-in-your-raid-array.html" rel="alternate"></link><updated>2013-05-14T19:13:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</id><summary type="html">&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
 are there are some/a lot of the same disks involved. Especially on
 servers there might be a dozen or even more drives of the same type, one
 just failed and you need to switch it fast because the server is

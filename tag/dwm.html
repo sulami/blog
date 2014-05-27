@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>sulami's blog - yum</title>
+        <title>sulami's blog - dwm</title>
         <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
         <link href="https://sulami.github.io/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
         <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
@@ -27,30 +27,35 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/quickie-yum-ps.html">Quickie: Yum PS</a></h1>
+                    <h1 class="entry-title"><a href="https://sulami.github.io/working-on-a-netbook.html">Working on a Netbook</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2014-02-18T20:16:00">
-                Di 18 Februar 2014
+        <abbr class="published" title="2014-05-25T18:30:00">
+                So 25 Mai 2014
         </abbr>
 
         <address class="vcard author">
                 By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
         </address>
 <p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a><a href="https://sulami.github.io/tag/security.html">security</a><a href="https://sulami.github.io/tag/updates.html">updates</a><a href="https://sulami.github.io/tag/yum.html">yum</a></p>
-</footer><!-- /.post-info --><p>Coming from SUSE I am now primarily using RHEL/CentOS/Fedora-type Linux
-distros, which means the package manager of my choice is yum. While yum
-is quite a bit faster than zypper in almost every situation, it does not
-provide the really useful function of showing you which running
-processes are affected by package changes, which is particularly useful
-on servers which aren't rebooted every few days (my homeserver is now
-running for \~160 days without reboot).</p>
-<p>But there is a simple helper: get <em>yum-plugin-ps</em>, a plugin which, who
-would have guessed it, adds the functionality described into yum. Now
-you can run <em>yum ps</em> and get a list of running processes, ordered by
-changed files they use, so you can reload/restart those services and
-hopefully prevent bad guys from exploiting already patched security
-holes.</p>                </article>
+<p>tags: <a href="https://sulami.github.io/tag/dwm.html">dwm</a><a href="https://sulami.github.io/tag/netbook.html">netbook</a></p>
+</footer><!-- /.post-info --><p>I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
+cheap machine with a 1.66 GHz Intel Atom and 1 GB of RAM. I thought a lot about
+which DE/WM to use. On one side, performance is key, and I mostly use it to
+work in a shell, browse the web and read PDFs, so a tiling WM was my first
+choice. I still chose the default Gnome 3 installation, as it provides a lot of
+utility and is a slow but almost always working fallback, plus I get GDM.</p>
+<p>I have used a lot of tiling WMs over the years, mainly i3, bspwm, dwm and
+monsterwm (chronologically). While monsterwm is still my favourite for an
+absolute riced machine, i3 and dwm are more usable without a great deal of
+configuration when adding i3bar/i3status and dmenu. Because dwm is a lot faster
+(although they are both pretty fast compared to anything else, we are talking
+running complete systems on 30 MB of RAM, including the Kernel), I installed it
+and used it for an evening to pull down the Kernel sources and set up my work
+environment.</p>
+<p>My first impression is pretty positive, it feels responsive and fast. I am
+using dwb as my browser, urxvt as terminal emulator and wicd to setup WiFi,
+which allows me to disable NetworkManager, which is think is pretty useless
+anyway, I am not using it on any of my machines.</p>                </article>
 <p class="paginator">
     Page 1 / 1
 </p>

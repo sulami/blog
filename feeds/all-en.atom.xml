@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sulami's blog</title><link href="http://peerwire.de/" rel="alternate"></link><link href="http://peerwire.de/feeds/all-en.atom.xml" rel="self"></link><id>http://peerwire.de/</id><updated>2014-05-25T16:00:00+02:00</updated><entry><title>Running Gnome Shell on a Netbook</title><link href="http://peerwire.de/running-gnome-shell-on-a-netbook.html" rel="alternate"></link><updated>2014-05-25T16:00:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-05-25:running-gnome-shell-on-a-netbook.html</id><summary type="html">&lt;p&gt;I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sulami's blog</title><link href="https://sulami.github.io/" rel="alternate"></link><link href="https://sulami.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://sulami.github.io/</id><updated>2014-05-27T22:00:00+02:00</updated><entry><title>Getting rid of Flash</title><link href="https://sulami.github.io/getting-rid-of-flash.html" rel="alternate"></link><updated>2014-05-27T22:00:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-05-27:getting-rid-of-flash.html</id><summary type="html">&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
+fullscreen, and I have not found a single video not supporting HTML5 in over a
+month, so I would consider Flash-less YouTube a valid option. I also discovered
+that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
+Flash. And given that Adobe basically said "Suck it, Linux, we won't support
+you guys properly, have fun with 11.2 and security fixes", plus the fact that
+flash is draining huge amount of resources and is a possible security risk, I
+asked myself, why do I need it anyway?&lt;/p&gt;
+&lt;p&gt;The answer was somewhat surprising: I don't. Flash has always only been useful
+for videostreaming, flashgames and intrusive ads. I can live without flashgames
+and ads, and with YouTube and Vimeo out of the way the only site left I
+occasionally use Flash on is Twitch.tv.
+&lt;a href="https://github.com/chrippa/livestreamer"&gt;Livestreamer&lt;/a&gt;. Extracts the RTMP
+stream and pipes it to a video player of your choice, like VLC. I have been
+using irssi instead of the obnoxious and slow webchat for quite a while now and
+it seems like I only have to visit the website to figure out who I like is
+streaming.  This enabled me to disable (cough) the Flash plugin alltogether.&lt;/p&gt;</summary><category term="flash"></category><category term="vlc"></category><category term="twitchtv"></category><category term="youtube"></category></entry><entry><title>Working on a Netbook</title><link href="https://sulami.github.io/working-on-a-netbook.html" rel="alternate"></link><updated>2014-05-25T18:30:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-05-25:working-on-a-netbook.html</id><summary type="html">&lt;p&gt;I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
 cheap machine with a 1.66 GHz Intel Atom and 1 GB of RAM. I thought a lot about
 which DE/WM to use. On one side, performance is key, and I mostly use it to
 work in a shell, browse the web and read PDFs, so a tiling WM was my first
 choice. I still chose the default Gnome 3 installation, as it provides a lot of
-utility and is a slow but almost always working fallback.&lt;/p&gt;
+utility and is a slow but almost always working fallback, plus I get GDM.&lt;/p&gt;
 &lt;p&gt;I have used a lot of tiling WMs over the years, mainly i3, bspwm, dwm and
 monsterwm (chronologically). While monsterwm is still my favourite for an
 absolute riced machine, i3 and dwm are more usable without a great deal of
-configuration when adding i3bar/i3status and dmenu. Because dwm is a lot
-faster (although they are both pretty fast compared to anything else, we are
-talking running complete systems on 30 MB of RAM, including the Kernel), I
-installed it and used it for an evening to pull down the Kernel sources and
-set up my work environment.&lt;/p&gt;
-&lt;p&gt;While being quite fast and leaving most of the system's resources to the
-application running on top, dwm does not provide much features in terms of
-mobility, namely a way to connect to WiFi-Networks. Managing ethernet via cli
-is not a big deal to me, but when using WiFi, I prefer a GUI just becuase
-wicd-curses tends to take some minutes until it finally connects to a secured
-(WPA2) network, do not ask me why.&lt;/p&gt;
-&lt;p&gt;So I figured, I might just try out running Gnome Shell on it, with some
-tweaking it could be pretty lightweight, and I do not like the "light" DEs.
-Also I can maintain consistency, as my main workstation runs Gnome Shell as
-well. Well, it ran, sort of. Clicking the "X" and waiting 3 seconds for the
-window to actually close was not what I imagined. And using 440 MB of RAM
-without caches while idling was not either. Back to the drawing board.&lt;/p&gt;</summary><category term="gnome"></category><category term="netbook"></category></entry><entry><title>On Python performance</title><link href="http://peerwire.de/on-python-performance.html" rel="alternate"></link><updated>2014-05-12T02:15:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-05-12:on-python-performance.html</id><summary type="html">&lt;p&gt;I recently wrote &lt;a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"&gt;Conway's Game of
+configuration when adding i3bar/i3status and dmenu. Because dwm is a lot faster
+(although they are both pretty fast compared to anything else, we are talking
+running complete systems on 30 MB of RAM, including the Kernel), I installed it
+and used it for an evening to pull down the Kernel sources and set up my work
+environment.&lt;/p&gt;
+&lt;p&gt;My first impression is pretty positive, it feels responsive and fast. I am
+using dwb as my browser, urxvt as terminal emulator and wicd to setup WiFi,
+which allows me to disable NetworkManager, which is think is pretty useless
+anyway, I am not using it on any of my machines.&lt;/p&gt;</summary><category term="dwm"></category><category term="netbook"></category></entry><entry><title>On Python performance</title><link href="https://sulami.github.io/on-python-performance.html" rel="alternate"></link><updated>2014-05-12T02:15:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-05-12:on-python-performance.html</id><summary type="html">&lt;p&gt;I recently wrote &lt;a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"&gt;Conway's Game of
 Life&lt;/a&gt; in both
 performance optimized Python 3.3 and C99, compiled with clang, without
 optimizations. I usually say to people that Python is quite fast when properly
@@ -42,7 +50,7 @@ is quite slow. Without printing it, generating 5000 cycles takes 32,244
 seconds, which is still more than three times as much as C needs with printing.&lt;/p&gt;
 &lt;p&gt;For most operations, Python's speed is more than needed, but sometimes you just
 need that extra bit of speed, and this is why you can &lt;a href="https://docs.python.org/3.4/library/ctypes.html"&gt;use C from within
-Python&lt;/a&gt;.&lt;/p&gt;</summary><category term="python"></category><category term="c"></category></entry><entry><title>Test-driven development in vim</title><link href="http://peerwire.de/test-driven-development-in-vim.html" rel="alternate"></link><updated>2014-05-05T14:50:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-05-05:test-driven-development-in-vim.html</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (TDD)&lt;/a&gt; is a way of developing software by using
+Python&lt;/a&gt;.&lt;/p&gt;</summary><category term="python"></category><category term="c"></category></entry><entry><title>Test-driven development in vim</title><link href="https://sulami.github.io/test-driven-development-in-vim.html" rel="alternate"></link><updated>2014-05-05T14:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-05-05:test-driven-development-in-vim.html</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (TDD)&lt;/a&gt; is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
 TDD, which proceeded to explain how you start your project by writing a test
@@ -105,13 +113,13 @@ line which produced the error. If everything works as intended, it prints all
 the tests it ran, prompts for enter and returns us to vim.  An important part
 is to only delete old tests, when the condition they test for is no longer
 wanted, so you always test for basic functionality as well as the final
-results.&lt;/p&gt;</summary><category term="vim"></category><category term="cli"></category></entry><entry><title>Say hello to Peerwire</title><link href="http://peerwire.de/say-hello-to-peerwire.html" rel="alternate"></link><updated>2014-04-27T14:45:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-27:say-hello-to-peerwire.html</id><summary type="html">&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
+results.&lt;/p&gt;</summary><category term="vim"></category><category term="cli"></category></entry><entry><title>Say hello to Peerwire</title><link href="https://sulami.github.io/say-hello-to-peerwire.html" rel="alternate"></link><updated>2014-04-27T14:45:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-27:say-hello-to-peerwire.html</id><summary type="html">&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
 go check it out. It is a platform which helps people find (open source) projects
 suited for them, based on various factors, and also helps project managers
 distribute tasks among them, so collaborative work is more organized overall.&lt;/p&gt;
 &lt;p&gt;Right now, it is empty aside from my demo-project, which is Peerwire itself,
 which kind of defeats the purpose for coders, but project owners can start right
-away to add their projects, so they can be found easily by coders.&lt;/p&gt;</summary><category term="news"></category><category term="peerwire"></category></entry><entry><title>Django Tweaking: custom user model fixes</title><link href="http://peerwire.de/django-tweaking-custom-user-model-fixes.html" rel="alternate"></link><updated>2014-04-19T22:20:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-19:django-tweaking-custom-user-model-fixes.html</id><summary type="html">&lt;p&gt;I am currently finishing the initial coding of my newest, project, which will
+away to add their projects, so they can be found easily by coders.&lt;/p&gt;</summary><category term="news"></category><category term="peerwire"></category></entry><entry><title>Django Tweaking: custom user model fixes</title><link href="https://sulami.github.io/django-tweaking-custom-user-model-fixes.html" rel="alternate"></link><updated>2014-04-19T22:20:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-19:django-tweaking-custom-user-model-fixes.html</id><summary type="html">&lt;p&gt;I am currently finishing the initial coding of my newest, project, which will
 be Peerwire (yes, another one), and because I like it, it is written in Python
 using Django, specifically Django 1.6. Now I am using a custom user model to
 add some additional fields, which is the only reason, I have to modify existing
@@ -160,7 +168,7 @@ far, in case someone encounters the same problems:&lt;/p&gt;
 &lt;p&gt;to&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;from django.contrib.auth import get_user_model
 User &lt;span style="color: #666666"&gt;=&lt;/span&gt; get_user_model()
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="django"></category></entry><entry><title>Quickie: Markdown syntax highlighting in vim</title><link href="http://peerwire.de/quickie-markdown-syntax-highlighting-in-vim.html" rel="alternate"></link><updated>2014-04-15T23:50:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-15:quickie-markdown-syntax-highlighting-in-vim.html</id><summary type="html">&lt;p&gt;I save my Markdown files using the &lt;em&gt;.md&lt;/em&gt; extension, like probably everyone
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="django"></category></entry><entry><title>Quickie: Markdown syntax highlighting in vim</title><link href="https://sulami.github.io/quickie-markdown-syntax-highlighting-in-vim.html" rel="alternate"></link><updated>2014-04-15T23:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-15:quickie-markdown-syntax-highlighting-in-vim.html</id><summary type="html">&lt;p&gt;I save my Markdown files using the &lt;em&gt;.md&lt;/em&gt; extension, like probably everyone
 else in this world, which is fine. Not fine is vim interpreting &lt;em&gt;foobar.md&lt;/em&gt; as
 modula2-file, which disables proper syntax highlighting. The fix is quite easy,
 but might not survive updates/patches.&lt;/p&gt;
@@ -176,7 +184,7 @@ au BufNewFile,BufRead &lt;span style="color: #666666"&gt;*&lt;/span&gt;.markdown
 &lt;p&gt;This line tells vim that those files are probably Markdown files and should be
 interpreted this way. Add *.md to the list. Now search for Modula2, and remove
 the *.md entry from there, so nothing collides. When starting vim the next
-time, it should identify Markdown correctly.&lt;/p&gt;</summary><category term="vim"></category><category term="quickie"></category><category term="markdown"></category></entry><entry><title>Converting to Pelican</title><link href="http://peerwire.de/converting-to-pelican.html" rel="alternate"></link><updated>2014-04-15T00:40:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-15:converting-to-pelican.html</id><summary type="html">&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
+time, it should identify Markdown correctly.&lt;/p&gt;</summary><category term="vim"></category><category term="quickie"></category><category term="markdown"></category></entry><entry><title>Converting to Pelican</title><link href="https://sulami.github.io/converting-to-pelican.html" rel="alternate"></link><updated>2014-04-15T00:40:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-15:converting-to-pelican.html</id><summary type="html">&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
 because I want to get rid of PHP where I can. Previously, this blog was running
 on selfhosted Wordpress, which is quite powerful, but for my blogging needs
 too complicated and oversized.&lt;/p&gt;
@@ -193,7 +201,7 @@ or even continue developing it, but the concept is just from yesterday. Today,
 we can use full-sized programming languages like Python (Django) and Ruby
 (Rails) to easily develop and maintain complex web-applications with
 centralized, managed configurations. Most of the work gets done by those
-frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</summary><category term="news"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Playing in space on Linux</title><link href="http://peerwire.de/playing-in-space-on-linux.html" rel="alternate"></link><updated>2014-04-11T23:55:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-11:playing-in-space-on-linux.html</id><summary type="html">&lt;p&gt;While I have been working day and night lately on my (sort of) new
+frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</summary><category term="news"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Playing in space on Linux</title><link href="https://sulami.github.io/playing-in-space-on-linux.html" rel="alternate"></link><updated>2014-04-11T23:55:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-11:playing-in-space-on-linux.html</id><summary type="html">&lt;p&gt;While I have been working day and night lately on my (sort of) new
 project, peerwire.org (which currently links to this blog, but will soon
 go live), I have now reached the beta phase which will mostly be
 intensive testing and trying to break the site, as well as some minor
@@ -254,7 +262,7 @@ have not tested yet, maybe someone can give me a tip on one of those:&lt;/p&gt;
 &lt;p&gt;As I hear, Star Citizen will also be on Linux, which will hopefully be a
 great experience, maybe even a reason for me to install a GPU again. I
 am also still waiting for Planetside 2 to come to Linux, which is really
-fun with a bunch of friends (but also runs like shit)&lt;/p&gt;</summary><category term="games"></category><category term="steam"></category><category term="linux"></category></entry><entry><title>OpenSSL-Bug: Update everything you got, like now!</title><link href="http://peerwire.de/openssl-bug-update-everything-you-got-like-now.html" rel="alternate"></link><updated>2014-04-09T07:48:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</id><summary type="html">&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
+fun with a bunch of friends (but also runs like shit)&lt;/p&gt;</summary><category term="games"></category><category term="steam"></category><category term="linux"></category></entry><entry><title>OpenSSL-Bug: Update everything you got, like now!</title><link href="https://sulami.github.io/openssl-bug-update-everything-you-got-like-now.html" rel="alternate"></link><updated>2014-04-09T07:48:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</id><summary type="html">&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
 in the OpenSSL libraries, which basically means everything has to get
 patched immediately, especially webservers, databases, SSH-Daemons,
 anything that sort of relies on network communication. If you haven't
@@ -267,7 +275,7 @@ considered unsafe.&lt;/p&gt;
 look like:&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/Screenshot-from-2014-04-09-145514.png"&gt;&lt;img alt="Screenshot from 2014-04-09 14:55:14" src="/images/Screenshot-from-2014-04-09-145514.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;(Yes, my bank's certificate is just over a year old. No, I will not
-login before it is replaced)&lt;/p&gt;</summary><category term="homeserver"></category><category term="security"></category><category term="ssh"></category><category term="SSL"></category><category term="updates"></category></entry><entry><title>IRC-client showdown, extreme version</title><link href="http://peerwire.de/irc-client-showdown-extreme-version.html" rel="alternate"></link><updated>2014-03-19T19:17:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-19:irc-client-showdown-extreme-version.html</id><summary type="html">&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
+login before it is replaced)&lt;/p&gt;</summary><category term="homeserver"></category><category term="security"></category><category term="ssh"></category><category term="SSL"></category><category term="updates"></category></entry><entry><title>IRC-client showdown, extreme version</title><link href="https://sulami.github.io/irc-client-showdown-extreme-version.html" rel="alternate"></link><updated>2014-03-19T19:17:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</id><summary type="html">&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is a pain), but
@@ -306,7 +314,7 @@ performance impact, using about 12 MB of RAM, which is more reasonable.
 For comparison though, connecting through netcat uses 644 KB of RAM. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for IRC, netcat is actually sort
-of viable, in emergency cases.&lt;/p&gt;</summary><category term="cli"></category><category term="irc"></category><category term="irssi"></category><category term="twitch.tv"></category><category term="weechat"></category></entry><entry><title>My take on secure communication</title><link href="http://peerwire.de/my-take-on-secure-communication.html" rel="alternate"></link><updated>2014-03-19T05:40:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-19:my-take-on-secure-communication.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+of viable, in emergency cases.&lt;/p&gt;</summary><category term="cli"></category><category term="irc"></category><category term="irssi"></category><category term="twitch.tv"></category><category term="weechat"></category></entry><entry><title>My take on secure communication</title><link href="https://sulami.github.io/my-take-on-secure-communication.html" rel="alternate"></link><updated>2014-03-19T05:40:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-19:my-take-on-secure-communication.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
 &lt;h2&gt;The current situation&lt;/h2&gt;
 &lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
@@ -422,7 +430,7 @@ on crypto, network messaging, development for specific platforms,
 interface designers, and the list goes on. If you read this and are
 interested in starting such a project, do not hesitate to contact me,
 someone has to make the first step. My public key is on the
-contact-page...&lt;/p&gt;</summary><category term="google drive"></category><category term="privacy"></category><category term="security"></category><category term="skype"></category></entry><entry><title>My own perfect world (aka what you should do)</title><link href="http://peerwire.de/my-own-perfect-world-aka-what-you-should-do.html" rel="alternate"></link><updated>2014-03-17T23:59:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</id><summary type="html">&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+contact-page...&lt;/p&gt;</summary><category term="google drive"></category><category term="privacy"></category><category term="security"></category><category term="skype"></category></entry><entry><title>My own perfect world (aka what you should do)</title><link href="https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html" rel="alternate"></link><updated>2014-03-17T23:59:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</id><summary type="html">&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
 follow those conventions, some because they do not want to, but mostly
 they just do not care. I just want to list some (read: non-exhaustive
@@ -564,7 +572,7 @@ always the first ones.&lt;/p&gt;
 &lt;li&gt;Programming languages: Python (platform independent, modular, nice
     to write and read), C(++) (faster, for performance-critical
     applications)&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="firefox"></category><category term="flash"></category><category term="git"></category><category term="homeserver"></category><category term="irc"></category><category term="privacy"></category><category term="security"></category><category term="skype"></category><category term="vim"></category><category term="vlc"></category><category term="weechat"></category></entry><entry><title>Quickie: custom launchers in Gnome 3</title><link href="http://peerwire.de/quickie-custom-launchers-in-gnome-3.html" rel="alternate"></link><updated>2014-03-17T22:26:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-17:quickie-custom-launchers-in-gnome-3.html</id><summary type="html">&lt;p&gt;Let's say you are using Gnome 3, because it is actually sort of usable
+&lt;/ul&gt;</summary><category term="firefox"></category><category term="flash"></category><category term="git"></category><category term="homeserver"></category><category term="irc"></category><category term="privacy"></category><category term="security"></category><category term="skype"></category><category term="vim"></category><category term="vlc"></category><category term="weechat"></category></entry><entry><title>Quickie: custom launchers in Gnome 3</title><link href="https://sulami.github.io/quickie-custom-launchers-in-gnome-3.html" rel="alternate"></link><updated>2014-03-17T22:26:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-17:quickie-custom-launchers-in-gnome-3.html</id><summary type="html">&lt;p&gt;Let's say you are using Gnome 3, because it is actually sort of usable
 with some extensions and the alternatives are not to shiny. Let's say
 you want to add some obscure program to the dash or change the icon or
 the startup parameters of an existing one. Let's say, I know how:&lt;/p&gt;
@@ -584,7 +592,7 @@ Type&lt;span style="color: #666666"&gt;=&lt;/span&gt;Application
 &lt;p&gt;If you want some sort of custom icon, like a Faenza icon for
 virt-manager (which for some reason does not exist), you can check at
 &lt;em&gt;\~/.icons&lt;/em&gt; for icons. Just name the filename without extension in your
-shortcut.&lt;/p&gt;</summary><category term="quickie"></category><category term="gnome"></category></entry><entry><title>Quickie: force-test virtualhosts</title><link href="http://peerwire.de/quickie-force-test-virtualhosts.html" rel="alternate"></link><updated>2014-03-17T01:22:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-17:quickie-force-test-virtualhosts.html</id><summary type="html">&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
+shortcut.&lt;/p&gt;</summary><category term="quickie"></category><category term="gnome"></category></entry><entry><title>Quickie: force-test virtualhosts</title><link href="https://sulami.github.io/quickie-force-test-virtualhosts.html" rel="alternate"></link><updated>2014-03-17T01:22:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-17:quickie-force-test-virtualhosts.html</id><summary type="html">&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
 most people will know what I mean. You define a new virtualhost/server
 block and point it to your page. But to test it, you usually need to
 update the DNS-records, and this may take hours, depending on your
@@ -598,7 +606,7 @@ wget &lt;span style="color: #666666"&gt;-&lt;/span&gt;R &lt;span style="color: #
 
 
 &lt;p&gt;This would trick your local webserver into thinking you resolved
-google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</summary><category term="quickie"></category><category term="apache"></category><category term="nginx"></category><category term="wget"></category></entry><entry><title>Backup your work</title><link href="http://peerwire.de/backup-your-work.html" rel="alternate"></link><updated>2014-03-10T23:58:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-10:backup-your-work.html</id><summary type="html">&lt;p&gt;When doing serious work involving code (or config files), backups are a
+google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</summary><category term="quickie"></category><category term="apache"></category><category term="nginx"></category><category term="wget"></category></entry><entry><title>Backup your work</title><link href="https://sulami.github.io/backup-your-work.html" rel="alternate"></link><updated>2014-03-10T23:58:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-10:backup-your-work.html</id><summary type="html">&lt;p&gt;When doing serious work involving code (or config files), backups are a
 must-have. What you want to do are backups to (sort of) remote
 locations, like separate harddrives, external drives or other
 computers/servers, which is protecting your precious work from hardware
@@ -639,17 +647,17 @@ case you now say, you can't afford your own in-house server, get a
 Raspberry Pi Mod. B with a small SD-card, a power cable and some sort of
 external drive, totalling maybe \$100. It uses near to no power, can run
 24/7 without any noise or noticeble heat and use the external drive to
-save all your stuff on a separate machine. It's that easy.&lt;/p&gt;</summary><category term="cron"></category><category term="dropbox"></category><category term="git"></category><category term="google drive"></category><category term="homeserver"></category><category term="raspberrypi"></category><category term="security"></category></entry><entry><title>Quickie: paste into vim</title><link href="http://peerwire.de/quickie-paste-into-vim.html" rel="alternate"></link><updated>2014-03-05T13:22:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-03-05:quickie-paste-into-vim.html</id><summary type="html">&lt;p&gt;Pasting code into vim is painful, because vim tends to indent every line
+save all your stuff on a separate machine. It's that easy.&lt;/p&gt;</summary><category term="cron"></category><category term="dropbox"></category><category term="git"></category><category term="google drive"></category><category term="homeserver"></category><category term="raspberrypi"></category><category term="security"></category></entry><entry><title>Quickie: paste into vim</title><link href="https://sulami.github.io/quickie-paste-into-vim.html" rel="alternate"></link><updated>2014-03-05T13:22:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-03-05:quickie-paste-into-vim.html</id><summary type="html">&lt;p&gt;Pasting code into vim is painful, because vim tends to indent every line
 further than the one before, which forces me to unindent everything
 manually. But as I learned today, vim has a paste-mode which circumvents
 this behaviour.&lt;/p&gt;
 &lt;p&gt;Just use the commandline to &lt;em&gt;:set paste&lt;/em&gt;, paste your code and &lt;em&gt;:set
-nopaste&lt;/em&gt; again. Or, even better, bind this to hotkeys.&lt;/p&gt;</summary><category term="quickie"></category><category term="cli"></category><category term="vim"></category></entry><entry><title>Get the freaking Humble Bundle!</title><link href="http://peerwire.de/get-the-freaking-humble-bundle.html" rel="alternate"></link><updated>2014-02-19T15:49:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-02-19:get-the-freaking-humble-bundle.html</id><summary type="html">&lt;p&gt;If you are a Linux gamer like me (although I barely play games anymore
+nopaste&lt;/em&gt; again. Or, even better, bind this to hotkeys.&lt;/p&gt;</summary><category term="quickie"></category><category term="cli"></category><category term="vim"></category></entry><entry><title>Get the freaking Humble Bundle!</title><link href="https://sulami.github.io/get-the-freaking-humble-bundle.html" rel="alternate"></link><updated>2014-02-19T15:49:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-02-19:get-the-freaking-humble-bundle.html</id><summary type="html">&lt;p&gt;If you are a Linux gamer like me (although I barely play games anymore
 as I don't have the free-time I used to have anymore), get the &lt;a href="http://humblebundle.com" title="Humble Bundle"&gt;Humble
 Bundle&lt;/a&gt;. For some dollars you get 6 great games, 5 with native
 Linux-support, one that will get a native Linux version later this year
 for free, all the soundtracks as mp3s and flacs, and there is hidden
-stuff which will be unlocked later on. What are you waiting for?&lt;/p&gt;</summary><category term="gaming"></category></entry><entry><title>Quickie: Yum PS</title><link href="http://peerwire.de/quickie-yum-ps.html" rel="alternate"></link><updated>2014-02-18T20:16:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-02-18:quickie-yum-ps.html</id><summary type="html">&lt;p&gt;Coming from SUSE I am now primarily using RHEL/CentOS/Fedora-type Linux
+stuff which will be unlocked later on. What are you waiting for?&lt;/p&gt;</summary><category term="gaming"></category></entry><entry><title>Quickie: Yum PS</title><link href="https://sulami.github.io/quickie-yum-ps.html" rel="alternate"></link><updated>2014-02-18T20:16:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-02-18:quickie-yum-ps.html</id><summary type="html">&lt;p&gt;Coming from SUSE I am now primarily using RHEL/CentOS/Fedora-type Linux
 distros, which means the package manager of my choice is yum. While yum
 is quite a bit faster than zypper in almost every situation, it does not
 provide the really useful function of showing you which running
@@ -661,13 +669,13 @@ would have guessed it, adds the functionality described into yum. Now
 you can run &lt;em&gt;yum ps&lt;/em&gt; and get a list of running processes, ordered by
 changed files they use, so you can reload/restart those services and
 hopefully prevent bad guys from exploiting already patched security
-holes.&lt;/p&gt;</summary><category term="quickie"></category><category term="security"></category><category term="updates"></category><category term="yum"></category></entry><entry><title>Small update: new machine arrived (mostly)</title><link href="http://peerwire.de/small-update-new-machine-arrived-mostly.html" rel="alternate"></link><updated>2014-01-29T17:02:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-29:small-update-new-machine-arrived-mostly.html</id><summary type="html">&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
+holes.&lt;/p&gt;</summary><category term="quickie"></category><category term="security"></category><category term="updates"></category><category term="yum"></category></entry><entry><title>Small update: new machine arrived (mostly)</title><link href="https://sulami.github.io/small-update-new-machine-arrived-mostly.html" rel="alternate"></link><updated>2014-01-29T17:02:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-29:small-update-new-machine-arrived-mostly.html</id><summary type="html">&lt;p&gt;The hardware for my new, still unnamed, workstation arrived today, only
 the case has not arrived yet. But I ran some quick tests using my normal
 OS, and I can describe it the following way:&lt;/p&gt;
 &lt;p&gt;[![spaceballs_ludicrous_speed][]][spaceballs_ludicrous_speed]&lt;/p&gt;
 &lt;p&gt;It boots from pressing the button to Gnome 3 within 10 seconds, which is
 just flatout amazing. Compared to my 4GHz Thuban, the 3.40GHz Haswell
-Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</summary></entry><entry><title>Bought my workstation upgrade (read: upgrayyed)</title><link href="http://peerwire.de/bought-my-workstation-upgrade-read-upgrayyed.html" rel="alternate"></link><updated>2014-01-27T00:15:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</id><summary type="html">&lt;p&gt;So after I discussed the whole hardware situation for two or three days
+Xeon is about 40% faster for compiling C-code.&lt;/p&gt;</summary></entry><entry><title>Bought my workstation upgrade (read: upgrayyed)</title><link href="https://sulami.github.io/bought-my-workstation-upgrade-read-upgrayyed.html" rel="alternate"></link><updated>2014-01-27T00:15:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-27:bought-my-workstation-upgrade-read-upgrayyed.html</id><summary type="html">&lt;p&gt;So after I discussed the whole hardware situation for two or three days
 with a good friend and did about 30 hours of research, I decided on a
 specific set of hardware for my new Linux development workstation. &lt;a href="/building-my-new-machine.html" title="Building my new machine"&gt;As I
 mentioned earlier&lt;/a&gt;, I wanted many cores/threads and loads of RAM,
@@ -689,7 +697,7 @@ expensive than the Xeon while less features) and an AMD FX-8350 in
 combination with a Radeon HD6570 Silence (cheaper, but probably slower,
 double the TDP of the Xeon). AMD APUs have superior graphics performance
 but are way slower on CPU tasks. Opterons are not available for
-affordable prices.&lt;/p&gt;</summary></entry><entry><title>My favourite Tech-Talks</title><link href="http://peerwire.de/my-favourite-tech-talks.html" rel="alternate"></link><updated>2014-01-25T14:49:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-25:my-favourite-tech-talks.html</id><summary type="html">&lt;p&gt;I love talks, others might call them presentations. There are thousands
+affordable prices.&lt;/p&gt;</summary></entry><entry><title>My favourite Tech-Talks</title><link href="https://sulami.github.io/my-favourite-tech-talks.html" rel="alternate"></link><updated>2014-01-25T14:49:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</id><summary type="html">&lt;p&gt;I love talks, others might call them presentations. There are thousands
 of talks on YouTube and watching them all would take ages, but I
 sometimes watch talks before going to bed instad of watching TV.  So I
 thought, I could compile a small list of my favourite talks featuring
@@ -715,7 +723,7 @@ started on kernel development&lt;/p&gt;
 &lt;p&gt;There are a lot more good talks, but my time is sort of limited and
 sadly I can't really focus on working while watching talks.&lt;/p&gt;
 &lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
-  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</summary><category term="git"></category><category term="talks"></category><category term="youtube"></category></entry><entry><title>Building my new machine</title><link href="http://peerwire.de/building-my-new-machine.html" rel="alternate"></link><updated>2014-01-24T03:10:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-24:building-my-new-machine.html</id><summary type="html">&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
+  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</summary><category term="git"></category><category term="talks"></category><category term="youtube"></category></entry><entry><title>Building my new machine</title><link href="https://sulami.github.io/building-my-new-machine.html" rel="alternate"></link><updated>2014-01-24T03:10:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-24:building-my-new-machine.html</id><summary type="html">&lt;p&gt;Right now I am planning my next main computer. While my current machine cost 
 around 1500€ and is a water-cooled, black red hexa-core monster, it is not 
 really optimized for what I am doing, which is mostly coding and compiling 
 on Linux. Hal9k, what it has been called for many years now, has been 
@@ -770,14 +778,14 @@ mailing list and stuff...&lt;/p&gt;
 &lt;p&gt;Right now, I am mostly leaning towards Shodan, as it is probably of the
 most badass of those, and maybe the only one that can match HAL.&lt;/p&gt;
 &lt;p&gt;I will now continue to compare benchmarks and prices, like I did for the
-last 4 hours. Take care.&lt;/p&gt;</summary></entry><entry><title>Quickie: Gnome 3 dark theme</title><link href="http://peerwire.de/quickie-gnome-3-dark-theme.html" rel="alternate"></link><updated>2014-01-23T13:22:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-23:quickie-gnome-3-dark-theme.html</id><summary type="html">&lt;p&gt;Many people, me included, prefer their computer screen mostly dark. And
+last 4 hours. Take care.&lt;/p&gt;</summary></entry><entry><title>Quickie: Gnome 3 dark theme</title><link href="https://sulami.github.io/quickie-gnome-3-dark-theme.html" rel="alternate"></link><updated>2014-01-23T13:22:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-23:quickie-gnome-3-dark-theme.html</id><summary type="html">&lt;p&gt;Many people, me included, prefer their computer screen mostly dark. And
 while I quite like the default gtk-theme of Gnome 3, called "Adwaita",
 it is white. Using &lt;em&gt;gnome-tweak-tool&lt;/em&gt;, you can easily color it dark, but
 this only works for Gtk-3 apps, so Firefox for example is still white.
 To fix this, get &lt;em&gt;gtk-murrine-engine&lt;/em&gt; (package name on Fedora) and &lt;a href="http://goo.gl/6dRiC2" title="Dropbox"&gt;this
 theme&lt;/a&gt;. Unpack it to &lt;em&gt;/usr/share/themes&lt;/em&gt;. Then use the tweak-tool and
 &lt;em&gt;gtk-chtheme&lt;/em&gt; (also a Fedora package name), to select "Adwaita-Dark".
-Then login again or reboot for good measure.&lt;/p&gt;</summary><category term="quickie"></category><category term="firefox"></category><category term="gnome"></category></entry><entry><title>My new desktop</title><link href="http://peerwire.de/my-new-desktop.html" rel="alternate"></link><updated>2014-01-22T01:12:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-22:my-new-desktop.html</id><summary type="html">&lt;p&gt;After I lost my SSD to the kraken and got a new one back, I set up a
+Then login again or reboot for good measure.&lt;/p&gt;</summary><category term="quickie"></category><category term="firefox"></category><category term="gnome"></category></entry><entry><title>My new desktop</title><link href="https://sulami.github.io/my-new-desktop.html" rel="alternate"></link><updated>2014-01-22T01:12:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-22:my-new-desktop.html</id><summary type="html">&lt;p&gt;After I lost my SSD to the kraken and got a new one back, I set up a
 completely new system. This time I decided to ditch both openSUSE and
 Arch Linux and go with Fedora.&lt;/p&gt;
 &lt;p&gt;The reasons here are: I love Arch and pacman, but setting it up to a
@@ -795,7 +803,7 @@ using Gnome 3. Using some of the extensions makes it quite usable, even
 for someone like me, who has been using tiling WMs for almost two years
 now (i3 -&gt; bspwm -&gt; monsterwm). This combination is set up and
 configured to my likings within about 8-10 hours and is perfoming quite
-well right now.&lt;/p&gt;</summary><category term="desktop"></category><category term="fedora"></category><category term="gnome"></category></entry><entry><title>Kudos to OCZ</title><link href="http://peerwire.de/kudos-to-ocz.html" rel="alternate"></link><updated>2014-01-21T15:14:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-21:kudos-to-ocz.html</id><summary type="html">&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
+well right now.&lt;/p&gt;</summary><category term="desktop"></category><category term="fedora"></category><category term="gnome"></category></entry><entry><title>Kudos to OCZ</title><link href="https://sulami.github.io/kudos-to-ocz.html" rel="alternate"></link><updated>2014-01-21T15:14:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-21:kudos-to-ocz.html</id><summary type="html">&lt;p&gt;Recently my SSD, an OCZ Vertex 3 MaxIOPS just stopped working, not that
 big of a deal, I've got backups of most of my stuff and hardware failure
 occures sometimes, nothing we can really do something about. But when I
 sent it to the retailer I got it from, Mindfactory, they told me I would
@@ -805,7 +813,7 @@ think this is supposed to look like.&lt;/p&gt;
 emails within some minutes and then sent me an address to send my SSD
 to. Yesterday I received a refurbished one, same model, including all
 the supplies I didn't send them, and even a new sticker. For free. This
-is customer support.&lt;/p&gt;</summary><category term="ssd"></category></entry><entry><title>Vim-Fu: some tweaks for your setup</title><link href="http://peerwire.de/vim-fu-some-tweaks-for-your-setup.html" rel="alternate"></link><updated>2014-01-04T18:37:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2014-01-04:vim-fu-some-tweaks-for-your-setup.html</id><summary type="html">&lt;p&gt;Vim is awesome. Fact.&lt;/p&gt;
+is customer support.&lt;/p&gt;</summary><category term="ssd"></category></entry><entry><title>Vim-Fu: some tweaks for your setup</title><link href="https://sulami.github.io/vim-fu-some-tweaks-for-your-setup.html" rel="alternate"></link><updated>2014-01-04T18:37:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-01-04:vim-fu-some-tweaks-for-your-setup.html</id><summary type="html">&lt;p&gt;Vim is awesome. Fact.&lt;/p&gt;
 &lt;p&gt;But if you like using vim as your main editor for everything, maybe even
 mainly inside tmux inside ssh, like I do, there are lots of
 optimizations available to rapidly increase your productivity.&lt;/p&gt;
@@ -906,7 +914,7 @@ to repeat them, namely the ones from surround and commentary. &lt;a href="https:
 fixes this behaviour.&lt;/p&gt;
 &lt;h4&gt;Trailing-Whitespace&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://github.com/bronson/vim-trailing-whitespace" title="GitHub"&gt;Traling-Whitespace&lt;/a&gt; is a simple one. It marks trailing whitespaces in
-red and introduces the &lt;em&gt;:FixWhitespace&lt;/em&gt; command to remove them.&lt;/p&gt;</summary><category term="cli"></category><category term="coding"></category><category term="typing"></category><category term="vim"></category></entry><entry><title>Quickie: fix Windows' stupid quotation mark behaviour</title><link href="http://peerwire.de/quickie-fix-windows-stupid-quotation-mark-behaviour.html" rel="alternate"></link><updated>2013-12-29T22:24:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-12-29:quickie-fix-windows-stupid-quotation-mark-behaviour.html</id><summary type="html">&lt;p&gt;Two days ago, my system-SSD died, which happens. Because of this
+red and introduces the &lt;em&gt;:FixWhitespace&lt;/em&gt; command to remove them.&lt;/p&gt;</summary><category term="cli"></category><category term="coding"></category><category term="typing"></category><category term="vim"></category></entry><entry><title>Quickie: fix Windows' stupid quotation mark behaviour</title><link href="https://sulami.github.io/quickie-fix-windows-stupid-quotation-mark-behaviour.html" rel="alternate"></link><updated>2013-12-29T22:24:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-12-29:quickie-fix-windows-stupid-quotation-mark-behaviour.html</id><summary type="html">&lt;p&gt;Two days ago, my system-SSD died, which happens. Because of this
 incident, I lost both my Arch Linux and my Windows 7 installation. While
 I wait for a new SSD to arrive, I installed some Win 7 Professional I
 found. And while I am German and use the German language for my
@@ -917,17 +925,17 @@ seemed to work just fine. But it does not.&lt;/p&gt;
 before it actually gets print, which is annoying while coding, but even
 worse for using vim (think ci" or similar). The fix is quite easy:
 change the default layout to just "US", and hitting quotation marks
-instantly prints quotation marks.&lt;/p&gt;</summary><category term="quickie"></category><category term="keyboard"></category><category term="typing"></category><category term="vim"></category></entry><entry><title>Quickie: fglrx on openSUSE 13.1</title><link href="http://peerwire.de/quickie-fglrx-on-opensuse-13-1.html" rel="alternate"></link><updated>2013-11-22T14:24:00+01:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-11-22:quickie-fglrx-on-opensuse-13-1.html</id><summary type="html">&lt;p&gt;Some days ago, openSUSE 13.1 was officially released. The new version
+instantly prints quotation marks.&lt;/p&gt;</summary><category term="quickie"></category><category term="keyboard"></category><category term="typing"></category><category term="vim"></category></entry><entry><title>Quickie: fglrx on openSUSE 13.1</title><link href="https://sulami.github.io/quickie-fglrx-on-opensuse-13-1.html" rel="alternate"></link><updated>2013-11-22T14:24:00+01:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-11-22:quickie-fglrx-on-opensuse-13-1.html</id><summary type="html">&lt;p&gt;Some days ago, openSUSE 13.1 was officially released. The new version
 seems to be pretty nice, but, as usually, breaks fglrx. The temporary
 fix is quite easy:&lt;/p&gt;
 &lt;p&gt;Open YaST and navigate to your software repositories. Edit your
 fglrx-repo and change the domain to
 &lt;em&gt;http://geeko.ioda.net/mirror/amd-fglrx-beta/openSUSE_13.1/&lt;/em&gt; . Now you
 should be able to remove fglrx for 12.3 and install fglrx beta for 13.1.
-In a first test, the beta driver seems to work pretty well.&lt;/p&gt;</summary><category term="quickie"></category><category term="fglrx"></category><category term="opensuse"></category><category term="updates"></category><category term="xorg"></category><category term="yast"></category></entry><entry><title>Quickie: vim - exit insert mode faster</title><link href="http://peerwire.de/quickie-vim-exit-insert-mode-faster.html" rel="alternate"></link><updated>2013-10-15T00:57:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-10-15:quickie-vim-exit-insert-mode-faster.html</id><summary type="html">&lt;p&gt;I love vim. It's great. But exiting insert mode by pressing escape (or
+In a first test, the beta driver seems to work pretty well.&lt;/p&gt;</summary><category term="quickie"></category><category term="fglrx"></category><category term="opensuse"></category><category term="updates"></category><category term="xorg"></category><category term="yast"></category></entry><entry><title>Quickie: vim - exit insert mode faster</title><link href="https://sulami.github.io/quickie-vim-exit-insert-mode-faster.html" rel="alternate"></link><updated>2013-10-15T00:57:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-10-15:quickie-vim-exit-insert-mode-faster.html</id><summary type="html">&lt;p&gt;I love vim. It's great. But exiting insert mode by pressing escape (or
 your rebound key, like capslock) takes a good second before you can go
 on being productive. This is all fixed by switching to ctrl-c, which
-exits insert mode instantaneously.&lt;/p&gt;</summary><category term="quickie"></category><category term="vim"></category></entry><entry><title>Twitch-IRC - the new way</title><link href="http://peerwire.de/twitch-irc-the-new-way.html" rel="alternate"></link><updated>2013-10-07T14:40:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-10-07:twitch-irc-the-new-way.html</id><summary type="html">&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
+exits insert mode instantaneously.&lt;/p&gt;</summary><category term="quickie"></category><category term="vim"></category></entry><entry><title>Twitch-IRC - the new way</title><link href="https://sulami.github.io/twitch-irc-the-new-way.html" rel="alternate"></link><updated>2013-10-07T14:40:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-10-07:twitch-irc-the-new-way.html</id><summary type="html">&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
 turns out, twitch.tv changed their IRC-settings. The new way is even
 easier, as they no longer use one server per channel but have all
 channels on one server.&lt;/p&gt;
@@ -936,14 +944,14 @@ channels on one server.&lt;/p&gt;
 &lt;p&gt;Password: Go to &lt;a href="http://www.twitchapps.com/tmi/"&gt;http://www.twitchapps.com/tmi/&lt;/a&gt; and get an oauth-token.
 Do this only once, as it will change every time you visit the site. This
 token, including the "oauth:"-part is your server password.&lt;/p&gt;
-&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</summary><category term="irc"></category><category term="twitch.tv"></category></entry><entry><title>Using the right open source licenses</title><link href="http://peerwire.de/using-the-right-open-source-licenses.html" rel="alternate"></link><updated>2013-10-07T11:04:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-10-07:using-the-right-open-source-licenses.html</id><summary type="html">&lt;p&gt;When it comes to programming your own stuff, like many people do, at
+&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</summary><category term="irc"></category><category term="twitch.tv"></category></entry><entry><title>Using the right open source licenses</title><link href="https://sulami.github.io/using-the-right-open-source-licenses.html" rel="alternate"></link><updated>2013-10-07T11:04:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-10-07:using-the-right-open-source-licenses.html</id><summary type="html">&lt;p&gt;When it comes to programming your own stuff, like many people do, at
 some point you might want to thing about licensing. If your code is just
 sitting on GitHub, you probably want to use an open source license, so
 eventually people can contribute easily to your project. But there are
 so many licenses, Apache, BSD, MIT, several GPLs, how is anyone supposed
 to keep track of what they do, and which one should you choose? Easy
 answer: &lt;a href="http://www.tldrlegal.com/" title="TL;DR Legal"&gt;TL;DR Legal&lt;/a&gt;. Just enter your license and it gives you a
-simple overview.&lt;/p&gt;</summary><category term="legal"></category><category term="licensing"></category><category term="oss"></category></entry><entry><title>Quickie: disable auto-mute when skyping on PulseAudio</title><link href="http://peerwire.de/quickie-disable-auto-mute-when-skyping-on-pulseaudio.html" rel="alternate"></link><updated>2013-09-27T10:12:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-09-27:quickie-disable-auto-mute-when-skyping-on-pulseaudio.html</id><summary type="html">&lt;p&gt;When skyping on Linux (and elsewhere) I like to listen to music in the
+simple overview.&lt;/p&gt;</summary><category term="legal"></category><category term="licensing"></category><category term="oss"></category></entry><entry><title>Quickie: disable auto-mute when skyping on PulseAudio</title><link href="https://sulami.github.io/quickie-disable-auto-mute-when-skyping-on-pulseaudio.html" rel="alternate"></link><updated>2013-09-27T10:12:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-09-27:quickie-disable-auto-mute-when-skyping-on-pulseaudio.html</id><summary type="html">&lt;p&gt;When skyping on Linux (and elsewhere) I like to listen to music in the
 background, but PulseAudio automatically mutes my Amarok and other
 players as soon as Skype plays some kind of sound, which is insanely
 irritating. The fix is quite simpe, open &lt;em&gt;/etc/pulse/default.pa&lt;/em&gt; in your
@@ -951,7 +959,7 @@ favourite edior (hopefully vim) and look for "cork" and "phone stream".
 Comment this. Restart PulseAudio/your PC.&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;### Cork music/video streams when a phone stream is active&lt;/span&gt;
 &lt;span style="color: #60a0b0; font-style: italic"&gt;#load-module module-role-cork&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="pulseaudio"></category><category term="skype"></category></entry><entry><title>Quickie: restart Xorg with systemd</title><link href="http://peerwire.de/quickie-restart-xorg-with-systemd.html" rel="alternate"></link><updated>2013-09-12T12:31:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-09-12:quickie-restart-xorg-with-systemd.html</id><summary type="html">&lt;p&gt;As I am using KDE-Plasma on fglrx, I can only run my Xorg-session for
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="pulseaudio"></category><category term="skype"></category></entry><entry><title>Quickie: restart Xorg with systemd</title><link href="https://sulami.github.io/quickie-restart-xorg-with-systemd.html" rel="alternate"></link><updated>2013-09-12T12:31:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-09-12:quickie-restart-xorg-with-systemd.html</id><summary type="html">&lt;p&gt;As I am using KDE-Plasma on fglrx, I can only run my Xorg-session for
 about two days before running into the unholy "Maximum number of clients
 reached"-error.&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;xlsclients &lt;span style="color: #666666"&gt;|&lt;/span&gt; wc &lt;span style="color: #666666"&gt;-&lt;/span&gt;l
@@ -966,7 +974,7 @@ systemctl isolate graphical.target
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This is comparable to &lt;em&gt;init 3&lt;/em&gt; and &lt;em&gt;init 5&lt;/em&gt;, but using systemd-targets.&lt;/p&gt;</summary><category term="quickie"></category><category term="systemd"></category><category term="xorg"></category></entry><entry><title>Listen to Pandora from your favourite shell</title><link href="http://peerwire.de/listen-to-pandora-from-your-favourite-shell.html" rel="alternate"></link><updated>2013-09-06T15:06:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</id><summary type="html">&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
+&lt;p&gt;This is comparable to &lt;em&gt;init 3&lt;/em&gt; and &lt;em&gt;init 5&lt;/em&gt;, but using systemd-targets.&lt;/p&gt;</summary><category term="quickie"></category><category term="systemd"></category><category term="xorg"></category></entry><entry><title>Listen to Pandora from your favourite shell</title><link href="https://sulami.github.io/listen-to-pandora-from-your-favourite-shell.html" rel="alternate"></link><updated>2013-09-06T15:06:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</id><summary type="html">&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
 with Linux. I love listening to music while coding. While I used to
 listen to webradios, there are not really enough webradios for all my
 musical needs. The big downside is, it needs to run in a graphical
@@ -986,14 +994,14 @@ control_proxy &lt;span style="color: #666666"&gt;=&lt;/span&gt; http&lt;span sty
 encrypted file, because you should never leave unencrypted passwords on
 your computer. Control_proxy is for people outside of the US (like me),
 it only uses the proxy for control mechanisms, the music itself gets
-streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary><category term="cli"></category><category term="onlineradio"></category><category term="pandora"></category></entry><entry><title>Quickie: fix vim in Cygwin</title><link href="http://peerwire.de/quickie-fix-vim-in-cygwin.html" rel="alternate"></link><updated>2013-08-12T13:51:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-08-12:quickie-fix-vim-in-cygwin.html</id><summary type="html">&lt;p&gt;So I was using Windows for some time, and the Windows-port of vim is not
+streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary><category term="cli"></category><category term="onlineradio"></category><category term="pandora"></category></entry><entry><title>Quickie: fix vim in Cygwin</title><link href="https://sulami.github.io/quickie-fix-vim-in-cygwin.html" rel="alternate"></link><updated>2013-08-12T13:51:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-08-12:quickie-fix-vim-in-cygwin.html</id><summary type="html">&lt;p&gt;So I was using Windows for some time, and the Windows-port of vim is not
 as good, so I use Cygwin instead. By default, it looks and behaves like
 vi, but even stranger. The fix is simple:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;cp &lt;span style="color: #666666"&gt;/&lt;/span&gt;usr&lt;span style="color: #666666"&gt;/&lt;/span&gt;share&lt;span style="color: #666666"&gt;/&lt;/span&gt;vim&lt;span style="color: #666666"&gt;/&lt;/span&gt;vim73&lt;span style="color: #666666"&gt;/&lt;/span&gt;vimrc_example.vim &lt;span style="color: #666666"&gt;~/&lt;/span&gt;.vimrc
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Be sure to merge possible own contents of your .vimrc.&lt;/p&gt;</summary><category term="quickie"></category><category term="cli"></category><category term="cygwin"></category><category term="vim"></category></entry><entry><title>Quickie: Using KDE-apps on Windows</title><link href="http://peerwire.de/quickie-using-kde-apps-on-windows.html" rel="alternate"></link><updated>2013-07-30T14:54:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-30:quickie-using-kde-apps-on-windows.html</id><summary type="html">&lt;p&gt;Well, yes, I occasionally  boot on Windows (8 Pro at the moment, but
+&lt;p&gt;Be sure to merge possible own contents of your .vimrc.&lt;/p&gt;</summary><category term="quickie"></category><category term="cli"></category><category term="cygwin"></category><category term="vim"></category></entry><entry><title>Quickie: Using KDE-apps on Windows</title><link href="https://sulami.github.io/quickie-using-kde-apps-on-windows.html" rel="alternate"></link><updated>2013-07-30T14:54:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-30:quickie-using-kde-apps-on-windows.html</id><summary type="html">&lt;p&gt;Well, yes, I occasionally  boot on Windows (8 Pro at the moment, but
 generally I prefer 7) to get some stuff done I cannot do on Linux,
 although I cannot really code on Windows, so I miss out there, too. One
 thing I like are cross-platform apps, such as Firefox, which I can use
@@ -1005,7 +1013,7 @@ instead of the Windows 8 shell, which has not worked out yet, I can use
 it to run standard KDE-apps such as konqueror, dolphin or amarok on
 Windows. They use the proper Qt-theme and work surprisingly well. The
 documentation is pretty bad, but installing should still be easy enough.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="amarok" src="/images/amarok-1024x609.png" /&gt;&lt;/p&gt;</summary><category term="quickie"></category><category term="kde"></category></entry><entry><title>Update several dynamic domains at once</title><link href="http://peerwire.de/update-several-dynamic-domains-at-once.html" rel="alternate"></link><updated>2013-07-24T14:05:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-24:update-several-dynamic-domains-at-once.html</id><summary type="html">&lt;p&gt;As you might have noticed, I am hosting this blog and several other
+&lt;p&gt;&lt;img alt="amarok" src="/images/amarok-1024x609.png" /&gt;&lt;/p&gt;</summary><category term="quickie"></category><category term="kde"></category></entry><entry><title>Update several dynamic domains at once</title><link href="https://sulami.github.io/update-several-dynamic-domains-at-once.html" rel="alternate"></link><updated>2013-07-24T14:05:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-24:update-several-dynamic-domains-at-once.html</id><summary type="html">&lt;p&gt;As you might have noticed, I am hosting this blog and several other
 websites on my own, and because I do not have a static IP (yet), I need
 to use dynamic domains, which are updates every time I get a IP. Using
 one of these domains is rather easy, but when it comes to updating
@@ -1015,7 +1023,7 @@ updates and forwards them to your DynDNS-providers. Now, if you want to
 update it, this is the custom update-url to use:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;http://updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com&amp;amp;myip=\&amp;lt;ipaddr&gt;&amp;amp;wildcard=NOCHG&amp;amp;mx=NOCHG&amp;amp;backmx=NOCHG&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;As a hostname to update, I use &lt;em&gt;localhost&lt;/em&gt;, which simply updates
-everything.&lt;/p&gt;</summary><category term="dnsomatic"></category><category term="dyndns"></category><category term="homeserver"></category></entry><entry><title>Quickie: Map Wacom graphics-tablet to one screen only</title><link href="http://peerwire.de/quickie-map-wacom-graphics-tablet-to-one-screen-only.html" rel="alternate"></link><updated>2013-07-16T13:01:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-16:quickie-map-wacom-graphics-tablet-to-one-screen-only.html</id><summary type="html">&lt;p&gt;I just dug out my Wacom Bamboo Pen, a simple cheap graphics-tablet I
+everything.&lt;/p&gt;</summary><category term="dnsomatic"></category><category term="dyndns"></category><category term="homeserver"></category></entry><entry><title>Quickie: Map Wacom graphics-tablet to one screen only</title><link href="https://sulami.github.io/quickie-map-wacom-graphics-tablet-to-one-screen-only.html" rel="alternate"></link><updated>2013-07-16T13:01:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-16:quickie-map-wacom-graphics-tablet-to-one-screen-only.html</id><summary type="html">&lt;p&gt;I just dug out my Wacom Bamboo Pen, a simple cheap graphics-tablet I
 bought on sale some time ago and plugged it into my openSUSE workstation
 to do some graphical work. Awesome as openSUSE is, it automatically
 detects it and everything works out of the box, thanks to preinstalled
@@ -1075,7 +1083,7 @@ Wacom Bamboo Pen Finger pad             id: &lt;span style="color: #40a070"&gt;1
 Wacom Bamboo Pen Pen stylus             id: &lt;span style="color: #40a070"&gt;14&lt;/span&gt;  type: STYLUS    
 Wacom Bamboo Pen Pen eraser             id: &lt;span style="color: #40a070"&gt;15&lt;/span&gt;  type: ERASER
 &lt;span style="color: #60a0b0; font-style: italic"&gt;% xsetwacom --set &amp;quot;Wacom Bamboo Pen Pen stylus&amp;quot; MapToOutput DPF10&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="gimp"></category><category term="wacom"></category></entry><entry><title>Install Firefox Aurora on openSUSE (or most other Linux distros)</title><link href="http://peerwire.de/install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html" rel="alternate"></link><updated>2013-07-11T23:50:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-11:install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html</id><summary type="html">&lt;p&gt;When it comes to software, I like to have the new stuff. Like Firefox
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="gimp"></category><category term="wacom"></category></entry><entry><title>Install Firefox Aurora on openSUSE (or most other Linux distros)</title><link href="https://sulami.github.io/install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html" rel="alternate"></link><updated>2013-07-11T23:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-11:install-firefox-aurora-on-opensuse-or-most-other-linux-distros.html</id><summary type="html">&lt;p&gt;When it comes to software, I like to have the new stuff. Like Firefox
 Aurora, the pre-beta version of our favourite webbrowser. There are two
 main problems with getting Aurora to run on openSUSE: first, you have to
 get the right version somewhere, which is harder than it might sound,
@@ -1098,7 +1106,7 @@ random):&lt;/p&gt;
 &lt;p&gt;Symlinking will automatically update them when your package manager does
 so, which is crucial for your security. When you are done, it looks
 something like this (I use vimperator, which changes the UI a bit):&lt;/p&gt;
-&lt;p&gt;&lt;img alt="aurora" src="/images/aurora-1024x752.png" /&gt;&lt;/p&gt;</summary><category term="aurora"></category><category term="firefox"></category><category term="flash"></category></entry><entry><title>Quickie: fighting with fglrx</title><link href="http://peerwire.de/quickie-fighting-with-fglrx.html" rel="alternate"></link><updated>2013-07-09T22:12:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-09:quickie-fighting-with-fglrx.html</id><summary type="html">&lt;p&gt;I started playing games again, so I switched from radeon to fglrx, which
+&lt;p&gt;&lt;img alt="aurora" src="/images/aurora-1024x752.png" /&gt;&lt;/p&gt;</summary><category term="aurora"></category><category term="firefox"></category><category term="flash"></category></entry><entry><title>Quickie: fighting with fglrx</title><link href="https://sulami.github.io/quickie-fighting-with-fglrx.html" rel="alternate"></link><updated>2013-07-09T22:12:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-09:quickie-fighting-with-fglrx.html</id><summary type="html">&lt;p&gt;I started playing games again, so I switched from radeon to fglrx, which
 promptly broke my X11. In case you get stuck at "Reached target
 graphical interface", switch to a different tty (alt+F1) and login. Then
 look at the Xorg-logs at &lt;em&gt;/var/log/Xorg.0.log&lt;/em&gt;, which might say
@@ -1111,7 +1119,7 @@ something like&lt;/p&gt;
 &lt;p&gt;This means in your &lt;em&gt;/etc/X11/xorg.conf&lt;/em&gt; is no section for your
 videocard, which is not to big of a problem. Log into root or use sudo
 to run lspci and then edit xorg.conf and switch the PCI-bus-number to
-the one your card is using. Reboot.&lt;/p&gt;</summary><category term="quickie"></category><category term="fglrx"></category><category term="videocard"></category><category term="xorg"></category></entry><entry><title>Install Cyanogenmod from Linux</title><link href="http://peerwire.de/install-cyanogenmod-from-linux.html" rel="alternate"></link><updated>2013-07-01T16:56:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-07-01:install-cyanogenmod-from-linux.html</id><summary type="html">&lt;p&gt;This is what I did today, I installed CM10 on my Sony Xperia Pro, which
+the one your card is using. Reboot.&lt;/p&gt;</summary><category term="quickie"></category><category term="fglrx"></category><category term="videocard"></category><category term="xorg"></category></entry><entry><title>Install Cyanogenmod from Linux</title><link href="https://sulami.github.io/install-cyanogenmod-from-linux.html" rel="alternate"></link><updated>2013-07-01T16:56:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-07-01:install-cyanogenmod-from-linux.html</id><summary type="html">&lt;p&gt;This is what I did today, I installed CM10 on my Sony Xperia Pro, which
 was running CM7 before. There are a lot of guides around the net about
 how to do this, but understandably most of them are written for Windows.
 On openSUSE, flashing your rom is probably even easier than on Windows,
@@ -1143,20 +1151,20 @@ finished. total time&lt;span style="color: #666666"&gt;:&lt;/span&gt; &lt;span s
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The rest should be like in all other guides, pretty simple.&lt;/p&gt;</summary><category term="cyanogenmod"></category><category term="phone"></category></entry><entry><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link href="http://peerwire.de/chromium-crashes-on-gmail-and-other-html5-sites.html" rel="alternate"></link><updated>2013-06-28T12:16:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</id><summary type="html">&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
+&lt;p&gt;The rest should be like in all other guides, pretty simple.&lt;/p&gt;</summary><category term="cyanogenmod"></category><category term="phone"></category></entry><entry><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link href="https://sulami.github.io/chromium-crashes-on-gmail-and-other-html5-sites.html" rel="alternate"></link><updated>2013-06-28T12:16:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</id><summary type="html">&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
 other browser: it cannot handle HTML5. At all. Fixing Gmail is quite
 easy, use any other browser, log into Gmail, go to Settings, Chat and
 click disable chat. Google+ for example is unfixable because you cannot
 disable the chat entirely. For fixes on everything else, I have not
 found a solution yet, besides using a secondary browser (Firefox with
-vimperator is really nice).&lt;/p&gt;</summary><category term="chrome"></category><category term="chromium"></category><category term="firefox"></category><category term="html5"></category></entry><entry><title>Quickie: auto-update openSUSE machines</title><link href="http://peerwire.de/quickie-auto-update-opensuse-machines.html" rel="alternate"></link><updated>2013-06-24T10:36:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-24:quickie-auto-update-opensuse-machines.html</id><summary type="html">&lt;p&gt;OpenSUSE comes with a predefined cronjob for automatic updating, which
+vimperator is really nice).&lt;/p&gt;</summary><category term="chrome"></category><category term="chromium"></category><category term="firefox"></category><category term="html5"></category></entry><entry><title>Quickie: auto-update openSUSE machines</title><link href="https://sulami.github.io/quickie-auto-update-opensuse-machines.html" rel="alternate"></link><updated>2013-06-24T10:36:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-24:quickie-auto-update-opensuse-machines.html</id><summary type="html">&lt;p&gt;OpenSUSE comes with a predefined cronjob for automatic updating, which
 is great, but it is somewhat hidden, which is not that great. Anyway,
 here you go:&lt;/p&gt;
 &lt;p&gt;Open YaST, select the /etc/sysconfig editor and go here:&lt;/p&gt;
 &lt;p&gt;[![yast][]][yast]&lt;/p&gt;
 &lt;p&gt;There are a small set of settings regarding sending logs to a specified
 email address, but everything should be pretty self-explanatory.&lt;/p&gt;
-&lt;p&gt;[yast]: /images/yast.png&lt;/p&gt;</summary><category term="quickie"></category><category term="updates"></category><category term="yast"></category></entry><entry><title>Prism: What to do</title><link href="http://peerwire.de/prism-what-to-do.html" rel="alternate"></link><updated>2013-06-18T22:41:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-18:prism-what-to-do.html</id><summary type="html">&lt;p&gt;While following the recent international events, I (and probably
+&lt;p&gt;[yast]: /images/yast.png&lt;/p&gt;</summary><category term="quickie"></category><category term="updates"></category><category term="yast"></category></entry><entry><title>Prism: What to do</title><link href="https://sulami.github.io/prism-what-to-do.html" rel="alternate"></link><updated>2013-06-18T22:41:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-18:prism-what-to-do.html</id><summary type="html">&lt;p&gt;While following the recent international events, I (and probably
 everyone else) heard about the NSA and Prism. Now I always distrusted
 big companies, especially the ones from the US, because I know money and
 power are everything over there. If they want to spy on you, they can.
@@ -1200,7 +1208,7 @@ social network misses the point.&lt;/p&gt;
 using Tor permanently, only use end-to-end encrypted websites and
 disable all scripts and plugins, then use custom DNS-servers and stuff
 like this, but chances are, someone will see where you are browsing,
-like the guy standing behind you.&lt;/p&gt;</summary><category term="prism"></category><category term="privacy"></category><category term="security"></category></entry><entry><title>Yakuake: handy konsole</title><link href="http://peerwire.de/yakuake-handy-konsole.html" rel="alternate"></link><updated>2013-06-16T15:28:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-16:yakuake-handy-konsole.html</id><summary type="html">&lt;p&gt;Who knows me somewhat knows that on my screens are always terminals. I
+like the guy standing behind you.&lt;/p&gt;</summary><category term="prism"></category><category term="privacy"></category><category term="security"></category></entry><entry><title>Yakuake: handy konsole</title><link href="https://sulami.github.io/yakuake-handy-konsole.html" rel="alternate"></link><updated>2013-06-16T15:28:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-16:yakuake-handy-konsole.html</id><summary type="html">&lt;p&gt;Who knows me somewhat knows that on my screens are always terminals. I
 use the terminals a lot and prefer them for most tasks over graphical
 solutions. But now, that I do not use a tiling window manager anymore
 (well, most of the time), keeping track of all those windows has become
@@ -1211,7 +1219,7 @@ always ready when needed. After getting used to it, it feels a lot
 better than a bunch of regular Konsole sessions.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="yakuake" src="/images/yakuake.png" /&gt;&lt;/p&gt;
 &lt;p&gt;As you can see, it is tabbed (including mousewheel-switching), and is
-basically a modified Konsole window, even uses the same profiles.&lt;/p&gt;</summary><category term="cli"></category><category term="kde"></category><category term="yakuake"></category></entry><entry><title>Quckie: open Skype links in right browser</title><link href="http://peerwire.de/quckie-open-skype-links-in-right-browser.html" rel="alternate"></link><updated>2013-06-12T14:34:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-12:quckie-open-skype-links-in-right-browser.html</id><summary type="html">&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
+basically a modified Konsole window, even uses the same profiles.&lt;/p&gt;</summary><category term="cli"></category><category term="kde"></category><category term="yakuake"></category></entry><entry><title>Quckie: open Skype links in right browser</title><link href="https://sulami.github.io/quckie-open-skype-links-in-right-browser.html" rel="alternate"></link><updated>2013-06-12T14:34:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-12:quckie-open-skype-links-in-right-browser.html</id><summary type="html">&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
 the 11.7 Flash plugin. The downside was that I could not open links in
 Skype conversations by clicking them, as they would just open in
 Firefox, even though Chrome is my default browser. The solution on my
@@ -1219,7 +1227,7 @@ openSUSE box was quite simple:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings get &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser
 firefox
 &lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings set &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser google&lt;span style="color: #666666"&gt;-&lt;/span&gt;chrome.desktop
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="chrome"></category><category term="firefox"></category><category term="skype"></category><category term="xdg"></category></entry><entry><title>Quickie: use Python 3 features in Python 2</title><link href="http://peerwire.de/quickie-use-python-3-features-in-python-2.html" rel="alternate"></link><updated>2013-06-11T11:50:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-11:quickie-use-python-3-features-in-python-2.html</id><summary type="html">&lt;p&gt;I am currently writing on a Python-based program for servers, and being
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="quickie"></category><category term="chrome"></category><category term="firefox"></category><category term="skype"></category><category term="xdg"></category></entry><entry><title>Quickie: use Python 3 features in Python 2</title><link href="https://sulami.github.io/quickie-use-python-3-features-in-python-2.html" rel="alternate"></link><updated>2013-06-11T11:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-11:quickie-use-python-3-features-in-python-2.html</id><summary type="html">&lt;p&gt;I am currently writing on a Python-based program for servers, and being
 servers they usually only bring Python 2.7 or 2.6. But I like the
 improved Python 3 so much, that I import parts of it to Python 2:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td&gt;&lt;div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"&gt;&lt;pre style="line-height: 125%"&gt;1
@@ -1232,7 +1240,7 @@ improved Python 3 so much, that I import parts of it to Python 2:&lt;/p&gt;
 
 &lt;span style="color: #007020; font-weight: bold"&gt;print&lt;/span&gt;(&lt;span style="color: #4070a0"&gt;&amp;quot;It works!&amp;quot;&lt;/span&gt;)
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="quickie"></category><category term="python"></category></entry><entry><title>Linux-powered alarm clock without a RasPi</title><link href="http://peerwire.de/linux-powered-alarm-clock-without-a-raspi.html" rel="alternate"></link><updated>2013-06-11T11:39:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-11:linux-powered-alarm-clock-without-a-raspi.html</id><summary type="html">&lt;p&gt;My method of using the Raspberry Pi as alarm clock with mplayer-cronjobs
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><category term="quickie"></category><category term="python"></category></entry><entry><title>Linux-powered alarm clock without a RasPi</title><link href="https://sulami.github.io/linux-powered-alarm-clock-without-a-raspi.html" rel="alternate"></link><updated>2013-06-11T11:39:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-11:linux-powered-alarm-clock-without-a-raspi.html</id><summary type="html">&lt;p&gt;My method of using the Raspberry Pi as alarm clock with mplayer-cronjobs
 is also usable on regular desktop machines. To overcome the wasted power
 and noise while sleeping, the computer is going to sleep as well,
 suspending to either ram, disk or both. Then you can use &lt;em&gt;rtcwake&lt;/em&gt; to
@@ -1248,9 +1256,9 @@ it down later, before going to sleep. It is also told that the hardware
 clock is using local time (&lt;em&gt;-l&lt;/em&gt;) and not UTC (&lt;em&gt;-u&lt;/em&gt;) and is given a
 unix-timestamp by &lt;em&gt;date as&lt;/em&gt; the alarm time. For optimal results, have
 your PC wake up a minute before you, so the cronjob does not get cut
-off.&lt;/p&gt;</summary><category term="cron"></category><category term="mplayer"></category><category term="onlineradio"></category><category term="rtcwake"></category></entry><entry><title>Why you should not leave port 22 open if possible</title><link href="http://peerwire.de/why-you-should-not-leave-port-22-open-if-possible.html" rel="alternate"></link><updated>2013-06-10T14:02:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-10:why-you-should-not-leave-port-22-open-if-possible.html</id><summary type="html">&lt;p&gt;&lt;a href="/images/ssh.png"&gt;&lt;img alt="ssh" src="/images/ssh.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+off.&lt;/p&gt;</summary><category term="cron"></category><category term="mplayer"></category><category term="onlineradio"></category><category term="rtcwake"></category></entry><entry><title>Why you should not leave port 22 open if possible</title><link href="https://sulami.github.io/why-you-should-not-leave-port-22-open-if-possible.html" rel="alternate"></link><updated>2013-06-10T14:02:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-10:why-you-should-not-leave-port-22-open-if-possible.html</id><summary type="html">&lt;p&gt;&lt;a href="/images/ssh.png"&gt;&lt;img alt="ssh" src="/images/ssh.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Also, if your machine/network is worth anything, do not use port 22 for
-ssh, use some random port instead.&lt;/p&gt;</summary><category term="security"></category><category term="ssh"></category></entry><entry><title>Raspberry Pi: an introduction to GPIO</title><link href="http://peerwire.de/raspberry-pi-an-introduction-to-gpio.html" rel="alternate"></link><updated>2013-06-09T13:53:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</id><summary type="html">&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
+ssh, use some random port instead.&lt;/p&gt;</summary><category term="security"></category><category term="ssh"></category></entry><entry><title>Raspberry Pi: an introduction to GPIO</title><link href="https://sulami.github.io/raspberry-pi-an-introduction-to-gpio.html" rel="alternate"></link><updated>2013-06-09T13:53:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-09:raspberry-pi-an-introduction-to-gpio.html</id><summary type="html">&lt;p&gt;So you can do a lot of cool things with RasPis which are based on the
 small size and power consumption of the device, but this small computer
 has another advantage, a set of built-in GPIO pins. Those can be used
 for simple control tasks using switches, leds, speakers and similar
@@ -1264,7 +1272,7 @@ There are some more explanatory examples for Python &lt;a href="https://code.goo
 from old computer cases, or buy them new from shops like Conrad or even
 Amazon. On warning: the GPIO pins only run on 3.3V, 5V will fry your Pi,
 but there is 5V permanent power if needed. Everything bigger than some
-small control elements should be running on an external power supply.&lt;/p&gt;</summary><category term="gpio"></category><category term="python"></category><category term="raspberrypi"></category></entry><entry><title>Raspberry Pi: Radio-Alarm</title><link href="http://peerwire.de/raspberry-pi-radio-alarm.html" rel="alternate"></link><updated>2013-06-07T12:46:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-07:raspberry-pi-radio-alarm.html</id><summary type="html">&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
+small control elements should be running on an external power supply.&lt;/p&gt;</summary><category term="gpio"></category><category term="python"></category><category term="raspberrypi"></category></entry><entry><title>Raspberry Pi: Radio-Alarm</title><link href="https://sulami.github.io/raspberry-pi-radio-alarm.html" rel="alternate"></link><updated>2013-06-07T12:46:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</id><summary type="html">&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
 long, which results in high power consumption and noise. While netbooks
 can counter this to a certain degree, the Raspberry Pi is the optimal
@@ -1330,14 +1338,14 @@ won't play and istead send you something like "connection by pulse
 refused" per system-mail. Save the file to install the cronjob.&lt;/p&gt;
 &lt;p&gt;When waking up, you need to kill mplayer, as it is running in the
 background. The easiest way of doing so is via "&lt;em&gt;killall mplayer&lt;/em&gt;",
-which is not the finest way of doing things but should do the job.&lt;/p&gt;</summary><category term="cron"></category><category term="mplayer"></category><category term="onlineradio"></category><category term="raspberrypi"></category></entry><entry><title>Quickie: surround sound in KDE/PulseAudio</title><link href="http://peerwire.de/quickie-surround-sound-in-kdepulseaudio.html" rel="alternate"></link><updated>2013-06-05T15:47:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-05:quickie-surround-sound-in-kdepulseaudio.html</id><summary type="html">&lt;p&gt;When using a surround sound setup like I do, you might want to use the
+which is not the finest way of doing things but should do the job.&lt;/p&gt;</summary><category term="cron"></category><category term="mplayer"></category><category term="onlineradio"></category><category term="raspberrypi"></category></entry><entry><title>Quickie: surround sound in KDE/PulseAudio</title><link href="https://sulami.github.io/quickie-surround-sound-in-kdepulseaudio.html" rel="alternate"></link><updated>2013-06-05T15:47:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-05:quickie-surround-sound-in-kdepulseaudio.html</id><summary type="html">&lt;p&gt;When using a surround sound setup like I do, you might want to use the
 right settings for optimal results. On openSUSE, using KDE and
 PulseAudio, there is a simple trick to make it actually work, otherwise
 you won't get any sound output after switching to surround sound. First,
 switch to surround sound on your desired output device in phonon. Then
 you have to set the newly created output to default (on top) like this
 in all lists:&lt;/p&gt;
-&lt;p&gt;&lt;a href="/images/sound.png"&gt;&lt;img alt="sound" src="/images/sound.png" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="quickie"></category><category term="kde"></category><category term="pulseaudio"></category></entry><entry><title>Google Drive vs Dropbox - my view</title><link href="http://peerwire.de/google-drive-vs-dropbox-my-view.html" rel="alternate"></link><updated>2013-06-04T15:48:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-06-04:google-drive-vs-dropbox-my-view.html</id><summary type="html">&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
+&lt;p&gt;&lt;a href="/images/sound.png"&gt;&lt;img alt="sound" src="/images/sound.png" /&gt;&lt;/a&gt;&lt;/p&gt;</summary><category term="quickie"></category><category term="kde"></category><category term="pulseaudio"></category></entry><entry><title>Google Drive vs Dropbox - my view</title><link href="https://sulami.github.io/google-drive-vs-dropbox-my-view.html" rel="alternate"></link><updated>2013-06-04T15:48:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-06-04:google-drive-vs-dropbox-my-view.html</id><summary type="html">&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
 track of it when reinstalling and just stopped using it. Some time
 later, I wanted to sync some stuff up between my multiple OS's, PC's and
 my phone, and being the Google-fanboy I was I used Google Drive. When I
@@ -1365,7 +1373,7 @@ I rediscovered Dropbox. Now in short, pros and cons of each.&lt;/p&gt;
 cron every few minutes, Dropbox works just like on Windows and syncs on
 changes. Because of the better client I tend to prefer Dropbox over
 Google Drive, when Google comes up with a proper client for Linux, this
-is likely to change.&lt;/p&gt;</summary><category term="dropbox"></category><category term="google drive"></category></entry><entry><title>Synchronizing Bookmarks and more across different browsers</title><link href="http://peerwire.de/synchronizing-bookmarks-and-more-across-different-browsers.html" rel="alternate"></link><updated>2013-05-31T17:30:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</id><summary type="html">&lt;p&gt;I prefer different browsers depending on which platform I am. On
+is likely to change.&lt;/p&gt;</summary><category term="dropbox"></category><category term="google drive"></category></entry><entry><title>Synchronizing Bookmarks and more across different browsers</title><link href="https://sulami.github.io/synchronizing-bookmarks-and-more-across-different-browsers.html" rel="alternate"></link><updated>2013-05-31T17:30:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</id><summary type="html">&lt;p&gt;I prefer different browsers depending on which platform I am. On
 Windows, nothing really beats Firefox, but on Linux, I prefer Chrome
 because it is significantly faster and uses a newer Flash version. But
 also important for me are the dozens of bookmarks, which have get
@@ -1373,7 +1381,7 @@ synchronized automatically, which I realize with &lt;a href="http://www.xmarks.c
 provides browser addons for the popular browsers and can sync your
 bookmarks, history, passwords and even your currently opened pages. I
 have used it for some years now and am completely satisfied, so if you
-could need it, give it a try.&lt;/p&gt;</summary><category term="chrome"></category><category term="firefox"></category><category term="xmarks"></category></entry><entry><title>Running Flash on old CPUs</title><link href="http://peerwire.de/running-flash-on-old-cpus.html" rel="alternate"></link><updated>2013-05-29T11:26:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-29:running-flash-on-old-cpus.html</id><summary type="html">&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
+could need it, give it a try.&lt;/p&gt;</summary><category term="chrome"></category><category term="firefox"></category><category term="xmarks"></category></entry><entry><title>Running Flash on old CPUs</title><link href="https://sulami.github.io/running-flash-on-old-cpus.html" rel="alternate"></link><updated>2013-05-29T11:26:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-29:running-flash-on-old-cpus.html</id><summary type="html">&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
 about 10-12 years old. As Windows XP won't run anymore, I convinced him
 to let me setup some similar Linux distro. I went for openSUSE 12.3 with
 KDE, disabled compositing and it runs surprisingly smooth. Now he needed
@@ -1390,7 +1398,7 @@ threw the following error when started from a terminal:&lt;/p&gt;
 versions of flash. My workaround is getting an old Flash package and
 replace &lt;em&gt;/usr/lib/flash-plugin/libflashplayer.so &lt;/em&gt;with &lt;a href="/download/libflashplayer.so" title="libflashplayer.so"&gt;the old
 version&lt;/a&gt;. Aside from obvious security problems this runs well and
-should do in most cases.&lt;/p&gt;</summary><category term="flash"></category></entry><entry><title>RasPi: security camera</title><link href="http://peerwire.de/raspi-security-camera.html" rel="alternate"></link><updated>2013-05-24T09:56:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-24:raspi-security-camera.html</id><summary type="html">&lt;p&gt;Today I dug out my 2011 Raspberry Pi Model B (the first edition with
+should do in most cases.&lt;/p&gt;</summary><category term="flash"></category></entry><entry><title>RasPi: security camera</title><link href="https://sulami.github.io/raspi-security-camera.html" rel="alternate"></link><updated>2013-05-24T09:56:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-24:raspi-security-camera.html</id><summary type="html">&lt;p&gt;Today I dug out my 2011 Raspberry Pi Model B (the first edition with
 256M ram) and reimaged my SD-card. This time I wanted to try out
 &lt;a href="http://www.raspberrypi.org/downloads" title="RasPi"&gt;Raspian&lt;/a&gt;, after only using ArchARM before. WOrked out pretty well, I
 am somewhat lucky because the SSH-server is enabled by default, because
@@ -1415,7 +1423,7 @@ sudo apt&lt;span style="color: #666666"&gt;-&lt;/span&gt;get install vlc
 my hobby project, UDP multicasts are probably better. The destination-IP
 is the internal IP of the Pi. Then I open vlc on my machine and open a
 network stream (ctrl-n), http://192.168.178.44:8080 and voila:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="picam" src="/images/picam-1024x435.png" /&gt;&lt;/p&gt;</summary><category term="raspberrypi"></category><category term="vlc"></category></entry><entry><title>Quickie: Fix Skype sound glitches on 64-bit Linux</title><link href="http://peerwire.de/quickie-fix-skype-sound-glitches-on-64-bit-linux.html" rel="alternate"></link><updated>2013-05-23T09:28:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-23:quickie-fix-skype-sound-glitches-on-64-bit-linux.html</id><summary type="html">&lt;p&gt;After searching for fixed quite a long time, I finally found one that
+&lt;p&gt;&lt;img alt="picam" src="/images/picam-1024x435.png" /&gt;&lt;/p&gt;</summary><category term="raspberrypi"></category><category term="vlc"></category></entry><entry><title>Quickie: Fix Skype sound glitches on 64-bit Linux</title><link href="https://sulami.github.io/quickie-fix-skype-sound-glitches-on-64-bit-linux.html" rel="alternate"></link><updated>2013-05-23T09:28:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-23:quickie-fix-skype-sound-glitches-on-64-bit-linux.html</id><summary type="html">&lt;p&gt;After searching for fixed quite a long time, I finally found one that
 actually fixed the occasional sound glitching in Skype with PulseAudio.
 The solution is simple, open /etc/pulse/default.pa and change&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;load&lt;span style="color: #666666"&gt;-&lt;/span&gt;module module&lt;span style="color: #666666"&gt;-&lt;/span&gt;udev&lt;span style="color: #666666"&gt;-&lt;/span&gt;detect
@@ -1427,7 +1435,7 @@ The solution is simple, open /etc/pulse/default.pa and change&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Just reboot afterwards and everything should be fine.&lt;/p&gt;</summary><category term="quickie"></category><category term="pulseaudio"></category><category term="skype"></category></entry><entry><title>Zsh: the better bash</title><link href="http://peerwire.de/zsh-the-better-bash.html" rel="alternate"></link><updated>2013-05-22T10:07:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-22:zsh-the-better-bash.html</id><summary type="html">&lt;p&gt;When it comes to shell, most people use bash. It is installed and
+&lt;p&gt;Just reboot afterwards and everything should be fine.&lt;/p&gt;</summary><category term="quickie"></category><category term="pulseaudio"></category><category term="skype"></category></entry><entry><title>Zsh: the better bash</title><link href="https://sulami.github.io/zsh-the-better-bash.html" rel="alternate"></link><updated>2013-05-22T10:07:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-22:zsh-the-better-bash.html</id><summary type="html">&lt;p&gt;When it comes to shell, most people use bash. It is installed and
 selected by default on nearly every *nix system and does the job
 reasonably well. But if you are using the shell a lot, like I do, you
 can do better: get zsh, it is in every repository I know of and provides
@@ -1448,7 +1456,7 @@ command/insert-model.&lt;/p&gt;
 &lt;p&gt;Zsh can be enhanced even further by using plugins like
 &lt;a href="https://github.com/zsh-users/zsh-syntax-highlighting" title="GitHub"&gt;syntax-highlighting as you type&lt;/a&gt;. Useful and pretty. I also recommend
 having a look at &lt;a href="https://github.com/robbyrussell/oh-my-zsh" title="GitHub"&gt;oh-my-zsh&lt;/a&gt;, which is a framework for managing
-settings, themes and plugins, if you plan to use a lot of them.&lt;/p&gt;</summary><category term="cli"></category><category term="zsh"></category></entry><entry><title>Efficient Firefox setup</title><link href="http://peerwire.de/efficient-firefox-setup.html" rel="alternate"></link><updated>2013-05-20T19:44:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-20:efficient-firefox-setup.html</id><summary type="html">&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
+settings, themes and plugins, if you plan to use a lot of them.&lt;/p&gt;</summary><category term="cli"></category><category term="zsh"></category></entry><entry><title>Efficient Firefox setup</title><link href="https://sulami.github.io/efficient-firefox-setup.html" rel="alternate"></link><updated>2013-05-20T19:44:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-20:efficient-firefox-setup.html</id><summary type="html">&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
 for me, not only by Addons but also in terms of the general UI. I am
 using a handcrafted layout like this (sorry for the dropdown,
 screenshotting it is quite difficult):&lt;/p&gt;
@@ -1460,7 +1468,7 @@ only half a screen.&lt;/p&gt;
 &lt;p&gt;Now to addons. I use some addons, currently nine active ones and 16 in
 total. Those include Adblock Edge, Disable Ctrl-Q Shortcut, DuckDuckGo
 Plus (yes, DDG is my primary search engine, the bang-commands are
-incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</summary><category term="firefox"></category></entry><entry><title>Even more Twitch: chat via WeeChat/IRC</title><link href="http://peerwire.de/even-more-twitch-chat-via-weechatirc.html" rel="alternate"></link><updated>2013-05-14T19:28:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:even-more-twitch-chat-via-weechatirc.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
+incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</summary><category term="firefox"></category></entry><entry><title>Even more Twitch: chat via WeeChat/IRC</title><link href="https://sulami.github.io/even-more-twitch-chat-via-weechatirc.html" rel="alternate"></link><updated>2013-05-14T19:28:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:even-more-twitch-chat-via-weechatirc.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
 Head over to my &lt;a href="/twitch-irc-the-new-way.html" title="Twitch-IRC – the new way"&gt;updated version&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After explaining how to stream to Twitch, here comes the cool way of
 chatting there, using WeeChat, my personal favourite IRC-client. Again,
@@ -1496,7 +1504,7 @@ will be spammed with join-/leave-messages. To fix this just type&lt;/p&gt;
 
 &lt;p&gt;inside weechat and it filters this spam. Only once required.&lt;/p&gt;
 &lt;p&gt;Users of other IRC-clients like irssi or XChat can copy the url-syntax
-and feed it into the client.&lt;/p&gt;</summary><category term="irc"></category><category term="twitch.tv"></category><category term="weechat"></category></entry><entry><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link href="http://peerwire.de/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html" rel="alternate"></link><updated>2013-05-14T19:25:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</id><summary type="html">&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+and feed it into the client.&lt;/p&gt;</summary><category term="irc"></category><category term="twitch.tv"></category><category term="weechat"></category></entry><entry><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link href="https://sulami.github.io/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html" rel="alternate"></link><updated>2013-05-14T19:25:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</id><summary type="html">&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
 OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
@@ -1532,7 +1540,7 @@ ffmpeg
 and output), aswell as FPS. In lines 13-16 you can change your audio
 devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
 microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
-of CPU cores you want to use to encode.&lt;/p&gt;</summary><category term="alsa"></category><category term="ffmpeg"></category><category term="twitch.tv"></category></entry><entry><title>Learning to type properly</title><link href="http://peerwire.de/learning-to-type-properly.html" rel="alternate"></link><updated>2013-05-14T19:18:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:learning-to-type-properly.html</id><summary type="html">&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
+of CPU cores you want to use to encode.&lt;/p&gt;</summary><category term="alsa"></category><category term="ffmpeg"></category><category term="twitch.tv"></category></entry><entry><title>Learning to type properly</title><link href="https://sulami.github.io/learning-to-type-properly.html" rel="alternate"></link><updated>2013-05-14T19:18:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:learning-to-type-properly.html</id><summary type="html">&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
 programming, typing properly is a mandatory skill, but basically
 everyone benefits from fast typing. Most people developed some kind of
 2-6-finger system, which might work well, but is still suboptimal
@@ -1545,7 +1553,7 @@ settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
 books.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
-every popular languages.&lt;/p&gt;</summary><category term="typing"></category></entry><entry><title>Vim pro-tip: swap caps-lock and escape</title><link href="http://peerwire.de/vim-pro-tip-swap-caps-lock-and-escape.html" rel="alternate"></link><updated>2013-05-14T19:16:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:vim-pro-tip-swap-caps-lock-and-escape.html</id><summary type="html">&lt;p&gt;Whoever uses vim a lot will have witnessed the difficulty to switch out
+every popular languages.&lt;/p&gt;</summary><category term="typing"></category></entry><entry><title>Vim pro-tip: swap caps-lock and escape</title><link href="https://sulami.github.io/vim-pro-tip-swap-caps-lock-and-escape.html" rel="alternate"></link><updated>2013-05-14T19:16:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:vim-pro-tip-swap-caps-lock-and-escape.html</id><summary type="html">&lt;p&gt;Whoever uses vim a lot will have witnessed the difficulty to switch out
 of insert-mode by using escape, mainly because it is far away from
 everything else on your average keyboard. While vim already uses hjkl
 instead of the arrow-keys, escape is a big let down. But we have a nice
@@ -1560,7 +1568,7 @@ add Lock &lt;span style="color: #666666"&gt;=&lt;/span&gt; Caps_Lock
 
 &lt;p&gt;This is a simple script to open with xmodmap (Arch package:
 &lt;a href="https://www.archlinux.org/packages/extra/x86_64/xorg-xmodmap/" title="xmodmap"&gt;xorg-xmodmap&lt;/a&gt;). As it is only session-persistent, add it to .xinitrc
-or equal startup scripts.&lt;/p&gt;</summary><category term="vim"></category></entry><entry><title>How to identify bad drives in your RAID array</title><link href="http://peerwire.de/how-to-identify-bad-drives-in-your-raid-array.html" rel="alternate"></link><updated>2013-05-14T19:13:00+02:00</updated><author><name>sulami</name></author><id>tag:peerwire.de,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</id><summary type="html">&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
+or equal startup scripts.&lt;/p&gt;</summary><category term="vim"></category></entry><entry><title>How to identify bad drives in your RAID array</title><link href="https://sulami.github.io/how-to-identify-bad-drives-in-your-raid-array.html" rel="alternate"></link><updated>2013-05-14T19:13:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2013-05-14:how-to-identify-bad-drives-in-your-raid-array.html</id><summary type="html">&lt;p&gt;If one of the disks in your Linux-driven software-RAID fails, chances
 are there are some/a lot of the same disks involved. Especially on
 servers there might be a dozen or even more drives of the same type, one
 just failed and you need to switch it fast because the server is

@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>http://peerwire.de/</link><description></description><atom:link href="http://peerwire.de/feed/web.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 27 Apr 2014 14:45:00 +0200</lastBuildDate><item><title>Say hello to Peerwire</title><link>http://peerwire.de/say-hello-to-peerwire.html</link><description>&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/web.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 27 May 2014 22:00:00 +0200</lastBuildDate><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
+fullscreen, and I have not found a single video not supporting HTML5 in over a
+month, so I would consider Flash-less YouTube a valid option. I also discovered
+that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
+Flash. And given that Adobe basically said "Suck it, Linux, we won't support
+you guys properly, have fun with 11.2 and security fixes", plus the fact that
+flash is draining huge amount of resources and is a possible security risk, I
+asked myself, why do I need it anyway?&lt;/p&gt;
+&lt;p&gt;The answer was somewhat surprising: I don't. Flash has always only been useful
+for videostreaming, flashgames and intrusive ads. I can live without flashgames
+and ads, and with YouTube and Vimeo out of the way the only site left I
+occasionally use Flash on is Twitch.tv.
+&lt;a href="https://github.com/chrippa/livestreamer"&gt;Livestreamer&lt;/a&gt;. Extracts the RTMP
+stream and pipes it to a video player of your choice, like VLC. I have been
+using irssi instead of the obnoxious and slow webchat for quite a while now and
+it seems like I only have to visit the website to figure out who I like is
+streaming.  This enabled me to disable (cough) the Flash plugin alltogether.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 27 May 2014 22:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-05-27:getting-rid-of-flash.html</guid><category>flash</category><category>vlc</category><category>twitchtv</category><category>youtube</category></item><item><title>Say hello to Peerwire</title><link>https://sulami.github.io/say-hello-to-peerwire.html</link><description>&lt;p&gt;Today is the day, my new project, &lt;a href="http://peerwire.org"&gt;Peerwire&lt;/a&gt; hit beta, so
 go check it out. It is a platform which helps people find (open source) projects
 suited for them, based on various factors, and also helps project managers
 distribute tasks among them, so collaborative work is more organized overall.&lt;/p&gt;
 &lt;p&gt;Right now, it is empty aside from my demo-project, which is Peerwire itself,
 which kind of defeats the purpose for coders, but project owners can start right
-away to add their projects, so they can be found easily by coders.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 27 Apr 2014 14:45:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-27:say-hello-to-peerwire.html</guid><category>news</category><category>peerwire</category></item><item><title>Converting to Pelican</title><link>http://peerwire.de/converting-to-pelican.html</link><description>&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
+away to add their projects, so they can be found easily by coders.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 27 Apr 2014 14:45:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-04-27:say-hello-to-peerwire.html</guid><category>news</category><category>peerwire</category></item><item><title>Converting to Pelican</title><link>https://sulami.github.io/converting-to-pelican.html</link><description>&lt;p&gt;I converted Peerwire.de to &lt;a href="http://getpelican.com" title="Pelican"&gt;Pelican&lt;/a&gt;, a Python-powered blog generator, mainly
 because I want to get rid of PHP where I can. Previously, this blog was running
 on selfhosted Wordpress, which is quite powerful, but for my blogging needs
 too complicated and oversized.&lt;/p&gt;
@@ -22,7 +38,7 @@ or even continue developing it, but the concept is just from yesterday. Today,
 we can use full-sized programming languages like Python (Django) and Ruby
 (Rails) to easily develop and maintain complex web-applications with
 centralized, managed configurations. Most of the work gets done by those
-frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Apr 2014 00:40:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-15:converting-to-pelican.html</guid><category>news</category><category>pelican</category><category>python</category></item><item><title>OpenSSL-Bug: Update everything you got, like now!</title><link>http://peerwire.de/openssl-bug-update-everything-you-got-like-now.html</link><description>&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
+frameworks, so you can concentrate on actually developing something new.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Apr 2014 00:40:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-04-15:converting-to-pelican.html</guid><category>news</category><category>pelican</category><category>python</category></item><item><title>OpenSSL-Bug: Update everything you got, like now!</title><link>https://sulami.github.io/openssl-bug-update-everything-you-got-like-now.html</link><description>&lt;p&gt;Some days ago, a critical security bug named "&lt;a href="http://heartbleed.com/" title="Heartbleed.com"&gt;Heartbleed&lt;/a&gt;" was found
 in the OpenSSL libraries, which basically means everything has to get
 patched immediately, especially webservers, databases, SSH-Daemons,
 anything that sort of relies on network communication. If you haven't
@@ -35,7 +51,7 @@ considered unsafe.&lt;/p&gt;
 look like:&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/Screenshot-from-2014-04-09-145514.png"&gt;&lt;img alt="Screenshot from 2014-04-09 14:55:14" src="/images/Screenshot-from-2014-04-09-145514.png" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;(Yes, my bank's certificate is just over a year old. No, I will not
-login before it is replaced)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 09 Apr 2014 07:48:00 +0200</pubDate><guid>tag:peerwire.de,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</guid><category>homeserver</category><category>security</category><category>ssh</category><category>SSL</category><category>updates</category></item><item><title>IRC-client showdown, extreme version</title><link>http://peerwire.de/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
+login before it is replaced)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 09 Apr 2014 07:48:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-04-09:openssl-bug-update-everything-you-got-like-now.html</guid><category>homeserver</category><category>security</category><category>ssh</category><category>SSL</category><category>updates</category></item><item><title>IRC-client showdown, extreme version</title><link>https://sulami.github.io/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is a pain), but
@@ -74,7 +90,7 @@ performance impact, using about 12 MB of RAM, which is more reasonable.
 For comparison though, connecting through netcat uses 644 KB of RAM. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for IRC, netcat is actually sort
-of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 19:17:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>http://peerwire.de/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 19:17:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
 &lt;h2&gt;The current situation&lt;/h2&gt;
 &lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
@@ -190,7 +206,7 @@ on crypto, network messaging, development for specific platforms,
 interface designers, and the list goes on. If you read this and are
 interested in starting such a project, do not hesitate to contact me,
 someone has to make the first step. My public key is on the
-contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 05:40:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>http://peerwire.de/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 05:40:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
 follow those conventions, some because they do not want to, but mostly
 they just do not care. I just want to list some (read: non-exhaustive
@@ -332,7 +348,7 @@ always the first ones.&lt;/p&gt;
 &lt;li&gt;Programming languages: Python (platform independent, modular, nice
     to write and read), C(++) (faster, for performance-critical
     applications)&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 23:59:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>Quickie: force-test virtualhosts</title><link>http://peerwire.de/quickie-force-test-virtualhosts.html</link><description>&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 23:59:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>Quickie: force-test virtualhosts</title><link>https://sulami.github.io/quickie-force-test-virtualhosts.html</link><description>&lt;p&gt;I know, nginx does not have virtualhosts, it has got server blocks, but
 most people will know what I mean. You define a new virtualhost/server
 block and point it to your page. But to test it, you usually need to
 update the DNS-records, and this may take hours, depending on your
@@ -346,7 +362,7 @@ wget &lt;span style="color: #666666"&gt;-&lt;/span&gt;R &lt;span style="color: #
 
 
 &lt;p&gt;This would trick your local webserver into thinking you resolved
-google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 01:22:00 +0100</pubDate><guid>tag:peerwire.de,2014-03-17:quickie-force-test-virtualhosts.html</guid><category>quickie</category><category>apache</category><category>nginx</category><category>wget</category></item><item><title>My favourite Tech-Talks</title><link>http://peerwire.de/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
+google.com to reach it, and therefore returns the appropriate page.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 01:22:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-17:quickie-force-test-virtualhosts.html</guid><category>quickie</category><category>apache</category><category>nginx</category><category>wget</category></item><item><title>My favourite Tech-Talks</title><link>https://sulami.github.io/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
 of talks on YouTube and watching them all would take ages, but I
 sometimes watch talks before going to bed instad of watching TV.  So I
 thought, I could compile a small list of my favourite talks featuring
@@ -372,7 +388,7 @@ started on kernel development&lt;/p&gt;
 &lt;p&gt;There are a lot more good talks, but my time is sort of limited and
 sadly I can't really focus on working while watching talks.&lt;/p&gt;
 &lt;p&gt;[And that's how I lost my eye: exploring emergeny data destruction
-  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 14:49:00 +0100</pubDate><guid>tag:peerwire.de,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category></item><item><title>Twitch-IRC - the new way</title><link>http://peerwire.de/twitch-irc-the-new-way.html</link><description>&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
+  (2012)]: http://youtu.be/1M73USsXHdc "YouTube"&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 14:49:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category></item><item><title>Twitch-IRC - the new way</title><link>https://sulami.github.io/twitch-irc-the-new-way.html</link><description>&lt;p&gt;Some time ago, my twitch-irc-script stopped working, because, as it
 turns out, twitch.tv changed their IRC-settings. The new way is even
 easier, as they no longer use one server per channel but have all
 channels on one server.&lt;/p&gt;
@@ -381,14 +397,14 @@ channels on one server.&lt;/p&gt;
 &lt;p&gt;Password: Go to &lt;a href="http://www.twitchapps.com/tmi/"&gt;http://www.twitchapps.com/tmi/&lt;/a&gt; and get an oauth-token.
 Do this only once, as it will change every time you visit the site. This
 token, including the "oauth:"-part is your server password.&lt;/p&gt;
-&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 14:40:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:twitch-irc-the-new-way.html</guid><category>irc</category><category>twitch.tv</category></item><item><title>Using the right open source licenses</title><link>http://peerwire.de/using-the-right-open-source-licenses.html</link><description>&lt;p&gt;When it comes to programming your own stuff, like many people do, at
+&lt;p&gt;That's it, save it into your irc-client, connect and join your channel.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 14:40:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-10-07:twitch-irc-the-new-way.html</guid><category>irc</category><category>twitch.tv</category></item><item><title>Using the right open source licenses</title><link>https://sulami.github.io/using-the-right-open-source-licenses.html</link><description>&lt;p&gt;When it comes to programming your own stuff, like many people do, at
 some point you might want to thing about licensing. If your code is just
 sitting on GitHub, you probably want to use an open source license, so
 eventually people can contribute easily to your project. But there are
 so many licenses, Apache, BSD, MIT, several GPLs, how is anyone supposed
 to keep track of what they do, and which one should you choose? Easy
 answer: &lt;a href="http://www.tldrlegal.com/" title="TL;DR Legal"&gt;TL;DR Legal&lt;/a&gt;. Just enter your license and it gives you a
-simple overview.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 11:04:00 +0200</pubDate><guid>tag:peerwire.de,2013-10-07:using-the-right-open-source-licenses.html</guid><category>legal</category><category>licensing</category><category>oss</category></item><item><title>Listen to Pandora from your favourite shell</title><link>http://peerwire.de/listen-to-pandora-from-your-favourite-shell.html</link><description>&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
+simple overview.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Oct 2013 11:04:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-10-07:using-the-right-open-source-licenses.html</guid><category>legal</category><category>licensing</category><category>oss</category></item><item><title>Listen to Pandora from your favourite shell</title><link>https://sulami.github.io/listen-to-pandora-from-your-favourite-shell.html</link><description>&lt;p&gt;After I was in holidays for two weeks, here some new tips for your life
 with Linux. I love listening to music while coding. While I used to
 listen to webradios, there are not really enough webradios for all my
 musical needs. The big downside is, it needs to run in a graphical
@@ -408,7 +424,7 @@ control_proxy &lt;span style="color: #666666"&gt;=&lt;/span&gt; http&lt;span sty
 encrypted file, because you should never leave unencrypted passwords on
 your computer. Control_proxy is for people outside of the US (like me),
 it only uses the proxy for control mechanisms, the music itself gets
-streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 06 Sep 2013 15:06:00 +0200</pubDate><guid>tag:peerwire.de,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</guid><category>cli</category><category>onlineradio</category><category>pandora</category></item><item><title>Update several dynamic domains at once</title><link>http://peerwire.de/update-several-dynamic-domains-at-once.html</link><description>&lt;p&gt;As you might have noticed, I am hosting this blog and several other
+streamed directly. You can get HTTP-proxies &lt;a href="http://hidemyass.com/proxy-list/" title="HideMyAss"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 06 Sep 2013 15:06:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-09-06:listen-to-pandora-from-your-favourite-shell.html</guid><category>cli</category><category>onlineradio</category><category>pandora</category></item><item><title>Update several dynamic domains at once</title><link>https://sulami.github.io/update-several-dynamic-domains-at-once.html</link><description>&lt;p&gt;As you might have noticed, I am hosting this blog and several other
 websites on my own, and because I do not have a static IP (yet), I need
 to use dynamic domains, which are updates every time I get a IP. Using
 one of these domains is rather easy, but when it comes to updating
@@ -418,13 +434,13 @@ updates and forwards them to your DynDNS-providers. Now, if you want to
 update it, this is the custom update-url to use:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;http://updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com&amp;amp;myip=\&amp;lt;ipaddr&gt;&amp;amp;wildcard=NOCHG&amp;amp;mx=NOCHG&amp;amp;backmx=NOCHG&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;As a hostname to update, I use &lt;em&gt;localhost&lt;/em&gt;, which simply updates
-everything.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jul 2013 14:05:00 +0200</pubDate><guid>tag:peerwire.de,2013-07-24:update-several-dynamic-domains-at-once.html</guid><category>dnsomatic</category><category>dyndns</category><category>homeserver</category></item><item><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link>http://peerwire.de/chromium-crashes-on-gmail-and-other-html5-sites.html</link><description>&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
+everything.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jul 2013 14:05:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-07-24:update-several-dynamic-domains-at-once.html</guid><category>dnsomatic</category><category>dyndns</category><category>homeserver</category></item><item><title>Chromium crashes on Gmail (and other HTML5-sites)</title><link>https://sulami.github.io/chromium-crashes-on-gmail-and-other-html5-sites.html</link><description>&lt;p&gt;Chromium on Linux has one major flaw right now when comparing it to
 other browser: it cannot handle HTML5. At all. Fixing Gmail is quite
 easy, use any other browser, log into Gmail, go to Settings, Chat and
 click disable chat. Google+ for example is unfixable because you cannot
 disable the chat entirely. For fixes on everything else, I have not
 found a solution yet, besides using a secondary browser (Firefox with
-vimperator is really nice).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 28 Jun 2013 12:16:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</guid><category>chrome</category><category>chromium</category><category>firefox</category><category>html5</category></item><item><title>Prism: What to do</title><link>http://peerwire.de/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+vimperator is really nice).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 28 Jun 2013 12:16:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-28:chromium-crashes-on-gmail-and-other-html5-sites.html</guid><category>chrome</category><category>chromium</category><category>firefox</category><category>html5</category></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
 everyone else) heard about the NSA and Prism. Now I always distrusted
 big companies, especially the ones from the US, because I know money and
 power are everything over there. If they want to spy on you, they can.
@@ -468,7 +484,7 @@ social network misses the point.&lt;/p&gt;
 using Tor permanently, only use end-to-end encrypted websites and
 disable all scripts and plugins, then use custom DNS-servers and stuff
 like this, but chances are, someone will see where you are browsing,
-like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 22:41:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Quckie: open Skype links in right browser</title><link>http://peerwire.de/quckie-open-skype-links-in-right-browser.html</link><description>&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
+like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 22:41:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Quckie: open Skype links in right browser</title><link>https://sulami.github.io/quckie-open-skype-links-in-right-browser.html</link><description>&lt;p&gt;I currently use Google Chrome as my main browser on Linux because I need
 the 11.7 Flash plugin. The downside was that I could not open links in
 Skype conversations by clicking them, as they would just open in
 Firefox, even though Chrome is my default browser. The solution on my
@@ -476,7 +492,7 @@ openSUSE box was quite simple:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings get &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser
 firefox
 &lt;span style="color: #666666"&gt;~&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;%&lt;/span&gt; xdg&lt;span style="color: #666666"&gt;-&lt;/span&gt;settings set &lt;span style="color: #007020; font-weight: bold"&gt;default&lt;/span&gt;&lt;span style="color: #666666"&gt;-&lt;/span&gt;web&lt;span style="color: #666666"&gt;-&lt;/span&gt;browser google&lt;span style="color: #666666"&gt;-&lt;/span&gt;chrome.desktop
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 12 Jun 2013 14:34:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-12:quckie-open-skype-links-in-right-browser.html</guid><category>quickie</category><category>chrome</category><category>firefox</category><category>skype</category><category>xdg</category></item><item><title>Google Drive vs Dropbox - my view</title><link>http://peerwire.de/google-drive-vs-dropbox-my-view.html</link><description>&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 12 Jun 2013 14:34:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-12:quckie-open-skype-links-in-right-browser.html</guid><category>quickie</category><category>chrome</category><category>firefox</category><category>skype</category><category>xdg</category></item><item><title>Google Drive vs Dropbox - my view</title><link>https://sulami.github.io/google-drive-vs-dropbox-my-view.html</link><description>&lt;p&gt;I used to use Dropbox some years ago when it came up but somehow lost
 track of it when reinstalling and just stopped using it. Some time
 later, I wanted to sync some stuff up between my multiple OS's, PC's and
 my phone, and being the Google-fanboy I was I used Google Drive. When I
@@ -504,7 +520,7 @@ I rediscovered Dropbox. Now in short, pros and cons of each.&lt;/p&gt;
 cron every few minutes, Dropbox works just like on Windows and syncs on
 changes. Because of the better client I tend to prefer Dropbox over
 Google Drive, when Google comes up with a proper client for Linux, this
-is likely to change.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 04 Jun 2013 15:48:00 +0200</pubDate><guid>tag:peerwire.de,2013-06-04:google-drive-vs-dropbox-my-view.html</guid><category>dropbox</category><category>google drive</category></item><item><title>Synchronizing Bookmarks and more across different browsers</title><link>http://peerwire.de/synchronizing-bookmarks-and-more-across-different-browsers.html</link><description>&lt;p&gt;I prefer different browsers depending on which platform I am. On
+is likely to change.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 04 Jun 2013 15:48:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-04:google-drive-vs-dropbox-my-view.html</guid><category>dropbox</category><category>google drive</category></item><item><title>Synchronizing Bookmarks and more across different browsers</title><link>https://sulami.github.io/synchronizing-bookmarks-and-more-across-different-browsers.html</link><description>&lt;p&gt;I prefer different browsers depending on which platform I am. On
 Windows, nothing really beats Firefox, but on Linux, I prefer Chrome
 because it is significantly faster and uses a newer Flash version. But
 also important for me are the dozens of bookmarks, which have get
@@ -512,7 +528,7 @@ synchronized automatically, which I realize with &lt;a href="http://www.xmarks.c
 provides browser addons for the popular browsers and can sync your
 bookmarks, history, passwords and even your currently opened pages. I
 have used it for some years now and am completely satisfied, so if you
-could need it, give it a try.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 31 May 2013 17:30:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</guid><category>chrome</category><category>firefox</category><category>xmarks</category></item><item><title>Running Flash on old CPUs</title><link>http://peerwire.de/running-flash-on-old-cpus.html</link><description>&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
+could need it, give it a try.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 31 May 2013 17:30:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-31:synchronizing-bookmarks-and-more-across-different-browsers.html</guid><category>chrome</category><category>firefox</category><category>xmarks</category></item><item><title>Running Flash on old CPUs</title><link>https://sulami.github.io/running-flash-on-old-cpus.html</link><description>&lt;p&gt;I recently had to refurbish an old laptop for my father which is now
 about 10-12 years old. As Windows XP won't run anymore, I convinced him
 to let me setup some similar Linux distro. I went for openSUSE 12.3 with
 KDE, disabled compositing and it runs surprisingly smooth. Now he needed
@@ -529,7 +545,7 @@ threw the following error when started from a terminal:&lt;/p&gt;
 versions of flash. My workaround is getting an old Flash package and
 replace &lt;em&gt;/usr/lib/flash-plugin/libflashplayer.so &lt;/em&gt;with &lt;a href="/download/libflashplayer.so" title="libflashplayer.so"&gt;the old
 version&lt;/a&gt;. Aside from obvious security problems this runs well and
-should do in most cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 29 May 2013 11:26:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-29:running-flash-on-old-cpus.html</guid><category>flash</category></item><item><title>Efficient Firefox setup</title><link>http://peerwire.de/efficient-firefox-setup.html</link><description>&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
+should do in most cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 29 May 2013 11:26:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-29:running-flash-on-old-cpus.html</guid><category>flash</category></item><item><title>Efficient Firefox setup</title><link>https://sulami.github.io/efficient-firefox-setup.html</link><description>&lt;p&gt;I prefer Firefox over Chrome because the customization is a huge deal
 for me, not only by Addons but also in terms of the general UI. I am
 using a handcrafted layout like this (sorry for the dropdown,
 screenshotting it is quite difficult):&lt;/p&gt;
@@ -541,7 +557,7 @@ only half a screen.&lt;/p&gt;
 &lt;p&gt;Now to addons. I use some addons, currently nine active ones and 16 in
 total. Those include Adblock Edge, Disable Ctrl-Q Shortcut, DuckDuckGo
 Plus (yes, DDG is my primary search engine, the bang-commands are
-incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 20 May 2013 19:44:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-20:efficient-firefox-setup.html</guid><category>firefox</category></item><item><title>Even more Twitch: chat via WeeChat/IRC</title><link>http://peerwire.de/even-more-twitch-chat-via-weechatirc.html</link><description>&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
+incredibely useful), Tab Wheel Scroll and Themed Button fo Linux.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 20 May 2013 19:44:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-20:efficient-firefox-setup.html</guid><category>firefox</category></item><item><title>Even more Twitch: chat via WeeChat/IRC</title><link>https://sulami.github.io/even-more-twitch-chat-via-weechatirc.html</link><description>&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This script is broken as the twitch.tv-server has changed.
 Head over to my &lt;a href="/twitch-irc-the-new-way.html" title="Twitch-IRC – the new way"&gt;updated version&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After explaining how to stream to Twitch, here comes the cool way of
 chatting there, using WeeChat, my personal favourite IRC-client. Again,
@@ -577,7 +593,7 @@ will be spammed with join-/leave-messages. To fix this just type&lt;/p&gt;
 
 &lt;p&gt;inside weechat and it filters this spam. Only once required.&lt;/p&gt;
 &lt;p&gt;Users of other IRC-clients like irssi or XChat can copy the url-syntax
-and feed it into the client.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:28:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:even-more-twitch-chat-via-weechatirc.html</guid><category>irc</category><category>twitch.tv</category><category>weechat</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>http://peerwire.de/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+and feed it into the client.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:28:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:even-more-twitch-chat-via-weechatirc.html</guid><category>irc</category><category>twitch.tv</category><category>weechat</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
 OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
@@ -613,7 +629,7 @@ ffmpeg
 and output), aswell as FPS. In lines 13-16 you can change your audio
 devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
 microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
-of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:25:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item><item><title>Learning to type properly</title><link>http://peerwire.de/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
+of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:25:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:streaming-to-twitch-tv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally
 programming, typing properly is a mandatory skill, but basically
 everyone benefits from fast typing. Most people developed some kind of
 2-6-finger system, which might work well, but is still suboptimal
@@ -626,4 +642,4 @@ settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
 books.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
-every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:18:00 +0200</pubDate><guid>tag:peerwire.de,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item></channel></rss>
+every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:18:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item></channel></rss>

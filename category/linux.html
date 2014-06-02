@@ -27,7 +27,41 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/working-on-a-netbook.html">Working on a Netbook</a></h1>
+                    <h1 class="entry-title"><a href="https://sulami.github.io/pipe-madness-finding-kernel-slackers.html">Pipe Madness: Finding Kernel Slackers</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-02T12:55:00">
+                Mo 02 Juni 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a><a href="https://sulami.github.io/tag/cli.html">cli</a><a href="https://sulami.github.io/tag/kernel.html">kernel</a></p>
+</footer><!-- /.post-info --><p>This is going to be a new series in which I showcase to horrible abominations
+of shell pipelines I make up on the fly while working. This one is for finding
+files in the Linux Kernel that produce extraordinary many warnings and errors
+when pushed into checkpatch.pl, the kernel stylecheck script. Here we go:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">find drivers<span style="color: #666666">/</span>staging<span style="color: #666666">/</span> <span style="color: #666666">-</span>iname <span style="color: #4070a0">&quot;\*.c&quot;</span> <span style="color: #666666">|</span> xargs scripts<span style="color: #666666">/</span>checkpatch.pl <span style="color: #666666">--</span>terse <span style="color: #666666">-</span>f <span style="color: #666666">|</span> cut <span style="color: #666666">-</span>d <span style="color: #4070a0">&quot;:&quot;</span> <span style="color: #666666">-</span>f <span style="color: #40a070">1</span> <span style="color: #666666">|</span> uniq <span style="color: #666666">-</span>c <span style="color: #666666">|</span> grep <span style="color: #666666">-</span>v <span style="border: 1px solid #FF0000">&#39;</span>total<span style="border: 1px solid #FF0000">&#39;</span> <span style="color: #666666">|</span> sort <span style="color: #666666">-</span>n
+</pre></div>
+
+
+<p>This one runs on drivers/staging and sorts the worst files last. Also, it only
+checks .c files. Takes some minutes to run on my Haswell Xeon with a SSD and
+plenty of RAM.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://sulami.github.io/working-on-a-netbook.html" rel="bookmark"
+                           title="Permalink to Working on a Netbook">Working on a Netbook</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-05-25T18:30:00">
                 So 25 Mai 2014
@@ -38,29 +72,12 @@
         </address>
 <p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
 <p>tags: <a href="https://sulami.github.io/tag/dwm.html">dwm</a><a href="https://sulami.github.io/tag/netbook.html">netbook</a></p>
-</footer><!-- /.post-info --><p>I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
+</footer><!-- /.post-info -->                <p>I recently installed a fresh Fedora 20 on my trusty old HP Mini 110 netbook, a
 cheap machine with a 1.66 GHz Intel Atom and 1 GB of RAM. I thought a lot about
-which DE/WM to use. On one side, performance is key, and I mostly use it to
-work in a shell, browse the web and read PDFs, so a tiling WM was my first
-choice. I still chose the default Gnome 3 installation, as it provides a lot of
-utility and is a slow but almost always working fallback, plus I get GDM.</p>
-<p>I have used a lot of tiling WMs over the years, mainly i3, bspwm, dwm and
-monsterwm (chronologically). While monsterwm is still my favourite for an
-absolute riced machine, i3 and dwm are more usable without a great deal of
-configuration when adding i3bar/i3status and dmenu. Because dwm is a lot faster
-(although they are both pretty fast compared to anything else, we are talking
-running complete systems on 30 MB of RAM, including the Kernel), I installed it
-and used it for an evening to pull down the Kernel sources and set up my work
-environment.</p>
-<p>My first impression is pretty positive, it feels responsive and fast. I am
-using dwb as my browser, urxvt as terminal emulator and wicd to setup WiFi,
-which allows me to disable NetworkManager, which is think is pretty useless
-anyway, I am not using it on any of my machines.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+which DE/WM to use. On one side, performance is key, and I mostly use ...</p>
+                <a class="readmore" href="https://sulami.github.io/working-on-a-netbook.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -136,31 +153,6 @@ it is white. Using <em>gnome-tweak-tool</em>, you can easily color it dark, but
 this only works for Gtk-3 apps, so Firefox for example is still white.
 To fix ...</p>
                 <a class="readmore" href="https://sulami.github.io/quickie-gnome-3-dark-theme.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/my-new-desktop.html" rel="bookmark"
-                           title="Permalink to My new desktop">My new desktop</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-01-22T01:12:00">
-                Mi 22 Januar 2014
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
-        </address>
-<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/desktop.html">desktop</a><a href="https://sulami.github.io/tag/fedora.html">fedora</a><a href="https://sulami.github.io/tag/gnome.html">gnome</a></p>
-</footer><!-- /.post-info -->                <p>After I lost my SSD to the kraken and got a new one back, I set up a
-completely new system. This time I decided to ditch both openSUSE and
-Arch Linux and go with Fedora.</p>
-<p>The reasons here are: I love Arch and pacman, but setting it up to ...</p>
-                <a class="readmore" href="https://sulami.github.io/my-new-desktop.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
             </ol><!-- /#posts-list -->

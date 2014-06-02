@@ -27,7 +27,41 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/test-driven-development-in-vim.html">Test-driven development in vim</a></h1>
+                    <h1 class="entry-title"><a href="https://sulami.github.io/pipe-madness-finding-kernel-slackers.html">Pipe Madness: Finding Kernel Slackers</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-02T12:55:00">
+                Mo 02 Juni 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a><a href="https://sulami.github.io/tag/cli.html">cli</a><a href="https://sulami.github.io/tag/kernel.html">kernel</a></p>
+</footer><!-- /.post-info --><p>This is going to be a new series in which I showcase to horrible abominations
+of shell pipelines I make up on the fly while working. This one is for finding
+files in the Linux Kernel that produce extraordinary many warnings and errors
+when pushed into checkpatch.pl, the kernel stylecheck script. Here we go:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">find drivers<span style="color: #666666">/</span>staging<span style="color: #666666">/</span> <span style="color: #666666">-</span>iname <span style="color: #4070a0">&quot;\*.c&quot;</span> <span style="color: #666666">|</span> xargs scripts<span style="color: #666666">/</span>checkpatch.pl <span style="color: #666666">--</span>terse <span style="color: #666666">-</span>f <span style="color: #666666">|</span> cut <span style="color: #666666">-</span>d <span style="color: #4070a0">&quot;:&quot;</span> <span style="color: #666666">-</span>f <span style="color: #40a070">1</span> <span style="color: #666666">|</span> uniq <span style="color: #666666">-</span>c <span style="color: #666666">|</span> grep <span style="color: #666666">-</span>v <span style="border: 1px solid #FF0000">&#39;</span>total<span style="border: 1px solid #FF0000">&#39;</span> <span style="color: #666666">|</span> sort <span style="color: #666666">-</span>n
+</pre></div>
+
+
+<p>This one runs on drivers/staging and sorts the worst files last. Also, it only
+checks .c files. Takes some minutes to run on my Haswell Xeon with a SSD and
+plenty of RAM.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://sulami.github.io/test-driven-development-in-vim.html" rel="bookmark"
+                           title="Permalink to Test-driven development in vim">Test-driven development in vim</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-05-05T14:50:00">
                 Mo 05 Mai 2014
@@ -38,75 +72,13 @@
         </address>
 <p>In <a href="https://sulami.github.io/category/coding.html">Coding</a>. </p>
 <p>tags: <a href="https://sulami.github.io/tag/vim.html">vim</a><a href="https://sulami.github.io/tag/cli.html">cli</a></p>
-</footer><!-- /.post-info --><p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
+</footer><!-- /.post-info -->                <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
-TDD, which proceeded to explain how you start your project by writing a test
-that (obviously) fails, then start your actual project, and test again. At this
-point in time, we have a something that returns a default webpage, or zero. Not
-even printing "Hello World" or "Success!". The next step is to write another
-test, which checks for some actual content or functionality. After this test
-fails (which by the way is important, as it shows that the test will hopefully
-not produce false positives), we write the piece of content or functionality.</p>
-<p>In the beginning, this way of writing code seems (and is) incredibly slow, and
-I find myself skipping the first five tests until I have something that
-actually produces useful output. This is sort of okay, I do not think it will
-hurt my code in any major way. But after those initial skipped tests, say 10
-minutes into the project, I start to religiously write tests for everything
-that happens, which is way easier than implementing proper tests for all the
-different stages and levels when you wrote code for several hours and start
-wasting time by manually testing changes. I think, everything that takes more
-than 30 minutes to code benefits from TDD.</p>
-<p>But let's have a look at some actual TDD using vim and C. C is not often
-written using TDD, but giving usually rather poor debugging output compared to
-interpreted languages, TDD is even more useful, as you will instantaneously see
-when a change breaks any functionality. To make testing easier, we will define
-a keyboard mapping to start our tests from within vim.</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #902000">map</span> <span style="color: #666666">&lt;</span>Leader<span style="color: #666666">&gt;</span><span style="color: #007020">t</span> :<span style="color: #666666">!</span>make <span style="color: #4070a0">-B</span> tests <span style="color: #666666">&amp;&amp;</span> ./tests<span style="color: #666666">&lt;</span>CR<span style="color: #666666">&gt;</span>
-</pre></div>
-
-
-<p>This mapping will call make in a shell (which means you have to have make
-installed), compile our <em>tests.c</em> file and run it. Depending on which language
-you are using, which kind of application you are developing and how your tests
-work, you might want to change this a bit. I am testing a library I am writing,
-which gets included in <em>tests.c</em>.  The basic structure looks like this:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #60a0b0; font-style: italic">/* Tests for my library */</span>
-<span style="color: #007020">#include &lt;stdio.h&gt;</span>
-<span style="color: #007020">#include &lt;assert.h&gt;</span>
-<span style="color: #007020">#include &quot;mylib.h&quot;</span>
-
-<span style="color: #007020">#define run_test(fn_name) \</span>
-<span style="color: #007020">    printf(&quot;%s\n&quot;, #fn_name); \</span>
-<span style="color: #007020">    fn_name();</span>
-
-<span style="color: #902000">void</span> <span style="color: #06287e">test_example_test</span>() {
-    <span style="color: #902000">int</span> test <span style="color: #666666">=</span> fancy_function(<span style="color: #40a070">42</span>);
-    assert(test <span style="color: #666666">==</span> <span style="color: #40a070">15</span>);
-}
-
-<span style="color: #902000">int</span> <span style="color: #06287e">main</span>() {
-    printf(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">Running tests:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>);
-    run_test(test_example_test);
-    printf(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0"> =&gt; All tests successful!</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>);
-    <span style="color: #007020; font-weight: bold">return</span>(<span style="color: #40a070">0</span>);
-}
-</pre></div>
-
-
-<p>We include <em>stdio</em> for printing and <em>assert</em> for the actual testing. The way
-assert works is if the statement assert gets passed is false, which means it
-can also be a function call, assert stops the whole program and prints out the
-line which produced the error. If everything works as intended, it prints all
-the tests it ran, prompts for enter and returns us to vim.  An important part
-is to only delete old tests, when the condition they test for is no longer
-wanted, so you always test for basic functionality as well as the final
-results.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+TDD, which proceeded to explain how you start your project ...</p>
+                <a class="readmore" href="https://sulami.github.io/test-driven-development-in-vim.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -185,31 +157,6 @@ optimizations available to rapidly increase your productivity.</p>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020"># line numbering</span>
 set ...</pre></div>
                 <a class="readmore" href="https://sulami.github.io/vim-fu-some-tweaks-for-your-setup.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/listen-to-pandora-from-your-favourite-shell.html" rel="bookmark"
-                           title="Permalink to Listen to Pandora from your favourite shell">Listen to Pandora from your favourite shell</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-09-06T15:06:00">
-                Fr 06 September 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
-        </address>
-<p>In <a href="https://sulami.github.io/category/web.html">Web</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/cli.html">cli</a><a href="https://sulami.github.io/tag/onlineradio.html">onlineradio</a><a href="https://sulami.github.io/tag/pandora.html">pandora</a></p>
-</footer><!-- /.post-info -->                <p>After I was in holidays for two weeks, here some new tips for your life
-with Linux. I love listening to music while coding. While I used to
-listen to webradios, there are not really enough webradios for all my
-musical needs. The big downside is, it needs to run ...</p>
-                <a class="readmore" href="https://sulami.github.io/listen-to-pandora-from-your-favourite-shell.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
             </ol><!-- /#posts-list -->

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>sulami's blog - Authors</title>
+        <title>Pipe Madness: Finding Kernel Slackers</title>
         <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
         <link href="https://sulami.github.io/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
         <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
@@ -20,15 +20,44 @@
                     <li><a href="https://sulami.github.io/category/coding.html">Coding</a></li>
                     <li><a href="https://sulami.github.io/category/games.html">Games</a></li>
                     <li><a href="https://sulami.github.io/category/hardware.html">Hardware</a></li>
-                    <li><a href="https://sulami.github.io/category/linux.html">Linux</a></li>
+                    <li class="active"><a href="https://sulami.github.io/category/linux.html">Linux</a></li>
                     <li><a href="https://sulami.github.io/category/web.html">Web</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-
 <section id="content" class="body">
-    <h1>Authors on sulami's blog</h1>        <li><a href="https://sulami.github.io/author/sulami.html">sulami</a> (66)</li>
-</section>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://sulami.github.io/pipe-madness-finding-kernel-slackers.html" rel="bookmark"
+           title="Permalink to Pipe Madness: Finding Kernel Slackers">Pipe Madness: Finding Kernel Slackers</a></h1>
+    </header>
 
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-06-02T12:55:00">
+                Mo 02 Juni 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a><a href="https://sulami.github.io/tag/cli.html">cli</a><a href="https://sulami.github.io/tag/kernel.html">kernel</a></p>
+</footer><!-- /.post-info -->      <p>This is going to be a new series in which I showcase to horrible abominations
+of shell pipelines I make up on the fly while working. This one is for finding
+files in the Linux Kernel that produce extraordinary many warnings and errors
+when pushed into checkpatch.pl, the kernel stylecheck script. Here we go:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">find drivers<span style="color: #666666">/</span>staging<span style="color: #666666">/</span> <span style="color: #666666">-</span>iname <span style="color: #4070a0">&quot;\*.c&quot;</span> <span style="color: #666666">|</span> xargs scripts<span style="color: #666666">/</span>checkpatch.pl <span style="color: #666666">--</span>terse <span style="color: #666666">-</span>f <span style="color: #666666">|</span> cut <span style="color: #666666">-</span>d <span style="color: #4070a0">&quot;:&quot;</span> <span style="color: #666666">-</span>f <span style="color: #40a070">1</span> <span style="color: #666666">|</span> uniq <span style="color: #666666">-</span>c <span style="color: #666666">|</span> grep <span style="color: #666666">-</span>v <span style="border: 1px solid #FF0000">&#39;</span>total<span style="border: 1px solid #FF0000">&#39;</span> <span style="color: #666666">|</span> sort <span style="color: #666666">-</span>n
+</pre></div>
+
+
+<p>This one runs on drivers/staging and sorts the worst files last. Also, it only
+checks .c files. Takes some minutes to run on my Haswell Xeon with a SSD and
+plenty of RAM.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="social">
                         <h2>social</h2>

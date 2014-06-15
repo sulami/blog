@@ -35,6 +35,8 @@ h4 {font-size: 1.286em}	/* 18px */
 h5 {font-size: 1.143em}	/* 16px */
 h6 {font-size: 1em}		/* 14px */
 
+img { max-width: 100% }
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	line-height: 1.1;

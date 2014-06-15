@@ -21,9 +21,9 @@ adding some pixels inbetween the windows so you can see parts of the wallpaper.
 The result looks somewhat like this (beware, Qemu bugs the dropshadows, they
 are all over the place):
 
-![scrot](http://i.imgur.com/8TCX2Qg)
+![scrot](http://i.imgur.com/8TCX2Qg.png)
 
-![scrot](http://i.imgur.com/sX2vYJ6)
+![scrot](http://i.imgur.com/sX2vYJ6.png)
 
 Ignore the dropshadows, on a real machine they would look like they should, but
 in my VM they do not update properly and never have in the past. The wallpaper

@@ -21,7 +21,7 @@ are all over the place):&lt;/p&gt;
 &lt;p&gt;Ignore the dropshadows, on a real machine they would look like they should, but
 in my VM they do not update properly and never have in the past. The wallpaper
 is just a random one I pulled from my harddrive. All the configs can be found
-in my &lt;a href="https://github.com/sulami/dotfiles/monsterwm"&gt;git repo&lt;/a&gt;.&lt;/p&gt;</summary><category term="monsterwm"></category></entry><entry><title>Pipe Madness: LXR from the Shell</title><link href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html" rel="alternate"></link><updated>2014-06-05T13:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-06-05:pipe-madness-lxr-from-the-shell.html</id><summary type="html">&lt;p&gt;Well, it is not really &lt;a href="http://lxr.free-electrons.com/ident"&gt;LXR&lt;/a&gt;, but it works
+in my &lt;a href="https://github.com/sulami/dotfiles/tree/master/monsterwm"&gt;git repo&lt;/a&gt;.&lt;/p&gt;</summary><category term="monsterwm"></category></entry><entry><title>Pipe Madness: LXR from the Shell</title><link href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html" rel="alternate"></link><updated>2014-06-05T13:50:00+02:00</updated><author><name>sulami</name></author><id>tag:https://sulami.github.io,2014-06-05:pipe-madness-lxr-from-the-shell.html</id><summary type="html">&lt;p&gt;Well, it is not really &lt;a href="http://lxr.free-electrons.com/ident"&gt;LXR&lt;/a&gt;, but it works
 on Linux-Next without actually having to use LXR and does something similar.
 The rather short pipe I use here is grepping a directory for a keyword and
 using awk and finally sort to present me with an ordered list of files which

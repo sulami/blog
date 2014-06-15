@@ -29,6 +29,40 @@
                     <ol id="posts-list" class="hfeed" start="4">
             <li><article class="hentry">
                 <header>
+                    <h1><a href="https://sulami.github.io/quickie-fix-skype-sound-glitches-on-64-bit-linux.html" rel="bookmark"
+                           title="Permalink to Quickie: Fix Skype sound glitches on 64-bit Linux">Quickie: Fix Skype sound glitches on 64-bit Linux</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-23T09:28:00">
+                Do 23 Mai 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a><a href="https://sulami.github.io/tag/pulseaudio.html">pulseaudio</a><a href="https://sulami.github.io/tag/skype.html">skype</a></p>
+</footer><!-- /.post-info -->                <p>After searching for fixed quite a long time, I finally found one that
+actually fixed the occasional sound glitching in Skype with PulseAudio.
+The solution is simple, open /etc/pulse/default.pa and change</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">load<span style="color: #666666">-</span>module module<span style="color: #666666">-</span>udev<span style="color: #666666">-</span>detect
+</pre></div>
+
+
+<p>to</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">load<span style="color: #666666">-</span>module module<span style="color: #666666">-</span>udev<span style="color: #666666">-</span>detect tsched<span style="color: #666666">=</span><span style="color: #40a070">0</span>
+</pre></div>
+
+
+<p>Just reboot afterwards ...</p>
+                <a class="readmore" href="https://sulami.github.io/quickie-fix-skype-sound-glitches-on-64-bit-linux.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
                     <h1><a href="https://sulami.github.io/zsh-the-better-bash.html" rel="bookmark"
                            title="Permalink to Zsh: the better bash">Zsh: the better bash</a></h1>
                 </header>
@@ -139,32 +173,6 @@ ffmpeg
 <span style="color: #666666">-</span>itsoffset <span style="color: #666666">-</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">01</span>   
 <span style="color: #666666">-</span>f alsa ...</pre></div>
                 <a class="readmore" href="https://sulami.github.io/streaming-to-twitch-tv-using-ffmpeg-and-alsa.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/learning-to-type-properly.html" rel="bookmark"
-                           title="Permalink to Learning to type properly">Learning to type properly</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-05-14T19:18:00">
-                Di 14 Mai 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
-        </address>
-<p>In <a href="https://sulami.github.io/category/web.html">Web</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/typing.html">typing</a></p>
-</footer><!-- /.post-info -->                <p>When it comes to IT-people, especially the ones ocassionally
-programming, typing properly is a mandatory skill, but basically
-everyone benefits from fast typing. Most people developed some kind of
-2-6-finger system, which might work well, but is still suboptimal
-compared to 10-finger touch typing. There are some ways of learning ...</p>
-                <a class="readmore" href="https://sulami.github.io/learning-to-type-properly.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
             </ol><!-- /#posts-list -->

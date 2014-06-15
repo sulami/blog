@@ -29,6 +29,31 @@
                     <ol id="posts-list" class="hfeed" start="4">
             <li><article class="hentry">
                 <header>
+                    <h1><a href="https://sulami.github.io/quickie-surround-sound-in-kdepulseaudio.html" rel="bookmark"
+                           title="Permalink to Quickie: surround sound in KDE/PulseAudio">Quickie: surround sound in KDE/PulseAudio</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-06-05T15:47:00">
+                Mi 05 Juni 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a><a href="https://sulami.github.io/tag/kde.html">kde</a><a href="https://sulami.github.io/tag/pulseaudio.html">pulseaudio</a></p>
+</footer><!-- /.post-info -->                <p>When using a surround sound setup like I do, you might want to use the
+right settings for optimal results. On openSUSE, using KDE and
+PulseAudio, there is a simple trick to make it actually work, otherwise
+you won't get any sound output after switching to surround sound. First ...</p>
+                <a class="readmore" href="https://sulami.github.io/quickie-surround-sound-in-kdepulseaudio.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
                     <h1><a href="https://sulami.github.io/google-drive-vs-dropbox-my-view.html" rel="bookmark"
                            title="Permalink to Google Drive vs Dropbox - my view">Google Drive vs Dropbox - my view</a></h1>
                 </header>
@@ -126,40 +151,6 @@ KDE, disabled compositing and it runs surprisingly ...</p>
 am somewhat lucky because the SSH-server is enabled by default, because
 I ...</p>
                 <a class="readmore" href="https://sulami.github.io/raspi-security-camera.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/quickie-fix-skype-sound-glitches-on-64-bit-linux.html" rel="bookmark"
-                           title="Permalink to Quickie: Fix Skype sound glitches on 64-bit Linux">Quickie: Fix Skype sound glitches on 64-bit Linux</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-05-23T09:28:00">
-                Do 23 Mai 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
-        </address>
-<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a><a href="https://sulami.github.io/tag/pulseaudio.html">pulseaudio</a><a href="https://sulami.github.io/tag/skype.html">skype</a></p>
-</footer><!-- /.post-info -->                <p>After searching for fixed quite a long time, I finally found one that
-actually fixed the occasional sound glitching in Skype with PulseAudio.
-The solution is simple, open /etc/pulse/default.pa and change</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">load<span style="color: #666666">-</span>module module<span style="color: #666666">-</span>udev<span style="color: #666666">-</span>detect
-</pre></div>
-
-
-<p>to</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">load<span style="color: #666666">-</span>module module<span style="color: #666666">-</span>udev<span style="color: #666666">-</span>detect tsched<span style="color: #666666">=</span><span style="color: #40a070">0</span>
-</pre></div>
-
-
-<p>Just reboot afterwards ...</p>
-                <a class="readmore" href="https://sulami.github.io/quickie-fix-skype-sound-glitches-on-64-bit-linux.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
             </ol><!-- /#posts-list -->

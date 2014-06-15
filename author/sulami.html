@@ -27,7 +27,53 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html">Pipe Madness: LXR from the Shell</a></h1>
+                    <h1 class="entry-title"><a href="https://sulami.github.io/ricing-again.html">Ricing again</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-15T21:15:00">
+                So 15 Juni 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
+        </address>
+<p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/monsterwm.html">monsterwm</a></p>
+</footer><!-- /.post-info --><p>I have to confess, I have been ricing again. Today was a slow sunday, no real
+actual work, but I had an Arch VM I had setup to test some kernels sitting here
+without X. While I have been rather happy with Fedora 20 and Gnome 3, which
+feels like a real DE again and lets me focus on getting actual stuff done while
+looking sort of pretty (although tweaking it is a pain), I often miss the
+easier time of running Arch/i3 as main distro. I3 is a technically superb WM,
+perhaps the best I have encountered thus far, but I dislike the manual tiling
+philosophy. I also like bspwm, but the b-tree tiling is not useful very often,
+for my day-to-day use I prefer v-stack/b-stack/monocle like in dwm. Some time
+ago, I tried monsterwm, which is a slimmer dwm and instantly fell in love. So
+my Arch VM is now running
+<a href="https://github.com/c00kiemon5ter/monsterwm">monsterwm</a> and
+<a href="https://github.com/LemonBoy/bar">bar</a> with xcompmgr for dropshadows. I applied
+the <em>uselessgaps</em> patch to monsterwm which does the same thing like on dwm,
+adding some pixels inbetween the windows so you can see parts of the wallpaper.
+The result looks somewhat like this (beware, Qemu bugs the dropshadows, they
+are all over the place):</p>
+<p><img alt="scrot" src="http://imgur.com/8TCX2Qg" /></p>
+<p><img alt="scrot" src="http://imgur.com/sX2vYJ6" /></p>
+<p>Ignore the dropshadows, on a real machine they would look like they should, but
+in my VM they do not update properly and never have in the past. The wallpaper
+is just a random one I pulled from my harddrive. All the configs can be found
+in my <a href="https://github.com/sulami/dotfiles/monsterwm">git repo</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html" rel="bookmark"
+                           title="Permalink to Pipe Madness: LXR from the Shell">Pipe Madness: LXR from the Shell</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-06-05T13:50:00">
                 Do 05 Juni 2014
@@ -38,18 +84,13 @@
         </address>
 <p>In <a href="https://sulami.github.io/category/linux.html">Linux</a>. </p>
 <p>tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a><a href="https://sulami.github.io/tag/cli.html">cli</a><a href="https://sulami.github.io/tag/kernel.html">kernel</a><a href="https://sulami.github.io/tag/lxr.html">lxr</a></p>
-</footer><!-- /.post-info --><p>Well, it is not really <a href="http://lxr.free-electrons.com/ident">LXR</a>, but it works
+</footer><!-- /.post-info -->                <p>Well, it is not really <a href="http://lxr.free-electrons.com/ident">LXR</a>, but it works
 on Linux-Next without actually having to use LXR and does something similar.
 The rather short pipe I use here is grepping a directory for a keyword and
-using awk and finally sort to present me with an ordered list of files which
-contain my keyword.</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">grep <span style="color: #4070a0">&quot;keyword&quot;</span> <span style="color: #666666">-</span>r .<span style="color: #666666">/*</span>.c <span style="color: #666666">-</span>c <span style="color: #666666">|</span> grep <span style="color: #666666">-</span>v <span style="border: 1px solid #FF0000">&#39;</span>Binary<span style="border: 1px solid #FF0000">&#39;</span> <span style="color: #666666">|</span> awk <span style="color: #666666">-</span>F<span style="color: #666666">:</span> <span style="border: 1px solid #FF0000">&#39;</span>{<span style="color: #007020; font-weight: bold">if</span> (<span style="border: 1px solid #FF0000">$</span><span style="color: #40a070">2</span><span style="color: #666666">!=</span><span style="color: #4070a0">&quot;0&quot;</span>) print <span style="border: 1px solid #FF0000">$</span><span style="color: #40a070">2</span><span style="color: #4070a0">&quot; &quot;</span><span style="border: 1px solid #FF0000">$</span><span style="color: #40a070">1</span>}<span style="border: 1px solid #FF0000">&#39;</span> <span style="color: #666666">|</span> sort <span style="color: #666666">-</span>nr
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+using awk and finally sort to present me with an ordered list of files ...</p>
+                <a class="readmore" href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -122,33 +163,6 @@ that Vimeo uses a pretty nice HTML5 player on their site ...</p>
 cheap machine with a 1.66 GHz Intel Atom and 1 GB of RAM. I thought a lot about
 which DE/WM to use. On one side, performance is key, and I mostly use ...</p>
                 <a class="readmore" href="https://sulami.github.io/working-on-a-netbook.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/on-python-performance.html" rel="bookmark"
-                           title="Permalink to On Python performance">On Python performance</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-05-12T02:15:00">
-                Mo 12 Mai 2014
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="https://sulami.github.io/author/sulami.html">sulami</a>
-        </address>
-<p>In <a href="https://sulami.github.io/category/coding.html">Coding</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/python.html">python</a><a href="https://sulami.github.io/tag/c.html">c</a></p>
-</footer><!-- /.post-info -->                <p>I recently wrote <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of
-Life</a> in both
-performance optimized Python 3.3 and C99, compiled with clang, without
-optimizations. I usually say to people that Python is quite fast when properly
-optimized, and amongst interpreted languages this is true. But after this
-experiment, I understand how big ...</p>
-                <a class="readmore" href="https://sulami.github.io/on-python-performance.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
             </ol><!-- /#posts-list -->

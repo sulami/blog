@@ -28,5 +28,5 @@ are all over the place):
 Ignore the dropshadows, on a real machine they would look like they should, but
 in my VM they do not update properly and never have in the past. The wallpaper
 is just a random one I pulled from my harddrive. All the configs can be found
-in my [git repo](https://github.com/sulami/dotfiles/monsterwm).
+in my [git repo](https://github.com/sulami/dotfiles/tree/master/monsterwm).
 

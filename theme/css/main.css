@@ -35,7 +35,9 @@ h4 {font-size: 1.286em}	/* 18px */
 h5 {font-size: 1.143em}	/* 16px */
 h6 {font-size: 1em}		/* 14px */
 
+/* MY FIXES */
 img { max-width: 100% }
+pre span { border: none !important }
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;

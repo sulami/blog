@@ -20,6 +20,8 @@ DEFAULT_LANG = u'en'
 # SOCIAL = (('You can add links in your config file', '#'),
           # ('Another social link', '#'),)
 
+THEME = '/home/sulami/build/pelican-jellybeans'
+
 DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing

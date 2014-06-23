@@ -27,7 +27,33 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/on-python-performance.html">On Python performance</a></h1>
+                    <h1 class="entry-title"><a href="https://sulami.github.io/hexclock-in-c.html">Hexclock in C</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-23T14:15:00">
+                Published: Mo 23 Juni 2014
+        </abbr>
+
+<p>In <a href="https://sulami.github.io/category/coding.html">Coding</a>. </p>
+<p>tags: <a href="https://sulami.github.io/tag/c.html">c</a> <a href="https://sulami.github.io/tag/hexclock.html">hexclock</a> <a href="https://sulami.github.io/tag/hackernews.html">hackernews</a> </p>
+</footer><!-- /.post-info --><p>Earlier this weekend, I found <a href="http://www.jacopocolo.com/hexclock/">Hexclock</a> on hackernews, a simple website
+which interpretes the time as hexadecimal color value and colors the whole page
+using this value. I had nothing to do and decided to clone it in C and ncurses
+for local use, <a href="http://www.reddit.com/r/unixporn/">/r/unixporn</a> screenshots and stuff like this. Anyway,
+<a href="https://github.com/sulami/spielwiese/tree/master/cHexclock">here</a> is the source, if you ask me really nice, I can also compile i686 and
+x86_64 binaries for you.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://sulami.github.io/on-python-performance.html" rel="bookmark"
+                           title="Permalink to On Python performance">On Python performance</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-05-12T02:15:00">
                 Published: Mo 12 Mai 2014
@@ -35,30 +61,15 @@
 
 <p>In <a href="https://sulami.github.io/category/coding.html">Coding</a>. </p>
 <p>tags: <a href="https://sulami.github.io/tag/python.html">python</a> <a href="https://sulami.github.io/tag/c.html">c</a> </p>
-</footer><!-- /.post-info --><p>I recently wrote <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of
+</footer><!-- /.post-info -->                <p>I recently wrote <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of
 Life</a> in both
 performance optimized Python 3.3 and C99, compiled with clang, without
 optimizations. I usually say to people that Python is quite fast when properly
 optimized, and amongst interpreted languages this is true. But after this
-experiment, I understand how big the difference can be und the right
-conditions. Here are the runtimes of my Games of Life, generating a 120x40
-screen and printing it out for 5000 cycles:</p>
-<p>Python 3.3, fairly optimized: 2:05,73 minutes</p>
-<p>C, not optimized: 9,413 seconds</p>
-<p>This is a pretty big difference, ~1330%. This should explain, why, besides the
-stellar portability, Kernels and generally all performance critical software is
-written in some form of C.</p>
-<p>Huge parts of this are actually printing the screen, looks like Python's print
-is quite slow. Without printing it, generating 5000 cycles takes 32,244
-seconds, which is still more than three times as much as C needs with printing.</p>
-<p>For most operations, Python's speed is more than needed, but sometimes you just
-need that extra bit of speed, and this is why you can <a href="https://docs.python.org/3.4/library/ctypes.html">use C from within
-Python</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+experiment, I understand how big ...</p>
+                <a class="readmore" href="https://sulami.github.io/on-python-performance.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -120,29 +131,6 @@ add some additional fields, which is the ...</p>
 <p>tags: <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/quickie.html">quickie</a> <a href="https://sulami.github.io/tag/markdown.html">markdown</a> </p>
 </footer><!-- /.post-info -->                <p>How to fix syntax highlighting for markdown files in vim</p>
                 <a class="readmore" href="https://sulami.github.io/quickie-markdown-syntax-highlighting-in-vim.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://sulami.github.io/backup-your-work.html" rel="bookmark"
-                           title="Permalink to Backup your work">Backup your work</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-03-10T23:58:00">
-                Published: Mo 10 März 2014
-        </abbr>
-
-<p>In <a href="https://sulami.github.io/category/coding.html">Coding</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/cron.html">cron</a> <a href="https://sulami.github.io/tag/dropbox.html">dropbox</a> <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/google-drive.html">google drive</a> <a href="https://sulami.github.io/tag/homeserver.html">homeserver</a> <a href="https://sulami.github.io/tag/raspberrypi.html">raspberrypi</a> <a href="https://sulami.github.io/tag/security.html">security</a> </p>
-</footer><!-- /.post-info -->                <p>When doing serious work involving code (or config files), backups are a
-must-have. What you want to do are backups to (sort of) remote
-locations, like separate harddrives, external drives or other
-computers/servers, which is protecting your precious work from hardware
-failure and to some degree (not so) accidental ...</p>
-                <a class="readmore" href="https://sulami.github.io/backup-your-work.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

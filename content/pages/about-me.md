@@ -5,6 +5,8 @@ thoughts sort of organized. Here are some links to my stuff:
 
 - [Github](https://github.com/sulami "Github")
 > Where I mirror some of my less important git repos
+- [FrankwnWM](https://github.com/sulami/frankenwm "FrankenWM")
+> The small, dynamic tiling window manager I wrote
 - [Peerwire](http://peerwire.org "Peerwire")
 > My project organization platform, check it out
 

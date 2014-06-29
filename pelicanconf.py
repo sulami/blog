@@ -20,7 +20,7 @@ DEFAULT_LANG = u'en'
 # SOCIAL = (('You can add links in your config file', '#'),
           # ('Another social link', '#'),)
 
-THEME = '/home/sulami/build/pelican-jellybeans'
+THEME = '/home/sulami/build/pelican-theme'
 
 DEFAULT_PAGINATION = 5
 

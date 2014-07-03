@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>sulami's blog - apache</title>
-        <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
-        <link href="https://sulami.github.io/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
-        <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
+    <meta charset="utf-8" />
+    <title>sulami's blog - apache</title>
+    <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
+    <link href="https://sulami.github.io/feed/atom.xml" type="application/atom+xml" rel="alternate" title="sulami's blog Atom Feed" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="sulami's blog RSS Feed" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://sulami.github.io/">sulami's blog </a></h1>
-                <nav><ul>
-                    <li><a href="https://sulami.github.io/pages/about-me.html">About me</a></li>
-                    <li><a href="https://sulami.github.io/category/coding.html">Coding</a></li>
-                    <li><a href="https://sulami.github.io/category/games.html">Games</a></li>
-                    <li><a href="https://sulami.github.io/category/hardware.html">Hardware</a></li>
-                    <li><a href="https://sulami.github.io/category/linux.html">Linux</a></li>
-                    <li><a href="https://sulami.github.io/category/web.html">Web</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+    <header id="banner" class="body">
+            <nav>
+            <a href="https://sulami.github.io/">sulami's blog</a> |
+                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
+                <a href="https://sulami.github.io/category/coding.html">Coding</a>
+                <a href="https://sulami.github.io/category/games.html">Games</a>
+                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
+                <a href="https://sulami.github.io/category/linux.html">Linux</a>
+                <a href="https://sulami.github.io/category/web.html">Web</a>
+            <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
+            </nav>
+    </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://sulami.github.io/quickie-force-test-virtualhosts.html">Quickie: force-test virtualhosts</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/quickie-force-test-virtualhosts.html">Quickie: force-test virtualhosts</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2014-03-17T01:22:00">
-                Published: Mo 17 März 2014
-        </abbr>
-
-<p>In <a href="https://sulami.github.io/category/web.html">Web</a>. </p>
-<p>tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a> <a href="https://sulami.github.io/tag/apache.html">apache</a> <a href="https://sulami.github.io/tag/nginx.html">nginx</a> <a href="https://sulami.github.io/tag/wget.html">wget</a> </p>
-</footer><!-- /.post-info --><p>I know, nginx does not have virtualhosts, it has got server blocks, but
+    <span class="date">Mo 17 März 2014</span>
+    |
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+    | tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a> <a href="https://sulami.github.io/tag/apache.html">apache</a> <a href="https://sulami.github.io/tag/nginx.html">nginx</a> <a href="https://sulami.github.io/tag/wget.html">wget</a> </footer><!-- /.post-info -->
+                    <p>I know, nginx does not have virtualhosts, it has got server blocks, but
 most people will know what I mean. You define a new virtualhost/server
 block and point it to your page. But to test it, you usually need to
 update the DNS-records, and this may take hours, depending on your
@@ -49,39 +48,11 @@ wget <span style="color: #666666">-</span>R <span style="color: #666666">--</spa
 
 
 <p>This would trick your local webserver into thinking you resolved
-google.com to reach it, and therefore returns the appropriate page.</p>                </article>
+google.com to reach it, and therefore returns the appropriate page.</p>
+                </article>
 <p class="paginator">
     Page 1 / 1
 </p>
             </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://sulami.github.io/feed/atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-38330260-4']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
 </body>
 </html>

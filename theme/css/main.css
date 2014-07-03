@@ -223,3 +223,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
     width: 760px;
 }
 
+#content article {
+    margin-top: 15px;
+}
+

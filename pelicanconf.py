@@ -7,7 +7,7 @@ SITENAME = u'/dev/urandom > blog'
 SITEURL = 'https://sulami.github.io'
 
 TIMEZONE = 'Europe/Berlin'
-DEFAULT_DATE = (2012, 3, 2, 14, 1, 1)
+DEFAULT_DATE_FORMAT = ('%Y-%m-%d %H:%M')
 DEFAULT_LANG = u'en'
 
 THEME = '/home/sulami/build/pelican-theme'
@@ -24,5 +24,6 @@ STATIC_PATHS = ['images', 'download']
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL
 FEED_ALL_RSS = 'feed/rss.xml'
-CATEGORY_FEED_RSS = 'feed/%s.rss.xml'
+CATEGORY_FEED_RSS = None
+FEED_ALL_ATOM = None
 

@@ -192,6 +192,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
     Featured
 *****************/
 #featured {
+    margin-top: 15px;
     overflow: hidden;
     width: 760px;
 }

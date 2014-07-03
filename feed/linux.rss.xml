@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 15 Jun 2014 21:15:00 +0200</lastBuildDate><item><title>Ricing again</title><link>https://sulami.github.io/ricing-again.html</link><description>&lt;p&gt;I have to confess, I have been ricing again. Today was a slow sunday, no real
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/urandom &gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 15 Jun 2014 21:15:00 +0200</lastBuildDate><item><title>Ricing again</title><link>https://sulami.github.io/ricing-again.html</link><description>&lt;p&gt;I have to confess, I have been ricing again. Today was a slow sunday, no real
 actual work, but I had an Arch VM I had setup to test some kernels sitting here
 without X. While I have been rather happy with Fedora 20 and Gnome 3, which
 feels like a real DE again and lets me focus on getting actual stuff done while

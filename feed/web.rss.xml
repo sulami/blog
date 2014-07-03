@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/web.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 27 May 2014 22:00:00 +0200</lastBuildDate><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/urandom &gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/web.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 27 May 2014 22:00:00 +0200</lastBuildDate><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
 fullscreen, and I have not found a single video not supporting HTML5 in over a
 month, so I would consider Flash-less YouTube a valid option. I also discovered
 that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring

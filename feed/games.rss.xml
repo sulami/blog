@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sulami's blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/games.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Apr 2014 23:55:00 +0200</lastBuildDate><item><title>Playing in space on Linux</title><link>https://sulami.github.io/playing-in-space-on-linux.html</link><description>&lt;p&gt;While I have been working day and night lately on my (sort of) new
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/urandom &gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/games.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Apr 2014 23:55:00 +0200</lastBuildDate><item><title>Playing in space on Linux</title><link>https://sulami.github.io/playing-in-space-on-linux.html</link><description>&lt;p&gt;While I have been working day and night lately on my (sort of) new
 project, peerwire.org (which currently links to this blog, but will soon
 go live), I have now reached the beta phase which will mostly be
 intensive testing and trying to break the site, as well as some minor

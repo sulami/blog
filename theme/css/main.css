@@ -196,6 +196,10 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
     width: 760px;
 }
 
+#featured article {
+    margin-top: 15px;
+}
+
 #featured figure {
     border: 2px solid #E6CFA1;
     float: right;

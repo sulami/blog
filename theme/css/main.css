@@ -152,41 +152,28 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
     Header
 *****************/
 #banner {
+    color: #424b6c;
     margin: 0 auto;
     width: 100%;
 }
 
-    /* Banner */
-    #banner h1 {font-size: 3.571em; line-height: 0;}
-    #banner h1 a:link, #banner h1 a:visited {
-        display: block;
-        font-weight: bold;
-        margin: 0 0 .6em .2em;
-        text-decoration: none;
-    }
-    #banner h1 a:hover, #banner h1 a:active {
-        background: none;
-    }
+/* Main Nav */
+#banner nav {
+    border-bottom: 1px #424b6c solid;
+    font-size: 1.143em;
+    height: 40px;
+    line-height: 30px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
 
-    #banner h1 strong {font-size: 0.36em; font-weight: normal;}
-
-    /* Main Nav */
-    #banner nav {
-        border-bottom: 1px #424b6c solid;
-        font-size: 1.143em;
-        height: 40px;
-        line-height: 30px;
-        padding: 0;
-        text-align: center;
-        width: 100%;
-    }
-
-    #banner nav a:link, #banner nav a:visited {
-        display: inline-block;
-        height: 30px;
-        padding: 5px 1.5em;
-        text-decoration: none;
-    }
+#banner nav a:link, #banner nav a:visited {
+    display: inline-block;
+    height: 30px;
+    padding: 5px 1.5em;
+    text-decoration: none;
+}
 
 /*
     Featured

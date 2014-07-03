@@ -95,12 +95,11 @@ dl {margin: 0 0 1.5em 0;}
 dt {font-weight: bold;}
 dd {margin-left: 1.5em;}
 
-pre{
-    background-color: #121212;
-    padding: 10px;
+pre {
+    border: 1px #424b6c solid;
     margin: 10px;
     overflow: auto;
-    box-shadow: 0 0 5px #000000;
+    padding: 10px;
 }
 
 /* Quotes */

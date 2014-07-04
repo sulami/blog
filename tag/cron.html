@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>/dev/urandom > blog - cron</title>
+    <title>/dev/sulami >> blog - cron</title>
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
-    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/urandom > blog RSS Feed" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
 
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -14,11 +14,9 @@
 <body id="index" class="home">
     <header id="banner" class="body">
             <nav>
-            <a href="https://sulami.github.io/">/dev/urandom > blog</a> |
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
                 <a href="https://sulami.github.io/pages/about-me.html">About me</a>
                 <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/games.html">Games</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
                 <a href="https://sulami.github.io/category/linux.html">Linux</a>
                 <a href="https://sulami.github.io/category/web.html">Web</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
@@ -27,102 +25,83 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/backup-your-work.html">Backup your work</a></h1>
-<footer class="post-info">
-    <span class="date">2014-03-10 23:58</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/cron.html">cron</a> <a href="https://sulami.github.io/tag/dropbox.html">dropbox</a> <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/google-drive.html">google drive</a> <a href="https://sulami.github.io/tag/homeserver.html">homeserver</a> <a href="https://sulami.github.io/tag/raspberrypi.html">raspberrypi</a> <a href="https://sulami.github.io/tag/security.html">security</a> </footer><!-- /.post-info -->
-                    <p>When doing serious work involving code (or config files), backups are a
-must-have. What you want to do are backups to (sort of) remote
-locations, like separate harddrives, external drives or other
-computers/servers, which is protecting your precious work from hardware
-failure and to some degree (not so) accidental deletion.</p>
-<p>You also want to be using a VCS, I will be using git, because it is
-simple, fast and powerful. With git, you can combine version
-controlling/branching and backups pretty easily. Go to your remote
-location, make a directory <em>foobar.git</em>, init an empty git repo and add
-it as remote to your project. Don't forget to push to it.</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">cd <span style="color: #666666">~/</span>remote
-mkdir foobar.git
-cd foobar.git
-git init <span style="color: #666666">--</span>bare
-cd <span style="color: #666666">~/</span>project
-git remote add backup <span style="color: #666666">~/</span>remote<span style="color: #666666">/</span>foobar.git
-git push backup master
-</pre></div>
-
-
-<p>This is a minimal example of how to do this. You will want to exclude
-large binary files like images, videos or binaries (duh..), as git can't
-compare those and will compress each version. Instead, you probably want
-to just compress and store them independently, version-wise or just one
-set, depending on the type of files. Consider using tar, rsync and/or
-cron for these backups.</p>
-<p>In my case, I backup a simple video platform, backing up all the code
-and configs using git and the video files, thumbnails and database in a
-.tar.xz of which I only store the newest version. I store all my work
-multiple times, 2 times on my workstation in case of hardware failure (I
-don't use a RAID at the moment), once on a local server and once on an
-external drive which is offline most of the time, so it even is
-protected against malicious attacks.</p>
-<p>I personally don't like Dropbox, Google Drive, Skydrive and all those
-other clouds, because I prefer to keep my data on my own. Dropbox is
-nice for syncing PDFs over different devices, but for everything
-slightly important, I use git with a local repo and sometimes GitHub. In
-case you now say, you can't afford your own in-house server, get a
-Raspberry Pi Mod. B with a small SD-card, a power cable and some sort of
-external drive, totalling maybe \$100. It uses near to no power, can run
-24/7 without any noise or noticeble heat and use the external drive to
-save all your stuff on a separate machine. It's that easy.</p>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/linux-powered-alarm-clock-without-a-raspi.html" rel="bookmark"
-                           title="Permalink to Linux-powered alarm clock without a RasPi">Linux-powered alarm clock without a RasPi</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2013-06-11 11:39</span>
-    |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
-    | tags: <a href="https://sulami.github.io/tag/cron.html">cron</a> <a href="https://sulami.github.io/tag/mplayer.html">mplayer</a> <a href="https://sulami.github.io/tag/onlineradio.html">onlineradio</a> <a href="https://sulami.github.io/tag/rtcwake.html">rtcwake</a> </footer><!-- /.post-info -->
-                <p>My method of using the Raspberry Pi as alarm clock with mplayer-cronjobs
-is also usable on regular desktop machines. To overcome the wasted power
-and noise while sleeping, the computer is going to sleep as well,
-suspending to either ram, disk or both. Then you can use <em>rtcwake</em> to
-let ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/raspberry-pi-radio-alarm.html" rel="bookmark"
-                           title="Permalink to Raspberry Pi: Radio-Alarm">Raspberry Pi: Radio-Alarm</a></h1>
-                </header>
-
-                <div class="entry-content">
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/raspberry-pi-radio-alarm.html">Raspberry Pi: Radio-Alarm</a></h1>
 <footer class="post-info">
     <span class="date">2013-06-07 12:46</span>
     |
     in <a href="https://sulami.github.io/category/linux.html">Linux</a>
     | tags: <a href="https://sulami.github.io/tag/cron.html">cron</a> <a href="https://sulami.github.io/tag/mplayer.html">mplayer</a> <a href="https://sulami.github.io/tag/onlineradio.html">onlineradio</a> <a href="https://sulami.github.io/tag/raspberrypi.html">raspberrypi</a> </footer><!-- /.post-info -->
-                <p>Some years ago I had the idea to use online radios as flexible alarm
+                    <p>Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
 long, which results in high power consumption and noise. While netbooks
-can counter this to a certain degree, the Raspberry Pi is the ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
+can counter this to a certain degree, the Raspberry Pi is the optimal
+way of achieving our goal. You will need:</p>
+<ul>
+<li>Raspberry Pi model B (+ power cable, SD-card with OS)</li>
+<li>speakers, preferably 3.5mm jack</li>
+<li>network/internet access</li>
+<li>control access directly or via ssh</li>
+</ul>
+<p>My RasPi is running <a href="http://www.raspberrypi.org/downloads" title="RasPi">Raspian</a> right now, but any Linux should do. You
+connect everything and boot it up, then access a console. We need to
+install mplayer, which will play our stream. If needed, update the
+package lists before installing.</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020"># Raspian:</span>
+sudo apt<span style="color: #666666">-</span>get install mplayer
+
+<span style="color: #007020"># ArchARM (as root):</span>
+pacman <span style="color: #666666">-</span>Sy mplayer
+
+<span style="color: #007020"># Pidora:</span>
+sudo yum install mplayer
+
+<span style="color: #007020"># openSUSE:</span>
+sudo zypper in mplayer
+</pre></div>
+
+
+<p>Next thing to do is writing a short playlist. The idea is to have a
+fallback if the internet connection or your radio station goes down, so
+you can switch to a local file to play instead. Use any text editor you
+want (vi, vim, emacs, nano, or graphical ones) to write something like
+my <em>playlist.pls</em>:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">[playlist]</span>
+<span style="color: #4070a0">File1</span><span style="color: #666666">=</span><span style="color: #4070a0">http://mp3.ht-stream.net</span>
+<span style="color: #4070a0">Title1</span><span style="color: #666666">=</span><span style="color: #4070a0">HouseTime</span>
+<span style="color: #4070a0">Lenght1</span><span style="color: #666666">=</span><span style="color: #4070a0">-1</span>
+<span style="color: #4070a0">File2</span><span style="color: #666666">=</span><span style="color: #4070a0">/home/pi/alarm.mp3</span>
+<span style="color: #4070a0">Title2</span><span style="color: #666666">=</span><span style="color: #4070a0">FallbackAlarm</span>
+<span style="color: #4070a0">Length2</span><span style="color: #666666">=</span><span style="color: #4070a0">-1</span>
+<span style="color: #4070a0">NumberOfEntries</span><span style="color: #666666">=</span><span style="color: #4070a0">2</span>
+<span style="color: #4070a0">Version</span><span style="color: #666666">=</span><span style="color: #4070a0">1</span>
+</pre></div>
+
+
+<p>Mplayer will try to play File1, my stream, and if it fails, continue to
+play File2, the fallback. You can also add more stations and files and
+use the <em>-shuffle</em> parameter later on to play random music.</p>
+<p>Now, ensure that cron is running ("<em>ps aux | grep cron</em>" should give you
+a hint) and type "<em>crontab -e</em>" to enter your cronjob (preferably as a
+non-root user). Depending on your OS there will be some comments you can
+ignore. Add a entry like the following:</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #40a070">30</span> <span style="color: #40a070">6</span> <span style="color: #666666">*</span> <span style="color: #666666">*</span> <span style="color: #666666">*</span> env DISPLAY<span style="color: #666666">=:</span><span style="color: #40a070">0.0</span> <span style="color: #666666">/</span>usr<span style="color: #666666">/</span>bin<span style="color: #666666">/</span>mplayer <span style="color: #666666">-</span>playlist <span style="color: #666666">/</span>home<span style="color: #666666">/</span>pi<span style="color: #666666">/</span>playlist.pls <span style="color: #666666">&gt;</span> <span style="color: #666666">/</span>dev<span style="color: #666666">/</span>null
+</pre></div>
+
+
+<p>This will fire up mplayer everyday at 6:30 in the morning using the
+provided playlist and then deletes the text-output. Using complete paths
+is crucial here, cron does not use the \$PATH variable. If you read up
+on cron, you can setup complete sets of alarms, depending on days of the
+week and more. The env setting might be needed on some systems which
+won't play and istead send you something like "connection by pulse
+refused" per system-mail. Save the file to install the cronjob.</p>
+<p>When waking up, you need to kill mplayer, as it is running in the
+background. The easiest way of doing so is via "<em>killall mplayer</em>",
+which is not the finest way of doing things but should do the job.</p>
+                </article>
 <p class="paginator">
     Page 1 / 1
 </p>
-                </section><!-- /#content -->
+            </aside><!-- /#featured -->
 </body>
 </html>

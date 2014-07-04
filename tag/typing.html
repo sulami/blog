@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>/dev/urandom > blog - typing</title>
+    <title>/dev/sulami >> blog - typing</title>
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
-    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/urandom > blog RSS Feed" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
 
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -14,11 +14,9 @@
 <body id="index" class="home">
     <header id="banner" class="body">
             <nav>
-            <a href="https://sulami.github.io/">/dev/urandom > blog</a> |
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
                 <a href="https://sulami.github.io/pages/about-me.html">About me</a>
                 <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/games.html">Games</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
                 <a href="https://sulami.github.io/category/linux.html">Linux</a>
                 <a href="https://sulami.github.io/category/web.html">Web</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
@@ -27,162 +25,29 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/vim-fu-some-tweaks-for-your-setup.html">Vim-Fu: some tweaks for your setup</a></h1>
-<footer class="post-info">
-    <span class="date">2014-01-04 18:37</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/coding.html">coding</a> <a href="https://sulami.github.io/tag/typing.html">typing</a> <a href="https://sulami.github.io/tag/vim.html">vim</a> </footer><!-- /.post-info -->
-                    <p>Vim is awesome. Fact.</p>
-<p>But if you like using vim as your main editor for everything, maybe even
-mainly inside tmux inside ssh, like I do, there are lots of
-optimizations available to rapidly increase your productivity.</p>
-<h4>General vimrc</h4>
-<p>Things you want to have in your vimrc:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020"># line numbering</span>
-set numbers
-<span style="color: #007020"># indentation python style, 4 spaces</span>
-set smartindent
-set tabstop<span style="color: #666666">=</span><span style="color: #40a070">4</span>
-set shiftwidth<span style="color: #666666">=</span><span style="color: #40a070">4</span>
-set expandtab
-set smarttab
-<span style="color: #007020"># colored column, better than auto-linebreaks</span>
-set colorcolumn<span style="color: #666666">=</span><span style="color: #40a070">80</span>
-<span style="color: #007020"># less errors</span>
-silent
-<span style="color: #007020"># useful stuff, personal preferance</span>
-set encoding<span style="color: #666666">=</span>utf<span style="color: #666666">-</span><span style="color: #40a070">8</span>
-set fileformats<span style="color: #666666">=</span>unix,dos
-<span style="color: #007020"># use jk to exit insert mode, use whichever key(combination) suits you</span>
-imap jk 
-<span style="color: #007020"># new tabs on Ctrl-T</span>
-map  <span style="color: #666666">:</span>tabnew
-<span style="color: #007020"># file explorer on Ctrl-E</span>
-map  <span style="color: #666666">:</span>Explore
-<span style="color: #007020"># fix autocompletion, btw, it&#39;s built into vim 7+ and bound to Ctrl-N</span>
-set completeopt<span style="color: #666666">=</span>longest,menuone
-inoremap   pumvisible() <span style="color: #666666">?</span> <span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\&quot;</span><span style="color: #4070a0"> : &quot;</span><span style="border: 1px solid #FF0000">\</span>u<span style="border: 1px solid #FF0000">\</span><span style="color: #4070a0">&quot;</span>
-inoremap   pumvisible() <span style="color: #666666">?</span> <span style="border: 1px solid #FF0000">&#39;&#39;</span> <span style="color: #666666">:</span> <span style="border: 1px solid #FF0000">&#39;</span><span style="color: #666666">=</span>pumvisible() <span style="color: #666666">?</span> <span style="color: #4070a0">&quot;\Down&gt;&quot;</span> <span style="color: #666666">:</span> <span style="color: #4070a0">&quot;&quot;</span><span style="border: 1px solid #FF0000">&#39;</span>
-</pre></div>
-
-
-<h4>Colors</h4>
-<p>Let's start off easy with the general vim look. If used in terminals,
-those will handle parts of your coloring, but I will focus on coloring
-vim itself. You probably want to use the same colorscheme for your
-terminal and vim in any case.</p>
-<p>To color vim use the <em>colo</em> command, preferably after you get some a
-nice colorscheme from the interwebs. My favourites are <a href="https://github.com/nanotech/jellybeans.vim" title="GitHub">jellybeans</a> or
-<a href="https://github.com/chriskempson/base16-vim/blob/master/colors/base16-tomorrow.vim" title="GitHub">base16-tomorrow</a> for dark and <a href="https://github.com/chriskempson/base16-vim/blob/master/colors/base16-solarized.vim" title="GitHub">Solarized light</a> for light screens.
-There are themes for shells and other stuff in this repo, have a look
-around and read the docs.</p>
-<p>You also might want to change background to dark using <em>set
-background=dark</em>.</p>
-<h4>Pathogen</h4>
-<p>If you plan on using any plugins for vim, use <a href="https://github.com/tpope/vim-pathogenhttp://" title="GitHub">Pathogen</a>. That's it.
-It loads all your plugins automatically and makes installing and
-removing plugins as fast as some seconds. The installation is pretty
-straight-forward, just put pathogen.vim into your autoload directory,
-add <em>execute pathogen#infect()</em> to your vimrc and you are ready to go.
-All other plugins go into <em>bundle/pluginname</em> from now on.</p>
-<h4>Powerline / Airline</h4>
-<p>One of my favourite plugins is Powerline, but I actually use
-<a href="https://github.com/bling/vim-airline" title="GitHub">Airline</a>, which is just written in vimscript and therefore portable
-and does not require Python. Airline extends the status bar by a great
-deal and gives you loads of useful information while looking cool.</p>
-<p>Airline is sort of hard to install if you haven't done it before. Get it
-and put it into the bundle directory, because you are using Pathogen,
-aren't you? You then need the <a href="https://github.com/Lokaltog/powerline-fontshttp://" title="GitHub">right fonts</a> and use them either in
-Gvim (set guifont) or your terminal (Xresources, Xdefaults, whatever
-kind of config you are using).</p>
-<p>Some hints for your vimrc if you are using Airline:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">let g<span style="color: #666666">:</span>airline_powerline_fonts <span style="color: #666666">=</span> <span style="color: #40a070">1</span>
-let g<span style="color: #666666">:</span>aireline_theme <span style="color: #666666">=</span> <span style="border: 1px solid #FF0000">&#39;</span>jellybeans<span style="border: 1px solid #FF0000">&#39;</span> <span style="border: 1px solid #FF0000">#</span> just my favourite, there is a list on the GitHub pag
-set laststatus<span style="color: #666666">=</span><span style="color: #40a070">2</span>
-</pre></div>
-
-
-<p>This fixes some errors I encountered and forces an Airline theme.</p>
-<h4>Fugitive</h4>
-<p>Are you using git? If you aren't, you most likely want to. For your
-work, your projects, your dotfiles, for everything. Versioning is nice.
-Get <a href="https://github.com/tpope/vim-fugitive" title="GitHub">Fugitive</a>, it adds some git functionality directly into vim, and
-plays nice with Airline.</p>
-<h4>Vinegar</h4>
-<p>You might have noticed how I bound Ctrl-E to :Explore. This is because I
-use vim for selecting my files to edit most of the time. <a href="https://github.com/tpope/vim-vinegar" title="GitHub">Vinegar</a>
-improves the built-in filebrowser in a few ways and makes it a lot more
-intuitive.</p>
-<h4>Nerdtree</h4>
-<p>Probably even better than Vinegar might be <a href="https://github.com/scrooloose/nerdtree" title="GitHub">Nerdtree</a>. It adds an
-additional vsplit with an interactive directory tree to quickly select
-files to edit.</p>
-<h4>Surround</h4>
-<p><a href="https://github.com/tpope/vim-surround" title="GitHub">Surround</a> adds some new commands to vim concerning surrounding
-characters like ",',(,[,{ and \&lt;. You can do stuff like change
-surroundings of where you are from single to double quotation marks by
-hitting cs'" (first single, then double ones). Sort of useful and does
-not hurt.</p>
-<h4>Commentary</h4>
-<p><a href="https://github.com/tpope/vim-commentary" title="GitHub">Commentary</a> is a plugin that adds some actions regarding comments in
-source code. Easily comment out blocks of code using <em>gc</em> saves you a
-few seconds everytime, which might add up one day.</p>
-<h4>Repeat</h4>
-<p>When using the above plugins, vim does not recognize the added actions
-to repeat them, namely the ones from surround and commentary. <a href="https://github.com/tpope/vim-repeat" title="GitHub">Repeat</a>
-fixes this behaviour.</p>
-<h4>Trailing-Whitespace</h4>
-<p><a href="https://github.com/bronson/vim-trailing-whitespace" title="GitHub">Traling-Whitespace</a> is a simple one. It marks trailing whitespaces in
-red and introduces the <em>:FixWhitespace</em> command to remove them.</p>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/quickie-fix-windows-stupid-quotation-mark-behaviour.html" rel="bookmark"
-                           title="Permalink to Quickie: fix Windows' stupid quotation mark behaviour">Quickie: fix Windows' stupid quotation mark behaviour</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2013-12-29 22:24</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/quickie.html">quickie</a> <a href="https://sulami.github.io/tag/keyboard.html">keyboard</a> <a href="https://sulami.github.io/tag/typing.html">typing</a> <a href="https://sulami.github.io/tag/vim.html">vim</a> </footer><!-- /.post-info -->
-                <p>Two days ago, my system-SSD died, which happens. Because of this
-incident, I lost both my Arch Linux and my Windows 7 installation. While
-I wait for a new SSD to arrive, I installed some Win 7 Professional I
-found. And while I am German and use the German language ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/learning-to-type-properly.html" rel="bookmark"
-                           title="Permalink to Learning to type properly">Learning to type properly</a></h1>
-                </header>
-
-                <div class="entry-content">
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/learning-to-type-properly.html">Learning to type properly</a></h1>
 <footer class="post-info">
     <span class="date">2013-05-14 19:18</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
     | tags: <a href="https://sulami.github.io/tag/typing.html">typing</a> </footer><!-- /.post-info -->
-                <p>When it comes to IT-people, especially the ones ocassionally
-programming, typing properly is a mandatory skill, but basically
-everyone benefits from fast typing. Most people developed some kind of
-2-6-finger system, which might work well, but is still suboptimal
-compared to 10-finger touch typing. There are some ways of learning ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
+                    <p>When it comes to IT-people, especially the ones ocassionally programming,
+typing properly is a mandatory skill, but basically everyone benefits from fast
+typing. Most people developed some kind of 2-6-finger system, which might work
+well, but is still suboptimal compared to 10-finger touch typing. There are
+some ways of learning the latter, but my personal favourite approach are
+websites, as they are platform independent and usually require nothing more
+than a browser with flash-plugin. Here are some:</p>
+<p><a href="http://keybr.com" title="Keybr">Keybr.com</a>: Semi-random text, different difficulty levels, language
+settings, own texts, websites and graphical over-time-comparison.</p>
+<p><a href="http://play.typeracer.com/" title="Typeracer">Typeracer</a>: Competitive typing of texts from popular movies and
+books.</p>
+<p><a href="http://typing.io/" title="typing.io">typing.io</a>: Special typing training for code, lots of examples for
+every popular languages.</p>
+                </article>
 <p class="paginator">
     Page 1 / 1
 </p>
-                </section><!-- /#content -->
+            </aside><!-- /#featured -->
 </body>
 </html>

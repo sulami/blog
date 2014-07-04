@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>/dev/urandom > blog - sulami</title>
+    <title>/dev/sulami >> blog - sulami</title>
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
-    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/urandom > blog RSS Feed" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
 
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -14,11 +14,9 @@
 <body id="index" class="home">
     <header id="banner" class="body">
             <nav>
-            <a href="https://sulami.github.io/">/dev/urandom > blog</a> |
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
                 <a href="https://sulami.github.io/pages/about-me.html">About me</a>
                 <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/games.html">Games</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
                 <a href="https://sulami.github.io/category/linux.html">Linux</a>
                 <a href="https://sulami.github.io/category/web.html">Web</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
@@ -27,18 +25,29 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/hexclock-in-c.html">Hexclock in C</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/getting-rid-of-flash.html">Getting rid of Flash</a></h1>
 <footer class="post-info">
-    <span class="date">2014-06-23 14:15</span>
+    <span class="date">2014-05-27 22:00</span>
     |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/c.html">c</a> <a href="https://sulami.github.io/tag/hexclock.html">hexclock</a> <a href="https://sulami.github.io/tag/hackernews.html">hackernews</a> </footer><!-- /.post-info -->
-                    <p>Earlier this weekend, I found <a href="http://www.jacopocolo.com/hexclock/">Hexclock</a> on hackernews, a simple website
-which interpretes the time as hexadecimal color value and colors the whole page
-using this value. I had nothing to do and decided to clone it in C and ncurses
-for local use, <a href="http://www.reddit.com/r/unixporn/">/r/unixporn</a> screenshots and stuff like this. Anyway,
-<a href="https://github.com/sulami/spielwiese/tree/master/cHexclock">here</a> is the source, if you ask me really nice, I can also compile i686 and
-x86_64 binaries for you.</p>
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+    | tags: <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> <a href="https://sulami.github.io/tag/youtube.html">youtube</a> </footer><!-- /.post-info -->
+                    <p>I started using the HTML5-Player on YouTube, because Flash kept breaking
+fullscreen, and I have not found a single video not supporting HTML5 in over a
+month, so I would consider Flash-less YouTube a valid option. I also discovered
+that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
+Flash. And given that Adobe basically said "Suck it, Linux, we won't support
+you guys properly, have fun with 11.2 and security fixes", plus the fact that
+flash is draining huge amount of resources and is a possible security risk, I
+asked myself, why do I need it anyway?</p>
+<p>The answer was somewhat surprising: I don't. Flash has always only been useful
+for videostreaming, flashgames and intrusive ads. I can live without flashgames
+and ads, and with YouTube and Vimeo out of the way the only site left I
+occasionally use Flash on is Twitch.tv.
+<a href="https://github.com/chrippa/livestreamer">Livestreamer</a>. Extracts the RTMP
+stream and pipes it to a video player of your choice, like VLC. I have been
+using irssi instead of the obnoxious and slow webchat for quite a while now and
+it seems like I only have to visit the website to figure out who I like is
+streaming.  This enabled me to disable (cough) the Flash plugin alltogether.</p>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
@@ -47,82 +56,84 @@ x86_64 binaries for you.</p>
 
             <li><article class="hentry">
                 <header>
-                    <h1>>> <a href="https://sulami.github.io/ricing-again.html" rel="bookmark"
-                           title="Permalink to Ricing again">Ricing again</a></h1>
+                    <h1>>> <a href="https://sulami.github.io/test-driven-development-in-vim.html" rel="bookmark"
+                           title="Permalink to Test-driven development in vim">Test-driven development in vim</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-    <span class="date">2014-06-15 21:15</span>
+    <span class="date">2014-05-05 14:50</span>
     |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
-    | tags: <a href="https://sulami.github.io/tag/monsterwm.html">monsterwm</a> </footer><!-- /.post-info -->
-                <p>I have to confess, I have been ricing again. Today was a slow sunday, no real
-actual work, but I had an Arch VM I had setup to test some kernels sitting here
-without X. While I have been rather happy with Fedora 20 and Gnome 3, which
-feels like ...</p>
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    | tags: <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/tdd.html">tdd</a> <a href="https://sulami.github.io/tag/c.html">c</a> </footer><!-- /.post-info -->
+                <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
+tests over and over again. When I first was introduced to this concept, I
+thought, automated tests are a nice idea, why not? Then I read a book about
+TDD, which proceeded to explain how you start your project ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1>>> <a href="https://sulami.github.io/pipe-madness-lxr-from-the-shell.html" rel="bookmark"
-                           title="Permalink to Pipe Madness: LXR from the Shell">Pipe Madness: LXR from the Shell</a></h1>
+                    <h1>>> <a href="https://sulami.github.io/irc-client-showdown-extreme-version.html" rel="bookmark"
+                           title="Permalink to IRC-client showdown, extreme version">IRC-client showdown, extreme version</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-    <span class="date">2014-06-05 13:50</span>
-    |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
-    | tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/kernel.html">kernel</a> <a href="https://sulami.github.io/tag/lxr.html">lxr</a> </footer><!-- /.post-info -->
-                <p>Well, it is not really <a href="http://lxr.free-electrons.com/ident">LXR</a>, but it works
-on Linux-Next without actually having to use LXR and does something similar.
-The rather short pipe I use here is grepping a directory for a keyword and
-using awk and finally sort to present me with an ordered list of files ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/pipe-madness-finding-kernel-slackers.html" rel="bookmark"
-                           title="Permalink to Pipe Madness: Finding Kernel Slackers">Pipe Madness: Finding Kernel Slackers</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-06-02 12:55</span>
-    |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
-    | tags: <a href="https://sulami.github.io/tag/pipemadness.html">pipemadness</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/kernel.html">kernel</a> </footer><!-- /.post-info -->
-                <p>This is going to be a new series in which I showcase to horrible abominations
-of shell pipelines I make up on the fly while working. This one is for finding
-files in the Linux Kernel that produce extraordinary many warnings and errors
-when pushed into checkpatch.pl, the kernel ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/getting-rid-of-flash.html" rel="bookmark"
-                           title="Permalink to Getting rid of Flash">Getting rid of Flash</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-05-27 22:00</span>
+    <span class="date">2014-03-19 19:17</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
-    | tags: <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> <a href="https://sulami.github.io/tag/youtube.html">youtube</a> </footer><!-- /.post-info -->
-                <p>I started using the HTML5-Player on YouTube, because Flash kept breaking
-fullscreen, and I have not found a single video not supporting HTML5 in over a
-month, so I would consider Flash-less YouTube a valid option. I also discovered
-that Vimeo uses a pretty nice HTML5 player on their site ...</p>
+    | tags: <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/irssi.html">irssi</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitch.tv</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
+                <p>I love IRC. I try to keep all my common software on the shell in case I
+somehow loose my ability to use X. This also enables me to use global
+colorscheme and is performance-wise advantegous. There are many reasons
+to live in the shell (aside from web-browsing, which is ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/my-take-on-secure-communication.html" rel="bookmark"
+                           title="Permalink to My take on secure communication">My take on secure communication</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-03-19 05:40</span>
+    |
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+    | tags: <a href="https://sulami.github.io/tag/google-drive.html">google drive</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> </footer><!-- /.post-info -->
+                <p><strong>Disclaimer:</strong> I am not really into crypto (yet?) and everything I
+write here is purely idealistic and probably somewhat unrealistic/stupid</p>
+<h2>The current situation</h2>
+<p>Some time ago, Facebook bought Whatsapp, which was my main way of
+communicating using my phone. This event has made me think about where
+the internet ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html" rel="bookmark"
+                           title="Permalink to My own perfect world (aka what you should do)">My own perfect world (aka what you should do)</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-03-17 23:59</span>
+    |
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+    | tags: <a href="https://sulami.github.io/tag/firefox.html">firefox</a> <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/homeserver.html">homeserver</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
+                <p>I have to admit, I am a little bit perfectionist. Maybe more. There are
+some conventions I found useful, but there are always people who do not
+follow those conventions, some because they do not want to, but mostly
+they just do not care. I just want to list some ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 14
+    Page 1 / 2
         <a href="https://sulami.github.io/author/sulami2.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

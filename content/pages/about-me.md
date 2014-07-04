@@ -1,22 +1,17 @@
 Title: About me
 
-I am Robin Schroer, also known as sulami. This is my blog, where I keep my
-thoughts sort of organized. Here are some links to my stuff:
+I am Robin Schroer, also known as sulami. This is my blog, where I discuss
+various IT-related topics, mostly related to software development. Here is some
+of my stuff:
 
-- [Github](https://github.com/sulami "Github")
-> Where I mirror some of my less important git repos
-- [FrankwnWM](https://github.com/sulami/frankenwm "FrankenWM")
-> The small, dynamic tiling window manager I wrote
-- [Peerwire](http://peerwire.org "Peerwire")
-> My project organization platform, check it out
+* [Github](https://github.com/sulami "Github")
+  Where I mirror some of my less important git repos
+* [FrankwnWM](https://github.com/sulami/frankenwm "FrankenWM")
+  The small, dynamic tiling window manager I write and maintain
 
-I mainly write C and Python code using Vim and Git, as Python user I love
-[Django](http://djangoproject.com), [Flask](http://flask.pocoo.org) and
-[Pelican](http://getpelican.com) (which is what powers this blog).
-
-I also know my ways around Linux and \*BSD, various web-centered technologies
-and databases. I love
-[TDD](http://en.wikipedia.org/wiki/Test-driven_development).
+I am a Linux/BSD guy and mainly write C and Python code using Vim and Git. I
+have been contributing to the Linux kernel as well as written a X11 window
+manager.
 
 Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.

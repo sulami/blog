@@ -1,5 +1,5 @@
 Title: My own perfect world (aka what you should do)
-Author: sulami
+Date: 2014-03-17 23:59
 Category: Web
 Tags: firefox, flash, git, homeserver, irc, privacy, security, skype, vim, vlc, weechat
 

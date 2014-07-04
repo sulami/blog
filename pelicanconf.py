@@ -23,7 +23,16 @@ MD_EXTENSIONS = (['codehilite(noclasses=true,pygments_style=friendly)'])
 
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL
+FEED_RSS = None
 FEED_ALL_RSS = 'feed/rss.xml'
 CATEGORY_FEED_RSS = None
+TAG_FEED_RSS = None
+AUTHOR_FEED_RSS = None
+TRANSLATION_FEED_RSS = None
+FEED_ATOM = None
 FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TAG_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
 

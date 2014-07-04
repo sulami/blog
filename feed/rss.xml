@@ -271,8 +271,7 @@ SOs, children, parents, BFFs, ...&lt;/p&gt;
 &lt;p&gt;Do regular backups of everything you own. External harddrives, CDs,
 Homservers, whatever. Just no "clouds", you cannot rely on those both in
 terms of security and reliability. Always have at least two copies fully
-under your control. And maybe read &lt;a href="/backup-your-work.html"&gt;my post about using git to backup
-your work&lt;/a&gt;.&lt;/p&gt;
+under your control.&lt;/p&gt;
 &lt;h4&gt;Prefer Open Source&lt;/h4&gt;
 &lt;p&gt;Not (only) for philosophical reasons, but for security reasons. If you
 use a reasonably large open sourced piece of software, even if you are

@@ -1,9 +1,7 @@
 Title: Raspberry Pi: Radio-Alarm
 Date: 2013-06-07 12:46
-Author: sulami
 Category: Linux
 Tags: cron, mplayer, onlineradio, raspberrypi
-Slug: raspberry-pi-radio-alarm
 
 Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
@@ -73,3 +71,4 @@ background. The easiest way of doing so is via "*killall mplayer*",
 which is not the finest way of doing things but should do the job.
 
   [Raspian]: http://www.raspberrypi.org/downloads "RasPi"
+

@@ -1,9 +1,7 @@
 Title: My own perfect world (aka what you should do)
-Date: 2014-03-17 23:59
 Author: sulami
 Category: Web
 Tags: firefox, flash, git, homeserver, irc, privacy, security, skype, vim, vlc, weechat
-Slug: my-own-perfect-world-aka-what-you-should-do
 
 I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
@@ -184,6 +182,6 @@ always the first ones.
     applications)
 
   [my post about using git to backup your work]: /backup-your-work.html
-    "Backup your work"
-  [PEP8]: http://legacy.python.org/dev/peps/pep-0008/ "Python.org"
-  [PEP7]: http://legacy.python.org/dev/peps/pep-0007/ "Python.org"
+  [PEP8]: http://legacy.python.org/dev/peps/pep-0008/
+  [PEP7]: http://legacy.python.org/dev/peps/pep-0007/
+

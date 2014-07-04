@@ -1,9 +1,7 @@
 Title: IRC-client showdown, extreme version
 Date: 2014-03-19 19:17
-Author: sulami
 Category: Web
 Tags: cli, irc, irssi, twitch.tv, weechat
-Slug: irc-client-showdown-extreme-version
 
 I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
@@ -50,3 +48,4 @@ For comparison though, connecting through netcat uses 644 KB of RAM. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for IRC, netcat is actually sort
 of viable, in emergency cases.
+

@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'sulami'
-SITENAME = u'/dev/urandom > blog'
+SITENAME = u'/dev/sulami >> blog'
 SITEURL = 'https://sulami.github.io'
 
 TIMEZONE = 'Europe/Berlin'
@@ -19,7 +19,8 @@ DEFAULT_PAGINATION = 5
 
 MD_EXTENSIONS = (['codehilite(noclasses=true,pygments_style=friendly)'])
 
-STATIC_PATHS = ['images', 'download']
+#STATIC_PATHS = ['images', 'download']
+STATIC_PATHS = None
 
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL

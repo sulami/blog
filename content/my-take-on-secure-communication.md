@@ -1,9 +1,7 @@
 Title: My take on secure communication
 Date: 2014-03-19 05:40
-Author: sulami
 Category: Web
 Tags: google drive, privacy, security, skype
-Slug: my-take-on-secure-communication
 
 **Disclaimer:** I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid
@@ -140,5 +138,6 @@ interested in starting such a project, do not hesitate to contact me,
 someone has to make the first step. My public key is on the
 contact-page...
 
-  [Threema]: https://threema.ch/en/ "Threema.ch"
-  [Telegram]: https://telegram.org/ "Telegram.org"
+  [Threema]: https://threema.ch/en/
+  [Telegram]: https://telegram.org/
+

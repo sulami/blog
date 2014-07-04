@@ -51,8 +51,7 @@ SOs, children, parents, BFFs, ...
 Do regular backups of everything you own. External harddrives, CDs,
 Homservers, whatever. Just no "clouds", you cannot rely on those both in
 terms of security and reliability. Always have at least two copies fully
-under your control. And maybe read [my post about using git to backup
-your work][].
+under your control.
 
 #### Prefer Open Source
 
@@ -181,7 +180,6 @@ always the first ones.
     to write and read), C(++) (faster, for performance-critical
     applications)
 
-  [my post about using git to backup your work]: /backup-your-work.html
   [PEP8]: http://legacy.python.org/dev/peps/pep-0008/
   [PEP7]: http://legacy.python.org/dev/peps/pep-0007/
 

@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 27 May 2014 22:00:00 +0200</lastBuildDate><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 05 Jul 2014 00:00:00 +0200</lastBuildDate><item><title>My own window manager</title><link>https://sulami.github.io/my-own-window-manager.html</link><description>&lt;p&gt;I accidentaly wrote a &lt;a href="https://github.com/sulami/frankenwm"&gt;window manager&lt;/a&gt;. It started out by cloning &lt;a href="https://github.com/cloudef/monsterwm-xcb"&gt;cloudef's
+monsterwm-xcb&lt;/a&gt; to apply some smaller fixes, maybe opening a pull request to
+merge them upstream again. But I quickly found more and more things to fix,
+then I started to add some smaller features I missed from other window
+managers. And thus, FrankenWM was made, pieced together from monsterwm-xcb and
+other window managers. I stole some of the ewmh-related code from &lt;a href="https://github.com/venam/2bwm"&gt;2bwm&lt;/a&gt;,
+and adapted features from &lt;a href="http://dwm.suckless.org"&gt;dwm&lt;/a&gt;, &lt;a href="http://i3wm.org"&gt;i3&lt;/a&gt; and others. The name is an obvious
+play on words.&lt;/p&gt;
+&lt;p&gt;So, what does it do? From a user's standpoint it is quite similar to dwm or
+awesome (or of course monsterwm). It tiles dynamically, using one big master
+window and a stack of smaller slave windows on each virtual desktop. There are
+a few predefined layouts to choose from, v-stack, b-stack, grid, fibnonacci and
+monocle. V-stack stacks the slave windows next to the master window, b-stack
+below the master. Grid tries to give the same amount of screen space to every
+window by placing them in a grid-like structure, fibonacci makes the each
+window 50% as big as the window above it in the stack. And finally, monocle
+fullscreens every window in a stacking fashion so you just see one at a time.&lt;/p&gt;
+&lt;p&gt;The preferred way of controlling it is by using the keyboard, which uses a set
+of shortcuts similar to the ones known from vim by default, and makes heavy use
+of the Mod4-/Meta-/Windows-key to prevent overlapping with shortcuts for other
+software. The mouse can be used to control floating windows and to select
+windows, but the focus lies on mouse-less usage.&lt;/p&gt;
+&lt;p&gt;There is also support for adding gaps between the windows, inspired by dwm's
+useless gaps patch, which allow you to see your wallpaper or dropshadows from a
+compositor. Those gaps are adjustable on the fly and optionally specific to
+virtual desktops. I also implemented some features to allow using floating
+windows without having to use the mouse. On the more technical side of things I
+am currently implementing EWMH-compliance, which is important for compability
+with a lot of different programs.&lt;/p&gt;
+&lt;p&gt;The configuration is entirely done at compile time by editing the config.h. In
+my git repository I include a sample config with some comments explaining how
+to use it. As an alternate example, you can have a look at &lt;a href="https://github.com/sulami/dotfiles/blob/master/frankenwm.config.h"&gt;my personal
+config&lt;/a&gt;, which uses some more advanced features. As a bonus for Arch users,
+I also maintain an &lt;a href="https://aur.archlinux.org/packages/frankenwm-git/"&gt;AUR package&lt;/a&gt; which I update on bigger changes in the git
+repository, although I still reccomend using the version from Github, as I do
+not have a lot of experience with the AUR.&lt;/p&gt;
+&lt;p&gt;The prerequisites for building FrankenWM are all XCB-based, specifically you
+will need the XCB headers including the util, util-wm and keysyms ones, which
+you can probably pull out of your distribution's repositories. I have yet to
+build it on my OpenBSD machine, so I cannot say anything yet to building it on
+the BSD family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 05 Jul 2014 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-07-05:my-own-window-manager.html</guid><category>frankenwm</category><category>xorg</category><category>wm</category></item><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
 fullscreen, and I have not found a single video not supporting HTML5 in over a
 month, so I would consider Flash-less YouTube a valid option. I also discovered
 that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
@@ -15,7 +55,7 @@ occasionally use Flash on is Twitch.tv.
 stream and pipes it to a video player of your choice, like VLC. I have been
 using irssi instead of the obnoxious and slow webchat for quite a while now and
 it seems like I only have to visit the website to figure out who I like is
-streaming.  This enabled me to disable (cough) the Flash plugin alltogether.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 27 May 2014 22:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-05-27:getting-rid-of-flash.html</guid><category>flash</category><category>vlc</category><category>twitchtv</category><category>youtube</category></item><item><title>Test-driven development in vim</title><link>https://sulami.github.io/test-driven-development-in-vim.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (TDD)&lt;/a&gt; is a way of developing software by using
+streaming.  This enabled me to disable (cough) the Flash plugin alltogether.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 27 May 2014 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-05-27:getting-rid-of-flash.html</guid><category>flash</category><category>vlc</category><category>twitchtv</category><category>youtube</category></item><item><title>Test-driven development in vim</title><link>https://sulami.github.io/test-driven-development-in-vim.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (TDD)&lt;/a&gt; is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
 TDD, which proceeded to explain how you start your project by writing a test
@@ -78,7 +118,7 @@ line which produced the error. If everything works as intended, it prints all
 the tests it ran, prompts for enter and returns us to vim.  An important part
 is to only delete old tests, when the condition they test for is no longer
 wanted, so you always test for basic functionality as well as the final
-results.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 05 May 2014 14:50:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-05-05:test-driven-development-in-vim.html</guid><category>vim</category><category>cli</category><category>tdd</category><category>c</category></item><item><title>IRC-client showdown, extreme version</title><link>https://sulami.github.io/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
+results.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 05 May 2014 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-05-05:test-driven-development-in-vim.html</guid><category>vim</category><category>cli</category><category>tdd</category><category>c</category></item><item><title>IRC-client showdown, extreme version</title><link>https://sulami.github.io/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is a pain), but
@@ -117,7 +157,7 @@ performance impact, using about 12 MB of RAM, which is more reasonable.
 For comparison though, connecting through netcat uses 644 KB of RAM. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for IRC, netcat is actually sort
-of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 19:17:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
 &lt;h2&gt;The current situation&lt;/h2&gt;
 &lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
@@ -233,7 +273,7 @@ on crypto, network messaging, development for specific platforms,
 interface designers, and the list goes on. If you read this and are
 interested in starting such a project, do not hesitate to contact me,
 someone has to make the first step. My public key is on the
-contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 05:40:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+contact-page...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:my-take-on-secure-communication.html</guid><category>google drive</category><category>privacy</category><category>security</category><category>skype</category></item><item><title>My own perfect world (aka what you should do)</title><link>https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
 follow those conventions, some because they do not want to, but mostly
 they just do not care. I just want to list some (read: non-exhaustive
@@ -374,7 +414,7 @@ always the first ones.&lt;/p&gt;
 &lt;li&gt;Programming languages: Python (platform independent, modular, nice
     to write and read), C(++) (faster, for performance-critical
     applications)&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 23:59:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>My favourite Tech-Talks</title><link>https://sulami.github.io/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid><category>firefox</category><category>flash</category><category>git</category><category>homeserver</category><category>irc</category><category>privacy</category><category>security</category><category>skype</category><category>vim</category><category>vlc</category><category>weechat</category></item><item><title>My favourite Tech-Talks</title><link>https://sulami.github.io/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
 of talks on YouTube and watching them all would take ages, but I
 sometimes watch talks before going to bed instad of watching TV.  So I
 thought, I could compile a small list of my favourite talks featuring
@@ -418,7 +458,7 @@ started on kernel development&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;There are a lot more good talks, but my time is sort of limited and
-sadly I can't really focus on working while watching talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 14:49:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category><category>wayland</category><category>kernel</category><category>selinux</category></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+sadly I can't really focus on working while watching talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category><category>wayland</category><category>kernel</category><category>selinux</category></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
 everyone else) heard about the NSA and Prism. Now I always distrusted
 big companies, especially the ones from the US, because I know money and
 power are everything over there. If they want to spy on you, they can.
@@ -462,7 +502,7 @@ social network misses the point.&lt;/p&gt;
 using Tor permanently, only use end-to-end encrypted websites and
 disable all scripts and plugins, then use custom DNS-servers and stuff
 like this, but chances are, someone will see where you are browsing,
-like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 22:41:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Raspberry Pi: Radio-Alarm</title><link>https://sulami.github.io/raspberry-pi-radio-alarm.html</link><description>&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
+like the guy standing behind you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-18:prism-what-to-do.html</guid><category>prism</category><category>privacy</category><category>security</category></item><item><title>Raspberry Pi: Radio-Alarm</title><link>https://sulami.github.io/raspberry-pi-radio-alarm.html</link><description>&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
 long, which results in high power consumption and noise. While netbooks
 can counter this to a certain degree, the Raspberry Pi is the optimal
@@ -528,7 +568,19 @@ won't play and istead send you something like "connection by pulse
 refused" per system-mail. Save the file to install the cronjob.&lt;/p&gt;
 &lt;p&gt;When waking up, you need to kill mplayer, as it is running in the
 background. The easiest way of doing so is via "&lt;em&gt;killall mplayer&lt;/em&gt;",
-which is not the finest way of doing things but should do the job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 12:46:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid><category>cron</category><category>mplayer</category><category>onlineradio</category><category>raspberrypi</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitchtv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+which is not the finest way of doing things but should do the job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid><category>cron</category><category>mplayer</category><category>onlineradio</category><category>raspberrypi</category></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally programming,
+typing properly is a mandatory skill, but basically everyone benefits from fast
+typing. Most people developed some kind of 2-6-finger system, which might work
+well, but is still suboptimal compared to 10-finger touch typing. There are
+some ways of learning the latter, but my personal favourite approach are
+websites, as they are platform independent and usually require nothing more
+than a browser with flash-plugin. Here are some:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://keybr.com" title="Keybr"&gt;Keybr.com&lt;/a&gt;: Semi-random text, different difficulty levels, language
+settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
+books.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
+every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitchtv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:&lt;/p&gt;
 &lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
 OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
@@ -564,16 +616,4 @@ ffmpeg
 and output), aswell as FPS. In lines 13-16 you can change your audio
 devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
 microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
-of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:25:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally programming,
-typing properly is a mandatory skill, but basically everyone benefits from fast
-typing. Most people developed some kind of 2-6-finger system, which might work
-well, but is still suboptimal compared to 10-finger touch typing. There are
-some ways of learning the latter, but my personal favourite approach are
-websites, as they are platform independent and usually require nothing more
-than a browser with flash-plugin. Here are some:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://keybr.com" title="Keybr"&gt;Keybr.com&lt;/a&gt;: Semi-random text, different difficulty levels, language
-settings, own texts, websites and graphical over-time-comparison.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and
-books.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
-every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 19:18:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item></channel></rss>
+of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item></channel></rss>

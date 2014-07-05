@@ -25,34 +25,77 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/getting-rid-of-flash.html">Getting rid of Flash</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/my-own-window-manager.html">My own window manager</a></h1>
 <footer class="post-info">
-    <span class="date">2014-05-27 22:00</span>
+    <span class="date">2014-07-05</span>
     |
-    in <a href="https://sulami.github.io/category/web.html">Web</a>
-    | tags: <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> <a href="https://sulami.github.io/tag/youtube.html">youtube</a> </footer><!-- /.post-info -->
-                    <p>I started using the HTML5-Player on YouTube, because Flash kept breaking
-fullscreen, and I have not found a single video not supporting HTML5 in over a
-month, so I would consider Flash-less YouTube a valid option. I also discovered
-that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
-Flash. And given that Adobe basically said "Suck it, Linux, we won't support
-you guys properly, have fun with 11.2 and security fixes", plus the fact that
-flash is draining huge amount of resources and is a possible security risk, I
-asked myself, why do I need it anyway?</p>
-<p>The answer was somewhat surprising: I don't. Flash has always only been useful
-for videostreaming, flashgames and intrusive ads. I can live without flashgames
-and ads, and with YouTube and Vimeo out of the way the only site left I
-occasionally use Flash on is Twitch.tv.
-<a href="https://github.com/chrippa/livestreamer">Livestreamer</a>. Extracts the RTMP
-stream and pipes it to a video player of your choice, like VLC. I have been
-using irssi instead of the obnoxious and slow webchat for quite a while now and
-it seems like I only have to visit the website to figure out who I like is
-streaming.  This enabled me to disable (cough) the Flash plugin alltogether.</p>
+    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
+    | tags: <a href="https://sulami.github.io/tag/frankenwm.html">frankenwm</a> <a href="https://sulami.github.io/tag/xorg.html">xorg</a> <a href="https://sulami.github.io/tag/wm.html">wm</a> </footer><!-- /.post-info -->
+                    <p>I accidentaly wrote a <a href="https://github.com/sulami/frankenwm">window manager</a>. It started out by cloning <a href="https://github.com/cloudef/monsterwm-xcb">cloudef's
+monsterwm-xcb</a> to apply some smaller fixes, maybe opening a pull request to
+merge them upstream again. But I quickly found more and more things to fix,
+then I started to add some smaller features I missed from other window
+managers. And thus, FrankenWM was made, pieced together from monsterwm-xcb and
+other window managers. I stole some of the ewmh-related code from <a href="https://github.com/venam/2bwm">2bwm</a>,
+and adapted features from <a href="http://dwm.suckless.org">dwm</a>, <a href="http://i3wm.org">i3</a> and others. The name is an obvious
+play on words.</p>
+<p>So, what does it do? From a user's standpoint it is quite similar to dwm or
+awesome (or of course monsterwm). It tiles dynamically, using one big master
+window and a stack of smaller slave windows on each virtual desktop. There are
+a few predefined layouts to choose from, v-stack, b-stack, grid, fibnonacci and
+monocle. V-stack stacks the slave windows next to the master window, b-stack
+below the master. Grid tries to give the same amount of screen space to every
+window by placing them in a grid-like structure, fibonacci makes the each
+window 50% as big as the window above it in the stack. And finally, monocle
+fullscreens every window in a stacking fashion so you just see one at a time.</p>
+<p>The preferred way of controlling it is by using the keyboard, which uses a set
+of shortcuts similar to the ones known from vim by default, and makes heavy use
+of the Mod4-/Meta-/Windows-key to prevent overlapping with shortcuts for other
+software. The mouse can be used to control floating windows and to select
+windows, but the focus lies on mouse-less usage.</p>
+<p>There is also support for adding gaps between the windows, inspired by dwm's
+useless gaps patch, which allow you to see your wallpaper or dropshadows from a
+compositor. Those gaps are adjustable on the fly and optionally specific to
+virtual desktops. I also implemented some features to allow using floating
+windows without having to use the mouse. On the more technical side of things I
+am currently implementing EWMH-compliance, which is important for compability
+with a lot of different programs.</p>
+<p>The configuration is entirely done at compile time by editing the config.h. In
+my git repository I include a sample config with some comments explaining how
+to use it. As an alternate example, you can have a look at <a href="https://github.com/sulami/dotfiles/blob/master/frankenwm.config.h">my personal
+config</a>, which uses some more advanced features. As a bonus for Arch users,
+I also maintain an <a href="https://aur.archlinux.org/packages/frankenwm-git/">AUR package</a> which I update on bigger changes in the git
+repository, although I still reccomend using the version from Github, as I do
+not have a lot of experience with the AUR.</p>
+<p>The prerequisites for building FrankenWM are all XCB-based, specifically you
+will need the XCB headers including the util, util-wm and keysyms ones, which
+you can probably pull out of your distribution's repositories. I have yet to
+build it on my OpenBSD machine, so I cannot say anything yet to building it on
+the BSD family.</p>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/getting-rid-of-flash.html" rel="bookmark"
+                           title="Permalink to Getting rid of Flash">Getting rid of Flash</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-05-27</span>
+    |
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+    | tags: <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> <a href="https://sulami.github.io/tag/youtube.html">youtube</a> </footer><!-- /.post-info -->
+                <p>I started using the HTML5-Player on YouTube, because Flash kept breaking
+fullscreen, and I have not found a single video not supporting HTML5 in over a
+month, so I would consider Flash-less YouTube a valid option. I also discovered
+that Vimeo uses a pretty nice HTML5 player on their site ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -62,7 +105,7 @@ streaming.  This enabled me to disable (cough) the Flash plugin alltogether.</p>
 
                 <div class="entry-content">
 <footer class="post-info">
-    <span class="date">2014-05-05 14:50</span>
+    <span class="date">2014-05-05</span>
     |
     in <a href="https://sulami.github.io/category/coding.html">Coding</a>
     | tags: <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/tdd.html">tdd</a> <a href="https://sulami.github.io/tag/c.html">c</a> </footer><!-- /.post-info -->
@@ -81,7 +124,7 @@ TDD, which proceeded to explain how you start your project ...</p>
 
                 <div class="entry-content">
 <footer class="post-info">
-    <span class="date">2014-03-19 19:17</span>
+    <span class="date">2014-03-19</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
     | tags: <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/irssi.html">irssi</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitch.tv</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
@@ -100,7 +143,7 @@ to live in the shell (aside from web-browsing, which is ...</p>
 
                 <div class="entry-content">
 <footer class="post-info">
-    <span class="date">2014-03-19 05:40</span>
+    <span class="date">2014-03-19</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
     | tags: <a href="https://sulami.github.io/tag/google-drive.html">google drive</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> </footer><!-- /.post-info -->
@@ -112,28 +155,9 @@ communicating using my phone. This event has made me think about where
 the internet ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html" rel="bookmark"
-                           title="Permalink to My own perfect world (aka what you should do)">My own perfect world (aka what you should do)</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-03-17 23:59</span>
-    |
-    in <a href="https://sulami.github.io/category/web.html">Web</a>
-    | tags: <a href="https://sulami.github.io/tag/firefox.html">firefox</a> <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/homeserver.html">homeserver</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
-                <p>I have to admit, I am a little bit perfectionist. Maybe more. There are
-some conventions I found useful, but there are always people who do not
-follow those conventions, some because they do not want to, but mostly
-they just do not care. I just want to list some ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 2
+    Page 1 / 3
         <a href="https://sulami.github.io/index2.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

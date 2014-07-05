@@ -1,27 +1,27 @@
 Title: About me
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
-various IT-related topics, mostly related to software development. Here is some
-of my stuff:
+various IT-related topics, mostly related to software development.  I am a
+Linux/BSD guy and mainly write C and Python code using Vim and Git. I have been
+contributing to the Linux kernel as well as written a X11 window manager.
+
+Here is some of my stuff:
 
 * [Github](https://github.com/sulami "Github")
   Where I mirror some of my less important git repos
-* [FrankwnWM](https://github.com/sulami/frankenwm "FrankenWM")
+* [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
-
-I am a Linux/BSD guy and mainly write C and Python code using Vim and Git. I
-have been contributing to the Linux kernel as well as written a X11 window
-manager.
 
 Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.
 
 If you are in need of someone like me, contact me in any way you want to,
-although I prefer email.
+although I prefer email. But I also often hang out on irc.nixers.net or
+freenode.
 
-You can reach me at [sulami@peerwire.org](mailto:sulami@peerwire.org).
+My email address is [sulami@peerwire.org](mailto:sulami@peerwire.org).
 
-If you feel the need to, you can also use my PGP-Key:
+I would also like to encourage you to use my PGP-Key:
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1

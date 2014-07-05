@@ -1,5 +1,5 @@
 Title: Streaming to Twitch.tv using ffmpeg and ALSA
-Date: 2013-05-14 19:25
+Date: 2013-05-14
 Category: Web
 Tags: alsa, ffmpeg, twitch.tv
 

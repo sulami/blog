@@ -1,5 +1,5 @@
 Title: My favourite Tech-Talks
-Date: 2014-01-25 14:49
+Date: 2014-01-25
 Category: Web
 Tags: git, talks, youtube, wayland, kernel, selinux
 

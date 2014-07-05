@@ -1,5 +1,5 @@
 Title: IRC-client showdown, extreme version
-Date: 2014-03-19 19:17
+Date: 2014-03-19
 Category: Web
 Tags: cli, irc, irssi, twitch.tv, weechat
 

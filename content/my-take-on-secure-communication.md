@@ -1,5 +1,5 @@
 Title: My take on secure communication
-Date: 2014-03-19 05:40
+Date: 2014-03-19
 Category: Web
 Tags: google drive, privacy, security, skype
 

@@ -1,5 +1,5 @@
 Title: Raspberry Pi: Radio-Alarm
-Date: 2013-06-07 12:46
+Date: 2013-06-07
 Category: Linux
 Tags: cron, mplayer, onlineradio, raspberrypi
 

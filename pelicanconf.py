@@ -7,7 +7,7 @@ SITENAME = u'/dev/sulami >> blog'
 SITEURL = 'https://sulami.github.io'
 
 TIMEZONE = 'Europe/Berlin'
-DEFAULT_DATE_FORMAT = ('%Y-%m-%d %H:%M')
+DEFAULT_DATE_FORMAT = ('%Y-%m-%d')
 DEFAULT_LANG = u'en'
 
 THEME = '/home/sulami/build/pelican-theme'

@@ -1,5 +1,5 @@
 Title: Getting rid of Flash
-Date: 2014-05-27 22:00
+Date: 2014-05-27
 Category: Web
 Tags: flash, vlc, twitchtv, youtube
 

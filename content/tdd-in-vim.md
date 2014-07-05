@@ -1,5 +1,5 @@
 Title: Test-driven development in vim
-Date: 2014-05-05 14:50
+Date: 2014-05-05
 Category: Coding
 Tags: vim, cli, tdd, c
 

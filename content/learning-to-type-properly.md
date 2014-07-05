@@ -1,5 +1,5 @@
 Title: Learning to type properly
-Date: 2013-05-14 19:18
+Date: 2013-05-14
 Category: Web
 Tags: typing
 

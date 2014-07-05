@@ -1,5 +1,5 @@
 Title: Prism: What to do
-Date: 2013-06-18 22:41
+Date: 2013-06-18
 Category: Web
 Tags: prism, privacy, security
 

@@ -52,17 +52,17 @@ way of achieving our goal. You will need:</p>
 connect everything and boot it up, then access a console. We need to
 install mplayer, which will play our stream. If needed, update the
 package lists before installing.</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020"># Raspian:</span>
-sudo apt<span style="color: #666666">-</span>get install mplayer
+<div class="codehilite"><pre><span class="cp"># Raspian:</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">mplayer</span>
 
-<span style="color: #007020"># ArchARM (as root):</span>
-pacman <span style="color: #666666">-</span>Sy mplayer
+<span class="cp"># ArchARM (as root):</span>
+<span class="n">pacman</span> <span class="o">-</span><span class="n">Sy</span> <span class="n">mplayer</span>
 
-<span style="color: #007020"># Pidora:</span>
-sudo yum install mplayer
+<span class="cp"># Pidora:</span>
+<span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">mplayer</span>
 
-<span style="color: #007020"># openSUSE:</span>
-sudo zypper in mplayer
+<span class="cp"># openSUSE:</span>
+<span class="n">sudo</span> <span class="n">zypper</span> <span class="n">in</span> <span class="n">mplayer</span>
 </pre></div>
 
 
@@ -71,15 +71,15 @@ fallback if the internet connection or your radio station goes down, so
 you can switch to a local file to play instead. Use any text editor you
 want (vi, vim, emacs, nano, or graphical ones) to write something like
 my <em>playlist.pls</em>:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #007020; font-weight: bold">[playlist]</span>
-<span style="color: #4070a0">File1</span><span style="color: #666666">=</span><span style="color: #4070a0">http://mp3.ht-stream.net</span>
-<span style="color: #4070a0">Title1</span><span style="color: #666666">=</span><span style="color: #4070a0">HouseTime</span>
-<span style="color: #4070a0">Lenght1</span><span style="color: #666666">=</span><span style="color: #4070a0">-1</span>
-<span style="color: #4070a0">File2</span><span style="color: #666666">=</span><span style="color: #4070a0">/home/pi/alarm.mp3</span>
-<span style="color: #4070a0">Title2</span><span style="color: #666666">=</span><span style="color: #4070a0">FallbackAlarm</span>
-<span style="color: #4070a0">Length2</span><span style="color: #666666">=</span><span style="color: #4070a0">-1</span>
-<span style="color: #4070a0">NumberOfEntries</span><span style="color: #666666">=</span><span style="color: #4070a0">2</span>
-<span style="color: #4070a0">Version</span><span style="color: #666666">=</span><span style="color: #4070a0">1</span>
+<div class="codehilite"><pre><span class="k">[playlist]</span>
+<span class="na">File1</span><span class="o">=</span><span class="s">http://mp3.ht-stream.net</span>
+<span class="na">Title1</span><span class="o">=</span><span class="s">HouseTime</span>
+<span class="na">Lenght1</span><span class="o">=</span><span class="s">-1</span>
+<span class="na">File2</span><span class="o">=</span><span class="s">/home/pi/alarm.mp3</span>
+<span class="na">Title2</span><span class="o">=</span><span class="s">FallbackAlarm</span>
+<span class="na">Length2</span><span class="o">=</span><span class="s">-1</span>
+<span class="na">NumberOfEntries</span><span class="o">=</span><span class="s">2</span>
+<span class="na">Version</span><span class="o">=</span><span class="s">1</span>
 </pre></div>
 
 
@@ -90,7 +90,7 @@ use the <em>-shuffle</em> parameter later on to play random music.</p>
 a hint) and type "<em>crontab -e</em>" to enter your cronjob (preferably as a
 non-root user). Depending on your OS there will be some comments you can
 ignore. Add a entry like the following:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #40a070">30</span> <span style="color: #40a070">6</span> <span style="color: #666666">*</span> <span style="color: #666666">*</span> <span style="color: #666666">*</span> env DISPLAY<span style="color: #666666">=:</span><span style="color: #40a070">0.0</span> <span style="color: #666666">/</span>usr<span style="color: #666666">/</span>bin<span style="color: #666666">/</span>mplayer <span style="color: #666666">-</span>playlist <span style="color: #666666">/</span>home<span style="color: #666666">/</span>pi<span style="color: #666666">/</span>playlist.pls <span style="color: #666666">&gt;</span> <span style="color: #666666">/</span>dev<span style="color: #666666">/</span>null
+<div class="codehilite"><pre><span class="mi">30</span> <span class="mi">6</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">env</span> <span class="n">DISPLAY</span><span class="o">=:</span><span class="mf">0.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mplayer</span> <span class="o">-</span><span class="n">playlist</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">playlist</span><span class="p">.</span><span class="n">pls</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
 </pre></div>
 
 

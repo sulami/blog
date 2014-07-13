@@ -79,7 +79,7 @@ written using TDD, but giving usually rather poor debugging output compared to
 interpreted languages, TDD is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
 a keyboard mapping to start our tests from within vim.&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #902000"&gt;map&lt;/span&gt; &lt;span style="color: #666666"&gt;&amp;lt;&lt;/span&gt;Leader&lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt;&lt;span style="color: #007020"&gt;t&lt;/span&gt; :&lt;span style="color: #666666"&gt;!&lt;/span&gt;make &lt;span style="color: #4070a0"&gt;-B&lt;/span&gt; tests &lt;span style="color: #666666"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./tests&lt;span style="color: #666666"&gt;&amp;lt;&lt;/span&gt;CR&lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kt"&gt;map&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Leader&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;t&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;make&lt;/span&gt; &lt;span class="na"&gt;-B&lt;/span&gt; &lt;span class="nx"&gt;tests&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;.&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;tests&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;CR&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -88,26 +88,26 @@ installed), compile our &lt;em&gt;tests.c&lt;/em&gt; file and run it. Depending 
 you are using, which kind of application you are developing and how your tests
 work, you might want to change this a bit. I am testing a library I am writing,
 which gets included in &lt;em&gt;tests.c&lt;/em&gt;.  The basic structure looks like this:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #60a0b0; font-style: italic"&gt;/* Tests for my library */&lt;/span&gt;
-&lt;span style="color: #007020"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span style="color: #007020"&gt;#include &amp;lt;assert.h&amp;gt;&lt;/span&gt;
-&lt;span style="color: #007020"&gt;#include &amp;quot;mylib.h&amp;quot;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Tests for my library */&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;assert.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;quot;mylib.h&amp;quot;&lt;/span&gt;
 
-&lt;span style="color: #007020"&gt;#define run_test(fn_name) \&lt;/span&gt;
-&lt;span style="color: #007020"&gt;    printf(&amp;quot;%s\n&amp;quot;, #fn_name); \&lt;/span&gt;
-&lt;span style="color: #007020"&gt;    fn_name();&lt;/span&gt;
+&lt;span class="cp"&gt;#define run_test(fn_name) \&lt;/span&gt;
+&lt;span class="cp"&gt;    printf(&amp;quot;%s\n&amp;quot;, #fn_name); \&lt;/span&gt;
+&lt;span class="cp"&gt;    fn_name();&lt;/span&gt;
 
-&lt;span style="color: #902000"&gt;void&lt;/span&gt; &lt;span style="color: #06287e"&gt;test_example_test&lt;/span&gt;() {
-    &lt;span style="color: #902000"&gt;int&lt;/span&gt; test &lt;span style="color: #666666"&gt;=&lt;/span&gt; fancy_function(&lt;span style="color: #40a070"&gt;42&lt;/span&gt;);
-    assert(test &lt;span style="color: #666666"&gt;==&lt;/span&gt; &lt;span style="color: #40a070"&gt;15&lt;/span&gt;);
-}
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;test_example_test&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fancy_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span style="color: #902000"&gt;int&lt;/span&gt; &lt;span style="color: #06287e"&gt;main&lt;/span&gt;() {
-    printf(&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;Running tests:&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;);
-    run_test(test_example_test);
-    printf(&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt; =&amp;gt; All tests successful!&lt;/span&gt;&lt;span style="color: #4070a0; font-weight: bold"&gt;\n&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;&lt;/span&gt;);
-    &lt;span style="color: #007020; font-weight: bold"&gt;return&lt;/span&gt;(&lt;span style="color: #40a070"&gt;0&lt;/span&gt;);
-}
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Running tests:&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;run_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_example_test&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; =&amp;gt; All tests successful!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -517,17 +517,17 @@ way of achieving our goal. You will need:&lt;/p&gt;
 connect everything and boot it up, then access a console. We need to
 install mplayer, which will play our stream. If needed, update the
 package lists before installing.&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020"&gt;# Raspian:&lt;/span&gt;
-sudo apt&lt;span style="color: #666666"&gt;-&lt;/span&gt;get install mplayer
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# Raspian:&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mplayer&lt;/span&gt;
 
-&lt;span style="color: #007020"&gt;# ArchARM (as root):&lt;/span&gt;
-pacman &lt;span style="color: #666666"&gt;-&lt;/span&gt;Sy mplayer
+&lt;span class="cp"&gt;# ArchARM (as root):&lt;/span&gt;
+&lt;span class="n"&gt;pacman&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Sy&lt;/span&gt; &lt;span class="n"&gt;mplayer&lt;/span&gt;
 
-&lt;span style="color: #007020"&gt;# Pidora:&lt;/span&gt;
-sudo yum install mplayer
+&lt;span class="cp"&gt;# Pidora:&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mplayer&lt;/span&gt;
 
-&lt;span style="color: #007020"&gt;# openSUSE:&lt;/span&gt;
-sudo zypper in mplayer
+&lt;span class="cp"&gt;# openSUSE:&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;zypper&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;mplayer&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -536,15 +536,15 @@ fallback if the internet connection or your radio station goes down, so
 you can switch to a local file to play instead. Use any text editor you
 want (vi, vim, emacs, nano, or graphical ones) to write something like
 my &lt;em&gt;playlist.pls&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #007020; font-weight: bold"&gt;[playlist]&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;File1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;http://mp3.ht-stream.net&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;Title1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;HouseTime&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;Lenght1&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;-1&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;File2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;/home/pi/alarm.mp3&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;Title2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;FallbackAlarm&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;Length2&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;-1&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;NumberOfEntries&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;2&lt;/span&gt;
-&lt;span style="color: #4070a0"&gt;Version&lt;/span&gt;&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;1&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;[playlist]&lt;/span&gt;
+&lt;span class="na"&gt;File1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;http://mp3.ht-stream.net&lt;/span&gt;
+&lt;span class="na"&gt;Title1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;HouseTime&lt;/span&gt;
+&lt;span class="na"&gt;Lenght1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;-1&lt;/span&gt;
+&lt;span class="na"&gt;File2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/pi/alarm.mp3&lt;/span&gt;
+&lt;span class="na"&gt;Title2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;FallbackAlarm&lt;/span&gt;
+&lt;span class="na"&gt;Length2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;-1&lt;/span&gt;
+&lt;span class="na"&gt;NumberOfEntries&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;2&lt;/span&gt;
+&lt;span class="na"&gt;Version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -555,7 +555,7 @@ use the &lt;em&gt;-shuffle&lt;/em&gt; parameter later on to play random music.&l
 a hint) and type "&lt;em&gt;crontab -e&lt;/em&gt;" to enter your cronjob (preferably as a
 non-root user). Depending on your OS there will be some comments you can
 ignore. Add a entry like the following:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;&lt;span style="color: #40a070"&gt;30&lt;/span&gt; &lt;span style="color: #40a070"&gt;6&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; &lt;span style="color: #666666"&gt;*&lt;/span&gt; env DISPLAY&lt;span style="color: #666666"&gt;=:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0.0&lt;/span&gt; &lt;span style="color: #666666"&gt;/&lt;/span&gt;usr&lt;span style="color: #666666"&gt;/&lt;/span&gt;bin&lt;span style="color: #666666"&gt;/&lt;/span&gt;mplayer &lt;span style="color: #666666"&gt;-&lt;/span&gt;playlist &lt;span style="color: #666666"&gt;/&lt;/span&gt;home&lt;span style="color: #666666"&gt;/&lt;/span&gt;pi&lt;span style="color: #666666"&gt;/&lt;/span&gt;playlist.pls &lt;span style="color: #666666"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color: #666666"&gt;/&lt;/span&gt;dev&lt;span style="color: #666666"&gt;/&lt;/span&gt;null
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt; &lt;span class="n"&gt;DISPLAY&lt;/span&gt;&lt;span class="o"&gt;=:&lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mplayer&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;playlist&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;playlist&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pls&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;null&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -582,33 +582,33 @@ books.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
 every popular languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:learning-to-type-properly.html</guid><category>typing</category></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitchtv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:&lt;/p&gt;
-&lt;div class="codehilite" style="background: #f0f0f0"&gt;&lt;pre style="line-height: 125%"&gt;INRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
-OUTRES&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
-FPS&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;30&amp;quot;&lt;/span&gt;
-QUAL&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;medium&amp;quot;&lt;/span&gt;
-STREAM_KEY&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #4070a0"&gt;&amp;quot;live_123_xxx&amp;quot;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;INRES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;OUTRES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;FPS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;30&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;QUAL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;medium&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;STREAM_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;live_123_xxx&amp;quot;&lt;/span&gt;
 
-ffmpeg
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;f x11grab
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$INRES&amp;quot;&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;r &lt;span style="color: #4070a0"&gt;&amp;quot;$FPS&amp;quot;&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;i &lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0.0&lt;/span&gt;&lt;span style="color: #666666"&gt;+&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;itsoffset &lt;span style="color: #666666"&gt;-&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;00&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;01&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;f alsa
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;i hw&lt;span style="color: #666666"&gt;:&lt;/span&gt;&lt;span style="color: #40a070"&gt;0&lt;/span&gt;,&lt;span style="color: #40a070"&gt;0&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;filter_complex amix&lt;span style="color: #666666"&gt;=&lt;/span&gt;inputs&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;2&lt;/span&gt;&lt;span style="color: #666666"&gt;:&lt;/span&gt;duration&lt;span style="color: #666666"&gt;=&lt;/span&gt;first&lt;span style="color: #666666"&gt;:&lt;/span&gt;dropout_transition&lt;span style="color: #666666"&gt;=&lt;/span&gt;&lt;span style="color: #40a070"&gt;3&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;af aresample
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;vcodec libx264
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;preset &lt;span style="color: #4070a0"&gt;&amp;quot;$QUAL&amp;quot;&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;s &lt;span style="color: #4070a0"&gt;&amp;quot;$OUTRES&amp;quot;&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;acodec libmp3lame
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;ar &lt;span style="color: #40a070"&gt;44100&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;threads &lt;span style="color: #40a070"&gt;6&lt;/span&gt;
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;b&lt;span style="color: #666666"&gt;:&lt;/span&gt;a &lt;span style="color: #40a070"&gt;512&lt;/span&gt;k
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;pix_fmt yuv420p
-&lt;span style="color: #666666"&gt;-&lt;/span&gt;f flv &lt;span style="color: #4070a0"&gt;&amp;quot;rtmp://live.justin.tv/app/$STREAM_KEY&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;ffmpeg&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;x11grab&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$INRES&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$FPS&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;itsoffset&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mo"&gt;01&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;alsa&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;hw&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;alsa&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;hw&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;filter_complex&lt;/span&gt; &lt;span class="n"&gt;amix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;inputs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;duration&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;dropout_transition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;af&lt;/span&gt; &lt;span class="n"&gt;aresample&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vcodec&lt;/span&gt; &lt;span class="n"&gt;libx264&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;preset&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$QUAL&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$OUTRES&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;acodec&lt;/span&gt; &lt;span class="n"&gt;libmp3lame&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ar&lt;/span&gt; &lt;span class="mi"&gt;44100&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;threads&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pix_fmt&lt;/span&gt; &lt;span class="n"&gt;yuv420p&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;flv&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;rtmp://live.justin.tv/app/$STREAM_KEY&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

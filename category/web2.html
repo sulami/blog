@@ -79,19 +79,19 @@ some ways of learning ...</p>
     | tags: <a href="https://sulami.github.io/tag/alsa.html">alsa</a> <a href="https://sulami.github.io/tag/ffmpeg.html">ffmpeg</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitch.tv</a> </footer><!-- /.post-info -->
                 <p>Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">INRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
-OUTRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
-FPS<span style="color: #666666">=</span><span style="color: #4070a0">&quot;30&quot;</span>
-QUAL<span style="color: #666666">=</span><span style="color: #4070a0">&quot;medium&quot;</span>
-STREAM_KEY<span style="color: #666666">=</span><span style="color: #4070a0">&quot;live_123_xxx&quot;</span>
+<div class="codehilite"><pre><span class="n">INRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
+<span class="n">OUTRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
+<span class="n">FPS</span><span class="o">=</span><span class="s">&quot;30&quot;</span>
+<span class="n">QUAL</span><span class="o">=</span><span class="s">&quot;medium&quot;</span>
+<span class="n">STREAM_KEY</span><span class="o">=</span><span class="s">&quot;live_123_xxx&quot;</span>
 
-ffmpeg
-<span style="color: #666666">-</span>f x11grab
-<span style="color: #666666">-</span>s <span style="color: #4070a0">&quot;$INRES&quot;</span>
-<span style="color: #666666">-</span>r <span style="color: #4070a0">&quot;$FPS&quot;</span>
-<span style="color: #666666">-</span>i <span style="color: #666666">:</span><span style="color: #40a070">0.0</span><span style="color: #666666">+</span><span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>
-<span style="color: #666666">-</span>itsoffset <span style="color: #666666">-</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">01</span>
-<span style="color: #666666">-</span>f alsa ...</pre></div>
+<span class="n">ffmpeg</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">x11grab</span>
+<span class="o">-</span><span class="n">s</span> <span class="s">&quot;$INRES&quot;</span>
+<span class="o">-</span><span class="n">r</span> <span class="s">&quot;$FPS&quot;</span>
+<span class="o">-</span><span class="n">i</span> <span class="o">:</span><span class="mf">0.0</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">-</span><span class="n">itsoffset</span> <span class="o">-</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">alsa ...</span></pre></div>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

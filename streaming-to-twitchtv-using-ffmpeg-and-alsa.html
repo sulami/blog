@@ -39,33 +39,33 @@
     | tags: <a href="https://sulami.github.io/tag/alsa.html">alsa</a> <a href="https://sulami.github.io/tag/ffmpeg.html">ffmpeg</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitch.tv</a> </footer><!-- /.post-info -->
       <p>Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%">INRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
-OUTRES<span style="color: #666666">=</span><span style="color: #4070a0">&quot;1920x1080&quot;</span>
-FPS<span style="color: #666666">=</span><span style="color: #4070a0">&quot;30&quot;</span>
-QUAL<span style="color: #666666">=</span><span style="color: #4070a0">&quot;medium&quot;</span>
-STREAM_KEY<span style="color: #666666">=</span><span style="color: #4070a0">&quot;live_123_xxx&quot;</span>
+<div class="codehilite"><pre><span class="n">INRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
+<span class="n">OUTRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
+<span class="n">FPS</span><span class="o">=</span><span class="s">&quot;30&quot;</span>
+<span class="n">QUAL</span><span class="o">=</span><span class="s">&quot;medium&quot;</span>
+<span class="n">STREAM_KEY</span><span class="o">=</span><span class="s">&quot;live_123_xxx&quot;</span>
 
-ffmpeg
-<span style="color: #666666">-</span>f x11grab
-<span style="color: #666666">-</span>s <span style="color: #4070a0">&quot;$INRES&quot;</span>
-<span style="color: #666666">-</span>r <span style="color: #4070a0">&quot;$FPS&quot;</span>
-<span style="color: #666666">-</span>i <span style="color: #666666">:</span><span style="color: #40a070">0.0</span><span style="color: #666666">+</span><span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>
-<span style="color: #666666">-</span>itsoffset <span style="color: #666666">-</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">00</span><span style="color: #666666">:</span><span style="color: #40a070">01</span>
-<span style="color: #666666">-</span>f alsa
-<span style="color: #666666">-</span>i hw<span style="color: #666666">:</span><span style="color: #40a070">3</span>,<span style="color: #40a070">0</span>
-<span style="color: #666666">-</span>f alsa
-<span style="color: #666666">-</span>i hw<span style="color: #666666">:</span><span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>
-<span style="color: #666666">-</span>filter_complex amix<span style="color: #666666">=</span>inputs<span style="color: #666666">=</span><span style="color: #40a070">2</span><span style="color: #666666">:</span>duration<span style="color: #666666">=</span>first<span style="color: #666666">:</span>dropout_transition<span style="color: #666666">=</span><span style="color: #40a070">3</span>
-<span style="color: #666666">-</span>af aresample
-<span style="color: #666666">-</span>vcodec libx264
-<span style="color: #666666">-</span>preset <span style="color: #4070a0">&quot;$QUAL&quot;</span>
-<span style="color: #666666">-</span>s <span style="color: #4070a0">&quot;$OUTRES&quot;</span>
-<span style="color: #666666">-</span>acodec libmp3lame
-<span style="color: #666666">-</span>ar <span style="color: #40a070">44100</span>
-<span style="color: #666666">-</span>threads <span style="color: #40a070">6</span>
-<span style="color: #666666">-</span>b<span style="color: #666666">:</span>a <span style="color: #40a070">512</span>k
-<span style="color: #666666">-</span>pix_fmt yuv420p
-<span style="color: #666666">-</span>f flv <span style="color: #4070a0">&quot;rtmp://live.justin.tv/app/$STREAM_KEY&quot;</span>
+<span class="n">ffmpeg</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">x11grab</span>
+<span class="o">-</span><span class="n">s</span> <span class="s">&quot;$INRES&quot;</span>
+<span class="o">-</span><span class="n">r</span> <span class="s">&quot;$FPS&quot;</span>
+<span class="o">-</span><span class="n">i</span> <span class="o">:</span><span class="mf">0.0</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">-</span><span class="n">itsoffset</span> <span class="o">-</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">alsa</span>
+<span class="o">-</span><span class="n">i</span> <span class="n">hw</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">alsa</span>
+<span class="o">-</span><span class="n">i</span> <span class="n">hw</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">-</span><span class="n">filter_complex</span> <span class="n">amix</span><span class="o">=</span><span class="n">inputs</span><span class="o">=</span><span class="mi">2</span><span class="o">:</span><span class="n">duration</span><span class="o">=</span><span class="n">first</span><span class="o">:</span><span class="n">dropout_transition</span><span class="o">=</span><span class="mi">3</span>
+<span class="o">-</span><span class="n">af</span> <span class="n">aresample</span>
+<span class="o">-</span><span class="n">vcodec</span> <span class="n">libx264</span>
+<span class="o">-</span><span class="n">preset</span> <span class="s">&quot;$QUAL&quot;</span>
+<span class="o">-</span><span class="n">s</span> <span class="s">&quot;$OUTRES&quot;</span>
+<span class="o">-</span><span class="n">acodec</span> <span class="n">libmp3lame</span>
+<span class="o">-</span><span class="n">ar</span> <span class="mi">44100</span>
+<span class="o">-</span><span class="n">threads</span> <span class="mi">6</span>
+<span class="o">-</span><span class="n">b</span><span class="o">:</span><span class="n">a</span> <span class="mi">512</span><span class="n">k</span>
+<span class="o">-</span><span class="n">pix_fmt</span> <span class="n">yuv420p</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">flv</span> <span class="s">&quot;rtmp://live.justin.tv/app/$STREAM_KEY&quot;</span>
 </pre></div>
 
 

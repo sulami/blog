@@ -55,7 +55,7 @@ written using TDD, but giving usually rather poor debugging output compared to
 interpreted languages, TDD is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
 a keyboard mapping to start our tests from within vim.</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #902000">map</span> <span style="color: #666666">&lt;</span>Leader<span style="color: #666666">&gt;</span><span style="color: #007020">t</span> :<span style="color: #666666">!</span>make <span style="color: #4070a0">-B</span> tests <span style="color: #666666">&amp;&amp;</span> ./tests<span style="color: #666666">&lt;</span>CR<span style="color: #666666">&gt;</span>
+<div class="codehilite"><pre><span class="kt">map</span> <span class="o">&lt;</span><span class="nx">Leader</span><span class="o">&gt;</span><span class="nb">t</span> <span class="p">:</span><span class="o">!</span><span class="nx">make</span> <span class="na">-B</span> <span class="nx">tests</span> <span class="o">&amp;&amp;</span> <span class="nx">.</span><span class="p">/</span><span class="nx">tests</span><span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -64,26 +64,26 @@ installed), compile our <em>tests.c</em> file and run it. Depending on which lan
 you are using, which kind of application you are developing and how your tests
 work, you might want to change this a bit. I am testing a library I am writing,
 which gets included in <em>tests.c</em>.  The basic structure looks like this:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span style="color: #60a0b0; font-style: italic">/* Tests for my library */</span>
-<span style="color: #007020">#include &lt;stdio.h&gt;</span>
-<span style="color: #007020">#include &lt;assert.h&gt;</span>
-<span style="color: #007020">#include &quot;mylib.h&quot;</span>
+<div class="codehilite"><pre><span class="cm">/* Tests for my library */</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;assert.h&gt;</span>
+<span class="cp">#include &quot;mylib.h&quot;</span>
 
-<span style="color: #007020">#define run_test(fn_name) \</span>
-<span style="color: #007020">    printf(&quot;%s\n&quot;, #fn_name); \</span>
-<span style="color: #007020">    fn_name();</span>
+<span class="cp">#define run_test(fn_name) \</span>
+<span class="cp">    printf(&quot;%s\n&quot;, #fn_name); \</span>
+<span class="cp">    fn_name();</span>
 
-<span style="color: #902000">void</span> <span style="color: #06287e">test_example_test</span>() {
-    <span style="color: #902000">int</span> test <span style="color: #666666">=</span> fancy_function(<span style="color: #40a070">42</span>);
-    assert(test <span style="color: #666666">==</span> <span style="color: #40a070">15</span>);
-}
+<span class="kt">void</span> <span class="nf">test_example_test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">test</span> <span class="o">=</span> <span class="n">fancy_function</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">test</span> <span class="o">==</span> <span class="mi">15</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span style="color: #902000">int</span> <span style="color: #06287e">main</span>() {
-    printf(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">Running tests:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>);
-    run_test(test_example_test);
-    printf(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0"> =&gt; All tests successful!</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>);
-    <span style="color: #007020; font-weight: bold">return</span>(<span style="color: #40a070">0</span>);
-}
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Running tests:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">run_test</span><span class="p">(</span><span class="n">test_example_test</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s"> =&gt; All tests successful!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 
 

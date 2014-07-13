@@ -17,7 +17,7 @@ DEFAULT_PAGINATION = 5
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-MD_EXTENSIONS = (['codehilite(noclasses=true,pygments_style=friendly)'])
+MD_EXTENSIONS = (['codehilite'])
 
 #STATIC_PATHS = ['images', 'download']
 

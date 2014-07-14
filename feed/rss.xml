@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 05 Jul 2014 00:00:00 +0200</lastBuildDate><item><title>My own window manager</title><link>https://sulami.github.io/my-own-window-manager.html</link><description>&lt;p&gt;I accidentaly wrote a &lt;a href="https://github.com/sulami/frankenwm"&gt;window manager&lt;/a&gt;. It started out by cloning &lt;a href="https://github.com/cloudef/monsterwm-xcb"&gt;cloudef's
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 15 Jul 2014 01:50:00 +0200</lastBuildDate><item><title>Using git locally</title><link>https://sulami.github.io/using-git-locally.html</link><description>&lt;p&gt;When you write your code, using a version control mechanism like git is
+crucial, even more than writing proper unit tests, even when working on your
+own, even when it is only your evening project. Just use git and commit
+regularly, it will not hurt you (unless your workflow is inherently broken, but
+then fix you have to fix it anyway). Committing after every logical change and
+pushing when finishing the session is something I practice almost like a
+religion. Not only does it keep my history accessible and enables me easy
+branching and stashing (read up on &lt;a href="http://linux.die.net/man/1/git-branch"&gt;git-branch(1)&lt;/a&gt; and
+&lt;a href="http://linux.die.net/man/1/git-stash"&gt;git-stash(1)&lt;/a&gt; if you do not already use them), it also serves as simple
+way to mirror my repositories to other machines and backup them this way.&lt;/p&gt;
+&lt;p&gt;Now to have your code available everywhere, you can just push it to your
+&lt;a href="https://github.com"&gt;Github&lt;/a&gt; or &lt;a href="https://bitbucket.org"&gt;BitBucket&lt;/a&gt; account, but there are pieces of code we do not
+want to see there. Security-critical code, configs or other files containing
+sensitive data, or just code we are not particularly proud of. To still benefit
+from the network capabilities of git, we need to host git ourselves.&lt;/p&gt;
+&lt;p&gt;Setting up a local git mirror is not a big deal at all as the following
+examples will show. Git uses ssh to transmit data over the network, which means
+every toaster that is capable of running sshd should also be able to serve git
+repos in a way that Github or Bitbucket do it, just without the web interface.
+We assume we already have a repo containing out working directory, maybe even
+some commits, does not matter. The following snippet demonstrates establishing
+a git repo in my home directory which we can use to clone, push and pull.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;% mkdir -p ~/git/myrepo.git&lt;/span&gt;
+&lt;span class="c"&gt;% cd ~/git/myrepo.git&lt;/span&gt;
+&lt;span class="c"&gt;% git init --bare&lt;/span&gt;
+&lt;span class="n"&gt;Initialized&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sulami&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;myrepo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
+&lt;span class="c"&gt;% cd ~/myrepo&lt;/span&gt;
+&lt;span class="c"&gt;% git remote add origin /home/sulami/git/myrepo.git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That is it, my local repository is now registered as &lt;code&gt;origin&lt;/code&gt; in this specific
+working copy, and once I pushed my commits to it, I can clone it to somewhere
+else. This is usually not all that useful, I only keep a bunch of bare
+repositories for archiving reasons around, to clone some old projects of mine
+if I want to look something up. Local remote repositories are way more
+interesting because we can use them to push changes around to various machines,
+work together with others more efficiently and much more. So here is how we
+setup a local remote git server, given our repo alreay exists like before. My
+ssh login uses my ssh-key to sign me in.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;% ssh sulami@remote&lt;/span&gt;
+&lt;span class="c"&gt;% mkdir -p /srv/git/myrepo.git&lt;/span&gt;
+&lt;span class="c"&gt;% cd /srv/git/myrepo.git&lt;/span&gt;
+&lt;span class="c"&gt;% git init --bare --shared=group&lt;/span&gt;
+&lt;span class="n"&gt;Initialized&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;shared&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;myrepo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
+&lt;span class="c"&gt;% exit&lt;/span&gt;
+&lt;span class="c"&gt;% cd ~/myrepo&lt;/span&gt;
+&lt;span class="c"&gt;% git remote add origin ssh://remote/srv/git/myrepo.git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Do you recognize this snippet? It is almost the same as before, we just changed
+some details. First, we initialize the bare repository via ssh on our remote.
+We also set it up in a way that allows us to share it with a group we can add
+later on, so eventual coworkers can use their own ssh-logins to use this
+repository. You can now think of exposing it to the web, or maybe installing
+&lt;a href="http://git.zx2c4.com/cgit/"&gt;cgit&lt;/a&gt; to provide a browser-friendly interface. It all depends on what
+you need, but to just synchronize your code amongst several machines there is
+nothing else nessecary.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Jul 2014 01:50:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-07-15:using-git-locally.html</guid><category>git</category><category>ssh</category></item><item><title>My own window manager</title><link>https://sulami.github.io/my-own-window-manager.html</link><description>&lt;p&gt;I accidentaly wrote a &lt;a href="https://github.com/sulami/frankenwm"&gt;window manager&lt;/a&gt;. It started out by cloning &lt;a href="https://github.com/cloudef/monsterwm-xcb"&gt;cloudef's
 monsterwm-xcb&lt;/a&gt; to apply some smaller fixes, maybe opening a pull request to
 merge them upstream again. But I quickly found more and more things to fix,
 then I started to add some smaller features I missed from other window

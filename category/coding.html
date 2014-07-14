@@ -25,80 +25,99 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/test-driven-development-in-vim.html">Test-driven development in vim</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/using-git-locally.html">Using git locally</a></h1>
+<footer class="post-info">
+    <span class="date">2014-07-15</span>
+    |
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/ssh.html">ssh</a> </footer><!-- /.post-info -->
+                    <p>When you write your code, using a version control mechanism like git is
+crucial, even more than writing proper unit tests, even when working on your
+own, even when it is only your evening project. Just use git and commit
+regularly, it will not hurt you (unless your workflow is inherently broken, but
+then fix you have to fix it anyway). Committing after every logical change and
+pushing when finishing the session is something I practice almost like a
+religion. Not only does it keep my history accessible and enables me easy
+branching and stashing (read up on <a href="http://linux.die.net/man/1/git-branch">git-branch(1)</a> and
+<a href="http://linux.die.net/man/1/git-stash">git-stash(1)</a> if you do not already use them), it also serves as simple
+way to mirror my repositories to other machines and backup them this way.</p>
+<p>Now to have your code available everywhere, you can just push it to your
+<a href="https://github.com">Github</a> or <a href="https://bitbucket.org">BitBucket</a> account, but there are pieces of code we do not
+want to see there. Security-critical code, configs or other files containing
+sensitive data, or just code we are not particularly proud of. To still benefit
+from the network capabilities of git, we need to host git ourselves.</p>
+<p>Setting up a local git mirror is not a big deal at all as the following
+examples will show. Git uses ssh to transmit data over the network, which means
+every toaster that is capable of running sshd should also be able to serve git
+repos in a way that Github or Bitbucket do it, just without the web interface.
+We assume we already have a repo containing out working directory, maybe even
+some commits, does not matter. The following snippet demonstrates establishing
+a git repo in my home directory which we can use to clone, push and pull.</p>
+<div class="codehilite"><pre><span class="c">% mkdir -p ~/git/myrepo.git</span>
+<span class="c">% cd ~/git/myrepo.git</span>
+<span class="c">% git init --bare</span>
+<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">sulami</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
+<span class="c">% cd ~/myrepo</span>
+<span class="c">% git remote add origin /home/sulami/git/myrepo.git</span>
+</pre></div>
+
+
+<p>That is it, my local repository is now registered as <code>origin</code> in this specific
+working copy, and once I pushed my commits to it, I can clone it to somewhere
+else. This is usually not all that useful, I only keep a bunch of bare
+repositories for archiving reasons around, to clone some old projects of mine
+if I want to look something up. Local remote repositories are way more
+interesting because we can use them to push changes around to various machines,
+work together with others more efficiently and much more. So here is how we
+setup a local remote git server, given our repo alreay exists like before. My
+ssh login uses my ssh-key to sign me in.</p>
+<div class="codehilite"><pre><span class="c">% ssh sulami@remote</span>
+<span class="c">% mkdir -p /srv/git/myrepo.git</span>
+<span class="c">% cd /srv/git/myrepo.git</span>
+<span class="c">% git init --bare --shared=group</span>
+<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">shared</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
+<span class="c">% exit</span>
+<span class="c">% cd ~/myrepo</span>
+<span class="c">% git remote add origin ssh://remote/srv/git/myrepo.git</span>
+</pre></div>
+
+
+<p>Do you recognize this snippet? It is almost the same as before, we just changed
+some details. First, we initialize the bare repository via ssh on our remote.
+We also set it up in a way that allows us to share it with a group we can add
+later on, so eventual coworkers can use their own ssh-logins to use this
+repository. You can now think of exposing it to the web, or maybe installing
+<a href="http://git.zx2c4.com/cgit/">cgit</a> to provide a browser-friendly interface. It all depends on what
+you need, but to just synchronize your code amongst several machines there is
+nothing else nessecary.</p>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/test-driven-development-in-vim.html" rel="bookmark"
+                           title="Permalink to Test-driven development in vim">Test-driven development in vim</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-05-05</span>
     |
     in <a href="https://sulami.github.io/category/coding.html">Coding</a>
     | tags: <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/tdd.html">tdd</a> <a href="https://sulami.github.io/tag/c.html">c</a> </footer><!-- /.post-info -->
-                    <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
+                <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
-TDD, which proceeded to explain how you start your project by writing a test
-that (obviously) fails, then start your actual project, and test again. At this
-point in time, we have a something that returns a default webpage, or zero. Not
-even printing "Hello World" or "Success!". The next step is to write another
-test, which checks for some actual content or functionality. After this test
-fails (which by the way is important, as it shows that the test will hopefully
-not produce false positives), we write the piece of content or functionality.</p>
-<p>In the beginning, this way of writing code seems (and is) incredibly slow, and
-I find myself skipping the first five tests until I have something that
-actually produces useful output. This is sort of okay, I do not think it will
-hurt my code in any major way. But after those initial skipped tests, say 10
-minutes into the project, I start to religiously write tests for everything
-that happens, which is way easier than implementing proper tests for all the
-different stages and levels when you wrote code for several hours and start
-wasting time by manually testing changes. I think, everything that takes more
-than 30 minutes to code benefits from TDD.</p>
-<p>But let's have a look at some actual TDD using vim and C. C is not often
-written using TDD, but giving usually rather poor debugging output compared to
-interpreted languages, TDD is even more useful, as you will instantaneously see
-when a change breaks any functionality. To make testing easier, we will define
-a keyboard mapping to start our tests from within vim.</p>
-<div class="codehilite"><pre><span class="kt">map</span> <span class="o">&lt;</span><span class="nx">Leader</span><span class="o">&gt;</span><span class="nb">t</span> <span class="p">:</span><span class="o">!</span><span class="nx">make</span> <span class="na">-B</span> <span class="nx">tests</span> <span class="o">&amp;&amp;</span> <span class="nx">.</span><span class="p">/</span><span class="nx">tests</span><span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
-</pre></div>
-
-
-<p>This mapping will call make in a shell (which means you have to have make
-installed), compile our <em>tests.c</em> file and run it. Depending on which language
-you are using, which kind of application you are developing and how your tests
-work, you might want to change this a bit. I am testing a library I am writing,
-which gets included in <em>tests.c</em>.  The basic structure looks like this:</p>
-<div class="codehilite"><pre><span class="cm">/* Tests for my library */</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;assert.h&gt;</span>
-<span class="cp">#include &quot;mylib.h&quot;</span>
-
-<span class="cp">#define run_test(fn_name) \</span>
-<span class="cp">    printf(&quot;%s\n&quot;, #fn_name); \</span>
-<span class="cp">    fn_name();</span>
-
-<span class="kt">void</span> <span class="nf">test_example_test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">test</span> <span class="o">=</span> <span class="n">fancy_function</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">test</span> <span class="o">==</span> <span class="mi">15</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Running tests:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="n">run_test</span><span class="p">(</span><span class="n">test_example_test</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s"> =&gt; All tests successful!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>We include <em>stdio</em> for printing and <em>assert</em> for the actual testing. The way
-assert works is if the statement assert gets passed is false, which means it
-can also be a function call, assert stops the whole program and prints out the
-line which produced the error. If everything works as intended, it prints all
-the tests it ran, prompts for enter and returns us to vim.  An important part
-is to only delete old tests, when the condition they test for is no longer
-wanted, so you always test for basic functionality as well as the final
-results.</p>
-                </article>
+TDD, which proceeded to explain how you start your project ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
+                </section><!-- /#content -->
 </body>
 </html>

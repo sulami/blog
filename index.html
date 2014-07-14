@@ -25,58 +25,95 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/my-own-window-manager.html">My own window manager</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/using-git-locally.html">Using git locally</a></h1>
 <footer class="post-info">
-    <span class="date">2014-07-05</span>
+    <span class="date">2014-07-15</span>
     |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
-    | tags: <a href="https://sulami.github.io/tag/frankenwm.html">frankenwm</a> <a href="https://sulami.github.io/tag/xorg.html">xorg</a> <a href="https://sulami.github.io/tag/wm.html">wm</a> </footer><!-- /.post-info -->
-                    <p>I accidentaly wrote a <a href="https://github.com/sulami/frankenwm">window manager</a>. It started out by cloning <a href="https://github.com/cloudef/monsterwm-xcb">cloudef's
-monsterwm-xcb</a> to apply some smaller fixes, maybe opening a pull request to
-merge them upstream again. But I quickly found more and more things to fix,
-then I started to add some smaller features I missed from other window
-managers. And thus, FrankenWM was made, pieced together from monsterwm-xcb and
-other window managers. I stole some of the ewmh-related code from <a href="https://github.com/venam/2bwm">2bwm</a>,
-and adapted features from <a href="http://dwm.suckless.org">dwm</a>, <a href="http://i3wm.org">i3</a> and others. The name is an obvious
-play on words.</p>
-<p>So, what does it do? From a user's standpoint it is quite similar to dwm or
-awesome (or of course monsterwm). It tiles dynamically, using one big master
-window and a stack of smaller slave windows on each virtual desktop. There are
-a few predefined layouts to choose from, v-stack, b-stack, grid, fibnonacci and
-monocle. V-stack stacks the slave windows next to the master window, b-stack
-below the master. Grid tries to give the same amount of screen space to every
-window by placing them in a grid-like structure, fibonacci makes the each
-window 50% as big as the window above it in the stack. And finally, monocle
-fullscreens every window in a stacking fashion so you just see one at a time.</p>
-<p>The preferred way of controlling it is by using the keyboard, which uses a set
-of shortcuts similar to the ones known from vim by default, and makes heavy use
-of the Mod4-/Meta-/Windows-key to prevent overlapping with shortcuts for other
-software. The mouse can be used to control floating windows and to select
-windows, but the focus lies on mouse-less usage.</p>
-<p>There is also support for adding gaps between the windows, inspired by dwm's
-useless gaps patch, which allow you to see your wallpaper or dropshadows from a
-compositor. Those gaps are adjustable on the fly and optionally specific to
-virtual desktops. I also implemented some features to allow using floating
-windows without having to use the mouse. On the more technical side of things I
-am currently implementing EWMH-compliance, which is important for compability
-with a lot of different programs.</p>
-<p>The configuration is entirely done at compile time by editing the config.h. In
-my git repository I include a sample config with some comments explaining how
-to use it. As an alternate example, you can have a look at <a href="https://github.com/sulami/dotfiles/blob/master/frankenwm.config.h">my personal
-config</a>, which uses some more advanced features. As a bonus for Arch users,
-I also maintain an <a href="https://aur.archlinux.org/packages/frankenwm-git/">AUR package</a> which I update on bigger changes in the git
-repository, although I still reccomend using the version from Github, as I do
-not have a lot of experience with the AUR.</p>
-<p>The prerequisites for building FrankenWM are all XCB-based, specifically you
-will need the XCB headers including the util, util-wm and keysyms ones, which
-you can probably pull out of your distribution's repositories. I have yet to
-build it on my OpenBSD machine, so I cannot say anything yet to building it on
-the BSD family.</p>
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/ssh.html">ssh</a> </footer><!-- /.post-info -->
+                    <p>When you write your code, using a version control mechanism like git is
+crucial, even more than writing proper unit tests, even when working on your
+own, even when it is only your evening project. Just use git and commit
+regularly, it will not hurt you (unless your workflow is inherently broken, but
+then fix you have to fix it anyway). Committing after every logical change and
+pushing when finishing the session is something I practice almost like a
+religion. Not only does it keep my history accessible and enables me easy
+branching and stashing (read up on <a href="http://linux.die.net/man/1/git-branch">git-branch(1)</a> and
+<a href="http://linux.die.net/man/1/git-stash">git-stash(1)</a> if you do not already use them), it also serves as simple
+way to mirror my repositories to other machines and backup them this way.</p>
+<p>Now to have your code available everywhere, you can just push it to your
+<a href="https://github.com">Github</a> or <a href="https://bitbucket.org">BitBucket</a> account, but there are pieces of code we do not
+want to see there. Security-critical code, configs or other files containing
+sensitive data, or just code we are not particularly proud of. To still benefit
+from the network capabilities of git, we need to host git ourselves.</p>
+<p>Setting up a local git mirror is not a big deal at all as the following
+examples will show. Git uses ssh to transmit data over the network, which means
+every toaster that is capable of running sshd should also be able to serve git
+repos in a way that Github or Bitbucket do it, just without the web interface.
+We assume we already have a repo containing out working directory, maybe even
+some commits, does not matter. The following snippet demonstrates establishing
+a git repo in my home directory which we can use to clone, push and pull.</p>
+<div class="codehilite"><pre><span class="c">% mkdir -p ~/git/myrepo.git</span>
+<span class="c">% cd ~/git/myrepo.git</span>
+<span class="c">% git init --bare</span>
+<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">sulami</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
+<span class="c">% cd ~/myrepo</span>
+<span class="c">% git remote add origin /home/sulami/git/myrepo.git</span>
+</pre></div>
+
+
+<p>That is it, my local repository is now registered as <code>origin</code> in this specific
+working copy, and once I pushed my commits to it, I can clone it to somewhere
+else. This is usually not all that useful, I only keep a bunch of bare
+repositories for archiving reasons around, to clone some old projects of mine
+if I want to look something up. Local remote repositories are way more
+interesting because we can use them to push changes around to various machines,
+work together with others more efficiently and much more. So here is how we
+setup a local remote git server, given our repo alreay exists like before. My
+ssh login uses my ssh-key to sign me in.</p>
+<div class="codehilite"><pre><span class="c">% ssh sulami@remote</span>
+<span class="c">% mkdir -p /srv/git/myrepo.git</span>
+<span class="c">% cd /srv/git/myrepo.git</span>
+<span class="c">% git init --bare --shared=group</span>
+<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">shared</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
+<span class="c">% exit</span>
+<span class="c">% cd ~/myrepo</span>
+<span class="c">% git remote add origin ssh://remote/srv/git/myrepo.git</span>
+</pre></div>
+
+
+<p>Do you recognize this snippet? It is almost the same as before, we just changed
+some details. First, we initialize the bare repository via ssh on our remote.
+We also set it up in a way that allows us to share it with a group we can add
+later on, so eventual coworkers can use their own ssh-logins to use this
+repository. You can now think of exposing it to the web, or maybe installing
+<a href="http://git.zx2c4.com/cgit/">cgit</a> to provide a browser-friendly interface. It all depends on what
+you need, but to just synchronize your code amongst several machines there is
+nothing else nessecary.</p>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/my-own-window-manager.html" rel="bookmark"
+                           title="Permalink to My own window manager">My own window manager</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-07-05</span>
+    |
+    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
+    | tags: <a href="https://sulami.github.io/tag/frankenwm.html">frankenwm</a> <a href="https://sulami.github.io/tag/xorg.html">xorg</a> <a href="https://sulami.github.io/tag/wm.html">wm</a> </footer><!-- /.post-info -->
+                <p>I accidentaly wrote a <a href="https://github.com/sulami/frankenwm">window manager</a>. It started out by cloning <a href="https://github.com/cloudef/monsterwm-xcb">cloudef's
+monsterwm-xcb</a> to apply some smaller fixes, maybe opening a pull request to
+merge them upstream again. But I quickly found more and more things to fix,
+then I started to add some smaller features I missed from ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -132,27 +169,6 @@ TDD, which proceeded to explain how you start your project ...</p>
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/my-take-on-secure-communication.html" rel="bookmark"
-                           title="Permalink to My take on secure communication">My take on secure communication</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-03-19</span>
-    |
-    in <a href="https://sulami.github.io/category/web.html">Web</a>
-    | tags: <a href="https://sulami.github.io/tag/google-drive.html">google drive</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> </footer><!-- /.post-info -->
-                <p><strong>Disclaimer:</strong> I am not really into crypto (yet?) and everything I
-write here is purely idealistic and probably somewhat unrealistic/stupid</p>
-<h2>The current situation</h2>
-<p>Some time ago, Facebook bought Whatsapp, which was my main way of
-communicating using my phone. This event has made me think about where
-the internet ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

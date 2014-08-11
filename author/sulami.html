@@ -25,76 +25,79 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/using-git-locally.html">Using git locally</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/write-code-every-day.html">Write code every day</a></h1>
 <footer class="post-info">
-    <span class="date">2014-07-15</span>
+    <span class="date">2014-08-11</span>
     |
     in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/ssh.html">ssh</a> </footer><!-- /.post-info -->
-                    <p>When you write your code, using a version control mechanism like git is
-crucial, even more than writing proper unit tests, even when working on your
-own, even when it is only your evening project. Just use git and commit
-regularly, it will not hurt you (unless your workflow is inherently broken, but
-then fix you have to fix it anyway). Committing after every logical change and
-pushing when finishing the session is something I practice almost like a
-religion. Not only does it keep my history accessible and enables me easy
-branching and stashing (read up on <a href="http://linux.die.net/man/1/git-branch">git-branch(1)</a> and
-<a href="http://linux.die.net/man/1/git-stash">git-stash(1)</a> if you do not already use them), it also serves as simple
-way to mirror my repositories to other machines and backup them this way.</p>
-<p>Now to have your code available everywhere, you can just push it to your
-<a href="https://github.com">Github</a> or <a href="https://bitbucket.org">BitBucket</a> account, but there are pieces of code we do not
-want to see there. Security-critical code, configs or other files containing
-sensitive data, or just code we are not particularly proud of. To still benefit
-from the network capabilities of git, we need to host git ourselves.</p>
-<p>Setting up a local git mirror is not a big deal at all as the following
-examples will show. Git uses ssh to transmit data over the network, which means
-every toaster that is capable of running sshd should also be able to serve git
-repos in a way that Github or Bitbucket do it, just without the web interface.
-We assume we already have a repo containing out working directory, maybe even
-some commits, does not matter. The following snippet demonstrates establishing
-a git repo in my home directory which we can use to clone, push and pull.</p>
-<div class="codehilite"><pre><span class="c">% mkdir -p ~/git/myrepo.git</span>
-<span class="c">% cd ~/git/myrepo.git</span>
-<span class="c">% git init --bare</span>
-<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">sulami</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
-<span class="c">% cd ~/myrepo</span>
-<span class="c">% git remote add origin /home/sulami/git/myrepo.git</span>
-</pre></div>
-
-
-<p>That is it, my local repository is now registered as <code>origin</code> in this specific
-working copy, and once I pushed my commits to it, I can clone it to somewhere
-else. This is usually not all that useful, I only keep a bunch of bare
-repositories for archiving reasons around, to clone some old projects of mine
-if I want to look something up. Local remote repositories are way more
-interesting because we can use them to push changes around to various machines,
-work together with others more efficiently and much more. So here is how we
-setup a local remote git server, given our repo alreay exists like before. My
-ssh login uses my ssh-key to sign me in.</p>
-<div class="codehilite"><pre><span class="c">% ssh sulami@remote</span>
-<span class="c">% mkdir -p /srv/git/myrepo.git</span>
-<span class="c">% cd /srv/git/myrepo.git</span>
-<span class="c">% git init --bare --shared=group</span>
-<span class="n">Initialized</span> <span class="n">empty</span> <span class="n">shared</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
-<span class="c">% exit</span>
-<span class="c">% cd ~/myrepo</span>
-<span class="c">% git remote add origin ssh://remote/srv/git/myrepo.git</span>
-</pre></div>
-
-
-<p>Do you recognize this snippet? It is almost the same as before, we just changed
-some details. First, we initialize the bare repository via ssh on our remote.
-We also set it up in a way that allows us to share it with a group we can add
-later on, so eventual coworkers can use their own ssh-logins to use this
-repository. You can now think of exposing it to the web, or maybe installing
-<a href="http://git.zx2c4.com/cgit/">cgit</a> to provide a browser-friendly interface. It all depends on what
-you need, but to just synchronize your code amongst several machines there is
-nothing else nessecary.</p>
+    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/github.html">github</a> </footer><!-- /.post-info -->
+                    <p>After failing several times, today I managed to get a 30-day streak on my
+personal GitHub account. This happened, because I challenged myself a few
+months ago to accomplish exactly that. Now, that I succeeded after I once
+failed at day 29 by simply forgetting to write something, I can share my
+experiences. In fact, this blog post is the commit that completes the
+challenge.</p>
+<p>The point of committing at least once every day is to not lose the momentum,
+say when coming back to the code after a weekend. I observed myself being more
+in touch with the codebase, by looking at it at least once a day, and also
+trying to improve it. The big problem for me was, my GitHub account houses
+exclusively fun projects, this blog and my dotfiles, because most of my
+partners are not okay with putting up potentially sensitive code (the old we
+are much more in danger if we open-source argument). So while I wrote at least
+some code almost every day for probably the last year, most of it is not
+included in my GitHub statistics. If you <a href="https://github.com/sulami">look at them</a>, you can see I
+started the challenge in early may, roughly 3 months ago.</p>
+<p>This time has pushed my fun projects greatly, and I have learned a lot, because
+unlike my real work, the fun projects are mostly in areas I rarely explore
+otherwise. I have been toying with encryption, filesystems, games, frameworks I
+might use in the future and <a href="https://github.com/sulami/frankenwm">recently started activiely developing and
+maintaining a window manager</a>. I always tried out more stuff in my free
+time, but this challenge made me force to actively look for things to try out,
+to have some meaningful commit (I don't want to count typo fixes or version
+bumps, because that is just cheap). And while I do not think it is something I
+will keep doing forever as regular, it has shown me a world in which I am
+constantly thinking about what I could code, and that is a good thing. It draws
+the line between coding from nine to five five days a week and just completely
+forgetting evertyhing about your code on friday afternoon and coding something
+for fun, wanting that progress, that bugfix or new feature.</p>
+<p>So, what are my conclusions on this subject? First off, I think everyone should
+try it, it is often not easy at all to come up with something to code, but it
+makes you think about it more often, solving problems when away from the
+computer. But I also think, we should not take it too far, coding can be fun,
+and it is certainly more healthy if it is fun than when you just code so you
+have something to eat. But there also has to be code-free time, like a
+vacation, or you might burn out rather quickly. After all, fun coding is a more
+a hobby, and it should not be the reason you get up in the morning. As with
+most things, there is a balance to find, coding on some cool project on
+saturday afternoon is fine, and even spending a whole weekend to accomplish
+something is great, but you cannot do this every weekend, or you find yourself
+doing nothing but coding and sleeping, which is not good at all.</p>
+<p>The final conclusion is: If you have fun doing it, code in your free time, but
+also do other things, preferably without computers and with other people.</p>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/using-git-locally.html" rel="bookmark"
+                           title="Permalink to Using git locally">Using git locally</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-07-15</span>
+    |
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/ssh.html">ssh</a> </footer><!-- /.post-info -->
+                <p>When you write your code, using a version control mechanism like git is
+crucial, even more than writing proper unit tests, even when working on your
+own, even when it is only your evening project. Just use git and commit
+regularly, it will not hurt you (unless your workflow is ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -150,25 +153,6 @@ that Vimeo uses a pretty nice HTML5 player on their site ...</p>
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
 TDD, which proceeded to explain how you start your project ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/irc-client-showdown-extreme-version.html" rel="bookmark"
-                           title="Permalink to IRC-client showdown, extreme version">IRC-client showdown, extreme version</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-03-19</span>
-    |
-    in <a href="https://sulami.github.io/category/web.html">Web</a>
-    | tags: <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/irssi.html">irssi</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitch.tv</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
-                <p>I love IRC. I try to keep all my common software on the shell in case I
-somehow loose my ability to use X. This also enables me to use global
-colorscheme and is performance-wise advantegous. There are many reasons
-to live in the shell (aside from web-browsing, which is ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

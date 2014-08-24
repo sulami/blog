@@ -11,6 +11,8 @@ Here is some of my stuff:
   Where I mirror some of my less important git repos
 * [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
+* [Codessentials](http://codessentials.org)
+  A stupid aggregator for programming resources, by language and type
 
 Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.

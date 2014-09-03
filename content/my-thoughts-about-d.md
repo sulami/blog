@@ -1,5 +1,5 @@
 Title: My thoughts about D
-Date: 2013-9-03
+Date: 2014-09-03
 Category: Coding
 Tags: d
 

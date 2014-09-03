@@ -2,8 +2,9 @@ Title: About me
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various IT-related topics, mostly related to software development.  I am a
-Linux/BSD guy and mainly write C and Python code using Vim and Git. I have been
-contributing to the Linux kernel as well as written a X11 window manager.
+Linux/BSD guy and mainly write C, D and Python code using Vim and Git. I have
+been contributing to the Linux kernel as well as written a X11 window manager
+and I generally like experimenting with code.
 
 Here is some of my stuff:
 
@@ -11,8 +12,14 @@ Here is some of my stuff:
   Where I mirror some of my less important git repos
 * [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
-* [Codessentials](http://codessentials.org)
+* [Medusa](https://github.com/sulami/mesusa "Medusa")
+  A really old, minimal nagios-compatible monitoring system in Python
+* [diet.vim](https://github.com/sulami/diet.vim "diet.vim")
+  Diet syntax highlighting for vim
+* [Codessentials](http://codessentials.org "codessentials")
   A stupid aggregator for programming resources, by language and type
+* [pelican-theme](https://github.com/sulami/pelican-theme "pelican-theme")
+  The pelican theme you see here, based on my own 'cybercopy' colourscheme
 
 Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.

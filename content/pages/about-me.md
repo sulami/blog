@@ -12,6 +12,8 @@ Here is some of my stuff:
   Where I mirror some of my less important git repos
 * [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
+* [Elena](https://github.com/sulami/elena "Elena")
+  A dynamic status API currently in development
 * [Medusa](https://github.com/sulami/medusa "Medusa")
   A really old, minimal nagios-compatible monitoring system in Python
 * [diet.vim](https://github.com/sulami/diet.vim "diet.vim")

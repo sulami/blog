@@ -1,7 +1,7 @@
 Title: My own window manager
 Date: 2014-07-05
 Category: Linux
-Tags: frankenwm, xorg, wm
+Tags: frankenwm, xorg
 
 I accidentaly wrote a [window manager][0]. It started out by cloning [cloudef's
 monsterwm-xcb][1] to apply some smaller fixes, maybe opening a pull request to

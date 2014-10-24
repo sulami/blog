@@ -1,8 +1,6 @@
-Title: Becoming more mobile
-Date: 2014-10-22
-Category: Draft
-Tags: draft
-Status: draft
+Title: Choosing a mobile workstation
+Date: 2014-10-24
+Category: Hardware
 
 I recently downsized from my huge Workstation that could draw up to one
 kilowatt of power to a more compact and reasonable desktop cube with a current

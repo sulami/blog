@@ -321,7 +321,7 @@ not have a lot of experience with the AUR.&lt;/p&gt;
 will need the XCB headers including the util, util-wm and keysyms ones, which
 you can probably pull out of your distribution's repositories. I have yet to
 build it on my OpenBSD machine, so I cannot say anything yet to building it on
-the BSD family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 05 Jul 2014 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-07-05:my-own-window-manager.html</guid><category>frankenwm</category><category>xorg</category><category>wm</category></item><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
+the BSD family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 05 Jul 2014 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2014-07-05:my-own-window-manager.html</guid><category>frankenwm</category><category>xorg</category></item><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the HTML5-Player on YouTube, because Flash kept breaking
 fullscreen, and I have not found a single video not supporting HTML5 in over a
 month, so I would consider Flash-less YouTube a valid option. I also discovered
 that Vimeo uses a pretty nice HTML5 player on their site, thus not requiring
@@ -439,7 +439,7 @@ performance impact, using about 12 MB of RAM, which is more reasonable.
 For comparison though, connecting through netcat uses 644 KB of RAM. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for IRC, netcat is actually sort
-of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitch.tv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+of viable, in emergency cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid><category>cli</category><category>irc</category><category>irssi</category><category>twitchtv</category><category>weechat</category></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid&lt;/p&gt;
 &lt;h2&gt;The current situation&lt;/h2&gt;
 &lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
@@ -740,7 +740,7 @@ started on kernel development&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;There are a lot more good talks, but my time is sort of limited and
-sadly I can't really focus on working while watching talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>talks</category><category>youtube</category><category>wayland</category><category>kernel</category><category>selinux</category></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+sadly I can't really focus on working while watching talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 00:00:00 +0100</pubDate><guid>tag:https://sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid><category>git</category><category>youtube</category><category>wayland</category><category>kernel</category><category>selinux</category></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
 everyone else) heard about the NSA and Prism. Now I always distrusted
 big companies, especially the ones from the US, because I know money and
 power are everything over there. If they want to spy on you, they can.
@@ -850,7 +850,7 @@ won't play and istead send you something like "connection by pulse
 refused" per system-mail. Save the file to install the cronjob.&lt;/p&gt;
 &lt;p&gt;When waking up, you need to kill mplayer, as it is running in the
 background. The easiest way of doing so is via "&lt;em&gt;killall mplayer&lt;/em&gt;",
-which is not the finest way of doing things but should do the job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid><category>cron</category><category>mplayer</category><category>onlineradio</category><category>raspberrypi</category></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally programming,
+which is not the finest way of doing things but should do the job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid><category>cron</category><category>mplayer</category><category>raspberrypi</category></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to IT-people, especially the ones ocassionally programming,
 typing properly is a mandatory skill, but basically everyone benefits from fast
 typing. Most people developed some kind of 2-6-finger system, which might work
 well, but is still suboptimal compared to 10-finger touch typing. There are
@@ -898,4 +898,4 @@ still got my script, so here you go:&lt;/p&gt;
 and output), aswell as FPS. In lines 13-16 you can change your audio
 devices (speakers and microphone, get them from "&lt;em&gt;arecord -l" &lt;/em&gt;for
 microphones and&lt;em&gt;"aplay -l"&lt;/em&gt;for speakers). Adjust threads to the amount
-of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitch.tv</category></item></channel></rss>
+of CPU cores you want to use to encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:https://sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid><category>alsa</category><category>ffmpeg</category><category>twitchtv</category></item></channel></rss>

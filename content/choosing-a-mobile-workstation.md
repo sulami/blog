@@ -2,6 +2,22 @@ Title: Choosing a mobile workstation
 Date: 2014-10-24
 Category: Hardware
 
+# Update 2014-10-30
+
+Peter Wu wrote me about this topic and sent me [a review][rv] of the System76
+Gazelle, which raises concerns. A quick search for Galago reviews also resulted
+in [another quite negative review][ar]. The System76 notebooks seem to be
+mostly rebranded Clevo machines with questionable quality. That pretty much
+leaves me with the Schenker ones as the only option, probably the B513. I will
+write an extended review once I finalized my decision and got one.
+
+  [rv]: http://brianolsen.wordpress.com/2014/04/08/system-76-gazelle-professional-9-clevo-w650sz-short-review/
+  [ar]: http://bitflip.net/system76-galago-ultrapro-review-clevo-w740su-259/
+
+---
+
+# Original Post 2014-10-24
+
 I recently downsized from my huge Workstation that could draw up to one
 kilowatt of power to a more compact and reasonable desktop cube with a current
 generation Intel Xeon and loads of memory to cache whole directories and pieces

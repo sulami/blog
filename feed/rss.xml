@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 24 Oct 2014 00:00:00 +0200</lastBuildDate><item><title>Choosing a mobile workstation</title><link>https://sulami.github.io/choosing-a-mobile-workstation.html</link><description>&lt;p&gt;I recently downsized from my huge Workstation that could draw up to one
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 24 Oct 2014 00:00:00 +0200</lastBuildDate><item><title>Choosing a mobile workstation</title><link>https://sulami.github.io/choosing-a-mobile-workstation.html</link><description>&lt;h1&gt;Update 2014-10-30&lt;/h1&gt;
+&lt;p&gt;Peter Wu wrote me about this topic and sent me &lt;a href="http://brianolsen.wordpress.com/2014/04/08/system-76-gazelle-professional-9-clevo-w650sz-short-review/"&gt;a review&lt;/a&gt; of the System76
+Gazelle, which raises concerns. A quick search for Galago reviews also resulted
+in &lt;a href="http://bitflip.net/system76-galago-ultrapro-review-clevo-w740su-259/"&gt;another quite negative review&lt;/a&gt;. The System76 notebooks seem to be
+mostly rebranded Clevo machines with questionable quality. That pretty much
+leaves me with the Schenker ones as the only option, probably the B513. I will
+write an extended review once I finalized my decision and got one.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h1&gt;Original Post 2014-10-24&lt;/h1&gt;
+&lt;p&gt;I recently downsized from my huge Workstation that could draw up to one
 kilowatt of power to a more compact and reasonable desktop cube with a current
 generation Intel Xeon and loads of memory to cache whole directories and pieces
 of software I use. It also solved my long problems with the AMD graphics

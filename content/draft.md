@@ -1,72 +1,70 @@
-Title: Why are we still using Facebook?
+Title: On social media
 Date: 2014-10-27
 Category: Web
 Status: draft
 
-It is almost 2015 now, and we are still using Facebook. I know people, who have
-never used it (some), or have actually quit it (very few). I personally do have
-a Facebook account, but I do not post anything aside from a nice photo every
-few months, mostly because I do not feel the need to tell everyone everything,
-which is also the reason I rarely tweet myself and try to keep this blog
-somewhat focussed on topics rather than what is happening in my life. I told
-myself for a long time, I keep Facebook to contact the people I rarely interact
-with, but that happens well, rarely, if ever. Yes, you can reach almost anyone
-on Facebook, without needing to have their phone number, but in reality you
-have the numbers of the people you talk to anyway.
+Do we need social networks? I do not think so. This might sound fairly drastic
+which I am aware of, but let me explain how I came to this conclusion, network
+by network:
 
-But why would I even consider leaving Facebook, if I do not post anything that
-could have negative effects in the future? Markus 'Notch' Persson (the
-Minecraft inventor) said it pretty well, [Facebook is creepy][notch]. Facebook
-is a really big company, according to Wikipedia they made about $1.5B just last
-year, without actually selling anything to us (aside from WhatsApp
-memberships). They own not only WhatsApp and Instagram, but also Oculus as of
-lately, and just Facebook has about 1.3B users active every month, making it
-the second most visited site on the Internet. There are over 7,000 people
-working at Facebook. Given that Facebook and its subsidaries sell almost
-nothing to the consumer, it becomes obvious how much money they make with the
-consumer, by analyzing every last bit of user interaction. Facebook 'Like' and
-'Share' buttons are almost anywhere, and they track you, no matter if you even
-have an account. They know where you are at which time, and where you will
-probably go afterwards. Not that I have anything to hide, but I do not condone
-this invasion of my privacy.
+# Facebook
+
+Obviously the biggest and most used one. Almost everyone in the first world has
+a Facebook account (if you do not count Russia, here purely to state my point,
+no other implications). Markus 'Notch' Persson (the Minecraft inventor) said
+[Facebook was creepy][notch], which I think we all can agree on.
 
   [notch]: https://twitter.com/notch/statuses/448586381565390848
 
-But coming back to the original question, why are we still using it if it is
-this bad? I really do not like Facebook, yet I am a member, there has to be a
-reason for this. Am I addicted? Do I fear missing out on important updates
-about people I have not seen since school? Do I want to keep the option to
-contact these people? Not really. Out of my 153 Facebook 'Friends', I consider
-14 closer friends I actually interact with at least every few weeks, people I
-would ask help me move. There are a few more, that actually do not use
-Facebook, which adds up to about 20 people not related to me that I have seen
-and/or talked to in the past couple of months. That leaves 139, almost exactly
-ten times as many 'Friends' of Facebook that I do not interact with at all,
-110 people from school, some exes of both friends and mine or people I met
-online or going out. The people I really care about have my number, and I have
-theirs.
+# Twitter
 
-My timeline is mostly composed of new pictures, mainly profile pictures. I
-follow just a few sites that I am interested in, so the majority of updates is
-coming from friends. I would guess about 70% changed pictures and 30%
-textposts. And posts from friends are not what I would consider quality
-content. There is a fraction of friends who are really active in social media,
-always taking new selfies, posting what they are eating and what they are
-watching on TV. Not that I cared. They are craving attention, and while it
-could already be considered an illness, I do not care at all what other people
-think they have to share with the internet. If it makes them feel better about
-their lifes, go ahead. But I do not want to see it.
+There is a really nice post by Alex Gaynor [here][tw] about why Twitter is bad
+as concept, stating mainly that is does not allow effective community forming
+and promotes harassment. My personal addition to this would be that it is
+horrible to use and as a not even subculturally known person like most of us it
+makes little sense to broadcast our thoughts into the void. It also suffers
+from tweet-spam.
 
-People I do not care about are not important to me (this will make a nice
-out-of-context quote), both the ability to contact them as well as their life
-updates. There is no real reason to be on Facebook in the first place.
-Centralized communication sounds like a solid idea, but it actually just leads
-to people living next to each other, online. I wrote my last message on
-Facebook in May, 5 months ago. Communication happens on phones (mostly
-[Telegram][t]). Anything else on Facebook does not even need replacement.
-Updates, Pictures, Games, Events, I do not need any of this. I already deleted
-my Instagram account because I a) do not want that piece of software on my
-phone and b) see no point in using it.
+  [tw]: https://alexgaynor.net/2014/oct/30/i-hope-twitter-goes-away/
 
-  [t]: https://telegram.org
+# Google Plus
+
+Well, aside from a very small group of people who are mostly into OSS no one is
+really using it. Everyone with a Gmail-address and/or and YouTube account is
+involuntarily part of it. Google already has loads of data about everyone,
+through Analytics, Adsense/Adwords, YouTube, Street View, Android, Chrome and
+of course the search, simply called Google. They do not need Google Plus, and
+we do not either.
+
+# Reddit
+
+Reddit is not really a social network, but more of a collection of forums and
+link aggregators, grouped by topics. Reddit in my eyes is the perfect example
+of a community-based website done right. The whole voting system for both posts
+and comments and the mini-communities allow effective, centralized news sharing
+and discussion for people with shared interests.
+
+# Where am I going with this?
+
+There are some more networks and network-like websites, but I do have a point
+to make. *You do not need a network without a community or content*. Have a
+look at YouTube. There are subcommunities, like the gamers, the beauty-girls,
+the comedians, and others, and there is content in the form of videos.
+Hackernews is a link aggregator which focusses on computer geeks, an existing
+community, and content in the form of links (most of the time).
+
+The first three networks on our list are networks just to be networks.
+Facebook aims to be omnipresent and allow you to contact your real-life friends
+while also incorporating sites to follow celebrities or companies. This
+actually makes sense, and it obviously works. Twitter and G+ are just empty
+networks that allow people to interact, but no one told them why they should.
+Facebook works, because everyone uses it. But ultimately, you do not need
+Facebook to contact who you know anyway. When the time comes and people are
+less obsessive about sharing how cool their life is, Facebook will go down.
+
+People live without Facebook, and they continue to do so. People you are
+interested in have your number. Anyone on the internet you might want to
+interact with is probably a member of a community you are a member of as well.
+Reddit does this, 4chan, Hackernews, IRC and even mailinglists do this.
+Facebook, Twitter and G+ do not.
 

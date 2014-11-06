@@ -32,11 +32,11 @@ freenode.
 
 My email address is [sulami@peerwire.org](mailto:sulami@peerwire.org).
 
-I would also like to encourage you to use my PGP-Key:
+Here is my PGP-key, if you are into this kind of stuff:
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1
-
+    
     mQENBFEXouQBCADbxZnMDWcRQseSmz2BjeXhB8LL3qDnXJF5cNk4UzltthwNOZ1v
     4XJTxfIsESGrg7PK3le3RF8sEI++6NpxGACEJ3GusdE98uDt6qHkh5Ijw1xQdxyC
     l5pVKRn1haMjaAduSHt6gSJzqUNFMqahcV4nW7jawmgU/fmbYaSx/9OKM0yMK2E3
@@ -50,18 +50,26 @@ I would also like to encourage you to use my PGP-Key:
     hw8o1CQOL9CpoBRA8Qgmn88fsCp/doZdZNh9JcEJs8oxu8brlYekxoIjFGjccMgN
     gAAep3Lb9uFIuenS5yssGnEeKDcU7ANPl1lXLCL86PphSwfVb4aMi7wZhepzl+Lg
     oyRS1a9gPnTqw+8GwavEU/fSROHFNl96Q49AGsPACb2Ewq/yWP8hz66lc/9q3fai
-    tpk0GP8tf7kBDQRRF6LkAQgAp8MeQrp9l21PS+3SJzVvy1iEoSO4/OWlryA+yze6
-    pGXDYKN9cQMnARX+SFm+gst5hYddAfTGpumSHtgTzKCd3Y1kTo6tAAl0Cgqc48cm
-    FTuh06uxFQ8Nr95Qk/75IUUUee8JCvk3LsZmicMg1q2W7ZE9GEqzC9H/KJdb0bcK
-    31q08pbcaep4Fe/eIe7VqthOxpeGZiS1X5LVAb5dN6yZkrix8yK/C1uw6OTGdGnt
-    rgrw8GyGWJLaAZVm4PwKCyyvu+u5UONULNMTbFBVhEILswe71VBITeUcCv8OrkEF
-    4nddVbZQi4JOsNO0CvGHQEj7OVQSKpWQvyrQs8U1s17PMwARAQABiQEfBBgBAgAJ
-    BQJRF6LkAhsMAAoJEEkAB3+hQYEGu4AIAK9F/3q1ghnZ1aVTki9JyYwoWkZ7g5QW
-    DLrFSsyPsTRP32hJxIGGNlR24semVb/a5GF8WQ42MhheDfxAXkQtl1Gu3rAlpmBV
-    T9+SOvS4cVHxMbRvuMSns97iQT+NKCxiz/8bEyalHQlrO6BwiRf446Rpui+nAON4
-    Iz22S5T3hH6R+lG+r4o4s8EELBcXy8swr3kNvEJmxux+4oehZSY2Ehm5J5Daf+HL
-    oKmQcXuKmFONJ1JEgLRIEGv3CXbjAfU9KQh4J8eHr0rhWf0ylWBs3xM+BTuN6+72
-    ZCvfDBgwodEP9FMsODDeN2FEnstDnDLXivTXYjaj79dGPAf+jDGhe5U=
-    =W99q
+    tpk0GP8tf7QjUm9iaW4gU2Nocm9lciA8c3VsYW1pQHBlZXJ3aXJlLm9yZz6JATsE
+    EwECACUCGyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJUW1gpAhkBAAoJEEkA
+    B3+hQYEG3MQH/0j96NthhY4LxC4m7qzq8EjYZgDDVTQ37jzDoMcOfGw5LSIjeA6O
+    HoGy7ZeMVMoFxEzNAycQdhvG/MoLn3OBM52CPBzAPTTctNU2KjFMZJLWpG4l61UA
+    Kk1gjrzkqIrxX0UHprsGSdbmxC/l1an2GUySs8gdli7UeHwGzD0E9NM4fo/Uh1/L
+    FMIIUOTXoqLwj+eNWTgJ8mOm/obYe6diL8U1BRJQjHrLrpJgOfitFcvMO2lk5Ew5
+    t/1iujIp4P8f5xAqWkIQvf/W1mocgch7qelwX0HDC8Sbpc2v/4AHUAWORTp0iNHJ
+    QByFYhS7Zy0Vo7NS1f1zAiiToK/twYyXRSu5AQ0EURei5AEIAKfDHkK6fZdtT0vt
+    0ic1b8tYhKEjuPzlpa8gPss3uqRlw2CjfXEDJwEV/khZvoLLeYWHXQH0xqbpkh7Y
+    E8ygnd2NZE6OrQAJdAoKnOPHJhU7odOrsRUPDa/eUJP++SFFFHnvCQr5Ny7GZonD
+    INatlu2RPRhKswvR/yiXW9G3Ct9atPKW3GnqeBXv3iHu1arYTsaXhmYktV+S1QG+
+    XTesmZK4sfMivwtbsOjkxnRp7a4K8PBshliS2gGVZuD8Cgssr7vruVDjVCzTE2xQ
+    VYRCC7MHu9VQSE3lHAr/Dq5BBeJ3XVW2UIuCTrDTtArxh0BI+zlUEiqVkL8q0LPF
+    NbNezzMAEQEAAYkBHwQYAQIACQUCURei5AIbDAAKCRBJAAd/oUGBBruACACvRf96
+    tYIZ2dWlU5IvScmMKFpGe4OUFgy6xUrMj7E0T99oScSBhjZUduLHplW/2uRhfFkO
+    NjIYXg38QF5ELZdRrt6wJaZgVU/fkjr0uHFR8TG0b7jEp7Pe4kE/jSgsYs//GxMm
+    pR0JazugcIkX+OOkabovpwDjeCM9tkuU94R+kfpRvq+KOLPBBCwXF8vLMK95DbxC
+    ZsbsfuKHoWUmNhIZuSeQ2n/hy6CpkHF7iphTjSdSRIC0SBBr9wl24wH1PSkIeCfH
+    h69K4Vn9MpVgbN8TPgU7jevu9mQr3wwYMKHRD/RTLDgw3jdhRJ7LQ5wy14r012I2
+    o+/XRjwH/owxoXuV
+    =O12V
     -----END PGP PUBLIC KEY BLOCK-----
 

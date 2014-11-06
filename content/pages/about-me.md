@@ -16,6 +16,8 @@ Here is some of my stuff:
   A dynamic status API currently in development
 * [Medusa](https://github.com/sulami/medusa "Medusa")
   A really old, minimal nagios-compatible monitoring system in Python
+* [MPKey](https://github.com/sulami/mpkey "MPKey")
+  A small piece of C that allows you to bind mpd commands to global hotkeys
 * [diet.vim](https://github.com/sulami/diet.vim "diet.vim")
   Diet syntax highlighting for vim
 * [Codessentials](http://codessentials.org "codessentials")

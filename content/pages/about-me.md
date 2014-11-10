@@ -18,21 +18,19 @@ Here is some of my stuff:
   A really old, minimal nagios-compatible monitoring system in Python
 * [MPKey](https://github.com/sulami/mpkey "MPKey")
   A small piece of C that allows you to bind mpd commands to global hotkeys
-* [diet.vim](https://github.com/sulami/diet.vim "diet.vim")
-  Diet syntax highlighting for vim
 * [Codessentials](http://codessentials.org "codessentials")
   A stupid aggregator for programming resources, by language and type
 * [pelican-theme](https://github.com/sulami/pelican-theme "pelican-theme")
   The pelican theme you see here, based on my own 'cybercopy' colourscheme
+* [DGame](https://github.com/sulami/dgame "dgame")
+  A demo of what can be done with D and OpenGL
 
 Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.
 
 If you are in need of someone like me, contact me in any way you want to,
-although I prefer email. But I also often hang out on irc.nixers.net or
-freenode.
-
-My email address is [sulami@peerwire.org](mailto:sulami@peerwire.org).
+although I prefer email.  My email address is
+[sulami@peerwire.org](mailto:sulami@peerwire.org).
 
 Here is my PGP-key, if you are into this kind of stuff:
 

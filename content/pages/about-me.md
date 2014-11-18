@@ -12,6 +12,8 @@ Here is some of my stuff:
   Where I mirror some of my less important git repos
 * [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
+* [Nozdormu](https://github.com/sulami/nozdormu "Nozdormu")
+  A unittest-like framework for easy, precise and fast Python3 benchmarks
 * [Elena](https://github.com/sulami/elena "Elena")
   A dynamic status API currently in development
 * [Medusa](https://github.com/sulami/medusa "Medusa")

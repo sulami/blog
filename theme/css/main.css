@@ -46,6 +46,12 @@ img {
     background-color: inherit !important;
 }
 
+code {
+    background-color: inherit !important;
+    border: 1px #424b6c solid;
+    padding: 2px;
+}
+
 pre span {
     border: none !important;
 }

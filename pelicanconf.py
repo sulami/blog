@@ -10,7 +10,6 @@ TIMEZONE = 'Europe/Berlin'
 DEFAULT_DATE_FORMAT = ('%Y-%m-%d')
 DEFAULT_LANG = u'en'
 
-OUTPUT_PATH = 'sulami.github.io/'
 THEME = 'pelican-theme'
 
 DEFAULT_PAGINATION = 5

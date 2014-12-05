@@ -89,19 +89,19 @@ to live in the shell (aside from web-browsing, which is ...</p>
     | tags: <a href="https://sulami.github.io/tag/alsa.html">alsa</a> <a href="https://sulami.github.io/tag/ffmpeg.html">ffmpeg</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> </footer><!-- /.post-info -->
                 <p>Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:</p>
-<div class="codehilite"><pre><span class="n">INRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
-<span class="n">OUTRES</span><span class="o">=</span><span class="s">&quot;1920x1080&quot;</span>
-<span class="n">FPS</span><span class="o">=</span><span class="s">&quot;30&quot;</span>
-<span class="n">QUAL</span><span class="o">=</span><span class="s">&quot;medium&quot;</span>
-<span class="n">STREAM_KEY</span><span class="o">=</span><span class="s">&quot;live_123_xxx&quot;</span>
+<div class="codehilite"><pre><span class="x">INRES=&quot;1920x1080&quot;</span>
+<span class="x">OUTRES=&quot;1920x1080&quot;</span>
+<span class="x">FPS=&quot;30&quot;</span>
+<span class="x">QUAL=&quot;medium&quot;</span>
+<span class="x">STREAM_KEY=&quot;live_123_xxx&quot;</span>
 
-<span class="n">ffmpeg</span>
-<span class="o">-</span><span class="n">f</span> <span class="n">x11grab</span>
-<span class="o">-</span><span class="n">s</span> <span class="s">&quot;$INRES&quot;</span>
-<span class="o">-</span><span class="n">r</span> <span class="s">&quot;$FPS&quot;</span>
-<span class="o">-</span><span class="n">i</span> <span class="o">:</span><span class="mf">0.0</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
-<span class="o">-</span><span class="n">itsoffset</span> <span class="o">-</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span>
-<span class="o">-</span><span class="n">f</span> <span class="n">alsa ...</span></pre></div>
+<span class="x">ffmpeg</span>
+<span class="x">-f x11grab</span>
+<span class="x">-s &quot;</span><span class="p">$</span><span class="nv">INRES</span><span class="x">&quot;</span>
+<span class="x">-r &quot;</span><span class="p">$</span><span class="nv">FPS</span><span class="x">&quot;</span>
+<span class="x">-i :0.0+0,0</span>
+<span class="x">-itsoffset -00:00:01</span>
+<span class="x">-f alsa ...</span></pre></div>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

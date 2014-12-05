@@ -63,7 +63,7 @@ written using TDD, but giving usually rather poor debugging output compared to
 interpreted languages, TDD is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
 a keyboard mapping to start our tests from within vim.</p>
-<div class="codehilite"><pre><span class="kt">map</span> <span class="o">&lt;</span><span class="nx">Leader</span><span class="o">&gt;</span><span class="nb">t</span> <span class="p">:</span><span class="o">!</span><span class="nx">make</span> <span class="na">-B</span> <span class="nx">tests</span> <span class="o">&amp;&amp;</span> <span class="nx">.</span><span class="p">/</span><span class="nx">tests</span><span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
+<div class="codehilite"><pre>map &lt;Leader&gt;t :!make -B tests &amp;&amp; ./tests&lt;CR&gt;
 </pre></div>
 
 

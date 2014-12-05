@@ -54,17 +54,17 @@ way of achieving our goal. You will need:</p>
 connect everything and boot it up, then access a console. We need to
 install mplayer, which will play our stream. If needed, update the
 package lists before installing.</p>
-<div class="codehilite"><pre><span class="cp"># Raspian:</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">mplayer</span>
+<div class="codehilite"><pre># Raspian:
+sudo apt-get install mplayer
 
-<span class="cp"># ArchARM (as root):</span>
-<span class="n">pacman</span> <span class="o">-</span><span class="n">Sy</span> <span class="n">mplayer</span>
+# ArchARM (as root):
+pacman -Sy mplayer
 
-<span class="cp"># Pidora:</span>
-<span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">mplayer</span>
+# Pidora:
+sudo yum install mplayer
 
-<span class="cp"># openSUSE:</span>
-<span class="n">sudo</span> <span class="n">zypper</span> <span class="n">in</span> <span class="n">mplayer</span>
+# openSUSE:
+sudo zypper in mplayer
 </pre></div>
 
 
@@ -92,7 +92,7 @@ use the <em>-shuffle</em> parameter later on to play random music.</p>
 a hint) and type "<em>crontab -e</em>" to enter your cronjob (preferably as a
 non-root user). Depending on your OS there will be some comments you can
 ignore. Add a entry like the following:</p>
-<div class="codehilite"><pre><span class="mi">30</span> <span class="mi">6</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">env</span> <span class="n">DISPLAY</span><span class="o">=:</span><span class="mf">0.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mplayer</span> <span class="o">-</span><span class="n">playlist</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">playlist</span><span class="p">.</span><span class="n">pls</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<div class="codehilite"><pre>30 6 * * * env DISPLAY=:0.0 /usr/bin/mplayer -playlist /home/pi/playlist.pls &gt; /dev/null
 </pre></div>
 
 

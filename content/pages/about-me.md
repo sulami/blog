@@ -2,9 +2,9 @@ Title: About me
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various IT-related topics, mostly related to software development.  I am a
-Linux/BSD guy and mainly write C, D and Python code using Vim and Git. I have
-been contributing to the Linux kernel as well as written a X11 window manager
-and I generally like experimenting with code.
+Linux/BSD guy and mainly write C and Python code using Vim and Git. I have been
+contributing to the Linux kernel as well as writing an X11 window manager and I
+generally like experimenting with code.
 
 Here is some of my stuff:
 
@@ -31,8 +31,10 @@ Offline I like mountainbiking, photography, as well as reading a good book,
 both fiction and non-fiction.
 
 If you are in need of someone like me, contact me in any way you want to,
-although I prefer email.  My email address is
+although I prefer email. My email address is
 [sulami@peerwire.org](mailto:sulami@peerwire.org).
+I am also fairly often on the Nixers IRC (irc.iotek.org), just prefix your
+message with `sulami` and it will go into my inbox in case I am away.
 
 Here is my PGP-key, if you are into privacy:
 

@@ -27,65 +27,60 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/on-social-media.html">On social media</a></h1>
+                    <h1 class="entry-title">>> <a href="https://sulami.github.io/using-xephyr-to-simulate-multiple-monitors.html">Using Xephyr to simulate multiple monitors</a></h1>
 <footer class="post-info">
-    <span class="date">2014-10-27</span>
+    <span class="date">2014-12-19</span>
     |
-    in <a href="https://sulami.github.io/category/web.html">Web</a>
-</footer><!-- /.post-info -->
-                    <p>Do we need social networks? I do not think so. This might sound fairly drastic
-which I am aware of, but let me explain how I came to this conclusion, network
-by network:</p>
-<h1>Facebook</h1>
-<p>Obviously the biggest and most used one. Almost everyone in the first world has
-a Facebook account (if you do not count Russia, here purely to state my point,
-no other implications). Markus 'Notch' Persson (the Minecraft inventor) said
-<a href="https://twitter.com/notch/statuses/448586381565390848">Facebook was creepy</a>, which I think we all can agree on.</p>
-<h1>Twitter</h1>
-<p>There is a really nice post by Alex Gaynor <a href="https://alexgaynor.net/2014/oct/30/i-hope-twitter-goes-away/">here</a> about why Twitter is bad
-as concept, stating mainly that is does not allow effective community forming
-and promotes harassment. My personal addition to this would be that it is
-horrible to use and as a not even subculturally known person like most of us it
-makes little sense to broadcast our thoughts into the void. It also suffers
-from tweet-spam.</p>
-<h1>Google Plus</h1>
-<p>Well, aside from a very small group of people who are mostly into OSS no one is
-really using it. Everyone with a Gmail-address and/or and YouTube account is
-involuntarily part of it. Google already has loads of data about everyone,
-through Analytics, Adsense/Adwords, YouTube, Street View, Android, Chrome and
-of course the search, simply called Google. They do not need Google Plus, and
-we do not either.</p>
-<h1>Reddit</h1>
-<p>Reddit is not really a social network, but more of a collection of forums and
-link aggregators, grouped by topics. Reddit in my eyes is the perfect example
-of a community-based website done right. The whole voting system for both posts
-and comments and the mini-communities allow effective, centralized news sharing
-and discussion for people with shared interests.</p>
-<h1>Where am I going with this?</h1>
-<p>There are some more networks and network-like websites, but I do have a point
-to make. <em>You do not need a network without a community or content</em>. Have a
-look at YouTube. There are subcommunities, like the gamers, the beauty-girls,
-the comedians, and others, and there is content in the form of videos.
-Hackernews is a link aggregator which focusses on computer geeks, an existing
-community, and content in the form of links (most of the time).</p>
-<p>The first three networks on our list are networks just to be networks.
-Facebook aims to be omnipresent and allow you to contact your real-life friends
-while also incorporating sites to follow celebrities or companies. This
-actually makes sense, and it obviously works. Twitter and G+ are just empty
-networks that allow people to interact, but no one told them why they should.
-Facebook works, because everyone uses it. But ultimately, you do not need
-Facebook to contact who you know anyway. When the time comes and people are
-less obsessive about sharing how cool their life is, Facebook will go down.</p>
-<p>People live without Facebook, and they continue to do so. People you are
-interested in have your number. Anyone on the internet you might want to
-interact with is probably a member of a community you are a member of as well.
-Reddit does this, 4chan, Hackernews, IRC and even mailinglists do this.
-Facebook, Twitter and G+ do not.</p>
+    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
+    | tags: <a href="https://sulami.github.io/tag/xephyr.html">xephyr</a> <a href="https://sulami.github.io/tag/x.html">x</a> </footer><!-- /.post-info -->
+                    <p>One of the most requested features in <a href="https://github.com/sulami/frankenwm">FrankenWM</a> is support for multiple
+monitors. I currently only use one monitor, mostly because I do not need more
+right now (there have been time where I have been using 4 monitors at the same
+time, all connected to one machine). This situation makes it quite difficult
+for me to develop such a rather big feature, simply because I cannot test it at
+all. I have tried to figure out how to use nested X servers to simulate
+multiple monitors on a single screen for a few weeks now, finally finding the
+solution today.</p>
+<p>The nesting tool of my choice is <a href="http://www.freedesktop.org/wiki/Software/Xephyr/">Xephyr</a>, because it is quite feature-rich
+and easy to use (in comparison to Xnest). I have also experimented with Xvfb
+and Xdmx, the latter being unable to use randr, which is a dealbraker. But
+while scraping mailing lists today I found the magical solution, and it only
+needs Xephyr.</p>
+<div class="codehilite"><pre>Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &amp;
+</pre></div>
+
+
+<p>This simple line starts Xephyr with two screens in one and uses Xinerama, :1.0
+and :1.1, if that makes any sense. The result looks something like this:</p>
+<p><img alt="scrot" src="https://sulami.github.io/pictures/scrot_xephyr_multihead.png" /></p>
+<p>Because I am currently working on the proper support, FrankenWM still uses the
+whole screen as one, rather than using a separate desktop for each monitor.</p>
                 </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1>>> <a href="https://sulami.github.io/on-social-media.html" rel="bookmark"
+                           title="Permalink to On social media">On social media</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2014-10-27</span>
+    |
+    in <a href="https://sulami.github.io/category/web.html">Web</a>
+</footer><!-- /.post-info -->
+                <p>Do we need social networks? I do not think so. This might sound fairly drastic
+which I am aware of, but let me explain how I came to this conclusion, network
+by network:</p>
+<h1>Facebook</h1>
+<p>Obviously the biggest and most used one. Almost everyone in the first world has
+a Facebook ...</p>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -142,25 +137,6 @@ language, with prior experience in ...</p>
 personal GitHub account. This happened, because I challenged myself a few
 months ago to accomplish exactly that. Now, that I succeeded after I once
 failed at day 29 by simply forgetting to write something, I can ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/using-git-locally.html" rel="bookmark"
-                           title="Permalink to Using git locally">Using git locally</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-    <span class="date">2014-07-15</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
-    | tags: <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/ssh.html">ssh</a> </footer><!-- /.post-info -->
-                <p>When you write your code, using a version control mechanism like git is
-crucial, even more than writing proper unit tests, even when working on your
-own, even when it is only your evening project. Just use git and commit
-regularly, it will not hurt you (unless your workflow is ...</p>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

@@ -19,7 +19,7 @@ DEFAULT_PAGINATION = 5
 
 MD_EXTENSIONS = (['codehilite'])
 
-#STATIC_PATHS = ['images', 'download']
+STATIC_PATHS = ['pictures', ]
 
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL

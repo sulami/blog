@@ -25,160 +25,25 @@
             </nav>
     </header><!-- /#banner -->
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html">My own perfect world (aka what you should do)</a></h1>
+            <section id="content" class="body">
+                <ol id="posts-list" class="hfeed" start="4">
+        <li><article class="hentry">
+            <header>
+                <h1>>> <a href="https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html" rel="bookmark"
+                        title="Permalink to My own perfect world (aka what you should do)">My own perfect world (aka what you should do)</a></h1>
+            </header>
+
+            <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-03-17</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
     | tags: <a href="https://sulami.github.io/tag/firefox.html">firefox</a> <a href="https://sulami.github.io/tag/flash.html">flash</a> <a href="https://sulami.github.io/tag/git.html">git</a> <a href="https://sulami.github.io/tag/homeserver.html">homeserver</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/privacy.html">privacy</a> <a href="https://sulami.github.io/tag/security.html">security</a> <a href="https://sulami.github.io/tag/skype.html">skype</a> <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/vlc.html">vlc</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
-                    <p>I have to admit, I am a little bit perfectionist. Maybe more. There are
+            <p>I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
 follow those conventions, some because they do not want to, but mostly
-they just do not care. I just want to list some (read: non-exhaustive
-list) of these conventions and maybe help you become a better human. In
-my eyes. Which are the only relevant eyes.</p>
-<h1>General Stuff</h1>
-<h4>Encoding</h4>
-<p>UTF-8.</p>
-<p>There is close to nothing in the western world which does not work with
-unicode, but many thing that will not work without it.</p>
-<h4>Websites</h4>
-<p>You own a website? Great. Here are some things to not do:</p>
-<ul>
-<li>overly heavy use of javascript/ajax</li>
-<li>using POST where GET is usable (POST breaks bookmarks)</li>
-<li>using GET where POST is required (login information, ...)</li>
-<li>storing cleartext passwords (salt and hash them, only compare
-    hashes)</li>
-<li>storing any kind of userdata you do not need (hackers/leaks)</li>
-<li>using flash for something that is neither a video nor a game</li>
-<li>use a popup to ask me to like your facebook-page (or some other
-    social bullshit)</li>
-<li>split your content way to often to generate additional pageviews</li>
-<li>anything with sound which is not the main point of the site</li>
-</ul>
-<h4>Passwords</h4>
-<p>Use unique, randomly generated passwords for each service, store them in
-some sort of encrypted file (like KeePass). If you prefer to know your
-passwords, choose a scheme to generate passwords for a given service, so
-you do not use the same password everywhere. Also, long passwords are
-better than short ones, special characters are mostly good and no one
-who knows you should be able to guess your passwords, so no names of
-SOs, children, parents, BFFs, ...</p>
-<h4>Backups</h4>
-<p>Do regular backups of everything you own. External harddrives, CDs,
-Homservers, whatever. Just no "clouds", you cannot rely on those both in
-terms of security and reliability. Always have at least two copies fully
-under your control.</p>
-<h4>Prefer Open Source</h4>
-<p>Not (only) for philosophical reasons, but for security reasons. If you
-use a reasonably large open sourced piece of software, even if you are
-not able to write a single word of code, most assuredly some fanatic has
-already checked the whole code for security holes. In proprietary
-software, sometimes only less than ten people have access to the source
-code, and everything they do not catch is a potential way for you to
-loose your access to let's say your bank account. Would suck, would it
-not?</p>
-<h1>Mail</h1>
-<p>Mail is a big part of the internet and my life as well. But there are
-some things that really bug me when reading mail.</p>
-<h4>Do not use HTML-mail</h4>
-<p>There is no reason at all to use HTML in mails, except you send
-professional advertisements or something like this. But for simple mail,
-just containing text and maybe some attachments, why would you use HTML?
-To make it look prettier? I open my mail in mutt (read: a text console),
-so I get to read around all your fancy HTML-tags.</p>
-<h4>Do not write in single/ridiculously long lines</h4>
-<p>This is a big Outlook/Live Mail/whatever it is called right now-issue.
-Even though you see the linebreaks at the end of your writing area,
-there are actually none, Outlook breaks it "live". When using proper
-text-only-mail, this is bad, not like really bad, but somewhat bad. I
-usually correct those, and by "I" I mean vim does it for me, but still.
-I personally prefer breaks at a maximum of 72 characters per line, which
-is a commonly used standard.</p>
-<h4>Do not TOFU</h4>
-<p>No, this one is not about your eating habits, TOFU stands for "Text Over
-Fullquote Under". This is what Outlook (sic) does per default.
-Fullquoting is useful in many situations and does not introfuce to much
-overhead when using text-only mail (my mails very rarely exceed 10KB).
-But instead of writing your answer over the mail you received, place it
-below. This way, we both can read the coversation from top to bottom
-while writing our mails.</p>
-<h1>Coding</h1>
-<p>If you and I are working together on a software project, there are some
-things I greatly appreciate.</p>
-<h4>Use a (proper) coding style</h4>
-<p>Coding styles are everything when coding cooperatively. My favourite
-coding style is the Python one (<a href="http://legacy.python.org/dev/peps/pep-0008/">PEP8</a>/<a href="http://legacy.python.org/dev/peps/pep-0007/">PEP7</a>), which means for most
-languages:</p>
-<ul>
-<li>no tabs</li>
-<li>4 space indentation</li>
-<li>prefered max line length: 80 characters</li>
-</ul>
-<p>Indentation can be tabs alternatively, but <strong>have to</strong> be standardized.
-In some editors, tabs are 4 spaces long, in others 8, and in some 6.
-This makes code indentation a mess and ruins the readability. The line
-length limit is for sane editing, 100 characters are also acceptable,
-anything more than that is probably poorly readable in most editors and
-screams "bad code".</p>
-<h4>Use a VCS/SCM</h4>
-<p>I could have also said "use git". But I see that some people prefer
-mercurial or SVN (why...?), that is okay, too. Even when working alone,
-always use some sort version control software, or you will break your
-code one day and spend hours tracking down the bad change. Diffs and
-rollbacks are vital for efficient coding.</p>
-<h4>As you are using git, branch</h4>
-<p>As git is the best vcs, in my opinion, you are using branches, aren't
-you? Never, and I mean never, work on master. Master is for tested code
-only. Always work on "wip", "robin" or "fix". It does not matter how you
-name your branch. If you want to change something, branch, make your
-change, test it(!), and merge back into master if your change breaks
-nothing. This is even more important when coding cooperatively, as I do
-not want to pull your work in progress on master, branch to my work in
-progress and wonder why it is broken. Which brings us to</p>
-<h4>Work locally</h4>
-<p>Many devs are used to working directly on a server, and sometimes this
-is the only way to effectively test their changes, as they are missing
-the needed environment for the code. This is okay. But as you are still
-using git, always try to clone a personal copy of the code to work on,
-and only push back your branch(es) and possible changes to master to
-save your work centralized. Otherwise there might be a hell of
-simultaneously edited files and lock-/swap-/backup-files.</p>
-<h1>Software Recommendations</h1>
-<p>I have used so much software over the years, I found my favourite
-software for most of my needs, and I compared a lot. My favourites are
-always the first ones.</p>
-<ul>
-<li>OS: Linux (Fedora/OpenSUSE/Arch) or Windows 7 x64 on desktops,
-    RHEL/CentOS/OpenSUSE/*BSD on servers</li>
-<li>Password Management: KeePass (version 1, version 2 is not widely
-    available yet)</li>
-<li>Text editing/coding: vim, Kate, Notepad++ (on Windows)</li>
-<li>VCS: git</li>
-<li>Mail: mutt, Thunderbird</li>
-<li>VoIP: Skype (still searching for a better alternative, not secure in
-    any way), Mumble</li>
-<li>IRC: irssi, weechat, Quassel</li>
-<li>VMs: Virt-Manager/QEMU with KVM, Xen (for PVM on hosts without
-    CPU-extensions), VirtualBox (on Windows)</li>
-<li>Video: VLC</li>
-<li>Music: ncmpcpp+mpd, Rythmbox, foobar2000 (on Windows)</li>
-<li>Office: LaTeX for papers, LibreOffice</li>
-<li>Web: Firefox</li>
-<li>Webserver: nginx</li>
-<li>Filesharing: NFS, Samba (FTP is old and cluttered)</li>
-<li>CMS: Django (anything), Wordpress (blogs), Drupal</li>
-<li>Programming languages: Python (platform independent, modular, nice
-    to write and read), C(++) (faster, for performance-critical
-    applications)</li>
-</ul>
-                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
+they just do not care. I just want to list some ...</p>
+            </div><!-- /.entry-content -->
+        </article></li>
 </body>
 </html>

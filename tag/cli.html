@@ -25,102 +25,45 @@
             </nav>
     </header><!-- /#banner -->
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title">>> <a href="https://sulami.github.io/test-driven-development-in-vim.html">Test-driven development in vim</a></h1>
+            <section id="content" class="body">
+                <ol id="posts-list" class="hfeed" start="4">
+        <li><article class="hentry">
+            <header>
+                <h1>>> <a href="https://sulami.github.io/test-driven-development-in-vim.html" rel="bookmark"
+                        title="Permalink to Test-driven development in vim">Test-driven development in vim</a></h1>
+            </header>
+
+            <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-05-05</span>
     |
     in <a href="https://sulami.github.io/category/coding.html">Coding</a>
     | tags: <a href="https://sulami.github.io/tag/vim.html">vim</a> <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/tdd.html">tdd</a> <a href="https://sulami.github.io/tag/c.html">c</a> </footer><!-- /.post-info -->
-                    <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
+            <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
-TDD, which proceeded to explain how you start your project by writing a test
-that (obviously) fails, then start your actual project, and test again. At this
-point in time, we have a something that returns a default webpage, or zero. Not
-even printing "Hello World" or "Success!". The next step is to write another
-test, which checks for some actual content or functionality. After this test
-fails (which by the way is important, as it shows that the test will hopefully
-not produce false positives), we write the piece of content or functionality.</p>
-<p>In the beginning, this way of writing code seems (and is) incredibly slow, and
-I find myself skipping the first five tests until I have something that
-actually produces useful output. This is sort of okay, I do not think it will
-hurt my code in any major way. But after those initial skipped tests, say 10
-minutes into the project, I start to religiously write tests for everything
-that happens, which is way easier than implementing proper tests for all the
-different stages and levels when you wrote code for several hours and start
-wasting time by manually testing changes. I think, everything that takes more
-than 30 minutes to code benefits from TDD.</p>
-<p>But let's have a look at some actual TDD using vim and C. C is not often
-written using TDD, but giving usually rather poor debugging output compared to
-interpreted languages, TDD is even more useful, as you will instantaneously see
-when a change breaks any functionality. To make testing easier, we will define
-a keyboard mapping to start our tests from within vim.</p>
-<div class="codehilite"><pre>map &lt;Leader&gt;t :!make -B tests &amp;&amp; ./tests&lt;CR&gt;
-</pre></div>
+TDD, which proceeded to explain how you start your project ...</p>
+            </div><!-- /.entry-content -->
+        </article></li>
 
+        <li><article class="hentry">
+            <header>
+                <h1>>> <a href="https://sulami.github.io/irc-client-showdown-extreme-version.html" rel="bookmark"
+                        title="Permalink to IRC-client showdown, extreme version">IRC-client showdown, extreme version</a></h1>
+            </header>
 
-<p>This mapping will call make in a shell (which means you have to have make
-installed), compile our <em>tests.c</em> file and run it. Depending on which language
-you are using, which kind of application you are developing and how your tests
-work, you might want to change this a bit. I am testing a library I am writing,
-which gets included in <em>tests.c</em>.  The basic structure looks like this:</p>
-<div class="codehilite"><pre><span class="cm">/* Tests for my library */</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;assert.h&gt;</span>
-<span class="cp">#include &quot;mylib.h&quot;</span>
-
-<span class="cp">#define run_test(fn_name) \</span>
-<span class="cp">    printf(&quot;%s\n&quot;, #fn_name); \</span>
-<span class="cp">    fn_name();</span>
-
-<span class="kt">void</span> <span class="nf">test_example_test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">test</span> <span class="o">=</span> <span class="n">fancy_function</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">test</span> <span class="o">==</span> <span class="mi">15</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Running tests:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="n">run_test</span><span class="p">(</span><span class="n">test_example_test</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s"> =&gt; All tests successful!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>We include <em>stdio</em> for printing and <em>assert</em> for the actual testing. The way
-assert works is if the statement assert gets passed is false, which means it
-can also be a function call, assert stops the whole program and prints out the
-line which produced the error. If everything works as intended, it prints all
-the tests it ran, prompts for enter and returns us to vim.  An important part
-is to only delete old tests, when the condition they test for is no longer
-wanted, so you always test for basic functionality as well as the final
-results.</p>
-                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1>>> <a href="https://sulami.github.io/irc-client-showdown-extreme-version.html" rel="bookmark"
-                           title="Permalink to IRC-client showdown, extreme version">IRC-client showdown, extreme version</a></h1>
-                </header>
-
-                <div class="entry-content">
+            <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-03-19</span>
     |
     in <a href="https://sulami.github.io/category/web.html">Web</a>
     | tags: <a href="https://sulami.github.io/tag/cli.html">cli</a> <a href="https://sulami.github.io/tag/irc.html">irc</a> <a href="https://sulami.github.io/tag/irssi.html">irssi</a> <a href="https://sulami.github.io/tag/twitchtv.html">twitchtv</a> <a href="https://sulami.github.io/tag/weechat.html">weechat</a> </footer><!-- /.post-info -->
-                <p>I love IRC. I try to keep all my common software on the shell in case I
+            <p>I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is ...</p>
-                </div><!-- /.entry-content -->
-            </article></li>
+            </div><!-- /.entry-content -->
+        </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1

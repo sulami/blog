@@ -36,7 +36,8 @@ although I prefer email. My email address is
 I am also fairly often on the Nixers IRC (irc.iotek.org), just prefix your
 message with `sulami` and it will go into my inbox in case I am away.
 
-Here is my PGP-key, if you are into privacy:
+Here is my PGP-key, if you are into privacy (key
+[A1418106](http://pgp.mit.edu/pks/lookup?op=get&search=0x4900077FA1418106)):
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1

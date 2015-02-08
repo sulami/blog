@@ -13,7 +13,7 @@ way to enable streaming.&lt;/p&gt;
 &lt;span class="nv"&gt;CHANNELS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;VERBOSE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;
 
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;getopts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;:s:r:f:k:t:a:c:vh&amp;quot;&lt;/span&gt; opt&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;getopts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;:s:r:f:k:t:b:a:c:vh&amp;quot;&lt;/span&gt; opt&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
     &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nv"&gt;$opt&lt;/span&gt; in
         s&lt;span class="o"&gt;)&lt;/span&gt;
             &lt;span class="nv"&gt;SIZE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$OPTARG&lt;/span&gt;

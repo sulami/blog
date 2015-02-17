@@ -2,9 +2,16 @@ Title: About me
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various IT-related topics, mostly related to software development.  I am a
-Linux/BSD guy and mainly write C and Python code using Vim and Git. I have been
-contributing to the Linux kernel as well as writing an X11 window manager and I
-generally like experimenting with code.
+Linux/BSD guy and mainly write C, Go and Python code using Vim, Git and a
+mechanical keyboard. I have been contributing to the Linux kernel as well as
+writing an X11 window manager and I generally like experimenting with code. I
+try to open-source everything I can, although a lot of my actual work contains
+sensitive information and is therefore not on Github but in my private
+Repositories.
+
+When I am not coding, I like playing games (mostly Dwarf Fortress
+and CS:GO at the moment), mountainbiking and photography. I also play the
+guitar badly, despite doing so for almost ten years.
 
 Here is some of my stuff:
 
@@ -27,14 +34,9 @@ Here is some of my stuff:
 * [DGame](https://github.com/sulami/dgame "dgame")
   A demo of what can be done with D and OpenGL
 
-Offline I like mountainbiking, photography, as well as reading a good book,
-both fiction and non-fiction.
-
-If you are in need of someone like me, contact me in any way you want to,
-although I prefer email. My email address is
-[sulami@peerwire.org](mailto:sulami@peerwire.org).
-I am also fairly often on the Nixers IRC (irc.iotek.org), just prefix your
-message with `sulami` and it will go into my inbox in case I am away.
+If you are in need of someone like me, shoot me an email to
+[sulami@peerwire.org](mailto:sulami@peerwire.org) and we can have a chat.
+I am also fairly often on the Nixers IRC (irc.iotek.org).
 
 Here is my PGP-key, if you are into privacy (key
 [A1418106](http://pgp.mit.edu/pks/lookup?op=get&search=0x4900077FA1418106)):

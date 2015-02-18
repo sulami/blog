@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>My thoughts about Go</title>
+    <link rel="icon" href="https://sulami.github.io/favicon.ico" />
+    <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
+
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+            <nav>
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
+                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
+                <a href="https://sulami.github.io/category/coding.html">Coding</a>
+                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
+                <a href="https://sulami.github.io/category/linux.html">Linux</a>
+                <a href="https://sulami.github.io/category/web.html">Web</a>
+            <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
+            </nav>
+    </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        >>
+        <a href="https://sulami.github.io/my-thoughts-about-go.html" rel="bookmark"
+           title="Permalink to My thoughts about Go">My thoughts about Go</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2015-02-18</span>
+    |
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    | tags: <a href="https://sulami.github.io/tag/go.html">go</a> </footer><!-- /.post-info -->
+      <p>After having used <a href="https://golang.org">Go</a> almost exclusively for the last two weeks, and
+for the first time seriously, I think I can give a general statement on what I
+think about it, analogous to <a href="https://sulami.github.io/my-thoughts-about-d.html">D</a>.</p>
+<p>Go has been in development at Google for a few years now, mainly by Robert
+Griesemer, Rob Pike and Ken Thompson, all quite big names. You can find
+specifics on <a href="https://en.wikipedia.org/wiki/Go_%28programming_language%29">Wikipedia</a>, this post will primarily be my opinion. My
+first impression is, while D feels like a child of C and Python, or "C++ done
+right", Go feels a lot more like raw C modernized.  Like with D, I will give
+you a first look at something simple:</p>
+<div class="codehilite"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hello, World&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This all makes sense, right? The first line defines the package we are
+currently in. If this is a binary, no a library, this is always <code>main</code>. We then
+import <code>fmt</code>, the formatting standard library, enter <code>main()</code> and print out our
+implicitly typed string. Nothing too crazy, and most of the rest of the
+language looks similarly boring. That is actually a good thing™.</p>
+<p>It is comparably stripped down and intentionally minimal. The big features Go
+brings are Goroutines and channels, both tools primarily used for concurrency.
+Goroutines are essentially lighter versions of threads, that can be used in a
+shell-pipe-style way to produce data-pipelines. Channels are managed FIFOs,
+used by Goroutines to communicate. All of this works very well and is
+incredibly simple, making Go a fantastic language for handling lots of IO, like
+load balancers or maybe database connections. It just scales well. A Goroutine
+example:</p>
+<div class="codehilite"><pre><span class="kd">func</span> <span class="nx">work</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// do some work here</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// start 10 instances of work() in the background</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">work</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="c1">// Note: because main() exits here, work() will just die with it unless</span>
+    <span class="c1">// we wait for it</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>But unless you are dependent on this extreme scalability, Go might not be the
+right choice for you. There are no native objects like in Python, D or other
+modern languages. At least they do not look like it. Objects are C-style
+typedefs, often structs, and methods can be attached in the following way:</p>
+<div class="codehilite"><pre><span class="kd">type</span> <span class="nx">Vertex</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="o">*</span><span class="nx">Vertex</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;Vertex: (%f, %f)&quot;</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">X</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">Y</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This is a Vertex method that takes no arguments and returns a string. Now, let
+us say the Vertex type should also implement an interface, because these exist
+in Go. It actually already does, it implements <code>fmt.Stringer</code>. Why, you ask?
+Because it defined the <code>String()</code> method, and interfaces are implemented
+implicitly as soon as all the methods they define are also defined by a type.
+This is one of the more extreme examples, where Go's minimalism makes
+programming unnecessarily difficult.</p>
+<p>On the other hand, Go comes with it's own formatting tool, that enforces a
+standard coding style (but also tabs for indentation), package management (but
+without versioning, and the idea that you have to order your source in the
+so-called $GOPATH, which causes more work than one would imagine) and build
+tools. Makefiles are not really needed anymore, unless you try to do something
+special.</p>
+<p>Go has this overall approach of "back to the roots, but better", but also "do
+it our way". The minimalism works in most scenarios quite well, interfaces are
+the only real problem you will encounter while writing the software itself, and
+maybe the completely missing inheritance.  Things like the package management
+will drive you nuts, though. And the fact that because of the way Go handles
+certain things, like visibility (everything starting with a capital letter is
+"exported"), cause you to having to type a lot more than in other languages.</p>
+<p><strong>TL;DR</strong> It feels boring, it feels old, and as a consequence overly laborious.
+As a general purpose language, I feel D does the job a lot better.</p>
+    </div><!-- /.entry-content -->
+  </article>
+</section>
+</body>
+</html>

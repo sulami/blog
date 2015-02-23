@@ -1,4 +1,4 @@
-Title: HomeworldSDL
+Title: Homeworld on Linux (or OSX)
 Date: 2015-02-23
 Category: Linux
 Tags: games homeworld sdl alsa pulse

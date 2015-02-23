@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>HomeworldSDL</title>
+    <link rel="icon" href="https://sulami.github.io/favicon.ico" />
+    <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
+
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+            <nav>
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
+                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
+                <a href="https://sulami.github.io/category/coding.html">Coding</a>
+                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
+                <a href="https://sulami.github.io/category/linux.html">Linux</a>
+                <a href="https://sulami.github.io/category/web.html">Web</a>
+            <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
+            </nav>
+    </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        >>
+        <a href="https://sulami.github.io/homeworldsdl.html" rel="bookmark"
+           title="Permalink to HomeworldSDL">HomeworldSDL</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2015-02-23</span>
+    |
+    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
+    | tags: <a href="https://sulami.github.io/tag/games-homeworld-sdl-alsa-pulse.html">games homeworld sdl alsa pulse</a> </footer><!-- /.post-info -->
+      <p>Today I will write about something slightly different than usual. I will be
+writing about a videogame, Homeworld. These days, Homeworld 1 and 2 are being
+released in remastered editions, with support for current resolutions and so
+on. This led me to playing the original. Homeworld 1 has been ported to Linux
+by fans some years ago. All you need is an original game and access to a
+Windows machine (or VM).</p>
+<p>Install Homeworld on Windows, patch it to 1.05 and pack the complete game
+directory to move it to your Linux machine. Then, mount the CD, get
+<code>HW_Comp.vce</code> and <code>HW_Music.wxd</code> and put them in your game directory as well.
+This enables you to play without the CD mounted. Then just get the prebuilt
+binary for your OS (yes, OSX works as well) from [homeworldsdl.com][hwsdl] and
+put it in the game directory as well (it is in <code>bin</code> in the .tar.gz). You might
+also need to download some SDL libraries, but everything should be in your
+distro's repositories. If you have done everything right, you can start
+Homeworld from the shell using:</p>
+<div class="codehilite"><pre><span class="nv">SDL_AUDIODRIVER</span><span class="o">=</span>alsa ./homeworld
+</pre></div>
+
+
+<p>If you experience sound issues under PulseAudio, make sure to install the
+ALSA-plugin for PulseAudio. Using PulseAudio directly will result in glitchy
+sound, so you have to proxy it through ALSA. Also reduce the ingame channels to
+8 and the sound quality to low.</p>
+<p>You can also start Homeworld on a separate X-Server (or in Xephyr) to preserve
+your resolution (using the DISPLAY variable), but this might interfere with the
+mouse in some cases.</p>
+    </div><!-- /.entry-content -->
+  </article>
+</section>
+</body>
+</html>

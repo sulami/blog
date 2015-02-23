@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 18 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 23 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>HomeworldSDL</title><link>https://sulami.github.io/homeworldsdl.html</link><description>&lt;p&gt;Today I will write about something slightly different than usual. I will be
+writing about a videogame, Homeworld. These days, Homeworld 1 and 2 are being
+released in remastered editions, with support for current resolutions and so
+on. This led me to playing the original. Homeworld 1 has been ported to Linux
+by fans some years ago. All you need is an original game and access to a
+Windows machine (or VM).&lt;/p&gt;
+&lt;p&gt;Install Homeworld on Windows, patch it to 1.05 and pack the complete game
+directory to move it to your Linux machine. Then, mount the CD, get
+&lt;code&gt;HW_Comp.vce&lt;/code&gt; and &lt;code&gt;HW_Music.wxd&lt;/code&gt; and put them in your game directory as well.
+This enables you to play without the CD mounted. Then just get the prebuilt
+binary for your OS (yes, OSX works as well) from [homeworldsdl.com][hwsdl] and
+put it in the game directory as well (it is in &lt;code&gt;bin&lt;/code&gt; in the .tar.gz). You might
+also need to download some SDL libraries, but everything should be in your
+distro's repositories. If you have done everything right, you can start
+Homeworld from the shell using:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SDL_AUDIODRIVER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;alsa ./homeworld
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you experience sound issues under PulseAudio, make sure to install the
+ALSA-plugin for PulseAudio. Using PulseAudio directly will result in glitchy
+sound, so you have to proxy it through ALSA. Also reduce the ingame channels to
+8 and the sound quality to low.&lt;/p&gt;
+&lt;p&gt;You can also start Homeworld on a separate X-Server (or in Xephyr) to preserve
+your resolution (using the DISPLAY variable), but this might interfere with the
+mouse in some cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 23 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-23:homeworldsdl.html</guid><category>games homeworld sdl alsa pulse</category></item><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
 for the first time seriously, I think I can give a general statement on what I
 think about it, analogous to &lt;a href="https://sulami.github.io/my-thoughts-about-d.html"&gt;D&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Go has been in development at Google for a few years now, mainly by Robert

@@ -30,5 +30,6 @@ sound, so you have to proxy it through ALSA. Also reduce the ingame channels to
 
 You can also start Homeworld on a separate X-Server (or in Xephyr) to preserve
 your resolution (using the DISPLAY variable), but this might interfere with the
-mouse in some cases.
+mouse in some cases. Instead, you can also use the parameter `/window` to open
+it in windowed mode, which works pretty well.
 

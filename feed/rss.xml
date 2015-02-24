@@ -24,7 +24,8 @@ sound, so you have to proxy it through ALSA. Also reduce the ingame channels to
 8 and the sound quality to low.&lt;/p&gt;
 &lt;p&gt;You can also start Homeworld on a separate X-Server (or in Xephyr) to preserve
 your resolution (using the DISPLAY variable), but this might interfere with the
-mouse in some cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 23 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-23:homeworld-on-linux-or-osx.html</guid><category>games homeworld sdl alsa pulse</category></item><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
+mouse in some cases. Instead, you can also use the parameter &lt;code&gt;/window&lt;/code&gt; to open
+it in windowed mode, which works pretty well.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 23 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-23:homeworld-on-linux-or-osx.html</guid><category>games homeworld sdl alsa pulse</category></item><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
 for the first time seriously, I think I can give a general statement on what I
 think about it, analogous to &lt;a href="https://sulami.github.io/my-thoughts-about-d.html"&gt;D&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Go has been in development at Google for a few years now, mainly by Robert

@@ -20,23 +20,30 @@ Here is some of my stuff:
 * [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
   The small, dynamic tiling window manager I write and maintain
 * [Nozdormu](https://github.com/sulami/nozdormu "Nozdormu")
-  A unittest-like framework for easy, precise and fast Python3 benchmarks
+  An unittest-like framework for easy, precise and fast Python3 benchmarks
 * [Feed2Maildir](https://github.com/sulami/feed2maildir "Feed2Maildir")
   A simple solution to get RSS/Atom-feeds into a maildir automatically
+* [GoFuse](https://github.com/sulami/gofuse "GoFuse")
+  A microservice component to prevent timeouts from killing your whole
+  application
+* [wm](https://github.com/sulami/wm "wm")
+  A Wayland window manager in development
+* [DGame](https://github.com/sulami/dgame "dgame")
+  A demo of what can be done with D and OpenGL
 * [Elena](https://github.com/sulami/elena "Elena")
-  A dynamic status API currently in development
+  A dynamic status API on Flask
 * [Medusa](https://github.com/sulami/medusa "Medusa")
   A really old, minimal nagios-compatible monitoring system in Python
 * [MPKey](https://github.com/sulami/mpkey "MPKey")
   A small piece of C that allows you to bind mpd commands to global hotkeys
 * [pelican-theme](https://github.com/sulami/pelican-theme "pelican-theme")
   The pelican theme you see here, based on my own 'cybercopy' colourscheme
-* [DGame](https://github.com/sulami/dgame "dgame")
-  A demo of what can be done with D and OpenGL
 
 If you are in need of someone like me, shoot me an email to
 [sulami@peerwire.org](mailto:sulami@peerwire.org) and we can have a chat.
-I am also fairly often on the Nixers IRC (irc.iotek.org).
+I am also fairly often on the Nixers IRC (irc.iotek.org) and of course Freenode
+(irc.freenode.net), using the nick `sulami` on both. Feel free to query me
+about anything.
 
 Here is my PGP-key, if you are into privacy (key
 [A1418106](http://pgp.mit.edu/pks/lookup?op=get&search=0x4900077FA1418106)):

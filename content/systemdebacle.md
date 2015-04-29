@@ -1,7 +1,6 @@
 Title: SystemDebacle
 Date: 2015-04-28
 Category: Linux
-status: draft
 
 I am writing about systemd today, because now, that the new release of Debian
 with systemd is out, there is pretty much only one major distribution left that
@@ -15,17 +14,17 @@ Here are some facts:
 
 - systemd only runs on Linux, because of Linux-specific kernel features it uses
 - systemd is combining lots of subsystems to work together
-  - For example the init system and the syslog for service-specific logs
-  - The extend of the subsystems it manages is set at build time
-  - Some might call this feature-creeping
+    - For example the init system and the syslog for service-specific logs
+    - The extend of the subsystems it manages is set at build time
+    - Some might call this feature-creeping
 - systemd is the de-facto standard in the Linux world as of today
-  - All major distributions except Gentoo ship it by default without the option
-    to use another init system
+    - All major distributions except Gentoo ship it by default without the
+      option to use another init system
 - You cannot remove systemd from your distribution and expect it to work at all
-  - That is except on Gentoo, where systemd is just an option and OpenRC the
-    default
-  - This means, in conjunction with the previous point, most people on Linux
-    are stuck with it
+    - That is except on Gentoo, where systemd is just an option and OpenRC the
+      default
+    - This means, in conjunction with the previous point, most people on Linux
+      are stuck with it
 
 What we are seeing here is bundling, a commong strategy used by commercial
 companies to ensure their products cannot be replaced easily. Think Internet
@@ -37,8 +36,5 @@ space. Imagine all the lost innovation because an outright better
 init-system/syslogger/whatever systemd swallowed cannot gain any traction
 without users.
 
-This is something that must not be allowed to happen, which is why I only have
-one machine left that is running systemd. In the open source world there is not
-really a thing such as "vote with your wallet", but what are distributions
-without users?
+I believe this is a very dangerous path we are walking.
 

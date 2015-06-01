@@ -1,6 +1,6 @@
+[submodule "sulami.github.io"]
+	path = sulami.github.io
+	url = ssh://pi@raspberrypi/srv/git/sulami.github.io.git
 [submodule "pelican-theme"]
 	path = pelican-theme
 	url = ssh://pi@peerwire.dtdns.net/srv/git/pelican-theme.git
-[submodule "sulami.github.io"]
-	path = sulami.github.io
-	url = ssh://pi@peerwire.dtdns.net/srv/git/sulami.github.io.git

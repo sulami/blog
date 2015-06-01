@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 23 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>Homeworld on Linux (or OSX)</title><link>https://sulami.github.io/homeworld-on-linux-or-osx.html</link><description>&lt;p&gt;Today I will write about something slightly different than usual. I will be
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Apr 2015 00:00:00 +0200</lastBuildDate><item><title>SystemDebacle</title><link>https://sulami.github.io/systemdebacle.html</link><description>&lt;p&gt;I am writing about systemd today, because now, that the new release of Debian
+with systemd is out, there is pretty much only one major distribution left that
+is not forcing its users to use systemd, that being Gentoo. I have for quite a
+long time defended systemd while it has been the target of extensive criticism
+almost since its inception. I will mostly be writing about my concerns about
+the *nix ecosystem from the standpoint of an user and programmer. Today, most
+of my machines are running either Gentoo or some BSD, mostly OpenBSD.&lt;/p&gt;
+&lt;p&gt;Here are some facts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;systemd only runs on Linux, because of Linux-specific kernel features it uses&lt;/li&gt;
+&lt;li&gt;systemd is combining lots of subsystems to work together&lt;ul&gt;
+&lt;li&gt;For example the init system and the syslog for service-specific logs&lt;/li&gt;
+&lt;li&gt;The extend of the subsystems it manages is set at build time&lt;/li&gt;
+&lt;li&gt;Some might call this feature-creeping&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;systemd is the de-facto standard in the Linux world as of today&lt;ul&gt;
+&lt;li&gt;All major distributions except Gentoo ship it by default without the
+  option to use another init system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You cannot remove systemd from your distribution and expect it to work at all&lt;ul&gt;
+&lt;li&gt;That is except on Gentoo, where systemd is just an option and OpenRC the
+  default&lt;/li&gt;
+&lt;li&gt;This means, in conjunction with the previous point, most people on Linux
+  are stuck with it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What we are seeing here is bundling, a commong strategy used by commercial
+companies to ensure their products cannot be replaced easily. Think Internet
+Explorer. People running Linux, especially the ones recently switching from
+other operating systems are forced to use it. They are impressed by its ease of
+use (which admittedly exists). But there is no way for competition to arise,
+which is just as important in the open-source ecosystem as in the commercial
+space. Imagine all the lost innovation because an outright better
+init-system/syslogger/whatever systemd swallowed cannot gain any traction
+without users.&lt;/p&gt;
+&lt;p&gt;I believe this is a very dangerous path we are walking.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 28 Apr 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-04-28:systemdebacle.html</guid></item><item><title>Homeworld on Linux (or OSX)</title><link>https://sulami.github.io/homeworld-on-linux-or-osx.html</link><description>&lt;p&gt;Today I will write about something slightly different than usual. I will be
 writing about a videogame, Homeworld. These days, Homeworld 1 and 2 are being
 released in remastered editions, with support for current resolutions and so
 on. This led me to playing the original. Homeworld 1 has been ported to Linux

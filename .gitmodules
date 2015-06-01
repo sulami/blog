@@ -3,4 +3,4 @@
 	url = /home/sulami/git/sulami.github.io.git
 [submodule "pelican-theme"]
 	path = pelican-theme
-	url = /home/sulami/git/pelican-theme.git
+	url = ssh://pi@peerwire.dtdns.net/srv/git/pelican-theme.git

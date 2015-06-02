@@ -45,6 +45,7 @@ This is a list of stuff I have accomplished so far:
 * Build not one but two computers with water cooling
 * Repair not one but two Jura coffee machines
 * Repair my wipers after stranding somewhere in a storm at 11pm
+* Rebuild a motorcycle engine
 * Visit 14 different countries
 * Ride a mountain bike over 65km in one day (actually in about 4h)
 * Be founder and officer of a top 100 WoW raiding guild, leave before they
@@ -52,6 +53,7 @@ This is a list of stuff I have accomplished so far:
 * Quit WoW, Alcohol and Facebook
 * Succeed in not using Windows for 18 months and counting (no Macs either)
 * Have my own X11 and Wayland window managers
+* Get commits in the Linux Kernel
 * Write software that gets hundreds of downloads every day
 * Get recognized on IRC for something I made
 * Have a YouTube channel with over a thousand subscribers, and meet an
@@ -61,6 +63,7 @@ This is a list of stuff I have accomplished so far:
 * Drive karts for ten years, be in a club and own a kart
 * Rate over 650 movies and series on IMDb
 * Be the dungeon master in two second pen-and-paper games
+* Solve rubiks cubes in under a minute
 
 If you are in need of someone like me, shoot me an email to
 [sulami@peerwire.org](mailto:sulami@peerwire.org) and we can have a chat.

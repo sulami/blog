@@ -1,69 +1,36 @@
 Title: Which OS do I use?
-Date: 2015-06-05
+Date: 2015-06-10
 Category: Linux
 
-This is a very interesting question these days, as my last post was a bit of
-a rant about systemd. Now that [most Linux distributions have adopted
-systemd][0], it is getting increasingly difficult to build a useful system
-without it.
+Since I [wrote about systemd][0] a few weeks back, I have been looking out for
+an operating system that I truly love, that is without systemd whatsoever. My
+ideal specifications involved a philosophy that is close to BSD's, with a focus
+on stable software and exhaustive documentation, while being reasonable modern
+so that I do not run into incompability issues, and a couple of minor points
+(like I prefer git over svn). After looking and testing for a while, going
+through half the list on [without systemd][1], I found the [Manjaro OpenRC
+spin][2].
 
-I tried both [Gentoo][1] and [Funtoo][2], and really liked both Portage and
-OpenRC, but with the majority of my desktop computing done on a laptop,
-compiling this amount of software is barely an option. [Void Linux][3] has
-its own init-system, runit, and its own package manager, xbps, and while
-both are okay-ish, both failed to really impress me, especially xbps. I also
-would like a more stable and less cutting-edge set of packages.
+Manjaro is an Arch-based distribution, that replicates the Arch repositories in
+such a way, that there is a current branch that closely follows the Arch ones,
+and a stable branch that is, well, more stable. At the moment I am running
+Linux 3.18. It also uses pacman, which is one of the best binary package
+managers I have ever used, and only clearly superseded by Gentoo's portage.
 
-This seems to scream BSD, and while [FreeBSD][4] runs excellent on my
-system, is stable, systemd-less and everything, it does not run a certain
-proprietary piece of software that shall not be named here, but I am sadly
-dependent on at the moment. So where does this leave me?
+While you can use OpenRC, the in my eyes currently best init-system on Linux,
+on Arch, doing so will result in major breakages, which is not exactly what
+one would consider "stable". In the end, I have used enough cutting-edge
+software and just want something that works with minimal maintenance. Manjaro
+is just what I want. It is stable while not too old for me to run into any
+issues, can use the AUR, has git-based repositories, and can run on
+OpenRC/eudev/syslog-ng/lightdm/other software which has been replaced and/or
+eaten by systemd.
 
-Today, I installed the [Manjaro OpenRC spin][5] on my machine. It works
-very nice so far, everything works as well as on Arch, but just with OpenRC
-and eudev (the udev-fork without the rest of systemd). This is by far easier
-than ripping systemd out of Arch myself, which I have tried before. In
-addition to that, I can use Manjaro's "stable" branch, which is better than
-nothing.
-
-But I feel that I still have to explain why I am going through all this just
-to avoid systemd. Since systemd started feature creeping, so since it went
-beyond simple init and assimilated the syslogging (which I can sort of
-understand, since it allows for more intelligent logs), network and firewall
-management, login management, bootloading, DNS, device management via
-udev and who knows what else, it slowly chips away the modularity of a
-system. There even is [a website dedicated to abolishing it][6]. One of the
-points often made are the binary logs. While I agree that I would prefer
-simple plain text logfiles, just for forensic sake, and being able to use my
-favourite tools to work with them, I do not really care all that much about
-the issue.
-
-My main concern, now that it is this widely adopted, and the systemd
-developers, most prominently Poettering and Sievers, are known for not caring
-all that much about the rest of the world, diplomaticly speaking, is that
-systemd is getting mandatory for an enduser-reacdy Linux system, effectively
-killing any choice.
-
-\*nix has always been about choice, and the modularity of the whole system
-always supported that. Ideally, you can choose your bootloader, your
-init-system, your desktop environment and all the other programs individually
-to build excactly the system you need. But both Gnome and KDE need systemd
-these days. Almost all of the big distributions come with systemd as only
-supported init-system, and all the packages and default configs are meant to
-use it. Converting a systemd-system to something else always results in major
-breakage.
-
-And systemd makes more and more of these "modules" mandatory, while Lennart
-Poettering still claims, [systemd were modular][7]. It might be, if you intend
-on running [LFS][8].
+The point of this post is merely to tell you, if you are interested in this
+sort of thing, check it out. It is more practical that \*BSD or Gentoo, and
+Void Linux has been a bit hit and miss in my personal experience.
 
   [0]: {filename}/systemdebacle.md
-  [1]: https://gentoo.org/
-  [2]: http://funtoo.org/
-  [3]: http://voidlinux.eu/
-  [4]: https://freebsd.org/
-  [5]: http://sourceforge.net/projects/manjaro-openrc/
-  [6]: http://without-systemd.org/
-  [7]: http://0pointer.de/blog/projects/the-biggest-myths.html
-  [8]: http://www.linuxfromscratch.org/
+  [1]: http://without-systemd.org/
+  [2]: http://sourceforge.net/projects/manjaro-openrc/
 

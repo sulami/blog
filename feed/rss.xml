@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Apr 2015 00:00:00 +0200</lastBuildDate><item><title>SystemDebacle</title><link>https://sulami.github.io/systemdebacle.html</link><description>&lt;p&gt;I am writing about systemd today, because now, that the new release of Debian
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 10 Jun 2015 00:00:00 +0200</lastBuildDate><item><title>Which OS do I use?</title><link>https://sulami.github.io/which-os-do-i-use.html</link><description>&lt;p&gt;Since I &lt;a href="https://sulami.github.io/systemdebacle.html"&gt;wrote about systemd&lt;/a&gt; a few weeks back, I have been looking out for
+an operating system that I truly love, that is without systemd whatsoever. My
+ideal specifications involved a philosophy that is close to BSD's, with a focus
+on stable software and exhaustive documentation, while being reasonable modern
+so that I do not run into incompability issues, and a couple of minor points
+(like I prefer git over svn). After looking and testing for a while, going
+through half the list on &lt;a href="http://without-systemd.org/"&gt;without systemd&lt;/a&gt;, I found the &lt;a href="http://sourceforge.net/projects/manjaro-openrc/"&gt;Manjaro OpenRC
+spin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Manjaro is an Arch-based distribution, that replicates the Arch repositories in
+such a way, that there is a current branch that closely follows the Arch ones,
+and a stable branch that is, well, more stable. At the moment I am running
+Linux 3.18. It also uses pacman, which is one of the best binary package
+managers I have ever used, and only clearly superseded by Gentoo's portage.&lt;/p&gt;
+&lt;p&gt;While you can use OpenRC, the in my eyes currently best init-system on Linux,
+on Arch, doing so will result in major breakages, which is not exactly what
+one would consider "stable". In the end, I have used enough cutting-edge
+software and just want something that works with minimal maintenance. Manjaro
+is just what I want. It is stable while not too old for me to run into any
+issues, can use the AUR, has git-based repositories, and can run on
+OpenRC/eudev/syslog-ng/lightdm/other software which has been replaced and/or
+eaten by systemd.&lt;/p&gt;
+&lt;p&gt;The point of this post is merely to tell you, if you are interested in this
+sort of thing, check it out. It is more practical that *BSD or Gentoo, and
+Void Linux has been a bit hit and miss in my personal experience.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 10 Jun 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-06-10:which-os-do-i-use.html</guid></item><item><title>SystemDebacle</title><link>https://sulami.github.io/systemdebacle.html</link><description>&lt;p&gt;I am writing about systemd today, because now, that the new release of Debian
 with systemd is out, there is pretty much only one major distribution left that
 is not forcing its users to use systemd, that being Gentoo. I have for quite a
 long time defended systemd while it has been the target of extensive criticism

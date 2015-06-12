@@ -39,7 +39,7 @@ Here is some of my stuff:
 
 This is a list of stuff I have accomplished so far:
 
-* Host maybe 100 LAN-Parties (guys, we should do another one)
+* Host a lot of LAN-Parties
 * Reach 500 days of uptime on a Raspberry Pi
 * Have a server rack in my basement (these things are loud)
 * Build not one but two computers with water cooling
@@ -54,6 +54,7 @@ This is a list of stuff I have accomplished so far:
 * Succeed in not using Windows for 18 months and counting (no Macs either)
 * Have my own X11 and Wayland window managers
 * Get commits in the Linux Kernel
+* Finish the [Eudyptula Kernel Challenge](http://eudyptula-challenge.org/)
 * Write software that gets hundreds of downloads every day
 * Get recognized on IRC for something I made
 * Have a YouTube channel with over a thousand subscribers, and meet an

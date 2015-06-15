@@ -1,7 +1,6 @@
 Title: Using git locally
 Date: 2014-07-15 01:50
 Category: Coding
-Tags: git, ssh
 
 When you write your code, using a version control mechanism like git is
 crucial, even more than writing proper unit tests, even when working on your

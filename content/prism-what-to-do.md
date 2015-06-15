@@ -1,7 +1,6 @@
 Title: Prism: What to do
 Date: 2013-06-18
 Category: Web
-Tags: prism, privacy, security
 
 While following the recent international events, I (and probably
 everyone else) heard about the NSA and Prism. Now I always distrusted

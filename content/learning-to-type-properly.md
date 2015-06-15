@@ -1,7 +1,6 @@
 Title: Learning to type properly
 Date: 2013-05-14
 Category: Web
-Tags: typing
 
 When it comes to IT-people, especially the ones ocassionally programming,
 typing properly is a mandatory skill, but basically everyone benefits from fast

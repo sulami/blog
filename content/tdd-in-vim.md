@@ -1,7 +1,6 @@
 Title: Test-driven development in vim
 Date: 2014-05-05
 Category: Coding
-Tags: vim, cli, tdd, c
 
 [Test-driven development (TDD)][0] is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I

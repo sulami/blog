@@ -1,7 +1,6 @@
 Title: My own perfect world (aka what you should do)
 Date: 2014-03-17
 Category: Web
-Tags: firefox, flash, git, homeserver, irc, privacy, security, skype, vim, vlc, weechat
 
 I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not

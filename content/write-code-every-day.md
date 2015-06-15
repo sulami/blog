@@ -1,7 +1,6 @@
 Title: Write code every day
 Date: 2014-08-11
 Category: Coding
-Tags: git, github
 
 After failing several times, today I managed to get a 30-day streak on my
 personal GitHub account. This happened, because I challenged myself a few

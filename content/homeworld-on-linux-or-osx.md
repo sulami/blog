@@ -1,7 +1,6 @@
 Title: Homeworld on Linux (or OSX)
 Date: 2015-02-23
 Category: Linux
-Tags: games, homeworld, sdl, alsa, pulse
 
 Today I will write about something slightly different than usual. I will be
 writing about a videogame, Homeworld. These days, Homeworld 1 and 2 are being

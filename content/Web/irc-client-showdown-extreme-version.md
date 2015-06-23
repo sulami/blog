@@ -1,6 +1,5 @@
 Title: IRC-client showdown, extreme version
 Date: 2014-03-19
-Category: Web
 
 I love IRC. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global

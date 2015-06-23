@@ -1,6 +1,5 @@
 Title: My take on secure communication
 Date: 2014-03-19
-Category: Web
 
 **Disclaimer:** I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat unrealistic/stupid

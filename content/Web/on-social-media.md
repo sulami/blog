@@ -1,6 +1,5 @@
 Title: On social media
 Date: 2014-10-27
-Category: Web
 
 Do we need social networks? I do not think so. This might sound fairly drastic
 which I am aware of, but let me explain how I came to this conclusion, network

@@ -1,6 +1,5 @@
 Title: Getting rid of Flash
 Date: 2014-05-27
-Category: Web
 
 I started using the HTML5-Player on YouTube, because Flash kept breaking
 fullscreen, and I have not found a single video not supporting HTML5 in over a

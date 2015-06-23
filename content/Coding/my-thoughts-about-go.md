@@ -1,6 +1,5 @@
 Title: My thoughts about Go
 Date: 2015-02-18
-Category: Coding
 
 After having used [Go][golang] almost exclusively for the last two weeks, and
 for the first time seriously, I think I can give a general statement on what I

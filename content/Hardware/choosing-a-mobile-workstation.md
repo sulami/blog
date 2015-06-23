@@ -1,6 +1,5 @@
 Title: Choosing a mobile workstation
 Date: 2014-10-24
-Category: Hardware
 
 # Update 2014-10-30
 

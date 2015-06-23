@@ -1,6 +1,5 @@
 Title: My thoughts about D
 Date: 2014-09-03
-Category: Coding
 
 Roughly two weeks ago, a blogpost about the [D language][d] popped up on both
 hackernews and reddit. I took the time to read it, and it inspired me to try D

@@ -1,6 +1,5 @@
 Title: SystemDebacle
 Date: 2015-04-28
-Category: Linux
 
 I am writing about systemd today, because now, that the new release of Debian
 with systemd is out, there is pretty much only one major distribution left that

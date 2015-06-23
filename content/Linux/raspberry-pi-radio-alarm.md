@@ -1,6 +1,5 @@
 Title: Raspberry Pi: Radio-Alarm
 Date: 2013-06-07
-Category: Linux
 
 Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night

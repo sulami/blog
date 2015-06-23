@@ -1,6 +1,5 @@
 Title: Using Xephyr to simulate multiple monitors
 Date: 2014-12-19
-Category: Linux
 
 One of the most requested features in [FrankenWM][0] is support for multiple
 monitors. I currently only use one monitor, mostly because I do not need more

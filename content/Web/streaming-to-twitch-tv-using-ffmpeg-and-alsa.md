@@ -1,6 +1,5 @@
 Title: Streaming to Twitch.tv using ffmpeg and ALSA
 Date: 2013-05-14
-Category: Web
 
 Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you go:

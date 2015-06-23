@@ -1,6 +1,5 @@
 Title: Which OS do I use?
 Date: 2015-06-10
-Category: Linux
 
 Since I [wrote about systemd][0] a few weeks back, I have been looking out for
 an operating system that I truly love, that is without systemd whatsoever. My

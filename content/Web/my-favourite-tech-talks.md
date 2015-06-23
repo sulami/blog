@@ -1,6 +1,5 @@
 Title: My favourite Tech-Talks
 Date: 2014-01-25
-Category: Web
 
 I love talks, others might call them presentations. There are thousands
 of talks on YouTube and watching them all would take ages, but I

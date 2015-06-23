@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 10 Jun 2015 00:00:00 +0200</lastBuildDate><item><title>Which OS do I use?</title><link>https://sulami.github.io/which-os-do-i-use.html</link><description>&lt;p&gt;Since I &lt;a href="https://sulami.github.io/systemdebacle.html"&gt;wrote about systemd&lt;/a&gt; a few weeks back, I have been looking out for
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 23 Jun 2015 00:00:00 +0200</lastBuildDate><item><title>Thoughts on Windows 10 and free software</title><link>https://sulami.github.io/thoughts-on-windows-10-and-free-software.html</link><description>&lt;p&gt;Today I had a very interesting conversation about the modern software world
+with a non-technical friend of mine.&lt;/p&gt;
+&lt;p&gt;Back when it happened, I considered Windows Vista a slip, they had something
+new in mind, I could see the vision, but it did not work out, which is why I
+never used it. Windows 7 corrected most of Vista's flaws and was a really
+nice operating system for the consumer, meant as an efficient general
+purpose platform usable by anyone.&lt;/p&gt;
+&lt;p&gt;I have since then made the full-time switch to *nix, meaning I have not had
+Windows installed outside of a VM for about two years. I have seen the light
+that is *nix, you might say. As a professional software guy, I know just
+how big of a joke everything Microsoft produces is.&lt;/p&gt;
+&lt;p&gt;But anyway, after Windows 7 came Windows 8, and 8.1 which reverted some of
+the disatrous changes 8 did. Still, today, &lt;a href="https://www.netmarketshare.com/operating-system-market-share.aspx"&gt;over 70% of internet users use
+either Windows 7 or Windows XP&lt;/a&gt;, which are known good versions. Windows
+8 and 8.1 combined make up about 15%, mostly because users despice change,
+and Windows 8 did not bring neccesary new things to the table, like say &lt;a href="http://blogs.msdn.com/b/directx/archive/2014/10/01/directx-12-and-windows-10.aspx"&gt;a
+new DirectX&lt;/a&gt;, which not only forces core gamers to switch to Windows
+10, but also comes just in time to convince developers to use it instead of
+&lt;a href="https://www.khronos.org/vulkan/"&gt;Vulkan&lt;/a&gt;, the in my opinion better idea, because it is not part of
+Microsoft's vendor lock-in.&lt;/p&gt;
+&lt;p&gt;So today I talked to this friend of mine about why people are still using
+Windows, why Microsoft Office is still the standard in many situations. We
+both agreed that Apple is not the saviour we are looking for. He said, while
+he likes Linux from the little experience he had with it, it is &lt;em&gt;a)&lt;/em&gt; to
+challenging for the average user to setup and maybe administrate, and &lt;em&gt;b)&lt;/em&gt;
+too few people actually know about it as a viable alternative. We went on to
+agree that the really average user would probably be better of with a
+Xubuntu box, for browsing Facebook, writing emails and watching YouTube.
+Maybe a bit of basic office usage. It can do all of that just fine, and runs
+so much better than any version of Windows, while arguably being more
+secure.&lt;/p&gt;
+&lt;p&gt;I told him that setting up something newbie-focussed like Ubuntu, Mint or
+eOS is not harder than setting up Windows, assuming you can setup Windows.
+Both mainly consist of clicking "Next". Of course you have to know which
+harddrive you want to install to, but you have to select a installation
+destination on Windows as well. Installing drivers is usually pretty easy as
+well &lt;em&gt;if&lt;/em&gt; you have sort of proper hardware. Of course there are known issues
+with things like &lt;a href="http://arstechnica.com/civis/viewtopic.php?f=14&amp;amp;t=42569"&gt;certain wifi controller manufacturers&lt;/a&gt;, and exotic
+hardware like DVB-cards are usually hit or miss.&lt;/p&gt;
+&lt;p&gt;But the second point is actually more important here. Most people do not
+know about Linux as an operating system they could be using. Choosing to use
+Linux is actively alienating yourself. It is a whole new world, you might
+have to find different programs, things might break. After all, it is an
+operating system only used bu programmers and hackers, not by ordinary
+non-nerds.&lt;/p&gt;
+&lt;p&gt;A subjective long time ago, Google decided to enter the emerging market of
+smartphones, &lt;a href="https://en.wikipedia.org/wiki/Android_%28operating_system%29"&gt;and chose to base their mobile operting system on the
+well-tested Linux kernel&lt;/a&gt;. But they did not call it Linux, and they
+did not for a reason. A lot of people do not know that they are directly
+using Linux every day. More recently, &lt;a href="https://www.gamingonlinux.com/articles/steam-replaces-the-linux-tux-logo-with-steamos.5442/page=2"&gt;Valve did the same thing&lt;/a&gt;, using
+Linux as the basis for their PC-console-hybrids. But it shall be called
+SteamOS, and just last week or so they changed the tux icon in the Steam
+shop to a SteamOS one. Do not get me wrong, I think they are doing exactly
+the right thing.  But it goes to show that things labeled "Linux" do not
+sell well.&lt;/p&gt;
+&lt;p&gt;Both he and I agreed, that once Linux adoption reaches a critical mass, it
+will be very difficult to stop. There will be even more software, especially
+the one that is targetet at ordinary low-tech users, more hardware support
+and word will spread that you can actually use it, people will know someone
+who is not a geek and still likes it. It would no longer be conceived as a
+hobby. Which is why marketing divisions at Microsoft are fighting
+desperately to keep things the way they are. &lt;a href="https://en.wikipedia.org/wiki/Fear,_uncertainty_and_doubt"&gt;No one ever got fired for
+buying Microsoft.&lt;/a&gt; It just works, except when it does not.&lt;/p&gt;
+&lt;p&gt;Now Windows 10 is close to arriving. From my point of view it looks like
+even more sh*t shoveled upon NT6, which is the trusty basis since Vista.
+&lt;a href="http://blog.zorinaq.com/?e=74"&gt;Microsoft has this horrible mentality of just adding more and more without
+ever fixing anything&lt;/a&gt;. I guess it is already too late to save NT6
+without a rewrite. But good luck pushing a rewrite through management.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 23 Jun 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-06-23:thoughts-on-windows-10-and-free-software.html</guid></item><item><title>Which OS do I use?</title><link>https://sulami.github.io/which-os-do-i-use.html</link><description>&lt;p&gt;Since I &lt;a href="https://sulami.github.io/systemdebacle.html"&gt;wrote about systemd&lt;/a&gt; a few weeks back, I have been looking out for
 an operating system that I truly love, that is without systemd whatsoever. My
 ideal specifications involved a philosophy that is close to BSD's, with a focus
 on stable software and exhaustive documentation, while being reasonable modern

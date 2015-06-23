@@ -21,6 +21,9 @@ MD_EXTENSIONS = (['codehilite'])
 
 STATIC_PATHS = ['pictures', ]
 
+TAGS_SAVE_AS = ''
+TAG_SAVE_AS = ''
+
 RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL
 FEED_RSS = None

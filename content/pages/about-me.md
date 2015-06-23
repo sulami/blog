@@ -2,42 +2,10 @@ Title: About me
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various IT-related topics, mostly related to software development.  I am a
-Linux/BSD guy and mainly write C, Go and Python code using Vim, Git and a
+Linux/BSD guy and mainly write C, Python and Haskell code using Vim, Git and a
 mechanical keyboard. I have been contributing to the Linux kernel as well as
-writing an X11 window manager and I generally like experimenting with code. I
-try to open-source everything I can, although a lot of my actual work contains
-sensitive information and is therefore not on Github but in my private
-Repositories.
-
-Here is some of my stuff:
-
-* [Github](https://github.com/sulami "Github")
-  Where I mirror some of my less important git repos
-* [FrankenWM](https://github.com/sulami/frankenwm "FrankenWM")
-  The small, dynamic tiling window manager I write and maintain
-* [Nozdormu](https://github.com/sulami/nozdormu "Nozdormu")
-  An unittest-like framework for easy, precise and fast Python3 benchmarks
-* [Feed2Maildir](https://github.com/sulami/feed2maildir "Feed2Maildir")
-  A simple solution to get RSS/Atom-feeds into a maildir automatically
-* [Danketsu](https://github.com/sulami/danketsu "Danketsu")
-  A simple, fast, event-based, RESTful microservice communication microservice
-* [GoFuse](https://github.com/sulami/gofuse "GoFuse")
-  A microservice component to prevent timeouts from killing your whole
-  application
-* [wm](https://github.com/sulami/wm "wm")
-  A Wayland window manager in development
-* [DGame](https://github.com/sulami/dgame "dgame")
-  A demo of what can be done with D and OpenGL
-* [Elena](https://github.com/sulami/elena "Elena")
-  A dynamic status API on Flask
-* [Medusa](https://github.com/sulami/medusa "Medusa")
-  A really old, minimal nagios-compatible monitoring system in Python
-* [Streamo](https://github.com/sulami/streamo "Streamo")
-  A shell script that allows for simple desktop streaming to Twitch.tv
-* [MPKey](https://github.com/sulami/mpkey "MPKey")
-  A small piece of C that allows you to bind mpd commands to global hotkeys
-* [pelican-theme](https://github.com/sulami/pelican-theme "pelican-theme")
-  The pelican theme you see here, based on my own 'cybercopy' colourscheme
+writing an X11 window manager and I generally like experimenting with code.
+I some projects of mine listed [here]({filename}/pages/projects.md).
 
 If you are in need of someone like me, shoot me an email to
 [sulami@peerwire.org](mailto:sulami@peerwire.org) and we can have a chat.

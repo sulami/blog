@@ -1,14 +1,8 @@
-Title: How do we save the world?
-Date: 2015-06-14
-status: draft
+Title: Thoughts on Windows 10 and free software
+Date: 2015-06-23
 
 Today I had a very interesting conversation about the modern software world
-with a non-technical friend of mine. For the purpose of this post, he is a
-metalworker in his fifties who is interested in technology and has used
-Ubuntu before, but cannot really be considered a techie. He is just someone
-interested in new stuff and capable of reading manuals. Today's topic was
-why people are still buying and defending Microsoft after years and years of
-bad experiences.
+with a non-technical friend of mine.
 
 Back when it happened, I considered Windows Vista a slip, they had something
 new in mind, I could see the vision, but it did not work out, which is why I
@@ -84,12 +78,6 @@ even more sh\*t shoveled upon NT6, which is the trusty basis since Vista.
 [Microsoft has this horrible mentality of just adding more and more without
 ever fixing anything][ntshit]. I guess it is already too late to save NT6
 without a rewrite. But good luck pushing a rewrite through management.
-
-So what do I think is the solution to this problem? I think to solve this,
-we have to change paople themselves, making them aware of how important it
-is to obtain independent information about everything. This would make
-marketing less effective and thus weaking the big players in all the
-markets.
 
   [os]: https://www.netmarketshare.com/operating-system-market-share.aspx
   [dx12]: http://blogs.msdn.com/b/directx/archive/2014/10/01/directx-12-and-windows-10.aspx

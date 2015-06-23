@@ -6,7 +6,7 @@ for the first time seriously, I think I can give a general statement on what I
 think about it, analogous to [D][d].
 
   [golang]: https://golang.org
-  [d]: {filename}/my-thoughts-about-d.md
+  [d]: {filename}/Coding/my-thoughts-about-d.md
 
 Go has been in development at Google for a few years now, mainly by Robert
 Griesemer, Rob Pike and Ken Thompson, all quite big names. You can find

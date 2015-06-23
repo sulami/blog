@@ -1,5 +1,6 @@
 Title: Thoughts on Windows 10 and free software
 Date: 2015-06-23
+Category: Linux
 
 Today I had a very interesting conversation about the modern software world
 with a non-technical friend of mine.

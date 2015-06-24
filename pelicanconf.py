@@ -19,7 +19,7 @@ DEFAULT_PAGINATION = 5
 
 MD_EXTENSIONS = (['codehilite'])
 
-STATIC_PATHS = ['pictures', ]
+STATIC_PATHS = ['pictures', 'raw']
 
 TAGS_SAVE_AS = ''
 TAG_SAVE_AS = ''

@@ -25,6 +25,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #2f7b9d;
 }
 
+hr {
+    border-bottom: none;
+    border-top: 1px #424b6c solid;
+    height: 1px;
+}
+
 footer.post-info {
     color: #424b6c;
     font-size: .9em;

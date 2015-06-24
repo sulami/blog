@@ -20,6 +20,8 @@ DEFAULT_PAGINATION = 5
 MD_EXTENSIONS = (['codehilite'])
 
 STATIC_PATHS = ['pictures', 'raw']
+DELETE_OUTPUT_DIRECTORY = True
+OUTPUT_RETENTION = (".git", ".gitignore", "favicon.ico")
 
 TAGS_SAVE_AS = ''
 TAG_SAVE_AS = ''

@@ -5,10 +5,9 @@ various IT-related topics, mostly related to software development.  I am a
 Linux/BSD guy and mainly write C, Python and Haskell code using Vim, Git and a
 mechanical keyboard. I have been contributing to the Linux kernel as well as
 writing an X11 window manager and I generally like experimenting with code.
-I some projects of mine listed [here]({filename}/pages/projects.md).
+I have some projects of mine listed [here]({filename}/pages/projects.md).
 
-If you are in need of someone like me, you can contact me in the folliwing
-ways:
+# Contact
 
 - Email: [sulami@peerwire.org](mailto:sulami@peerwire.org)
 - PGP: [A141810]({filename}/raw/pubkey.txt)

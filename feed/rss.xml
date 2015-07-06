@@ -82,11 +82,9 @@ remainder of the iteration. It is very easily implemented using a single &lt;cod
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;While &lt;code&gt;get&lt;/code&gt; uses &lt;a href="https://hackage.haskell.org/package/base-4.8.0.0/docs/Prelude.html#v:lookup"&gt;&lt;code&gt;Data.List.lookup&lt;/code&gt;&lt;/a&gt; to get the value of a cell at a
-coordinate. Alternatively, I could just have used &lt;code&gt;snd $ g !! n&lt;/code&gt;. In the end,
-it comes down to the same.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;get&lt;/code&gt; gets the value of the cell at a coordinate in a grid, pretty simple:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt;
-&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fromJust&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;lookup&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;
+&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;snd&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

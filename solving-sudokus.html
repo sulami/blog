@@ -122,11 +122,9 @@ remainder of the iteration. It is very easily implemented using a single <code>m
 </pre></div>
 
 
-<p>While <code>get</code> uses <a href="https://hackage.haskell.org/package/base-4.8.0.0/docs/Prelude.html#v:lookup"><code>Data.List.lookup</code></a> to get the value of a cell at a
-coordinate. Alternatively, I could just have used <code>snd $ g !! n</code>. In the end,
-it comes down to the same.</p>
+<p><code>get</code> gets the value of the cell at a coordinate in a grid, pretty simple:</p>
 <div class="codehilite"><pre><span class="nf">get</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Value</span>
-<span class="nf">get</span> <span class="n">g</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">fromJust</span> <span class="o">$</span> <span class="n">lookup</span> <span class="n">n</span> <span class="n">g</span>
+<span class="nf">get</span> <span class="n">g</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">snd</span> <span class="o">$</span> <span class="n">g</span> <span class="o">!!</span> <span class="n">n</span>
 </pre></div>
 
 

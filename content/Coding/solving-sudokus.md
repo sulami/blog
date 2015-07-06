@@ -88,13 +88,11 @@ remainder of the iteration. It is very easily implemented using a single `map`:
     change :: Grid -> Cell -> Grid
     change g (n, v) = map (\(gn, gv) -> if gn == n then (n, v) else (gn, gv)) g
 
-While `get` uses [`Data.List.lookup`][lookup] to get the value of a cell at a
-coordinate. Alternatively, I could just have used `snd $ g !! n`. In the end,
-it comes down to the same.
+`get` gets the value of the cell at a coordinate in a grid, pretty simple:
 
     ::haskell
     get :: Grid -> Coord -> Value
-    get g n = fromJust $ lookup n g
+    get g n = snd $ g !! n
 
 `options` on the other hand is a little bit more complicated. It has to check
 the row, the column and the box a given cell is in, and check for a number

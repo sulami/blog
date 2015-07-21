@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 21 Jul 2015 00:00:00 +0200</lastBuildDate><item><title>Haskell Flood Fills</title><link>https://sulami.github.io/haskell-flood-fills.html</link><description>&lt;p&gt;Over the past two days, I played a bit with the [hackthe.computer
-contest][htc]. It is a contest with a couple of problems/tasks where you have
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 21 Jul 2015 00:00:00 +0200</lastBuildDate><item><title>Haskell Flood Fills</title><link>https://sulami.github.io/haskell-flood-fills.html</link><description>&lt;p&gt;Over the past two days, I played a bit with the &lt;a href="https://hackthe.computer/"&gt;hackthe.computer
+contest&lt;/a&gt;. It is a contest with a couple of problems/tasks where you have
 one week to write up the best solutions in terms of speed. Part of the
 difficulty comes from the fact, that you push git commits to their server and
 do not get to to see the output of their test runs, which you only know if you

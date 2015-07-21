@@ -90,3 +90,5 @@ is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
 introducing parallelism via `par` and `pseq` if that becomes a problem.
 
+[htc]: https://hackthe.computer/
+

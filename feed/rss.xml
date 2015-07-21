@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 06 Jul 2015 00:00:00 +0200</lastBuildDate><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 21 Jul 2015 00:00:00 +0200</lastBuildDate><item><title>Haskell Flood Fills</title><link>https://sulami.github.io/haskell-flood-fills.html</link><description>&lt;p&gt;Over the past two days, I played a bit with the [hackthe.computer
+contest][htc]. It is a contest with a couple of problems/tasks where you have
+one week to write up the best solutions in terms of speed. Part of the
+difficulty comes from the fact, that you push git commits to their server and
+do not get to to see the output of their test runs, which you only know if you
+program produces the correct output within a reasonable time frame (one minute
+per test?) or not. It is quite fun, also because the problems are nicely
+chosen, with a lot of data interpretation, but also a need for efficient
+algorithms, and they all have nice back stories to explain why we are dealing
+with seemingly random input.&lt;/p&gt;
+&lt;p&gt;The first problem is called &lt;em&gt;Bowie's in a maze&lt;/em&gt;, which, without spoiling too
+much, involves David Bowie and a maze. Bowie is actually the villain here. To
+save our little brother, we have to find him in his maze. To accomplish this,
+we get an ASCII-map of the maze with our position and the position of our
+brother. The specific task is to find the shortest route in the least amount of
+time possible.&lt;/p&gt;
+&lt;p&gt;The naive first attempt was finding the shortest of all possible paths, but
+several of their test cases include really large mazes with few walls, if any
+at all (remember, I do not know). So this ran forever. From there, my mind
+obviously went to flood fills quite fast, because we save a lot of time, both
+by not building tons of overlapping paths, and, because a queue-based flood
+fill will return the shortest possible correct path before any longer
+solutions, using a lazy list of routes we can stop evaluating paths after the
+first one that reaches our brother.&lt;/p&gt;
+&lt;p&gt;I have written flood fills before, but mostly in Python, where the approach is
+quite a bit different. And because I could not really find a nice example of
+how to do flood fills in Haskell, I will post a general example here, just for
+you, fellow coder. So, here we go:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;-- First, we define a couple of types, for better readability. The grid&lt;/span&gt;
+&lt;span class="c1"&gt;-- will be a line-wise list of strings, with every char being a cell.&lt;/span&gt;
+&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Coord&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- So, we flood fill. This list can be lazily evaluated from the head and&lt;/span&gt;
+&lt;span class="c1"&gt;-- returns branching paths in all directions that obey possibleWays and do&lt;/span&gt;
+&lt;span class="c1"&gt;-- not overlap. flood is actually just a wrapper for fl.&lt;/span&gt;
+&lt;span class="nf"&gt;flood&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nf"&gt;flood&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fl&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+  &lt;span class="kr"&gt;where&lt;/span&gt;
+    &lt;span class="c1"&gt;-- This might be a bit difficult to grasp, but this returns all paths&lt;/span&gt;
+    &lt;span class="c1"&gt;-- ever evaluated and appends a copy of every path already evaluated&lt;/span&gt;
+    &lt;span class="c1"&gt;-- that could continue somewhere for a single step without overlapping&lt;/span&gt;
+    &lt;span class="c1"&gt;-- with any other path.&lt;/span&gt;
+    &lt;span class="n"&gt;fl&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;fl&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;fl&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;addRoutes&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;-- This handles the replacing of a path with all its possible branches.&lt;/span&gt;
+    &lt;span class="c1"&gt;-- It also has the context of all the other paths to prevent&lt;/span&gt;
+    &lt;span class="c1"&gt;-- overlapping.&lt;/span&gt;
+    &lt;span class="n"&gt;addRoutes&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;addRoutes&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;ps&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;possibleWays&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                             &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt; &lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="c1"&gt;-- All this does is, from a given point on the grid, look where we&lt;/span&gt;
+    &lt;span class="c1"&gt;-- could go while obeying the rules of the game, like not leaving the&lt;/span&gt;
+    &lt;span class="c1"&gt;-- grid (Index error!), only going one step (maybe diagonally?), etc.&lt;/span&gt;
+    &lt;span class="c1"&gt;-- The actual code depends on what you want to do, but a list&lt;/span&gt;
+    &lt;span class="c1"&gt;-- comprehension works well here, using the surrounding coordinates as&lt;/span&gt;
+    &lt;span class="c1"&gt;-- inputs and filtering out the invalid ones.&lt;/span&gt;
+    &lt;span class="n"&gt;possibleWays&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt;
+    &lt;span class="n"&gt;possibleWays&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;..&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- This is a simple little helper that checks if the last cell of a path is&lt;/span&gt;
+&lt;span class="c1"&gt;-- the target, so we can filter out incomplete paths.&lt;/span&gt;
+&lt;span class="nf"&gt;reachesTarget&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Bool&lt;/span&gt;
+&lt;span class="nf"&gt;reachesTarget&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;F&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- This a a really basic example use of the functions above.&lt;/span&gt;
+&lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt; &lt;span class="n"&gt;getContents&lt;/span&gt;          &lt;span class="c1"&gt;-- Read a map from stdin.&lt;/span&gt;
+          &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;      &lt;span class="c1"&gt;-- Start filling from the top-left corner.&lt;/span&gt;
+          &lt;span class="c1"&gt;-- My example involves finding the length of shortest possible&lt;/span&gt;
+          &lt;span class="c1"&gt;-- route, so we start flood filling lazily, and take the first&lt;/span&gt;
+          &lt;span class="c1"&gt;-- complete path. Then we just print out its length, because&lt;/span&gt;
+          &lt;span class="c1"&gt;-- paths themselves do not print nicely without a pretty printer.&lt;/span&gt;
+          &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;filter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reachesTarget&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;flood&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+          &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can use this code pretty much like this (I hereby license it under ISC), by
+just filling in &lt;code&gt;possibleWays&lt;/code&gt;. Note that this can get a bit slow when the grid
+is large and contains few or no walls, because the list of paths to iterate
+over grows rather large. You can probably gain some additional performance by
+introducing parallelism via &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;pseq&lt;/code&gt; if that becomes a problem.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
 wrote a small and simple sudoku solver. Sudokus are really nice little puzzles
 that involve a partially filled 9x9 grid containing numbers from one to nine.
 The objective is to fill it following these rules:&lt;/p&gt;

@@ -83,7 +83,9 @@ you, fellow coder. So, here we go:&lt;/p&gt;
 just filling in &lt;code&gt;possibleWays&lt;/code&gt;. Note that this can get a bit slow when the grid
 is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
-introducing parallelism via &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;pseq&lt;/code&gt; if that becomes a problem.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
+introducing parallelism via &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;pseq&lt;/code&gt; if that becomes a problem.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS&lt;/strong&gt; If you are taking part in the competition, flood fills will not bring
+you far, the solution is a different one.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
 wrote a small and simple sudoku solver. Sudokus are really nice little puzzles
 that involve a partially filled 9x9 grid containing numbers from one to nine.
 The objective is to fill it following these rules:&lt;/p&gt;

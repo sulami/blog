@@ -90,5 +90,8 @@ is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
 introducing parallelism via `par` and `pseq` if that becomes a problem.
 
+**PS** If you are taking part in the competition, flood fills will not bring
+you far, the solution is a different one.
+
 [htc]: https://hackthe.computer/
 

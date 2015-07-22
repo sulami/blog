@@ -2,8 +2,7 @@
 background-color:#eee;
 }
 .c {
-color:#63A8C7;
-font-style:italic;
+color:#424B6C;
 }
 .err {
 }
@@ -12,18 +11,16 @@ color:#43A172;
 font-weight:bold;
 }
 .o {
-color:#424B6C;
-}
-.cm {
-color:#63A8C7;
-font-style:italic;
-}
-.cp {
 color:#43A172;
 }
+.cm {
+color:#424B6C;
+}
+.cp {
+color:#424B6C;
+}
 .c1 {
-color:#63A8C7;
-font-style:italic;
+color:#424B6C;
 }
 .cs {
 background-color:#FFF0F0;
@@ -78,11 +75,11 @@ font-weight:bold;
 color:#43A172;
 }
 .kr {
-color:#43A172;
+color:#CC593B;
 font-weight:bold;
 }
 .kt {
-color:#CC593B
+color:#63A8C7;
 }
 .m {
 color:#43A172;
@@ -115,7 +112,7 @@ font-weight:bold;
 color:#43A172;
 }
 .nf {
-color:#63A8C7;
+color:#CC593B;
 }
 .nl {
 color:#63A8C7;

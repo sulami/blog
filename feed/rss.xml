@@ -85,7 +85,32 @@ is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
 introducing parallelism via &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;pseq&lt;/code&gt; if that becomes a problem.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;PS&lt;/strong&gt; If you are taking part in the competition, flood fills will not bring
-you far, the solution is a different one.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
+you far, the solution is a different one.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Embrace the REPL</title><link>https://sulami.github.io/embrace-the-repl.html</link><description>&lt;p&gt;As some of you may be aware, the tool of my choice is &lt;a href="http://vim.org"&gt;vim&lt;/a&gt; (or
+&lt;a href="https://github.com/neovim/neovim"&gt;neovim&lt;/a&gt;). Two of the languages I write a lot in are Haskell and Python,
+because both of these languages are very nice to quickly prototype something
+in. Both of these languages also feature what is known as a &lt;a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop"&gt;REPL&lt;/a&gt;, a
+&lt;em&gt;Read-Eval-Print-Loop&lt;/em&gt;, a feature that has been around in Lisp since the
+fifties. The name also comes from the Lisp origin:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Todays, arguably more modern languages have more sophisticated REPLs, like
+Haskell's &lt;a href="https://wiki.haskell.org/GHC/GHCi"&gt;GHCi&lt;/a&gt;, Python's &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt;, &lt;a href="http://bpython-interpreter.org/"&gt;BPython&lt;/a&gt;, etc. each
+coming with additional features to make testing something quickly really
+simple.&lt;/p&gt;
+&lt;p&gt;It just happens to be that other text-editor, [emacs][emacs], that also uses
+its own Lisp flavour as scripting language, also provides excellent support for
+Lisp REPLs in the form of &lt;a href="https://common-lisp.net/project/slime/"&gt;SLIME&lt;/a&gt;. SLIME allows the user to evaluate
+Lisp from a emacs buffer directly in a REPL in another buffer. I have seen this
+functionalility at a talk recently and wanted to replicate it in vim. As it
+turns out, there is something called &lt;a href="https://github.com/jpalardy/vim-slime"&gt;vim-slime&lt;/a&gt;. Because vim cannot
+directly handle Lisp, it uses a more general approach by using &lt;a href="https://www.gnu.org/software/screen/"&gt;screen&lt;/a&gt;
+or &lt;a href="https://tmux.github.io/"&gt;tmux&lt;/a&gt;. It also handles things like &lt;code&gt;let&lt;/code&gt; prefixes in Haskell, and
+&lt;code&gt;:{&lt;/code&gt;/&lt;code&gt;:}&lt;/code&gt; for multi-line pasting. There is also special support for handling
+the indentation levels in Python. But enough listing of features, a picture
+says more than a thousand words, especially if it is a gif.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="vim-slime in action" src="https://sulami.github.io/raw/vimslime.gif" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 16 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-16:embrace-the-repl.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
 wrote a small and simple sudoku solver. Sudokus are really nice little puzzles
 that involve a partially filled 9x9 grid containing numbers from one to nine.
 The objective is to fill it following these rules:&lt;/p&gt;

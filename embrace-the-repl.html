@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Embrace the REPL</title>
+    <link rel="icon" href="https://sulami.github.io/favicon.ico" />
+    <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
+
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+            <nav>
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
+                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
+                <a href="https://sulami.github.io/category/coding.html">Coding</a>
+                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
+                <a href="https://sulami.github.io/category/linux.html">Linux</a>
+                <a href="https://sulami.github.io/category/web.html">Web</a>
+            <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
+            </nav>
+    </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        >>
+        <a href="https://sulami.github.io/embrace-the-repl.html" rel="bookmark"
+           title="Permalink to Embrace the REPL">Embrace the REPL</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2015-07-16</span>
+    |
+    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+</footer><!-- /.post-info -->
+      <p>As some of you may be aware, the tool of my choice is <a href="http://vim.org">vim</a> (or
+<a href="https://github.com/neovim/neovim">neovim</a>). Two of the languages I write a lot in are Haskell and Python,
+because both of these languages are very nice to quickly prototype something
+in. Both of these languages also feature what is known as a <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>, a
+<em>Read-Eval-Print-Loop</em>, a feature that has been around in Lisp since the
+fifties. The name also comes from the Lisp origin:</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="nb">loop</span> <span class="p">(</span><span class="nb">print</span> <span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">read</span><span class="p">))))</span>
+</pre></div>
+
+
+<p>Todays, arguably more modern languages have more sophisticated REPLs, like
+Haskell's <a href="https://wiki.haskell.org/GHC/GHCi">GHCi</a>, Python's <a href="http://ipython.org/">IPython</a>, <a href="http://bpython-interpreter.org/">BPython</a>, etc. each
+coming with additional features to make testing something quickly really
+simple.</p>
+<p>It just happens to be that other text-editor, [emacs][emacs], that also uses
+its own Lisp flavour as scripting language, also provides excellent support for
+Lisp REPLs in the form of <a href="https://common-lisp.net/project/slime/">SLIME</a>. SLIME allows the user to evaluate
+Lisp from a emacs buffer directly in a REPL in another buffer. I have seen this
+functionalility at a talk recently and wanted to replicate it in vim. As it
+turns out, there is something called <a href="https://github.com/jpalardy/vim-slime">vim-slime</a>. Because vim cannot
+directly handle Lisp, it uses a more general approach by using <a href="https://www.gnu.org/software/screen/">screen</a>
+or <a href="https://tmux.github.io/">tmux</a>. It also handles things like <code>let</code> prefixes in Haskell, and
+<code>:{</code>/<code>:}</code> for multi-line pasting. There is also special support for handling
+the indentation levels in Python. But enough listing of features, a picture
+says more than a thousand words, especially if it is a gif.</p>
+<p><img alt="vim-slime in action" src="https://sulami.github.io/raw/vimslime.gif" /></p>
+    </div><!-- /.entry-content -->
+  </article>
+</section>
+</body>
+</html>

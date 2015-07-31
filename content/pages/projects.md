@@ -9,6 +9,8 @@ Here is some of my stuff:
   An unittest-like framework for easy, precise and fast Python3 benchmarks
 * [Feed2Maildir](https://github.com/sulami/feed2maildir)
   A simple solution to get RSS/Atom-feeds into a maildir automatically
+* [hmenu](https://github.com/sulami/hmenu)
+  A cli fuzzy finder and launcher in Haskell
 * [Danketsu](https://github.com/sulami/danketsu)
   A simple, fast, event-based, RESTful microservice communication microservice
 * [GoFuse](https://github.com/sulami/gofuse)

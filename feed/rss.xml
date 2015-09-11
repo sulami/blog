@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 13 Aug 2015 00:00:00 +0200</lastBuildDate><item><title>Windows 10: Post-Launch Thoughts</title><link>https://sulami.github.io/windows-10-post-launch-thoughts.html</link><description>&lt;p&gt;So it has been two weeks since the official Windows 10 launch, and there have
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Sep 2015 00:00:00 +0200</lastBuildDate><item><title>Concurrent I/O in Haskell</title><link>https://sulami.github.io/concurrent-io-in-haskell.html</link><description>&lt;p&gt;Today just after waking up, I have been tweaking the last bits and bops of
+&lt;a href="https://github.com/sulami/tinfoilsub"&gt;TinfoilSub&lt;/a&gt;, a satiric fun/learning
+project of mine that scrapes YouTube channels to replicate a subscriptions page
+without requiring a Google account. The core of this little program is the
+&lt;code&gt;runServer&lt;/code&gt; function that uses
+&lt;a href="https://hackage.haskell.org/package/scotty"&gt;Scotty&lt;/a&gt; to host a local page that
+displays the results, while the list of channels is read from a file. In the
+beginning, this function looked something like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;sequence&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
+                &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;scrapeChannel&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt;
+    &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;renderVideos&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;videos&lt;/span&gt;
+  &lt;span class="c1"&gt;-- ... and more routes&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, imagine you have more than just a couple of channels in there. This works
+fine for 2-3 channels, but each channel adds about a second of runtime each
+time the page is refreshed and the channels are re-scraped, which quickly
+amounts to way to much. Naturally, I went on to profiling and trying to figure
+out how to improve the scaling capabilities, and one of the first things to
+come across is using several threads (duh). Pretty basic stuff, so lets add and
+import &lt;code&gt;Control.Parallel&lt;/code&gt;, instruct the RTS to use a number of threads that
+suits the CPU in use and everything should be fine. Right?&lt;/p&gt;
+&lt;p&gt;This is the new code:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;sequence&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
+                &lt;span class="n"&gt;parMap&lt;/span&gt; &lt;span class="n"&gt;rpar&lt;/span&gt; &lt;span class="n"&gt;scrapeChannel&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt;
+    &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;renderVideos&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;videos&lt;/span&gt;
+  &lt;span class="c1"&gt;-- ... and more routes&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This looks neat and one might think it does what we want it to do. But looking
+at the actual performance when using 15 channels, this code is only about 20%
+faster, even when using 8 or more threads on a CPU with more than enough cores.
+Time for some more in depth analysis. The first thing I decided to look at was
+good old top. YouTube is not too slow in terms of respond times, so with a
+couple of threads one could assume we get to start scraping the page fairly
+early on, which results in increased CPU usage. But looking at top while
+refreshing the page revealed that the CPU was idling for a good 10 seconds
+before starting to scrape at all. Scraping was then run concurrently for the
+collected pages, so all cores were used and the actual scraping only took a
+second.&lt;/p&gt;
+&lt;p&gt;A look at Wireshark confirmed the problem. Wireshark recorded a new request
+to YouTube every second before scraping started. I looked around a bit in
+&lt;a href="https://hackage.haskell.org/package/scalpel"&gt;Scalpel&lt;/a&gt;, the scraping library I
+used and &lt;a href="https://hackage.haskell.org/package/curl"&gt;the curl bindings&lt;/a&gt; that
+were used for the actual requests, but nothing indicated any problems with
+making multiple requests at the same time.&lt;/p&gt;
+&lt;p&gt;So, now for the big reveal. For those who do not know, Haskell's &lt;code&gt;Parallel&lt;/code&gt;
+only works for pure parts of code, so no IO, which hinders you from creating
+things like race conditions, deadlocks and other really bad stuff. That is a
+good thing. So, if you want to do concurrent (or parallel) I/O, you need to use
+&lt;code&gt;Concurrent&lt;/code&gt;, which brings internal threads, thread communication tools and
+this kind of stuff. Now, this is all pretty dangerous territory in that with
+these tools, we can create the bad things mentioned above, which we do not want
+to risk, at least not if there are better alternatives. And as it turns out,
+there are. Use &lt;a href="https://hackage.haskell.org/package/async"&gt;async&lt;/a&gt;. Async is
+essentially a wrapper around all the evil stuff that makes it harder to shoot
+yourself in the foot. For us, there is this neat function called
+&lt;code&gt;mapConcurrently&lt;/code&gt;, which does exactly what we want. Do a &lt;code&gt;map&lt;/code&gt;, do it
+concurrently, and do it with &lt;code&gt;IO&lt;/code&gt;. So this is what we get:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
+                &lt;span class="n"&gt;mapConcurrently&lt;/span&gt; &lt;span class="n"&gt;scrapeChannel&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt;
+    &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;renderVideos&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;videos&lt;/span&gt;
+  &lt;span class="c1"&gt;-- ... and more routes&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And it does exactly what we want, it starts scraping as soon as the first
+request has returned a page for use, which reduces the runtime by more than
+half.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 11 Sep 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-09-11:concurrent-io-in-haskell.html</guid></item><item><title>Windows 10: Post-Launch Thoughts</title><link>https://sulami.github.io/windows-10-post-launch-thoughts.html</link><description>&lt;p&gt;So it has been two weeks since the official Windows 10 launch, and there have
 been a lot of discussions about it. I am going to summarize some of my own
 thoughts, now that I had the chance to test it myself.&lt;/p&gt;
 &lt;p&gt;Windows 10 is the newest and &lt;a href="http://www.theguardian.com/technology/2015/may/11/windows-10-last-version-microsoft"&gt;supposedly last version&lt;/a&gt; of the ever so

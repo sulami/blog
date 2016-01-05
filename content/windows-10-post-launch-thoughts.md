@@ -50,7 +50,7 @@ has shown its true nature, its endgame, and it is bad. I do not think, anyone
 can trust them anymore, at all.
 
 [last]: http://www.theguardian.com/technology/2015/may/11/windows-10-last-version-microsoft
-[concerns]: {filename}/Linux/thoughts-on-windows-10-and-free-software.md
+[concerns]: {filename}/thoughts-on-windows-10-and-free-software.md
 [const]: https://imgur.com/a/ekRHU
 [opts]: https://jonathan.porta.codes/2015/07/30/windows-10-seems-to-have-some-scary-privacy-defaults/
 [dickpics]: https://gist.github.com/sulami/7e74e3de7db372d38402

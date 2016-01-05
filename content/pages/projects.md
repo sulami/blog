@@ -1,5 +1,4 @@
 Title: Projects
-Status: hidden
 
 Here is some of my stuff:
 

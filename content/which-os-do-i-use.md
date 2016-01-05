@@ -29,7 +29,7 @@ The point of this post is merely to tell you, if you are interested in this
 sort of thing, check it out. It is more practical that \*BSD or Gentoo, and
 Void Linux has been a bit hit and miss in my personal experience.
 
-  [0]: {filename}/Linux/systemdebacle.md
+  [0]: {filename}/systemdebacle.md
   [1]: http://without-systemd.org/
   [2]: http://sourceforge.net/projects/manjaro-openrc/
 

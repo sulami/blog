@@ -12,12 +12,16 @@ DEFAULT_LANG = u'en'
 
 THEME = 'pelican-theme'
 
+DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = True
+
 DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
 MD_EXTENSIONS = (['codehilite'])
+TYPOGRIFY = True
 
 STATIC_PATHS = ['pictures', 'raw']
 DELETE_OUTPUT_DIRECTORY = True

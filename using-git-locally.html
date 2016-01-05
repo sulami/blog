@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Using git locally</title>
+    <title>Using git locally</title>
     <link rel="icon" href="https://sulami.github.io/favicon.ico" />
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
     <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -30,14 +29,14 @@
       <h1 class="entry-title">
         >>
         <a href="https://sulami.github.io/using-git-locally.html" rel="bookmark"
-           title="Permalink to Using git locally">Using git locally</a></h1>
+           title="Permalink to Using git locally">Using git&nbsp;locally</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-07-15</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
       <p>When you write your code, using a version control mechanism like git is
 crucial, even more than writing proper unit tests, even when working on your
@@ -48,19 +47,19 @@ pushing when finishing the session is something I practice almost like a
 religion. Not only does it keep my history accessible and enables me easy
 branching and stashing (read up on <a href="http://linux.die.net/man/1/git-branch">git-branch(1)</a> and
 <a href="http://linux.die.net/man/1/git-stash">git-stash(1)</a> if you do not already use them), it also serves as simple
-way to mirror my repositories to other machines and backup them this way.</p>
+way to mirror my repositories to other machines and backup them this&nbsp;way.</p>
 <p>Now to have your code available everywhere, you can just push it to your
 <a href="https://github.com">Github</a> or <a href="https://bitbucket.org">BitBucket</a> account, but there are pieces of code we do not
 want to see there. Security-critical code, configs or other files containing
 sensitive data, or just code we are not particularly proud of. To still benefit
-from the network capabilities of git, we need to host git ourselves.</p>
+from the network capabilities of git, we need to host git&nbsp;ourselves.</p>
 <p>Setting up a local git mirror is not a big deal at all as the following
 examples will show. Git uses ssh to transmit data over the network, which means
 every toaster that is capable of running sshd should also be able to serve git
 repos in a way that Github or Bitbucket do it, just without the web interface.
 We assume we already have a repo containing out working directory, maybe even
 some commits, does not matter. The following snippet demonstrates establishing
-a git repo in my home directory which we can use to clone, push and pull.</p>
+a git repo in my home directory which we can use to clone, push and&nbsp;pull.</p>
 <div class="codehilite"><pre><span class="c">% mkdir -p ~/git/myrepo.git</span>
 <span class="c">% cd ~/git/myrepo.git</span>
 <span class="c">% git init --bare</span>
@@ -78,7 +77,7 @@ if I want to look something up. Local remote repositories are way more
 interesting because we can use them to push changes around to various machines,
 work together with others more efficiently and much more. So here is how we
 setup a local remote git server, given our repo alreay exists like before. My
-ssh login uses my ssh-key to sign me in.</p>
+ssh login uses my ssh-key to sign me&nbsp;in.</p>
 <div class="codehilite"><pre><span class="c">% ssh sulami@remote</span>
 <span class="c">% mkdir -p /srv/git/myrepo.git</span>
 <span class="c">% cd /srv/git/myrepo.git</span>
@@ -97,7 +96,7 @@ later on, so eventual coworkers can use their own ssh-logins to use this
 repository. You can now think of exposing it to the web, or maybe installing
 <a href="http://git.zx2c4.com/cgit/">cgit</a> to provide a browser-friendly interface. It all depends on what
 you need, but to just synchronize your code amongst several machines there is
-nothing else nessecary.</p>
+nothing else&nbsp;nessecary.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

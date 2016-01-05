@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Solving Sudokus</title>
+    <title>Solving Sudokus</title>
     <link rel="icon" href="https://sulami.github.io/favicon.ico" />
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
     <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -30,23 +29,23 @@
       <h1 class="entry-title">
         >>
         <a href="https://sulami.github.io/solving-sudokus.html" rel="bookmark"
-           title="Permalink to Solving Sudokus">Solving Sudokus</a></h1>
+           title="Permalink to Solving Sudokus">Solving&nbsp;Sudokus</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2015-07-06</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
       <p>So, here is more Haskell from me, because I really like it. This time around, I
 wrote a small and simple sudoku solver. Sudokus are really nice little puzzles
 that involve a partially filled 9x9 grid containing numbers from one to nine.
-The objective is to fill it following these rules:</p>
+The objective is to fill it following these&nbsp;rules:</p>
 <ul>
-<li>Each number must only appear once per row</li>
-<li>Each number must only appear once per column</li>
-<li>Each number must only appear once per 3x3 'box', of which there are nine</li>
+<li>Each number must only appear once per&nbsp;row</li>
+<li>Each number must only appear once per&nbsp;column</li>
+<li>Each number must only appear once per 3x3 &#8216;box&#8217;, of which there are&nbsp;nine</li>
 </ul>
 <p>A common strategy is checking empty cells for available numbers to fill in, so
 the ones that are not already present in the corresponding row, column or box.
@@ -54,26 +53,24 @@ This is also the approach my solver takes, by checking each of the empty cells
 for options and, if there is only one possible option, filling it in. Repeat
 this until there are no empty cells anymore and you have a guaranteed correct
 solution. There is a great deal of mathematics behind sudoku puzzles, and if
-you are interested in that, <a href="https://en.wikipedia.org/wiki/Mathematics_of_Sudoku">the Wikipedia article</a> is a great read.</p>
+you are interested in that, <a href="https://en.wikipedia.org/wiki/Mathematics_of_Sudoku">the Wikipedia article</a> is a great&nbsp;read.</p>
 <p>Because I wrote my solver before conducting any research, it emulates my
 approach, which is brute forcing. Still, it solves 9x9 sudokus in &lt;0.01
 seconds. We will now have an in-depth look at it. If you want context, the
 whole code including an example is on <a href="https://github.com/sulami/spielwiese/blob/master/hSudoku/">Github</a>.</p>
-<p>I implemented the solver in form of a Haskell library that exports three
-functions:</p>
+<p>I implemented the solver in form of a Haskell library that exports three&nbsp;functions:</p>
 <ul>
-<li><code>build</code> builds the internal representation of the puzzle from a list of
-  integers</li>
-<li><code>prettyPrint</code> prints a puzzle</li>
-<li><code>solve</code> solves a puzzle</li>
+<li><code>build</code> builds the internal representation of the puzzle from a list of&nbsp;integers</li>
+<li><code>prettyPrint</code> prints a&nbsp;puzzle</li>
+<li><code>solve</code> solves a&nbsp;puzzle</li>
 </ul>
-<p><code>build</code> is really simple, because it looks like this:</p>
+<p><code>build</code> is really simple, because it looks like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="nf">build</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
 <span class="nf">build</span> <span class="n">vs</span> <span class="ow">=</span> <span class="n">zip</span> <span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">]</span> <span class="n">vs</span>
 </pre></div>
 
 
-<p>This already exposes the internal structure of a puzzle, which is this:</p>
+<p>This already exposes the internal structure of a puzzle, which is&nbsp;this:</p>
 <div class="codehilite"><pre><span class="kr">type</span> <span class="kt">Value</span> <span class="ow">=</span> <span class="kt">Int</span>
 <span class="kr">type</span> <span class="kt">Coord</span> <span class="ow">=</span> <span class="kt">Int</span>
 <span class="kr">type</span> <span class="kt">Cell</span>  <span class="ow">=</span> <span class="p">(</span><span class="kt">Coord</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span>
@@ -83,13 +80,13 @@ functions:</p>
 
 <p>I chose to use a single associative list over a nested list because it makes
 the code a whole lot easier to read when accessing various cells of a grid, at
-the expense of having to do some maths.</p>
+the expense of having to do some&nbsp;maths.</p>
 <p><code>prettyPrint</code> is not really worth explaining or even showing, all it does is
 dividing a grid into nine chunks, the lines, converting the integers to chars,
 replacing zeros with underscores, insert some spaces for readability and prints
-the whole thing out. I just added it so I could check the results easily.</p>
+the whole thing out. I just added it so I could check the results&nbsp;easily.</p>
 <p><code>solve</code> is the really interesting part here. Solve loops until a puzzle is
-solved, which looks like this:</p>
+solved, which looks like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="nf">solved</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
 <span class="nf">solved</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="nf">\</span><span class="p">(</span><span class="kr">_</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="n">r</span> <span class="ow">-&gt;</span> <span class="kr">if</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span> <span class="kt">False</span> <span class="kr">else</span> <span class="n">r</span><span class="p">)</span> <span class="kt">True</span>
 
@@ -102,7 +99,7 @@ solved, which looks like this:</p>
 <p>What <code>fill</code> does is it iterates once through all the cells, and each time it
 encounters an empty cell (<code>(_, 0)</code>), it checks which numbers could be placed in
 it. If there is only one possibility, it changes the grid accordingly and
-continues. After a complete iteration, it returns the changed grid.</p>
+continues. After a complete iteration, it returns the changed&nbsp;grid.</p>
 <div class="codehilite"><pre><span class="nf">fill</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
 <span class="nf">fill</span> <span class="n">g</span> <span class="n">c</span><span class="o">@</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">|</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">81</span>          <span class="ow">=</span> <span class="n">g</span>
                 <span class="o">|</span> <span class="n">v</span> <span class="o">/=</span> <span class="mi">0</span>           <span class="ow">=</span> <span class="n">fill</span> <span class="n">g</span> <span class="n">next</span>
@@ -122,7 +119,7 @@ remainder of the iteration. It is very easily implemented using a single <code>m
 </pre></div>
 
 
-<p><code>get</code> gets the value of the cell at a coordinate in a grid, pretty simple:</p>
+<p><code>get</code> gets the value of the cell at a coordinate in a grid, pretty&nbsp;simple:</p>
 <div class="codehilite"><pre><span class="nf">get</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Value</span>
 <span class="nf">get</span> <span class="n">g</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">snd</span> <span class="o">$</span> <span class="n">g</span> <span class="o">!!</span> <span class="n">n</span>
 </pre></div>
@@ -146,10 +143,9 @@ that includes all the coordinates (/indices) of the cells that affect the
 possible content of this cell. We <code>map</code> it to get to transform it to a list of
 numbers that are not possible here, and then simply return all numbers between
 one and nine that are not in that list. If you go back to <code>fill</code> above, you can
-see that if the length of this list is one, this solution is filled in.</p>
+see that if the length of this list is one, this solution is filled&nbsp;in.</p>
 <p>To finish this off, here are the three remaining functions that calculate the
-coordinates of the affecting cells. I planned these out when I could not sleep
-yesterday.</p>
+coordinates of the affecting cells. I planned these out when I could not sleep&nbsp;yesterday.</p>
 <div class="codehilite"><pre><span class="nf">rowWise</span> <span class="ow">::</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Coord</span><span class="p">]</span>
 <span class="nf">rowWise</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">n</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">9</span> <span class="o">*</span> <span class="mi">9</span> <span class="kr">in</span> <span class="p">[</span><span class="n">r</span><span class="o">..</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">8</span><span class="p">)]</span>
 
@@ -169,10 +165,10 @@ grid and try out some example cells. <code>boxWise</code> is a bit more contrive
 generally does it figures out in which of the nine boxes the cell is by
 comparing the offset from the left and the offset from the top separately, and
 then using the top-left cell of this box as a starting point to get the other
-eight coordinates, which are always in the same relative position.</p>
+eight coordinates, which are always in the same relative&nbsp;position.</p>
 <p>So this is the complete code to solve a sudoku puzzle. If you exclude the
 printing stuff, it is about 50 lines long, and there is a lot to optimize here,
-but I will leave it as it is, because I am only interested in the PoC.</p>
+but I will leave it as it is, because I am only interested in the&nbsp;PoC.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

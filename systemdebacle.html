@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -36,8 +35,8 @@
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2015-04-28</span>
-    |
-    in <a href="https://sulami.github.io/category/linux.html">Linux</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
       <p>I am writing about systemd today, because now, that the new release of Debian
 with systemd is out, there is pretty much only one major distribution left that
@@ -45,26 +44,25 @@ is not forcing its users to use systemd, that being Gentoo. I have for quite a
 long time defended systemd while it has been the target of extensive criticism
 almost since its inception. I will mostly be writing about my concerns about
 the *nix ecosystem from the standpoint of an user and programmer. Today, most
-of my machines are running either Gentoo or some BSD, mostly OpenBSD.</p>
-<p>Here are some facts:</p>
+of my machines are running either Gentoo or some <span class="caps">BSD</span>, mostly&nbsp;OpenBSD.</p>
+<p>Here are some&nbsp;facts:</p>
 <ul>
-<li>systemd only runs on Linux, because of Linux-specific kernel features it uses</li>
+<li>systemd only runs on Linux, because of Linux-specific kernel features it&nbsp;uses</li>
 <li>systemd is combining lots of subsystems to work together<ul>
-<li>For example the init system and the syslog for service-specific logs</li>
-<li>The extend of the subsystems it manages is set at build time</li>
-<li>Some might call this feature-creeping</li>
+<li>For example the init system and the syslog for service-specific&nbsp;logs</li>
+<li>The extend of the subsystems it manages is set at build&nbsp;time</li>
+<li>Some might call this&nbsp;feature-creeping</li>
 </ul>
 </li>
 <li>systemd is the de-facto standard in the Linux world as of today<ul>
 <li>All major distributions except Gentoo ship it by default without the
-  option to use another init system</li>
+  option to use another init&nbsp;system</li>
 </ul>
 </li>
 <li>You cannot remove systemd from your distribution and expect it to work at all<ul>
-<li>That is except on Gentoo, where systemd is just an option and OpenRC the
-  default</li>
+<li>That is except on Gentoo, where systemd is just an option and OpenRC the&nbsp;default</li>
 <li>This means, in conjunction with the previous point, most people on Linux
-  are stuck with it</li>
+  are stuck with&nbsp;it</li>
 </ul>
 </li>
 </ul>
@@ -76,8 +74,8 @@ use (which admittedly exists). But there is no way for competition to arise,
 which is just as important in the open-source ecosystem as in the commercial
 space. Imagine all the lost innovation because an outright better
 init-system/syslogger/whatever systemd swallowed cannot gain any traction
-without users.</p>
-<p>I believe this is a very dangerous path we are walking.</p>
+without&nbsp;users.</p>
+<p>I believe this is a very dangerous path we are&nbsp;walking.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

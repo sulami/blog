@@ -34,15 +34,22 @@ hr {
 footer.post-info {
     color: #424b6c;
     font-size: .9em;
+    line-height: .1em;
 }
 
 footer.post-info span.date {
-    color: #afbad2;
+    /* color: #afbad2; */
 }
 
 h3, h4, h5, h6 { margin-top: 20px; }
 
 /* custom fixes */
+div#menu {
+    margin: auto;
+    text-align: left;
+    width: 800px;
+}
+
 header {
     margin-left: -30px;
 }

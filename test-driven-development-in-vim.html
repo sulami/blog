@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Test-driven development in vim</title>
+    <title>Test-driven development in vim</title>
     <link rel="icon" href="https://sulami.github.io/favicon.ico" />
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
     <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -30,25 +29,25 @@
       <h1 class="entry-title">
         >>
         <a href="https://sulami.github.io/test-driven-development-in-vim.html" rel="bookmark"
-           title="Permalink to Test-driven development in vim">Test-driven development in vim</a></h1>
+           title="Permalink to Test-driven development in vim">Test-driven development in&nbsp;vim</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2014-05-05</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
-      <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (TDD)</a> is a way of developing software by using
+      <p><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development (<span class="caps">TDD</span>)</a> is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
-TDD, which proceeded to explain how you start your project by writing a test
+<span class="caps">TDD</span>, which proceeded to explain how you start your project by writing a test
 that (obviously) fails, then start your actual project, and test again. At this
 point in time, we have a something that returns a default webpage, or zero. Not
-even printing "Hello World" or "Success!". The next step is to write another
+even printing &#8220;Hello World&#8221; or &#8220;Success!&#8221;. The next step is to write another
 test, which checks for some actual content or functionality. After this test
 fails (which by the way is important, as it shows that the test will hopefully
-not produce false positives), we write the piece of content or functionality.</p>
+not produce false positives), we write the piece of content or&nbsp;functionality.</p>
 <p>In the beginning, this way of writing code seems (and is) incredibly slow, and
 I find myself skipping the first five tests until I have something that
 actually produces useful output. This is sort of okay, I do not think it will
@@ -57,12 +56,12 @@ minutes into the project, I start to religiously write tests for everything
 that happens, which is way easier than implementing proper tests for all the
 different stages and levels when you wrote code for several hours and start
 wasting time by manually testing changes. I think, everything that takes more
-than 30 minutes to code benefits from TDD.</p>
-<p>But let's have a look at some actual TDD using vim and C. C is not often
-written using TDD, but giving usually rather poor debugging output compared to
-interpreted languages, TDD is even more useful, as you will instantaneously see
+than 30 minutes to code benefits from <span class="caps">TDD</span>.</p>
+<p>But let&#8217;s have a look at some actual <span class="caps">TDD</span> using vim and C. C is not often
+written using <span class="caps">TDD</span>, but giving usually rather poor debugging output compared to
+interpreted languages, <span class="caps">TDD</span> is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
-a keyboard mapping to start our tests from within vim.</p>
+a keyboard mapping to start our tests from within&nbsp;vim.</p>
 <div class="codehilite"><pre>map &lt;Leader&gt;t :!make -B tests &amp;&amp; ./tests&lt;CR&gt;
 </pre></div>
 
@@ -71,7 +70,7 @@ a keyboard mapping to start our tests from within vim.</p>
 installed), compile our <em>tests.c</em> file and run it. Depending on which language
 you are using, which kind of application you are developing and how your tests
 work, you might want to change this a bit. I am testing a library I am writing,
-which gets included in <em>tests.c</em>.  The basic structure looks like this:</p>
+which gets included in <em>tests.c</em>.  The basic structure looks like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="cm">/* Tests for my library */</span>
 <span class="cp">#include &lt;stdio.h&gt;</span>
 <span class="cp">#include &lt;assert.h&gt;</span>
@@ -101,8 +100,7 @@ can also be a function call, assert stops the whole program and prints out the
 line which produced the error. If everything works as intended, it prints all
 the tests it ran, prompts for enter and returns us to vim.  An important part
 is to only delete old tests, when the condition they test for is no longer
-wanted, so you always test for basic functionality as well as the final
-results.</p>
+wanted, so you always test for basic functionality as well as the final&nbsp;results.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

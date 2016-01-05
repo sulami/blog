@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>A* Pathfinding in Functional Languages</title>
+    <title>A* Pathfinding in Functional Languages</title>
     <link rel="icon" href="https://sulami.github.io/favicon.ico" />
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
     <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -30,19 +29,19 @@
       <h1 class="entry-title">
         >>
         <a href="https://sulami.github.io/a-pathfinding-in-functional-languages.html" rel="bookmark"
-           title="Permalink to A* Pathfinding in Functional Languages">A* Pathfinding in Functional Languages</a></h1>
+           title="Permalink to A* Pathfinding in Functional Languages">A* Pathfinding in Functional&nbsp;Languages</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2015-07-23</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
-      <p>... like, you guessed it, Haskell. But this should translate to Lisp quite
+      <p>&#8230; like, you guessed it, Haskell. But this should translate to Lisp quite
 well. <a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* (A star)</a> is a graph traversal algorithm that is commonly used
 for pathfinding in video games, and probably also things like navigational
-software. It is an extension to <a href="https://en.wikipedia.org/wiki/Dtra%27s_algorithm">Dijkstra's algorithm</a>. If you do not know
+software. It is an extension to <a href="https://en.wikipedia.org/wiki/Dtra%27s_algorithm">Dijkstra&#8217;s algorithm</a>. If you do not know
 how they work, there is a really nice interactive explanation over on <a href="http://www.redblobgames.com/pathfinding/a-star/introduction.html">Red Blob
 Games</a>. There are a lot of examples around how to implement it in
 imperative languages, including the pseudo code on Wikipedia, but it is
@@ -51,13 +50,13 @@ where the approach differs a bit. As you will see, the general structure will
 be very close to the one used for <a href="https://github.com/sulami/spielwiese/blob/master/hUtil/BTree.hs#L69">breadth-first traversal</a>, the reason
 for this being that both algorithms essentially are breadth-first traversal
 with a weighting function that decides where to traverse deeper. With all paths
-having equal weights, they will behave exactly like breadth-first.</p>
+having equal weights, they will behave exactly like&nbsp;breadth-first.</p>
 <p>So I wrote up <a href="https://github.com/sulami/spielwiese/tree/master/astar">a small something</a> that uses this algorithm in Haskell. It
-operates on ASCII mazes and draws the shortest possible path through them in
+operates on <span class="caps">ASCII</span> mazes and draws the shortest possible path through them in
 (sort of) reasonable time. It also features experimental multi-threading
 support, although I am not quite sure yet just how big the performance boost is
-by using several cores. The results look like this, the asterisks (or stars...)
-show the path:</p>
+by using several cores. The results look like this, the asterisks (or stars&#8230;)
+show the&nbsp;path:</p>
 <div class="codehilite"><pre><span class="nt">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class="o">**</span> <span class="nt">X</span>
 <span class="nt">X</span>   <span class="nt">X</span>  <span class="o">*************</span><span class="nt">X</span><span class="o">***********</span>    <span class="nt">X</span>           <span class="nt">X</span>  <span class="o">*********</span>        <span class="nt">X</span><span class="o">*</span>  <span class="nt">X</span>
 <span class="nt">X</span>   <span class="nt">X</span>  <span class="o">*</span><span class="nt">XXXXXXXXX</span>  <span class="o">*</span><span class="nt">X</span><span class="o">*</span>  <span class="nt">XXXXX</span>  <span class="o">*</span><span class="nt">XXXXXXXXX</span>   <span class="nt">XXXXX</span>  <span class="o">*</span><span class="nt">XXXXX</span>  <span class="o">*</span><span class="nt">XXXXX</span>   <span class="nt">X</span><span class="o">*</span>  <span class="nt">X</span>
@@ -86,7 +85,7 @@ show the path:</p>
 
 <p>A maze of this size can be solved in about a quarter of a second on my 2008
 laptop. So let us find out, how one would implement this sort of path finding
-using a purely functional language like Haskell.</p>
+using a purely functional language like&nbsp;Haskell.</p>
 <p>The core of this algorithm is essentially a <a href="https://en.wikipedia.org/wiki/Flood_fill">flood fill</a>. But where a flood
 fill expands in all directions equally (if it is a queue-based one), A Star
 reorders the cells to fill after every filled cell using a cost function, and
@@ -94,7 +93,7 @@ always fills the cheapest cell available. As such, our function needs to take a
 couple of arguments to work, the grid on which it works, the start and finish
 positions on the grid (we will need the target to determine costs), a function
 that can determine the valid cells a path could advance on, and a cost function
-that can determine the cost of a path.</p>
+that can determine the cost of a&nbsp;path.</p>
 <p>The grid, start and finish positions are quite easy, in our case we have a
 two-dimensional grid that consists of <code>Char</code>s, and positions on it look like
 <code>(x,y)</code>. The cost function has to follow a couple of basic rules. If you have a
@@ -104,7 +103,7 @@ estimate of the distance between its end and the target. It should also not
 overestimate the minimal distance to the target. In our case, this is very
 simple. I define the rules of motion to be that we can only move in four
 directions, and not into or through walls (duh). This means our example cost
-function looks like this:</p>
+function looks like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="nf">cost</span> <span class="ow">::</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Path</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
 <span class="nf">cost</span> <span class="n">fin</span> <span class="n">path</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">l</span> <span class="ow">=</span> <span class="n">last</span> <span class="n">path</span> <span class="kr">in</span> <span class="p">(</span><span class="n">length</span> <span class="n">path</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dist</span> <span class="n">l</span> <span class="n">fin</span><span class="p">)</span>
   <span class="kr">where</span>
@@ -115,7 +114,7 @@ function looks like this:</p>
 
 <p>This is one of the functions we will be passing to the actual path finding
 function. The other one will be the one that determines which cells are valid
-options. This follows a couple of basic rules that I annotated here:</p>
+options. This follows a couple of basic rules that I annotated&nbsp;here:</p>
 <div class="codehilite"><pre><span class="nf">possibleWays</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Path</span>
 <span class="nf">possibleWays</span> <span class="n">g</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">)</span> <span class="o">|</span> <span class="n">y1</span> <span class="ow">&lt;-</span> <span class="p">[(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">..</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="c1">-- Build a set of y</span>
                                    <span class="n">y1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span>              <span class="c1">-- and x coordinates</span>
@@ -133,15 +132,15 @@ which cell can be entered on the grid from withing the position provided. This
 function has to supplied, because, just like the cost function, its specifics
 depend on the rules of the game. If you, for example, want to be able to move
 diagonally, you can adjust this function and the cost function without touching
-the path finding algorithm itself.</p>
+the path finding algorithm&nbsp;itself.</p>
 <p>The only thing left is the path finding itself. I will split this one into
 parts so it is easier to understand. A complete source with example including
-an ASCII parser and printer is on <a href="https://github.com/sulami/spielwiese/tree/master/astar">GitHub</a>. While it might look
+an <span class="caps">ASCII</span> parser and printer is on <a href="https://github.com/sulami/spielwiese/tree/master/astar">GitHub</a>. While it might look
 intimidating, the core algorithm is actually quite simple. It sorts all paths
 in a list by cost, and replaces the cheapest path by all paths that could
 extend this path while obeying the rules of <code>possibleWays</code> and not adding a
 cell that is already part of another path. The comparison is done using a
-simple zip:</p>
+simple&nbsp;zip:</p>
 <div class="codehilite"><pre><span class="nf">fl</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">PossibleWaysFun</span> <span class="ow">-&gt;</span> <span class="kt">CostFun</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Path</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Path</span><span class="p">]</span>
 <span class="nf">fl</span> <span class="n">grid</span> <span class="n">fin</span> <span class="n">pwf</span> <span class="n">cf</span> <span class="n">paths</span>
   <span class="o">|</span> <span class="n">any</span> <span class="p">(</span><span class="nf">\</span><span class="n">p</span> <span class="ow">-&gt;</span> <span class="n">last</span> <span class="n">p</span> <span class="o">==</span> <span class="n">fin</span><span class="p">)</span> <span class="n">paths</span> <span class="ow">=</span> <span class="n">filter</span> <span class="p">(</span><span class="nf">\</span><span class="n">p</span> <span class="ow">-&gt;</span> <span class="n">last</span> <span class="n">p</span> <span class="o">==</span> <span class="n">fin</span><span class="p">)</span> <span class="n">paths</span>
@@ -151,7 +150,7 @@ simple zip:</p>
 </pre></div>
 
 
-<p>A path is replaced by all <em>new</em>, valid paths using</p>
+<p>A path is replaced by all <em>new</em>, valid paths&nbsp;using</p>
 <div class="codehilite"><pre><span class="nf">addRoutes</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Path</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Path</span> <span class="ow">-&gt;</span> <span class="kt">PossibleWaysFun</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Path</span><span class="p">]</span>
 <span class="nf">addRoutes</span> <span class="n">grid</span> <span class="n">ps</span> <span class="n">path</span> <span class="n">pwf</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">cps</span> <span class="ow">=</span> <span class="n">concat</span> <span class="n">ps</span> <span class="kr">in</span>
   <span class="p">[</span> <span class="n">path</span> <span class="o">++</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">|</span> <span class="n">p</span> <span class="ow">&lt;-</span> <span class="n">filter</span> <span class="p">(`</span><span class="n">notElem</span><span class="p">`</span> <span class="n">cps</span><span class="p">)</span> <span class="o">$</span> <span class="n">pwf</span> <span class="n">grid</span> <span class="o">$</span> <span class="n">last</span> <span class="n">path</span> <span class="p">]</span>
@@ -162,8 +161,8 @@ simple zip:</p>
 declarations can be found in the complete source. The list comprehension
 ensures we source the possible replacements and filter out the ones that would
 cross existing paths. If a path cannot go anywhere new, it therefore gets
-removed altogether, and a new cheapest path will be chosen the next iteration.</p>
-<p>To finish this off, we just package this into a nice clean wrapper like this:</p>
+removed altogether, and a new cheapest path will be chosen the next&nbsp;iteration.</p>
+<p>To finish this off, we just package this into a nice clean wrapper like&nbsp;this:</p>
 <div class="codehilite"><pre><span class="nf">flood</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">PossibleWaysFun</span> <span class="ow">-&gt;</span> <span class="kt">CostFun</span> <span class="ow">-&gt;</span> <span class="kt">Path</span>
 <span class="nf">flood</span> <span class="n">grid</span> <span class="n">fin</span> <span class="n">pos</span> <span class="n">pwf</span> <span class="n">cf</span> <span class="ow">=</span> <span class="n">head</span> <span class="o">$</span> <span class="n">fl</span> <span class="n">grid</span> <span class="n">fin</span> <span class="n">pwf</span> <span class="n">cf</span> <span class="p">[[</span><span class="n">pos</span><span class="p">]]</span>
 </pre></div>
@@ -173,7 +172,7 @@ removed altogether, and a new cheapest path will be chosen the next iteration.</
 path. Note how the initial set of paths consists of the starting position,
 which is in itself a path of length 0. Also note how this will fail horribly if
 there is no possible path. You could transform this quite easily using <code>Maybe</code>
-to accommodate for that. And that is already pretty much it.</p>
+to accommodate for that. And that is already pretty much&nbsp;it.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

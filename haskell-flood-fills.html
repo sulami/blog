@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Haskell Flood Fills</title>
+    <title>Haskell Flood Fills</title>
     <link rel="icon" href="https://sulami.github.io/favicon.ico" />
     <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
     <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
@@ -14,15 +14,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-            <nav>
+        <nav>
+          <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About me</a>
-                <a href="https://sulami.github.io/category/coding.html">Coding</a>
-                <a href="https://sulami.github.io/category/hardware.html">Hardware</a>
-                <a href="https://sulami.github.io/category/linux.html">Linux</a>
-                <a href="https://sulami.github.io/category/web.html">Web</a>
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
-            </nav>
+          </div>
+        </nav>
     </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
@@ -30,14 +29,14 @@
       <h1 class="entry-title">
         >>
         <a href="https://sulami.github.io/haskell-flood-fills.html" rel="bookmark"
-           title="Permalink to Haskell Flood Fills">Haskell Flood Fills</a></h1>
+           title="Permalink to Haskell Flood Fills">Haskell Flood&nbsp;Fills</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
     <span class="date">2015-07-21</span>
-    |
-    in <a href="https://sulami.github.io/category/coding.html">Coding</a>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
 </footer><!-- /.post-info -->
       <p>Over the past two days, I played a bit with the <a href="https://hackthe.computer/">hackthe.computer
 contest</a>. It is a contest with a couple of problems/tasks where you have
@@ -48,13 +47,13 @@ program produces the correct output within a reasonable time frame (one minute
 per test?) or not. It is quite fun, also because the problems are nicely
 chosen, with a lot of data interpretation, but also a need for efficient
 algorithms, and they all have nice back stories to explain why we are dealing
-with seemingly random input.</p>
-<p>The first problem is called <em>Bowie's in a maze</em>, which, without spoiling too
+with seemingly random&nbsp;input.</p>
+<p>The first problem is called <em>Bowie&#8217;s in a maze</em>, which, without spoiling too
 much, involves David Bowie and a maze. Bowie is actually the villain here. To
 save our little brother, we have to find him in his maze. To accomplish this,
-we get an ASCII-map of the maze with our position and the position of our
+we get an <span class="caps">ASCII</span>-map of the maze with our position and the position of our
 brother. The specific task is to find the shortest route in the least amount of
-time possible.</p>
+time&nbsp;possible.</p>
 <p>The naive first attempt was finding the shortest of all possible paths, but
 several of their test cases include really large mazes with few walls, if any
 at all (remember, I do not know). So this ran forever. From there, my mind
@@ -62,11 +61,11 @@ obviously went to flood fills quite fast, because we save a lot of time, both
 by not building tons of overlapping paths, and, because a queue-based flood
 fill will return the shortest possible correct path before any longer
 solutions, using a lazy list of routes we can stop evaluating paths after the
-first one that reaches our brother.</p>
+first one that reaches our&nbsp;brother.</p>
 <p>I have written flood fills before, but mostly in Python, where the approach is
 quite a bit different. And because I could not really find a nice example of
 how to do flood fills in Haskell, I will post a general example here, just for
-you, fellow coder. So, here we go:</p>
+you, fellow coder. So, here we&nbsp;go:</p>
 <div class="codehilite"><pre><span class="c1">-- First, we define a couple of types, for better readability. The grid</span>
 <span class="c1">-- will be a line-wise list of strings, with every char being a cell.</span>
 <span class="kr">type</span> <span class="kt">Grid</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span>
@@ -119,13 +118,13 @@ you, fellow coder. So, here we go:</p>
 </pre></div>
 
 
-<p>You can use this code pretty much like this (I hereby license it under ISC), by
+<p>You can use this code pretty much like this (I hereby license it under <span class="caps">ISC</span>), by
 just filling in <code>possibleWays</code>. Note that this can get a bit slow when the grid
 is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
-introducing parallelism via <code>par</code> and <code>pseq</code> if that becomes a problem.</p>
-<p><strong>PS</strong> If you are taking part in the competition, flood fills will not bring
-you far, the solution is a different one.</p>
+introducing parallelism via <code>par</code> and <code>pseq</code> if that becomes a&nbsp;problem.</p>
+<p><strong><span class="caps">PS</span></strong> If you are taking part in the competition, flood fills will not bring
+you far, the solution is a different&nbsp;one.</p>
     </div><!-- /.entry-content -->
   </article>
 </section>

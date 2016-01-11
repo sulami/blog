@@ -20,7 +20,7 @@ dictate a structure for planning work, so they can help take the last bit of
 excess cognitive load off your mind, leaving you with just the next problem to
 solve to think about.
 
-One of the more simple systems is [Pomodoro](pom). Pomodoro in a nutshell is
+One of the more simple systems is [Pomodoro][pom]. Pomodoro in a nutshell is
 dividing work into relatively small tasks, spend 25 minute intervals working on
 these tasks and taking breaks in between. This approach forces you to focus on
 the task at hand, making it easier to get in the flow. It is also a rather
@@ -31,7 +31,7 @@ of my coding.
 If you have never used such a productivity system, I urge you to give Pomodoro
 a try, there is not really anything to lose, and possibly a lot to gain. You
 can also combine it relatively easily with larger-scale systems, like
-[Agile](agi) or [Scrum](scr).
+[Agile][agi] or [Scrum][scr].
 
   [mnk]: http://mindingourway.com/not-yet-gods/
   [pom]: http://pomodorotechnique.com/

@@ -15,7 +15,7 @@ system. There are a great number of systems, and most of them are designed to
 dictate a structure for planning work, so they can help take the last bit of
 excess cognitive load off your mind, leaving you with just the next problem to
 solve to think&amp;nbsp;about.&lt;/p&gt;
-&lt;p&gt;One of the more simple systems is &lt;a href="pom"&gt;Pomodoro&lt;/a&gt;. Pomodoro in a nutshell is
+&lt;p&gt;One of the more simple systems is &lt;a href="http://pomodorotechnique.com/"&gt;Pomodoro&lt;/a&gt;. Pomodoro in a nutshell is
 dividing work into relatively small tasks, spend 25 minute intervals working on
 these tasks and taking breaks in between. This approach forces you to focus on
 the task at hand, making it easier to get in the flow. It is also a rather
@@ -25,7 +25,7 @@ of my&amp;nbsp;coding.&lt;/p&gt;
 &lt;p&gt;If you have never used such a productivity system, I urge you to give Pomodoro
 a try, there is not really anything to lose, and possibly a lot to gain. You
 can also combine it relatively easily with larger-scale systems, like
-&lt;a href="agi"&gt;Agile&lt;/a&gt; or &lt;a href="scr"&gt;Scrum&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Jan 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-01-11:why-i-use-pomodoro.html</guid></item><item><title>Data-Pipelines in Haskell</title><link>https://sulami.github.io/data-pipelines-in-haskell.html</link><description>&lt;p&gt;Today I was writing some code in Golang and thought about why Haskell feels so
+&lt;a href="http://martinfowler.com/articles/newMethodology.html"&gt;Agile&lt;/a&gt; or &lt;a href="http://scrummethodology.com/"&gt;Scrum&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Jan 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-01-11:why-i-use-pomodoro.html</guid></item><item><title>Data-Pipelines in Haskell</title><link>https://sulami.github.io/data-pipelines-in-haskell.html</link><description>&lt;p&gt;Today I was writing some code in Golang and thought about why Haskell feels so
 much more powerful and expressive. Then I had a revelation. Haskell follows the
 &lt;span class="caps"&gt;UNIX&lt;/span&gt; philosophy, focussing on small functions that do exactly one thing (at
 least good Haskell code does so). It also makes these functions easily

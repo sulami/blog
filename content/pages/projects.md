@@ -8,6 +8,8 @@ Here is some of my stuff:
   An unittest-like framework for easy, precise and fast Python3 benchmarks
 * [Feed2Maildir](https://github.com/sulami/feed2maildir)
   A simple solution to get RSS/Atom-feeds into a maildir automatically
+* [hGM](https://github.com/sulami/hGM)
+  A Yesod-based web tool for tabletop GMs and other writers
 * [hcached](https://github.com/sulami/hcached)
   A drop-in replacement for memcached written in Haskell
 * [Danketsu](https://github.com/sulami/danketsu)

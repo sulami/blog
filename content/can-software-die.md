@@ -1,6 +1,5 @@
 Title: Can Software Die?
-Date: 2016-01-29
-status: draft
+Date: 2016-02-07
 
 Software can be classified as alive. Not using the [Wikipedia definition][wiki]
 of alive, because that requires biological processes, but philosophically seen

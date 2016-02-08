@@ -7,6 +7,17 @@ mechanical keyboard. I have been contributing to the Linux kernel as well as
 writing an X11 window manager and I generally like experimenting with code.
 I have some projects of mine listed [here]({filename}/pages/projects.md).
 
+I also love puzzles/contests, so here are some I have completed:
+
+- The Eudyptula Kernel Challenge
+- The Matasano Crypto Challenges
+- Hacktoberfest 2015
+- Advent of Code
+- The Monad Challenges
+
+Apart from that, I am in the 93rd percentile of Functional Languages on
+HackerRank, using Haskell.
+
 # Contact / Links
 
 - Email: [sulami@peerwire.org](mailto:sulami@peerwire.org)

@@ -14,6 +14,8 @@ I also love puzzles/contests, so here are some I have completed:
 - Hacktoberfest 2015
 - Advent of Code
 - The Monad Challenges
+- The Deadlock Empire
+- Stockfighter [currently in progress]
 
 Apart from that, I am in the 93rd percentile of Functional Languages on
 HackerRank, using Haskell.

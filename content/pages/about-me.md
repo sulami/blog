@@ -9,6 +9,7 @@ I have some projects of mine listed [here]({filename}/pages/projects.md).
 
 I also love puzzles/contests, so here are some I have completed:
 
+- Project Euler 1-100 (And a bunch more)
 - The Eudyptula Kernel Challenge
 - The Matasano Crypto Challenges
 - Hacktoberfest 2015

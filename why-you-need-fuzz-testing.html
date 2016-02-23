@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Why you need fuzz testing</title>
+    <link rel="icon" href="https://sulami.github.io/favicon.ico" />
+    <link rel="stylesheet" href="https://sulami.github.io/theme/css/main.css" />
+    <link href="https://sulami.github.io/feed/rss.xml" type="application/rss+xml" rel="alternate" title="/dev/sulami >> blog RSS Feed" />
+
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+        <nav>
+          <div id="menu">
+            <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
+                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
+                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
+            <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
+          </div>
+        </nav>
+    </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        >>
+        <a href="https://sulami.github.io/why-you-need-fuzz-testing.html" rel="bookmark"
+           title="Permalink to Why you need fuzz testing">Why you need fuzz&nbsp;testing</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+    <span class="date">2016-02-23</span>
+    <!-- | -->
+    <!-- in <a href="https://sulami.github.io/category/misc.html">misc</a> -->
+</footer><!-- /.post-info -->
+      <p>Unittesting is an important part of building reliable software, although by far
+not the only one. But many programmers misunderstand the purpose of unittests.
+Classic unittests have two purposes: They force you to develop a spec and
+enforce it, and they can protect you against regression when refactoring or
+otherwise changing your code. Contrary to what some believe, they do not ensure
+correctness of your&nbsp;code.</p>
+<p>Static unittests have one major flaw: The programmer has to write them. Any
+function working on a list is usually tested using some small examples and an
+empty list to make sure nothing breaks. This usually means you have to write
+3-5 test cases per function to cover basic functionality. Not only is this a
+lot of work, it is also error-prone, because some cases are easily forgotten,
+especially because the programmer writing the tests for his code has a set of
+preconceived notions about how his code might be&nbsp;used.</p>
+<p>But when writing any meaningful software, you usually have to deal with all
+kinds of data from outside, and a lot of that data is to be mistrusted. There
+might be changes in APIs, software errors somewhere else, or even a malicious
+attacker trying to breach your system, and all that data could look anything
+but the way you expect it to. This is why unittests should be used to employ a
+contract that the tested code has to follow, and fuzz testing can help you do
+just&nbsp;that.</p>
+<p>Haskell with its amazing type system has a very nice way to do this. Have a
+look at this&nbsp;test:</p>
+<div class="codehilite"><pre><span class="nf">describe</span> <span class="s">&quot;the finder&quot;</span> <span class="o">$</span>
+  <span class="n">it</span> <span class="s">&quot;only returns proper superstrings of the search term&quot;</span> <span class="o">$</span>
+    <span class="n">forAll</span> <span class="n">nonNull</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">property</span> <span class="o">$</span>
+      <span class="nf">\</span><span class="n">y</span> <span class="ow">-&gt;</span> <span class="kr">let</span> <span class="n">rv</span> <span class="ow">=</span> <span class="n">finder</span> <span class="n">x</span> <span class="n">y</span>
+            <span class="kr">in</span> <span class="n">rv</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="n">filter</span> <span class="p">(</span><span class="n">isSubsequenceOf</span> <span class="n">x</span><span class="p">)</span> <span class="n">rv</span>
+</pre></div>
+
+
+<p>This code is part of a fuzzy finder I am toying with, and it ensures that a
+basic fact about it is always true, the results should always be proper
+superstrings of the search term, and the search term in turn a proper substring
+of all results. I could write a bunch of test cases including input like
+<code>"abcdef"</code> or <code>"123"</code> and supply a list of possible results, then evaluate
+myself what the result should look like and just assert that the results are&nbsp;equal.</p>
+<p>But that would not only result in a considerable increase in code, easily
+quadrupling the code above, it would also not cover all possibilities.
+Haskell&#8217;s type system ensures that the finder only gets used with strings and
+lists of strings, but strings can have many forms. Because all of the input is
+coming from the user, there might be punctuation in there, spaces, maybe
+escaped, maybe Unicode symbols, who knows. That is why I instruct the test
+suite to just generate random strings and lists of strings to use (see the
+<code>forAll nonNull</code>) and verify the property independently. This runs a default of
+100 different sets of input, many of which are complicated messes of
+whitespace, backslashes and other special characters. If any of these break the
+test, the suite tells me which one, so I can find out what is the problem with
+a set of input and whether the contract I employed is incorrect, or the
+function tested does not follow the&nbsp;contract.</p>
+<p>The current actual fuzzy finder uses six different property contracts that it
+needs to satisfy, each four to six lines in size. Testing all of these manually
+would lead to a gigantic test suite, and modifying the parameters of the input
+would be a huge hassle. With fuzz testing, I can just tweak the <code>nonNull</code>
+generator to use different rules to generate input, like limiting it to a
+certain character range or string&nbsp;length.</p>
+<p>The bottom line here is, if your unittests are handwritten, you most likely
+cannot be sure your code is behaving in production. There is almost no way you
+can think of all the possible ways your code is going to be used, and even if
+you could, the amount of testing code would not be&nbsp;feasible.</p>
+    </div><!-- /.entry-content -->
+  </article>
+</section>
+</body>
+</html>

@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 23 Feb 2016 00:00:00 +0100</lastBuildDate><item><title>Why you need fuzz testing</title><link>https://sulami.github.io/why-you-need-fuzz-testing.html</link><description>&lt;p&gt;Unittesting is an important part of building reliable software, although by far
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 22 Jun 2016 00:00:00 +0200</lastBuildDate><item><title>Staying healthy as a programmer</title><link>https://sulami.github.io/staying-healthy-as-a-programmer.html</link><description>&lt;p&gt;&lt;em&gt;Disclaimer&lt;/em&gt; In this post I link to some specific products. These links serve as
+examples and are by no means direct reccomendations. Some of these are just the
+result of a quick web search. If you decide to buy stuff, do your research,
+figure out what exactly you need and choose a product based on&amp;nbsp;that.&lt;/p&gt;
+&lt;p&gt;One of the most important things in your life is your health. As programmers,
+and other professionals who mainly work at a desk, staying healthy can be
+surprisingly difficult, even though sitting all day seems not particularly
+demanding. Some of this risks can be avoided by consciously changing habits, but
+often the right equipment can also play a big role. You really should not skimp
+when it comes to maintaining your health. I will discuss some free, and also
+some non-free ways that can help you with&amp;nbsp;that.&lt;/p&gt;
+&lt;h2&gt;Repetitive Strain&amp;nbsp;Injury&lt;/h2&gt;
+&lt;p&gt;There are several big health risks that programmers are affected by. The first
+one is &lt;a href="https://en.wikipedia.org/wiki/Repetitive_strain_injury"&gt;repetitive strain injury&lt;/a&gt;, which can happen to anyone and can
+completely stop you from coding if it gets too bad. The easiest way of
+preventing &lt;span class="caps"&gt;RSI&lt;/span&gt; is the right setup. You want your desk to be at the right height,
+so your elbows are at a right angle. Depending on the keyboard, a wrist rest can
+also be helpful. As a rule of thumb, if your hands or arms start hurting after
+several minutes of continuous typing, there&amp;#8217;s something&amp;nbsp;wrong. &lt;/p&gt;
+&lt;p&gt;No matter what you do, doing things as unnatural as typing for long periods of
+time is harmful to your body, like almost anything. So make sure to take regular
+breaks, and also do some &lt;a href="https://www.youtube.com/watch?v=nmwqBMLVsjE"&gt;stretches&lt;/a&gt; for your hands and&amp;nbsp;arms.&lt;/p&gt;
+&lt;p&gt;You can also try using alternative keyboard layouts, although this is quite a
+big step. I switched to using &lt;a href="https://colemak.com/"&gt;colemak&lt;/a&gt;, which is still relatively
+close to &lt;span class="caps"&gt;QWERTY&lt;/span&gt;, on all my machines early this year, and it has helped me
+tremendously, but it also took me about 10 weeks using it full-time to get back
+to my own typing speed, and regain muscle memory for vim. Another popular
+alternative is &lt;a href="https://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard"&gt;dvorak&lt;/a&gt;, which is more widely supported (read: on
+Windows without extra software), but radically differs from &lt;span class="caps"&gt;QWERTY&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to go all out, there are also &lt;a href="https://www.amazon.com/Microsoft-Natural-Ergonomic-Keyboard-4000/dp/B000A6PPOK/"&gt;various&lt;/a&gt; &lt;a href="https://ultimatehackingkeyboard.com/"&gt;kinds&lt;/a&gt;
+&lt;a href="https://www.kinesis-ergo.com/shop/freestyle2-for-pc-us/"&gt;of&lt;/a&gt; &lt;a href="https://ergodox-ez.com/collections/keyboards/products/ergodox-ez-keyboard"&gt;ergonomical&lt;/a&gt; &lt;a href="http://matias.ca/ergopro/pc/"&gt;keyboards&lt;/a&gt;, which some people swear by.
+I haven&amp;#8217;t had any personal experience with these, but I feel like being able to
+e.g. have your hands wider apart can make a big difference in your wrists,
+especially if you are typing for 6-8 hours a&amp;nbsp;day.&lt;/p&gt;
+&lt;h2&gt;Back&amp;nbsp;problems&lt;/h2&gt;
+&lt;p&gt;Another problem many office workers have are posture and back problems, which
+can lead to chronic pain. Make sure your whole working environment is set up in
+a way that does not slowly kill&amp;nbsp;you.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Proper posture illustration" src="http://www.metrophysicaltherapy.com/files/2014/02/workstation_426x418.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;A relativaly cheap solution I value very much are &lt;a href="https://www.amazon.com/AmazonBasics-Single-Monitor-Display-Mounting/dp/B00MIBN16O/"&gt;monitor arms&lt;/a&gt;, which are
+key to get both your monitor high enough to not to have look down at it and also
+your desk low enough to not strain your elbows and wrists while typing. An added
+bonus is the free space under the monitor. I personally prefer the desk mounted
+ones for flexibility reasons, and they also allow you to run the cables behind
+them, but wall mounting is also an option that can come in&amp;nbsp;handy.&lt;/p&gt;
+&lt;p&gt;Another big part of your setup is your chair. Many office chairs are bad for
+your posture and do not support your lower back properly, encouraging you to
+lounge instead of sitting upright. Good chairs can be very expensive, the
+&lt;a href="http://www.kabseating.com/office/product.asp?product=204"&gt;&lt;span class="caps"&gt;KAB&lt;/span&gt; Executive&lt;/a&gt; retails for way above $1000, but I&amp;#8217;d go as far and say
+it is worth that. I do not believe in saving money when it comes to my health.
+Also it is going to last a decade or more without problems. But you might not
+have this kind of money to spend on a chair, which I also fully understand. All
+I want is to make you think about how you sit in your chair, especially for long
+periods of intense&amp;nbsp;concentration.&lt;/p&gt;
+&lt;p&gt;Another option can be a standing desk. There are many different ways of doing
+things, &lt;a href="https://www.amazon.com/Adjustable-Height-Stand-Up-Desk-Monitor/dp/B00LNEB9KW/"&gt;fixed height standing desks&lt;/a&gt;,
+&lt;a href="https://www.amazon.com/LUXOR-Standup-CF48-DW-Stand-Crank-Adjustable/dp/B00PU6H5MA/"&gt;manually variable desks&lt;/a&gt; and of course also
+&lt;a href="https://www.amazon.com/Electric-Stand-Up-Desk-Charcoal/dp/B00XLRJSAW/"&gt;electrically operated ones&lt;/a&gt;. In addition to that, there are
+also &lt;a href="https://www.amazon.com/32-Wide-Standing-Desktop-Desk/dp/B015RXUV3U/"&gt;mini add-on desks&lt;/a&gt; that you place on an existing desk. Standing
+makes it easier to keep a proper posture (and also burns some additional
+calories), but standing all day long is also bad for your back, so the proper
+mix between sitting and standing is&amp;nbsp;important.&lt;/p&gt;
+&lt;p&gt;There is one more point, and it is perhaps the most important one I have to
+make: whatever you do, as an office worker on a desk, it is extremely important
+to take regular breaks, get up (or sit down), stretch a bit, go for a short
+walk. I would reccomend intervals of at most once per hour, better twice. This
+is important for your cardiovascular system (i.e. your heart), and can also help
+you think. Regular exercise of any kind is also something everyone should do. Go
+to the gym, running or ride a bicyle. Do something that makes you sweat two or
+three times a week, and your overall quality of life will&amp;nbsp;skyrocket.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 22 Jun 2016 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2016-06-22:staying-healthy-as-a-programmer.html</guid></item><item><title>Emacs From a Vim Addict’s Perspective</title><link>https://sulami.github.io/emacs-from-a-vim-addicts-perspective.html</link><description>&lt;p&gt;I have been playing around in Emacs lately. Vim has been the core of my workflow
+for half a decade now, and I just cannot imagine going back to non-modal editing
+anymore. I will now explain, why I might just switch to emacs in the&amp;nbsp;long-term.&lt;/p&gt;
+&lt;p&gt;If you compare Emacs and vim, you will see that vim&amp;#8217;s modal philosophy is the
+clearly superiour one, but you will also find that vim is somewhat limited. It
+works quite well out of the box, and my current &lt;code&gt;.vimrc&lt;/code&gt; is about 300 lines in
+size, most of that just setting options, defining shortcuts and loading&amp;nbsp;plugins.&lt;/p&gt;
+&lt;p&gt;VimL tends to work for these things, but as soon as you start to change default
+behaviour and writing your own functions, it all falls apart. Vim does not know
+anything about its own state, there is no proper programmatical way to query it,
+and VimL as a language is extremely clunky and difficult to debug once you
+surpass simpe &lt;code&gt;set&lt;/code&gt; statements. This shows for example in the built-in help,
+that consists of plain text files that display the default&amp;nbsp;configuration.&lt;/p&gt;
+&lt;p&gt;Emacs on the other hand is pretty much just a Lisp interpreter with a simple
+text editor written in said Lisp running on top of it. Because the configuration
+is done on the same level that the editor itself is written on, in the same
+language, you can essentially completely replace all default behaviour, and
+emacs has a great framework to get the current state and configuration of the
+editor, because everything is just saved into variables. There is this funny
+quote about Emacs being a great operating system lacking a decent editor, and I
+find that it is pretty&amp;nbsp;accurate.&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href="http://spacemacs.org/"&gt;Spacemacs&lt;/a&gt;. Spacemacs is an Emacs distribution, meaning it is a
+prepackaged set of packages and configs that are supposed to more or less
+implement vim&amp;#8217;s behaviour on the emacs platform and integrate well without
+having to write several thousand lines of Elisp yourself, which is what you
+might actually need, depending on how much of vim you want in&amp;nbsp;Emacs.&lt;/p&gt;
+&lt;p&gt;Spacemacs got reccomended to me first by &lt;a href="https://kritzcreek.github.io/"&gt;Kritzcreek&lt;/a&gt; some time ago, and
+ever since I have been keeping an eye on it. I generally like to build my own
+configs and only stealing small parts from other people, but with default emacs
+being so different from the modal vim-like experience I want, it would take
+months to even come close to my vim setup. Spacemacs on the other hand comes
+with mostly sane defaults, and my overall custom config on top of its defaults
+is currently less that 100 lines of Elisp. I also want to mention
+&lt;a href="http://blog.aaronbieber.com/"&gt;Aaron Bieber&lt;/a&gt;&amp;#8216;s &lt;a href="https://www.youtube.com/watch?v=JWD1Fpdd4Pc"&gt;talk about evil-mode&lt;/a&gt; for finally pushing me
+over the line and investing a weekend into learning enough emacs to be&amp;nbsp;productive.&lt;/p&gt;
+&lt;p&gt;I am currently still in the progress of building my own emacs config from
+scratch, recreating the parts of Spacemacs I actually use, but I am not sure if
+I will ever get it to a point where it is even remotely as polished. Another
+factor of course is that I do not really want to waste too much time on this,
+and at least right now, Spacemacs does what I need it to do. In the end, you
+always have to think about if that extra bit of more custom behaviour is worth
+the time-investment to get it to&amp;nbsp;work.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 03 Mar 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-03-03:emacs-from-a-vim-addicts-perspective.html</guid></item><item><title>Why you need fuzz testing</title><link>https://sulami.github.io/why-you-need-fuzz-testing.html</link><description>&lt;p&gt;Unittesting is an important part of building reliable software, although by far
 not the only one. But many programmers misunderstand the purpose of unittests.
 Classic unittests have two purposes: They force you to develop a spec and
 enforce it, and they can protect you against regression when refactoring or

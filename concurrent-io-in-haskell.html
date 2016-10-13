@@ -46,7 +46,7 @@ without requiring a Google account. The core of this little program is the
 <a href="https://hackage.haskell.org/package/scotty">Scotty</a> to host a local page that
 displays the results, while the list of channels is read from a file. In the
 beginning, this function looked something like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="codehilite"><pre><span></span><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">runServer</span> <span class="n">channels</span> <span class="ow">=</span> <span class="n">scotty</span> <span class="mi">3000</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="n">get</span> <span class="s">&quot;/&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     <span class="n">videos</span> <span class="ow">&lt;-</span> <span class="n">fmap</span> <span class="p">(</span><span class="n">sort</span> <span class="o">.</span> <span class="n">concatMaybe</span><span class="p">)</span> <span class="o">.</span> <span class="n">liftIO</span> <span class="o">.</span> <span class="n">sequence</span> <span class="o">$</span>
@@ -65,7 +65,7 @@ come across is using several threads (duh). Pretty basic stuff, so lets add and
 import <code>Control.Parallel</code>, instruct the <span class="caps">RTS</span> to use a number of threads that
 suits the <span class="caps">CPU</span> in use and everything should be fine.&nbsp;Right?</p>
 <p>This is the new&nbsp;code:</p>
-<div class="codehilite"><pre><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="codehilite"><pre><span></span><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">runServer</span> <span class="n">channels</span> <span class="ow">=</span> <span class="n">scotty</span> <span class="mi">3000</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="n">get</span> <span class="s">&quot;/&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     <span class="n">videos</span> <span class="ow">&lt;-</span> <span class="n">fmap</span> <span class="p">(</span><span class="n">sort</span> <span class="o">.</span> <span class="n">concatMaybe</span><span class="p">)</span> <span class="o">.</span> <span class="n">liftIO</span> <span class="o">.</span> <span class="n">sequence</span> <span class="o">$</span>
@@ -104,7 +104,7 @@ essentially a wrapper around all the evil stuff that makes it harder to shoot
 yourself in the foot. For us, there is this neat function called
 <code>mapConcurrently</code>, which does exactly what we want. Do a <code>map</code>, do it
 concurrently, and do it with <code>IO</code>. So this is what we&nbsp;get:</p>
-<div class="codehilite"><pre><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="codehilite"><pre><span></span><span class="nf">runServer</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">runServer</span> <span class="n">channels</span> <span class="ow">=</span> <span class="n">scotty</span> <span class="mi">3000</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="n">get</span> <span class="s">&quot;/&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     <span class="n">videos</span> <span class="ow">&lt;-</span> <span class="n">fmap</span> <span class="p">(</span><span class="n">sort</span> <span class="o">.</span> <span class="n">concatMaybe</span><span class="p">)</span> <span class="o">.</span> <span class="n">liftIO</span> <span class="o">$</span>

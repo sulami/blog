@@ -60,7 +60,7 @@ manipulation capabilities are incredible, so that we can solve this by
 implementing the search algorithm ourselves and still achieve good&nbsp;performance.</p>
 <p>So, let us get on to some actual code. The most interesting part here is the
 matching&nbsp;algorithm:</p>
-<div class="codehilite"><pre><span class="nf">partOf</span> <span class="ow">::</span> <span class="kt">Char</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nf">partOf</span> <span class="ow">::</span> <span class="kt">Char</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
 <span class="nf">partOf</span> <span class="kr">_</span> <span class="kt">[]</span>     <span class="n">r</span> <span class="ow">=</span> <span class="p">(</span><span class="kt">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="nf">partOf</span> <span class="n">c</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="n">r</span> <span class="o">|</span>    <span class="n">c</span> <span class="o">==</span> <span class="n">x</span> <span class="ow">=</span> <span class="p">(</span><span class="kt">True</span><span class="p">,</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                   <span class="o">|</span> <span class="n">otherwise</span> <span class="ow">=</span> <span class="n">partOf</span> <span class="n">c</span> <span class="n">xs</span> <span class="o">$</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span>
@@ -90,7 +90,7 @@ first and last matched character in the solution. This is the same Amjith did
 for sorting. All this data gets returned in a big list of tuples with both
 versions of the solutions and the match data. It is not pretty, but it&nbsp;works.</p>
 <p>The one function the module actually exports is <code>fuzzyFinder</code>:</p>
-<div class="codehilite"><pre><span class="nf">fuzzyFinder</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="kt">Char</span><span class="p">]]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="kt">Char</span><span class="p">]]</span>
+<div class="codehilite"><pre><span></span><span class="nf">fuzzyFinder</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="kt">Char</span><span class="p">]]</span> <span class="ow">-&gt;</span> <span class="p">[[</span><span class="kt">Char</span><span class="p">]]</span>
 <span class="nf">fuzzyFinder</span> <span class="n">input</span> <span class="n">list</span> <span class="ow">=</span> <span class="n">map</span> <span class="n">fst</span> <span class="o">.</span> <span class="n">map</span> <span class="n">snd</span> <span class="o">$</span> <span class="n">sort</span> <span class="n">combo</span>
   <span class="kr">where</span>
     <span class="n">combo</span> <span class="ow">=</span> <span class="n">zip</span> <span class="p">(</span><span class="n">zip</span> <span class="p">((</span><span class="n">map</span> <span class="n">sum</span> <span class="o">.</span> <span class="n">map</span> <span class="n">tail</span><span class="p">)</span> <span class="n">scores</span><span class="p">)</span> <span class="p">(</span><span class="n">map</span> <span class="n">head</span> <span class="n">scores</span><span class="p">))</span> <span class="n">matches</span>
@@ -107,7 +107,7 @@ are not important, but you can find the complete source on <a href="https://gith
 <p>Now you might say, this cannot be fast, it is iterating through all this stuff
 and with big enough input it will take forever to present results. Let me show
 you&nbsp;this:</p>
-<div class="codehilite"><pre><span class="nf">readL</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><span class="nf">readL</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span>
 <span class="nf">readL</span> <span class="n">a</span> <span class="ow">=</span> <span class="n">read</span> <span class="o">$</span> <span class="s">&quot;[&quot;</span> <span class="o">++</span> <span class="n">a</span> <span class="o">++</span> <span class="s">&quot;]&quot;</span>
 
 <span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span> <span class="n">args</span> <span class="ow">&lt;-</span> <span class="n">getArgs</span>
@@ -123,7 +123,7 @@ you&nbsp;this:</p>
 path of a list of possible solutions and performs the actions outlined above.
 Using a 2.2GHz Core 2 Duo, because I am using my laptop, and a 46K list
 containing over 5000 words (Thanks, Project Euler), this&nbsp;happens:</p>
-<div class="codehilite"><pre>λ time ./interactive roro ../hEuler/022.input
+<div class="codehilite"><pre><span></span>λ time ./interactive roro ../hEuler/022.input
 [&quot;ROBERTO&quot;,&quot;RODRIGO&quot;,&quot;ROSARIO&quot;,&quot;GREGORIO&quot;,&quot;RIGOBERTO&quot;]
 ./interactive roro ../hEuler/022.input  0.08s user 0.00s system 96% cpu 0.079 total
 </pre></div>

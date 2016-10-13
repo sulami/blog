@@ -62,7 +62,7 @@ written using <span class="caps">TDD</span>, but giving usually rather poor debu
 interpreted languages, <span class="caps">TDD</span> is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
 a keyboard mapping to start our tests from within&nbsp;vim.</p>
-<div class="codehilite"><pre>map &lt;Leader&gt;t :!make -B tests &amp;&amp; ./tests&lt;CR&gt;
+<div class="codehilite"><pre><span></span>map &lt;Leader&gt;t :!make -B tests &amp;&amp; ./tests&lt;CR&gt;
 </pre></div>
 
 
@@ -71,10 +71,10 @@ installed), compile our <em>tests.c</em> file and run it. Depending on which lan
 you are using, which kind of application you are developing and how your tests
 work, you might want to change this a bit. I am testing a library I am writing,
 which gets included in <em>tests.c</em>.  The basic structure looks like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="cm">/* Tests for my library */</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;assert.h&gt;</span>
-<span class="cp">#include &quot;mylib.h&quot;</span>
+<div class="codehilite"><pre><span></span><span class="cm">/* Tests for my library */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;mylib.h&quot;</span><span class="cp"></span>
 
 <span class="cp">#define run_test(fn_name) \</span>
 <span class="cp">    printf(&quot;%s\n&quot;, #fn_name); \</span>

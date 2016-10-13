@@ -60,7 +60,7 @@ contract that the tested code has to follow, and fuzz testing can help you do
 just&nbsp;that.</p>
 <p>Haskell with its amazing type system has a very nice way to do this. Have a
 look at this&nbsp;test:</p>
-<div class="codehilite"><pre><span class="nf">describe</span> <span class="s">&quot;the finder&quot;</span> <span class="o">$</span>
+<div class="codehilite"><pre><span></span><span class="nf">describe</span> <span class="s">&quot;the finder&quot;</span> <span class="o">$</span>
   <span class="n">it</span> <span class="s">&quot;only returns proper superstrings of the search term&quot;</span> <span class="o">$</span>
     <span class="n">forAll</span> <span class="n">nonNull</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">property</span> <span class="o">$</span>
       <span class="nf">\</span><span class="n">y</span> <span class="ow">-&gt;</span> <span class="kr">let</span> <span class="n">rv</span> <span class="ow">=</span> <span class="n">finder</span> <span class="n">x</span> <span class="n">y</span>

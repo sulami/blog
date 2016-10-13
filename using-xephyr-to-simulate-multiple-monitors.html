@@ -51,7 +51,7 @@ and easy to use (in comparison to Xnest). I have also experimented with Xvfb
 and Xdmx, the latter being unable to use randr, which is a dealbraker. But
 while scraping mailing lists today I found the magical solution, and it only
 needs&nbsp;Xephyr.</p>
-<div class="codehilite"><pre>Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &amp;
+<div class="codehilite"><pre><span></span>Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &amp;
 </pre></div>
 
 

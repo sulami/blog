@@ -53,7 +53,7 @@ way of achieving our goal. You will&nbsp;need:</p>
 connect everything and boot it up, then access a console. We need to
 install mplayer, which will play our stream. If needed, update the
 package lists before&nbsp;installing.</p>
-<div class="codehilite"><pre># Raspian:
+<div class="codehilite"><pre><span></span># Raspian:
 sudo apt-get install mplayer
 
 # ArchARM (as root):
@@ -72,7 +72,7 @@ fallback if the internet connection or your radio station goes down, so
 you can switch to a local file to play instead. Use any text editor you
 want (vi, vim, emacs, nano, or graphical ones) to write something like
 my <em>playlist.pls</em>:</p>
-<div class="codehilite"><pre><span class="k">[playlist]</span>
+<div class="codehilite"><pre><span></span><span class="k">[playlist]</span>
 <span class="na">File1</span><span class="o">=</span><span class="s">http://mp3.ht-stream.net</span>
 <span class="na">Title1</span><span class="o">=</span><span class="s">HouseTime</span>
 <span class="na">Lenght1</span><span class="o">=</span><span class="s">-1</span>
@@ -91,7 +91,7 @@ use the <em>-shuffle</em> parameter later on to play random&nbsp;music.</p>
 a hint) and type &#8220;<em>crontab -e</em>&#8221; to enter your cronjob (preferably as a
 non-root user). Depending on your <span class="caps">OS</span> there will be some comments you can
 ignore. Add a entry like the&nbsp;following:</p>
-<div class="codehilite"><pre>30 6 * * * env DISPLAY=:0.0 /usr/bin/mplayer -playlist /home/pi/playlist.pls &gt; /dev/null
+<div class="codehilite"><pre><span></span>30 6 * * * env DISPLAY=:0.0 /usr/bin/mplayer -playlist /home/pi/playlist.pls &gt; /dev/null
 </pre></div>
 
 

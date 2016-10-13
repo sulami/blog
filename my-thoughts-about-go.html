@@ -47,7 +47,7 @@ specifics on <a href="https://en.wikipedia.org/wiki/Go_%28programming_language%2
 first impression is, while D feels like a child of C and Python, or &#8220;C++ done
 right&#8221;, Go feels a lot more like raw C modernized.  Like with D, I will give
 you a first look at something&nbsp;simple:</p>
-<div class="codehilite"><pre><span class="kn">package</span> <span class="nx">main</span>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -69,7 +69,7 @@ shell-pipe-style way to produce data-pipelines. Channels are managed FIFOs,
 used by Goroutines to communicate. All of this works very well and is
 incredibly simple, making Go a fantastic language for handling lots of <span class="caps">IO</span>, like
 load balancers or maybe database connections. It just scales well. A Goroutine&nbsp;example:</p>
-<div class="codehilite"><pre><span class="kd">func</span> <span class="nx">work</span><span class="p">()</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">work</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// do some work here</span>
 <span class="p">}</span>
 
@@ -88,7 +88,7 @@ load balancers or maybe database connections. It just scales well. A Goroutine&n
 right choice for you. There are no native objects like in Python, D or other
 modern languages. At least they do not look like it. Objects are C-style
 typedefs, often structs, and methods can be attached in the following&nbsp;way:</p>
-<div class="codehilite"><pre><span class="kd">type</span> <span class="nx">Vertex</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Vertex</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span> <span class="kt">int</span>
 <span class="p">}</span>
 

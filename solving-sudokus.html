@@ -65,13 +65,13 @@ whole code including an example is on <a href="https://github.com/sulami/spielwi
 <li><code>solve</code> solves a&nbsp;puzzle</li>
 </ul>
 <p><code>build</code> is really simple, because it looks like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="nf">build</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
+<div class="codehilite"><pre><span></span><span class="nf">build</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
 <span class="nf">build</span> <span class="n">vs</span> <span class="ow">=</span> <span class="n">zip</span> <span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">]</span> <span class="n">vs</span>
 </pre></div>
 
 
 <p>This already exposes the internal structure of a puzzle, which is&nbsp;this:</p>
-<div class="codehilite"><pre><span class="kr">type</span> <span class="kt">Value</span> <span class="ow">=</span> <span class="kt">Int</span>
+<div class="codehilite"><pre><span></span><span class="kr">type</span> <span class="kt">Value</span> <span class="ow">=</span> <span class="kt">Int</span>
 <span class="kr">type</span> <span class="kt">Coord</span> <span class="ow">=</span> <span class="kt">Int</span>
 <span class="kr">type</span> <span class="kt">Cell</span>  <span class="ow">=</span> <span class="p">(</span><span class="kt">Coord</span><span class="p">,</span> <span class="kt">Value</span><span class="p">)</span>
 <span class="kr">type</span> <span class="kt">Grid</span>  <span class="ow">=</span> <span class="p">[</span><span class="kt">Cell</span><span class="p">]</span>
@@ -87,7 +87,7 @@ replacing zeros with underscores, insert some spaces for readability and prints
 the whole thing out. I just added it so I could check the results&nbsp;easily.</p>
 <p><code>solve</code> is the really interesting part here. Solve loops until a puzzle is
 solved, which looks like&nbsp;this:</p>
-<div class="codehilite"><pre><span class="nf">solved</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<div class="codehilite"><pre><span></span><span class="nf">solved</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
 <span class="nf">solved</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="nf">\</span><span class="p">(</span><span class="kr">_</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="n">r</span> <span class="ow">-&gt;</span> <span class="kr">if</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span> <span class="kt">False</span> <span class="kr">else</span> <span class="n">r</span><span class="p">)</span> <span class="kt">True</span>
 
 <span class="nf">solve</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
@@ -100,7 +100,7 @@ solved, which looks like&nbsp;this:</p>
 encounters an empty cell (<code>(_, 0)</code>), it checks which numbers could be placed in
 it. If there is only one possibility, it changes the grid accordingly and
 continues. After a complete iteration, it returns the changed&nbsp;grid.</p>
-<div class="codehilite"><pre><span class="nf">fill</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
+<div class="codehilite"><pre><span></span><span class="nf">fill</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
 <span class="nf">fill</span> <span class="n">g</span> <span class="n">c</span><span class="o">@</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">|</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">81</span>          <span class="ow">=</span> <span class="n">g</span>
                 <span class="o">|</span> <span class="n">v</span> <span class="o">/=</span> <span class="mi">0</span>           <span class="ow">=</span> <span class="n">fill</span> <span class="n">g</span> <span class="n">next</span>
                 <span class="o">|</span> <span class="n">length</span> <span class="n">opts</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">=</span> <span class="n">fill</span> <span class="p">(</span><span class="n">change</span> <span class="n">g</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">head</span> <span class="n">opts</span><span class="p">)))</span> <span class="n">next</span>
@@ -114,13 +114,13 @@ continues. After a complete iteration, it returns the changed&nbsp;grid.</p>
 <p><code>change</code> goes through the grid, looking for the cell we want to change,
 replaces the value and returns the changed grid, so we can use it for the
 remainder of the iteration. It is very easily implemented using a single <code>map</code>:</p>
-<div class="codehilite"><pre><span class="nf">change</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
+<div class="codehilite"><pre><span></span><span class="nf">change</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="kt">Grid</span>
 <span class="nf">change</span> <span class="n">g</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">=</span> <span class="n">map</span> <span class="p">(</span><span class="nf">\</span><span class="p">(</span><span class="n">gn</span><span class="p">,</span> <span class="n">gv</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kr">if</span> <span class="n">gn</span> <span class="o">==</span> <span class="n">n</span> <span class="kr">then</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="kr">else</span> <span class="p">(</span><span class="n">gn</span><span class="p">,</span> <span class="n">gv</span><span class="p">))</span> <span class="n">g</span>
 </pre></div>
 
 
 <p><code>get</code> gets the value of the cell at a coordinate in a grid, pretty&nbsp;simple:</p>
-<div class="codehilite"><pre><span class="nf">get</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Value</span>
+<div class="codehilite"><pre><span></span><span class="nf">get</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="kt">Value</span>
 <span class="nf">get</span> <span class="n">g</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">snd</span> <span class="o">$</span> <span class="n">g</span> <span class="o">!!</span> <span class="n">n</span>
 </pre></div>
 
@@ -132,7 +132,7 @@ chose to use a single list to represent the whole grid, having the list indices
 stored inside a cell comes in very handy, because we can use it to calculate
 the indices of the other cells in the same row, column and box. But first, this
 is <code>options</code>:</p>
-<div class="codehilite"><pre><span class="nf">options</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><span class="nf">options</span> <span class="ow">::</span> <span class="kt">Grid</span> <span class="ow">-&gt;</span> <span class="kt">Cell</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Value</span><span class="p">]</span>
 <span class="nf">options</span> <span class="n">g</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="kr">_</span><span class="p">)</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="p">(</span><span class="n">rowWise</span> <span class="n">n</span><span class="p">)</span> <span class="o">++</span> <span class="p">(</span><span class="n">colWise</span> <span class="n">n</span><span class="p">)</span> <span class="o">++</span> <span class="p">(</span><span class="n">boxWise</span> <span class="n">n</span><span class="p">)</span> <span class="kr">in</span>
                     <span class="n">filter</span> <span class="p">(`</span><span class="n">notElem</span><span class="p">`</span> <span class="p">(</span><span class="n">map</span> <span class="p">(</span><span class="n">get</span> <span class="n">g</span><span class="p">)</span> <span class="n">r</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">9</span><span class="p">]</span>
 </pre></div>
@@ -146,7 +146,7 @@ one and nine that are not in that list. If you go back to <code>fill</code> abov
 see that if the length of this list is one, this solution is filled&nbsp;in.</p>
 <p>To finish this off, here are the three remaining functions that calculate the
 coordinates of the affecting cells. I planned these out when I could not sleep&nbsp;yesterday.</p>
-<div class="codehilite"><pre><span class="nf">rowWise</span> <span class="ow">::</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Coord</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><span class="nf">rowWise</span> <span class="ow">::</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Coord</span><span class="p">]</span>
 <span class="nf">rowWise</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">let</span> <span class="n">r</span> <span class="ow">=</span> <span class="n">n</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">9</span> <span class="o">*</span> <span class="mi">9</span> <span class="kr">in</span> <span class="p">[</span><span class="n">r</span><span class="o">..</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">8</span><span class="p">)]</span>
 
 <span class="nf">colWise</span> <span class="ow">::</span> <span class="kt">Coord</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="kt">Coord</span><span class="p">]</span>

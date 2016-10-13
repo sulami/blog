@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><atom:link href="https://sulami.github.io/feed/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 22 Jun 2016 00:00:00 +0200</lastBuildDate><item><title>Staying healthy as a programmer</title><link>https://sulami.github.io/staying-healthy-as-a-programmer.html</link><description>&lt;p&gt;&lt;em&gt;Disclaimer&lt;/em&gt; In this post I link to some specific products. These links serve as
+<rss version="2.0"><channel><title>/dev/sulami &gt;&gt; blog</title><link>https://sulami.github.io/</link><description></description><lastBuildDate>Wed, 22 Jun 2016 00:00:00 +0200</lastBuildDate><item><title>Staying healthy as a programmer</title><link>https://sulami.github.io/staying-healthy-as-a-programmer.html</link><description>&lt;p&gt;&lt;em&gt;Disclaimer&lt;/em&gt; In this post I link to some specific products. These links serve as
 examples and are by no means direct reccomendations. Some of these are just the
 result of a quick web search. If you decide to buy stuff, do your research,
 figure out what exactly you need and choose a product based on&amp;nbsp;that.&lt;/p&gt;
@@ -68,7 +68,7 @@ walk. I would reccomend intervals of at most once per hour, better twice. This
 is important for your cardiovascular system (i.e. your heart), and can also help
 you think. Regular exercise of any kind is also something everyone should do. Go
 to the gym, running or ride a bicyle. Do something that makes you sweat two or
-three times a week, and your overall quality of life will&amp;nbsp;skyrocket.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 22 Jun 2016 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2016-06-22:staying-healthy-as-a-programmer.html</guid></item><item><title>Emacs From a Vim Addict’s Perspective</title><link>https://sulami.github.io/emacs-from-a-vim-addicts-perspective.html</link><description>&lt;p&gt;I have been playing around in Emacs lately. Vim has been the core of my workflow
+three times a week, and your overall quality of life will&amp;nbsp;skyrocket.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 22 Jun 2016 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2016-06-22:staying-healthy-as-a-programmer.html</guid></item><item><title>Emacs From a Vim Addict’s Perspective</title><link>https://sulami.github.io/emacs-from-a-vim-addicts-perspective.html</link><description>&lt;p&gt;I have been playing around in Emacs lately. Vim has been the core of my workflow
 for half a decade now, and I just cannot imagine going back to non-modal editing
 anymore. I will now explain, why I might just switch to emacs in the&amp;nbsp;long-term.&lt;/p&gt;
 &lt;p&gt;If you compare Emacs and vim, you will see that vim&amp;#8217;s modal philosophy is the
@@ -109,7 +109,7 @@ I will ever get it to a point where it is even remotely as polished. Another
 factor of course is that I do not really want to waste too much time on this,
 and at least right now, Spacemacs does what I need it to do. In the end, you
 always have to think about if that extra bit of more custom behaviour is worth
-the time-investment to get it to&amp;nbsp;work.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 03 Mar 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-03-03:emacs-from-a-vim-addicts-perspective.html</guid></item><item><title>Why you need fuzz testing</title><link>https://sulami.github.io/why-you-need-fuzz-testing.html</link><description>&lt;p&gt;Unittesting is an important part of building reliable software, although by far
+the time-investment to get it to&amp;nbsp;work.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 03 Mar 2016 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2016-03-03:emacs-from-a-vim-addicts-perspective.html</guid></item><item><title>Why you need fuzz testing</title><link>https://sulami.github.io/why-you-need-fuzz-testing.html</link><description>&lt;p&gt;Unittesting is an important part of building reliable software, although by far
 not the only one. But many programmers misunderstand the purpose of unittests.
 Classic unittests have two purposes: They force you to develop a spec and
 enforce it, and they can protect you against regression when refactoring or
@@ -131,7 +131,7 @@ contract that the tested code has to follow, and fuzz testing can help you do
 just&amp;nbsp;that.&lt;/p&gt;
 &lt;p&gt;Haskell with its amazing type system has a very nice way to do this. Have a
 look at this&amp;nbsp;test:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;describe&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;the finder&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;describe&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;the finder&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
   &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;only returns proper superstrings of the search term&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
     &lt;span class="n"&gt;forAll&lt;/span&gt; &lt;span class="n"&gt;nonNull&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;property&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
       &lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;rv&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;finder&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
@@ -167,7 +167,7 @@ certain character range or string&amp;nbsp;length.&lt;/p&gt;
 &lt;p&gt;The bottom line here is, if your unittests are handwritten, you most likely
 cannot be sure your code is behaving in production. There is almost no way you
 can think of all the possible ways your code is going to be used, and even if
-you could, the amount of testing code would not be&amp;nbsp;feasible.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 23 Feb 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-02-23:why-you-need-fuzz-testing.html</guid></item><item><title>Can Software Die?</title><link>https://sulami.github.io/can-software-die.html</link><description>&lt;p&gt;Software can be classified as alive. Not using the &lt;a href="https://en.wikipedia.org/wiki/Life"&gt;Wikipedia definition&lt;/a&gt;
+you could, the amount of testing code would not be&amp;nbsp;feasible.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 23 Feb 2016 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2016-02-23:why-you-need-fuzz-testing.html</guid></item><item><title>Can Software Die?</title><link>https://sulami.github.io/can-software-die.html</link><description>&lt;p&gt;Software can be classified as alive. Not using the &lt;a href="https://en.wikipedia.org/wiki/Life"&gt;Wikipedia definition&lt;/a&gt;
 of alive, because that requires biological processes, but philosophically seen
 software is kind of like a living organism. There are constant changes as the
 software evolves, adapts to environmental changes and grows new&amp;nbsp;features.&lt;/p&gt;
@@ -195,7 +195,7 @@ piece of software anymore, it can go&amp;nbsp;extinct.&lt;/p&gt;
 &lt;p&gt;So the answer is yes, software can die, but it does not happen when change
 stops occurring. Because of the drastically more limited scope of software
 compared to biological life, software has a real chance of achieving
-perfection, a state in which no changes are required or&amp;nbsp;desired.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 07 Feb 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-02-07:can-software-die.html</guid></item><item><title>Why I use Pomodoro</title><link>https://sulami.github.io/why-i-use-pomodoro.html</link><description>&lt;p&gt;Almost every programmer knows what it means to get in the zone. That weird
+perfection, a state in which no changes are required or&amp;nbsp;desired.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 07 Feb 2016 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2016-02-07:can-software-die.html</guid></item><item><title>Why I use Pomodoro</title><link>https://sulami.github.io/why-i-use-pomodoro.html</link><description>&lt;p&gt;Almost every programmer knows what it means to get in the zone. That weird
 feeling you get at two in the morning while working on a side-project, when the
 the time flies by and suddenly all important features are done. Mastering the
 zone is a crucial element of maximizing your productivity, but it can also be
@@ -221,7 +221,7 @@ of my&amp;nbsp;coding.&lt;/p&gt;
 &lt;p&gt;If you have never used such a productivity system, I urge you to give Pomodoro
 a try, there is not really anything to lose, and possibly a lot to gain. You
 can also combine it relatively easily with larger-scale systems, like
-&lt;a href="http://martinfowler.com/articles/newMethodology.html"&gt;Agile&lt;/a&gt; or &lt;a href="http://scrummethodology.com/"&gt;Scrum&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Jan 2016 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2016-01-11:why-i-use-pomodoro.html</guid></item><item><title>Data-Pipelines in Haskell</title><link>https://sulami.github.io/data-pipelines-in-haskell.html</link><description>&lt;p&gt;Today I was writing some code in Golang and thought about why Haskell feels so
+&lt;a href="http://martinfowler.com/articles/newMethodology.html"&gt;Agile&lt;/a&gt; or &lt;a href="http://scrummethodology.com/"&gt;Scrum&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Jan 2016 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2016-01-11:why-i-use-pomodoro.html</guid></item><item><title>Data-Pipelines in Haskell</title><link>https://sulami.github.io/data-pipelines-in-haskell.html</link><description>&lt;p&gt;Today I was writing some code in Golang and thought about why Haskell feels so
 much more powerful and expressive. Then I had a revelation. Haskell follows the
 &lt;span class="caps"&gt;UNIX&lt;/span&gt; philosophy, focussing on small functions that do exactly one thing (at
 least good Haskell code does so). It also makes these functions easily
@@ -231,14 +231,14 @@ currently&amp;nbsp;reading.&lt;/p&gt;
 &lt;p&gt;We are going to start at the very basics, assuming you have little to no prior
 knowledge about Haskell. Haskell uses the &lt;a href="https://en.wikipedia.org/wiki/Lambda_calculus#Lambda_calculus_and_programming_languages"&gt;lambda calculus&lt;/a&gt; and just
 whitespace to declare function arguments. So a function call looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- 2 + 3 = 5&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- 2 + 3 = 5&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;If one of your arguments is actually the return value of another function call
 with arguments, you will need to add parentheses to tell your compiler which
 arguments belong to which function call, like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;-- 5 + (1 + 3) = 9&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;-- 5 + (1 + 3) = 9&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -248,7 +248,7 @@ operator that is part of Prelude, the part of the Haskell standard library that
 gets imported automatically. &lt;code&gt;$&lt;/code&gt; has the type &lt;code&gt;(a -&amp;gt; b) -&amp;gt; a -&amp;gt; b&lt;/code&gt; which looks
 sort of pointless, but in practise you can use it to build function pipelines
 without having to use&amp;nbsp;parentheses.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- 5 + (1 + 3) = 9&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- 5 + (1 + 3) = 9&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -257,7 +257,7 @@ one is already supplied. Its type is &lt;code&gt;Int -&amp;gt; Int&lt;/code&gt; 
 -&amp;gt; Int -&amp;gt; Int&lt;/code&gt;. And because Haskell has easy function composition using the &lt;code&gt;.&lt;/code&gt;
 operator (&lt;code&gt;(b -&amp;gt; c) -&amp;gt; (a -&amp;gt; b) -&amp;gt; a -&amp;gt; c&lt;/code&gt;), we can chain several functions in
 front of a &lt;code&gt;$&lt;/code&gt;, building a reverse data pipeline like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;subtract&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- (((1 + 3) * 2) - 3) + 5 = 10&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;subtract&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c1"&gt;-- (((1 + 3) * 2) - 3) + 5 = 10&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -267,7 +267,7 @@ shell-pipes, data flows from left to right, which might be more intuitive. Note
 that in the last explanation I had to reverse the order because of the
 subtraction. We can fix this quite easily by defining a new operator, the
 &amp;#8220;reverse &lt;code&gt;$&lt;/code&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
 &lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -275,7 +275,7 @@ subtraction. We can fix this quite easily by defining a new operator, the
 &lt;p&gt;Note that the type annotation is the same as the one of &lt;code&gt;$&lt;/code&gt; with just the
 arguments reversed. This specific operator is already defined in many
 community-made packages. It allows us to mimic the shell-pipe very&amp;nbsp;closely:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;subtract&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="c1"&gt;-- (((1 + 3) * 2) - 3) + 5 = 10&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;subtract&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="c1"&gt;-- (((1 + 3) * 2) - 3) + 5 = 10&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -288,7 +288,7 @@ while being just as expressive and simple. Haskell&amp;#8217;s laziness even all
 simple parallelism like the shell does when piping data, where
 functions/programs start working as soon as the first data reaches&amp;nbsp;them.&lt;/p&gt;
 &lt;p&gt;This concept is so great, there is even a huge library to do this while doing
-I/O like when accessing files or communicating over a network, &lt;a href="https://www.fpcomplete.com/user/snoyberg/library-documentation/conduit-overview"&gt;Conduit&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Dec 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-12-07:data-pipelines-in-haskell.html</guid></item><item><title>Using Hoogle for your project</title><link>https://sulami.github.io/using-hoogle-for-your-project.html</link><description>&lt;p&gt;&lt;a href="https://github.com/ndmitchell/hoogle"&gt;Hoogle&lt;/a&gt; is a fantastic tool that uses
+I/O like when accessing files or communicating over a network, &lt;a href="https://www.fpcomplete.com/user/snoyberg/library-documentation/conduit-overview"&gt;Conduit&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 07 Dec 2015 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-12-07:data-pipelines-in-haskell.html</guid></item><item><title>Using Hoogle for your project</title><link>https://sulami.github.io/using-hoogle-for-your-project.html</link><description>&lt;p&gt;&lt;a href="https://github.com/ndmitchell/hoogle"&gt;Hoogle&lt;/a&gt; is a fantastic tool that uses
 Haskell&amp;#8217;s type system to build a searchable index of types, functions and
 constants, connecting with &lt;a href="https://www.haskell.org/haddock/"&gt;Haddock&lt;/a&gt; to
 provide documentation. It can be used to host browsable websites, like the
@@ -309,7 +309,7 @@ Stack, Haddock and Hoogle installed and in your &lt;code&gt;$PATH&lt;/code&gt; (
 might also eat all of your data. If you change your stack resolver, you need to
 delete the Stackage Hoogle database yourself to trigger a download of the right
 one, there is no version checking. Also local documentation paths do not work
-when using &lt;code&gt;hoogle server&lt;/code&gt;. Some of this might get fixed in the&amp;nbsp;future.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 26 Nov 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-11-26:using-hoogle-for-your-project.html</guid></item><item><title>Concurrent I/O in Haskell</title><link>https://sulami.github.io/concurrent-io-in-haskell.html</link><description>&lt;p&gt;Today just after waking up, I have been tweaking the last bits and bops of
+when using &lt;code&gt;hoogle server&lt;/code&gt;. Some of this might get fixed in the&amp;nbsp;future.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 26 Nov 2015 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-11-26:using-hoogle-for-your-project.html</guid></item><item><title>Concurrent I/O in Haskell</title><link>https://sulami.github.io/concurrent-io-in-haskell.html</link><description>&lt;p&gt;Today just after waking up, I have been tweaking the last bits and bops of
 &lt;a href="https://github.com/sulami/tinfoilsub"&gt;TinfoilSub&lt;/a&gt;, a satiric fun/learning
 project of mine that scrapes YouTube channels to replicate a subscriptions page
 without requiring a Google account. The core of this little program is the
@@ -317,7 +317,7 @@ without requiring a Google account. The core of this little program is the
 &lt;a href="https://hackage.haskell.org/package/scotty"&gt;Scotty&lt;/a&gt; to host a local page that
 displays the results, while the list of channels is read from a file. In the
 beginning, this function looked something like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
 &lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;sequence&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
@@ -336,7 +336,7 @@ come across is using several threads (duh). Pretty basic stuff, so lets add and
 import &lt;code&gt;Control.Parallel&lt;/code&gt;, instruct the &lt;span class="caps"&gt;RTS&lt;/span&gt; to use a number of threads that
 suits the &lt;span class="caps"&gt;CPU&lt;/span&gt; in use and everything should be fine.&amp;nbsp;Right?&lt;/p&gt;
 &lt;p&gt;This is the new&amp;nbsp;code:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
 &lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;sequence&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
@@ -375,7 +375,7 @@ essentially a wrapper around all the evil stuff that makes it harder to shoot
 yourself in the foot. For us, there is this neat function called
 &lt;code&gt;mapConcurrently&lt;/code&gt;, which does exactly what we want. Do a &lt;code&gt;map&lt;/code&gt;, do it
 concurrently, and do it with &lt;code&gt;IO&lt;/code&gt;. So this is what we&amp;nbsp;get:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;IO&lt;/span&gt; &lt;span class="nb"&gt;()&lt;/span&gt;
 &lt;span class="nf"&gt;runServer&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scotty&lt;/span&gt; &lt;span class="mi"&gt;3000&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;videos&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;fmap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;concatMaybe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;liftIO&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;
@@ -386,7 +386,7 @@ concurrently, and do it with &lt;code&gt;IO&lt;/code&gt;. So this is what we&amp
 
 
 &lt;p&gt;And it does exactly what we want, it starts scraping as soon as the first
-request has returned a page for use, which reduces the runtime by more than&amp;nbsp;half.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 11 Sep 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-09-11:concurrent-io-in-haskell.html</guid></item><item><title>Windows 10: Post-Launch Thoughts</title><link>https://sulami.github.io/windows-10-post-launch-thoughts.html</link><description>&lt;p&gt;So it has been two weeks since the official Windows 10 launch, and there have
+request has returned a page for use, which reduces the runtime by more than&amp;nbsp;half.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 11 Sep 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-09-11:concurrent-io-in-haskell.html</guid></item><item><title>Windows 10: Post-Launch Thoughts</title><link>https://sulami.github.io/windows-10-post-launch-thoughts.html</link><description>&lt;p&gt;So it has been two weeks since the official Windows 10 launch, and there have
 been a lot of discussions about it. I am going to summarize some of my own
 thoughts, now that I had the chance to test it&amp;nbsp;myself.&lt;/p&gt;
 &lt;p&gt;Windows 10 is the newest and &lt;a href="http://www.theguardian.com/technology/2015/may/11/windows-10-last-version-microsoft"&gt;supposedly last version&lt;/a&gt; of the ever so
@@ -426,7 +426,7 @@ anymore, let alone using one. Sadly, the average user out there does not know
 anything about this (I imagine), and they will be the ones violated. This is a
 nightmare, and I desperately hope that Windows 10 will not catch on. Microsoft
 has shown its true nature, its endgame, and it is bad. I do not think, anyone
-can trust them anymore, at&amp;nbsp;all.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 13 Aug 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-08-13:windows-10-post-launch-thoughts.html</guid></item><item><title>A* Pathfinding in Functional Languages</title><link>https://sulami.github.io/a-pathfinding-in-functional-languages.html</link><description>&lt;p&gt;&amp;#8230; like, you guessed it, Haskell. But this should translate to Lisp quite
+can trust them anymore, at&amp;nbsp;all.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 13 Aug 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-08-13:windows-10-post-launch-thoughts.html</guid></item><item><title>A* Pathfinding in Functional Languages</title><link>https://sulami.github.io/a-pathfinding-in-functional-languages.html</link><description>&lt;p&gt;&amp;#8230; like, you guessed it, Haskell. But this should translate to Lisp quite
 well. &lt;a href="https://en.wikipedia.org/wiki/A*_search_algorithm"&gt;A* (A star)&lt;/a&gt; is a graph traversal algorithm that is commonly used
 for pathfinding in video games, and probably also things like navigational
 software. It is an extension to &lt;a href="https://en.wikipedia.org/wiki/Dtra%27s_algorithm"&gt;Dijkstra&amp;#8217;s algorithm&lt;/a&gt;. If you do not know
@@ -445,7 +445,7 @@ operates on &lt;span class="caps"&gt;ASCII&lt;/span&gt; mazes and draws the shor
 support, although I am not quite sure yet just how big the performance boost is
 by using several cores. The results look like this, the asterisks (or stars&amp;#8230;)
 show the&amp;nbsp;path:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="nt"&gt;X&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="nt"&gt;X&lt;/span&gt;
 &lt;span class="nt"&gt;X&lt;/span&gt;   &lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;*************&lt;/span&gt;&lt;span class="nt"&gt;X&lt;/span&gt;&lt;span class="o"&gt;***********&lt;/span&gt;    &lt;span class="nt"&gt;X&lt;/span&gt;           &lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;*********&lt;/span&gt;        &lt;span class="nt"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  &lt;span class="nt"&gt;X&lt;/span&gt;
 &lt;span class="nt"&gt;X&lt;/span&gt;   &lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;XXXXXXXXX&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  &lt;span class="nt"&gt;XXXXX&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;XXXXXXXXX&lt;/span&gt;   &lt;span class="nt"&gt;XXXXX&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;XXXXX&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;XXXXX&lt;/span&gt;   &lt;span class="nt"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  &lt;span class="nt"&gt;X&lt;/span&gt;
 &lt;span class="nt"&gt;X&lt;/span&gt;      &lt;span class="o"&gt;*********&lt;/span&gt;&lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;***&lt;/span&gt;  &lt;span class="nt"&gt;X&lt;/span&gt;   &lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;*******&lt;/span&gt;  &lt;span class="nt"&gt;X&lt;/span&gt;          &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;X&lt;/span&gt;   &lt;span class="nt"&gt;X&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;X&lt;/span&gt;       &lt;span class="nt"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  &lt;span class="nt"&gt;X&lt;/span&gt;
@@ -492,7 +492,7 @@ overestimate the minimal distance to the target. In our case, this is very
 simple. I define the rules of motion to be that we can only move in four
 directions, and not into or through walls (duh). This means our example cost
 function looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;cost&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;cost&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
 &lt;span class="nf"&gt;cost&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="kr"&gt;where&lt;/span&gt;
     &lt;span class="n"&gt;dist&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
@@ -503,7 +503,7 @@ function looks like&amp;nbsp;this:&lt;/p&gt;
 &lt;p&gt;This is one of the functions we will be passing to the actual path finding
 function. The other one will be the one that determines which cells are valid
 options. This follows a couple of basic rules that I annotated&amp;nbsp;here:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;possibleWays&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;possibleWays&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt;
 &lt;span class="nf"&gt;possibleWays&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;y1&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt; &lt;span class="c1"&gt;-- Build a set of y&lt;/span&gt;
                                    &lt;span class="n"&gt;y1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;              &lt;span class="c1"&gt;-- and x coordinates&lt;/span&gt;
                                    &lt;span class="n"&gt;y1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;        &lt;span class="c1"&gt;-- within the grid and&lt;/span&gt;
@@ -529,7 +529,7 @@ in a list by cost, and replaces the cheapest path by all paths that could
 extend this path while obeying the rules of &lt;code&gt;possibleWays&lt;/code&gt; and not adding a
 cell that is already part of another path. The comparison is done using a
 simple&amp;nbsp;zip:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;fl&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;CostFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;fl&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;CostFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;fl&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt; &lt;span class="n"&gt;pwf&lt;/span&gt; &lt;span class="n"&gt;cf&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;
   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;filter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;
   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;otherwise&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;best&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;snd&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;minimum&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cf&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;paths&lt;/span&gt;
@@ -539,7 +539,7 @@ simple&amp;nbsp;zip:&lt;/p&gt;
 
 
 &lt;p&gt;A path is replaced by all &lt;em&gt;new&lt;/em&gt;, valid paths&amp;nbsp;using&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;addRoutes&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;addRoutes&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;addRoutes&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;ps&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="n"&gt;pwf&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;cps&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;concat&lt;/span&gt; &lt;span class="n"&gt;ps&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt;
   &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;filter&lt;/span&gt; &lt;span class="p"&gt;(`&lt;/span&gt;&lt;span class="n"&gt;notElem&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="n"&gt;cps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;pwf&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -551,7 +551,7 @@ ensures we source the possible replacements and filter out the ones that would
 cross existing paths. If a path cannot go anywhere new, it therefore gets
 removed altogether, and a new cheapest path will be chosen the next&amp;nbsp;iteration.&lt;/p&gt;
 &lt;p&gt;To finish this off, we just package this into a nice clean wrapper like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;flood&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;CostFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;flood&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;PossibleWaysFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;CostFun&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Path&lt;/span&gt;
 &lt;span class="nf"&gt;flood&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="n"&gt;pwf&lt;/span&gt; &lt;span class="n"&gt;cf&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;fl&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="n"&gt;fin&lt;/span&gt; &lt;span class="n"&gt;pwf&lt;/span&gt; &lt;span class="n"&gt;cf&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -560,13 +560,13 @@ removed altogether, and a new cheapest path will be chosen the next&amp;nbsp;ite
 path. Note how the initial set of paths consists of the starting position,
 which is in itself a path of length 0. Also note how this will fail horribly if
 there is no possible path. You could transform this quite easily using &lt;code&gt;Maybe&lt;/code&gt;
-to accommodate for that. And that is already pretty much&amp;nbsp;it.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-23:a-pathfinding-in-functional-languages.html</guid></item><item><title>Embrace the REPL</title><link>https://sulami.github.io/embrace-the-repl.html</link><description>&lt;p&gt;As some of you may be aware, the tool of my choice is &lt;a href="http://vim.org"&gt;vim&lt;/a&gt; (or
+to accommodate for that. And that is already pretty much&amp;nbsp;it.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 Jul 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-07-23:a-pathfinding-in-functional-languages.html</guid></item><item><title>Embrace the REPL</title><link>https://sulami.github.io/embrace-the-repl.html</link><description>&lt;p&gt;As some of you may be aware, the tool of my choice is &lt;a href="http://vim.org"&gt;vim&lt;/a&gt; (or
 &lt;a href="https://github.com/neovim/neovim"&gt;neovim&lt;/a&gt;). Two of the languages I write a lot in are Haskell and Python,
 because both of these languages are very nice to quickly prototype something
 in. Both of these languages also feature what is known as a &lt;a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop"&gt;&lt;span class="caps"&gt;REPL&lt;/span&gt;&lt;/a&gt;, a
 &lt;em&gt;Read-Eval-Print-Loop&lt;/em&gt;, a feature that has been around in Lisp since the
 fifties. The name also comes from the Lisp&amp;nbsp;origin:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -584,7 +584,7 @@ or &lt;a href="https://tmux.github.io/"&gt;tmux&lt;/a&gt;. It also handles thing
 &lt;code&gt;:{&lt;/code&gt;/&lt;code&gt;:}&lt;/code&gt; for multi-line pasting. There is also special support for handling
 the indentation levels in Python. But enough listing of features, a picture
 says more than a thousand words, especially if it is a&amp;nbsp;gif.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="vim-slime in action" src="https://sulami.github.io/raw/vimslime.gif" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-23:embrace-the-repl.html</guid></item><item><title>Haskell Flood Fills</title><link>https://sulami.github.io/haskell-flood-fills.html</link><description>&lt;p&gt;Over the past two days, I played a bit with the &lt;a href="https://hackthe.computer/"&gt;hackthe.computer
+&lt;p&gt;&lt;img alt="vim-slime in action" src="https://sulami.github.io/raw/vimslime.gif" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Thu, 23 Jul 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-07-23:embrace-the-repl.html</guid></item><item><title>Haskell Flood Fills</title><link>https://sulami.github.io/haskell-flood-fills.html</link><description>&lt;p&gt;Over the past two days, I played a bit with the &lt;a href="https://hackthe.computer/"&gt;hackthe.computer
 contest&lt;/a&gt;. It is a contest with a couple of problems/tasks where you have
 one week to write up the best solutions in terms of speed. Part of the
 difficulty comes from the fact, that you push git commits to their server and
@@ -612,7 +612,7 @@ first one that reaches our&amp;nbsp;brother.&lt;/p&gt;
 quite a bit different. And because I could not really find a nice example of
 how to do flood fills in Haskell, I will post a general example here, just for
 you, fellow coder. So, here we&amp;nbsp;go:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;-- First, we define a couple of types, for better readability. The grid&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- First, we define a couple of types, for better readability. The grid&lt;/span&gt;
 &lt;span class="c1"&gt;-- will be a line-wise list of strings, with every char being a cell.&lt;/span&gt;
 &lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -670,7 +670,7 @@ is large and contains few or no walls, because the list of paths to iterate
 over grows rather large. You can probably gain some additional performance by
 introducing parallelism via &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;pseq&lt;/code&gt; if that becomes a&amp;nbsp;problem.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;PS&lt;/span&gt;&lt;/strong&gt; If you are taking part in the competition, flood fills will not bring
-you far, the solution is a different&amp;nbsp;one.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
+you far, the solution is a different&amp;nbsp;one.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 21 Jul 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-07-21:haskell-flood-fills.html</guid></item><item><title>Solving Sudokus</title><link>https://sulami.github.io/solving-sudokus.html</link><description>&lt;p&gt;So, here is more Haskell from me, because I really like it. This time around, I
 wrote a small and simple sudoku solver. Sudokus are really nice little puzzles
 that involve a partially filled 9x9 grid containing numbers from one to nine.
 The objective is to fill it following these&amp;nbsp;rules:&lt;/p&gt;
@@ -697,13 +697,13 @@ whole code including an example is on &lt;a href="https://github.com/sulami/spie
 &lt;li&gt;&lt;code&gt;solve&lt;/code&gt; solves a&amp;nbsp;puzzle&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;build&lt;/code&gt; is really simple, because it looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;build&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;build&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
 &lt;span class="nf"&gt;build&lt;/span&gt; &lt;span class="n"&gt;vs&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;vs&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This already exposes the internal structure of a puzzle, which is&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
 &lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;
 &lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt;  &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Coord&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="kr"&gt;type&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;  &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Cell&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -719,7 +719,7 @@ replacing zeros with underscores, insert some spaces for readability and prints
 the whole thing out. I just added it so I could check the results&amp;nbsp;easily.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;solve&lt;/code&gt; is the really interesting part here. Solve loops until a puzzle is
 solved, which looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;solved&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Bool&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;solved&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Bool&lt;/span&gt;
 &lt;span class="nf"&gt;solved&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;foldr&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt; &lt;span class="kt"&gt;False&lt;/span&gt; &lt;span class="kr"&gt;else&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kt"&gt;True&lt;/span&gt;
 
 &lt;span class="nf"&gt;solve&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
@@ -732,7 +732,7 @@ solved, which looks like&amp;nbsp;this:&lt;/p&gt;
 encounters an empty cell (&lt;code&gt;(_, 0)&lt;/code&gt;), it checks which numbers could be placed in
 it. If there is only one possibility, it changes the grid accordingly and
 continues. After a complete iteration, it returns the changed&amp;nbsp;grid.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;fill&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;fill&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
 &lt;span class="nf"&gt;fill&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;81&lt;/span&gt;          &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;
                 &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;           &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fill&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt;
                 &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;opts&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fill&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;change&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt; &lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="n"&gt;next&lt;/span&gt;
@@ -746,13 +746,13 @@ continues. After a complete iteration, it returns the changed&amp;nbsp;grid.&lt;
 &lt;p&gt;&lt;code&gt;change&lt;/code&gt; goes through the grid, looking for the cell we want to change,
 replaces the value and returns the changed grid, so we can use it for the
 remainder of the iteration. It is very easily implemented using a single &lt;code&gt;map&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;change&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;change&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt;
 &lt;span class="nf"&gt;change&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;\&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;gn&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kr"&gt;else&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gv&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;get&lt;/code&gt; gets the value of the cell at a coordinate in a grid, pretty&amp;nbsp;simple:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Value&lt;/span&gt;
 &lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;snd&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -764,7 +764,7 @@ chose to use a single list to represent the whole grid, having the list indices
 stored inside a cell comes in very handy, because we can use it to calculate
 the indices of the other cells in the same row, column and box. But first, this
 is &lt;code&gt;options&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;options&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;options&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Grid&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Cell&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Value&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;options&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rowWise&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colWise&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;boxWise&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt;
                     &lt;span class="n"&gt;filter&lt;/span&gt; &lt;span class="p"&gt;(`&lt;/span&gt;&lt;span class="n"&gt;notElem&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -778,7 +778,7 @@ one and nine that are not in that list. If you go back to &lt;code&gt;fill&lt;/c
 see that if the length of this list is one, this solution is filled&amp;nbsp;in.&lt;/p&gt;
 &lt;p&gt;To finish this off, here are the three remaining functions that calculate the
 coordinates of the affecting cells. I planned these out when I could not sleep&amp;nbsp;yesterday.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;rowWise&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Coord&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;rowWise&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Coord&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;rowWise&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="kr"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 
 &lt;span class="nf"&gt;colWise&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Coord&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Coord&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -800,7 +800,7 @@ then using the top-left cell of this box as a starting point to get the other
 eight coordinates, which are always in the same relative&amp;nbsp;position.&lt;/p&gt;
 &lt;p&gt;So this is the complete code to solve a sudoku puzzle. If you exclude the
 printing stuff, it is about 50 lines long, and there is a lot to optimize here,
-but I will leave it as it is, because I am only interested in the&amp;nbsp;PoC.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 06 Jul 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-07-06:solving-sudokus.html</guid></item><item><title>A fuzzy finder in Haskell</title><link>https://sulami.github.io/a-fuzzy-finder-in-haskell.html</link><description>&lt;p&gt;This is a response to &lt;em&gt;&lt;a href="http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python"&gt;FuzzyFinder - in 10 lines of Python&lt;/a&gt;&lt;/em&gt;, which was
+but I will leave it as it is, because I am only interested in the&amp;nbsp;PoC.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 06 Jul 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-07-06:solving-sudokus.html</guid></item><item><title>A fuzzy finder in Haskell</title><link>https://sulami.github.io/a-fuzzy-finder-in-haskell.html</link><description>&lt;p&gt;This is a response to &lt;em&gt;&lt;a href="http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python"&gt;FuzzyFinder - in 10 lines of Python&lt;/a&gt;&lt;/em&gt;, which was
 posted to reddit&amp;nbsp;yesterday.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Following the blogpost linked above, I decided to write my own fuzzy finder in
@@ -822,7 +822,7 @@ manipulation capabilities are incredible, so that we can solve this by
 implementing the search algorithm ourselves and still achieve good&amp;nbsp;performance.&lt;/p&gt;
 &lt;p&gt;So, let us get on to some actual code. The most interesting part here is the
 matching&amp;nbsp;algorithm:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;partOf&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Char&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Bool&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;partOf&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Char&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;Bool&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nf"&gt;partOf&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt;     &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nf"&gt;partOf&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
                   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;otherwise&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;partOf&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="n"&gt;xs&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -852,7 +852,7 @@ first and last matched character in the solution. This is the same Amjith did
 for sorting. All this data gets returned in a big list of tuples with both
 versions of the solutions and the match data. It is not pretty, but it&amp;nbsp;works.&lt;/p&gt;
 &lt;p&gt;The one function the module actually exports is &lt;code&gt;fuzzyFinder&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;fuzzyFinder&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;fuzzyFinder&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="kt"&gt;Char&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
 &lt;span class="nf"&gt;fuzzyFinder&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;fst&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;snd&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sort&lt;/span&gt; &lt;span class="n"&gt;combo&lt;/span&gt;
   &lt;span class="kr"&gt;where&lt;/span&gt;
     &lt;span class="n"&gt;combo&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt; &lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;
@@ -869,7 +869,7 @@ are not important, but you can find the complete source on &lt;a href="https://g
 &lt;p&gt;Now you might say, this cannot be fast, it is iterating through all this stuff
 and with big enough input it will take forever to present results. Let me show
 you&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;readL&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;String&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;readL&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;String&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="nf"&gt;readL&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;]&amp;quot;&lt;/span&gt;
 
 &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;getArgs&lt;/span&gt;
@@ -885,7 +885,7 @@ you&amp;nbsp;this:&lt;/p&gt;
 path of a list of possible solutions and performs the actions outlined above.
 Using a 2.2GHz Core 2 Duo, because I am using my laptop, and a 46K list
 containing over 5000 words (Thanks, Project Euler), this&amp;nbsp;happens:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;λ time ./interactive roro ../hEuler/022.input
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;λ time ./interactive roro ../hEuler/022.input
 [&amp;quot;ROBERTO&amp;quot;,&amp;quot;RODRIGO&amp;quot;,&amp;quot;ROSARIO&amp;quot;,&amp;quot;GREGORIO&amp;quot;,&amp;quot;RIGOBERTO&amp;quot;]
 ./interactive roro ../hEuler/022.input  0.08s user 0.00s system 96% cpu 0.079 total
 &lt;/pre&gt;&lt;/div&gt;
@@ -898,7 +898,7 @@ enough for auto-completion, which is the main use for fuzzy&amp;nbsp;finders.&lt
 &lt;p&gt;So overall, I am really happy with how this turned out. I was able to write
 this on one morning despite still learning the language. It is reasonably
 concise despite the fact that I did not use regular expressions but searched
-the strings manually and also quite&amp;nbsp;fast.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jun 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-06-24:a-fuzzy-finder-in-haskell.html</guid></item><item><title>Thoughts on Windows 10 and free software</title><link>https://sulami.github.io/thoughts-on-windows-10-and-free-software.html</link><description>&lt;p&gt;Today I had a very interesting conversation about the modern software world
+the strings manually and also quite&amp;nbsp;fast.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 24 Jun 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-06-24:a-fuzzy-finder-in-haskell.html</guid></item><item><title>Thoughts on Windows 10 and free software</title><link>https://sulami.github.io/thoughts-on-windows-10-and-free-software.html</link><description>&lt;p&gt;Today I had a very interesting conversation about the modern software world
 with a non-technical friend of&amp;nbsp;mine.&lt;/p&gt;
 &lt;p&gt;Back when it happened, I considered Windows Vista a slip, they had something
 new in mind, I could see the vision, but it did not work out, which is why I
@@ -963,7 +963,7 @@ buying Microsoft.&lt;/a&gt; It just works, except when it does&amp;nbsp;not.&lt;
 even more sh*t shoveled upon &lt;span class="caps"&gt;NT6&lt;/span&gt;, which is the trusty basis since Vista.
 &lt;a href="http://blog.zorinaq.com/?e=74"&gt;Microsoft has this horrible mentality of just adding more and more without
 ever fixing anything&lt;/a&gt;. I guess it is already too late to save &lt;span class="caps"&gt;NT6&lt;/span&gt;
-without a rewrite. But good luck pushing a rewrite through&amp;nbsp;management.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 23 Jun 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-06-23:thoughts-on-windows-10-and-free-software.html</guid></item><item><title>Which OS do I use?</title><link>https://sulami.github.io/which-os-do-i-use.html</link><description>&lt;p&gt;Since I &lt;a href="https://sulami.github.io/systemdebacle.html"&gt;wrote about systemd&lt;/a&gt; a few weeks back, I have been looking out for
+without a rewrite. But good luck pushing a rewrite through&amp;nbsp;management.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 23 Jun 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-06-23:thoughts-on-windows-10-and-free-software.html</guid></item><item><title>Which OS do I use?</title><link>https://sulami.github.io/which-os-do-i-use.html</link><description>&lt;p&gt;Since I &lt;a href="https://sulami.github.io/systemdebacle.html"&gt;wrote about systemd&lt;/a&gt; a few weeks back, I have been looking out for
 an operating system that I truly love, that is without systemd whatsoever. My
 ideal specifications involved a philosophy that is close to &lt;span class="caps"&gt;BSD&lt;/span&gt;&amp;#8217;s, with a focus
 on stable software and exhaustive documentation, while being reasonable modern
@@ -986,7 +986,7 @@ OpenRC/eudev/syslog-ng/lightdm/other software which has been replaced and/or
 eaten by&amp;nbsp;systemd.&lt;/p&gt;
 &lt;p&gt;The point of this post is merely to tell you, if you are interested in this
 sort of thing, check it out. It is more practical that *&lt;span class="caps"&gt;BSD&lt;/span&gt; or Gentoo, and
-Void Linux has been a bit hit and miss in my personal&amp;nbsp;experience.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 10 Jun 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-06-10:which-os-do-i-use.html</guid></item><item><title>SystemDebacle</title><link>https://sulami.github.io/systemdebacle.html</link><description>&lt;p&gt;I am writing about systemd today, because now, that the new release of Debian
+Void Linux has been a bit hit and miss in my personal&amp;nbsp;experience.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 10 Jun 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-06-10:which-os-do-i-use.html</guid></item><item><title>SystemDebacle</title><link>https://sulami.github.io/systemdebacle.html</link><description>&lt;p&gt;I am writing about systemd today, because now, that the new release of Debian
 with systemd is out, there is pretty much only one major distribution left that
 is not forcing its users to use systemd, that being Gentoo. I have for quite a
 long time defended systemd while it has been the target of extensive criticism
@@ -1023,7 +1023,7 @@ which is just as important in the open-source ecosystem as in the commercial
 space. Imagine all the lost innovation because an outright better
 init-system/syslogger/whatever systemd swallowed cannot gain any traction
 without&amp;nbsp;users.&lt;/p&gt;
-&lt;p&gt;I believe this is a very dangerous path we are&amp;nbsp;walking.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 28 Apr 2015 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2015-04-28:systemdebacle.html</guid></item><item><title>Homeworld on Linux (or OSX)</title><link>https://sulami.github.io/homeworld-on-linux-or-osx.html</link><description>&lt;p&gt;Today I will write about something slightly different than usual. I will be
+&lt;p&gt;I believe this is a very dangerous path we are&amp;nbsp;walking.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 28 Apr 2015 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-04-28:systemdebacle.html</guid></item><item><title>Homeworld on Linux (or OSX)</title><link>https://sulami.github.io/homeworld-on-linux-or-osx.html</link><description>&lt;p&gt;Today I will write about something slightly different than usual. I will be
 writing about a videogame, Homeworld. These days, Homeworld 1 and 2 are being
 released in remastered editions, with support for current resolutions and so
 on. This led me to playing the original. Homeworld 1 has been ported to Linux
@@ -1038,7 +1038,7 @@ put it in the game directory as well (it is in &lt;code&gt;bin&lt;/code&gt; in t
 also need to download some &lt;span class="caps"&gt;SDL&lt;/span&gt; libraries, but everything should be in your
 distro&amp;#8217;s repositories. If you have done everything right, you can start
 Homeworld from the shell&amp;nbsp;using:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;SDL_AUDIODRIVER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;alsa ./homeworld
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;SDL_AUDIODRIVER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;alsa ./homeworld
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1049,7 +1049,7 @@ sound, so you have to proxy it through &lt;span class="caps"&gt;ALSA&lt;/span&gt
 &lt;p&gt;You can also start Homeworld on a separate X-Server (or in Xephyr) to preserve
 your resolution (using the &lt;span class="caps"&gt;DISPLAY&lt;/span&gt; variable), but this might interfere with the
 mouse in some cases. Instead, you can also use the parameter &lt;code&gt;/window&lt;/code&gt; to open
-it in windowed mode, which works pretty&amp;nbsp;well.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 23 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-23:homeworld-on-linux-or-osx.html</guid></item><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
+it in windowed mode, which works pretty&amp;nbsp;well.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 23 Feb 2015 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-02-23:homeworld-on-linux-or-osx.html</guid></item><item><title>My thoughts about Go</title><link>https://sulami.github.io/my-thoughts-about-go.html</link><description>&lt;p&gt;After having used &lt;a href="https://golang.org"&gt;Go&lt;/a&gt; almost exclusively for the last two weeks, and
 for the first time seriously, I think I can give a general statement on what I
 think about it, analogous to &lt;a href="https://sulami.github.io/my-thoughts-about-d.html"&gt;D&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Go has been in development at Google for a few years now, mainly by Robert
@@ -1058,7 +1058,7 @@ specifics on &lt;a href="https://en.wikipedia.org/wiki/Go_%28programming_languag
 first impression is, while D feels like a child of C and Python, or &amp;#8220;C++ done
 right&amp;#8221;, Go feels a lot more like raw C modernized.  Like with D, I will give
 you a first look at something&amp;nbsp;simple:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
 
@@ -1080,7 +1080,7 @@ shell-pipe-style way to produce data-pipelines. Channels are managed FIFOs,
 used by Goroutines to communicate. All of this works very well and is
 incredibly simple, making Go a fantastic language for handling lots of &lt;span class="caps"&gt;IO&lt;/span&gt;, like
 load balancers or maybe database connections. It just scales well. A Goroutine&amp;nbsp;example:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="c1"&gt;// do some work here&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -1099,7 +1099,7 @@ load balancers or maybe database connections. It just scales well. A Goroutine&a
 right choice for you. There are no native objects like in Python, D or other
 modern languages. At least they do not look like it. Objects are C-style
 typedefs, often structs, and methods can be attached in the following&amp;nbsp;way:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;Vertex&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;type&lt;/span&gt; &lt;span class="nx"&gt;Vertex&lt;/span&gt; &lt;span class="kd"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;Y&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -1129,11 +1129,11 @@ will drive you nuts, though. And the fact that because of the way Go handles
 certain things, like visibility (everything starting with a capital letter is
 &amp;#8220;exported&amp;#8221;), cause you to having to type a lot more than in other&amp;nbsp;languages.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;TL&lt;/span&gt;;&lt;span class="caps"&gt;DR&lt;/span&gt;&lt;/strong&gt; It feels boring, it feels old, and as a consequence overly laborious.
-As a general purpose language, I feel D does the job a lot&amp;nbsp;better.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 18 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-18:my-thoughts-about-go.html</guid></item><item><title>A practical solution for Twitch.tv</title><link>https://sulami.github.io/a-practical-solution-for-twitchtv.html</link><description>&lt;p&gt;I have now written three scripts to stream to Twitch.tv from Linux, and all of
+As a general purpose language, I feel D does the job a lot&amp;nbsp;better.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 18 Feb 2015 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-02-18:my-thoughts-about-go.html</guid></item><item><title>A practical solution for Twitch.tv</title><link>https://sulami.github.io/a-practical-solution-for-twitchtv.html</link><description>&lt;p&gt;I have now written three scripts to stream to Twitch.tv from Linux, and all of
 them were just hardcoded ffmpeg commands. Today I am proud to present an actual
 streaming script that takes arguments, passes them to ffmpeg in the proper way
 to enable streaming and parses the output. The code can be found&amp;nbsp;here:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/sulami/streamo"&gt;https://github.com/sulami/streamo&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 08 Feb 2015 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2015-02-08:a-practical-solution-for-twitchtv.html</guid></item><item><title>Using Xephyr to simulate multiple monitors</title><link>https://sulami.github.io/using-xephyr-to-simulate-multiple-monitors.html</link><description>&lt;p&gt;One of the most requested features in &lt;a href="https://github.com/sulami/frankenwm"&gt;FrankenWM&lt;/a&gt; is support for multiple
+&lt;p&gt;&lt;a href="https://github.com/sulami/streamo"&gt;https://github.com/sulami/streamo&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sun, 08 Feb 2015 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2015-02-08:a-practical-solution-for-twitchtv.html</guid></item><item><title>Using Xephyr to simulate multiple monitors</title><link>https://sulami.github.io/using-xephyr-to-simulate-multiple-monitors.html</link><description>&lt;p&gt;One of the most requested features in &lt;a href="https://github.com/sulami/frankenwm"&gt;FrankenWM&lt;/a&gt; is support for multiple
 monitors. I currently only use one monitor, mostly because I do not need more
 right now (there have been time where I have been using 4 monitors at the same
 time, all connected to one machine). This situation makes it quite difficult
@@ -1146,7 +1146,7 @@ and easy to use (in comparison to Xnest). I have also experimented with Xvfb
 and Xdmx, the latter being unable to use randr, which is a dealbraker. But
 while scraping mailing lists today I found the magical solution, and it only
 needs&amp;nbsp;Xephyr.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &amp;amp;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &amp;amp;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1154,7 +1154,7 @@ needs&amp;nbsp;Xephyr.&lt;/p&gt;
 and :1.1, if that makes any sense. The result looks something like&amp;nbsp;this:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="scrot" src="https://sulami.github.io/pictures/scrot_xephyr_multihead.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Because I am currently working on the proper support, FrankenWM still uses the
-whole screen as one, rather than using a separate desktop for each&amp;nbsp;monitor.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 19 Dec 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-12-19:using-xephyr-to-simulate-multiple-monitors.html</guid></item><item><title>On social media</title><link>https://sulami.github.io/on-social-media.html</link><description>&lt;p&gt;Do we need social networks? I do not think so. This might sound fairly drastic
+whole screen as one, rather than using a separate desktop for each&amp;nbsp;monitor.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 19 Dec 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-12-19:using-xephyr-to-simulate-multiple-monitors.html</guid></item><item><title>On social media</title><link>https://sulami.github.io/on-social-media.html</link><description>&lt;p&gt;Do we need social networks? I do not think so. This might sound fairly drastic
 which I am aware of, but let me explain how I came to this conclusion, network
 by&amp;nbsp;network:&lt;/p&gt;
 &lt;h1&gt;Facebook&lt;/h1&gt;
@@ -1201,7 +1201,7 @@ less obsessive about sharing how cool their life is, Facebook will go&amp;nbsp;d
 interested in have your number. Anyone on the internet you might want to
 interact with is probably a member of a community you are a member of as well.
 Reddit does this, 4chan, Hackernews, &lt;span class="caps"&gt;IRC&lt;/span&gt; and even mailinglists do this.
-Facebook, Twitter and G+ do&amp;nbsp;not.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 27 Oct 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-10-27:on-social-media.html</guid></item><item><title>Choosing a mobile workstation</title><link>https://sulami.github.io/choosing-a-mobile-workstation.html</link><description>&lt;h1&gt;Update&amp;nbsp;2014-10-30&lt;/h1&gt;
+Facebook, Twitter and G+ do&amp;nbsp;not.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 27 Oct 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-10-27:on-social-media.html</guid></item><item><title>Choosing a mobile workstation</title><link>https://sulami.github.io/choosing-a-mobile-workstation.html</link><description>&lt;h1&gt;Update&amp;nbsp;2014-10-30&lt;/h1&gt;
 &lt;p&gt;Peter Wu wrote me about this topic and sent me &lt;a href="http://brianolsen.wordpress.com/2014/04/08/system-76-gazelle-professional-9-clevo-w650sz-short-review/"&gt;a review&lt;/a&gt; of the System76
 Gazelle, which raises concerns. A quick search for Galago reviews also resulted
 in &lt;a href="http://bitflip.net/system76-galago-ultrapro-review-clevo-w740su-259/"&gt;another quite negative review&lt;/a&gt;. The System76 notebooks seem to be
@@ -1322,7 +1322,7 @@ enough space to fit up to three 2.5&amp;#8221; SSDs. For 860€ I can get the sm
 core with HyperThreading, which is enough, and 16 &lt;span class="caps"&gt;GB&lt;/span&gt; memory on this superb
 platform. That is obviously more than I would pay for a desktop, which would
 also enables me to switch parts for updgrades later, but the mobility is what
-counts&amp;nbsp;here.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 24 Oct 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-10-24:choosing-a-mobile-workstation.html</guid></item><item><title>My thoughts about D</title><link>https://sulami.github.io/my-thoughts-about-d.html</link><description>&lt;p&gt;Roughly two weeks ago, a blogpost about the &lt;a href="http://dlang.org"&gt;D language&lt;/a&gt; popped up on both
+counts&amp;nbsp;here.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 24 Oct 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-10-24:choosing-a-mobile-workstation.html</guid></item><item><title>My thoughts about D</title><link>https://sulami.github.io/my-thoughts-about-d.html</link><description>&lt;p&gt;Roughly two weeks ago, a blogpost about the &lt;a href="http://dlang.org"&gt;D language&lt;/a&gt; popped up on both
 hackernews and reddit. I took the time to read it, and it inspired me to try D
 out for myself. Here are some of my thoughts, about two weeks into the
 language, with prior experience in C but no real experience in C++ or
@@ -1345,7 +1345,7 @@ scriptable (actually a lot of the dub packages are just C-library bindings).
 This is what rescues D in my eyes. Python is still one of the best userspace
 language out there because of its versatility, and D can benefit from C&amp;#8217;s&amp;nbsp;versatility.&lt;/p&gt;
 &lt;p&gt;But let me give you a real first impression of&amp;nbsp;D:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -1388,7 +1388,7 @@ believe D could be the next big language, if it gets&amp;nbsp;adopted.&lt;/p&gt;
 performance requirements, has a great standard library and relatively simple
 interaction with C code, as well as a nice package manager/build system combo.
 It lacks in terms of adoption, resulting in few ports to D, few frameworks, few
-third-party documentation. If D gets adopted, it will be a major&amp;nbsp;success.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 03 Sep 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-09-03:my-thoughts-about-d.html</guid></item><item><title>Write code every day</title><link>https://sulami.github.io/write-code-every-day.html</link><description>&lt;p&gt;After failing several times, today I managed to get a 30-day streak on my
+third-party documentation. If D gets adopted, it will be a major&amp;nbsp;success.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 03 Sep 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-09-03:my-thoughts-about-d.html</guid></item><item><title>Write code every day</title><link>https://sulami.github.io/write-code-every-day.html</link><description>&lt;p&gt;After failing several times, today I managed to get a 30-day streak on my
 personal GitHub account. This happened, because I challenged myself a few
 months ago to accomplish exactly that. Now, that I succeeded after I once
 failed at day 29 by simply forgetting to write something, I can share my
@@ -1429,7 +1429,7 @@ saturday afternoon is fine, and even spending a whole weekend to accomplish
 something is great, but you cannot do this every weekend, or you find yourself
 doing nothing but coding and sleeping, which is not good at&amp;nbsp;all.&lt;/p&gt;
 &lt;p&gt;The final conclusion is: If you have fun doing it, code in your free time, but
-also do other things, preferably without computers and with other&amp;nbsp;people.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Aug 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-08-11:write-code-every-day.html</guid></item><item><title>Using git locally</title><link>https://sulami.github.io/using-git-locally.html</link><description>&lt;p&gt;When you write your code, using a version control mechanism like git is
+also do other things, preferably without computers and with other&amp;nbsp;people.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 11 Aug 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-08-11:write-code-every-day.html</guid></item><item><title>Using git locally</title><link>https://sulami.github.io/using-git-locally.html</link><description>&lt;p&gt;When you write your code, using a version control mechanism like git is
 crucial, even more than writing proper unit tests, even when working on your
 own, even when it is only your evening project. Just use git and commit
 regularly, it will not hurt you (unless your workflow is inherently broken, but
@@ -1451,7 +1451,7 @@ repos in a way that Github or Bitbucket do it, just without the web interface.
 We assume we already have a repo containing out working directory, maybe even
 some commits, does not matter. The following snippet demonstrates establishing
 a git repo in my home directory which we can use to clone, push and&amp;nbsp;pull.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;% mkdir -p ~/git/myrepo.git&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% mkdir -p ~/git/myrepo.git&lt;/span&gt;
 &lt;span class="c"&gt;% cd ~/git/myrepo.git&lt;/span&gt;
 &lt;span class="c"&gt;% git init --bare&lt;/span&gt;
 &lt;span class="n"&gt;Initialized&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sulami&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;myrepo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
@@ -1469,7 +1469,7 @@ interesting because we can use them to push changes around to various machines,
 work together with others more efficiently and much more. So here is how we
 setup a local remote git server, given our repo alreay exists like before. My
 ssh login uses my ssh-key to sign me&amp;nbsp;in.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;% ssh sulami@remote&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% ssh sulami@remote&lt;/span&gt;
 &lt;span class="c"&gt;% mkdir -p /srv/git/myrepo.git&lt;/span&gt;
 &lt;span class="c"&gt;% cd /srv/git/myrepo.git&lt;/span&gt;
 &lt;span class="c"&gt;% git init --bare --shared=group&lt;/span&gt;
@@ -1487,7 +1487,7 @@ later on, so eventual coworkers can use their own ssh-logins to use this
 repository. You can now think of exposing it to the web, or maybe installing
 &lt;a href="http://git.zx2c4.com/cgit/"&gt;cgit&lt;/a&gt; to provide a browser-friendly interface. It all depends on what
 you need, but to just synchronize your code amongst several machines there is
-nothing else&amp;nbsp;nessecary.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Jul 2014 01:50:00 +0200</pubDate><guid>tag:sulami.github.io,2014-07-15:using-git-locally.html</guid></item><item><title>My own window manager</title><link>https://sulami.github.io/my-own-window-manager.html</link><description>&lt;p&gt;I accidentaly wrote a &lt;a href="https://github.com/sulami/frankenwm"&gt;window manager&lt;/a&gt;. It started out by cloning &lt;a href="https://github.com/cloudef/monsterwm-xcb"&gt;cloudef&amp;#8217;s
+nothing else&amp;nbsp;nessecary.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 15 Jul 2014 01:50:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-07-15:using-git-locally.html</guid></item><item><title>My own window manager</title><link>https://sulami.github.io/my-own-window-manager.html</link><description>&lt;p&gt;I accidentaly wrote a &lt;a href="https://github.com/sulami/frankenwm"&gt;window manager&lt;/a&gt;. It started out by cloning &lt;a href="https://github.com/cloudef/monsterwm-xcb"&gt;cloudef&amp;#8217;s
 monsterwm-xcb&lt;/a&gt; to apply some smaller fixes, maybe opening a pull request to
 merge them upstream again. But I quickly found more and more things to fix,
 then I started to add some smaller features I missed from other window
@@ -1527,7 +1527,7 @@ not have a lot of experience with the &lt;span class="caps"&gt;AUR&lt;/span&gt;.
 will need the &lt;span class="caps"&gt;XCB&lt;/span&gt; headers including the util, util-wm and keysyms ones, which
 you can probably pull out of your distribution&amp;#8217;s repositories. I have yet to
 build it on my OpenBSD machine, so I cannot say anything yet to building it on
-the &lt;span class="caps"&gt;BSD&lt;/span&gt;&amp;nbsp;family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 05 Jul 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-07-05:my-own-window-manager.html</guid></item><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the &lt;span class="caps"&gt;HTML5&lt;/span&gt;-Player on YouTube, because Flash kept breaking
+the &lt;span class="caps"&gt;BSD&lt;/span&gt;&amp;nbsp;family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 05 Jul 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-07-05:my-own-window-manager.html</guid></item><item><title>Getting rid of Flash</title><link>https://sulami.github.io/getting-rid-of-flash.html</link><description>&lt;p&gt;I started using the &lt;span class="caps"&gt;HTML5&lt;/span&gt;-Player on YouTube, because Flash kept breaking
 fullscreen, and I have not found a single video not supporting &lt;span class="caps"&gt;HTML5&lt;/span&gt; in over a
 month, so I would consider Flash-less YouTube a valid option. I also discovered
 that Vimeo uses a pretty nice &lt;span class="caps"&gt;HTML5&lt;/span&gt; player on their site, thus not requiring
@@ -1543,7 +1543,7 @@ occasionally use Flash on is Twitch.tv.
 stream and pipes it to a video player of your choice, like &lt;span class="caps"&gt;VLC&lt;/span&gt;. I have been
 using irssi instead of the obnoxious and slow webchat for quite a while now and
 it seems like I only have to visit the website to figure out who I like is
-streaming.  This enabled me to disable (cough) the Flash plugin&amp;nbsp;alltogether.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 27 May 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-05-27:getting-rid-of-flash.html</guid></item><item><title>Test-driven development in vim</title><link>https://sulami.github.io/test-driven-development-in-vim.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (&lt;span class="caps"&gt;TDD&lt;/span&gt;)&lt;/a&gt; is a way of developing software by using
+streaming.  This enabled me to disable (cough) the Flash plugin&amp;nbsp;alltogether.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 27 May 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-05-27:getting-rid-of-flash.html</guid></item><item><title>Test-driven development in vim</title><link>https://sulami.github.io/test-driven-development-in-vim.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;Test-driven development (&lt;span class="caps"&gt;TDD&lt;/span&gt;)&lt;/a&gt; is a way of developing software by using
 tests over and over again. When I first was introduced to this concept, I
 thought, automated tests are a nice idea, why not? Then I read a book about
 &lt;span class="caps"&gt;TDD&lt;/span&gt;, which proceeded to explain how you start your project by writing a test
@@ -1567,7 +1567,7 @@ written using &lt;span class="caps"&gt;TDD&lt;/span&gt;, but giving usually rath
 interpreted languages, &lt;span class="caps"&gt;TDD&lt;/span&gt; is even more useful, as you will instantaneously see
 when a change breaks any functionality. To make testing easier, we will define
 a keyboard mapping to start our tests from within&amp;nbsp;vim.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;map &amp;lt;Leader&amp;gt;t :!make -B tests &amp;amp;&amp;amp; ./tests&amp;lt;CR&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;map &amp;lt;Leader&amp;gt;t :!make -B tests &amp;amp;&amp;amp; ./tests&amp;lt;CR&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1576,10 +1576,10 @@ installed), compile our &lt;em&gt;tests.c&lt;/em&gt; file and run it. Depending 
 you are using, which kind of application you are developing and how your tests
 work, you might want to change this a bit. I am testing a library I am writing,
 which gets included in &lt;em&gt;tests.c&lt;/em&gt;.  The basic structure looks like&amp;nbsp;this:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Tests for my library */&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;assert.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;quot;mylib.h&amp;quot;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* Tests for my library */&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;assert.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;mylib.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="cp"&gt;#define run_test(fn_name) \&lt;/span&gt;
 &lt;span class="cp"&gt;    printf(&amp;quot;%s\n&amp;quot;, #fn_name); \&lt;/span&gt;
@@ -1605,7 +1605,7 @@ can also be a function call, assert stops the whole program and prints out the
 line which produced the error. If everything works as intended, it prints all
 the tests it ran, prompts for enter and returns us to vim.  An important part
 is to only delete old tests, when the condition they test for is no longer
-wanted, so you always test for basic functionality as well as the final&amp;nbsp;results.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 05 May 2014 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2014-05-05:test-driven-development-in-vim.html</guid></item><item><title>IRC-client showdown, extreme version</title><link>https://sulami.github.io/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love &lt;span class="caps"&gt;IRC&lt;/span&gt;. I try to keep all my common software on the shell in case I
+wanted, so you always test for basic functionality as well as the final&amp;nbsp;results.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 05 May 2014 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-05-05:test-driven-development-in-vim.html</guid></item><item><title>IRC-client showdown, extreme version</title><link>https://sulami.github.io/irc-client-showdown-extreme-version.html</link><description>&lt;p&gt;I love &lt;span class="caps"&gt;IRC&lt;/span&gt;. I try to keep all my common software on the shell in case I
 somehow loose my ability to use X. This also enables me to use global
 colorscheme and is performance-wise advantegous. There are many reasons
 to live in the shell (aside from web-browsing, which is a pain), but
@@ -1644,7 +1644,7 @@ performance impact, using about 12 &lt;span class="caps"&gt;MB&lt;/span&gt; of &
 For comparison though, connecting through netcat uses 644 &lt;span class="caps"&gt;KB&lt;/span&gt; of &lt;span class="caps"&gt;RAM&lt;/span&gt;. Of
 course, this is without logging, formatting or anything except just
 printing what the server sends me, but for &lt;span class="caps"&gt;IRC&lt;/span&gt;, netcat is actually sort
-of viable, in emergency&amp;nbsp;cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
+of viable, in emergency&amp;nbsp;cases.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-03-19:irc-client-showdown-extreme-version.html</guid></item><item><title>My take on secure communication</title><link>https://sulami.github.io/my-take-on-secure-communication.html</link><description>&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not really into crypto (yet?) and everything I
 write here is purely idealistic and probably somewhat&amp;nbsp;unrealistic/stupid&lt;/p&gt;
 &lt;h2&gt;The current&amp;nbsp;situation&lt;/h2&gt;
 &lt;p&gt;Some time ago, Facebook bought Whatsapp, which was my main way of
@@ -1759,7 +1759,7 @@ this, but obviously the scope is gigantic and there are experts needed
 on crypto, network messaging, development for specific platforms,
 interface designers, and the list goes on. If you read this and are
 interested in starting such a project, do not hesitate to contact me,
-someone has to make the first step. My public key is on the&amp;nbsp;contact-page&amp;#8230;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-03-19:my-take-on-secure-communication.html</guid></item><item><title>My own perfect world (aka what you should do)</title><link>https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
+someone has to make the first step. My public key is on the&amp;nbsp;contact-page&amp;#8230;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Wed, 19 Mar 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-03-19:my-take-on-secure-communication.html</guid></item><item><title>My own perfect world (aka what you should do)</title><link>https://sulami.github.io/my-own-perfect-world-aka-what-you-should-do.html</link><description>&lt;p&gt;I have to admit, I am a little bit perfectionist. Maybe more. There are
 some conventions I found useful, but there are always people who do not
 follow those conventions, some because they do not want to, but mostly
 they just do not care. I just want to list some (read: non-exhaustive
@@ -1896,7 +1896,7 @@ always the first&amp;nbsp;ones.&lt;/p&gt;
 &lt;li&gt;&lt;span class="caps"&gt;CMS&lt;/span&gt;: Django (anything), Wordpress (blogs),&amp;nbsp;Drupal&lt;/li&gt;
 &lt;li&gt;Programming languages: Python (platform independent, modular, nice
     to write and read), C(++) (faster, for performance-critical&amp;nbsp;applications)&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid></item><item><title>My favourite Tech-Talks</title><link>https://sulami.github.io/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-03-17:my-own-perfect-world-aka-what-you-should-do.html</guid></item><item><title>My favourite Tech-Talks</title><link>https://sulami.github.io/my-favourite-tech-talks.html</link><description>&lt;p&gt;I love talks, others might call them presentations. There are thousands
 of talks on YouTube and watching them all would take ages, but I
 sometimes watch talks before going to bed instad of watching &lt;span class="caps"&gt;TV&lt;/span&gt;.  So I
 thought, I could compile a small list of my favourite talks featuring
@@ -1940,7 +1940,7 @@ started on kernel&amp;nbsp;development&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;There are a lot more good talks, but my time is sort of limited and
-sadly I can&amp;#8217;t really focus on working while watching&amp;nbsp;talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 00:00:00 +0100</pubDate><guid>tag:sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
+sadly I can&amp;#8217;t really focus on working while watching&amp;nbsp;talks.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Sat, 25 Jan 2014 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:sulami.github.io,2014-01-25:my-favourite-tech-talks.html</guid></item><item><title>Prism: What to do</title><link>https://sulami.github.io/prism-what-to-do.html</link><description>&lt;p&gt;While following the recent international events, I (and probably
 everyone else) heard about the &lt;span class="caps"&gt;NSA&lt;/span&gt; and Prism. Now I always distrusted
 big companies, especially the ones from the &lt;span class="caps"&gt;US&lt;/span&gt;, because I know money and
 power are everything over there. If they want to spy on you, they can.
@@ -1984,7 +1984,7 @@ social network misses the&amp;nbsp;point.&lt;/p&gt;
 using Tor permanently, only use end-to-end encrypted websites and
 disable all scripts and plugins, then use custom &lt;span class="caps"&gt;DNS&lt;/span&gt;-servers and stuff
 like this, but chances are, someone will see where you are browsing,
-like the guy standing behind&amp;nbsp;you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2013-06-18:prism-what-to-do.html</guid></item><item><title>Raspberry Pi: Radio-Alarm</title><link>https://sulami.github.io/raspberry-pi-radio-alarm.html</link><description>&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
+like the guy standing behind&amp;nbsp;you.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 18 Jun 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2013-06-18:prism-what-to-do.html</guid></item><item><title>Raspberry Pi: Radio-Alarm</title><link>https://sulami.github.io/raspberry-pi-radio-alarm.html</link><description>&lt;p&gt;Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
 long, which results in high power consumption and noise. While netbooks
 can counter this to a certain degree, the Raspberry Pi is the optimal
@@ -1999,7 +1999,7 @@ way of achieving our goal. You will&amp;nbsp;need:&lt;/p&gt;
 connect everything and boot it up, then access a console. We need to
 install mplayer, which will play our stream. If needed, update the
 package lists before&amp;nbsp;installing.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# Raspian:
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Raspian:
 sudo apt-get install mplayer
 
 # ArchARM (as root):
@@ -2018,7 +2018,7 @@ fallback if the internet connection or your radio station goes down, so
 you can switch to a local file to play instead. Use any text editor you
 want (vi, vim, emacs, nano, or graphical ones) to write something like
 my &lt;em&gt;playlist.pls&lt;/em&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;[playlist]&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[playlist]&lt;/span&gt;
 &lt;span class="na"&gt;File1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;http://mp3.ht-stream.net&lt;/span&gt;
 &lt;span class="na"&gt;Title1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;HouseTime&lt;/span&gt;
 &lt;span class="na"&gt;Lenght1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;-1&lt;/span&gt;
@@ -2037,7 +2037,7 @@ use the &lt;em&gt;-shuffle&lt;/em&gt; parameter later on to play random&amp;nbsp
 a hint) and type &amp;#8220;&lt;em&gt;crontab -e&lt;/em&gt;&amp;#8221; to enter your cronjob (preferably as a
 non-root user). Depending on your &lt;span class="caps"&gt;OS&lt;/span&gt; there will be some comments you can
 ignore. Add a entry like the&amp;nbsp;following:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;30 6 * * * env DISPLAY=:0.0 /usr/bin/mplayer -playlist /home/pi/playlist.pls &amp;gt; /dev/null
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;30 6 * * * env DISPLAY=:0.0 /usr/bin/mplayer -playlist /home/pi/playlist.pls &amp;gt; /dev/null
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2050,7 +2050,7 @@ won&amp;#8217;t play and istead send you something like &amp;#8220;connection by
 refused&amp;#8221; per system-mail. Save the file to install the&amp;nbsp;cronjob.&lt;/p&gt;
 &lt;p&gt;When waking up, you need to kill mplayer, as it is running in the
 background. The easiest way of doing so is via &amp;#8220;&lt;em&gt;killall mplayer&lt;/em&gt;&amp;#8220;,
-which is not the finest way of doing things but should do the&amp;nbsp;job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to &lt;span class="caps"&gt;IT&lt;/span&gt;-people, especially the ones ocassionally programming,
+which is not the finest way of doing things but should do the&amp;nbsp;job.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Fri, 07 Jun 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2013-06-07:raspberry-pi-radio-alarm.html</guid></item><item><title>Learning to type properly</title><link>https://sulami.github.io/learning-to-type-properly.html</link><description>&lt;p&gt;When it comes to &lt;span class="caps"&gt;IT&lt;/span&gt;-people, especially the ones ocassionally programming,
 typing properly is a mandatory skill, but basically everyone benefits from fast
 typing. Most people developed some kind of 2-6-finger system, which might work
 well, but is still suboptimal compared to 10-finger touch typing. There are
@@ -2061,9 +2061,9 @@ than a browser with flash-plugin. Here are&amp;nbsp;some:&lt;/p&gt;
 settings, own texts, websites and graphical&amp;nbsp;over-time-comparison.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://play.typeracer.com/" title="Typeracer"&gt;Typeracer&lt;/a&gt;: Competitive typing of texts from popular movies and&amp;nbsp;books.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://typing.io/" title="typing.io"&gt;typing.io&lt;/a&gt;: Special typing training for code, lots of examples for
-every popular&amp;nbsp;languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2013-05-14:learning-to-type-properly.html</guid></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitchtv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
+every popular&amp;nbsp;languages.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2013-05-14:learning-to-type-properly.html</guid></item><item><title>Streaming to Twitch.tv using ffmpeg and ALSA</title><link>https://sulami.github.io/streaming-to-twitchtv-using-ffmpeg-and-alsa.html</link><description>&lt;p&gt;Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you&amp;nbsp;go:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;INRES=&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;INRES=&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
 &lt;span class="x"&gt;OUTRES=&amp;quot;1920x1080&amp;quot;&lt;/span&gt;
 &lt;span class="x"&gt;FPS=&amp;quot;30&amp;quot;&lt;/span&gt;
 &lt;span class="x"&gt;QUAL=&amp;quot;medium&amp;quot;&lt;/span&gt;
@@ -2097,4 +2097,4 @@ still got my script, so here you&amp;nbsp;go:&lt;/p&gt;
 and output), aswell as &lt;span class="caps"&gt;FPS&lt;/span&gt;. In lines 13-16 you can change your audio
 devices (speakers and microphone, get them from &amp;#8220;&lt;em&gt;arecord -l&amp;#8221; &lt;/em&gt;for
 microphones and&lt;em&gt;&amp;#8220;aplay -l&amp;#8221;&lt;/em&gt;for speakers). Adjust threads to the amount
-of &lt;span class="caps"&gt;CPU&lt;/span&gt; cores you want to use to&amp;nbsp;encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid>tag:sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid></item></channel></rss>
+of &lt;span class="caps"&gt;CPU&lt;/span&gt; cores you want to use to&amp;nbsp;encode.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sulami</dc:creator><pubDate>Tue, 14 May 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:sulami.github.io,2013-05-14:streaming-to-twitchtv-using-ffmpeg-and-alsa.html</guid></item></channel></rss>

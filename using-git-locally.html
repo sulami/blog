@@ -60,7 +60,7 @@ repos in a way that Github or Bitbucket do it, just without the web interface.
 We assume we already have a repo containing out working directory, maybe even
 some commits, does not matter. The following snippet demonstrates establishing
 a git repo in my home directory which we can use to clone, push and&nbsp;pull.</p>
-<div class="codehilite"><pre><span class="c">% mkdir -p ~/git/myrepo.git</span>
+<div class="codehilite"><pre><span></span><span class="c">% mkdir -p ~/git/myrepo.git</span>
 <span class="c">% cd ~/git/myrepo.git</span>
 <span class="c">% git init --bare</span>
 <span class="n">Initialized</span> <span class="n">empty</span> <span class="n">Git</span> <span class="n">repository</span> <span class="n">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">sulami</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span>
@@ -78,7 +78,7 @@ interesting because we can use them to push changes around to various machines,
 work together with others more efficiently and much more. So here is how we
 setup a local remote git server, given our repo alreay exists like before. My
 ssh login uses my ssh-key to sign me&nbsp;in.</p>
-<div class="codehilite"><pre><span class="c">% ssh sulami@remote</span>
+<div class="codehilite"><pre><span></span><span class="c">% ssh sulami@remote</span>
 <span class="c">% mkdir -p /srv/git/myrepo.git</span>
 <span class="c">% cd /srv/git/myrepo.git</span>
 <span class="c">% git init --bare --shared=group</span>

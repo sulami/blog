@@ -24,10 +24,11 @@ HackerRank, using Haskell.
 # Contact / Links
 
 - Email: [sulami@peerwire.org](mailto:sulami@peerwire.org)
-- PGP: [A141810]({filename}/raw/pubkey.txt)
+- PGP: [A1418106]({filename}/raw/pubkey.txt)
+- Keybase: [sulami](https://keybase.io/sulami)
 - Github: [sulami](https://github.com/sulami)
-- HackerRank: [sulami](https://hackerrank.com/sulami)
 - IRC: sulami on [Freenode](irc://irc.freenode.net) and
   [Nixers](irc://irc.nixers.net)
 - Telegram: [@sulami](https://telegram.me/sulami)
+- HackerRank: [sulami](https://hackerrank.com/sulami)
 

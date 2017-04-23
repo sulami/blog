@@ -20,7 +20,16 @@ DEFAULT_PAGINATION = 5
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-MD_EXTENSIONS = (['codehilite'])
+MARKDOWN = {
+    'extensions': [
+        'codehilite',
+    ],
+    'extensions_configs': {
+        'markdown.extensions.codehilite': {
+            'css_class': 'codehilite',
+        },
+    },
+}
 TYPOGRIFY = True
 
 STATIC_PATHS = ['pictures', 'raw']

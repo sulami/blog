@@ -17,8 +17,6 @@
         <nav>
           <div id="menu">
             <a href="https://sulami.github.io/">/dev/sulami >> blog</a> |
-                <a href="https://sulami.github.io/pages/about-me.html">About&nbsp;me</a>
-                <a href="https://sulami.github.io/pages/projects.html">Projects</a>
             <a href="https://sulami.github.io/feed/rss.xml">RSS</a>
           </div>
         </nav>
@@ -41,7 +39,7 @@
             <p>Some years ago I had the idea to use online radios as flexible alarm
 clocks, but the main problem was having to run the computer all night
 long, which results in high power consumption and noise. While netbooks
-can counter this to a certain degree, the Raspberry Pi is the ...</p>
+can counter this to a certain degree, the Raspberry Pi is the …</p>
             </div><!-- /.entry-content -->
         </article></li>
 
@@ -61,7 +59,7 @@ can counter this to a certain degree, the Raspberry Pi is the ...</p>
 typing properly is a mandatory skill, but basically everyone benefits from fast
 typing. Most people developed some kind of 2-6-finger system, which might work
 well, but is still suboptimal compared to 10-finger touch typing. There are
-some ways of ...</p>
+some ways of …</p>
             </div><!-- /.entry-content -->
         </article></li>
 
@@ -79,19 +77,19 @@ some ways of ...</p>
 </footer><!-- /.post-info -->
             <p>Well, as I lost my database, I could not recover this article, but I
 still got my script, so here you&nbsp;go:</p>
-<div class="codehilite"><pre><span></span><span class="x">INRES=&quot;1920x1080&quot;</span>
-<span class="x">OUTRES=&quot;1920x1080&quot;</span>
-<span class="x">FPS=&quot;30&quot;</span>
-<span class="x">QUAL=&quot;medium&quot;</span>
-<span class="x">STREAM_KEY=&quot;live_123_xxx&quot;</span>
+<div class="codehilite"><pre><span></span>INRES=&quot;1920x1080&quot;
+OUTRES=&quot;1920x1080&quot;
+FPS=&quot;30&quot;
+QUAL=&quot;medium&quot;
+STREAM_KEY=&quot;live_123_xxx&quot;
 
-<span class="x">ffmpeg</span>
-<span class="x">-f x11grab</span>
-<span class="x">-s &quot;</span><span class="p">$</span><span class="nv">INRES</span><span class="x">&quot;</span>
-<span class="x">-r &quot;</span><span class="p">$</span><span class="nv">FPS</span><span class="x">&quot;</span>
-<span class="x">-i :0.0+0,0</span>
-<span class="x">-itsoffset -00:00:01</span>
-<span class="x">-f alsa ...</span></pre></div>
+ffmpeg
+-f x11grab
+-s &quot;$INRES&quot;
+-r &quot;$FPS&quot;
+-i :0.0+0,0
+-itsoffset -00:00:01
+-f alsa …</pre></div>
             </div><!-- /.entry-content -->
         </article></li>
                 </ol><!-- /#posts-list -->

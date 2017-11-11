@@ -1,7 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid          (mappend)
-import           Data.Set             as S
 import           Hakyll
 import           Text.Pandoc
 import           Text.Pandoc.SideNote (usingSideNotes)

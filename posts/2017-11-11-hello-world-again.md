@@ -2,11 +2,19 @@
 title: Hello, World! Again!
 ---
 
-This is the new blog. It's now built using [Hakyll][hakyll] instead of
-[Pelican][pelican][^switch], and it's using [Tufte CSS][tufte] instead of my
-homegrown Jinja2 templates and CSS. I spent much more time on setting this up
-than I care to admit. The upshot is, I have new CSS without having to rewrite
-all my custom templates from scratch, and get to use these neat stylesheets.
+First of all, I know it has been quite silent on here for a while. Since the
+last time I posted here, I switched jobs, and moved countries, so it would be
+fair to say that I have been quite busy in the meanwhile. But I'd still like to
+apologise, and I promise I will try to post more frequently from now on.
+
+If you have been here before, you might have noticed that things have changed a
+fair bit. This is the new blog, reborn from the ashes, so to say. Though only
+because I felt like it was necessary to burn the old one. It's now built using
+[Hakyll][hakyll] instead of [Pelican][pelican][^switch], and it's using [Tufte
+CSS][tufte] instead of my homegrown Jinja2 templates and CSS. I spent much more
+time on setting this up than I care to admit. The upshot is, I have new CSS
+without having to rewrite all my custom templates from scratch, and get to use
+these neat stylesheets.
 
 [^switch]: Why switch, you ask? Shiny toys, that's why.
 

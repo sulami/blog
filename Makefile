@@ -15,7 +15,6 @@ deploy:
 	# Get previous files
 	git fetch --all
 	git checkout -b master --track origin/master
-	git submodule update
 
 	# Overwrite existing files with new files
 	rsync -a 								   \
@@ -37,6 +36,7 @@ deploy:
 	# Restoration
 	git checkout develop
 	git branch -D master
+	git submodule update -f
 	git stash pop || true
 
 build: clean

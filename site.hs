@@ -58,13 +58,14 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            posts <- take 5 <$> (recentFirst =<< loadAll "posts/*")
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     defaultContext
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
+                >>= loadAndApplyTemplate "templates/wrapper.html" indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 

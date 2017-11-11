@@ -28,6 +28,11 @@ deploy:
 	git branch -D master
 	git stash pop
 
-live:
-	stack exec blog clean
+build: clean
+	stack exec blog build
+
+live: clean
 	stack exec blog watch
+
+clean:
+	stack exec blog clean

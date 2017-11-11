@@ -13,13 +13,17 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/tufte.css" $ do
+    match "tufte/et-book/*/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "tufte/tufte.css" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "css/et-book/*/*" $ do
+    match "css/*" $ do
         route   idRoute
-        compile copyFileCompiler
+        compile compressCssCompiler
 
     match (Hakyll.fromList ["about.md"]) $ do
         route   $ setExtension "html"

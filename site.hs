@@ -22,9 +22,9 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match (Hakyll.fromList ["sites/about.md"]) $ do
+    match (Hakyll.fromList ["about.md"]) $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 

@@ -25,15 +25,17 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (Hakyll.fromList ["about.md"]) $ do
+    match "pages/*" $ do
         route   $ setExtension "html"
         compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
+            >>= loadAndApplyTemplate "templates/wrapper.html" defaultContext
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
+            >>= loadAndApplyTemplate "templates/wrapper.html" postCtx
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls

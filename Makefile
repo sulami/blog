@@ -40,11 +40,14 @@ deploy:
 	git submodule update -f
 	git stash pop || true
 
-build: clean
+build: compile clean
 	stack exec blog build
 
-live: clean
+live: compile clean
 	stack exec blog watch
 
 clean:
 	stack exec blog clean
+
+compile:
+	stack build

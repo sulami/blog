@@ -2,4 +2,4 @@
 title: About
 ---
 
-TBD
+Will be written

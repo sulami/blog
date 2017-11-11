@@ -18,4 +18,7 @@ executable blog
   default-language:    Haskell2010
   ghc-options:         -threaded
   build-depends:       base >= 4.7 && < 5,
-                       hakyll
+                       hakyll,
+                       pandoc,
+                       containers,
+                       pandoc-sidenote

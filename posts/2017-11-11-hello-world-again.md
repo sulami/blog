@@ -32,5 +32,5 @@ old posts once the dust had settled.
 [hakyll]: https://jaspervdj.be/hakyll/
 [pelican]: https://blog.getpelican.com
 [tufte]: https://edwardtufte.github.io/tufte-css/
-[stack]: #
-[source]: #
+[stack]: https://www.stackage.org
+[source]: https://github.com/sulami/sulami.github.io

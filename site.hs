@@ -38,6 +38,7 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -74,8 +75,8 @@ main = hakyll $ do
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
-            posts <- take 10 <$> (recentFirst =<< loadAll "posts/*")
-            let feedCtx = postCtx `mappend` constField "description" "Description"
+            let feedCtx = postCtx `mappend` bodyField "description"
+            posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "posts/*" "content")
 
             renderAtom atomFeedConfiguration feedCtx posts
 

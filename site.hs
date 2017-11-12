@@ -71,9 +71,26 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateCompiler
 
+    create ["atom.xml"] $ do
+        route idRoute
+        compile $ do
+            posts <- take 10 <$> (recentFirst =<< loadAll "posts/*")
+            let feedCtx = postCtx `mappend` constField "description" "Description"
+
+            renderAtom atomFeedConfiguration feedCtx posts
+
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+atomFeedConfiguration :: FeedConfiguration
+atomFeedConfiguration = FeedConfiguration
+  { feedTitle = "sulami's blog"
+  , feedDescription = "a blog"
+  , feedAuthorName = "Robin Schroer"
+  , feedAuthorEmail = "sulami@peerwire.org"
+  , feedRoot = "https://sulami.github.io"
+  }

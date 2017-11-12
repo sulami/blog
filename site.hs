@@ -9,6 +9,10 @@ import           Text.Pandoc.SideNote (usingSideNotes)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
+    match "raw/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler

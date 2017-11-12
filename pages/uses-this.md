@@ -35,6 +35,9 @@ Magic Keyboard and Magic Trackpad. At home I generally have just the laptop, as
 I tend to sit on the couch or at the dinner table, and that is okay for shorter
 periods of time.
 
+I have been using the [Colemak keyboard layout][colemak] for several years on
+all physical keyboards due to RSI issues, and also remap caps lock to control.
+
 The most precious software I have on my computer is probably
 [BetterTouchTool][btt], which allows me to set up custom shortcuts and
 gestures, and also modify all kinds of details about my input devices, which
@@ -98,6 +101,7 @@ backlog of YouTube videos to watch.
   [Calibre][calibre], which I used before.
 
 [usesthis]: https://usesthis.com
+[colemak]: https://colemak.com
 [btt]: https://www.boastr.net
 [1pw]: https://1password.com
 [spacemacs]: http://spacemacs.org

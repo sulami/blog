@@ -31,13 +31,13 @@ main = hakyll $ do
 
     match "pages/*" $ do
         route   $ setExtension "html"
-        compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
+        compile $ pandocWithSidenotes
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions usingSideNotes
+        compile $ pandocWithSidenotes
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -95,3 +95,8 @@ atomFeedConfiguration = FeedConfiguration
   , feedAuthorEmail = "sulami@peerwire.org"
   , feedRoot = "https://sulami.github.io"
   }
+
+pandocWithSidenotes :: Compiler (Item String)
+pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
+                          wopts = defaultHakyllWriterOptions
+                      in pandocCompilerWithTransform ropts wopts usingSideNotes

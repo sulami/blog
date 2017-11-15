@@ -21,16 +21,22 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match "tufte/et-book/*/*" $ do
-        route   idRoute
+        route $ customRoute $ drop 6 . toFilePath
         compile copyFileCompiler
 
     match "tufte/tufte.css" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "css/*" $ do
-        route   idRoute
-        compile compressCssCompiler
+    match "css/*" $
+      compile compressCssCompiler
+
+    create ["stylesheet.css"] $ do
+        route idRoute
+        compile $ do
+            tufte <- load "tufte/tufte.css"
+            csses <- loadAll "css/*.css"
+            makeItem $ unlines $ map itemBody $ tufte : csses
 
     match "pages/*" $ do
         route   $ setExtension "html"

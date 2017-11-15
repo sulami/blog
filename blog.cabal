@@ -20,5 +20,7 @@ executable blog
   build-depends:       base >= 4.7 && < 5,
                        hakyll,
                        pandoc,
+                       pandoc-sidenote,
                        containers,
-                       pandoc-sidenote
+                       filepath,
+                       process

@@ -2,7 +2,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid          (mappend)
 import           Hakyll
-import           Text.Pandoc
+import           System.Exit          (ExitCode)
+import           System.FilePath      (replaceExtension, takeDirectory)
+import qualified System.Process       as Process
+import qualified Text.Pandoc          as Pandoc
 import           Text.Pandoc.SideNote (usingSideNotes)
 
 
@@ -80,8 +83,16 @@ main = hakyll $ do
 
             renderAtom atomFeedConfiguration feedCtx posts
 
+    match "pages/cv.md" $ version "pdf" $ do
+        route   $ setExtension ".pdf"
+        compile $ do getResourceBody
+            >>= readPandoc
+            >>= (return . fmap writeXeTex)
+            >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
+            >>= xelatex
 
 --------------------------------------------------------------------------------
+
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
@@ -100,3 +111,23 @@ pandocWithSidenotes :: Compiler (Item String)
 pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
                           wopts = defaultHakyllWriterOptions
                       in pandocCompilerWithTransform ropts wopts usingSideNotes
+
+writePandocConTeXtWith :: Pandoc.WriterOptions -> Item Pandoc.Pandoc -> Item String
+writePandocConTeXtWith wopt = fmap $ Pandoc.writeConTeXt wopt
+
+xelatex :: Item String -> Compiler (Item TmpFile)
+xelatex item = do
+    TmpFile texPath <- newTmpFile "xelatex.tex"
+    let tmpDir  = takeDirectory texPath
+        pdfPath = replaceExtension texPath "pdf"
+
+    unsafeCompiler $ do
+        writeFile texPath $ itemBody item
+        _ <- Process.system $ unwords ["xelatex", "-halt-on-error",
+            "-output-directory", tmpDir, texPath, ">/dev/null", "2>&1"]
+        return ()
+
+    makeItem $ TmpFile pdfPath
+
+writeXeTex :: Pandoc.Pandoc -> String
+writeXeTex = Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}

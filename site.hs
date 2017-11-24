@@ -1,9 +1,10 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import           Data.List            (isSuffixOf)
 import           Data.Monoid          (mappend)
 import           Hakyll
-import           System.Exit          (ExitCode)
-import           System.FilePath      (replaceExtension, takeDirectory)
+import           System.FilePath      (replaceExtension, takeBaseName,
+                                       takeDirectory, (</>))
 import qualified System.Process       as Process
 import qualified Text.Pandoc          as Pandoc
 import           Text.Pandoc.SideNote (usingSideNotes)
@@ -39,20 +40,20 @@ main = hakyll $ do
             makeItem $ unlines $ map itemBody $ tufte : csses
 
     match "pages/*" $ do
-        route   $ setExtension "html"
+        route   $ niceRoute
         compile $ pandocWithSidenotes
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match "posts/*" $ do
-        route $ setExtension "html"
+        route   $ niceRoute
         compile $ pandocWithSidenotes
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    create ["archive.html"] $ do
-        route idRoute
+    create ["archive"] $ do
+        route   $ niceRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let archiveCtx =
@@ -78,6 +79,7 @@ main = hakyll $ do
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
+                >>= cleanIndexUrls
 
     match "templates/*" $ compile templateCompiler
 
@@ -100,9 +102,23 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 
 postCtx :: Context String
-postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+postCtx = dateField "date" "%B %e, %Y" `mappend` defaultContext
+
+niceRoute :: Routes
+niceRoute = customRoute createIndexRoute
+  where createIndexRoute ident = directory </> pageName </> "index.html"
+          where p = toFilePath ident
+                directory = takeDirectory p
+                bn = takeBaseName p
+                pageName = if "posts" `isSuffixOf` directory then drop 11 bn else bn
+
+cleanIndexUrls :: Item String -> Compiler (Item String)
+cleanIndexUrls = return . fmap (withUrls clean)
+    where
+        idx = "index.html"
+        clean url
+            | idx `isSuffixOf` url = take (length url - length idx) url
+            | otherwise            = url
 
 atomFeedConfiguration :: FeedConfiguration
 atomFeedConfiguration = FeedConfiguration
@@ -117,9 +133,6 @@ pandocWithSidenotes :: Compiler (Item String)
 pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
                           wopts = defaultHakyllWriterOptions
                       in pandocCompilerWithTransform ropts wopts usingSideNotes
-
-writePandocConTeXtWith :: Pandoc.WriterOptions -> Item Pandoc.Pandoc -> Item String
-writePandocConTeXtWith wopt = fmap $ Pandoc.writeConTeXt wopt
 
 xelatex :: Item String -> Compiler (Item TmpFile)
 xelatex item = do

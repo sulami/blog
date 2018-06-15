@@ -1,3 +1,6 @@
+help:
+	grep '^[a-z]' Makefile | awk '{print $$1}' | sed 's/:$$//'
+
 deploy:
 	# Temporarily store uncommited changes
 	git stash

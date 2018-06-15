@@ -60,45 +60,28 @@ synchronisation.
 
 ## Phone
 
-My phone is as of recently an iPhone 7 (non-Plus), which I am very happy with.
-Under regular use it only requires charging every 2-3 days, and it is my
-primary device when I'm out and about, mainly commuting or getting groceries. I
-have a very simple and visually quiet matte black case on it, just because I
-fear that scratches and dents are going to be really ugly with the
-black[^space] finish. I currently use cheap Bluetooth headphones, which do the
-job just fine. I do have the Lightning Earpods in my bag pack, just in case,
-though.
+My phone is an iPhone X, which I am very happy with. Under regular use it only
+requires charging every 2 days, and it is my primary device when I'm out and
+about. I have a very simple and visually quiet matte black case on it, just
+because I fear that scratches and dents are going to be really ugly with the
+black[^space] finish. I currently use [Bose QC35 II][bose], which are amazing
+for flights, but also on trains and buses. I do have the Lightning Earpods in my
+bag pack, just in case, though.
 
-[^space]: Sorry, "Space Grey".
+[bose]: https://www.bose.co.uk/en_gb/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html
 
 The primary software on this is currently [2Do][2do], which is a
 [GTD-style][gtd] task management app that controls large parts of my life. I
 also use [Overcast][overcast] as my podcast client, and I'm listening to
 podcasts basically whenever I'm out and not sitting down. While seated, I
 usually read articles, which are held in [Instapaper][instapaper]. There is a
-random assortment of other more or less useful apps on there, but nothing
-really worth mentioning. I currently use Apple Notes to keep notes, and that
-does the job.[^ocr]
+random assortment of other more or less useful apps on there, but nothing really
+worth mentioning. I currently use Apple Notes to keep notes, and that does the
+job.[^ocr]
 
 [^ocr]: I'm actually quite excited about the fact that it does OCR on
   handwritten notes, and it's pretty good at that. One of the reasons I'm
   seriously considering the Pencil.
-
-## Others
-
-I also have an iPad Mini 3 (non-cellular), which acts mainly as a glorified
-ebook-reader. It is my primary bed- and couch-device, and lives permanently at
-home, unless I go out to read in a park.
-
-I use iBooks to read ebooks, mainly because it works good enough[^mgmt] and
-synchronises my reading position between my devices, as I sometimes read on my
-phone when I'm on the tube. I also have both [Instapaper][instapaper] and
-[Pocket][pocket] on there. I abuse Pocket as a shared dumping ground for things
-I want to keep somewhere, and everything is tagged. It permanently holds a
-backlog of YouTube videos to watch.
-
-[^mgmt]: Though book management is a pain, especially compared to
-  [Calibre][calibre], which I used before.
 
 [usesthis]: https://usesthis.com
 [colemak]: https://colemak.com
@@ -110,5 +93,4 @@ backlog of YouTube videos to watch.
 [gtd]: http://gettingthingsdone.com
 [overcast]: https://overcast.fm
 [instapaper]: https://www.instapaper.com
-[calibre]: https://calibre-ebook.com
 [pocket]: https://getpocket.com

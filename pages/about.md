@@ -4,9 +4,9 @@ title: About
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various topics, mostly related to software development, but occasionally also
-others. I am a \*nix guy by heart and mainly write Python, Haskell and Elixir.
-I have been contributing to the Linux kernel as well as writing an X11 window
-manager and I generally like experimenting with code.
+others. I am a \*nix guy by heart and mainly write Python, Haskell, Elixir and
+Clojure. I have been contributing to the Linux kernel as well as writing an X11
+window manager and I generally like experimenting with code.
 
 I also love puzzles/contests, so here are some I have completed:
 
@@ -25,10 +25,11 @@ mostly Haskell and Python. According to [keybr](keybr.com), my typing speed
 
 ## Contact / Links
 
-- Email: [sulami@peerwire.org](mailto:sulami@peerwire.org)
+- Email: [blog@peerwire.org](mailto:blog@peerwire.org)
 - PGP: [A1418106](/raw/pubkey.txt)
 - Keybase: [sulami](https://keybase.io/sulami)
 - Github: [sulami](https://github.com/sulami)
+- GitLab: [sulami](https://gitlab.com/sulami)
 - Telegram: [\@sulami](https://telegram.me/sulami)
 - Twitter: [\@\_sulami\_](https://twitter.com/_sulami_)
 - IRC: sulami on [Freenode](irc://irc.freenode.net) and

@@ -1,0 +1,66 @@
+==================================================================
+https://keybase.io/sulami
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://sulami.github.io
+  * I am sulami (https://keybase.io/sulami) on keybase.
+  * I have a public key with fingerprint 2F9C 6174 3E6D 8A55 3DE6  3CAD 4900 077F A141 8106
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01010dc7bce0754b0e421200f0ce075b7e2b24e6acdf8f2ac5e0680b22ca52412ad70a",
+      "fingerprint": "2f9c61743e6d8a553de63cad4900077fa1418106",
+      "host": "keybase.io",
+      "key_id": "4900077fa1418106",
+      "kid": "01010dc7bce0754b0e421200f0ce075b7e2b24e6acdf8f2ac5e0680b22ca52412ad70a",
+      "uid": "f08b7dbc16f27bb55f97b1e9ea8f6b19",
+      "username": "sulami"
+    },
+    "service": {
+      "hostname": "sulami.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1529685004,
+  "expire_in": 157680000,
+  "prev": "5ac500ff2ed9583e1c573e8d2035e6a0ad7bf4a5b305027eb20e5a5f2b375a8c",
+  "seqno": 11,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUltIFUEYXjXzmJaFUEQUuWQQnWx2dmcvdpFKBJGiDOnB6DSzO6ur59Y5qyZS
+olioEFZUpBlSaVZadiOKKFKyHqQIMvGhgi4EZnlSKiLJmrV8CHps5mGY//++b77v
+Zw7OjOFcUdlcXOWpdVXTo/qGCJe/YklSBU8CRjmfXsEX08mDeg0atj3FlsGn80Bg
+29AVolOgIIkAKkEBAmCCyQJRKCRQojLWDVM1IdYRBbIKCIQ6RlASIDYUgHk3b1r+
+AhoKhiy/zWShqemyoEgilQ0VIyQaVBZ1bEgaAEBRTCxIgioAmRELA2GHwcwRHKZp
+VoDV2MUzae8f+P/su2RSzgQqUQyiC7IJFUIQMjWFCFSjWDVlImgOMExDfuyjDB0u
+8WKfxe9x86xWaunUGauT469+WoFlF5aQ34mCoYAd0ANe1i207WA43WHb5UEHXkaJ
+54+Qh1h+g02SMUppKGwF/Hy6wJC6bTnKAoKarCIAJDdPdwetEPVYDgIpLBtbzju0
+lEkiFhjkA9OE1NCQKlJBR4pIVQMCEbGpABafmBJGRAQIQIUSCCjCyIREVBBWdd7J
+tssfYOICM4oLnFhWgR/bJSHK75lRFyVO46Jc3MK5KdNWNmN7ra8+b8271Renvl9s
+tPP3uBnxs6cqHSfifuYmhPkRb/zz/YvcH++SJrN7sChSWfNopmtuW+31+S09j9cq
+fdVptS/nNUfu6TGN4umG6NjhzRPLPg/XxOU2Rrg1GaJ94EyR/UJ6c7iyf+CDdjm6
+OKHOfet16pekrqxje8fGXa3Lf1742nJn/ZXIqJw8a/HXszJo3DL2NNs6d77qUl3N
+oYHCOQ/cw9zVvqodR62hMpFLeXj8h7q9SK+N33in+/73jKz3I4OfG2IilZ825Lzo
+zLm9ILNrG1/uvfwteVTtXzgxOqAmPtmX076ztfPmqpPPUu2yG0tfVfS2EV/GpvH6
+Be0j2UdwzrXvhnC0umlrj9ab9javddzM8zUndmQO/wI=
+=MHY0
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/sulami
+
+==================================================================

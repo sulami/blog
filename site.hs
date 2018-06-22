@@ -65,6 +65,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+                >>= cleanIndexUrls
 
 
     match "index.html" $ do

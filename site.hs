@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import           Control.Applicative  (empty)
 import           Data.List            (isSuffixOf)
 import           Data.Monoid          (mappend)
 import           Hakyll
@@ -91,14 +92,14 @@ main = hakyll $ do
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
-            let feedCtx = postCtx `mappend` bodyField "description"
+            let feedCtx = foldr mappend postCtx [bodyField "description",
+                                                 escapedTitle]
             posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "posts/*" "content")
-
             renderAtom atomFeedConfiguration feedCtx posts
 
     match "pages/cv.md" $ version "pdf" $ do
         route   $ setExtension ".pdf"
-        compile $ do getResourceBody
+        compile $ getResourceBody
             >>= readPandoc
             >>= (return . fmap writeXeTex)
             >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
@@ -133,6 +134,11 @@ atomFeedConfiguration = FeedConfiguration
   , feedAuthorEmail = "sulami@peerwire.org"
   , feedRoot = "https://sulami.github.io"
   }
+
+escapedTitle :: Context String
+escapedTitle = Context $ \_ _ i -> do
+  value <- getMetadataField (itemIdentifier i) "title"
+  maybe empty (return . StringField . escapeHtml) value
 
 pandocWithSidenotes :: Compiler (Item String)
 pandocWithSidenotes = let ropts = defaultHakyllReaderOptions

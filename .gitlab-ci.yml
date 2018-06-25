@@ -15,7 +15,7 @@ build:
   script:
     - stack exec blog build
   except:
-    - master
+    - develop
 
 pages:
   cache:
@@ -28,4 +28,4 @@ pages:
     paths:
       - _site
   only:
-    - master
+    - develop

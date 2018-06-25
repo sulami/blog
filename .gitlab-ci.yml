@@ -1,5 +1,8 @@
 image: haskell:latest
 
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+
 before_script:
   - apt-get update -y && apt-get install -y xz-utils make texlive-xetex
   - export STACK_ROOT=`pwd`/.stack
@@ -7,21 +10,11 @@ before_script:
   - stack install --only-dependencies
   - stack build
 
-build:
-  cache:
-    paths:
-      - _cache
-      - .stack
-  script:
-    - stack exec blog build
-  except:
-    - develop
-
 pages:
   cache:
     paths:
       - _cache
-      - .stack
+      - .stack-work
   script:
     - stack exec blog build
   artifacts:

@@ -1,7 +1,7 @@
 image: haskell:latest
 
 before_script:
-  - apt-get update && apt-get install xz-utils make texlive-xetex
+  - apt-get update -y && apt-get install -y xz-utils make texlive-xetex
   - export STACK_ROOT=`pwd`/.stack
   - stack setup
   - stack install --only-dependencies

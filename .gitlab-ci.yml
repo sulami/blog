@@ -14,6 +14,7 @@ pages:
   cache:
     paths:
       - _cache
+      - .stack
       - .stack-work
   script:
     - stack exec blog build && mv _site public

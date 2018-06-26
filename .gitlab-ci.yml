@@ -16,9 +16,9 @@ pages:
       - _cache
       - .stack-work
   script:
-    - stack exec blog build
+    - stack exec blog build && mv _site public
   artifacts:
     paths:
-      - _site
+      - public
   only:
     - develop

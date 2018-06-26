@@ -14,7 +14,7 @@ I also love puzzles/contests, so here are some I have completed:
 - The Eudyptula Kernel Challenge
 - The Matasano Crypto Challenges
 - Hacktoberfest 2015–2017
-- Advent of Code 2016
+- Advent of Code 2015-2017
 - The Monad Challenges
 - The Deadlock Empire
 

@@ -30,9 +30,10 @@ mostly Haskell and Python. According to [keybr](keybr.com), my typing speed
 - Keybase: [sulami](https://keybase.io/sulami)
 - Github: [sulami](https://github.com/sulami)
 - GitLab: [sulami](https://gitlab.com/sulami)
+- Lobsters: [sulami](https://lobste.rs/u/sulami)
+- Hacker News: [sulami](https://news.ycombinator.com/user?id=sulami)
 - Telegram: [\@sulami](https://telegram.me/sulami)
 - Twitter: [\@\_sulami\_](https://twitter.com/_sulami_)
-- IRC: sulami on [Freenode](irc://irc.freenode.net) and
-  [Nixers](irc://irc.nixers.net)
+- IRC: sulami on [Freenode](irc://irc.freenode.net)
 - HackerRank: [sulami](https://hackerrank.com/sulami)
 - Codewars: [sulami](https://www.codewars.com/users/sulami)

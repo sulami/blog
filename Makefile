@@ -1,5 +1,8 @@
+.PHONY: help deploy build live clean compile
+
 help:
-	grep '^[a-z]' Makefile | awk '{print $$1}' | sed 's/:$$//'
+	@echo "Commands:"
+	@grep '^[a-z]' Makefile | awk '{print $$1}' | sed 's/^/- /;s/:$$//'
 
 deploy:
 	# Temporarily store uncommited changes

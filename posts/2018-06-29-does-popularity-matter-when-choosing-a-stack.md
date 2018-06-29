@@ -2,8 +2,8 @@
 title: Does popularity matter when choosing a stack?
 ---
 
-Recently there has been a lot of turmoil around [Vue.js](vue) [reaching the same
-number of stars on GitHub][stars] as [React](react). While stars on GitHub are
+Recently there has been a lot of turmoil around [Vue.js][vue] [reaching the same
+number of stars on GitHub][stars] as [React][react]. While stars on GitHub are
 far from a reliable indicator of actual popularity and size of user base, it
 does raise the question whether these should actually matter when choosing a
 stack for a new piece of software.

@@ -45,6 +45,13 @@ Elasticsearch, Nginx, Docker, AWS
 
 # Side projects
 
+Because I have been using UNIX-based operating systems for most of my life, and
+I consider myself a power user, I have also built some desktop software:
+
+- [FrankenWM](https://github.com/sulami/frankenwm) Dynamic X11 tiling windowmanager (C/XCB)
+- [Feed2Maildir](https://github.com/sulami/feed2maildir) Maildir-based feedreader (Python)
+- [hmenu](https://github.com/sulami/hmenu) CLI fuzzy finder and launcher (Haskell)
+
 When I was starting out I was interested in video games and considered a career
 in the games industry, so I built a couple of projects in that space:
 
@@ -63,13 +70,6 @@ built a lot of projects around this:
 - [Nozdormu](https://github.com/sulami/nozdormu) Python benchmarking suite
 - [hcached](https://github.com/sulami/hcached) Memcached-compatible network hash table (Haskell)
 
-Because I have been using UNIX-based operating systems for most of my life, and
-I consider myself a power user, I have also built some desktop software:
-
-- [FrankenWM](https://github.com/sulami/frankenwm) Dynamic X11 tiling windowmanager (C/XCB)
-- [Feed2Maildir](https://github.com/sulami/feed2maildir) Maildir-based feedreader (Python)
-- [hmenu](https://github.com/sulami/hmenu) CLI fuzzy finder and launcher (Haskell)
-
 As of 2018 I have decided to broaden my horizon, and have been working on an iOS
 app which I have prototyped using [Clojurescript & React
 Native](https://github.com/sulami/above-the-horizon), as well as
@@ -82,6 +82,7 @@ Native](https://github.com/sulami/above-the-horizon), as well as
 - Hakyll - My blog is built using a quite elaborate Hakyll setup
 - LaTeX - The PDF version of this CV is generated using LaTeX
 - HTML/CSS/JS - Even as a backend developer you always write some
+- Emacs Lisp - Because I use Emacs for basically everything
 
 ## Languages
 

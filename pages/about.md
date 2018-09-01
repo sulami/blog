@@ -20,8 +20,10 @@ I also love puzzles/contests, so here are some I have completed:
 
 Apart from that, I am in the 94th percentile of Functional Languages on
 HackerRank, using Haskell, and in the 95th honor percentile on CodeWars, using
-mostly Haskell and Python. According to [keybr](keybr.com), my typing speed
-(using Colemak) is in the 95th percentile with an average of 93 WPM.
+mostly Haskell and Python.
+
+If you are interested in working with me, here is my [CV](/pages/cv)
+([PDF](/pages/cv.pdf)).
 
 ## Contact / Links
 

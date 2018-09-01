@@ -15,12 +15,11 @@ software. \newline
 ## 2014 -- 2015 » Co-Founder & DevOps @ Notdienste
 
 In 2014 I got approached by a family friend to join in a startup around
-marketing for small businesses. He had connections in the business and required
-someone technical. I built a full-stack platform to go to market, and the
-company ended up being bought by one of the established larger companies in the
-business. \newline
+marketing in magazines for small businesses. I built a full-stack platform to go
+to market, and the company ended up being bought by one of the established
+larger companies in the business. \newline
 
-**Technologies:** Python & Django & DRF, MySQL, Nginx, AWS
+**Technologies:** Python & Django & DRF, MySQL, Nginx, AWS, Stripe
 
 ## April 2016 -- November 2016 » Backend Developer @ Ablescent
 

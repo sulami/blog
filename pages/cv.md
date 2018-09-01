@@ -80,9 +80,11 @@ Native](https://github.com/sulami/above-the-horizon), as well as
 ## Other Technologies
 
 - Emacs Lisp - Because I use Emacs (with vim shortcuts) for basically everything
+- Git - Everything I do is version controlled
 - Hakyll - My blog is built using a quite elaborate Hakyll setup
 - HTML/CSS/JS - Even as a backend developer you always write some
 - LaTeX - The PDF version of this CV is generated using LaTeX
+- Linux kernel - I have sucessfully submitted patches to the Linux kernel
 
 ## Languages
 

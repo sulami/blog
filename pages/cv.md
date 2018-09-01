@@ -43,7 +43,7 @@ Elasticsearch, Nginx, Docker, AWS
 
 \pagebreak
 
-# Side projects
+# Side Projects
 
 Because I have been using UNIX-based operating systems for most of my life, and
 I consider myself a power user, I have built some desktop software:
@@ -56,19 +56,19 @@ When I was starting out I was interested in video games and considered a career
 in the games industry, so I built a couple of projects in that space:
 
 - [dgame](https://github.com/sulami/dgame) Rudimentary OpenGL 3D engine (D/SDL)
-- [textpy](https://github.com/sulami/textpy) Framework for text adventures (Python)
 - [glow](https://github.com/sulami/glow) Advanced Pong (Haskell/OpenGL)
 - [hGM](https://github.com/sulami/hgm) Web-based game master organisation tool (Haskell/Yesod)
+- [textpy](https://github.com/sulami/textpy) Framework for text adventures (Python)
 
 I have also for a long time been interested in networks and infrastructure, so a
 built a lot of projects around this:
 
-- [Medusa](https://github.com/sulami/medusa) Nagios-compatible monitoring system (Python)
-- [Elena](https://github.com/sulami/elena) Dynamic status API (Python/Flask)
-- [GoFuse](https://github.com/sulami/gofuse) Query circuit breaker (Go)
-- [Danketsu](https://github.com/sulami/danketsu) Microservice communication service (Go)
-- [Nozdormu](https://github.com/sulami/nozdormu) Python benchmarking suite
 - [hcached](https://github.com/sulami/hcached) Memcached-compatible network hash table (Haskell)
+- [Medusa](https://github.com/sulami/medusa) Nagios-compatible monitoring system (Python)
+- [GoFuse](https://github.com/sulami/gofuse) Query circuit breaker (Go)
+- [Nozdormu](https://github.com/sulami/nozdormu) Python benchmarking suite
+- [Danketsu](https://github.com/sulami/danketsu) Microservice communication service (Go)
+- [Elena](https://github.com/sulami/elena) Dynamic status API (Python/Flask)
 
 As of 2018 I have decided to broaden my horizon, and have been working on an iOS
 app which I have prototyped using [Clojurescript & React
@@ -77,12 +77,12 @@ Native](https://github.com/sulami/above-the-horizon), as well as
 
 # Skills
 
-## Other technologies I have used
+## Other Technologies
 
+- Emacs Lisp - Because I use Emacs (with vim shortcuts) for basically everything
 - Hakyll - My blog is built using a quite elaborate Hakyll setup
-- LaTeX - The PDF version of this CV is generated using LaTeX
 - HTML/CSS/JS - Even as a backend developer you always write some
-- Emacs Lisp - Because I use Emacs for basically everything
+- LaTeX - The PDF version of this CV is generated using LaTeX
 
 ## Languages
 

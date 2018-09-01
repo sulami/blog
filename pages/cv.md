@@ -46,7 +46,7 @@ Elasticsearch, Nginx, Docker, AWS
 # Side projects
 
 Because I have been using UNIX-based operating systems for most of my life, and
-I consider myself a power user, I have also built some desktop software:
+I consider myself a power user, I have built some desktop software:
 
 - [FrankenWM](https://github.com/sulami/frankenwm) Dynamic X11 tiling windowmanager (C/XCB)
 - [Feed2Maildir](https://github.com/sulami/feed2maildir) Maildir-based feedreader (Python)
@@ -58,7 +58,7 @@ in the games industry, so I built a couple of projects in that space:
 - [dgame](https://github.com/sulami/dgame) Rudimentary OpenGL 3D engine (D/SDL)
 - [textpy](https://github.com/sulami/textpy) Framework for text adventures (Python)
 - [glow](https://github.com/sulami/glow) Advanced Pong (Haskell/OpenGL)
-- [hGM](https://github.com/sulami/hgm) Web-based game master organization tool (Haskell/Yesod)
+- [hGM](https://github.com/sulami/hgm) Web-based game master organisation tool (Haskell/Yesod)
 
 I have also for a long time been interested in networks and infrastructure, so a
 built a lot of projects around this:

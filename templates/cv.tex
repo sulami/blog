@@ -1,20 +1,35 @@
-\documentclass[a4paper,11pt]{article}
-\pagenumbering{gobble}
+\documentclass[a4paper,10pt]{scrartcl}
 \usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{sectsty}
+\usepackage{xcolor}
+
+% Layout
+\setsansfont[Ligatures=TeX]{Palatino}
+\subsectionfont{\normalfont\itshape\textbf}
+\pagenumbering{gobble}
 \usepackage[margin=2cm]{geometry}
-\addtolength{\topmargin}{-1.5cm}
-\renewcommand*{\familydefault}{\sfdefault}
+\linespread{1.2}
+\setlength\parindent{0pt}
+
+% Link styling
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% Disable chapter numbers
+\setcounter{secnumdepth}{0}
+
+% Lists
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage{array, xcolor}
-\definecolor{lightblue}{rgb}{0.7,0.8,1}
-\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
-\newcolumntype{R}{p{0.8\textwidth}}
-\newcommand\VRule{\color{lightblue}\vrule width 1pt}
-\linespread{1.2}
 
 \title{\bfseries Robin Schroer}
-\author{sulami@peerwire.org | github.com/sulami}
+\author{sulami@peerwire.org | sulami.github.io}
 \date{}
 
 \begin{document}

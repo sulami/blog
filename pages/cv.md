@@ -2,43 +2,91 @@
 title: Robin Schroer
 ---
 
-# Education
-
-- 2000--2004 Grundschule Böhmerstrasse
-- 2004--2012 Mercator Gymnasium Duisburg
-
 # Work
 
-- 2011--2015 Founder @ Peerwire
-             Developed and maintained a web platform over several iterations
-- 2014--2015 Devops @ Notdienste
-             Designed and developed most of an API for an app
+## 2011 -- 2013 » Freelance DevOps @ Peerwire
 
-# Languages
+I started my career doing IT freelancing for smaller companies, providing
+various services like full-stack website management and building custom internal
+software. \newline
 
-- German L1
-- English Fluid
+**Technologies:** Python & Django, MySQL, Apache, C#
+
+## 2014 -- 2015 » Co-Founder & DevOps @ Notdienste
+
+In 2014 I got approached by a family friend to join in a startup around
+marketing for small businesses. He had connections in the business and required
+someone technical. I built a full-stack platform to go to market, and the
+company ended up being bought by one of the established larger companies in the
+business. \newline
+
+**Technologies:** Python & Django & DRF, MySQL, Nginx, AWS
+
+## April 2016 -- November 2016 » Backend Developer @ Ablescent
+
+After a short hiatus to work on some side projects, I joined Ablescent as the
+second developer, working full-time remote. I took ownership over the backend
+and built it up in close collaboration with the frontend team and the product
+owner. \newline
+
+**Technologies:** Python & Django, MySQL, Nginx, AWS
+
+## January 2017 -- Current » Senior Backend Developer @ Ostmodern
+
+In 2017 I moved to London to join Ostmodern, working on the backend for their
+multimedia CMS Skylark. In January 2018 I was promoted to senior level and took
+over leadership of the core API framework, along with several supporting
+services, leading a team of up to five developers. In late 2018 I decided to
+move to Amsterdam and got permission to switch to a remote role. \newline
+
+**Technologies:** Python & Django & DRF, Elixir & Phoenix, PostgreSQL, RabbitMQ,
+Elasticsearch, Nginx, Docker, AWS
+
+\pagebreak
+
+# Side projects
+
+When I was starting out I was interested in video games and considered a career
+in the games industry, so I built a couple of projects in that space:
+
+- [dgame](https://github.com/sulami/dgame) Rudimentary OpenGL 3D engine (D/SDL)
+- [textpy](https://github.com/sulami/textpy) Framework for text adventures (Python)
+- [glow](https://github.com/sulami/glow) Advanced Pong (Haskell/OpenGL)
+- [hGM](https://github.com/sulami/hgm) Web-based game master organization tool (Haskell/Yesod)
+
+I have also for a long time been interested in networks and infrastructure, so a
+built a lot of projects around this:
+
+- [Medusa](https://github.com/sulami/medusa) Nagios-compatible monitoring system (Python)
+- [Elena](https://github.com/sulami/elena) Dynamic status API (Python/Flask)
+- [GoFuse](https://github.com/sulami/gofuse) Query circuit breaker (Go)
+- [Danketsu](https://github.com/sulami/danketsu) Microservice communication service (Go)
+- [Nozdormu](https://github.com/sulami/nozdormu) Python benchmarking suite
+- [hcached](https://github.com/sulami/hcached) Memcached-compatible network hash table (Haskell)
+
+Because I have been using UNIX-based operating systems for most of my life, and
+I consider myself a power user, I have also built some desktop software:
+
+- [FrankenWM](https://github.com/sulami/frankenwm) Dynamic X11 tiling windowmanager (C/XCB)
+- [Feed2Maildir](https://github.com/sulami/feed2maildir) Maildir-based feedreader (Python)
+- [hmenu](https://github.com/sulami/hmenu) CLI fuzzy finder and launcher (Haskell)
+
+As of 2018 I have decided to broaden my horizon, and have been working on an iOS
+app which I have prototyped using [Clojurescript & React
+Native](https://github.com/sulami/above-the-horizon), as well as
+[Swift with Layout](https://github.com/sulami/above-the-horizon-layout).
 
 # Skills
 
-- Languages Haskell, Haskell, Go, C, Shell
-- Used before D, Clojure, HTML5/CSS3/JS, LaTeX, sed/awk, VimL
-- Databases MySQL/MariaDB, PostgreSQL, Redis, MemcacheDB, SQLite
-- Services Nginx, Elasticsearch, Xapian, Warp, Ansible, Nagios/Icinga, Munin
-- Tools stack, Cabal, Vim, Git, SSH, screen/tmux, make, gdb, valgrind, Selenium
-- OSs Linux, Free-/OpenBSD, Windows XP and newer
-- Distributions RHEL, SUSE, Debian, Gentoo, Arch
+## Other technologies I have used
 
-# Notable Side projects
+- Hakyll - My blog is built using a quite elaborate Hakyll setup
+- LaTeX - The PDF version of this CV is generated using LaTeX
+- HTML/CSS/JS - Even as a backend developer you always write some
 
-- hcached Network-exposed in-memory hashtable (Haskell)
-- Nozdormu Python benchmarking suite
-- Danketsu Microservice communication service (Go)
-- GoFuse Query circuit breaker (Go)
-- Medusa Nagios-compatible monitoring system (Python)
-- hGM Web-based story-writer organization tool (Haskell/Yesod)
-- Elena Dynamic status API (Python/Flask)
-- Feed2Maildir Maildir-based feedreader (Python)
-- FrankenWM Dynamic X11 tiling windowmanager (C/XCB)
-- hmenu CLI fuzzy finder and launcher (Haskell)
-- dgame Rudimentary OpenGL 3D engine (D/SDL)
+## Languages
+
+- German - L1
+- English - C2
+- Dutch - A2
+- French - A1

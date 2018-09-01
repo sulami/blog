@@ -21,7 +21,7 @@ deploy:
 	# Get previous files
 	git fetch --all
 	rm -rf tufte
-	git checkout -b master --track origin/master
+	git checkout -B master --track origin/master
 
 	# Overwrite existing files with new files
 	rsync -a 								   \

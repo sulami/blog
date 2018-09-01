@@ -64,9 +64,9 @@ My phone is an iPhone X, which I am very happy with. Under regular use it only
 requires charging every 2 days, and it is my primary device when I'm out and
 about. I have a very simple and visually quiet matte black case on it, just
 because I fear that scratches and dents are going to be really ugly with the
-black[^space] finish. I currently use [Bose QC35 II][bose], which are amazing
-for flights, but also on trains and buses. I do have the Lightning Earpods in my
-bag pack, just in case, though.
+black finish. I currently use [Bose QC35 II][bose], which are amazing for
+flights, but also on trains and buses. I do have the Lightning Earpods in my bag
+pack, just in case, though.
 
 [bose]: https://www.bose.co.uk/en_gb/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html
 

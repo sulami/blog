@@ -153,8 +153,8 @@ xelatex item = do
 
     unsafeCompiler $ do
         writeFile texPath $ itemBody item
-        _ <- Process.system $ unwords ["xelatex", "-halt-on-error",
-            "-output-directory", tmpDir, texPath, ">/dev/null", "2>&1"]
+        _ <- Process.system $ unwords ["xelatex", "--halt-on-error",
+            "-output-directory", tmpDir, texPath]
         return ()
 
     makeItem $ TmpFile pdfPath

@@ -76,8 +76,13 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- take 5 <$> (recentFirst =<< loadAll "posts/*")
+            all_posts <- loadAll "posts/*"
+            let post_count = length all_posts
+            let word_count = sum $ map (length . words . itemBody) all_posts
+            posts <- take 5 <$> recentFirst all_posts
             let indexCtx =
+                    constField "word_count" (show word_count) `mappend`
+                    constField "post_count" (show post_count) `mappend`
                     listField "posts" postCtx (return posts) `mappend`
                     defaultContext
 

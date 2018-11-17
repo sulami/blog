@@ -57,6 +57,7 @@ in the games industry, so I built a couple of projects in that space:
 
 - [dgame](https://github.com/sulami/dgame) Rudimentary OpenGL 3D engine (D/SDL)
 - [glow](https://github.com/sulami/glow) Advanced Pong (Haskell/OpenGL)
+- [farm](https://github.com/sulami/farm) Browser farming game (Clojurescript/re-frame/Reagent/React)
 - [hGM](https://github.com/sulami/hgm) Web-based game master organisation tool (Haskell/Yesod)
 - [textpy](https://github.com/sulami/textpy) Framework for text adventures (Python)
 
@@ -70,10 +71,11 @@ built a lot of projects around this:
 - [Danketsu](https://github.com/sulami/danketsu) Microservice communication service (Go)
 - [Elena](https://github.com/sulami/elena) Dynamic status API (Python/Flask)
 
-As of 2018 I have decided to broaden my horizon, and have been working on an iOS
-app which I have prototyped using [Clojurescript & React
-Native](https://github.com/sulami/above-the-horizon), as well as
-[Swift with Layout](https://github.com/sulami/above-the-horizon-layout).
+More recently I have decided to broaden my horizon, and have been working on an iOS
+app, which exists in two versions:
+
+- [React Native](https://github.com/sulami/above-the-horizon) (Clojurescript/re-frame/Reagent/React Native)
+- [Native](https://github.com/sulami/above-the-horizon-layout) (Swift/Layout)
 
 # Skills
 

@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Control.Applicative  (empty)
 import           Data.List            (isSuffixOf)
+import           Data.Maybe           (fromMaybe)
 import           Data.Monoid          (mappend)
 import           Hakyll
 import           System.FilePath      (replaceExtension, takeBaseName,
@@ -141,9 +141,9 @@ atomFeedConfiguration = FeedConfiguration
   }
 
 escapedTitle :: Context String
-escapedTitle = Context $ \_ _ i -> do
+escapedTitle = field "title" $ \i -> do
   value <- getMetadataField (itemIdentifier i) "title"
-  maybe empty (return . StringField . escapeHtml) value
+  return . escapeHtml $ fromMaybe "Post Title" value
 
 pandocWithSidenotes :: Compiler (Item String)
 pandocWithSidenotes = let ropts = defaultHakyllReaderOptions

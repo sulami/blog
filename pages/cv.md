@@ -41,6 +41,14 @@ move to Amsterdam and switched to a remote role. \newline
 **Technologies:** Python & Django & DRF, Elixir & Phoenix, PostgreSQL, RabbitMQ,
 Elasticsearch, Nginx, Docker, AWS
 
+## March 2019 -- Current » Staff Software Engineer @ CircleCI
+
+In early 2019 I joined CircleCI in a fully remote position and found many new
+challenges while working on the system that manges job execution. \newline
+
+**Technologies:** Clojure, MongoDB, PostgreSQL, RabbitMQ, Docker & Kubernetes &
+Helm, AWS, GCP
+
 \pagebreak
 
 # Side Projects

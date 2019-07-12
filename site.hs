@@ -106,9 +106,9 @@ main = hakyll $ do
         route   $ setExtension ".pdf"
         compile $ getResourceBody
             >>= readPandoc
-            >>= (return . fmap writeXeTex)
+            >>= (return . fmap writeLaTex)
             >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
-            >>= xelatex
+            >>= latex
 
 --------------------------------------------------------------------------------
 
@@ -150,19 +150,19 @@ pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
                           wopts = defaultHakyllWriterOptions
                       in pandocCompilerWithTransform ropts wopts usingSideNotes
 
-xelatex :: Item String -> Compiler (Item TmpFile)
-xelatex item = do
-    TmpFile texPath <- newTmpFile "xelatex.tex"
-    let tmpDir  = takeDirectory texPath
-        pdfPath = replaceExtension texPath "pdf"
+latex :: Item String -> Compiler (Item TmpFile)
+latex item = do
+  TmpFile texPath <- newTmpFile "latex.tex"
+  let tmpDir  = takeDirectory texPath
+      pdfPath = replaceExtension texPath "pdf"
 
-    unsafeCompiler $ do
-        writeFile texPath $ itemBody item
-        _ <- Process.system $ unwords ["xelatex", "--halt-on-error",
-            "-output-directory", tmpDir, texPath]
-        return ()
+  unsafeCompiler $ do
+    writeFile texPath $ itemBody item
+    _ <- Process.system $ unwords ["pdflatex", "--halt-on-error",
+                                   "-output-directory", tmpDir, texPath]
+    return ()
 
-    makeItem $ TmpFile pdfPath
+  makeItem $ TmpFile pdfPath
 
-writeXeTex :: Pandoc.Pandoc -> String
-writeXeTex = Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}
+writeLaTex :: Pandoc.Pandoc -> String
+writeLaTex = Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}

@@ -1,0 +1,70 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: haskell:8
+    environment:
+      - ENV DEBIAN_FRONTEND: noninteractive
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+      - run: |
+          apt update
+          apt install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
+      - restore_cache:
+          name: Restoring GHC cache
+          key: v2-ghc-{{ checksum "stack.yaml" }}
+      - run: stack --no-terminal setup
+      - save_cache:
+          name: Saving GHC cache
+          key: v2-ghc-{{ checksum "stack.yaml" }}
+          paths:
+            - ~/.stack
+      - restore_cache:
+          name: Restoring Stack cache
+          keys:
+            - v2-bin-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}-{{ checksum "site.hs" }}
+            - v2-deps-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}
+      - run: stack --no-terminal install --only-dependencies
+      - save_cache:
+          name: Saving Stack dependencies cache
+          key: v2-deps-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}
+          paths:
+            - .stack-work
+            - ~/.stack
+            - ~/.local/bin
+      - run: stack --no-terminal build
+      - save_cache:
+          name: Saving Stack binary cache
+          key: v2-bin-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}-{{ checksum "site.hs" }}
+          paths:
+            - .stack-work
+            - ~/.stack
+            - ~/.local/bin
+      - run: stack exec --no-terminal blog build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site
+
+  deploy:
+    docker:
+      - image: haskell:8
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop

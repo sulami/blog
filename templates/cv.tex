@@ -1,13 +1,14 @@
 \documentclass[a4paper,10pt]{scrartcl}
 \usepackage[utf8]{inputenc}
-\usepackage{fontspec}
 \usepackage{hyperref}
 \usepackage{palatino}
 \usepackage{sectsty}
 \usepackage{xcolor}
+\usepackage[T1]{fontenc}
 
 % Layout
-\setsansfont[Ligatures=TeX]{Palatino}
+\renewcommand{\sfdefault}{Palatino}
+\renewcommand{\ttdefault}{Palatino}
 \subsectionfont{\normalfont\itshape\textbf}
 \pagenumbering{gobble}
 \usepackage[margin=2cm]{geometry}

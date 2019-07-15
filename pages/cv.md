@@ -101,5 +101,6 @@ app:
 
 - German - Fluent
 - English - Fluent
+- French - Basic
 - Dutch - Basic
-- French - Learning
+- Japanese - Basic

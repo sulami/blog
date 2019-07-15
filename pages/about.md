@@ -4,9 +4,9 @@ title: About
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various topics, mostly related to software development, but occasionally also
-others. I am a \*nix guy by heart and mainly write Python, Haskell, Elixir and
-Clojure. I have been contributing to the Linux kernel as well as writing an X11
-window manager and I generally like experimenting with code.
+others. I am a \*nix guy by heart and mainly write Clojure, Python, and Haskell.
+I have been contributing to the Linux kernel as well as writing an X11 window
+manager and I generally like experimenting with code.
 
 I also love puzzles/contests, so here are some I have completed:
 

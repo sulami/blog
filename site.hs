@@ -9,6 +9,7 @@ import           System.FilePath      (replaceExtension, takeBaseName,
 import qualified System.Process       as Process
 import qualified Text.Pandoc          as Pandoc
 import           Text.Pandoc.SideNote (usingSideNotes)
+import           Text.Pandoc.Walk     (walk)
 
 
 --------------------------------------------------------------------------------
@@ -50,9 +51,16 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "posts/*" $ do
+    match "posts/*.md" $ do
         route   $ niceRoute
         compile $ pandocWithSidenotes
+            >>= saveSnapshot "content"
+            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= relativizeUrls
+
+    match "posts/*.org" $ do
+        route   $ niceRoute
+        compile $ pandocWithShiftHeaders
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -71,7 +79,6 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
                 >>= cleanIndexUrls
-
 
     match "index.html" $ do
         route idRoute
@@ -150,6 +157,11 @@ pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
                           wopts = defaultHakyllWriterOptions
                       in pandocCompilerWithTransform ropts wopts usingSideNotes
 
+pandocWithShiftHeaders :: Compiler (Item String)
+pandocWithShiftHeaders = let ropts = defaultHakyllReaderOptions
+                             wopts = defaultHakyllWriterOptions
+                         in pandocCompilerWithTransform ropts wopts (usingSideNotes . shiftHeaders 1)
+
 latex :: Item String -> Compiler (Item TmpFile)
 latex item = do
   TmpFile texPath <- newTmpFile "latex.tex"
@@ -166,3 +178,9 @@ latex item = do
 
 writeLaTex :: Pandoc.Pandoc -> String
 writeLaTex = Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}
+
+shiftHeaders :: Int -> Pandoc.Pandoc -> Pandoc.Pandoc
+shiftHeaders i p = walk go p
+  where
+    go (Pandoc.Header l a inl) = Pandoc.Header (l+i) a inl
+    go x = x

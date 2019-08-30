@@ -92,19 +92,18 @@ existing ecosystem, let alone platform implementations.[^platforms]
     smart toaster oven? Raspberry Pis are non x86, BSD is not Linux, and who
     knows what is up with Windows. This matrix is growing quickly.
 
-While the primary platform is the JVM, superbly uncool but stable and
-relatively performant, there is a CLR (.NET) version which is "almost even on
-features" thanks to Alex Miller, as well as a very mature JavaScript version in
-the shape of ClojureScript. The JVM (and to some extent the CLR) have excellent
-support by big software vendors, if you buy some kind of software with an API,
-chances are there is a Java SDK which you can use easily from your Clojure
-code. The JavaScript ecosystem is the largest in numbers[^leftpad], and
-includes Electron and React-Native, both of which can be used with some, but
-not unreasonable, effort from ClojureScript code. One of the newest additions
-has been GraalVM, which while not 100% feature-complete yet, already allows
-compilation to native static binaries of many Clojure programs[^zprint],
-running without the JVM at all, and doing away with the dreaded multi-second
-startup time.[^graal]
+While the primary platform is the JVM, superbly uncool but stable and relatively
+performant, there is a CLR (.NET) version which is "almost even on features"
+thanks to Davit Miller, as well as a very mature JavaScript version in the shape
+of ClojureScript. The JVM (and to some extent the CLR) have excellent support by
+big software vendors, if you buy some kind of software with an API, chances are
+there is a Java SDK which you can use easily from your Clojure code. The
+JavaScript ecosystem is the largest in numbers[^leftpad], and includes Electron
+and React-Native, both of which can be used with some, but not unreasonable,
+effort from ClojureScript code. One of the newest additions has been GraalVM,
+which while not 100% feature-complete yet, already allows compilation to native
+static binaries of many Clojure programs[^zprint], running without the JVM at
+all, and doing away with the dreaded multi-second startup time.[^graal]
 
 [^leftpad]: In part due to left-pad-like five-line-packages, but still.
 

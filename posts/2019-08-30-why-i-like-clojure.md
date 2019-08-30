@@ -140,7 +140,7 @@ job. While there are some small inconsistencies in places, the bulk of the
 language, and all the important parts are very well thought out.[^spec2]
 Clojure is a very stable language, which means that smaller problems will stick
 around for a while, but also means you can trust that your code will not break
-every time up update your dependencies.
+every time you update your dependencies.
 
 [^spec2]: We can also see right now how `clojure.spec` is being adapted after
     community feedback to the first alpha version, which has been available for

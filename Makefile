@@ -1,4 +1,4 @@
-.PHONY: help deploy build live clean compile
+.PHONY: help deploy build live clean compile convert
 
 help:
 	@echo "Commands:"
@@ -46,14 +46,22 @@ deploy:
 	git submodule update -f
 	git stash pop || true
 
-build: compile clean
+convert: clean
+	emacs --batch \
+          -l ox-hugo/ox-blackfriday.el \
+          -l ox-hugo/ox-hugo.el \
+          -l org-to-md.el \
+          -f export-all
+
+build: compile convert
 	stack exec blog build
 
-live: compile clean
+live: compile convert
 	stack exec blog watch
 
 clean:
 	stack exec blog clean
+	rm -rf _content/*
 
 compile:
 	stack build

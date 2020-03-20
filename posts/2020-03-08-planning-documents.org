@@ -1,8 +1,7 @@
----
-title: The Value of Planning Documents
----
+#+TITLE: The Value of Planning Documents
+#+DATE: 2020-03-09
 
-Last weekend I attended [clojureD](https://clojured.de/) and saw Paulus Esterhazy's talk on
+Last weekend I attended [[https://clojured.de/][clojureD]] and saw Paulus Esterhazy's talk on
 writing for engineers[^talk]. The talk proposes an RFC-process, which
 lays out a decision, its reasons and alternatives. At Circle we do
 something very similar, we are writing [decision records](https://en.wikipedia.org/wiki/Architectural_decision), which are
@@ -39,7 +38,7 @@ surfaced early on, before a lot of time, effort, and money have been
 spent on implementing a faulty plan. Of course you should show your
 resulting document to various other people and get some feedback.
 
-## The Planning Document
+* The Planning Document
 
 While RFCs/decision records have their use, I have recently started to
 write more planning documents for smaller tasks and features. This has
@@ -60,7 +59,8 @@ read the document, but even more on the thinking aspect.
 
 The basic structure of these documents looks like this:
 
-```org
+-----
+
 * Title - Short description of the Feature
 
 ** Abstract
@@ -81,7 +81,8 @@ Each step needs the following information (in particular format):
 - Where do we add new code?
 - What is the general structure going to be?
 - Can we mock up any types or sample data?
-```
+
+-----
 
 Because we use JIRA, the title & abstract usually go into the epic
 itself, and each of the steps becomes a task within. The size of the

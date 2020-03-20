@@ -24,4 +24,5 @@ executable blog
                        pandoc-sidenote,
                        containers,
                        filepath,
-                       process
+                       process,
+                       split

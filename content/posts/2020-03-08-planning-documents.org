@@ -1,0 +1,102 @@
+#+TITLE: The Value of Planning Documents
+#+DATE: 2020-03-09
+
+Last weekend I attended [[https://clojured.de/][clojureD]] and saw Paulus Esterhazy's talk on
+writing for engineers[^talk]. The talk proposes an RFC-process, which
+lays out a decision, its reasons and alternatives. At Circle we do
+something very similar, we are writing [decision records](https://en.wikipedia.org/wiki/Architectural_decision), which are
+mostly the same thing. So while I was already familiar with most of
+the ideas, I still found it a good summary and introduction for
+developers, or anyone really, to get started writing more.
+
+[^talk]: I'll add a link once it gets uploaded.
+
+One of the reasons Paulus describes, which is also present in [Taking
+Smart Notes](https://takesmartnotes.com)[^book], is writing as a method to think. While Smart Notes is
+mostly concerned with the connection between notes, Paulus focuses on
+writing long form prose, full sentences, paragraphs, and pages, to
+force yourself to really think through the issue at hand.
+
+[^book]: This book has been making the rounds in the software world a lot
+    recently. I do have some opinions on it, but this is not the right
+    place for them.
+
+There is the famous quote by the economist Milton Friedman:
+
+> If you cannot state a proposition clearly and unambiguously, you do
+> not understand it.
+
+And the slightly less famous one by Leslie Lamport from [this talk](http://channel9.msdn.com/Events/Build/2014/3-642):
+
+> Writing is nature's way of letting you know how sloppy your thinking
+> is.
+
+The basic idea is that writing out a plan requires you to not only
+think through the problem without glossing over potential pitfalls,
+but also to put your assumptions into words. This way problems can get
+surfaced early on, before a lot of time, effort, and money have been
+spent on implementing a faulty plan. Of course you should show your
+resulting document to various other people and get some feedback.
+
+* The Planning Document
+
+While RFCs/decision records have their use, I have recently started to
+write more planning documents for smaller tasks and features. This has
+several advantages, such as estimates being much more accurate instead
+of guesswork, and handing off work has never been easier.
+
+At my day job, every feature translates into an Epic in JIRA, which is
+owned by someone, usually a developer. The owner of the epic is in
+charge of planning the feature, writing all the sub-tasks and giving a
+rough estimate of the effort required.
+
+One of the tools I have started to use is writing a planning document
+when tasked with filling out an epic. These are separate documents
+that could live somewhere like Google Docs, but I usually just keep
+them in my local org-mode stash, and eventually just export them into
+JIRA. There is less emphasis on peer-review, as usually few people
+read the document, but even more on the thinking aspect.
+
+The basic structure of these documents looks like this:
+
+-----
+
+* Title - Short description of the Feature
+
+** Abstract
+
+Some sentences about what we're doing and why. Give product context,
+link to everything that is relevant.
+
+** Tasks
+
+*** Step 1 - Do a Thing
+
+Break it down into steps that are PR-sized.
+
+Each step needs the following information (in particular format):
+
+- Which are the relevant code bits? Modules/classes/functions/lines?
+- What will need to be modified?
+- Where do we add new code?
+- What is the general structure going to be?
+- Can we mock up any types or sample data?
+
+-----
+
+Because we use JIRA, the title & abstract usually go into the epic
+itself, and each of the steps becomes a task within. The size of the
+steps also means that pull requests link nicely 1-1 to a ticket.
+
+I do not think this way of working is consuming more time than not
+planning up front, at least not significantly, as I would spend the
+same time doing research while doing the implementation otherwise.
+This way, the implementation is much quicker, because I just need to
+follow the steps I have already pre-planned, filling in the gaps. On
+the other hand I probably save some time because I do run into
+situations less often where a feature suddenly balloons because some
+assumptions do not actually hold.
+
+As a bonus, I get some nice documents to reference months and years
+later, when I wonder how or why something was implemented, which can
+be quite useful.

@@ -1,0 +1,96 @@
+a:link {
+    text-decoration: underline;
+    background: none;
+    text-shadow: none;
+}
+
+/* the lightswitch itself */
+input#lightswitch {
+    display: none;
+}
+
+label#lightswitch-label {
+    cursor: pointer;
+}
+
+/* use a body div for theming */
+body {
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+div#body {
+    min-height: calc(100vh - 4em);
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+div#container {
+     margin-left: auto;
+     margin-right: auto;
+     max-width: 1400px;
+     padding-left: 12.5%;
+     width: 87.5%;
+}
+
+article {
+    padding-top: 0;
+}
+
+@media (max-width: 760px) {
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    div#body {
+        width: 92%;
+        padding-right: 8%;
+    }
+}
+
+/* override tufte */
+:root {
+    --dark-bg: #002b36;
+    --dark-color: #fdf6e3;
+    --dark-code: #93a1a1;
+    --light-bg: #fffff8;
+    --light-color: #111;
+    --light-code: #657b83;
+}
+
+@media (prefers-color-scheme: dark) {
+    div#body {
+        background-color: var(--dark-bg);
+        color: var(--dark-color);
+    }
+    input#lightswitch:checked + div#body {
+        background-color: var(--light-bg);
+        color: var(--light-color);
+    }
+    pre code {
+        color: var(--dark-code);
+    }
+    input#lightswitch:checked ~ pre code {
+        color: var(--light-code);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    div#body {
+        background-color: var(--light-bg);
+        color: var(--light-color);
+    }
+    input#lightswitch:checked + div#body {
+        background-color: var(--dark-bg);
+        color: var(--dark-color);
+    }
+    pre code {
+        color: var(--light-code);
+    }
+    input#lightswitch:checked ~ pre code {
+        color: var(--dark-code);
+    }
+}

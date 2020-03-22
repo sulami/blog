@@ -1,0 +1,165 @@
+---
+title: Solving Sudokus
+date: 2015-07-06
+---
+
+So, here is more Haskell from me, because I really like it. This time
+around, I wrote a small and simple sudoku solver. Sudokus are really
+nice little puzzles that involve a partially filled 9x9 grid containing
+numbers from one to nine. The objective is to fill it following these
+rules:
+
+- Each number must only appear once per row
+- Each number must only appear once per column
+- Each number must only appear once per 3x3 'box', of which there are
+  nine
+
+A common strategy is checking empty cells for available numbers to fill
+in, so the ones that are not already present in the corresponding row,
+column or box. This is also the approach my solver takes, by checking
+each of the empty cells for options and, if there is only one possible
+option, filling it in. Repeat this until there are no empty cells
+anymore and you have a guaranteed correct solution. There is a great
+deal of mathematics behind sudoku puzzles, and if you are interested in
+that, [[https://en.wikipedia.org/wiki/Mathematics_of_Sudoku][the
+Wikipedia article]] is a great read.
+
+Because I wrote my solver before conducting any research, it emulates my
+approach, which is brute forcing. Still, it solves 9x9 sudokus in <0.01
+seconds. We will now have an in-depth look at it. If you want context,
+the whole code including an example is on
+[[https://github.com/sulami/spielwiese/blob/master/hSudoku/][Github]].
+
+I implemented the solver in form of a Haskell library that exports three
+functions:
+
+- =build= builds the internal representation of the puzzle from a list
+  of integers
+- =prettyPrint= prints a puzzle
+- =solve= solves a puzzle
+
+=build= is really simple, because it looks like this:
+
+#+BEGIN_SRC haskell
+  build :: [Value] -> Grid
+  build vs = zip [0..] vs
+#+END_SRC
+
+This already exposes the internal structure of a puzzle, which is this:
+
+#+BEGIN_SRC haskell
+  type Value = Int
+  type Coord = Int
+  type Cell  = (Coord, Value)
+  type Grid  = [Cell]
+#+END_SRC
+
+I chose to use a single associative list over a nested list because it
+makes the code a whole lot easier to read when accessing various cells
+of a grid, at the expense of having to do some maths.
+
+=prettyPrint= is not really worth explaining or even showing, all it
+does is dividing a grid into nine chunks, the lines, converting the
+integers to chars, replacing zeros with underscores, insert some spaces
+for readability and prints the whole thing out. I just added it so I
+could check the results easily.
+
+=solve= is the really interesting part here. Solve loops until a puzzle
+is solved, which looks like this:
+
+#+BEGIN_SRC haskell
+  solved :: Grid -> Bool
+  solved = foldr (\(_, v) r -> if v == 0 then False else r) True
+
+  solve :: Grid -> Grid
+  solve g | solved g  = g
+          | otherwise = solve $ fill g (0, get g 0)
+#+END_SRC
+
+What =fill= does is it iterates once through all the cells, and each
+time it encounters an empty cell (=(_, 0)=), it checks which numbers
+could be placed in it. If there is only one possibility, it changes the
+grid accordingly and continues. After a complete iteration, it returns
+the changed grid.
+
+#+BEGIN_SRC haskell
+  fill :: Grid -> Cell -> Grid
+  fill g c@(n, v) | n >= 81          = g
+                  | v /= 0           = fill g next
+                  | length opts == 1 = fill (change g (n, (head opts))) next
+                  | otherwise        = fill g next
+    where
+      next = (n + 1, get g (n + 1))
+      opts = options g c
+#+END_SRC
+
+=change= goes through the grid, looking for the cell we want to change,
+replaces the value and returns the changed grid, so we can use it for
+the remainder of the iteration. It is very easily implemented using a
+single =map=:
+
+#+BEGIN_SRC haskell
+  change :: Grid -> Cell -> Grid
+  change g (n, v) = map (\(gn, gv) -> if gn == n then (n, v) else (gn, gv)) g
+#+END_SRC
+
+=get= gets the value of the cell at a coordinate in a grid, pretty
+simple:
+
+#+BEGIN_SRC haskell
+  get :: Grid -> Coord -> Value
+  get g n = snd $ g !! n
+#+END_SRC
+
+=options= on the other hand is a little bit more complicated. It has to
+check the row, the column and the box a given cell is in, and check for
+a number between one and nine that is not already present in any of
+them. And because I chose to use a single list to represent the whole
+grid, having the list indices stored inside a cell comes in very handy,
+because we can use it to calculate the indices of the other cells in the
+same row, column and box. But first, this is =options=:
+
+#+BEGIN_SRC haskell
+  options :: Grid -> Cell -> [Value]
+  options g (n, _) = let r = (rowWise n) ++ (colWise n) ++ (boxWise n) in
+                      filter (`notElem` (map (get g) r)) [1..9]
+#+END_SRC
+
+It looks a bit overloaded, but is actually quite easy. =r= is a
+composite list that includes all the coordinates (/indices) of the cells
+that affect the possible content of this cell. We =map= it to get to
+transform it to a list of numbers that are not possible here, and then
+simply return all numbers between one and nine that are not in that
+list. If you go back to =fill= above, you can see that if the length of
+this list is one, this solution is filled in.
+
+To finish this off, here are the three remaining functions that
+calculate the coordinates of the affecting cells. I planned these out
+when I could not sleep yesterday.
+
+#+BEGIN_SRC haskell
+  rowWise :: Coord -> [Coord]
+  rowWise n = let r = n `div` 9 * 9 in [r..(r+8)]
+
+  colWise :: Coord -> [Coord]
+  colWise n = let os = n`mod` 9 in [os,(os+9)..80]
+
+  boxWise :: Coord -> [Coord]
+  boxWise n = let c = n `mod` 9 `div` 3
+                  r = n `div` 27 * 3
+                  s = r * 9 + c * 3
+                in [s..(s+2)] ++ [(s+9)..(s+11)] ++ [(s+18)..(s+20)]
+#+END_SRC
+
+=rowWise= and =colWise= should be pretty easy to understand if you
+imagine a grid and try out some example cells. =boxWise= is a bit more
+contrived, what it generally does it figures out in which of the nine
+boxes the cell is by comparing the offset from the left and the offset
+from the top separately, and then using the top-left cell of this box as
+a starting point to get the other eight coordinates, which are always in
+the same relative position.
+
+So this is the complete code to solve a sudoku puzzle. If you exclude
+the printing stuff, it is about 50 lines long, and there is a lot to
+optimize here, but I will leave it as it is, because I am only
+interested in the PoC.

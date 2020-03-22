@@ -46,22 +46,14 @@ deploy:
 	git submodule update -f
 	git stash pop || true
 
-convert: clean
-	emacs --batch \
-          -l ox-hugo/ox-blackfriday.el \
-          -l ox-hugo/ox-hugo.el \
-          -l org-to-md.el \
-          -f export-all
-
-build: compile convert
+build: compile clean
 	stack exec blog build
 
-live: compile convert
+live: compile clean
 	stack exec blog watch
 
 clean:
 	stack exec blog clean
-	rm -rf _content/*
 
 compile:
 	stack build

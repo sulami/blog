@@ -1,0 +1,42 @@
+#+TITLE: Hello, World! Again!
+#+DATE: 2017-11-11
+
+First of all, I know it has been quite silent on here for a while. Since
+the last time I posted here, I switched jobs, and moved countries, so it
+would be fair to say that I have been quite busy in the meanwhile. But
+I'd still like to apologise, and I promise I will try to post more
+frequently from now on.
+
+If you have been here before, you might have noticed that things have
+changed a fair bit. This is the new blog, reborn from the ashes, so to
+say. Though only because I felt like it was necessary to burn the old
+one. It's now built using [[https://jaspervdj.be/hakyll/][Hakyll]]
+instead of [[https://blog.getpelican.com][Pelican]][fn:1], and it's
+using [[https://edwardtufte.github.io/tufte-css/][Tufte CSS]] instead of
+my homegrown Jinja2 templates and CSS. I spent much more time on setting
+this up than I care to admit. The upshot is, I have new CSS without
+having to rewrite all my custom templates from scratch, and get to use
+these neat stylesheets.
+
+One of my major pains with my old setup was the setup required to just
+write something quickly, due to the fact that I was maintaining my own
+styles and sources in different repositories, and also because Python
+requirements are notoriously janky if you're not careful. This new
+system is handled entirely by [[https://www.stackage.org][stack]], which
+makes things much easier.[fn:2] Initial setup takes quite a while,
+because I have to compile a whole load of dependencies, but it's a fully
+automatic setup.
+
+I have to admit, I was tempted to just switch to Medium during this
+whole process. But now that I have figured out how to build this whole
+thing[fn:3], I am quite happy with the results. Because Hakyll, just
+like Pelican, uses Markdown as source to generate HTML, I could easily
+port over my old posts once the dust had settled.
+
+[fn:1] Why switch, you ask? Shiny toys, that's why.
+
+[fn:2] By the way, you can get the source of this blog
+       [[https://github.com/sulami/sulami.github.io][over here]], if you
+       want to steal some code, or just look at it.
+
+[fn:3] Read: get it to compile

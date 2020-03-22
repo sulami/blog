@@ -48,20 +48,20 @@ main = hakyll $ do
             csses <- loadAll "css/*.css"
             makeItem $ unlines $ map itemBody $ tufte : csses
 
-    match "_content/pages/*" $ do
+    match "content/pages/*" $ do
         route   $ niceRoute
         compile $ pandocWithSidenotes
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "_content/posts/*.md" $ do
+    match "content/posts/*.md" $ do
         route   $ niceRoute
         compile $ pandocWithSidenotes
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    match "_content/posts/*.org" $ do
+    match "content/posts/*.org" $ do
         route   $ niceRoute
         compile $ getResourceString
           -- >>= withItemBody (unixFilter "emacs" ["--batch",
@@ -70,7 +70,7 @@ main = hakyll $ do
           --                                       "-l", "org-to-md.el",
           --                                       "-f", "org-to-md"])
           -- >>= withItemBody (\s -> return . (++ s) . (++ "\n") . metadatasToStr $ orgMetadatas s)
-          >>= (\i -> writePandoc <$> (traverse (return . usingSideNotes) =<< readPandoc i))
+          >>= (\i -> writePandoc <$> (traverse (return . shiftHeaders 1 . usingSideNotes) =<< readPandoc i))
           >>= saveSnapshot "content"
           >>= loadAndApplyTemplate "templates/default.html" postCtx
           >>= relativizeUrls
@@ -78,7 +78,7 @@ main = hakyll $ do
     create ["archive"] $ do
         route   $ niceRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "_content/posts/*"
+            posts <- recentFirst =<< loadAll "content/posts/*"
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
@@ -93,7 +93,7 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            all_posts <- loadAll "_conent/posts/*"
+            all_posts <- loadAll "content/posts/*"
             let post_count = length all_posts
             let word_count = sum $ map (length . words . itemBody) all_posts
             posts <- take 5 <$> recentFirst all_posts
@@ -116,10 +116,10 @@ main = hakyll $ do
         compile $ do
             let feedCtx = foldr mappend postCtx [bodyField "description",
                                                  escapedTitle]
-            posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "_content/posts/*" "content")
+            posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "content/posts/*" "content")
             renderAtom atomFeedConfiguration feedCtx posts
 
-    match "_content/pages/cv.md" $ version "pdf" $ do
+    match "content/pages/cv.md" $ version "pdf" $ do
         route   $ setExtension ".pdf"
         compile $ getResourceBody
             >>= readPandoc
@@ -189,6 +189,8 @@ latex item = do
 
   makeItem $ TmpFile pdfPath
 
+-- full set of Pandoc options is abailable here:
+-- https://www.stackage.org/haddock/lts-9.12/pandoc-1.19.2.4/Text-Pandoc-Options.html#t:WriterOptions
 writeLaTex :: Pandoc.Pandoc -> String
 writeLaTex = Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}
 

@@ -47,9 +47,11 @@ deploy:
 	git stash pop || true
 
 build: compile clean
+	racket export-metadata.rkt
 	stack exec blog build
 
 live: compile clean
+	racket export-metadata.rkt
 	stack exec blog watch
 
 clean:

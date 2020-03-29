@@ -105,8 +105,8 @@ main = hakyll $ do
             posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "content/posts/*" "content")
             renderAtom atomFeedConfiguration feedCtx posts
 
-    match "content/pages/cv.md" $ version "pdf" $ do
-        route   $ setExtension ".pdf"
+    match "content/pages/cv.org" $ version "pdf" $ do
+        route $ constRoute "pages/robin-schroer-cv.pdf"
         compile $ getResourceBody
             >>= readPandoc
             >>= (return . fmap writeLaTex)

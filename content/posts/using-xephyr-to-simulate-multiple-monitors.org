@@ -27,6 +27,7 @@ Xinerama, :1.0 and :1.1, if that makes any sense. The result looks
 something like this:
 
 #+caption: Xephyr in action
+#+attr_html: :class fullwidth
 [[file:/images/scrot_xephyr_multihead.png]]
 
 Because I am currently working on the proper support, FrankenWM still

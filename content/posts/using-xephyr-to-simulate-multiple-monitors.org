@@ -19,14 +19,15 @@ randr, which is a dealbraker. But while scraping mailing lists today I
 found the magical solution, and it only needs Xephyr.
 
 #+BEGIN_SRC sh
-  Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &
+Xephyr -screen 640x480 -screen 640x480 +xinerama :1 &
 #+END_SRC
 
 This simple line starts Xephyr with two screens in one and uses
 Xinerama, :1.0 and :1.1, if that makes any sense. The result looks
 something like this:
 
-[[/images/scrot_xephyr_multihead.png]]
+#+caption: Xephyr in action
+[[file:/images/scrot_xephyr_multihead.png]]
 
 Because I am currently working on the proper support, FrankenWM still
 uses the whole screen as one, rather than using a separate desktop for

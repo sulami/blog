@@ -17,16 +17,16 @@ import           Text.Pandoc.Walk     (walk)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "raw/*" $ do
-        route   idRoute
+    match "content/raw/*" $ do
+        route $ customRoute $ drop 8 . toFilePath
         compile copyFileCompiler
 
     match "keybase.txt" $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "images/*" $ do
-        route   idRoute
+    match "content/images/*" $ do
+        route $ customRoute $ drop 8 . toFilePath
         compile copyFileCompiler
 
     match "tufte/et-book/*/*" $ do
@@ -63,14 +63,7 @@ main = hakyll $ do
 
     match "content/posts/*.org" $ do
         route   $ niceRoute
-        compile $ getResourceString
-          -- >>= withItemBody (unixFilter "emacs" ["--batch",
-          --                                       "-l", "ox-hugo/ox-blackfriday.el",
-          --                                       "-l", "ox-hugo/ox-hugo.el",
-          --                                       "-l", "org-to-md.el",
-          --                                       "-f", "org-to-md"])
-          -- >>= withItemBody (\s -> return . (++ s) . (++ "\n") . metadatasToStr $ orgMetadatas s)
-          >>= (\i -> writePandoc <$> (traverse (return . shiftHeaders 1 . usingSideNotes) =<< readPandoc i))
+        compile $ pandocWithShiftHeaders
           >>= saveSnapshot "content"
           >>= loadAndApplyTemplate "templates/default.html" postCtx
           >>= relativizeUrls
@@ -138,10 +131,9 @@ niceRoute = customRoute createIndexRoute
           where p = toFilePath ident
                 directory = takeDirectory p
                 bn = takeBaseName p
-                pageName = takeBaseName p
-        -- if "posts" `isSuffixOf` directory
-        --           then drop 11 bn -- 11 == (len "2006-03-21-")
-        --           else bn
+                pageName = if "content" `isPrefixOf` directory
+                             then drop 8 bn -- 8 == (len "content/")
+                             else bn
 
 cleanIndexUrls :: Item String -> Compiler (Item String)
 cleanIndexUrls = return . fmap (withUrls clean)
@@ -199,21 +191,3 @@ shiftHeaders i p = walk go p
   where
     go (Pandoc.Header l a inl) = Pandoc.Header (l+i) a inl
     go x = x
-
-orgCompiler :: Item String -> Compiler (Item String)
-orgCompiler = pure . fmap (\s -> (metadatasToStr . orgMetadatas) s ++ s)
-
-orgMetadatas :: String -> [String]
-orgMetadatas = map (format . lower . clean) . takeWhile (/= "") . lines
-  where
-    clean = concat . splitOn "#+"
-    lower s = (map toLower . takeWhile (/= ':')) s ++ dropWhile (/= ':') s
-    format xs
-        | -- drop weekday str. 2018-05-03 Thu -> 2018-05-03
-          "date" `isPrefixOf` xs
-        = take 16 . concat . splitOn ">" . concat . splitOn "<" $ xs
-        | otherwise
-        = xs
-
-metadatasToStr :: [String] -> String
-metadatasToStr = ("---\n" ++) . (++ "---\n") . unlines

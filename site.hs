@@ -122,11 +122,12 @@ niceRoute :: Routes
 niceRoute = customRoute createIndexRoute
   where createIndexRoute ident = directory </> pageName </> "index.html"
           where p = toFilePath ident
-                directory = takeDirectory p
+                directory = if "content" `isPrefixOf` dir
+                             then drop 8 dir -- 8 == (len "content/")
+                             else dir
+                dir = takeDirectory p
                 bn = takeBaseName p
-                pageName = if "content" `isPrefixOf` directory
-                             then drop 8 bn -- 8 == (len "content/")
-                             else bn
+                pageName = bn
 
 cleanIndexUrls :: Item String -> Compiler (Item String)
 cleanIndexUrls = return . fmap (withUrls clean)

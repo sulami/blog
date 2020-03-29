@@ -1,6 +1,4 @@
----
-title: About
----
+#+TITLE: About
 
 I am Robin Schroer, also known as sulami. This is my blog, where I discuss
 various topics, mostly related to software development, but occasionally also
@@ -22,14 +20,13 @@ Apart from that, I am in the 94th percentile of Functional Languages
 on HackerRank, using Haskell, and in the 95th honor percentile on
 CodeWars, using mostly Haskell and Python.
 
-If you are interested in working with me, here is my [CV](/pages/cv)
-([PDF](/pages/cv.pdf)).
+If you are interested in working with me, here is my [[/pages/cv][CV]] ([[/pages/cv.pdf][PDF]]).
 
-## Contact / Links
+* Contact / Links
 
-- Email: [blog@peerwire.org](mailto:blog@peerwire.org)
-- PGP: [A1418106](/raw/pubkey.txt)
-- Keybase: [sulami](https://keybase.io/sulami)
-- Github: [sulami](https://github.com/sulami)
-- Lobsters: [sulami](https://lobste.rs/u/sulami)
-- Hacker News: [sulami](https://news.ycombinator.com/user?id=sulami)
+- Email: [[mailto:blog@peerwire.org][blog@peerwire.org]]
+- PGP: [[/raw/pubkey.txt][A1418106]]
+- Keybase: [[https://keybase.io/sulami][sulami]]
+- Github: [[https://github.com/sulami][sulami]]
+- Lobsters: [[https://lobste.rs/u/sulami][sulami]]
+- Hacker News: [[https://news.ycombinator.com/user?id=sulami][sulami]]

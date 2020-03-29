@@ -48,17 +48,10 @@ main = hakyll $ do
             csses <- loadAll "css/*.css"
             makeItem $ unlines $ map itemBody $ tufte : csses
 
-    match "content/pages/*" $ do
+    match "content/pages/*.org" $ do
         route   $ niceRoute
-        compile $ pandocWithSidenotes
+        compile $ pandocWithShiftHeaders
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
-
-    match "content/posts/*.md" $ do
-        route   $ niceRoute
-        compile $ pandocWithSidenotes
-            >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
     match "content/posts/*.org" $ do
@@ -156,11 +149,6 @@ escapedTitle :: Context String
 escapedTitle = field "title" $ \i -> do
   value <- getMetadataField (itemIdentifier i) "title"
   return . escapeHtml $ fromMaybe "Post Title" value
-
-pandocWithSidenotes :: Compiler (Item String)
-pandocWithSidenotes = let ropts = defaultHakyllReaderOptions
-                          wopts = defaultHakyllWriterOptions
-                      in pandocCompilerWithTransform ropts wopts usingSideNotes
 
 pandocWithShiftHeaders :: Compiler (Item String)
 pandocWithShiftHeaders = let ropts = defaultHakyllReaderOptions

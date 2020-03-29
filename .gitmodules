@@ -1,6 +1,3 @@
 [submodule "tufte"]
 	path = tufte
 	url = https://github.com/edwardtufte/tufte-css
-[submodule "ox-hugo"]
-	path = ox-hugo
-	url = https://github.com/kaushalmodi/ox-hugo

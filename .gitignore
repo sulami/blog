@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/haskell
 
+*.org.metadata
+
 ### Haskell ###
 dist
 cabal-dev

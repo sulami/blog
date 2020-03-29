@@ -88,5 +88,5 @@ blocks me for more than an hour.
        lot is still work in progress. I can say that none of the big
        ones (top 200 productivity) does everything I want.
 
-[fn:2] #+CAPTION: png
-       [[/images/ios-warnings.png]]
+[fn:2] #+CAPTION: iOS React Native warnings
+       [[file:/images/ios-warnings.png]]

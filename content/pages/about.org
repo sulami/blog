@@ -20,12 +20,12 @@ Apart from that, I am in the 94th percentile of Functional Languages
 on HackerRank, using Haskell, and in the 95th honor percentile on
 CodeWars, using mostly Haskell and Python.
 
-If you are interested in working with me, here is my [[/pages/cv][CV]] ([[/pages/cv.pdf][PDF]]).
+If you are interested in working with me, here is my [[file:/pages/cv][CV]] ([[file:/pages/robin-schroer-cv.pdf][PDF]]).
 
 * Contact / Links
 
 - Email: [[mailto:blog@peerwire.org][blog@peerwire.org]]
-- PGP: [[/raw/pubkey.txt][A1418106]]
+- PGP: [[file:/raw/pubkey.txt][A1418106]]
 - Keybase: [[https://keybase.io/sulami][sulami]]
 - Github: [[https://github.com/sulami][sulami]]
 - Lobsters: [[https://lobste.rs/u/sulami][sulami]]

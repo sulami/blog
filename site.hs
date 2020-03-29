@@ -76,8 +76,8 @@ main = hakyll $ do
                 >>= relativizeUrls
                 >>= cleanIndexUrls
 
-    match "index.html" $ do
-        route idRoute
+    match "content/index.html" $ do
+        route $ constRoute "index.html"
         compile $ do
             all_posts <- loadAll "content/posts/*"
             let post_count = length all_posts

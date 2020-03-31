@@ -1,4 +1,6 @@
 #+TITLE: Robin Uses This
+#+DATE: 2017-11-11
+#+PAGE: t
 
 I really enjoy reading [[https://usesthis.com][uses this]] to get some ideas about what kind
 of tooling other people use, and of course to borrow ideas, so I thought I'd do

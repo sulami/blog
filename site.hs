@@ -51,14 +51,14 @@ main = hakyll $ do
     match "content/pages/*.org" $ do
         route   $ niceRoute
         compile $ pandocWithShiftHeaders
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" dateCtx
             >>= relativizeUrls
 
     match "content/posts/*.org" $ do
         route   $ niceRoute
         compile $ pandocWithShiftHeaders
           >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate "templates/default.html" postCtx
+          >>= loadAndApplyTemplate "templates/default.html" dateCtx
           >>= relativizeUrls
 
     create ["archive"] $ do
@@ -66,7 +66,7 @@ main = hakyll $ do
         compile $ do
             posts <- recentFirst =<< loadAll "content/posts/*"
             let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" dateCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
                     defaultContext
 
@@ -86,7 +86,7 @@ main = hakyll $ do
             let indexCtx =
                     constField "word_count" (show word_count) `mappend`
                     constField "post_count" (show post_count) `mappend`
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" dateCtx (return posts) `mappend`
                     defaultContext
 
             getResourceBody
@@ -100,7 +100,7 @@ main = hakyll $ do
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
-            let feedCtx = foldr mappend postCtx [bodyField "description",
+            let feedCtx = foldr mappend dateCtx [bodyField "description",
                                                  escapedTitle]
             posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "content/posts/*" "content")
             renderAtom atomFeedConfiguration feedCtx posts
@@ -115,8 +115,8 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 
-postCtx :: Context String
-postCtx = dateField "date" "%B %e, %Y" `mappend` defaultContext
+dateCtx :: Context String
+dateCtx = dateField "date" "%B %e, %Y" `mappend` defaultContext
 
 niceRoute :: Routes
 niceRoute = customRoute createIndexRoute

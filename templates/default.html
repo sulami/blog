@@ -47,7 +47,7 @@
                 <h1>$title$</h1>
                 <div class="info">
                     $if(date)$
-                        Posted on $date$
+                        $if(page)$Last updated$else$Posted$endif$ on $date$
                     $endif$
                     $if(author)$
                         by $author$

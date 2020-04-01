@@ -15,8 +15,7 @@ deploy:
 	git push origin develop:develop
 
 	# Build new files
-	stack exec blog clean
-	stack exec blog build
+	make build
 
 	# Get previous files
 	git fetch --all

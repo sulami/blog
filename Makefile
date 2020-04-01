@@ -6,7 +6,7 @@ help:
 
 deploy:
 	# Temporarily store uncommited changes
-	git stash
+	git stash --include-untracked
 
 	# Verify correct branch
 	git checkout develop

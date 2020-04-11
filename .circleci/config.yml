@@ -12,7 +12,7 @@ jobs:
       - run: git submodule update --init
       - run: |
           apt update
-          apt install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
+          apt install -y locales texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra racket
       - restore_cache:
           name: Restoring GHC cache
           key: v2-ghc-{{ checksum "stack.yaml" }}
@@ -43,7 +43,16 @@ jobs:
             - .stack-work
             - ~/.stack
             - ~/.local/bin
-      - run: stack exec --no-terminal blog build
+      - run: raco pkg install --batch --deps search-auto threading
+      - run: racket export-metadata.rkt
+      - run: |
+          locale
+          locale-gen en_US.UTF-8
+          export LANG=en_US.UTF-8
+          export LANGUAGE=en_US:en
+          export LC_ALL=en_US.UTF-8
+          locale
+          stack exec --no-terminal blog build
       - persist_to_workspace:
           root: .
           paths:
@@ -60,7 +69,11 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - develop
       - deploy:
           requires:
             - build

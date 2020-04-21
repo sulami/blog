@@ -2,22 +2,25 @@
 
 * Work
 
-** 2011 -- 2013 » Freelance DevOps @ Peerwire
+** March 2019 -- Current » Staff Software Engineer @ CircleCI
 
-I started my career doing IT freelancing for smaller companies, providing
-various services like full-stack website management and building custom internal
-software. \newline
+In early 2019 I joined CircleCI in a fully remote position and have
+since found many new challenges while working on config processing,
+pipelines, and the release of the v2 API. \newline
 
-*Technologies:* Python & Django, MySQL, Apache, C#
+*Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Docker & Kubernetes &
+Helm, AWS, GCP
 
-** February 2014 -- December 2015 » Co-Founder & DevOps @ Notdienste
+** January 2017 -- March 2019 » Senior Backend Developer @ Ostmodern
 
-In 2014 I cofounded a startup around marketing in magazines for small
-businesses. I built a full-stack platform to go to market, and we ended up
-selling the company to one of the established larger companies in the business.
-\newline
+In 2017 I moved to London to join Ostmodern, working on the backend
+for their multimedia CMS Skylark. In January 2018 I took over
+leadership of the core API framework, along with several supporting
+services, leading a team of up to five developers. In late 2018 I
+decided to move to Amsterdam and switched to a remote role. \newline
 
-*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
+*Technologies:* Python & Django & DRF, Elixir & Phoenix, PostgreSQL, RabbitMQ,
+Elasticsearch, Nginx, Docker, AWS
 
 ** April 2016 -- November 2016 » Backend Developer @ Ablescent
 
@@ -28,61 +31,35 @@ owner. \newline
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
 
-** January 2017 -- March 2019 » Senior Backend Developer @ Ostmodern
+** February 2014 -- December 2015 » Co-Founder & DevOps @ Notdienste
 
-In 2017 I moved to London to join Ostmodern, working on the backend for their
-multimedia CMS Skylark. In January 2018 I was promoted to senior level and took
-over leadership of the core API framework, along with several supporting
-services, leading a team of up to five developers. In late 2018 I decided to
-move to Amsterdam and switched to a remote role. \newline
+In 2014 I co-founded a startup around marketing in magazines for small
+businesses. I built a full-stack platform to go to market, which
+lasted until the eventual acquisition. \newline
 
-*Technologies:* Python & Django & DRF, Elixir & Phoenix, PostgreSQL, RabbitMQ,
-Elasticsearch, Nginx, Docker, AWS
+*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
 
-** March 2019 -- Current » Staff Software Engineer @ CircleCI
+** 2011 -- 2013 » Freelance DevOps @ Peerwire
 
-In early 2019 I joined CircleCI in a fully remote position and found many new
-challenges while working on the system that manges job execution. \newline
+I started my career doing IT freelancing for smaller companies, providing
+various services like full-stack website management and building custom internal
+software. \newline
 
-*Technologies:* Clojure, MongoDB, PostgreSQL, RabbitMQ, Docker & Kubernetes &
-Helm, AWS, GCP
+*Technologies:* Python & Django, MySQL, Apache, C#
 
 \pagebreak
 
 * Side Projects
 
-Because I have been using UNIX-based operating systems for most of my life, and
-I consider myself a power user, I have built some desktop software:
-
-- [[https://github.com/sulami/frankenwm][FrankenWM]] Dynamic X11 tiling windowmanager (C/XCB)
-- [[https://github.com/sulami/feed2maildir][Feed2Maildir]] Maildir-based feedreader (Python)
-- [[https://github.com/sulami/hmenu][hmenu]] CLI fuzzy finder and launcher (Haskell)
-
-When I was starting out I was interested in video games and considered a career
-in the game industry, so I built a couple of projects in that space:
-
-- [[https://github.com/sulami/dgame][dgame]] Rudimentary OpenGL 3D engine (D/SDL)
-- [[https://github.com/sulami/glow][glow]] Advanced Pong (Haskell/OpenGL)
-- [[https://github.com/sulami/farm][farm]] Browser farming game (Clojurescript/re-frame/Reagent/React)
-- [[https://github.com/sulami/floppy-bird][Floppy Bird]] Flappy bird clone made in 2 hours (Clojure/Quill)
-- [[https://github.com/sulami/hgm][hGM]] Web-based game master organisation tool (Haskell/Yesod)
-- [[https://github.com/sulami/textpy][textpy]] Framework for text adventures (Python)
-
-I have also for a long time been interested in networks and infrastructure, so a
-built a lot of projects around this:
-
-- [[https://github.com/sulami/hcached][hcached]] Memcached-compatible network hash table (Haskell)
-- [[https://github.com/sulami/medusa][Medusa]] Nagios-compatible monitoring system (Python)
-- [[https://github.com/sulami/gofuse][GoFuse]] Query circuit breaker (Go)
-- [[https://github.com/sulami/nozdormu][Nozdormu]] Python benchmarking suite
-- [[https://github.com/sulami/danketsu][Danketsu]] Microservice communication service (Go)
-- [[https://github.com/sulami/elena][Elena]] Dynamic status API (Python/Flask)
-
-In 2018 I decided to broaden my horizon, and developed two versions of an iOS
-app:
-
-- [[https://github.com/sulami/above-the-horizon][React Native]] (Clojurescript/re-frame/Reagent/React Native)
-- [[https://github.com/sulami/above-the-horizon-layout][Native]] (Swift/Layout)
+- Nebula (not yet released) · Lisp compiler (Self-hosted/LLVM)
+- [[https://github.com/sulami/frankenwm][FrankenWM]] · Dynamic X11 tiling window manager (C/XCB)
+- [[https://github.com/sulami/feed2maildir][Feed2Maildir]] · Maildir-based feed reader (Python)
+- [[https://github.com/sulami/hmenu][hmenu]] · CLI fuzzy finder and launcher (Haskell)
+- [[https://github.com/sulami/dgame][dgame]] · Rudimentary OpenGL 3D engine (D/SDL)
+- [[https://github.com/sulami/hcached][hcached]] · Memcached-compatible network hash table (Haskell)
+- [[https://github.com/sulami/medusa][Medusa]] · Nagios-compatible monitoring system (Python)
+- [[https://github.com/sulami/nozdormu][Nozdormu]] · Python benchmarking framework
+- [[https://github.com/sulami/above-the-horizon][Above the Horizon]] · iOS task manager (Clojurescript/re-frame/Reagent/React Native)
 
 * Skills
 
@@ -91,9 +68,9 @@ app:
 - Emacs Lisp - Because I use Emacs (with vim shortcuts) for basically everything
 - Git - Everything I do is version controlled
 - Hakyll - My blog is built using a quite elaborate Hakyll setup
-- HTML/CSS/JS - Even as a backend developer you always write some
 - LaTeX - The PDF version of this CV is generated using LaTeX
-- Linux kernel - I have sucessfully submitted smaller patches to the Linux kernel
+- HTML/CSS/JS - Even as a backend developer you always write some
+- Linux kernel - I have successfully submitted smaller patches to the Linux kernel
 
 ** Languages
 

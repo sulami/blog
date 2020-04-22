@@ -1,0 +1,27 @@
+#+TITLE: Blog
+
+* Dependencies
+
+Requires a Haskell installation with ~stack~ for Hakyll (~brew install
+haskell-stack~). Run ~stack setup~ to fetch to correct version of GHC.
+The first compile will take a long time, an hour or so, as it compiles
+Pandoc.
+
+Requires a LaTeX installation (~brew cask install mactex~) to render
+the CV PDF.
+
+Requires a Racket installation (~brew cask install racket~) to process
+metadata.
+
+Other dependencies: make (BSD/GNU is fine), git, rsync.
+
+* Usage
+
+Build output to =_site= with ~make build~.
+
+Live server available under https://localhost:8000 with ~make live~.
+
+Deploy with ~make deploy~, which runs through a lengthy script to
+change git branches and build fresh output. Make sure to commit on
+=develop= first, pushing is optional. Will stash and unstash
+uncommitted changes.

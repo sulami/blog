@@ -5,7 +5,10 @@ jobs:
     docker:
       - image: haskell:8
     environment:
-      - ENV DEBIAN_FRONTEND: noninteractive
+      DEBIAN_FRONTEND: noninteractive
+      LANGUAGE: C
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     steps:
       - checkout
       - run: git submodule sync
@@ -45,12 +48,7 @@ jobs:
             - ~/.local/bin
       - run: raco pkg install --batch --deps search-auto threading
       - run: racket export-metadata.rkt
-      - run: |
-          locale-gen C.UTF-8
-          export LANG=C.UTF-8
-          export LANGUAGE=C
-          export LC_ALL=C.UTF-8
-          stack exec --no-terminal blog build
+      - run: stack exec --no-terminal blog build
       - persist_to_workspace:
           root: .
           paths:

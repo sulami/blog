@@ -60,7 +60,9 @@ jobs:
     steps:
       - checkout:
           path: _site
-      - run: git checkout master
+      - run: |
+          cd _site
+          git checkout master
       - attach_workspace:
           at: .
       - run: |
@@ -69,7 +71,7 @@ jobs:
           git commit -m "Publish."
           git push origin master:master
       - store_artifacts:
-          path: .
+          path: _site
 
 workflows:
   build-and-deploy:

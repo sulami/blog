@@ -46,13 +46,10 @@ jobs:
       - run: raco pkg install --batch --deps search-auto threading
       - run: racket export-metadata.rkt
       - run: |
-          locale -a
-          locale
           locale-gen C.UTF-8
           export LANG=C.UTF-8
           export LANGUAGE=C
           export LC_ALL=C.UTF-8
-          locale
           stack exec --no-terminal blog build
       - persist_to_workspace:
           root: .

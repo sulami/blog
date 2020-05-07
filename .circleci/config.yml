@@ -71,7 +71,7 @@ jobs:
           git add -A
           git config user.email "sulami@peerwire.org"
           git config user.name "Robin Schroer"
-          git commit -m "[skip-ci] Publish."
+          git commit -m "[skip ci] Publish."
           git push -q << pipeline.project.git_url >>.git master:master
       - store_artifacts:
           path: _site

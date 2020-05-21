@@ -34,6 +34,14 @@ div.figure > img.fullwidth {
     max-width: 88%;
 }
 
+div.figure > video {
+    max-width: 55%;
+}
+
+div.figure > video.fullwidth {
+    max-width: 88%;
+}
+
 div.figure > p.caption {
     float: right;
     clear: right;

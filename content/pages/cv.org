@@ -66,12 +66,10 @@ software. \newline
 
 ** Other Technologies
 
-- Emacs Lisp - Because I use Emacs (with vim shortcuts) for basically everything
-- Git - Everything I do is version controlled
-- Hakyll - My blog is built using a quite elaborate Hakyll setup
-- LaTeX - The PDF version of this CV is generated using LaTeX
-- HTML/CSS/JS - Even as a backend developer you always write some
-- Linux kernel - I have successfully submitted smaller patches to the Linux kernel
+- Emacs Lisp
+- Git
+- LaTeX
+- HTML/CSS/JS
 
 ** Languages
 

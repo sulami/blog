@@ -53,6 +53,7 @@ software. \newline
 
 - Nebula (not yet released) · Lisp compiler (Self-hosted/LLVM)
 - [[https://github.com/sulami/frankenwm][FrankenWM]] · Dynamic X11 tiling window manager (C/XCB)
+- [[https://github.com/sulami/literate-calc-mode.el][Literate Calc Mode]] · Mode for literate calculations in Emacs (Emacs Lisp)
 - [[https://github.com/sulami/feed2maildir][Feed2Maildir]] · Maildir-based feed reader (Python)
 - [[https://github.com/sulami/hmenu][hmenu]] · CLI fuzzy finder and launcher (Haskell)
 - [[https://github.com/sulami/dgame][dgame]] · Rudimentary OpenGL 3D engine (D/SDL)

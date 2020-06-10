@@ -68,7 +68,7 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" dateCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
-                    defaultContext
+                    baseCtx
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -87,7 +87,7 @@ main = hakyll $ do
                     constField "word_count" (show word_count) `mappend`
                     constField "post_count" (show post_count) `mappend`
                     listField "posts" dateCtx (return posts) `mappend`
-                    defaultContext
+                    baseCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -110,13 +110,21 @@ main = hakyll $ do
         compile $ getResourceBody
             >>= readPandoc
             >>= (return . fmap writeLaTex)
-            >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
+            >>= loadAndApplyTemplate "templates/cv.tex" baseCtx
             >>= latex
 
 --------------------------------------------------------------------------------
 
 dateCtx :: Context String
-dateCtx = dateField "date" "%B %e, %Y" `mappend` defaultContext
+dateCtx = dateField "date" "%B %e, %Y" `mappend` baseCtx
+
+stripTags :: Context String
+stripTags = functionField "stripTags" $ \args item -> case args of
+  [s] -> return $ Hakyll.stripTags s
+  _   -> error "stripTags only takes one argument"
+
+baseCtx :: Context String
+baseCtx = Main.stripTags `mappend` defaultContext
 
 niceRoute :: Routes
 niceRoute = customRoute createIndexRoute

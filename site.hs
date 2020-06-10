@@ -150,7 +150,7 @@ atomFeedConfiguration = FeedConfiguration
   { feedTitle = "sulami's blog"
   , feedDescription = "a blog"
   , feedAuthorName = "Robin Schroer"
-  , feedAuthorEmail = "sulami@peerwire.org"
+  , feedAuthorEmail = "blog@peerwire.org"
   , feedRoot = "https://sulami.github.io"
   }
 

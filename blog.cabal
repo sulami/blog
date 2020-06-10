@@ -10,7 +10,7 @@ maintainer:          example@example.com
 copyright:           2017 Author name here
 category:            Web
 build-type:          Simple
-extra-source-files:  README.md
+extra-source-files:  README.org
 cabal-version:       >=1.10
 
 executable blog

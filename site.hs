@@ -61,7 +61,7 @@ main = hakyll $ do
           >>= loadAndApplyTemplate "templates/default.html" dateCtx
           >>= relativizeUrls
 
-    create ["archive"] $ do
+    create ["posts"] $ do
         route   $ niceRoute
         compile $ do
             posts <- recentFirst =<< loadAll "content/posts/*"

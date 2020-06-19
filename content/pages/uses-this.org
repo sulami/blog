@@ -13,11 +13,10 @@ My primary computer nowadays is a specced-out 2018 15" MacBook Pro,
 which is actually provided by my employer. MacOS is /alright/ and
 tends to not get into the way too much.[fn:ports]
 
-I use a stand to bring the computer up to eye level, and an Apple
-Magic Keyboard and Magic Trackpad for human-machine-interfacing. I
-have been using the [[https://colemak.com][Colemak keyboard layout]] for several years on all
-physical keyboards due to RSI issues, and also remap caps lock to
-control.
+I use a stand to bring the computer up to eye level, and [[https://shop.keyboard.io/products/keyboardio-atreus][Keyboardio]]
+[[http://atreus.technomancy.us/][Atreus]] and Magic Trackpad for human-machine-interfacing. I have been
+using the [[https://colemak.com][Colemak keyboard layout]] for several years on all physical
+keyboards due to RSI issues, and also remap caps lock to control.
 
 I have two sets of headphones, [[https://europe.beyerdynamic.com/dt-990-pro.html][beyerdynamic DT 990 Pro]], which sound
 really nice, and [[https://www.bose.com/en_us/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html#v=qc35_ii_black][Bose QuietComfort 35 II]], which are noise-cancelling

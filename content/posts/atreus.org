@@ -88,13 +88,13 @@ to use [[https://qmk.fm/][QMK]], and Phil has recently written [[https://git.sr.
 [[https://ryansuchocki.github.io/microscheme/][Microscheme]].
 
 I have stuck with (pre-release versions of) Kaleidoscope so far, which
-has worked out fairly well. Chrysalis is a React Native app, and doing
+has worked out fairly well. Chrysalis is an Electron app, and doing
 sweeping changes in it can be a bit cumbersome compared to using
 text-based, declarative configuration, but it does the job. Flashing a
-new version onto the keyboard only takes a few seconds. I also have
-to mention the [[https://kaleidoscope.readthedocs.io/en/latest/][extensive documentation]] available. Kaleidoscope has a
-rich plugin infrastructure, very little of which I actually use, but
-it does seem to rival QMK in flexibility.
+new version onto the keyboard only takes a few seconds. I also have to
+mention the [[https://kaleidoscope.readthedocs.io/en/latest/][extensive documentation]] available. Kaleidoscope has a rich
+plugin infrastructure, very little of which I actually use, but it
+does seem to rival QMK in flexibility.
 
 I am using the Atreus with [[https://colemak.com/][Colemak]], the same layout I have been using
 for almost a decade now, and compared to trying the [[https://ergodox-ez.com/][Ergodox]],[fn:5] the

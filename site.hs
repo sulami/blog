@@ -151,7 +151,7 @@ atomFeedConfiguration = FeedConfiguration
   , feedDescription = "a blog"
   , feedAuthorName = "Robin Schroer"
   , feedAuthorEmail = "blog@peerwire.org"
-  , feedRoot = "https://sulami.github.io"
+  , feedRoot = "https://blog.sulami.xyz"
   }
 
 escapedTitle :: Context String

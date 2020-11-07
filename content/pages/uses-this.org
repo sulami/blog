@@ -1,5 +1,5 @@
 #+TITLE: Robin Uses This
-#+DATE: 2017-11-11
+#+DATE: 2020-11-07
 #+PAGE: t
 
 I really enjoy reading [[https://usesthis.com][uses this]] to get some ideas about what kind of
@@ -9,47 +9,49 @@ and I will try to keep it up to date, as my setup keeps changing.
 
 * Hardware
 
-My primary computer nowadays is a specced-out 2018 15" MacBook Pro,
-which is actually provided by my employer. MacOS is /alright/ and
-tends to not get into the way too much.[fn:ports]
+My workstation is optimised for portability, so everything is
+relatively small and packs well for travel, while maximising
+ergonomics:
 
-I use a stand to bring the computer up to eye level, and [[https://shop.keyboard.io/products/keyboardio-atreus][Keyboardio]]
-[[http://atreus.technomancy.us/][Atreus]] and Magic Trackpad for human-machine-interfacing. I have been
-using the [[https://colemak.com][Colemak keyboard layout]] for several years on all physical
-keyboards due to RSI issues, and also remap caps lock to control.
+- 2018 15" Apple MacBook Pro :: Company-provided, does the job
+- [[https://www.therooststand.com/][Roost Laptop Stand]] :: Saves my neck and posture
+- [[../../posts/atreus/][Keyboardio Atreus Keyboard]] :: Using the [[https://colemak.com][Colemak]] layout
+- Apple Magic Trackpad :: Better for RSI (for me)
+- [[https://europe.beyerdynamic.com/dt-990-pro.html][beyerdynamic DT 990 Pro]] :: Open-back, wired
+- [[https://www.anker.com/products/variant/usb-c-hub,-7in1-usb-c-adapter/A83460A1][Anker 7-in-1 USB-C Hub]] :: Works well with the stand, and is the
+  single thing to unplug when taking the computer away
+- [[https://www.yubico.com/nl/product/yubikey-5c-nano/][Yubikey 5C Nano]] :: Used wherever possible
 
-I have two sets of headphones, [[https://europe.beyerdynamic.com/dt-990-pro.html][beyerdynamic DT 990 Pro]], which sound
-really nice, and [[https://www.bose.com/en_us/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html#v=qc35_ii_black][Bose QuietComfort 35 II]], which are noise-cancelling
-and wireless.
+Phone:
 
-[fn:ports] Except when the Mach kernel leaks ports, crashing user
-space programs.
+- Apple iPhone X :: Still going strong, always on mute
+- [[https://www.bose.com/en_us/products/headphones/over_ear_headphones/quietcomfort-35-wireless-ii.html#v=qc35_ii_black][Bose QuietComfort 35 II]] :: Noise-cancelling, Bluetooth
 
 * Software
 
-I use [[https://github.com/koekeishiya/yabai][yabai]] & [[https://github.com/koekeishiya/skhd][skhd]] to drive most of my desktop with the keyboard
-alone.
+Really just the current version of macOS, the [[https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/editors/emacs/macport.nix][MacPorts version]] of
+[[https://www.gnu.org/software/emacs/][Emacs]], and [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer Edition]].
 
-I write basically everything in [[https://www.gnu.org/software/emacs/][Emacs]], specifically the [[https://github.com/railwaycat/homebrew-emacsmacport][Mac Port]],
-which comes with some macOS-specific tweaks. [[https://github.com/sulami/dotfiles/tree/master/emacs/.emacs][My config]] is custom
-written, and heavily leans on [[https://github.com/emacs-evil/evil][evil]] to emulate a vim layout. I use
-[[http://isync.sourceforge.net/][isync]], [[https://notmuchmail.org/][notmuch]], and [[https://marlam.de/msmtp/][msmtp]] to fetch/tag/send email, of course from
-inside Emacs. I also make heavy use of [[https://orgmode.org/][org-mode]] for both notes and to
-do lists. I even write this website in it.
+The specifics of my setup change a lot. I use [[https://orgmode.org/][org-mode]] for most
+writing, but otherwise I only use my email in Emacs, via [[https://notmuchmail.org/][notmuch]]. I
+have been down the "do everything inside Emacs" road and decided that
+there are too many rough edges for my taste, so I confine it to
+text-processing related tasks.
 
-When it comes to browsing, my browser is currently [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer
-Edition]].
+All my configuration is [[https://github.com/sulami/dotfiles][available online]].
 
-Worth mentioning as well is Dash, which provides offline
-documentation. I always try to be as independent as possible, so I try
-to have everything I need to work available offline.[fn:offline]
+I always use a task-manager of some sort, currently [[https://culturedcode.com/things/][Things]], in the
+past also org-mode, [[https://www.omnigroup.com/omnifocus][OmniFocus]], and [[https://www.2doapp.com/][2Do]].
 
-[fn:offline] That also includes a local copy of all my emails.
+* Analogue
 
-* Phone
+I usually have a paper notebook and pen nearby, which I find useful to
+jot down ideas or sketch out some diagram.[fn:1] It is a strictly temporary
+space and everything is digitised eventually to enable sensible
+archiving.
 
-My phone is an iPhone X, which I am quite happy with. I am not a heavy
-phone user, and mainly use it to stay in contact with people.
+I am also usually wearing a wristwatch, preferably a chronograph.
+Currently a [[https://www.timex.com/expedition-field-chronograph-43mm-leather-strap-watch/Expedition-Field-Chronograph-43mm-Leather-Strap-Watch.html][Timex Expedition Field Chronograph]].
 
-The main software I use on my phone is [[https://beorgapp.com/][beorg]] to keep track of
-everything in org-mode.
+[fn:1] Not a pen snob, so just a random ballpoint pen. The paper has
+to be dotted though, no lines or grids.

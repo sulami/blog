@@ -24,7 +24,7 @@ If you are interested in working with me, here is my [[file:/pages/cv][CV]] ([[f
 
 * Contact / Links
 
-- Email: [[mailto:blog@peerwire.org][blog@peerwire.org]]
+- Email: [[mailto:blog@sulami.xyz][blog@sulami.xyz]]
 - PGP: [[file:/raw/pubkey.txt][A1418106]]
 - Keybase: [[https://keybase.io/sulami][sulami]]
 - Github: [[https://github.com/sulami][sulami]]

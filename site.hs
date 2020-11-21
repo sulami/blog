@@ -101,6 +101,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let feedCtx = foldr mappend dateCtx [bodyField "description",
+                                                 cleanUrlField "url",
                                                  escapedTitle]
             posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "content/posts/*" "content")
             renderAtom atomFeedConfiguration feedCtx posts
@@ -123,6 +124,12 @@ stripTags = functionField "stripTags" $ \args item -> case args of
   [s] -> return $ Hakyll.stripTags s
   _   -> error "stripTags only takes one argument"
 
+cleanUrlField :: String -> Context a
+cleanUrlField key = field key $ \i -> do
+    let id = itemIdentifier i
+        empty' = fail $ "No route url found for item " ++ show id
+    fmap (maybe empty' (cleanUrl . toUrl)) $ getRoute id
+
 baseCtx :: Context String
 baseCtx = Main.stripTags `mappend` defaultContext
 
@@ -137,13 +144,13 @@ niceRoute = customRoute createIndexRoute
                 bn = takeBaseName p
                 pageName = bn
 
+cleanUrl :: String -> String
+cleanUrl url | idx `isSuffixOf` url = take (length url - length idx) url
+             | otherwise            = url
+  where idx = "index.html"
+
 cleanIndexUrls :: Item String -> Compiler (Item String)
-cleanIndexUrls = return . fmap (withUrls clean)
-    where
-        idx = "index.html"
-        clean url
-            | idx `isSuffixOf` url = take (length url - length idx) url
-            | otherwise            = url
+cleanIndexUrls = return . fmap (withUrls cleanUrl)
 
 atomFeedConfiguration :: FeedConfiguration
 atomFeedConfiguration = FeedConfiguration

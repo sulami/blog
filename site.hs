@@ -100,8 +100,8 @@ main = hakyll $ do
     create ["atom.xml"] $ do
         route idRoute
         compile $ do
-            let feedCtx = foldr mappend dateCtx [bodyField "description",
-                                                 cleanUrlField "url",
+            let feedCtx = foldr mappend dateCtx [cleanUrlField "url",
+                                                 bodyWithoutSidenotesField "description",
                                                  escapedTitle]
             posts <- take 10 <$> (recentFirst =<< loadAllSnapshots "content/posts/*" "content")
             renderAtom atomFeedConfiguration feedCtx posts
@@ -129,6 +129,22 @@ cleanUrlField key = field key $ \i -> do
     let id = itemIdentifier i
         empty' = fail $ "No route url found for item " ++ show id
     fmap (maybe empty' (cleanUrl . toUrl)) $ getRoute id
+
+dropUntil :: ([a] -> Bool) -> [a] -> [a]
+dropUntil _ [] = []
+dropUntil f xs | f xs = xs
+               | otherwise = dropUntil f $ tail xs
+
+stripSidenotes :: String -> String
+stripSidenotes "" = ""
+stripSidenotes s@(c:cs)
+  | start `isPrefixOf` s = stripSidenotes . drop (length end) $ dropUntil (end `isPrefixOf`) s
+  | otherwise = c : stripSidenotes cs
+      where start = "<span><label for="
+            end = "</span></span>"
+
+bodyWithoutSidenotesField :: String -> Context String
+bodyWithoutSidenotesField key = field key $ return . stripSidenotes . itemBody
 
 baseCtx :: Context String
 baseCtx = Main.stripTags `mappend` defaultContext

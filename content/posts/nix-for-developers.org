@@ -144,26 +144,14 @@ rollback more than one change.
 [fn:6] It is actually symbolic links all the way down but that is not
 really important for now. [[https://nixos.org/manual/nix/stable/figures/user-environments.png][Symbolic links graphic]]
 
-** Finding Packages
+** Installing a Package
 
-Before we can install a package, we need to find it first. Finding
-packages is a bit cumbersome, but not too difficult. We can use this
-command to search for a package:[fn:7]
+Before we can install a package, we need to find it first. Finding a
+package is as simple as running
 
 #+begin_src sh
-nix-env -qaP | grep some-package
+nix search some-package
 #+end_src
-
-Because listing all packages take a while, it can be beneficial to
-save the output of ~nix-env -qaP~ to a file whenever we update our
-channels (more on that below), and ~grep~ through that instead, which
-should be instantaneous.
-
-[fn:7] Nix also has builtin search capabilities, but it requires
-cumbersome regular expressions. The ~grep~ method usually works better
-in my experience.
-
-** Installing a Package
 
 Let us modify =$HOME/.nixpkgs/darwin-configuration.nix= now. If we
 open that file, we should find a section similar to this:
@@ -231,7 +219,7 @@ shell. This can be useful if the mere existence of a system-wide piece
 of software is problematic.
 
 If we use this method to setup a Nix environment for a specific
-project, we can use a =shell.nix= file to declaratively[fn:8] express the
+project, we can use a =shell.nix= file to declaratively[fn:7] express the
 environment like so:
 
 #+begin_src nix
@@ -246,7 +234,7 @@ pkgs.mkShell {
 
 This looks complicated, but this does two simple things: anything in
 ~buildInputs~ is made available to the shell, and anything else is
-injected as an environment variable.[fn:9] Just calling ~nix-shell~ in
+injected as an environment variable.[fn:8] Just calling ~nix-shell~ in
 the same directory will automatically pick up this file and execute
 it.
 
@@ -254,15 +242,15 @@ In this case we are simply getting an older version of Python, and
 also setting a related environment variable. Anyone using this
 configuration will have the same environment, which mirrors some of
 the benefits of Docker, but without the overhead of running
-containers.[fn:10]
+containers.[fn:9]
 
-[fn:8] For extra declarativity, we can also pin Nixpkgs to a specific
+[fn:7] For extra declarativity, we can also pin Nixpkgs to a specific
 revision.
 
-[fn:9] There are actually a few more valid options, which we can get
+[fn:8] There are actually a few more valid options, which we can get
 directly [[https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/mkshell/default.nix][from the source]].
 
-[fn:10] Which is especially slow on macOS due to the virtual machine
+[fn:9] Which is especially slow on macOS due to the virtual machine
 required.
 
 * How to Debug Problems
@@ -272,7 +260,7 @@ sparse, and common recommendations are to either find an existing
 solution for your problem, or to read the Nix code involved. Because
 Nix includes a whole programming language, it allows users to build
 their own abstractions, which means that many packages have their own
-way of doing things.[fn:11]
+way of doing things.[fn:10]
 
 I wish I could provide a sure way to solving all your Nix-related
 problems, but a lot of it comes back to pasting error messages into
@@ -280,7 +268,7 @@ search engines and asking people online. Nix is not without its rough
 edges, and sooner or later you will run into one of them. I consider
 them learning opportunities, but they can be very frustrating.
 
-[fn:11] It is [[http://winestockwebdesign.com/Essays/Lisp_Curse.html][The LISP Curse]] all over again. There is a fair degree of
+[fn:10] It is [[http://winestockwebdesign.com/Essays/Lisp_Curse.html][The LISP Curse]] all over again. There is a fair degree of
 standardisation in Nix though.
 
 * Where to Go From Here
@@ -292,7 +280,7 @@ get a better understanding of the language and system.
 [[https://github.com/nix-community/home-manager][home-manager]] is a project which manages a per-user Nix environment in
 a declarative way. If you are using nix-darwin it is somewhat
 optional, but can still be useful to build a more portable
-configuration.[fn:12] It can be installed as a nix-darwin plugin as well.
+configuration.[fn:11] It can be installed as a nix-darwin plugin as well.
 
 If you are looking for better project environment management with Nix,
 there are a few very useful tools. [[https://github.com/nmattia/niv][Niv]] allows you to declare and pin
@@ -312,6 +300,6 @@ Last but not least, if you really enjoy using Nix, you might want to
 try running NixOS, a whole Linux distribution which is configured
 using Nix.
 
-[fn:12] Mainly if you want to reuse or port your configuration to a
+[fn:11] Mainly if you want to reuse or port your configuration to a
 non-Darwin system. Using nix-darwin only for Darwin-specific tasks
 makes this much easier.

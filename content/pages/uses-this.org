@@ -30,7 +30,8 @@ Phone:
 * Software
 
 Really just the current version of macOS, the [[https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/editors/emacs/macport.nix][MacPorts version]] of
-[[https://www.gnu.org/software/emacs/][Emacs]], and [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer Edition]].
+[[https://www.gnu.org/software/emacs/][Emacs]], and [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer Edition]]. Most of my software is
+maintained via [[https://nixos.org][Nix]].
 
 The specifics of my setup change a lot. I use [[https://orgmode.org/][org-mode]] for most
 writing, but otherwise I only use my email in Emacs, via [[https://notmuchmail.org/][notmuch]]. I
@@ -42,16 +43,3 @@ All my configuration is [[https://github.com/sulami/dotfiles][available online]]
 
 I always use a task-manager of some sort, currently [[https://culturedcode.com/things/][Things]], in the
 past also org-mode, [[https://www.omnigroup.com/omnifocus][OmniFocus]], and [[https://www.2doapp.com/][2Do]].
-
-* Analogue
-
-I usually have a paper notebook and pen nearby, which I find useful to
-jot down ideas or sketch out some diagram.[fn:1] It is a strictly temporary
-space and everything is digitised eventually to enable sensible
-archiving.
-
-I am also usually wearing a wristwatch, preferably a chronograph.
-Currently a [[https://www.timex.com/expedition-field-chronograph-43mm-leather-strap-watch/Expedition-Field-Chronograph-43mm-Leather-Strap-Watch.html][Timex Expedition Field Chronograph]].
-
-[fn:1] Not a pen snob, so just a random ballpoint pen. The paper has
-to be dotted though, no lines or grids.

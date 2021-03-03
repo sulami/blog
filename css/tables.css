@@ -1,0 +1,20 @@
+/*
+While org-mode supports adding HTML attributes to tables inline,
+Hakyll doesn't pick those up. This means tweaks to the table style
+have to happen here, in CSS. Which is just as well, because these
+modifications here only make sense in the context of tufte CSS, so
+adding them to the source muddles concerns.
+*/
+
+table {
+    text-align: center;
+}
+
+th:nth-child(1) {
+    text-align: left;
+}
+
+td:nth-child(1) {
+    text-align: left;
+    font-weight: bold;
+}

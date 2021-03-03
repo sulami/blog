@@ -54,7 +54,7 @@ article {
 /* override tufte */
 :root {
     --dark-bg: #002b36;
-    --dark-color: #fdf6e3;
+    --dark-color: #eee8d5;
     --dark-code: #93a1a1;
     --light-bg: #fffff8;
     --light-color: #111;

@@ -8,13 +8,21 @@ adding them to the source muddles concerns.
 
 table {
     text-align: center;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-border-horizontal-spacing: 0px;
+}
+
+th {
+    border-bottom: 1px solid;
 }
 
 th:nth-child(1) {
     text-align: left;
+    border-right: 1px solid;
 }
 
 td:nth-child(1) {
     text-align: left;
     font-weight: bold;
+    border-right: 1px solid;
 }

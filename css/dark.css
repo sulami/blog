@@ -76,6 +76,12 @@ article {
     input#lightswitch:checked ~ pre code {
         color: var(--light-code);
     }
+    table {
+        border-color: var(--dark-fg);
+    }
+    input#lightswitch:checked ~ table {
+        border-color: var(--light-code);
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -92,5 +98,11 @@ article {
     }
     input#lightswitch:checked ~ pre code {
         color: var(--dark-code);
+    }
+    table {
+        border-color: var(--light-fg);
+    }
+    input#lightswitch:checked ~ table {
+        border-color: var(--dark-code);
     }
 }

@@ -1,49 +1,46 @@
 #+TITLE: Robin Schroer
 
-* Work
+* Employment
 
-** March 2019 -- Current » Staff Software Engineer @ CircleCI
+** March 2019 -- Now » Staff Software Engineer @ CircleCI
 
-In early 2019 I joined CircleCI in a fully remote position and have
-since found many new challenges while working on config processing,
-pipelines, and the release of the v2 API. \newline
+Responsible for designing and delivering various pipelines- and
+config-related features, such as logic conditionals, multiple
+contexts, and setup workflows, as well as contributing to the launch
+of the v2 API. \newline
 
-*Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Docker & Kubernetes &
-Helm, AWS, GCP
+*Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Kubernetes,
+Docker, Nix, AWS
 
 ** January 2017 -- March 2019 » Senior Backend Developer @ Ostmodern
 
-In 2017 I moved to London to join Ostmodern, working on the backend
-for their multimedia CMS Skylark. In January 2018 I took over
-leadership of the core API framework, along with several supporting
-services, leading a team of up to five developers. In late 2018 I
-decided to move to Amsterdam and switched to a remote role. \newline
+Owned the core API framework, along with several supporting services,
+leading a team of up to five developers. \newline
 
-*Technologies:* Python & Django & DRF, Elixir & Phoenix, PostgreSQL, RabbitMQ,
-Elasticsearch, Nginx, Docker, AWS
+*Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
+RabbitMQ, Elasticsearch, Nginx, Docker, AWS
 
 ** April 2016 -- November 2016 » Backend Developer @ Ablescent
 
-After a short hiatus to work on some side projects, I joined Ablescent as the
-second developer, working full-time remote. I took ownership over the backend
-and built it up in close collaboration with the frontend team and the product
-owner. \newline
+After a short hiatus to work on some side projects, I joined Ablescent
+as the second developer, working full-time remote. I took ownership
+over the backend and built it up in close collaboration with the
+frontend team and the product owner. \newline
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
 
 ** February 2014 -- December 2015 » Co-Founder & DevOps @ Notdienste
 
-In 2014 I co-founded a startup around marketing in magazines for small
-businesses. I built a full-stack platform to go to market, which
-lasted until the eventual acquisition. \newline
+Co-founded a startup around marketing in magazines for small
+businesses. Built a full-stack platform to go to market, which
+ultimately led to our acquisition. \newline
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
 
-** 2011 -- 2013 » Freelance DevOps @ Peerwire
+** 2011 -- 2014 » Freelance DevOps @ Peerwire
 
-I started my career doing IT freelancing for smaller companies, providing
-various services like full-stack website management and building custom internal
-software. \newline
+Provided full-stack website management, as well as building custom
+internal software for small businesses. \newline
 
 *Technologies:* Python & Django, MySQL, Apache, C#
 
@@ -51,9 +48,9 @@ software. \newline
 
 * Side Projects
 
-- Nebula (not yet released) · Lisp compiler (Self-hosted/LLVM)
-- [[https://github.com/sulami/frankenwm][FrankenWM]] · Dynamic X11 tiling window manager (C/XCB)
 - [[https://github.com/sulami/literate-calc-mode.el][Literate Calc Mode]] · Mode for literate calculations in Emacs (Emacs Lisp)
+- [[https://github.com/sulami/frankenwm][FrankenWM]] · Dynamic X11 tiling window manager (C/XCB)
+- Nebula (unreleased) · Lisp compiler (Self-hosted/LLVM)
 - [[https://github.com/sulami/feed2maildir][Feed2Maildir]] · Maildir-based feed reader (Python)
 - [[https://github.com/sulami/hmenu][hmenu]] · CLI fuzzy finder and launcher (Haskell)
 - [[https://github.com/sulami/dgame][dgame]] · Rudimentary OpenGL 3D engine (D/SDL)

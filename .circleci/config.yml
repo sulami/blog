@@ -46,7 +46,7 @@ jobs:
             - .stack-work
             - ~/.stack
             - ~/.local/bin
-      - run: raco pkg install --batch --deps search-auto threading
+      - run: raco pkg install --batch --deps search-auto threading-lib
       - run: racket export-metadata.rkt
       - run: stack exec --no-terminal blog build
       - persist_to_workspace:

@@ -7,6 +7,7 @@ adding them to the source muddles concerns.
 */
 
 table {
+    border-collapse: collapse;
     text-align: center;
     -webkit-border-vertical-spacing: 0px;
     -webkit-border-horizontal-spacing: 0px;

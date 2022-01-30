@@ -1,0 +1,124 @@
+#+TITLE: How this blog is made
+#+DATE: 2018-07-26
+
+While this blog has always been powered by a static-page generator, a
+while ago I switched from using [[https://blog.getpelican.com/][Pelican]], a Python-based generator, to
+[[https://jaspervdj.be/hakyll/][Hakyll]], a Haskell-based one. There was no real practical reason for
+this, and objectively the switch has been a huge waste of time, though
+I have learned a lot about Haskell and am very happy with how this
+blog currently works.
+
+The basic setup is quite simple, I am using [[https://docs.haskellstack.org/en/stable/README/][Stack]] to manage build
+dependencies and sandboxing for Haskell[fn:1]. For reasons that become
+clear later in this post, I also need a LaTeX installation, which
+currently is not managed in any way, but I do not require anything out
+of the ordinary, so usually it is just a matter of install ing the
+distribution for my operating system.
+
+[fn:1] This is actually one of my basic requirements for new languages
+that I pick up. It is 2018, you can ship your language with a package
+manager that sandboxes by default. One of my biggest problems with
+Python is virtualenv.
+
+* Hakyll Hacks
+:PROPERTIES:
+:ID:       243D6486-11AE-489F-A88F-1308E57796B5
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+To achieve a nice, human-readable URL scheme I am not only generating
+a slug from the original file name, which usually matches the title,
+but to get rid of the ugly =.html= postfix I actually render all pages
+and posts to =index.html= files in directories with the corresponding
+name, resulting in URLs with trailing slashes. Credit for this goes to
+[[https://www.rohanjain.in/hakyll-clean-urls/][Rohan Jain]].
+
+Of course this blog also has an Atom feed[fn:2], so you can follow my
+posts in your favourite newsreader, or use Firefox live bookmarks for
+example. I ran into one particular problem with this though, as one of
+my recent posts included an ampersand (&) in the title. The rendered
+feed file (no matter the format) would be invalid due to this. So I
+had to implement [[https://en.wikipedia.org/wiki/Percent-encoding][URL encoding]] for titles myself (this is already done
+for the body by Hakyll). Thanks to the way Hakyll embraces the Haskell
+philosphy, this was just a matter of mapping the encoding function
+over the post titles for the feed output.
+
+[fn:2] Atom vs. RSS has been [[https://nullprogram.com/blog/2013/09/23/][debated for a while]], in the end my use
+case is super simple anyway, so I am just using Atom until I find an
+actually valid reason to get into comparing the two formats.
+
+* Org Mode
+:PROPERTIES:
+:ID:       AF804544-C899-449B-809C-6F3B636D49F8
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+I am using org-mode as the source for all the content, which is
+supported by Pandoc, but Hakyll does not support org-mode's property
+syntax. Because I do not want to use YAML-style headers in my org-mode
+files, I instead have a separate build step running a small Racket
+script which extracts the org-mode headers, converts them to YAML, and
+writes them to =<filename>.metadata=, which Hakyll picks up
+automatically.
+
+* Symetric HTML & PDF output
+:PROPERTIES:
+:ID:       5FD71DE3-0367-45CD-9769-10A91A703E65
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+A long while ago I had the idea of making my CV available online in
+the browser, like many front end developers do to showcase their
+skills. At the same time I still need a PDF version that can be
+printed neatly. Being a developer, I of course cannot fathom the idea
+of having two sets of CVs, so I thought why not generate both versions
+from the same source (of truth), using one single build process. So
+that is what I am currently finalising.
+
+The HTML version for the website is just a static page in the blog,
+simple enough. Hakyll gives me very fine-grained control over the
+actual build process, so I can leverage custom org-mode properties to
+control layout if I need to. The PDF version of my CV has always been
+generated using [[https://www.latex-project.org/][LaTeX]], because it generates beautifully rendered
+output in a reproducible fashion. Because I am using [[http://pandoc.org/][Pandoc]] to
+generate HTML from the org-mode source, I am also using it to generate
+the LaTeX source code from the same source, and then just pass it into
+a LaTeX template. Then I just run =xetex= in a subprocess to render
+the final PDF.
+
+* Deployment
+:PROPERTIES:
+:ID:       79F63F5D-76B8-4C38-A3CD-A9236E97B80A
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+This blog is currently hosted in two locations, [[https://pages.github.com/][GitHub Pages]] which I
+have been using for many years, and [[https://docs.gitlab.com/ee/user/project/pages/][GitLab pages]], which I only added
+recently. While the build and deployment process for these two
+platforms is slightly different, they mostly work off the same
+codebase, with the only difference being a
+[[https://github.com/sulami/sulami.github.io/blob/develop/Makefile][makefile
+for GitHub]] being replaced by the [[https://gitlab.com/sulami/sulami.gitlab.io/blob/develop/.gitlab-ci.yml][GitLab-specific build file]]. The
+GitHub version I generate locally with my locally compiled Hakyll, and
+then push the the right branch using the makefile. This makefile also
+allows me to run a local server to preview the rendered output before
+committing. The GitLab repository is setup to mirror the one on GitHub
+and rebuild via GitLab CI on every change, so it is compiling the
+Hakyll application in a Docker container and the generating the
+output.
+
+These two build processes have different pros and cons. The GitHub
+version is available slightly faster, as my local render only takes a
+couple of seconds and after pushing I just have to wait for GitHub's
+cache to refresh, which usually takes only a couple of minutes, while
+the GitLab version has to run the CI job which takes a couple of
+minutes. On the upside the GitLab version does not require me to have
+a locally installed version of Haskell, Stack or anything else, as
+long as I can push to the repository, allowing me to explore workflows
+which happen end-to-end on iOS. I have been investigating this exact
+workflow, using a combination of [[https://itunes.apple.com/us/app/ia-writer/id775737172][iA Writer]], [[https://itunes.apple.com/us/app/workflow/id915249334][Workflow]] and [[https://itunes.apple.com/us/app/working-copy/id896694807][Working Copy]]
+to write, transform and push the posts, leaving the build process to
+GitLab CI.
+
+If you are interested in details, have a look at the source on either
+[[https://github.com/sulami/sulami.github.io][GitHub]] or [[https://gitlab.com/sulami/sulami.gitlab.io][GitLab]].

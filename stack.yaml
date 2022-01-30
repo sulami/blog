@@ -1,8 +1,0 @@
-flags: {}
-extra-package-dbs: []
-packages:
-- .
-extra-deps:
-- monad-gen-0.3.0.1
-- pandoc-sidenote-0.19.0.0
-resolver: lts-9.12

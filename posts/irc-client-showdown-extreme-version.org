@@ -1,0 +1,48 @@
+#+TITLE: IRC-client Showdown, Extreme Version
+#+DATE: 2014-03-19
+
+I love IRC. I try to keep all my common software on the shell in case I
+somehow loose my ability to use X. This also enables me to use global
+colorscheme and is performance-wise advantegous. There are many reasons
+to live in the shell (aside from web-browsing, which is a pain), but
+this is not the post to discuss them. Instead I want to make a quick
+comparison of IRC-clients.
+
+I admit, I have not used all that many IRC-clients over the years, as
+they are usually indefinetely customizable and I tweak them for months
+before I decide to move on to a different one to start from scratch.
+Currently, I am using irssi, as I have not customized weechat to the
+extend I would like to yet.
+
+I prefer irssi as it is simpler and more unix-style, using just one
+config, one theme and perl-extensions for every bit of bonus
+functionality. Weechat works out of the box like a charm. It includes a
+window-list which just has to be activated, automatic indentation of
+nicks, a nicklist which just has to be disabled, colored nicks, a
+trackbar and tons of more useful stuff. But the options are crap. It's
+superior to the irssi djungle of formats, inside formats, inside other
+formats, ... but in my opinion there are not enough ways to change
+low-level stuff, weechat will always look like weechat, no matter what
+you do.
+
+But I promised the extreme version in the title of this post, this is
+performance. On Twitch.tv, there is currently a stream called
+'twitchplayspokemon', which is a pokemon hack that accepts button input
+via twitch chat (which is IRC). The corrosponding IRC-channel is used by
+35k-38k people at a time, featuring tons of messages. It actually caused
+problems with the Twitch servers, which could not handel the
+concentrated load, but seems to run fine now.
+
+Anyway, I tried using this channel with my IRC-clients. Weechat lags out
+on joining, becoming unresponsive while building the nicklist, which is
+hidden, but still active (this is what I mean by irssi is simpler).
+Then, after about a minute, it works. Weechat uses 56.5 MB of RAM on my
+system. That's insane. No fancy plugins, just one server, one channel,
+smart-filter enabled, no nicklist.
+
+Irssi works like on any smaller IRC-network, without any noticable
+performance impact, using about 12 MB of RAM, which is more reasonable.
+For comparison though, connecting through netcat uses 644 KB of RAM. Of
+course, this is without logging, formatting or anything except just
+printing what the server sends me, but for IRC, netcat is actually sort
+of viable, in emergency cases.

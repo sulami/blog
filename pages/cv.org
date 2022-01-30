@@ -1,0 +1,79 @@
+#+TITLE: Robin Schroer
+#+SUBTITLE: [[mailto:hire@sulami.xyz][hire@sulami.xyz]] | [[https://github.com/sulami][github.com/sulami]] | [[https://blog.sulami.xyz][blog.sulami.xyz]]
+#+LATEX_CLASS: scrartcl
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{palatino}
+#+LATEX_HEADER: \usepackage{sectsty}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \renewcommand{\sfdefault}{Palatino}
+#+LATEX_HEADER: \renewcommand{\ttdefault}{Palatino}
+#+LATEX_HEADER: \subsectionfont{\normalfont\itshape\textbf}
+#+LATEX_HEADER: \pagenumbering{gobble}
+#+LATEX_HEADER: \usepackage[margin=2cm]{geometry}
+#+LATEX_HEADER: \linespread{1.0}
+#+LATEX_HEADER: \setlength\parindent{0pt}
+#+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
+#+LATEX_HEADER: \setcounter{secnumdepth}{0}
+
+** March 2019 -- Now » Staff Software Engineer @ CircleCI
+
+Responsible for designing and delivering various pipelines- and
+config-related features, such as logic conditionals, multiple
+contexts, and setup workflows, as well as contributing to the launch
+of the v2 API. @@html:<!--@@ \newline @@html:-->@@
+
+*Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Kubernetes,
+Docker, Nix, AWS
+
+** January 2017 -- March 2019 » Senior Backend Developer @ Ostmodern
+
+Owned the core API framework, along with several supporting services,
+leading a team of up to five developers. @@html:<!--@@ \newline
+@@html:-->@@
+
+*Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
+RabbitMQ, Elasticsearch, Nginx, Docker, AWS
+
+** April 2016 -- November 2016 » Backend Developer @ Ablescent
+
+After a short hiatus to work on some side projects, I joined Ablescent
+as the second developer, working full-time remote. I took ownership
+over the backend and built it up in close collaboration with the
+frontend team and the product owner. @@html:<!--@@\newline@@html:-->@@
+
+*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
+
+** February 2014 -- December 2015 » Co-Founder & DevOps @ Notdienste
+
+Co-founded a startup around marketing in magazines for small
+businesses. Built a full-stack platform to go to market, which
+ultimately led to our acquisition. @@html:<!--@@\newline@@html:-->@@
+
+*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
+
+** 2011 -- 2014 » Freelance DevOps @ Peerwire
+
+Provided full-stack website management, as well as building custom
+internal software for small businesses. @@html:<!--@@ \newline
+@@html:-->@@
+
+*Technologies:* Python & Django, MySQL, Apache, C#
+
+# Hide the LaTeX pagebreak instruction in the HTML version.
+@@html:<!--@@ \pagebreak @@html:-->@@
+
+* Side Projects
+
+- [[https://github.com/sulami/literate-calc-mode.el][Literate Calc Mode]] :: Mode for literate calculations in Emacs (Emacs Lisp)
+- [[https://github.com/sulami/frankenwm][FrankenWM]] :: Dynamic X11 tiling window manager (C/XCB)
+- [[https://github.com/sulami/feed2maildir][Feed2Maildir]] :: Maildir-based feed reader (Python)
+
+* Languages
+
+- German - Fluent
+- English - Fluent
+- French - Basic
+- Dutch - Basic
+- Japanese - Basic

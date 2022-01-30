@@ -1,0 +1,158 @@
+#+title: Writing for Reasons
+#+date: 2020-11-08
+
+This year, I have been writing more than even before over. In this
+article, I would like to discuss some of the reasons for writing and
+provide some thoughts on each.
+
+* Writing to Remember
+:PROPERTIES:
+:ID:       9FDC4C47-7B61-42B6-A019-FC180DB18F32
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+This is probably the most obvious reason to write for a lot of people.
+Having written down a piece of information, you can come back later
+and recall it. Historical context can be invaluable for decision
+making, and often covers information that is not readily available
+anymore.
+
+The key here is being able to find notes later on. Paper-based ones
+can be sorted by topic or chronologically, digital ones can be
+searched for.[fn:1] Formats can be useful here too, for example by
+supporting embedded code blocks or graphics.
+
+[fn:1] As an aside, I find paper notebooks really clumsy in this
+regard. They make a decent "staging area" to quickly capture
+information, but are terrible to find anything in unless you take care
+to maintain an index. Index cards can at least be reordered instead.
+
+* Writing to Solve Problems
+:PROPERTIES:
+:ID:       F15245AD-9DD3-4746-BE98-23A9D2557CAF
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+Early this year, before the pandemic hit Europe, I saw Paulus
+Esterhazy's talk /[[https://www.youtube.com/watch?v=T7-2DW-KDV4&t=1429s][Angels Singing: Writing for Programmers]]/ at
+[[https://clojured.de/][clojureD]]. It contained this great quote of Milton Friedman:
+
+#+begin_quote
+If you cannot state a proposition clearly and unambiguously, you do
+not understand it.
+#+end_quote
+
+In [[https://github.com/matthiasn/talk-transcripts/blob/master/Hickey_Rich/HammockDrivenDev.md][another talk]], Rich Hickey explained his notion of using notes as an
+extension of his working memory:
+
+#+begin_quote
+So we have a problem, in general, because we're just being asked to
+write software that's more and more complex as time goes by. And we
+know there's a 7 +/- 2 sort of working memory limit and as smart as
+any of us are, we all suffer from the same limit but the problems that
+we are called upon to solve are much bigger than that. So what do we
+do if we can't think the whole thing in our head at the same time? How
+can we work on a problem with more than nine components. What I'm
+going to recommend is that you write all the bits down.
+
+[...]
+
+But if we look at the 7 +/- 2 thing, we could say we can juggle seven
+to nine balls but if you can imagine having an assistant who every now
+and then can take one of those out and put a different color in and
+you can juggle balls of 20 different colors at the same time as long
+as there are only nine in the air at any one point in time. And that's
+what you're doing, you're going to sort of look around at all these
+pieces and shift arbitrary shapes of seven into your head at different
+points in time.
+#+end_quote
+
+Writing everything down allows digging deep into details and going off
+on tangents, and then returning to other aspects. As an added bonus,
+these notes can be useful in the future as well, if archived properly.
+I found [[https://orgmode.org/features.html][org-mode]] outlines incredibly powerful for this purpose, with
+their foldable, tree-like structure that allows nesting sub-problems.
+
+* Writing to Make Decisions
+:PROPERTIES:
+:ID:       5EF4BBEE-A166-48CF-840A-5ED920BABCE0
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+Writing is invaluable for decision making. Not only does it aid the
+decision process (see above), it also allows returning to a decision
+later and reviewing it.
+
+[[https://github.com/joelparkerhenderson/architecture_decision_record][Architecture decision records (ADRs)]] are a tool established just for
+this purpose. The exact formats vary, and the details do not matter
+too much, but here are a few key points I consider essential:
+
+- The motivation for the decision
+- The constraints involved
+- The alternatives to consider and their respective tradeoffs
+
+All of these are useful in several ways: they force you to acknowledge
+the components of the decision, make it simple to get an opinion on
+the matter from someone else, and also allow you to review the
+(potentially bad) decision later on.
+
+There is one more point: the conclusion. This is easy to forget,
+because once a conclusion is reached, no one wants to spend time
+writing it down. But if you do not write it down, the document does
+not tell the whole story if reviewed in the future.
+
+* Writing to Develop Ideas
+:PROPERTIES:
+:ID:       2ACAB7D2-AE19-4A82-A503-03654992FB57
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+This year I have seen a lot of people writing about Sönke Ahrens' [[https://takesmartnotes.com/][/How
+to Take Smart Notes/]], which is about taking notes as a means to
+develop long form writing. It popularised the idea of the
+/Zettelkasten/, a physical or virtual box of notes which reference
+each other to build an information network.
+
+While I found the book quite interesting, I would not recommend it to
+everyone due to the significant organisation overhead involved.[fn:2]
+
+That being said, I believe that if you have a digital system which can
+provide automatic back-links to avoid the exponentially growing amount
+of manual maintenance required, there is little harm in linking
+notes.[fn:3] At the very least it will make it easier to find a note,
+and maybe it can aid the thinking process by exposing previously
+unseen connections between concepts.
+
+[fn:2] I think researchers and writers can gain a lot from this
+method, but others not so much. Of course, if you want to read the
+book, feel free to do so. It is an interesting read, and I wouldn't
+call it overrated by any means.
+
+[fn:3] [[https://roamresearch.com/][Roam]], [[https://notion.so][Notion]], [[https://obsidian.md/][Obsidian]], and [[https://github.com/Kungsgeten/org-brain][many others]] can do so.
+
+* Writing to Communicate
+:PROPERTIES:
+:ID:       E642E976-2E2E-4EDE-A479-66CFFE92997E
+:PUBDATE:  <2021-11-24 Wed 16:48>
+:END:
+
+This very article was written expressively to communicate information,
+and as such required some extra work for it to be effective.
+
+The most important factor when writing for communication is the target
+audience. It dictates the format to use, and which prior knowledge can
+be assumed. Maximising information density by being as concise as
+possible is important to avoid wasting the reader's time.
+
+As an added difficulty, when writing something to be published you
+need to get it right the first time, there is no channel for
+discussing follow-up questions. The old adage in writing is "writing
+is rewriting", and I very much believe that to be true in this case.
+Write an outline, then a first draft, then keep reading and revising
+it until it is just right. Maybe show it to someone you trust for
+feedback.
+
+I personally also like to leave a draft and come back a few weeks
+later. This way I always have a few drafts for new articles ready for
+revision, until I feel that one is ready for publishing.
+

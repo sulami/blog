@@ -1,0 +1,60 @@
+#+TITLE: My Own Window Manager
+#+DATE: 2014-07-05
+
+I accidentaly wrote a [[https://github.com/sulami/frankenwm][window
+manager]]. It started out by cloning
+[[https://github.com/cloudef/monsterwm-xcb][cloudef's monsterwm-xcb]] to
+apply some smaller fixes, maybe opening a pull request to merge them
+upstream again. But I quickly found more and more things to fix, then I
+started to add some smaller features I missed from other window
+managers. And thus, FrankenWM was made, pieced together from
+monsterwm-xcb and other window managers. I stole some of the
+ewmh-related code from [[https://github.com/venam/2bwm][2bwm]], and
+adapted features from [[http://dwm.suckless.org][dwm]],
+[[http://i3wm.org][i3]] and others. The name is an obvious play on
+words.
+
+So, what does it do? From a user's standpoint it is quite similar to dwm
+or awesome (or of course monsterwm). It tiles dynamically, using one big
+master window and a stack of smaller slave windows on each virtual
+desktop. There are a few predefined layouts to choose from, v-stack,
+b-stack, grid, fibnonacci and monocle. V-stack stacks the slave windows
+next to the master window, b-stack below the master. Grid tries to give
+the same amount of screen space to every window by placing them in a
+grid-like structure, fibonacci makes the each window 50% as big as the
+window above it in the stack. And finally, monocle fullscreens every
+window in a stacking fashion so you just see one at a time.
+
+The preferred way of controlling it is by using the keyboard, which uses
+a set of shortcuts similar to the ones known from vim by default, and
+makes heavy use of the Mod4-/Meta-/Windows-key to prevent overlapping
+with shortcuts for other software. The mouse can be used to control
+floating windows and to select windows, but the focus lies on mouse-less
+usage.
+
+There is also support for adding gaps between the windows, inspired by
+dwm's useless gaps patch, which allow you to see your wallpaper or
+dropshadows from a compositor. Those gaps are adjustable on the fly and
+optionally specific to virtual desktops. I also implemented some
+features to allow using floating windows without having to use the
+mouse. On the more technical side of things I am currently implementing
+EWMH-compliance, which is important for compability with a lot of
+different programs.
+
+The configuration is entirely done at compile time by editing the
+config.h. In my git repository I include a sample config with some
+comments explaining how to use it. As an alternate example, you can have
+a look at
+[[https://github.com/sulami/dotfiles/blob/master/frankenwm.config.h][my
+personal config]], which uses some more advanced features. As a bonus
+for Arch users, I also maintain an
+[[https://aur.archlinux.org/packages/frankenwm-git/][AUR package]] which
+I update on bigger changes in the git repository, although I still
+reccomend using the version from Github, as I do not have a lot of
+experience with the AUR.
+
+The prerequisites for building FrankenWM are all XCB-based, specifically
+you will need the XCB headers including the util, util-wm and keysyms
+ones, which you can probably pull out of your distribution's
+repositories. I have yet to build it on my OpenBSD machine, so I cannot
+say anything yet to building it on the BSD family.

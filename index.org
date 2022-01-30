@@ -1,0 +1,14 @@
+#+title: Welcome
+#+macro: global-word-count (eval (blog/global-word-count))
+#+macro: post-count (eval (length (blog/all-posts)))
+#+macro: recent-posts (eval (blog/post-list 5))
+
+I'm Robin Schroer, known online as sulami. You have found my blog,
+where I post whatever comes to my mind, currently
+{{{global-word-count}}} words over {{{post-count}}} posts. Have a look
+around. There is more about me on the [[file:pages/about.org][about page]], otherwise here is a
+list of recent posts for your reading pleasure:
+
+{{{recent-posts}}}
+
+…or you can find more in the [[file:posts.org][archives]].

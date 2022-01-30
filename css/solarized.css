@@ -30,3 +30,19 @@ code > span.an { color: #93A1A1; font-weight: bold;   font-style: italic; } /* A
 code > span.cv { color: #93A1A1; font-weight: bold;   font-style: italic; } /* CommentVar */
 code > span.in { color: #93A1A1; font-weight: bold;   font-style: italic; } /* Information */
 
+
+div.sourceCode, pre:not(.sourceCode) { overflow-x: scroll }
+pre code { color: #657B83; }
+code > span.org-builtin           { color: #657B83; font-weight: normal; font-style: normal; }
+code > span.org-comment           { color: #93A1A1; font-weight: normal; font-style: italic; }
+code > span.org-comment-delimiter { color: #93A1A1; font-weight: normal; font-style: italic; }
+code > span.org-constant          { color: #2AA198; font-weight: normal; font-style: normal; }
+code > span.org-doc               { color: #93A1A1; font-weight: normal; font-style: italic; }
+code > span.org-function-name     { color: #268BD2; font-weight: normal; font-style: normal; }
+code > span.org-keyword           { color: #859900; font-weight: bold;   font-style: normal; }
+code > span.org-preprocessor      { color: #CB4B16; font-weight: normal; font-style: normal; }
+code > span.org-string            { color: #2AA198; font-weight: normal; font-style: normal; }
+code > span.org-type              { color: #B58900; font-weight: normal; font-style: normal; }
+code > span.org-variable-name     { color: #268BD2; font-weight: normal; font-style: normal; }
+
+code > span.org-clojure-keyword   { color: #859900; font-weight: bold;   font-style: normal; }

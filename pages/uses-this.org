@@ -1,0 +1,43 @@
+#+TITLE: Robin Uses This
+#+DATE: 2020-11-07
+
+I really enjoy reading [[https://usesthis.com][uses this]] to get some ideas about what kind of
+tooling other people use, and of course to borrow ideas, so I thought
+I'd do my own version of this. This is also a page instead of a post,
+and I will try to keep it up to date, as my setup keeps changing.
+
+* Hardware
+
+My workstation is optimised for portability, so everything is
+relatively small and packs well for travel, while maximising
+ergonomics:
+
+- 2018 15" Apple MacBook Pro :: Company-provided, does the job
+- [[https://www.therooststand.com/][Roost Laptop Stand]] :: Saves my neck and posture
+- [[../../posts/atreus/][Keyboardio Atreus Keyboard]] :: Using the [[https://colemak.com][Colemak]] layout
+- Apple Magic Trackpad :: Better for RSI (for me)
+- [[https://europe.beyerdynamic.com/dt-990-pro.html][beyerdynamic DT 990 Pro]] :: Open-back, wired
+- [[https://www.anker.com/products/variant/usb-c-hub,-7in1-usb-c-adapter/A83460A1][Anker 7-in-1 USB-C Hub]] :: Works well with the stand, and is the
+  single thing to unplug when taking the computer away
+- [[https://www.yubico.com/nl/product/yubikey-5c-nano/][Yubikey 5C Nano]] :: Used wherever possible
+
+Phone:
+
+- Apple iPhone X :: Still going strong, always on mute
+
+* Software
+
+Really just the current version of macOS, the [[https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/editors/emacs/macport.nix][MacPorts version]] of
+[[https://www.gnu.org/software/emacs/][Emacs]], and [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer Edition]]. Most of my software is
+maintained via [[https://nixos.org][Nix]].
+
+The specifics of my setup change a lot. I use [[https://orgmode.org/][org-mode]] for most
+writing, but otherwise I only use my email in Emacs, via [[https://notmuchmail.org/][notmuch]]. I
+have been down the "do everything inside Emacs" road and decided that
+there are too many rough edges for my taste, so I confine it to
+text-processing related tasks.
+
+All my configuration is [[https://github.com/sulami/dotfiles][available online]].
+
+I always use a task-manager of some sort, currently [[https://culturedcode.com/things/][Things]], in the
+past also org-mode, [[https://www.omnigroup.com/omnifocus][OmniFocus]], and [[https://www.2doapp.com/][2Do]].

@@ -3,62 +3,43 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: haskell:8
-    environment:
-      DEBIAN_FRONTEND: noninteractive
-      LANGUAGE: C
-      LANG: C.UTF-8
-      LC_ALL: C.UTF-8
+      - image: silex/emacs:27-ci
     steps:
       - checkout
-      - run: git submodule sync
-      - run: git submodule update --init
-      - run: |
-          apt update
-          apt install -y locales texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra racket
+      - run:
+          name: Deep checkout
+          command: |
+            git submodule sync
+            git submodule update --init
+      - run:
+          name: Install LaTeX
+          command: |
+            apt update
+            apt install -y locales texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
       - restore_cache:
-          name: Restoring GHC cache
-          key: v2-ghc-{{ checksum "stack.yaml" }}
-      - run: stack --no-terminal setup
+          key: v1-{{ checksum "deps.el" }}
+      - run:
+          name: Render output
+          command: |
+            export CI_PWD=$(pwd)
+            emacs --batch \
+                -l config.el \
+                --eval "(org-publish \"website\" t)"
       - save_cache:
-          name: Saving GHC cache
-          key: v2-ghc-{{ checksum "stack.yaml" }}
+          key: v1-{{ checksum "deps.el" }}
           paths:
-            - ~/.stack
-      - restore_cache:
-          name: Restoring Stack cache
-          keys:
-            - v2-bin-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}-{{ checksum "site.hs" }}
-            - v2-deps-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}
-      - run: stack --no-terminal install --only-dependencies
-      - save_cache:
-          name: Saving Stack dependencies cache
-          key: v2-deps-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}
-          paths:
-            - .stack-work
-            - ~/.stack
-            - ~/.local/bin
-      - run: stack --no-terminal build
-      - save_cache:
-          name: Saving Stack binary cache
-          key: v2-bin-{{ checksum "stack.yaml" }}-{{ checksum "blog.cabal" }}-{{ checksum "site.hs" }}
-          paths:
-            - .stack-work
-            - ~/.stack
-            - ~/.local/bin
-      - run: raco pkg install --batch --deps search-auto threading-lib
-      - run: racket export-metadata.rkt
-      - run: stack exec --no-terminal blog build
+            - '~/.emacs.d'
       - persist_to_workspace:
           root: .
           paths:
             - _site
       - store_artifacts:
           path: _site
+          destination: '.'
 
   deploy:
     docker:
-      - image: haskell:8
+      - image: cimg/base:stable
     steps:
       - checkout:
           path: _site
@@ -71,7 +52,7 @@ jobs:
       - run: |
           cd _site
           git add -A
-          git config user.email "sulami@peerwire.org"
+          git config user.email "blog@sulami.xyz"
           git config user.name "Robin Schroer"
           git commit -m "[skip ci] Publish."
           git push -q << pipeline.project.git_url >>.git master:master

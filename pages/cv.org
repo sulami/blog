@@ -17,7 +17,7 @@
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
 
-** March 2019 -- Now » Staff Software Engineer @ CircleCI
+** March 2019 – Now » Staff Software Engineer @ CircleCI
 
 Responsible for designing and delivering various pipelines- and
 config-related features, such as logic conditionals, multiple
@@ -27,7 +27,7 @@ of the v2 API. @@html:<!--@@ \newline @@html:-->@@
 *Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Kubernetes,
 Docker, Nix, AWS
 
-** January 2017 -- March 2019 » Senior Backend Developer @ Ostmodern
+** January 2017 – March 2019 » Senior Backend Developer @ Ostmodern
 
 Owned the core API framework, along with several supporting services,
 leading a team of up to five developers. @@html:<!--@@ \newline
@@ -36,7 +36,7 @@ leading a team of up to five developers. @@html:<!--@@ \newline
 *Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
 RabbitMQ, Elasticsearch, Nginx, Docker, AWS
 
-** April 2016 -- November 2016 » Backend Developer @ Ablescent
+** April 2016 – November 2016 » Backend Developer @ Ablescent
 
 After a short hiatus to work on some side projects, I joined Ablescent
 as the second developer, working full-time remote. I took ownership
@@ -45,7 +45,7 @@ frontend team and the product owner. @@html:<!--@@\newline@@html:-->@@
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
 
-** February 2014 -- December 2015 » Co-Founder & DevOps @ Notdienste
+** February 2014 – December 2015 » Co-Founder & DevOps @ Notdienste
 
 Co-founded a startup around marketing in magazines for small
 businesses. Built a full-stack platform to go to market, which
@@ -53,7 +53,7 @@ ultimately led to our acquisition. @@html:<!--@@\newline@@html:-->@@
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
 
-** 2011 -- 2014 » Freelance DevOps @ Peerwire
+** 2011 – 2014 » Freelance DevOps @ Peerwire
 
 Provided full-stack website management, as well as building custom
 internal software for small businesses. @@html:<!--@@ \newline

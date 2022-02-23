@@ -19,35 +19,34 @@
 
 ** March 2019 – Now » Staff Software Engineer @ CircleCI
 
-Responsible for designing and delivering various pipelines- and
-config-related features, such as logic conditionals, multiple
-contexts, and setup workflows, as well as contributing to the launch
-of the v2 API. @@html:<!--@@ \newline @@html:-->@@
+Technical lead on the Pipelines team, responsible for planning and
+delivering many features spanning the broader engineering
+organisation, including a new trigger ingestion system, the v2 API,
+dynamic configuration, conditional logic in configuration, and
+multiple contexts. @@html:<!--@@ \newline @@html:-->@@
 
-*Technologies:* Clojure, PostgreSQL, MongoDB, RabbitMQ, Kubernetes,
-Docker, Nix, AWS
+*Technologies:* Clojure, Go, PostgreSQL, MongoDB, RabbitMQ,
+Kubernetes, Docker, AWS, GCP
 
 ** January 2017 – March 2019 » Senior Backend Developer @ Ostmodern
 
-Owned the core API framework, along with several supporting services,
-leading a team of up to five developers. @@html:<!--@@ \newline
-@@html:-->@@
+Steward of the [[https://www.skylarkplatform.com/][Skylark]] core platform, powering [[https://f1tv.formula1.com/][F1TV]], the [[https://olympics.com/en/live/][Olympic
+Channel]], and [[https://player.bbc.com/en/][BBC Player]]. @@html:<!--@@ \newline @@html:-->@@
 
 *Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
 RabbitMQ, Elasticsearch, Nginx, Docker, AWS
 
 ** April 2016 – November 2016 » Backend Developer @ Ablescent
 
-After a short hiatus to work on some side projects, I joined Ablescent
-as the second developer, working full-time remote. I took ownership
-over the backend and built it up in close collaboration with the
-frontend team and the product owner. @@html:<!--@@\newline@@html:-->@@
+Lead backend developer in a small startup, built a Django-based REST
+API, collaborated with the frontend team and the product owner.
+@@html:<!--@@\newline@@html:-->@@
 
 *Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
 
 ** February 2014 – December 2015 » Co-Founder & DevOps @ Notdienste
 
-Co-founded a startup around marketing in magazines for small
+Co-founder of a startup around marketing in magazines for small
 businesses. Built a full-stack platform to go to market, which
 ultimately led to our acquisition. @@html:<!--@@\newline@@html:-->@@
 

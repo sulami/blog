@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
+(setq debug-on-error t)
 (setq local-dir (or (getenv "CI_PWD")
                     (expand-file-name "~/src/sulami.github.io")))
 (defun ci-p ()
@@ -288,7 +289,14 @@ Return output file name."
          :with-author nil
          :with-date nil
          ,@common-properties)
-        ("website"
+        ("fast"
+         :components ("posts-and-pages"
+                      "images"
+                      "raw"
+                      "tufte"
+                      "favicon"
+                      "css"))
+        ("all"
          :components ("posts-and-pages"
                       "images"
                       "raw"
@@ -297,6 +305,14 @@ Return output file name."
                       "css"
                       "cv"
                       "feed"))))
+
+;; Functions to call directly
+
+(defun blog/render-all ()
+  (org-publish "all" t))
+
+(defun blog/render-fast ()
+  (org-publish "fast" t))
 
 ;; Macro Support
 

@@ -175,12 +175,14 @@ Return output file name."
          :base-directory ,(concat local-dir "/raw")
          :publishing-directory ,(concat target-dir "/raw")
          :recursive t
+         :base-extension ,(rx (1+ anything))
          :publishing-function org-publish-attachment
          ,@common-properties)
         ("images"
          :base-directory ,(concat local-dir "/images")
          :publishing-directory ,(concat target-dir "/images")
          :recursive t
+         :base-extension ,(rx (1+ anything))
          :publishing-function org-publish-attachment
          ,@common-properties)
         ("css"

@@ -12,6 +12,10 @@ To include a full-width figure in this system, use the following
 org-mode annotation:
 
 #+attr_html: :class fullwidth
+
+FIXME Actually full width figures are currently broken on a CSS level,
+because the enclosing figure does not expand properly to the right,
+and we can't apply attributes to parent elements from org.
 */
 
 div.figure {
@@ -53,4 +57,8 @@ div.figure > p.caption {
     position: relative;
     width: calc(55% / 2);
     margin-right: 12%;
+}
+
+.figure-number {
+    display: none;
 }

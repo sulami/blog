@@ -2,6 +2,8 @@
 
 (setq local-dir (or (getenv "CI_PWD")
                     (expand-file-name "~/src/sulami.github.io")))
+(defun ci-p ()
+  (not (s-blank-p (getenv "CI"))))
 (setq org-export-async-init-file (concat local-dir "/config.el"))
 (setq target-dir (concat local-dir "/_site"))
 
@@ -97,10 +99,11 @@
         <!-- can decide how you feel about each element. -->
 
         <!-- Privacy-aware analytics by https://www.goatcounter.com/ -->
-        <!-- Stats are publicly available at https://sulami-blog.goatcounter.com/ -->
-        <!-- <script data-goatcounter=\"https://sulami-blog.goatcounter.com/count\" async src=\"https://gc.zgo.at/count.js\"></script> -->
+        <!-- Stats are publicly available at https://sulami-blog.goatcounter.com/ -->"
+   (when (ci-p)
+     "<script data-goatcounter=\"https://sulami-blog.goatcounter.com/count\" async src=\"https://gc.zgo.at/count.js\"></script>")
 
-        <!-- Colour theme switcher -->
+        "<!-- Colour theme switcher -->
         <script>
           const themeSwitch = document.querySelector('#lightswitch');
           themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';

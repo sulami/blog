@@ -346,7 +346,9 @@ information."
   (with-temp-buffer
     (xml-mode)
     (insert contents)
-    (indent-region (point-min) (point-max))
+    ;; NB This indents summary content to match surroundings, but
+    ;; takes easily a minute.
+    ;; (indent-region (point-min) (point-max))
     (buffer-substring-no-properties (point-min) (point-max))))
 
 ;;; Miscellaneous

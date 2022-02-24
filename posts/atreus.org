@@ -7,7 +7,7 @@ writing a review for folks considering buying one after release.
 
 [fn:1]
 #+caption: Promotional photo courtesy of Keyboardio
-[[file:/images/atreus.jpg]]
+[[../../images/atreus.jpg]]
 Promotional photo courtesy of Keyboardio
 
 * A Bit of History
@@ -131,7 +131,7 @@ switching layers. Not a big problem though.
 
 [fn:4]
 #+caption: Chrysalis with my Layer 0
-[[file:/images/chrysalis.png]]
+[[../../images/chrysalis.png]]
 Chrysalis with my Layer 0
 
 [fn:5] When I tried using an Ergodox for the first time, the

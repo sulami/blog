@@ -15,44 +15,37 @@ and I know my way around handling large amounts of data, I am not
 worried about that.
 
 Originally I started developing this app in Swift, using XCode for
-development. Apart from having to fight with a somewhat buggy vim-plugin
-for Xcode, package management for mobile environments on Swift is a big
-mess, though I managed to load in the libraries I needed in the end.
-Then there is Swift, which especially in the way Apple wants you to
-write apps, using the visual interface designer and
-[[https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/ConnectTheUIToCode.html#//apple_ref/doc/uid/TP40015214-CH22-SW1][control-dragging
-buttons into source files]], is not ideal. It feels unnecessarily low
-level in a lot of places, and the default project structure promotes a
-rather imperative style, without any real solution to manage state in a
-sensible way.
+development. Apart from having to fight with a somewhat buggy
+vim-plugin for Xcode, package management for mobile environments on
+Swift is a big mess, though I managed to load in the libraries I
+needed in the end. Then there is Swift, which especially in the way
+Apple wants you to write apps, using the visual interface designer and
+[[https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/ConnectTheUIToCode.html#//apple_ref/doc/uid/TP40015214-CH22-SW1][control-dragging buttons into source files]], is not ideal. It feels
+unnecessarily low level in a lot of places, and the default project
+structure promotes a rather imperative style, without any real
+solution to manage state in a sensible way.
 
 So after having built a first prototype in the classic way on Swift, I
 decided to have a look around at alternatives. I did not want to use
-[[https://cordova.apache.org][Cordova]], which is essentially the
-Electron of mobile platforms, running your JS code inside a fullscreen
-browser. While I am not worried about performance, I could see this
-additional runtime layer making the whole UI less snappy. So I had a
-look at [[https://facebook.github.io/react-native/][React Native]], a
-framework based on React which compiles to native platform code through
-some magic. React is currently used at my workplace (along with some
-legacy Angular code), so I have access to some
-[[https://github.com/inestavares][experienced]] React
-[[https://github.com/bradlocking][developers]] to help me at least for
-conceptual understanding, which was quite helpful.
+[[https://cordova.apache.org][Cordova]], which is essentially the Electron of mobile platforms,
+running your JS code inside a fullscreen browser. While I am not
+worried about performance, I could see this additional runtime layer
+making the whole UI less snappy. So I had a look at [[https://facebook.github.io/react-native/][React Native]], a
+framework based on React which compiles to native platform code
+through some magic. React is currently used at my workplace (along
+with some legacy Angular code), so I have access to some [[https://github.com/inestavares][experienced]]
+React [[https://github.com/bradlocking][developers]] to help me at least for conceptual understanding,
+which was quite helpful.
 
-While I have been interested in getting a bit more frontend experience,
-the prospect of having to write a lot of Javascript still was not overly
-compelling, so I had another quick look around whether some of the
-languages that compile to Javascript allow for easy integration with
-React Native. While there are some
-[[https://github.com/ohanhi/elm-native-ui][Elm wrappers]], the
-ClojureScript wrapper
-[[https://github.com/drapanjanas/re-natal][Re-Natal]] around React
-Native along with [[https://github.com/Day8/re-frame][re-frame]] &
-[[http://reagent-project.github.io][Reagent]] wrapping around React are
-much more mature options. I also wanted to have a more serious look at
-Clojure for a while, as I have heard that it is exceptionally well
-designed as a language.
+While I have been interested in getting a bit more frontend
+experience, the prospect of having to write a lot of Javascript still
+was not overly compelling, so I had another quick look around whether
+some of the languages that compile to Javascript allow for easy
+integration with React Native. While there are some [[https://github.com/ohanhi/elm-native-ui][Elm wrappers]], the
+ClojureScript wrapper [[https://github.com/drapanjanas/re-natal][Re-Natal]] around React Native along with [[https://github.com/Day8/re-frame][re-frame]]
+& [[http://reagent-project.github.io][Reagent]] wrapping around React are much more mature options. I also
+wanted to have a more serious look at Clojure for a while, as I have
+heard that it is exceptionally well designed as a language.
 
 So this is the stack I am now using, which so far has turned out to be a
 good decision overall. I do feel reasonably comfortable in
@@ -88,5 +81,8 @@ blocks me for more than an hour.
        lot is still work in progress. I can say that none of the big
        ones (top 200 productivity) does everything I want.
 
-[fn:2] #+CAPTION: iOS React Native warnings
-       [[file:/images/ios-warnings.png]]
+[fn:2]
+#+caption: iOS React Native warnings
+[[../../images/ios-warnings.png]]
+iOS React Native warnings
+

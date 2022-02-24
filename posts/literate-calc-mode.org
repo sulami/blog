@@ -53,7 +53,8 @@ was a thoroughly pleasant experience.
 
 [fn:1]
 #+caption: Screenshot of Tydlig
-[[file:/images/tydlig.png]]
+[[../../images/tydlig.png]]
+Screenshot of Tydlig
 
 [fn:2] On a meta-level, writing this post has taught me how to use
 ~<video>~ on my blog.

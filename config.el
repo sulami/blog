@@ -3,7 +3,7 @@
 (setq local-dir (or (getenv "CI_PWD")
                     (expand-file-name "~/src/sulami.github.io")))
 (defun ci-p ()
-  (not (s-blank-p (getenv "CI"))))
+  (when (getenv "CI") t))
 (setq org-export-async-init-file (concat local-dir "/config.el"))
 (setq target-dir (concat local-dir "/_site"))
 
@@ -211,6 +211,12 @@ Return output file name."
          :publishing-directory ,(concat target-dir "/css")
          :publishing-function org-publish-attachment
          ,@common-properties)
+        ("favicon"
+         :base-directory ,(concat local-dir "/favicons")
+         :base-extension ,(rx (1+ anything))
+         :publishing-directory ,target-dir
+         :publishing-function org-publish-attachment
+         ,@common-properties)
         ("feed"
          :base-directory ,local-dir
          :html-footnotes-section ""
@@ -287,6 +293,7 @@ Return output file name."
                       "images"
                       "raw"
                       "tufte"
+                      "favicon"
                       "css"
                       "cv"
                       "feed"))))

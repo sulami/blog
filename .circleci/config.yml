@@ -24,6 +24,7 @@ jobs:
             export CI_PWD=$(pwd)
             emacs --batch \
                 -l config.el \
+                -f toggle-debug-on-error \
                 --eval "(org-publish \"website\" t)"
       - save_cache:
           key: v1-{{ checksum "deps.el" }}

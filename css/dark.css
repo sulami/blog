@@ -25,6 +25,7 @@ div#body {
     min-height: calc(100vh - 4em);
     padding-bottom: 2em;
     padding-top: 2em;
+    overflow-y: auto;
 }
 
 div#container {

@@ -21,13 +21,14 @@
 
 (setq domain "sulami.xyz")
 (setq url (concat "https://blog." domain))
+(setq blog-title "sulami's blog")
 (setq org-export-allow-bind-keywords t)
 (setq org-export-async-debug nil)
 (setq org-html-htmlize-output-type 'css)
 (setq common-properties
       `(:author "Robin Schroer"
 	    :email ,(concat "blog@" domain)
-        :title "sulami's blog"
+        :title ,blog-title
 	    :section-numbers nil
 	    :time-stamp-file nil
 	    :with-drawers t
@@ -47,9 +48,6 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(defun blog/relative-link (file info)
-  (file-relative-name (concat target-dir file) target-dir))
-
 (defun modern-tufte-html-template (contents info)
   (concat
    "<!DOCTYPE html>\n"
@@ -57,35 +55,29 @@
    "<head>\n"
    (format "<meta charset=\"%s\">\n"
            (coding-system-get org-html-coding-system 'mime-charset))
-   (format "<title>%s</title>\n"
+   (format "<title>%s - %s</title>\n"
            ;; NB String accidental HTML tags.
            (s-replace-regexp (rx "<" (+? anything) ">")
                              ""
-                             (org-export-data (or (plist-get info :title) "") info)))
+                             (org-export-data (or (plist-get info :title) "") info))
+           blog-title)
    (format "<meta name=\"author\" content=\"%s\">\n"
            (org-export-data (plist-get info :author) info))
-   "<link rel=\"stylesheet\" href=\""
-   ;; FIXME These don't work locally due to the prettified URLs(?)
-   ;; (blog/relative-link "/css/tufte.css" info)
-   "/css/tufte.css"
-   "\" type=\"text/css\" />\n"
-   "<link rel=\"stylesheet\" href=\""
-   "/css/stylesheet.css"
-   ;; (blog/relative-link "/css/stylesheet.css" info)
-   "\" type=\"text/css\" />\n"
+   "<link rel=\"stylesheet\" href=\" /css/tufte.css\" type=\"text/css\" />\n"
+   "<link rel=\"stylesheet\" href=\" /css/stylesheet.css\" type=\"text/css\" />\n"
    "</head>\n"
    "<body>\n"
    "<input type=\"checkbox\" id=\"lightswitch\" />\n"
    "<div id=\"body\"><div id=\"container\">"
    "<div id=\"navigation\">"
    "<label for=\"lightswitch\" id=\"lightswitch-label\">☀</label>"
-   " · <a href=\"" (blog/relative-link "/index.html" info) "\">Home</a>"
-   " · <a href=\"" (blog/relative-link "/posts.html" info) "\">Archive</a>"
+   " · <a href=\"/index.html\">Home</a>"
+   " · <a href=\"/posts/index.html\">Archive</a>"
    " · <a href=\"../../atom.xml\">Feed</a>"
-   " · <a href=\"" (blog/relative-link "/pages/about.html" info) "\">About</a>"
-   " · <a href=\"" (blog/relative-link "/pages/cv.html" info) "\">CV</a> <a href=\"/pages/robin-schroer-cv.pdf\">(PDF)</a>"
-   " · <a href=\"" (blog/relative-link "/pages/uses-this.html" info) "\">Uses This</a>"
-   " · <a href=\"" (blog/relative-link "/pages/frankenwm.html" info) "\">FrankenWM</a>"
+   " · <a href=\"/pages/about/index.html\">About</a>"
+   " · <a href=\"/pages/cv/index.html\">CV</a> <a href=\"/pages/robin-schroer-cv.pdf\">(PDF)</a>"
+   " · <a href=\"/pages/uses-this/index.html\">Uses This</a>"
+   " · <a href=\"/pages/frankenwm/index.html\">FrankenWM</a>"
    "</div>"
    "<div id=\"content\"><article>"
    (format "<h1 class=\"title\">%s</h1>\n"
@@ -165,7 +157,7 @@ Return output file name."
          :recursive t
          :exclude "README.org"
          :publishing-function org-html-publish-to-modern-tufte-html
-         :completion-function blog/prettify-urls
+         :completion-function blog/prettify-internal-links
          :html-doctype "html5"
          :headline-levels 2
          :html-footnotes-section ""
@@ -233,7 +225,7 @@ Return output file name."
                            (goto-char (point-max))
                            ;; Insert the filename for later use as slug
                            (insert "\n:ATOM_PERMALINK: posts/"
-                                   (f-base post)
+                                   (f-base (f-parent post))
                                    "/\n")
                            (insert-file-contents post)
                            ;; Indent subheadings one extra level
@@ -280,11 +272,11 @@ Return output file name."
         ("cv"
          :base-directory ,local-dir
          :exclude ,(rx (1+ anything))
-         :include (,(concat local-dir "/pages/cv.org"))
+         :include (,(concat local-dir "/pages/cv/index.org"))
          :publishing-function org-latex-publish-to-pdf
          :completion-function
          (lambda (&rest args)
-           (rename-file (concat target-dir "/pages/cv.pdf")
+           (rename-file (concat target-dir "/pages/cv/index.pdf")
                         (concat target-dir "/pages/robin-schroer-cv.pdf")
                         t))
          :latex-class "scrartcl"
@@ -316,6 +308,10 @@ Return output file name."
 (defun blog/render-fast ()
   (org-publish "fast" t))
 
+(defun blog/render-file ()
+  (org-publish-current-file)
+  (blog/prettify-internal-links nil))
+
 ;; Macro Support
 
 (defun blog/get-keyword-key-value (kwd)
@@ -340,12 +336,18 @@ Return output file name."
 
 (defun blog/all-posts ()
   "Returns all posts in chronological order (old -> new)"
-  (-> (directory-files (concat local-dir "/posts")
-                       t
-                       (rx ".org" eos))
-      (sort (lambda (x y)
-              (string> (blog/file-date x)
-                       (blog/file-date y))))))
+  (-as-> (directory-files (concat local-dir "/posts")
+                          t
+                          nil
+                          t)
+         $
+         (-filter #'f-directory-p $)
+         (-filter (lambda (f) (not (s-contains-p "posts/." f))) $)
+         (-map (lambda (f) (s-concat f "/index.org")) $)
+         (-filter #'blog/file-date $)
+         (sort $ (lambda (x y)
+                   (string> (blog/file-date x)
+                            (blog/file-date y))))))
 
 (defun blog/global-word-count ()
   (-> (concat "wc -w "
@@ -366,63 +368,31 @@ Return output file name."
                                  "\n")))
        (apply #'concat)))
 
-(defun blog/prettify-internal-links (from to)
-  "Replace all HTML links to other pages with pretty links.
+(defun blog/prettify-internal-links (_props)
+  "Transform internal links from /foo/index.html to /foo/
 
-Writes to a new file."
-  (with-temp-file to
-    (insert-file from)
-    ;; Rewrite index.html to /
-    (goto-char 0)
-    (while (re-search-forward (rx (zero-or-one "../")
-                                  "index.html")
-                              nil t)
-      (replace-match "/" nil nil))
-    ;; Rewrite all other link.html to link/
-    (goto-char 0)
-    (while (re-search-forward (rx "href=\""
-                                  (group-n 1
-                                           (or "../"     ;; Up to root pages
-                                               ""        ;; Across pages in the same group
-                                               "posts/"
-                                               "pages/"))
-                                  (group-n 2 (+? ascii))
-                                  ".html\"")
-                              nil t)
-      (replace-match (cond
-                      ;; Links down into categories
-                      ((-contains-p (list "posts/" "pages/")
-                                    (match-string 1))
-                       "href=\"/\\1\\2/\"")
-                      ;; Up to posts from nested pages
-                      ((and (string= "" (match-string 1))
-                            (string= "posts" (match-string 2)))
-                       "href=\"/\\2\/\"")
-                      ;; Links to the outside world
-                      ((s-contains-p "/" (match-string 2))
-                       "href=\"\\1\\2/\"")
-                      ;; Links on the same level
-                      ("href=\"../\\2/\""))
-                     nil nil))))
+Test cases:
 
-(defun blog/prettify-urls (props)
-  "/foo/index.html -> /foo/"
-  ;; Index gets prettified in place.
-  (let ((page (concat target-dir "/index.html")))
-    (blog/prettify-internal-links page page))
-  ;; Archive needs to be moved to posts/index.html.
-  (let ((page (concat target-dir "/posts.html")))
-    (blog/prettify-internal-links page (concat target-dir "/posts/index.html"))
-    (f-delete page))
-  ;; The rest:
-  ;; Copy <base-name>.html to <base-name>/index.html and rewrite
-  ;; internal links in posts and pages.
-  (cl-loop for page in (-concat (directory-files (concat target-dir "/posts") t (rx ".html" eos))
-                                (directory-files (concat target-dir "/pages") t (rx ".html" eos)))
-           unless (string= page (concat target-dir "/posts/index.html"))
-           do (let* ((new-dir-name (concat target-dir "/" (f-base (f-dirname page)) "/" (f-base page)))
-                     (new-file-name (concat new-dir-name "/index.html")))
-                (f-delete new-dir-name t)
-                (make-directory new-dir-name)
-                (blog/prettify-internal-links page new-file-name)
-                (f-delete page))))
+href=\"/index.html\"
+href=\"/foo/index.html\"
+href=\"/foo/bar/index.html\"
+href=\"foo/index.html\"
+href=\"index.html\"
+
+href=\"/\"
+href=\"/foo/\"
+href=\"/foo/bar/\"
+href=\"/foo/\"
+href=\"/\" "
+  (cl-loop for page in (directory-files-recursively target-dir
+                                                    (rx ".html" string-end))
+           do (progn
+                (find-file page)
+                (while (re-search-forward (rx "href=\""
+                                              (opt "/")
+                                              (group-n 1
+                                                       (0+ (any "a-zA-Z0-9-_/")))
+                                              "index.html\"")
+                                          nil t)
+                  (replace-match "href=\"/\\1\""))
+                (save-buffer))))

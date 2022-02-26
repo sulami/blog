@@ -20,7 +20,7 @@ Apart from that, I am in the 94th percentile of Functional Languages
 on HackerRank, using Haskell, and in the 95th honor percentile on
 CodeWars, using mostly Haskell and Python.
 
-If you are interested in working with me, here is my [[file:cv.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
+If you are interested in working with me, here is my [[file:cv/index.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
 
 * Contact / Links
 

@@ -220,7 +220,7 @@ Return output file name."
            "Combine all posts into a single file."
            (with-temp-buffer
              ;; gather all posts
-             (cl-loop for post in (blog/all-posts)
+             (cl-loop for post in (blog/all-posts 5)
                       do (let ((this-start (point-max)))
                            (goto-char (point-max))
                            ;; Insert the filename for later use as slug
@@ -334,7 +334,7 @@ Return output file name."
   (with-current-buffer (find-file-noselect path)
     (blog/org-current-buffer-get-attr "DATE")))
 
-(defun blog/all-posts ()
+(defun blog/all-posts (n)
   "Returns all posts in chronological order (old -> new)"
   (-as-> (directory-files (concat local-dir "/posts")
                           t
@@ -347,18 +347,18 @@ Return output file name."
          (-filter #'blog/file-date $)
          (sort $ (lambda (x y)
                    (string> (blog/file-date x)
-                            (blog/file-date y))))))
+                            (blog/file-date y))))
+         (-take n $)))
 
 (defun blog/global-word-count ()
   (-> (concat "wc -w "
-              (apply #'concat (-interpose " " (blog/all-posts)))
+              (apply #'concat (-interpose " " (blog/all-posts 1024)))
               " | awk '/total/ {print $1}'")
       (shell-command-to-string)
       (s-trim)))
 
 (defun blog/post-list (n)
-  (->> (blog/all-posts)
-       (-take n)
+  (->> (blog/all-posts n)
        (-map (lambda (p) (concat "- [["
                                  p
                                  "]["

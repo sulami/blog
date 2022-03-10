@@ -1,6 +1,6 @@
 #+title: Welcome
 #+macro: global-word-count (eval (blog/global-word-count))
-#+macro: post-count (eval (length (blog/all-posts)))
+#+macro: post-count (eval (length (blog/all-posts 255)))
 #+macro: recent-posts (eval (blog/post-list 5))
 
 I'm Robin Schroer, known online as sulami. You have found my blog,

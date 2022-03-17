@@ -25,7 +25,7 @@ If you are interested in working with me, here is my [[file:cv/index.org][CV]] (
 * Contact / Links
 
 - Email: [[mailto:blog@sulami.xyz][blog@sulami.xyz]]
-- PGP: [[file:/raw/pubkey.txt][A1418106]]
+- PGP: [[https://blog.sulami.xyz/raw/pubkey.txt][A1418106]]
 - Github: [[https://github.com/sulami][sulami]]
 - Lobsters: [[https://lobste.rs/u/sulami][sulami]]
 - Hacker News: [[https://news.ycombinator.com/user?id=sulami][sulami]]

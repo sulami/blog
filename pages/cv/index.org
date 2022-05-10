@@ -21,17 +21,18 @@
 
 Technical lead on the Pipelines team, responsible for planning and
 delivering many features spanning the broader engineering
-organisation, including a new trigger ingestion system, the v2 API,
-dynamic configuration, conditional logic in configuration, and
-multiple contexts. @@html:<!--@@ \newline @@html:-->@@
+organisation, including a new trigger ingestion system, GitLab
+support, the v2 API, dynamic configuration, conditional logic in
+configuration, and multiple contexts. @@html:<!--@@ \newline
+@@html:-->@@
 
 *Technologies:* Clojure, Go, PostgreSQL, MongoDB, RabbitMQ,
 Kubernetes, Docker, AWS, GCP
 
 ** January 2017 – March 2019 » Senior Backend Developer @ Ostmodern
 
-Steward of the [[https://www.skylarkplatform.com/][Skylark]] core platform, powering [[https://f1tv.formula1.com/][F1TV]], the [[https://olympics.com/en/live/][Olympic
-Channel]], and [[https://player.bbc.com/en/][BBC Player]]. @@html:<!--@@ \newline @@html:-->@@
+Steward of the [[https://www.skylarkplatform.com/][Skylark]] core platform, powering among others [[https://f1tv.formula1.com/][F1TV]], the
+[[https://olympics.com/en/live/][Olympic Channel]], and [[https://player.bbc.com/en/][BBC Player]]. @@html:<!--@@ \newline @@html:-->@@
 
 *Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
 RabbitMQ, Elasticsearch, Nginx, Docker, AWS
@@ -71,8 +72,8 @@ internal software for small businesses. @@html:<!--@@ \newline
 
 * Languages
 
-- German - Fluent
-- English - Fluent
-- French - Basic
-- Dutch - Basic
-- Japanese - Basic
+- German - L1
+- English - C2
+- Dutch - A2
+- French - A1
+- Japanese - A1

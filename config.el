@@ -16,7 +16,6 @@
 (require 'org)
 (require 'ox)
 (require 'ox-latex)
-(require 'ox-rss)
 (require 'ox-tufte)
 
 (setq domain "sulami.xyz")

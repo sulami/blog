@@ -7,7 +7,6 @@
     f
     s
     ox-tufte
-    ox-rss
     ;; NB Some language modes are required for syntax highlighting.
     clojure-mode
     d-mode

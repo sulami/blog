@@ -187,10 +187,10 @@ Return output file name."
          (lambda (&rest args)
            "Concatenate all CSS files into a single one."
            (with-temp-buffer
-             (insert-file-contents (concat ,local-dir "/tufte/tufte.css"))
              (cl-loop for file in (directory-files (concat ,local-dir "/css") t)
                       if (s-suffix-p ".css" file)
                       do (insert-file-contents file))
+             (insert-file-contents (concat ,local-dir "/tufte/tufte.css"))
              (write-file (concat ,local-dir "/stylesheet.css"))))
          :completion-function
          (lambda (&rest args)

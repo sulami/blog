@@ -54,6 +54,7 @@
    "<head>\n"
    (format "<meta charset=\"%s\">\n"
            (coding-system-get org-html-coding-system 'mime-charset))
+   "<meta name=\"viewport\" content=\"width=device-width\">\n"
    (format "<title>%s - %s</title>\n"
            ;; NB String accidental HTML tags.
            (s-replace-regexp (rx "<" (+? anything) ">")

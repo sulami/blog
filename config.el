@@ -64,7 +64,6 @@
            (org-export-data (plist-get info :author) info))
    (format "<link rel=alternate title=\"%s\" type=application/atom+xml href=\"/atom.xml\">\n"
            blog-title)
-   "<link rel=\"stylesheet\" href=\"/css/tufte.css\" type=\"text/css\" />\n"
    "<link rel=\"stylesheet\" href=\"/css/stylesheet.css\" type=\"text/css\" />\n"
    "</head>\n"
    "<body>\n"
@@ -187,6 +186,7 @@ Return output file name."
          (lambda (&rest args)
            "Concatenate all CSS files into a single one."
            (with-temp-buffer
+             (insert-file-contents (concat ,local-dir "/tufte/tufte.css"))
              (cl-loop for file in (directory-files (concat ,local-dir "/css") t)
                       if (s-suffix-p ".css" file)
                       do (insert-file-contents file))
@@ -199,8 +199,7 @@ Return output file name."
         ("tufte"
          :base-directory ,(concat local-dir "/tufte")
          :recursive t
-         :base-extension ,(rx (or "css"
-                                  "eot"
+         :base-extension ,(rx (or "eot"
                                   "svg"
                                   "ttf"
                                   "woff"))

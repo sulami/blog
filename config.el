@@ -62,6 +62,8 @@
            blog-title)
    (format "<meta name=\"author\" content=\"%s\">\n"
            (org-export-data (plist-get info :author) info))
+   (format "<link rel=alternate title=\"%s\" type=application/atom+xml href=\"/atom.xml\">\n"
+           blog-title)
    "<link rel=\"stylesheet\" href=\" /css/tufte.css\" type=\"text/css\" />\n"
    "<link rel=\"stylesheet\" href=\" /css/stylesheet.css\" type=\"text/css\" />\n"
    "</head>\n"

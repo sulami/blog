@@ -17,7 +17,19 @@
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
 
-** March 2019 – Now » Staff Software Engineer @ CircleCI
+** August 2022 – Now » Senior Staff Software Engineer @ CircleCI
+
+Technical leadership and guidance across multiple teams in the core
+business domain, planning and executing technical investments,
+facilitating inter-departmental communication and alignment. Large
+projects include a migration away from the original monolith system,
+and enabling a large number of new partner integrations. @@html:<!--@@
+\newline @@html:-->@@
+
+*Technologies:* Clojure, Go, PostgreSQL, MongoDB, RabbitMQ,
+Kubernetes, Docker, AWS, GCP
+
+** March 2019 – August 2022 » Staff Software Engineer @ CircleCI
 
 Technical lead on the Pipelines team, responsible for planning and
 delivering many features spanning the broader engineering

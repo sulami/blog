@@ -12,7 +12,8 @@
     d-mode
     haskell-mode
     go-mode
-    nix-mode))
+    nix-mode
+    rust-mode))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

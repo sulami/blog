@@ -55,7 +55,7 @@ could probably be wrapped a bit to hide the bit fiddling.
 The one exception might be ~std::collections::HashSet~ and
 ~std::collections::HashMap~, which are known to be not the fastest, as
 they are meant to be general purpose, and thus need to be
-cryptographically secure. I ended up using [[https://docs.rs/fxhash/latest/fxhash/index.html][fxhash]], which is a faster
+cryptographically secure. I ended up using [[https://docs.rs/fxhash/latest/fxhash/index.html][fxhash]],[fn:3] which is a faster
 implementation ported out of Firefox, and works almost as a drop-in
 replacement. There is also [[https://docs.rs/nohash-hasher/0.2.0/nohash_hasher/][nohash]] which just does not hash keys at
 all, but it is more restrictive in the key types it accepts, and in my
@@ -89,6 +89,10 @@ be. My day 17 Tetris implementation simulates 10 million pieces
 dropped per second, on a single thread, which comes down to around 300
 CPU instructions per piece, which is not bad at all for something that
 feels like a high-level language.
+
+[fn:3] [[https://lobste.rs/s/l8nbsx/lessons_learnt_from_solving_aoc_one#c_4wxz1k][riking clarified on lobste.rs]], this means taking a different
+trade-off with regards to average and worst-case performance, which
+becomes interesting when a bad actor might try to DOS you.
 
 * Detailed Breakdown
 
@@ -135,7 +139,7 @@ faster because it is allocated in a single place, which might help
 cache locality when for example moving vertically, though I have not
 verified that.
 
-*Day 10*[fn:3] brought back made up assembly, which I very much enjoy.
+*Day 10*[fn:4] brought back made up assembly, which I very much enjoy.
 [[https://github.com/sulami/advent-of-code-2022/blob/main/src/day10.rs#L44-L47][Rust's enums]] with associated data are very useful for building
 instructions and state machines are generally pretty simple and fast.
 As mentioned in the opener, I did not enjoy the output format in part
@@ -164,7 +168,7 @@ system. I opted to [[https://github.com/sulami/advent-of-code-2022/blob/main/src
 all other operations that depend on ordering worked automatically,
 such as comparison and sorting.
 
-*Day 14* was interesting and novel to me, sand simulation,[fn:4] but
+*Day 14* was interesting and novel to me, sand simulation,[fn:5] but
 otherwise it was just yet another two-dimensional grid problem. The
 only novelty was the input format, which required drawing lines onto
 the grid.
@@ -187,7 +191,7 @@ further.
 
 *Day 16* was what came to be known in our household as "the
 elephants." Part 1 was another tree search problem, as we had to find
-the optimal path through a graph with somewhat complex scoring.[fn:5]
+the optimal path through a graph with somewhat complex scoring.[fn:6]
 I reached for depth-first traversal here, and [[https://github.com/sulami/advent-of-code-2022/blob/main/src/day16.rs#L121-L149][aggressively pruned
 paths]] that were known to be less than optimal prior to completion.
 Part 2 is the same problem, but we get an elephant to help us, so a
@@ -267,7 +271,7 @@ we were walking over the 3D cube, which required reassembling the cube
 from its faces. Part 2 was actually the last puzzle I solved, and even
 though I wanted to build a generic solution that would work for any
 input, I ended up building one that is fixed to my input's
-pattern.[fn:6] The added work required to actually make it generic
+pattern.[fn:7] The added work required to actually make it generic
 just was not worth it for me. I am quite happy with the conversion
 between two- and three-dimensional coordinates and directions though.
 
@@ -294,23 +298,23 @@ tile at the same time as previously]].
 
 *Day 25* was surprisingly easy, all things considered. There was only
 one part, and it was about converting between different base numbers,
-with the added difficulty that SNAFU[fn:7] digits can have negative
+with the added difficulty that SNAFU[fn:8] digits can have negative
 value. I chose a [[https://github.com/sulami/advent-of-code-2022/blob/main/src/day25.rs#L30-L66][somewhat naive solution]] that is akin to binary search
 using ~.min_by_key()~ and ~.abs_diff()~ to find the best next digit
 when converting back from decimal to SNAFU. Still, because the numbers
 involved are so small and few, this ended up being the fastest
 solution in terms of run time of the year.
 
-[fn:3] Day 9 was pretty uneventful.
+[fn:4] Day 9 was pretty uneventful.
 
-[fn:4] Big [[https://dan-ball.jp/en/javagame/dust2/][powder game]] fan here.
+[fn:5] Big [[https://dan-ball.jp/en/javagame/dust2/][powder game]] fan here.
 
-[fn:5] The scoring here depended on time left before a limit after a
+[fn:6] The scoring here depended on time left before a limit after a
 node was reached (=flow rate * time=), something that returned later
 in day 19 with resource gathering (=robots * time=).
 
-[fn:6] I would link to interesting sections here, but this solution is
+[fn:7] I would link to interesting sections here, but this solution is
 over 500 lines long, and the 2D-3D conversion logic permeates half of
 it, so [[https://github.com/sulami/advent-of-code-2022/blob/main/src/day22.rs#L378-L382][here]] is the entire solution.
 
-[fn:7] Their name, not mine.
+[fn:8] Their name, not mine.

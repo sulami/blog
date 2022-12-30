@@ -14,7 +14,7 @@ distributed state machines as a service.
 Even though I spent a lot of recent times professionally writing
 Clojure, I'm currently excited about Rust.
 
-If you are interested in working with me, here is my [[file:cv/index.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
+If you are interested in working with me, here is my [[file:pages/cv/index.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
 
 * Contact / Links
 

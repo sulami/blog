@@ -17,7 +17,7 @@
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
 
-** August 2022 – July » Senior Staff Software Engineer @ CircleCI
+** August 2022 – Current » Senior Staff Software Engineer @ CircleCI
 
 Technical leadership and guidance across multiple teams in the core
 business domain, planning and executing technical investments,

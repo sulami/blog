@@ -86,6 +86,6 @@ internal software for small businesses. @@html:<!--@@ \newline
 
 - German - L1
 - English - C2
+- Japanese - B1
+- French - A2
 - Dutch - A2
-- French - A1
-- Japanese - A1

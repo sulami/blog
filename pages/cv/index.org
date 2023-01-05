@@ -11,11 +11,12 @@
 #+LATEX_HEADER: \renewcommand{\ttdefault}{Palatino}
 #+LATEX_HEADER: \subsectionfont{\normalfont\itshape\textbf}
 #+LATEX_HEADER: \pagenumbering{gobble}
-#+LATEX_HEADER: \usepackage[margin=2cm]{geometry}
+#+LATEX_HEADER: \usepackage[margin=15mm, voffset=-10mm]{geometry}
 #+LATEX_HEADER: \linespread{1.0}
 #+LATEX_HEADER: \setlength\parindent{0pt}
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
+@@html:<!--@@\vspace{-25mm}@@html:-->@@
 
 ** August 2022 – Current » Senior Staff Software Engineer @ CircleCI
 
@@ -73,19 +74,15 @@ internal software for small businesses. @@html:<!--@@ \newline
 
 *Technologies:* Python & Django, MySQL, Apache, C#
 
-# Hide the LaTeX pagebreak instruction in the HTML version.
-@@html:<!--@@ \pagebreak @@html:-->@@
-
 * Side Projects
 
-- [[https://github.com/sulami/literate-calc-mode.el][Literate Calc Mode]] :: Mode for literate calculations in Emacs (Emacs Lisp)
-- [[https://github.com/sulami/frankenwm][FrankenWM]] :: Dynamic X11 tiling window manager (C/XCB)
-- [[https://github.com/sulami/feed2maildir][Feed2Maildir]] :: Maildir-based feed reader (Python)
+I am active in the open-source community. Please see [[https://github.com/sulami][GitHub (sulami)]]
+for current projects and contributions.
 
 * Languages
 
-- German - L1
-- English - C2
-- Japanese - B1
-- French - A2
-- Dutch - A2
+- English :: C2
+- German :: C2
+- Japanese :: B1 (JLPT N4-N3)
+- French :: A2
+- Dutch :: A2

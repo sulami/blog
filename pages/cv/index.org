@@ -11,7 +11,7 @@
 #+LATEX_HEADER: \renewcommand{\ttdefault}{Palatino}
 #+LATEX_HEADER: \subsectionfont{\normalfont\itshape\textbf}
 #+LATEX_HEADER: \pagenumbering{gobble}
-#+LATEX_HEADER: \usepackage[margin=15mm, voffset=-10mm]{geometry}
+#+LATEX_HEADER: \usepackage[margin=15mm, voffset=-10mm, bmargin=0mm]{geometry}
 #+LATEX_HEADER: \linespread{1.0}
 #+LATEX_HEADER: \setlength\parindent{0pt}
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
@@ -74,10 +74,14 @@ internal software for small businesses. @@html:<!--@@ \newline
 
 *Technologies:* Python & Django, MySQL, Apache, C#
 
-* Side Projects
+* Open Source
 
-I am active in the open-source community. Please see [[https://github.com/sulami][GitHub (sulami)]]
-for current projects and contributions.
+I am active in the open source community. Please see [[https://github.com/sulami][GitHub (sulami)]]
+for my current projects.@@html:<!--@@ \newline @@html:-->@@
+
+I have also contributed to various open source projects, including the
+Linux kernel, the Rust compiler, and the Clojure language, as well as
+various smaller ones.
 
 * Languages
 

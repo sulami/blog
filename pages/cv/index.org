@@ -11,82 +11,98 @@
 #+LATEX_HEADER: \renewcommand{\ttdefault}{Palatino}
 #+LATEX_HEADER: \subsectionfont{\normalfont\itshape\textbf}
 #+LATEX_HEADER: \pagenumbering{gobble}
-#+LATEX_HEADER: \usepackage[margin=15mm, voffset=-10mm, bmargin=0mm]{geometry}
+#+LATEX_HEADER: \usepackage[margin=20mm, bmargin=0mm]{geometry}
 #+LATEX_HEADER: \linespread{1.0}
 #+LATEX_HEADER: \setlength\parindent{0pt}
+#+LATEX_HEADER: \setlength{\tabcolsep}{24pt}
 #+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
 @@html:<!--@@\vspace{-25mm}@@html:-->@@
 
+* Summary
+
+Staff Engineer with over 10 years experience working with cloud-based
+distributed systems, identifying and acting on strategic objectives
+and risks, and increasing the effectiveness of others. Of those, 6
+years working remotely with globally distributed teams.
+
+* Experience
+
 ** August 2022 – Current » Senior Staff Software Engineer @ CircleCI
 
-Technical leadership and guidance across multiple teams in the core
-business domain, planning and executing technical investments,
-facilitating inter-departmental communication and alignment. Large
-projects include a migration away from the original monolith system,
-and enabling a large number of new partner integrations. @@html:<!--@@
-\newline @@html:-->@@
-
-*Technologies:* Clojure, Go, Rust, PostgreSQL, MongoDB, RabbitMQ,
-Kubernetes, Docker, AWS, GCP
+- Technical leader and guide across multiple teams in the core
+  business domain
+- Facilitated inter-departmental communication and alignment
+- Part of an architecture task force driving the migration away from
+  the original monolithic system
+- Supported several teams during the integration with new partners,
+  e.g. GitHub App, Datadog
 
 ** March 2019 – July 2022 » Staff Software Engineer @ CircleCI
 
-Technical lead on the Pipelines team, responsible for planning and
-delivering many features spanning the broader engineering
-organisation, including a new trigger ingestion system, GitLab
-support, the v2 API, dynamic configuration, conditional logic in
-configuration, and multiple contexts. @@html:<!--@@ \newline
-@@html:-->@@
-
-*Technologies:* Clojure, Go, PostgreSQL, MongoDB, RabbitMQ,
-Kubernetes, Docker, AWS, GCP
+- Technical lead on the Pipelines team, responsible for planning and
+  delivering many features spanning the broader engineering
+  organisation, including:
+  - a new trigger ingestion system, reducing the footprint of the
+    legacy (pre-Apps) GitHub integration and adding support for GitLab
+    and other providers
+  - dynamic configuration, directly generating over $1M in contract
+    value
+  - the public v2 API
+  - conditional logic in configuration
+- Mentored a large number of less experienced engineers on their paths
+  to senior and staff roles
 
 ** January 2017 – March 2019 » Senior Backend Developer @ Ostmodern
 
-Steward of the [[https://www.skylarkplatform.com/][Skylark]] core platform, powering among others [[https://f1tv.formula1.com/][F1TV]], the
-[[https://olympics.com/en/live/][Olympic Channel]], and [[https://player.bbc.com/en/][BBC Player]]. @@html:<!--@@ \newline @@html:-->@@
-
-*Technologies:* Python (Django/DRF), Elixir (Phoenix), PostgreSQL,
-RabbitMQ, Elasticsearch, Nginx, Docker, AWS
+- Steward of the [[https://www.skylarkplatform.com/][Skylark]] core platform, powering among others [[https://f1tv.formula1.com/][F1TV]],
+  the [[https://olympics.com/en/live/][Olympic Channel]], and [[https://player.bbc.com/en/][BBC Player]]
+- Owned technical direction of the platform to enable new features
+  such as rich media articles, as well as improve efficiency and
+  delivery speed
+- Participated in designing a new high-performance telemetry streaming
+  platform
 
 ** April 2016 – November 2016 » Backend Developer @ Ablescent
 
-Lead backend developer in a small startup, built a Django-based REST
-API, collaborated with the frontend team and the product owner.
-@@html:<!--@@\newline@@html:-->@@
-
-*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS
+- Lead backend developer for a web-based health app, building a
+  Django-based REST API
+- Collaborated with the frontend team and the product owner to gather
+  functional requirements and curate a road map and backlog
 
 ** February 2014 – December 2015 » Co-Founder & DevOps @ Notdienste
 
-Co-founder of a startup around marketing in magazines for small
-businesses. Built a full-stack platform to go to market, which
-ultimately led to our acquisition. @@html:<!--@@\newline@@html:-->@@
+- Built a full-stack platform for a product in the marketing space
+- Successfully exited through acquisition
 
-*Technologies:* Python & Django & DRF, MySQL, Nginx, AWS, Stripe
+** 2011 – 2014 » Freelance DevOps
 
-** 2011 – 2014 » Freelance DevOps @ Peerwire
+@@html:<!--@@ \pagebreak @@html:-->@@
 
-Provided full-stack website management, as well as building custom
-internal software for small businesses. @@html:<!--@@ \newline
-@@html:-->@@
+* Key Technical Skills
 
-*Technologies:* Python & Django, MySQL, Apache, C#
+| Rust    | PostgreSQL | Kubernetes | AWS          | CircleCI  |
+| Clojure | MongoDB    | Terraform  | Google Cloud | Datadog   |
+| Go      | RabbitMQ   | Helm       | GitHub       | Honeycomb |
+| Python  | Redis      | Docker     | GitLab       |           |
 
-* Open Source
+* Open Source Work
 
-I am active in the open source community. Please see [[https://github.com/sulami][GitHub (sulami)]]
-for my current projects.@@html:<!--@@ \newline @@html:-->@@
+Active in the open source community and authored several widely used
+pieces of software with over 5000 users each. Please see [[https://github.com/sulami][GitHub
+(sulami)]] for current projects.@@html:<!--@@ \newline @@html:-->@@
 
-I have also contributed to various open source projects, including the
-Linux kernel, the Rust compiler, and the Clojure language, as well as
-various smaller ones.
+Also contributed to various open source projects, including:
+- the Linux kernel
+- [[https://github.com/rust-lang/rust][the Rust compiler]]
+- [[https://github.com/clojure/clojure][the Clojure language]]
+- Emacs' [[https://github.com/clojure-emacs/clojure-mode][clojure-mode]]
+- Rust's [[https://github.com/rust-lang/rust-clippy][Clippy]] linter
 
-* Languages
+* Languages Spoken
 
-- English :: C2
-- German :: C2
-- Japanese :: B1 (JLPT N4-N3)
-- French :: A2
-- Dutch :: A2
+- English - C2
+- German - C2 (Native)
+- Japanese - B1 (JLPT N4-N3)
+- French - A2
+- Dutch - A2

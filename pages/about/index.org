@@ -3,16 +3,16 @@
 Hi, I'm Robin Schroer, a staff engineer with a personal blog.
 
 On the [[https://staffeng.com/guides/staff-archetypes][Will Larson staff archetype chart]] I register mostly as
-/Architect/ and/or /Solver/.
+/Architect/ and/or /Solver/. I am also [[https://emauton.org/2022/12/24/a-safe-pair-of-hands/][a safe pair of hands]].
 
-I have been enjoying high quality software engineering for a little
-over a decade.
+I try to multiply the effectiveness of those around me by driving
+alignment, reducing uncertainty, mentoring less experienced engineers,
+and spearheading difficult technical projects.
 
-In the past I have worked on high traffic data streaming services and
-distributed state machines as a service.
-
-Even though I spent a lot of recent times professionally writing
-Clojure, I'm currently excited about Rust.
+In the past I have worked mostly on high traffic data streaming
+services and distributed state machines as a service, as well as a bit
+on compilers. Even though I spent a lot of recent times professionally
+writing Clojure, I am currently excited about Rust.
 
 If you are interested in working with me, here is my [[file:pages/cv/index.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
 

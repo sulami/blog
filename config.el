@@ -76,7 +76,7 @@
    " · <a href=\"/posts/index.html\">Archive</a>"
    " · <a href=\"../../atom.xml\">Feed</a>"
    " · <a href=\"/pages/about/index.html\">About</a>"
-   " · <a href=\"/pages/cv/index.html\">CV</a> <a href=\"/pages/robin-schroer-cv.pdf\">(PDF)</a>"
+   " · <a href=\"/pages/cv/index.html\">CV</a> <a href=\"/pages/robin-schroer-cv.pdf\" data-goatcounter-click=\"cv-pdf\" data-goatcounter-title=\"CV PDF version\">(PDF)</a>"
    " · <a href=\"/pages/uses-this/index.html\">Uses This</a>"
    " · <a href=\"/pages/frankenwm/index.html\">FrankenWM</a>"
    "</div>"

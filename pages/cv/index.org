@@ -21,10 +21,12 @@
 
 * Summary
 
-Staff Engineer with over 10 years experience working with cloud-based
-distributed systems, identifying and acting on strategic objectives
-and risks, and increasing the effectiveness of others. Of those, 6
-years working remotely with globally distributed teams.
+Staff Engineer (architect/solver) with over 10 years experience
+working with cloud-based distributed systems, of which 6 years
+remotely with globally distributed teams. Specialities include
+identifying and acting on strategic objectives and risks, driving
+alignment, and increasing the effectiveness of others through guidance
+and mentoring.
 
 * Experience
 

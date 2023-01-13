@@ -6,8 +6,16 @@
 I'm Robin Schroer, known online as sulami. You have found my blog,
 where I post whatever comes to my mind, currently
 {{{global-word-count}}} words over {{{post-count}}} posts. Have a look
-around. There is more about me on the [[file:pages/about/index.org][about page]], otherwise here is a
-list of recent posts for your reading pleasure:
+around. There is more about me on the [[file:pages/about/index.org][about page]].
+
+Popular articles include:
+
+- [[file:posts/cleaning-up-git-history/index.org][Cleaning Up Git History]]
+- [[file:posts/engineers-meeting-guide/index.org][The Grumpy Developer's Guide to Meetings]]
+- [[file:posts/aoc-in-one-second/index.org][Lessons Learnt From Solving AoC in One Second]]
+- [[file:posts/capacity-planning/index.org][Capacity Planning Handbook]]
+
+Otherwise here is a list of recent posts for your reading pleasure:
 
 {{{recent-posts}}}
 

@@ -7,26 +7,45 @@
 #+LATEX_HEADER: \usepackage{palatino}
 #+LATEX_HEADER: \usepackage{sectsty}
 #+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \definecolor{solarized-violet}{HTML}{6c71c4}
+#+LATEX_HEADER: \definecolor{solarized-blue}{HTML}{586e75}
+#+LATEX_HEADER: \definecolor{solarized-base}{HTML}{586e75}
+#+LATEX_HEADER: \definecolor{solarized-dark}{HTML}{002b36}
+#+LATEX_HEADER: \addtokomafont{title}{\color{solarized-dark}\vspace{-15mm}}
+#+LATEX_HEADER: \addtokomafont{disposition}{\color{solarized-base}}
 #+LATEX_HEADER: \renewcommand{\sfdefault}{Palatino}
 #+LATEX_HEADER: \renewcommand{\ttdefault}{Palatino}
 #+LATEX_HEADER: \subsectionfont{\normalfont\itshape\textbf}
 #+LATEX_HEADER: \pagenumbering{gobble}
 #+LATEX_HEADER: \usepackage[margin=20mm, bmargin=0mm]{geometry}
-#+LATEX_HEADER: \linespread{1.0}
+#+LATEX_HEADER: \linespread{0.9}
 #+LATEX_HEADER: \setlength\parindent{0pt}
 #+LATEX_HEADER: \setlength{\tabcolsep}{24pt}
-#+LATEX_HEADER: \hypersetup{colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
+#+LATEX_HEADER: \hypersetup{colorlinks, urlcolor={solarized-violet}}
 #+LATEX_HEADER: \setcounter{secnumdepth}{0}
+#+LATEX_HEADER: \color{solarized-dark}
 @@html:<!--@@\vspace{-25mm}@@html:-->@@
+
+@@html:<i>HTML version only for convenience, the PDF version is
+considered canonical.</i>@@
 
 * Summary
 
 Staff Engineer (architect/solver) with over 10 years experience
 working with cloud-based distributed systems, of which 6 years
-remotely with globally distributed teams. Specialities include
-identifying and acting on strategic objectives and risks, driving
-alignment, and increasing the effectiveness of others through guidance
-and mentoring.
+remotely with globally distributed teams. Specialities include leading
+projects from conception to delivery, identifying and acting on
+strategic objectives and risks, and promoting engineering best
+practices through guidance and mentoring.
+
+* Key Technical Skills
+
+@@html:<!--@@\vspace{-5mm}@@html:-->@@
+
+| *Rust*    | PostgreSQL | Kubernetes | AWS          | CircleCI  |
+| *Clojure* | MongoDB    | Terraform  | Google Cloud | Datadog   |
+| *Go*      | RabbitMQ   | Helm       | GitHub       | Honeycomb |
+| *Python*  | Redis      | Docker     | GitLab       | Grafana   |
 
 * Experience
 
@@ -81,25 +100,36 @@ and mentoring.
 
 @@html:<!--@@ \pagebreak @@html:-->@@
 
-* Key Technical Skills
+* Projects & Interests
 
-| Rust    | PostgreSQL | Kubernetes | AWS          | CircleCI  |
-| Clojure | MongoDB    | Terraform  | Google Cloud | Datadog   |
-| Go      | RabbitMQ   | Helm       | GitHub       | Honeycomb |
-| Python  | Redis      | Docker     | GitLab       |           |
-
-* Open Source Work
+Author of an [[https://blog.sulami.xyz][engineering blog]] with several thousand regular readers.
+Popular articles include /[[http://blog.sulami.xyz/posts/cleaning-up-git-history][Cleaning Up Git History]]/ and /[[http://blog.sulami.xyz/posts/engineers-meeting-guide][The Grumpy
+Developer's Guide to Meetings]]/.@@html:<!--@@ \newline @@html:-->@@
 
 Active in the open source community and authored several widely used
-pieces of software with over 5000 users each. Please see [[https://github.com/sulami][GitHub
-(sulami)]] for current projects.@@html:<!--@@ \newline @@html:-->@@
+pieces of software with over 5000 users each, including:
+
+- [[https://github.com/sulami/FrankenWM][FrankenWM]] - X11 window manager (C)
+- [[https://github.com/sulami/literate-calc-mode.el][literate-calc-mode.el]] - Emacs mode for mathematical notebooks (Emacs
+  Lisp)
+
+Please see [[https://github.com/sulami][GitHub (sulami)]] for current projects.@@html:<!--@@ \newline
+@@html:-->@@
 
 Also contributed to various open source projects, including:
-- the Linux kernel
+
 - [[https://github.com/rust-lang/rust][the Rust compiler]]
+- Rust's [[https://github.com/rust-lang/rust-clippy][Clippy]] linter
 - [[https://github.com/clojure/clojure][the Clojure language]]
 - Emacs' [[https://github.com/clojure-emacs/clojure-mode][clojure-mode]]
-- Rust's [[https://github.com/rust-lang/rust-clippy][Clippy]] linter
+- the Linux kernel
+
+Active on the [[https://randsinrepose.com/welcome-to-rands-leadership-slack/][Rands Leadership Slack]], connecting with other
+engineering leaders across the wider industry.@@html:<!--@@ \newline
+@@html:-->@@
+
+Hobbies include compilers, embedded systems (Rust on Arduino/ESP32),
+hiking, and rock climbing.
 
 * Languages Spoken
 

@@ -12,6 +12,7 @@
     d-mode
     haskell-mode
     go-mode
+    reformatter
     nix-mode
     rust-mode))
 

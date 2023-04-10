@@ -1,5 +1,6 @@
-#+title: Espresso: Find Out If ~.take_while()~ Reached The End
+#+title: Find Out If ~.take_while()~ Reached The End
 #+date: 2022-12-09
+#+filetags: espresso rust
 
 In yesterday's Advent of Code (*mild spoilers ahead*), there was a
 section where one had to figure out how far the elves can see, based

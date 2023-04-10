@@ -18,20 +18,21 @@
 (require 'ox-latex)
 (require 'ox-tufte)
 
-(setq domain "sulami.xyz")
-(setq url (concat "https://blog." domain))
-(setq blog-title "sulami's blog")
+(setq blog/domain "sulami.xyz")
+(setq blog/url (concat "https://blog." blog/domain))
+(setq blog/title "sulami's blog")
 (setq org-export-allow-bind-keywords t)
 (setq org-export-async-debug nil)
 (setq org-html-htmlize-output-type 'css)
-(setq common-properties
+(setq blog/common-properties
       `(:author "Robin Schroer"
-	    :email ,(concat "blog@" domain)
-        :title ,blog-title
+	    :email ,(concat "blog@" blog/domain)
+        :title ,blog/title
 	    :section-numbers nil
 	    :time-stamp-file nil
 	    :with-drawers t
 	    :with-toc nil
+        :wtih-tags t
         :html-doctype "html5"
         :html-head-include-default-style nil
         :html-head-include-scripts nil
@@ -60,11 +61,11 @@
            (s-replace-regexp (rx "<" (+? anything) ">")
                              ""
                              (org-export-data (or (plist-get info :title) "") info))
-           blog-title)
+           blog/title)
    (format "<meta name=\"author\" content=\"%s\">\n"
            (org-export-data (plist-get info :author) info))
    (format "<link rel=alternate title=\"%s\" type=application/atom+xml href=\"/atom.xml\">\n"
-           blog-title)
+           blog/title)
    "<link rel=\"stylesheet\" href=\"/css/stylesheet.css\" type=\"text/css\" />\n"
    "</head>\n"
    "<body>\n"
@@ -86,6 +87,10 @@
    (when (plist-get info :date)
      (format "<div class=\"info\">Posted on %s</div>\n"
              (car (plist-get info :date))))
+   (when (plist-get info :filetags)
+     (format "<div class=\"info\">Tags: %s</div>\n"
+             (->> (plist-get info :filetags)
+                  (s-join " "))))
    contents
    "</article></div></div></div>
         <!-- Below is some JS, the only on this page. Things should be -->
@@ -97,21 +102,21 @@
    (when (ci-p)
      "<script data-goatcounter=\"https://sulami-blog.goatcounter.com/count\" async src=\"https://gc.zgo.at/count.js\"></script>")
 
-        "<!-- Colour theme switcher -->
-        <script>
-          const themeSwitch = document.querySelector('#lightswitch');
-          themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';
+   "<!-- Colour theme switcher -->
+   <script>
+     const themeSwitch = document.querySelector('#lightswitch');
+     themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';
 
-          themeSwitch.addEventListener('change', function (e) {
-              if(e.currentTarget.checked === true) {
-                  // Add item to localstorage
-                  localStorage.setItem('switchedTheme', 'true');
-              } else {
-                  // Remove item if theme is switched back to normal
-                  localStorage.removeItem('switchedTheme');
-              }
-          });
-        </script>
+     themeSwitch.addEventListener('change', function (e) {
+         if(e.currentTarget.checked === true) {
+             // Add item to localstorage
+             localStorage.setItem('switchedTheme', 'true');
+         } else {
+             // Remove item if theme is switched back to normal
+             localStorage.removeItem('switchedTheme');
+         }
+     });
+   </script>
    </body>\n"
    "</html>\n"))
 
@@ -163,21 +168,21 @@ Return output file name."
          :headline-levels 2
          :html-footnotes-section ""
          :html-html5-fancy t
-         ,@common-properties)
+         ,@blog/common-properties)
         ("raw"
          :base-directory ,(concat local-dir "/raw")
          :publishing-directory ,(concat target-dir "/raw")
          :recursive t
          :base-extension ,(rx (1+ anything))
          :publishing-function org-publish-attachment
-         ,@common-properties)
+         ,@blog/common-properties)
         ("images"
          :base-directory ,(concat local-dir "/images")
          :publishing-directory ,(concat target-dir "/images")
          :recursive t
          :base-extension ,(rx (1+ anything))
          :publishing-function org-publish-attachment
-         ,@common-properties)
+         ,@blog/common-properties)
         ("css"
          :base-directory ,local-dir
          :base-extension "css"
@@ -196,7 +201,7 @@ Return output file name."
          (lambda (&rest args)
            "Cleanup the concatenated CSS file."
            (delete-file (concat ,local-dir "/stylesheet.css")))
-         ,@common-properties)
+         ,@blog/common-properties)
         ("tufte"
          :base-directory ,(concat local-dir "/tufte")
          :recursive t
@@ -206,13 +211,13 @@ Return output file name."
                                   "woff"))
          :publishing-directory ,(concat target-dir "/css")
          :publishing-function org-publish-attachment
-         ,@common-properties)
+         ,@blog/common-properties)
         ("favicon"
          :base-directory ,(concat local-dir "/favicons")
          :base-extension ,(rx (1+ anything))
          :publishing-directory ,target-dir
          :publishing-function org-publish-attachment
-         ,@common-properties)
+         ,@blog/common-properties)
         ("feed"
          :base-directory ,local-dir
          :html-footnotes-section ""
@@ -268,8 +273,8 @@ Return output file name."
          :include ("atom.org")
          :publishing-function org-atom-publish-to-atom
          :html-link-use-abs-url t
-         :html-link-home ,url
-         ,@common-properties)
+         :html-link-home ,blog/url
+         ,@blog/common-properties)
         ("cv"
          :base-directory ,local-dir
          :exclude ,(rx (1+ anything))
@@ -283,7 +288,7 @@ Return output file name."
          :latex-class "scrartcl"
          :with-author nil
          :with-date nil
-         ,@common-properties)
+         ,@blog/common-properties)
         ("fast"
          :components ("posts-and-pages"
                       "images"
@@ -335,6 +340,11 @@ Return output file name."
   (with-current-buffer (find-file-noselect path)
     (blog/org-current-buffer-get-attr "DATE")))
 
+(defun blog/file-tags (path)
+  (with-current-buffer (find-file-noselect path)
+    (-some->> (blog/org-current-buffer-get-attr "FILETAGS")
+      (s-split " "))))
+
 (defun blog/all-posts (n)
   "Returns all posts in chronological order (old -> new)"
   (-as-> (directory-files (concat local-dir "/posts")
@@ -366,6 +376,10 @@ Return output file name."
                                  (blog/file-title p)
                                  "]] - "
                                  (blog/file-date p)
+                                 (if-let ((tags (blog/file-tags p)))
+                                     (->> (s-join ", " tags)
+                                          (format " (%s)"))
+                                   "")
                                  "\n")))
        (apply #'concat)))
 

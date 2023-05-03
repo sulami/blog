@@ -95,7 +95,7 @@ to track down bug.
 [[https://github.com/Rahix/avr-hal/blob/main/examples/arduino-uno/src/bin/uno-blink.rs][In Rust]] on the other hand...
 
 #+begin_src rust
-let mut led = pins.d13.into_output();
+let mut led = pins.d13.into_input();
 
 loop {
     led.set_high();

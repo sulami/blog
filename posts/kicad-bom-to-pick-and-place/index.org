@@ -1,4 +1,4 @@
-#+title: Convert KiCAD BOM to Manual P&P Files
+#+title: Convert KiCAD BOM to Manual Pick and Place Files
 #+date: 2023-04-10
 #+filetags: espresso hardware
 

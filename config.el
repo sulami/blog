@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (setq debug-on-error t)
+(setq make-backup-files nil)
 (setq local-dir (or (getenv "CI_PWD")
                     (expand-file-name "~/src/sulami.github.io")))
 (defun ci-p ()

@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  s3: circleci/aws-s3@3.1.1
+
 jobs:
   build:
     docker:
@@ -29,46 +32,19 @@ jobs:
           key: v1-{{ checksum "deps.el" }}
           paths:
             - '~/.emacs.d'
-      - persist_to_workspace:
-          root: .
-          paths:
-            - _site
       - store_artifacts:
           path: _site
           destination: '.'
-
-  deploy:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout:
-          path: _site
-      - run: |
-          cd _site
-          git checkout master
-          git pull origin master:master
-      - attach_workspace:
-          at: .
-      - run: |
-          cd _site
-          git add -A
-          git config user.email "blog@sulami.xyz"
-          git config user.name "Robin Schroer"
-          git commit -m "[skip ci] Publish."
-          git push -q << pipeline.project.git_url >>.git master:master
+      - when:
+          condition:
+            equal: [ develop, << pipeline.git.branch >> ]
+          steps:
+            - s3/sync:
+                from: _site
+                to: s3://blog.sulami.xyz
+                arguments: '--delete'
 
 workflows:
   build-and-deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore:
-                - master
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - develop
+      - build

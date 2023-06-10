@@ -4,3 +4,7 @@ atom.org
 pages/cv.pdf
 pages/cv.tex
 _site/
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+provider.tf

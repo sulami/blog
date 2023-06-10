@@ -57,6 +57,7 @@
    (format "<meta charset=\"%s\">\n"
            (coding-system-get org-html-coding-system 'mime-charset))
    "<meta name=\"viewport\" content=\"width=device-width\">\n"
+   "<meta name=\"description\" content=\"Robin Schroer's personal website\">\n"
    "<link rel=\"me\" href=\"https://techhub.social/@sulami\">"
    (format "<title>%s - %s</title>\n"
            ;; NB String accidental HTML tags.

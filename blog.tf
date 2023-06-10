@@ -175,3 +175,17 @@ resource "aws_s3_bucket_policy" "logs" {
 }
 POLICY
 }
+
+resource "aws_s3_bucket_intelligent_tiering_configuration" "logs" {
+  bucket = resource.aws_s3_bucket.logs.id
+  name   = "EntireBucket"
+
+  tiering {
+    access_tier = "ARCHIVE_ACCESS"
+    days        = 90
+  }
+  tiering {
+    access_tier = "DEEP_ARCHIVE_ACCESS"
+    days        = 180
+  }
+}

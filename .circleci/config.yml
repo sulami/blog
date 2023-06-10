@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: silex/emacs:27-ci
+      - image: silex/emacs:28-ci
     steps:
       - checkout
       - run:

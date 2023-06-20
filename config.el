@@ -101,9 +101,9 @@
         <!-- can decide how you feel about each element. -->
 
         <!-- Privacy-aware analytics by https://www.goatcounter.com/ -->
-        <!-- Stats are publicly available at https://sulami-blog.goatcounter.com/ -->"
+        <!-- Stats are publicly available at https://stats.sulami.xyz/ -->"
    (when (ci-p)
-     "<script data-goatcounter=\"https://sulami-blog.goatcounter.com/count\" async src=\"https://gc.zgo.at/count.js\"></script>")
+     "<script data-goatcounter=\"https://stats.sulami.xyz/count\" async src=\"https://gc.zgo.at/count.js\"></script>")
 
    "<!-- Colour theme switcher -->
    <script>

@@ -1,20 +1,46 @@
 #+TITLE: About
 
-Hi, I'm Robin Schroer, a staff engineer with a personal blog.
+I'm a Robin Schroer, a human, located on the third planet, Sol system,
+Orion-Cygnus arm, Milky Way, Virgo supercluster.
 
-On the [[https://staffeng.com/guides/staff-archetypes][Will Larson staff archetype chart]] I register mostly as
-/Architect/ and/or /Solver/. I am also [[https://emauton.org/2022/12/24/a-safe-pair-of-hands/][a safe pair of hands]].
+Sometimes I produce sequences of characters that can be meaningfully
+interpreted by humans and/or computers.
 
-I try to multiply the effectiveness of those around me by driving
-alignment, reducing uncertainty, mentoring less experienced engineers,
-and spearheading difficult technical projects.
+I've worked in exchange for money on some things you might have heard
+of, such as [[https://circleci.com/][CircleCI]] or [[https://f1tv.formula1.com/][F1TV]] or [[https://player.bbc.com/en/][BBC Player]].
 
-In the past I have worked mostly on high traffic data streaming
-services and distributed state machines as a service, as well as a bit
-on compilers. Even though I spent a lot of recent times professionally
-writing Clojure, I am currently excited about Rust.
+My planetary location changes somewhat frequently:
 
-If you are interested in working with me, here is my [[file:pages/cv/index.org][CV]] ([[https://blog.sulami.xyz/pages/robin-schroer-cv.pdf][PDF]]).
+- Germany
+- United Kingdom
+- The Netherlands
+- Japan (current)
+
+Here are some of my interests:
+
+- 3D printing
+- Aeroplanes
+- Books, especially non-fiction
+- Chess, and board games in general
+- Coffee
+- Control systems
+- Cooking, and sometimes baking
+- Electronics
+- Emacs
+- Engineering
+- Free software
+- Hiking
+- Language learning
+- Old video games
+- Puzzles
+- Rock climbing
+- Running
+- Rust
+- Science fiction, especially cyberpunk
+- Space
+- Sustainability
+- Travel
+
 
 * Contact / Links
 
@@ -24,3 +50,4 @@ If you are interested in working with me, here is my [[file:pages/cv/index.org][
 - Lobsters: [[https://lobste.rs/u/sulami][sulami]]
 - Hacker News: [[https://news.ycombinator.com/user?id=sulami][sulami]]
 - Rands Leadership Slack: <my full name>
+

@@ -1,7 +1,6 @@
 locals {
   domain      = "blog.sulami.xyz"
   site_bucket = "blog.sulami.xyz"
-  logs_bucket = "blog.sulami.xyz-logs"
 }
 
 terraform {
@@ -60,12 +59,6 @@ resource "aws_cloudfront_distribution" "cdn" {
     acm_certificate_arn = resource.aws_acm_certificate.blog.arn
     ssl_support_method  = "sni-only"
   }
-
-  logging_config {
-    bucket          = resource.aws_s3_bucket.logs.bucket_domain_name
-    include_cookies = "false"
-    prefix          = ""
-  }
 }
 
 resource "aws_acm_certificate" "blog" {
@@ -110,20 +103,6 @@ resource "aws_s3_bucket_ownership_controls" "site" {
   }
 }
 
-resource "aws_s3_bucket" "logs" {
-  bucket              = local.logs_bucket
-  force_destroy       = "false"
-  object_lock_enabled = "false"
-}
-
-resource "aws_s3_bucket_ownership_controls" "logs" {
-  bucket = aws_s3_bucket.logs.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
 resource "aws_s3_bucket_policy" "site" {
   bucket = resource.aws_s3_bucket.site.bucket
   policy = <<POLICY
@@ -148,44 +127,4 @@ resource "aws_s3_bucket_policy" "site" {
   "Version": "2008-10-17"
 }
 POLICY
-}
-
-resource "aws_s3_bucket_policy" "logs" {
-  bucket = resource.aws_s3_bucket.logs.bucket
-  policy = <<POLICY
-{
-  "Id": "PolicyForCloudFrontLogs",
-  "Statement": [
-    {
-      "Action": "s3:PutObject",
-      "Condition": {
-        "StringEquals": {
-          "AWS:SourceArn": "${resource.aws_cloudfront_distribution.cdn.arn}"
-        }
-      },
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "cloudfront.amazonaws.com"
-      },
-      "Resource": "${resource.aws_s3_bucket.logs.arn}/*",
-      "Sid": "AllowCloudFrontServicePrincipal"
-    }
-  ],
-  "Version": "2008-10-17"
-}
-POLICY
-}
-
-resource "aws_s3_bucket_intelligent_tiering_configuration" "logs" {
-  bucket = resource.aws_s3_bucket.logs.id
-  name   = "EntireBucket"
-
-  tiering {
-    access_tier = "ARCHIVE_ACCESS"
-    days        = 90
-  }
-  tiering {
-    access_tier = "DEEP_ARCHIVE_ACCESS"
-    days        = 180
-  }
 }

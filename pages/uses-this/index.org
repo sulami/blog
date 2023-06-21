@@ -1,5 +1,5 @@
-#+TITLE: Robin Uses This
-#+DATE: 2022-05-10
+#+TITLE: Uses This
+#+DATE: 2023-06-21
 
 I really enjoy reading [[https://usesthis.com][uses this]] to get some ideas about what kind of
 tooling other people use, and of course to borrow ideas, so I thought
@@ -12,14 +12,11 @@ My workstation is optimised for portability, so everything is
 relatively small and packs well for travel, while maximising
 ergonomics:
 
-- 2018 15" Apple MacBook Pro :: Got it for free, works
+- 16" M1 Apple MacBook Pro :: Brilliant computer
 - [[https://www.therooststand.com/][Roost Laptop Stand]] :: Saves my neck and posture
 - [[../../posts/atreus/][Keyboardio Atreus Keyboard]] :: Using the [[https://colemak.com][Colemak]] layout
 - Apple Magic Trackpad :: Better for RSI (for me)
 - [[https://europe.beyerdynamic.com/dt-990-pro.html][beyerdynamic DT 990 Pro]] :: Open-back, wired
-- [[https://www.anker.com/products/variant/usb-c-hub,-7in1-usb-c-adapter/A83460A1][Anker 7-in-1 USB-C Hub]] :: Works well with the stand, and is the
-  single thing to unplug when taking the computer away
-- [[https://www.yubico.com/nl/product/yubikey-5c-nano/][Yubikey 5C Nano]] :: Has my GPG- and SSH-keys
 
 * Software
 
@@ -27,28 +24,24 @@ Really just the current version of macOS, the [[https://github.com/NixOS/nixpkgs
 [[https://www.gnu.org/software/emacs/][Emacs]], and [[https://mozilla.org/en_US/firefox/developer/][Firefox Developer Edition]].
 
 The specifics of my setup change a lot. I use [[https://orgmode.org/][org-mode]] for most
-writing, but otherwise I only use my email in Emacs, via [[https://notmuchmail.org/][notmuch]]. I
-have been down the "do everything inside Emacs" road and decided that
-there are too many rough edges for my taste, so I confine it to
-text-processing related tasks.
+writing, and [[https://www.orgroam.com/][org-roam]] for organisation of notes. I have been down the
+"do everything inside Emacs" road and decided that there are too many
+rough edges for my taste, so I confine it to text-processing related
+tasks.
 
 All my configuration is [[https://github.com/sulami/dotfiles][available online]].
 
-I always use a task-manager of some sort, currently [[https://culturedcode.com/things/][Things]], in the
-past also org-mode, [[https://www.omnigroup.com/omnifocus][OmniFocus]], and [[https://www.2doapp.com/][2Do]].
+I have also gotten pretty proficient at [[https://kicad.org][KiCad]] over the last few years,
+and I am slowly coming to terms with [[https://www.autodesk.com/products/fusion-360/overview][Fusion 360]].
 
-I have also gotten pretty proficient at [[https://kicad.org][KiCad]] over the last few years.
+* Dream Setup
 
-* Lab
+I would like an electric standing desk. I have sat for most of my
+life, but also been standing exclusively for a period of several
+years. Neither seems sustainable on its own, so I think the solution
+is to alternate.
 
-- [[https://www.siglenteu.com/digital-oscilloscopes/sds1000x-u/][Siglent SDS1104X-U]] :: 100MHz scope with amazing value. I sometimes
-  wish I had the 1104X-E's much larger FFT, but otherwise there is not
-  much on the market below [[eww:][~3000€]] that I would be interested in.
-- [[https://www.rigolna.com/products/dc-power-loads/dp800/][Rigol DP832]] :: Linear bench power supply, fully upgraded. Complete
-  overkill for what I am doing, but handy for audio work.
-- [[https://brymen.eu/shop/bm235/][Brymen BM235]] :: Multimeter. Measures all the things, accurate, and
-  robust. Sadly not the blue version.
-- [[http://www.miniware.com.cn/product/ts80p-soldering-iron-more/][Miniware TS80P]] :: Running [[https://github.com/Ralim/IronOS/][IronOS]]. I used to have a [[https://www.weller-tools.com/we1010na/][Weller WE1010]],
-  but lack of bench space meant I had to set it up every time. The
-  TS80P does not feel weaker subjectively, perhaps due to the
-  integrated heating element tips.
+Sometimes I wish for more screen estate, but realistically I do not
+need it.
+
+Desk space on the other hand is something I can never have enough of.

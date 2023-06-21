@@ -72,7 +72,6 @@
    "<link rel=\"stylesheet\" href=\"/css/stylesheet.css\" type=\"text/css\" />\n"
    "</head>\n"
    "<body>\n"
-   "<input type=\"checkbox\" id=\"lightswitch\" />\n"
    "<div id=\"body\"><div id=\"container\">"
    "<div id=\"navigation\">"
    "<label for=\"lightswitch\" id=\"lightswitch-label\">☀</label>"

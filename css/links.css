@@ -1,0 +1,7 @@
+/* I like my links reasonably bare. */
+
+a:link {
+    text-decoration: underline;
+    background: none;
+    text-shadow: none;
+}

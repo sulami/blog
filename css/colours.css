@@ -9,6 +9,7 @@
     --blue: #458588;
     --purple: #b16286;
     --aqua: #689d6a;
+    --orange: #d65d0e;
     --gray: #a89984;
 }
 
@@ -44,17 +45,17 @@ code > span.cv { color: var(--gray);   font-weight: bold;   font-style: italic; 
 code > span.in { color: var(--gray);   font-weight: bold;   font-style: italic; } /* Information */
 
 /* Org-mode */
-code > span.org-builtin           { color: var(--gray);   font-weight: normal; font-style: normal; }
 code > span.org-comment           { color: var(--gray);   font-weight: normal; font-style: italic; }
 code > span.org-comment-delimiter { color: var(--gray);   font-weight: normal; font-style: italic; }
-code > span.org-constant          { color: var(--aqua);   font-weight: normal; font-style: normal; }
-code > span.org-doc               { color: var(--gray);   font-weight: normal; font-style: italic; }
-code > span.org-function-name     { color: var(--blue);   font-weight: normal; font-style: normal; }
-code > span.org-keyword           { color: var(--green);  font-weight: bold;   font-style: normal; }
-code > span.org-preprocessor      { color: var(--red);    font-weight: normal; font-style: normal; }
-code > span.org-string            { color: var(--aque);   font-weight: normal; font-style: normal; }
+code > span.org-doc               {                       font-weight: normal; font-style: italic; }
+code > span.org-preprocessor      { color: var(--purple); font-weight: normal; font-style: normal; }
+code > span.org-builtin           { color: var(--blue);   font-weight: normal; font-style: normal; }
+code > span.org-keyword           { color: var(--red);    font-weight: bold;   font-style: normal; }
+code > span.org-constant          { color: var(--yellow); font-weight: normal; font-style: normal; }
 code > span.org-type              { color: var(--yellow); font-weight: normal; font-style: normal; }
+code > span.org-function-name     { color: var(--green);  font-weight: bold;   font-style: normal; }
 code > span.org-variable-name     { color: var(--blue);   font-weight: normal; font-style: normal; }
+code > span.org-string            { color: var(--green);  font-weight: normal; font-style: normal; }
 
 /* Clojure */
-code > span.org-clojure-keyword   { color: var(--green); font-weight: bold;   font-style: normal; }
+code > span.org-clojure-keyword   { color: var(--red); font-weight: bold;   font-style: normal; }

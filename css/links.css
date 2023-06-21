@@ -2,6 +2,11 @@
 
 a:link {
     text-decoration: underline;
+    text-decoration-style: dotted;
     background: none;
     text-shadow: none;
+}
+
+a:hover {
+    color: var(--red);
 }

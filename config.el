@@ -102,23 +102,7 @@
         <!-- Stats are publicly available at https://stats.sulami.xyz/ -->"
    (when (ci-p)
      "<script data-goatcounter=\"https://stats.sulami.xyz/count\" async src=\"https://gc.zgo.at/count.js\"></script>")
-
-   "<!-- Colour theme switcher -->
-   <script>
-     const themeSwitch = document.querySelector('#lightswitch');
-     themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';
-
-     themeSwitch.addEventListener('change', function (e) {
-         if(e.currentTarget.checked === true) {
-             // Add item to localstorage
-             localStorage.setItem('switchedTheme', 'true');
-         } else {
-             // Remove item if theme is switched back to normal
-             localStorage.removeItem('switchedTheme');
-         }
-     });
-   </script>
-   </body>\n"
+   "</body>\n"
    "</html>\n"))
 
 (defun modern-tufte-html-section (section contents info)

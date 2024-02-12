@@ -1,0 +1,29 @@
+/* Light/dark mode support */
+
+@media (prefers-color-scheme: light) {
+    div#body {
+        background-color: var(--extra-light);
+        color: var(--dark);
+    }
+    pre code {
+        background-color: var(--dark);
+        color: var(--light);
+    }
+    table {
+        border-color: var(--dark);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    div#body {
+        background-color: var(--dark);
+        color: var(--light);
+    }
+    pre code {
+        background-color: var(--light);
+        color: var(--dark);
+    }
+    table {
+        border-color: var(--light);
+    }
+}

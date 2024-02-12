@@ -1,0 +1,14 @@
+pre code {
+    padding: 10px;
+}
+
+div.sourceCode, pre:not(.sourceCode) {
+    overflow-x: scroll
+}
+
+/* Desktop view */
+@media (min-width: 760px) {
+    pre code {
+        border-radius: 10px;
+    }
+}

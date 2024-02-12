@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block content %}
+<ul>
+    {% for post in page.extra_context.posts %}
+    <li>
+        <a href="/posts/{{ post.slug }}/">{{ post.title }}</a> - {{ post.timestamp }}
+        {% if post.tags %}
+        {{ post.tags }}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

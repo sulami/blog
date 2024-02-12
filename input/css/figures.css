@@ -1,0 +1,64 @@
+/*
+Figures & captions come out as div.figure & p.caption respectively,
+which is not what tufte-css anticipates.
+
+Because CSS doesn't allow for automatic style inheritance, I just
+copy-paste over the relevant styles. The structure is slightly fudged,
+because org-mode conversion applies custom HTML attributes on the
+image rather than the container, so the container is always full-width
+and the image is scaled down in this version.
+
+To include a full-width figure in this system, use the following
+org-mode annotation:
+
+#+attr_html: :class fullwidth
+
+FIXME Actually full width figures are currently broken on a CSS level,
+because the enclosing figure does not expand properly to the right,
+and we can't apply attributes to parent elements from org.
+*/
+
+div.figure {
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 100%;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin: 0 0 3em 0;
+}
+
+div.figure > img {
+    max-width: 55%;
+}
+
+div.figure > img.fullwidth {
+    max-width: 88%;
+}
+
+div.figure > video {
+    max-width: 55%;
+}
+
+div.figure > video.fullwidth {
+    max-width: 88%;
+}
+
+div.figure > p.caption {
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    vertical-align: baseline;
+    position: relative;
+    width: calc(55% / 2);
+    margin-right: 12%;
+}
+
+.figure-number {
+    display: none;
+}

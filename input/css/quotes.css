@@ -1,0 +1,16 @@
+/*
+Italicise blockquotes and fix some overzealous spacing.
+ */
+
+blockquote {
+    font-style: italic;
+}
+
+div.epigraph {
+    margin: 0 !important;
+}
+
+div.epigraph > blockquote {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

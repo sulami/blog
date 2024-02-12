@@ -175,6 +175,9 @@ async fn render_site() -> Result<()> {
     render_pages(&pages, &site)
         .await
         .wrap_err("failed to render pages")?;
+    render_index(&pages, &site)
+        .await
+        .wrap_err("failed to render index")?;
     render_archive(&pages, &site)
         .await
         .wrap_err("failed to render archive")?;
@@ -192,6 +195,28 @@ async fn render_pages(pages: &[Page], site: &Site) -> Result<()> {
             .await
             .wrap_err("failed to write page")?;
     }
+
+    Ok(())
+}
+
+async fn render_index(_pages: &[Page], site: &Site) -> Result<()> {
+    let output_file = PathBuf::from(OUTPUT_DIR).join("index.html");
+
+    let page = Page {
+        title: "Welcome".to_string(),
+        kind: PageKind::Custom("index.html".to_string()),
+        source: None,
+        slug: String::new(),
+        tags: vec![],
+        timestamp: None,
+        content: String::new(),
+        extra_context: HashMap::default(),
+    };
+
+    let rendered = page.render(site).await.wrap_err("failed to render page")?;
+    create_and_write(&output_file, &rendered)
+        .await
+        .wrap_err("failed to write page")?;
 
     Ok(())
 }

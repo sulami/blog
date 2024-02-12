@@ -199,19 +199,25 @@ async fn render_pages(pages: &[Page], site: &Site) -> Result<()> {
     Ok(())
 }
 
-async fn render_index(_pages: &[Page], site: &Site) -> Result<()> {
+async fn render_index(pages: &[Page], site: &Site) -> Result<()> {
     let output_file = PathBuf::from(OUTPUT_DIR).join("index.html");
 
-    let page = Page {
+    let mut page = Page {
         title: "Welcome".to_string(),
         kind: PageKind::Custom("index.html".to_string()),
         source: None,
         slug: String::new(),
+        link: "/".to_string(),
         tags: vec![],
         timestamp: None,
         content: String::new(),
         extra_context: HashMap::default(),
     };
+
+    let mut posts: Vec<&Page> = pages.iter().filter(|p| p.kind == PageKind::Post).collect();
+    posts.sort_by_cached_key(|p| p.timestamp.clone());
+    posts = posts.into_iter().rev().take(5).collect();
+    page.insert_context("recent_posts", &posts);
 
     let rendered = page.render(site).await.wrap_err("failed to render page")?;
     create_and_write(&output_file, &rendered)
@@ -230,6 +236,7 @@ async fn render_archive(pages: &[Page], site: &Site) -> Result<()> {
         kind: PageKind::Custom("archive.html".to_string()),
         source: None,
         slug: "archive".to_string(),
+        link: "/posts/".to_string(),
         tags: vec![],
         timestamp: None,
         content: String::new(),
@@ -238,6 +245,7 @@ async fn render_archive(pages: &[Page], site: &Site) -> Result<()> {
 
     let mut posts: Vec<&Page> = pages.iter().filter(|p| p.kind == PageKind::Post).collect();
     posts.sort_by_cached_key(|p| p.timestamp.clone());
+    posts.reverse();
     page.insert_context("posts", &posts);
 
     let rendered = page.render(site).await.wrap_err("failed to render page")?;
@@ -341,6 +349,7 @@ struct Page {
     source: Option<PathBuf>,
     title: String,
     slug: String,
+    link: String,
     tags: Vec<String>,
     timestamp: Option<String>,
     content: String,
@@ -431,6 +440,12 @@ impl Page {
             .transpose()?
             .unwrap_or_default();
 
+        let link = match kind {
+            PageKind::Post => format!("/posts/{}/", slug),
+            PageKind::Page => format!("/{}/", slug),
+            PageKind::Custom(_) => format!("/{}", slug),
+        };
+
         let mut content = String::new();
         let parser = pulldown_cmark::Parser::new_ext(
             content_section,
@@ -443,6 +458,7 @@ impl Page {
             source: Some(source),
             title,
             slug,
+            link,
             tags,
             timestamp,
             content,

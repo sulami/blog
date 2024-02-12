@@ -10,7 +10,7 @@
 <ul>
     {% for post in page.extra_context.posts %}
     <li>
-        <a href="/posts/{{ post.slug }}/">{{ post.title }}</a> - {{ post.timestamp }}
+        <a href="{{ post.link }}">{{ post.title }}</a> - {{ post.timestamp }}
         {% if post.tags %}
         {{ post.tags }}
         {% endif %}

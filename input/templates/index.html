@@ -8,4 +8,20 @@
 
 {% block content %}
 Welcome chump
+
+Some recent posts:
+
+<ul>
+    {% for post in page.extra_context.recent_posts %}
+    <li>
+        <a href="{{ post.link }}">{{ post.title }}</a> - {{ post.timestamp }}
+        {% if post.tags %}
+        {{ post.tags }}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+Otherwise check out the <a href="/posts/">archive</a>.
+
 {% endblock content %}

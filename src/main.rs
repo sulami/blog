@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     ffi::OsStr,
+    hash::Hash,
     path::{Path, PathBuf},
     str::FromStr,
 };
@@ -11,7 +12,7 @@ use color_eyre::{eyre::WrapErr, Report, Result};
 use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
 use once_cell::sync::Lazy;
 use serde::Serialize;
-use tera::{to_value, Tera, Value};
+use tera::{to_value, Function, Tera, Value};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, remove_dir_all, File},
     io::{AsyncReadExt, AsyncWriteExt},
@@ -149,20 +150,16 @@ async fn shutdown_signal() {
 
 /// Renders the entire site once.
 async fn render_site() -> Result<()> {
-    let site = Site {
+    let mut site = Site {
         title: SITE_TITLE.to_string(),
         description: SITE_DESCRIPTION.to_string(),
         author: SITE_AUTHOR.to_string(),
         menu: vec![
-            MenuItem::new("Home", "/"),
-            MenuItem::new("Archive", "/posts/"),
-            MenuItem::new("About", "/about/"),
+            MenuItem::new("Home", PageSource::new_virtual("index")),
+            MenuItem::new("Archive", PageSource::new_virtual("archive")),
         ],
+        pages: HashMap::default(),
     };
-
-    let pages = load_pages(&PathBuf::from(INPUT_DIR).join("content"))
-        .await
-        .wrap_err("failed to load pages")?;
 
     create_dir_all(OUTPUT_DIR)
         .await
@@ -172,40 +169,33 @@ async fn render_site() -> Result<()> {
     copy_raw_files()
         .await
         .wrap_err("failed to copy static files")?;
-    render_pages(&pages, &site)
+
+    site.load_pages(&PathBuf::from(INPUT_DIR).join("content"))
         .await
-        .wrap_err("failed to render pages")?;
-    render_index(&pages, &site)
+        .wrap_err("failed to load pages")?;
+
+    let index_page = index_page(&site);
+    site.insert_page(index_page);
+
+    let archive_page = archive_page(&site);
+    site.insert_page(archive_page);
+
+    site.render_pages()
         .await
-        .wrap_err("failed to render index")?;
-    render_archive(&pages, &site)
-        .await
-        .wrap_err("failed to render archive")?;
+        .wrap_err("failed to render site")?;
 
     Ok(())
 }
 
-/// Renders all pages and writes them to the output directory.
-async fn render_pages(pages: &[Page], site: &Site) -> Result<()> {
-    let output_dir = PathBuf::from(OUTPUT_DIR);
-
-    for page in pages {
-        let rendered = page.render(site).await.wrap_err("failed to render page")?;
-        create_and_write(&output_dir.join(page.output_path()), &rendered)
-            .await
-            .wrap_err("failed to write page")?;
-    }
-
-    Ok(())
-}
-
-async fn render_index(pages: &[Page], site: &Site) -> Result<()> {
-    let output_file = PathBuf::from(OUTPUT_DIR).join("index.html");
-
+/// Creates the index page. Should be called after all regular pages have been loaded.
+fn index_page(site: &Site) -> Page {
     let mut page = Page {
         title: "Welcome".to_string(),
-        kind: PageKind::Custom("index.html".to_string()),
-        source: None,
+        kind: PageKind::Custom {
+            template: "index.html",
+            destination: "index.html",
+        },
+        source: PageSource::new_virtual("index"),
         slug: String::new(),
         link: "/".to_string(),
         tags: vec![],
@@ -214,27 +204,27 @@ async fn render_index(pages: &[Page], site: &Site) -> Result<()> {
         extra_context: HashMap::default(),
     };
 
-    let mut posts: Vec<&Page> = pages.iter().filter(|p| p.kind == PageKind::Post).collect();
+    let mut posts: Vec<&Page> = site
+        .pages
+        .values()
+        .filter(|p| p.kind == PageKind::Post)
+        .collect();
     posts.sort_by_cached_key(|p| p.timestamp.clone());
     posts = posts.into_iter().rev().take(5).collect();
     page.insert_context("recent_posts", &posts);
 
-    let rendered = page.render(site).await.wrap_err("failed to render page")?;
-    create_and_write(&output_file, &rendered)
-        .await
-        .wrap_err("failed to write page")?;
-
-    Ok(())
+    page
 }
 
 /// Renders the archive page.
-async fn render_archive(pages: &[Page], site: &Site) -> Result<()> {
-    let output_file = PathBuf::from(OUTPUT_DIR).join("posts").join("index.html");
-
+fn archive_page(site: &Site) -> Page {
     let mut page = Page {
         title: "Archive".to_string(),
-        kind: PageKind::Custom("archive.html".to_string()),
-        source: None,
+        kind: PageKind::Custom {
+            template: "archive.html",
+            destination: "posts/index.html",
+        },
+        source: PageSource::new_virtual("archive"),
         slug: "archive".to_string(),
         link: "/posts/".to_string(),
         tags: vec![],
@@ -243,17 +233,16 @@ async fn render_archive(pages: &[Page], site: &Site) -> Result<()> {
         extra_context: HashMap::default(),
     };
 
-    let mut posts: Vec<&Page> = pages.iter().filter(|p| p.kind == PageKind::Post).collect();
+    let mut posts: Vec<&Page> = site
+        .pages
+        .values()
+        .filter(|p| p.kind == PageKind::Post)
+        .collect();
     posts.sort_by_cached_key(|p| p.timestamp.clone());
     posts.reverse();
     page.insert_context("posts", &posts);
 
-    let rendered = page.render(site).await.wrap_err("failed to render page")?;
-    create_and_write(&output_file, &rendered)
-        .await
-        .wrap_err("failed to write page")?;
-
-    Ok(())
+    page
 }
 
 /// Copies all raw files to the output directory.
@@ -324,29 +313,83 @@ struct Site {
     description: String,
     author: String,
     menu: Vec<MenuItem>,
+    pages: HashMap<PageSource, Page>,
+}
+
+impl Site {
+    /// Inserts a page into the site.
+    fn insert_page(&mut self, page: Page) {
+        self.pages.insert(page.source.clone(), page);
+    }
+
+    /// Returns a page by its key.
+    fn get_page(&self, key: &PageSource) -> Option<&Page> {
+        self.pages.get(key)
+    }
+
+    /// Loads all pages from the given directory.
+    #[async_recursion]
+    async fn load_pages(&mut self, dir: &Path) -> Result<()> {
+        let mut source_files = read_dir(dir).await?;
+        while let Some(path) = source_files.next_entry().await? {
+            if path.file_type().await?.is_dir() {
+                self.load_pages(&path.path()).await?;
+            }
+            let Some(Some("md")) = path.path().extension().map(OsStr::to_str) else {
+                continue;
+            };
+            self.pages.insert(
+                PageSource::File(path.path().clone()),
+                Page::new(path.path())
+                    .await
+                    .wrap_err(format!("failed to load page {}", path.path().display()))?,
+            );
+        }
+
+        Ok(())
+    }
+
+    /// Renders all pages and writes them to the output directory.
+    async fn render_pages(&self) -> Result<()> {
+        let output_dir = PathBuf::from(OUTPUT_DIR);
+
+        // NB Reload the url_for function with new pages.
+        TERA.lock()
+            .await
+            .register_function("url_for", make_url_for(self.pages.clone()));
+
+        for page in self.pages.values() {
+            let rendered = page.render(self).await.wrap_err("failed to render page")?;
+            create_and_write(&output_dir.join(page.output_path()), &rendered)
+                .await
+                .wrap_err("failed to write page")?;
+        }
+
+        Ok(())
+    }
 }
 
 /// An item in the navigation menu.
 #[derive(Debug, Serialize)]
 struct MenuItem {
     title: String,
-    link: String,
+    link: PageSource,
 }
 
 impl MenuItem {
-    fn new(title: &str, link: &str) -> Self {
+    fn new(title: &str, link: PageSource) -> Self {
         Self {
             title: title.to_string(),
-            link: link.to_string(),
+            link,
         }
     }
 }
 
 /// A page on the site.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 struct Page {
     kind: PageKind,
-    source: Option<PathBuf>,
+    source: PageSource,
     title: String,
     slug: String,
     link: String,
@@ -357,12 +400,41 @@ struct Page {
 }
 
 /// The type of a page.
-#[derive(Default, Debug, Serialize, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Hash, Clone)]
+enum PageSource {
+    File(PathBuf),
+    Virtual(String),
+}
+
+impl Serialize for PageSource {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::ser::Serializer,
+    {
+        match self {
+            Self::File(path) => format!("file:{}", path.display()).serialize(serializer),
+            Self::Virtual(name) => format!("virtual:{name}").serialize(serializer),
+        }
+    }
+}
+
+impl PageSource {
+    /// Creates a new virtual page source.
+    fn new_virtual(name: &str) -> Self {
+        Self::Virtual(name.to_string())
+    }
+}
+
+/// The type of a page.
+#[derive(Default, Debug, Serialize, PartialEq, Eq, Clone)]
 enum PageKind {
     #[default]
     Post,
     Page,
-    Custom(String),
+    Custom {
+        template: &'static str,
+        destination: &'static str,
+    },
 }
 
 impl FromStr for PageKind {
@@ -443,7 +515,7 @@ impl Page {
         let link = match kind {
             PageKind::Post => format!("/posts/{}/", slug),
             PageKind::Page => format!("/{}/", slug),
-            PageKind::Custom(_) => format!("/{}", slug),
+            PageKind::Custom { destination, .. } => destination.to_string(),
         };
 
         let mut content = String::new();
@@ -455,7 +527,7 @@ impl Page {
 
         Ok(Self {
             kind,
-            source: Some(source),
+            source: PageSource::File(source),
             title,
             slug,
             link,
@@ -480,50 +552,30 @@ impl Page {
         match &self.kind {
             PageKind::Post => "post.html".to_string(),
             PageKind::Page => "page.html".to_string(),
-            PageKind::Custom(name) => name.clone(),
+            PageKind::Custom { template, .. } => template.to_string(),
         }
     }
 
     /// Returns the path where the page should be written to.
     fn output_path(&self) -> PathBuf {
-        match self.kind {
+        match &self.kind {
             PageKind::Post => PathBuf::from(format!("posts/{}/index.html", self.slug)),
             PageKind::Page => PathBuf::from(format!("{}/index.html", self.slug)),
-            PageKind::Custom(_) => panic!("custom pages have no known output location"),
+            PageKind::Custom { destination, .. } => destination.into(),
         }
     }
 
     /// Renders the page using the given template and Tera instance.
     async fn render(&self, site: &Site) -> Result<String> {
+        println!("Rendering page {:?}", self.source);
         let ctx = Context { page: self, site };
-        let rendered = TERA
-            .lock()
-            .await
-            .render(&self.template(), &tera::Context::from_serialize(ctx)?)?;
+        let rendered = TERA.lock().await.render(
+            &self.template(),
+            &tera::Context::from_serialize(ctx).wrap_err("failed to create context")?,
+        )?;
 
         Ok(rendered)
     }
-}
-
-/// Loads all pages from the given directory.
-#[async_recursion]
-async fn load_pages(dir: &Path) -> Result<Vec<Page>> {
-    let mut pages = vec![];
-    let mut source_files = read_dir(dir).await?;
-    while let Some(path) = source_files.next_entry().await? {
-        if path.file_type().await?.is_dir() {
-            pages.append(&mut load_pages(&path.path()).await?);
-        }
-        let Some(Some("md")) = path.path().extension().map(OsStr::to_str) else {
-            continue;
-        };
-        pages.push(
-            Page::new(path.path())
-                .await
-                .wrap_err(format!("failed to load page {}", path.path().display()))?,
-        );
-    }
-    Ok(pages)
 }
 
 /// Creates a file and all required parent directories, then writes the given content to it.
@@ -543,4 +595,28 @@ async fn create_and_write(path: &Path, content: &str) -> Result<()> {
 /// Converts a title into a slug.
 fn slugify(title: &str) -> String {
     title.to_lowercase().replace(' ', "-")
+}
+
+/// Creates the url_for template filter.
+fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
+    Box::new(
+        move |args: &HashMap<String, Value>| -> Result<Value, tera::Error> {
+            let link = args
+                .get("link")
+                .expect("argument link not found")
+                .as_str()
+                .unwrap()
+                .to_string();
+            let (kind, name) = link
+                .split_once(':')
+                .ok_or(tera::Error::from("invalid link format"))?;
+            let key = match kind {
+                "file" => Ok(PageSource::File(name.into())),
+                "virtual" => Ok(PageSource::Virtual(name.into())),
+                _ => Err(tera::Error::from("invalid kind")),
+            }?;
+            let page = pages.get(&key).ok_or(tera::Error::from("page not found"))?;
+            Ok(to_value(page.link.clone()).unwrap())
+        },
+    )
 }

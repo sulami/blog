@@ -9,18 +9,17 @@ use std::{
 use async_recursion::async_recursion;
 use clap::{Parser, Subcommand};
 use color_eyre::{eyre::WrapErr, Report, Result};
-use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
 use once_cell::sync::Lazy;
 use serde::Serialize;
 use tera::{to_value, Function, Tera, Value};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, remove_dir_all, File},
     io::{AsyncReadExt, AsyncWriteExt},
-    signal, spawn,
     sync::Mutex,
 };
 use toml::Table;
-use tower_http::services::ServeDir;
+
+mod server;
 
 const SITE_TITLE: &str = "sulami's blog";
 const SITE_DESCRIPTION: &str = "Weak Opinions, Strongly Held";
@@ -61,18 +60,12 @@ async fn main() -> Result<()> {
         }
         Command::Serve { port } => {
             render_site().await.wrap_err("failed to render site")?;
-            let server = spawn(async move {
-                if let Err(err) = development_server(port.unwrap_or(DEFAULT_PORT)).await {
-                    eprintln!("Error: {err:?}");
-                }
-            });
-
-            let mut watcher = recommended_watcher(handle_notify_event)?;
-            watcher.watch(Path::new(INPUT_DIR), RecursiveMode::Recursive)?;
-
-            if let Err(err) = server.await {
-                eprintln!("Error joining task: {err:?}");
-            }
+            server::development_server(
+                port.unwrap_or(DEFAULT_PORT),
+                Path::new(INPUT_DIR),
+                Path::new(OUTPUT_DIR),
+            )
+            .await?;
         }
         Command::Clean => {
             remove_dir_all(OUTPUT_DIR)
@@ -82,65 +75,6 @@ async fn main() -> Result<()> {
     }
 
     Ok(())
-}
-
-/// Handles a notify event, i.e. a file on disk has changed.
-///
-/// Reloads Tera templates and re-renders all pages. In the future we could be smart about it and
-/// only re-render files that have changed, but computers are fast.
-#[tokio::main]
-async fn handle_notify_event(res: notify::Result<Event>) {
-    if let Ok(Event {
-        kind: EventKind::Modify(_),
-        ..
-    }) = res
-    {
-        if let Err(err) = SITE.lock().await.tera.full_reload() {
-            eprintln!("Error: {err:?}");
-        }
-        if let Err(err) = render_site().await.wrap_err("failed to re-render site") {
-            eprintln!("Error: {err:?}");
-        }
-    }
-}
-
-/// Serves the site output.
-async fn development_server(port: u16) -> Result<()> {
-    let app = axum::Router::new().nest_service("/", ServeDir::new(OUTPUT_DIR));
-    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{port}"))
-        .await
-        .unwrap();
-    println!("Listening on http://0.0.0.0:{port}");
-    axum::serve(listener, app)
-        .with_graceful_shutdown(shutdown_signal())
-        .await
-        .unwrap();
-    Ok(())
-}
-
-/// Shutdown handler.
-async fn shutdown_signal() {
-    let ctrl_c = async {
-        signal::ctrl_c()
-            .await
-            .expect("failed to install Ctrl+C handler");
-    };
-
-    #[cfg(unix)]
-    let terminate = async {
-        signal::unix::signal(signal::unix::SignalKind::terminate())
-            .expect("failed to install signal handler")
-            .recv()
-            .await;
-    };
-
-    #[cfg(not(unix))]
-    let terminate = std::future::pending::<()>();
-
-    tokio::select! {
-        _ = ctrl_c => {},
-        _ = terminate => {},
-    }
 }
 
 /// Renders the entire site once.

@@ -29,12 +29,7 @@ const DEFAULT_PORT: u16 = 8080;
 const INPUT_DIR: &str = "/Users/sulami/src/blog/input";
 const OUTPUT_DIR: &str = "/Users/sulami/src/blog/output";
 
-static TERA: Lazy<Mutex<Tera>> = Lazy::new(|| {
-    let mut tera =
-        Tera::new(&format!("{INPUT_DIR}/templates/**/*.html")).expect("failed to load templates");
-    tera.autoescape_on(vec![]);
-    Mutex::new(tera)
-});
+static SITE: Lazy<Mutex<Site>> = Lazy::new(|| Mutex::new(Site::new()));
 
 #[derive(Debug, Parser)]
 struct Cli {
@@ -67,7 +62,7 @@ async fn main() -> Result<()> {
         Command::Serve { port } => {
             render_site().await.wrap_err("failed to render site")?;
             let server = spawn(async move {
-                if let Err(err) = serve_site(port.unwrap_or(DEFAULT_PORT)).await {
+                if let Err(err) = development_server(port.unwrap_or(DEFAULT_PORT)).await {
                     eprintln!("Error: {err:?}");
                 }
             });
@@ -100,7 +95,7 @@ async fn handle_notify_event(res: notify::Result<Event>) {
         ..
     }) = res
     {
-        if let Err(err) = TERA.lock().await.full_reload() {
+        if let Err(err) = SITE.lock().await.tera.full_reload() {
             eprintln!("Error: {err:?}");
         }
         if let Err(err) = render_site().await.wrap_err("failed to re-render site") {
@@ -110,7 +105,7 @@ async fn handle_notify_event(res: notify::Result<Event>) {
 }
 
 /// Serves the site output.
-async fn serve_site(port: u16) -> Result<()> {
+async fn development_server(port: u16) -> Result<()> {
     let app = axum::Router::new().nest_service("/", ServeDir::new(OUTPUT_DIR));
     let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{port}"))
         .await
@@ -150,16 +145,7 @@ async fn shutdown_signal() {
 
 /// Renders the entire site once.
 async fn render_site() -> Result<()> {
-    let mut site = Site {
-        title: SITE_TITLE.to_string(),
-        description: SITE_DESCRIPTION.to_string(),
-        author: SITE_AUTHOR.to_string(),
-        menu: vec![
-            MenuItem::new("Home", PageSource::new_virtual("index")),
-            MenuItem::new("Archive", PageSource::new_virtual("archive")),
-        ],
-        pages: HashMap::default(),
-    };
+    let mut site = SITE.lock().await;
 
     create_dir_all(OUTPUT_DIR)
         .await
@@ -314,9 +300,29 @@ struct Site {
     author: String,
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
+    #[serde(skip)]
+    tera: Tera,
 }
 
 impl Site {
+    /// Creates a new site.
+    fn new() -> Self {
+        let mut tera = Tera::new(&format!("{INPUT_DIR}/templates/**/*.html"))
+            .expect("failed to load templates");
+        tera.autoescape_on(vec![]);
+
+        Self {
+            title: SITE_TITLE.to_string(),
+            description: SITE_DESCRIPTION.to_string(),
+            author: SITE_AUTHOR.to_string(),
+            menu: vec![
+                MenuItem::new("Home", PageSource::new_virtual("index")),
+                MenuItem::new("Archive", PageSource::new_virtual("archive")),
+            ],
+            pages: HashMap::default(),
+            tera,
+        }
+    }
     /// Inserts a page into the site.
     fn insert_page(&mut self, page: Page) {
         self.pages.insert(page.source.clone(), page);
@@ -350,12 +356,11 @@ impl Site {
     }
 
     /// Renders all pages and writes them to the output directory.
-    async fn render_pages(&self) -> Result<()> {
+    async fn render_pages(&mut self) -> Result<()> {
         let output_dir = PathBuf::from(OUTPUT_DIR);
 
         // NB Reload the url_for function with new pages.
-        TERA.lock()
-            .await
+        self.tera
             .register_function("url_for", make_url_for(self.pages.clone()));
 
         for page in self.pages.values() {
@@ -569,7 +574,7 @@ impl Page {
     async fn render(&self, site: &Site) -> Result<String> {
         println!("Rendering page {:?}", self.source);
         let ctx = Context { page: self, site };
-        let rendered = TERA.lock().await.render(
+        let rendered = site.tera.render(
             &self.template(),
             &tera::Context::from_serialize(ctx).wrap_err("failed to create context")?,
         )?;

@@ -12,7 +12,7 @@ use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
-use once_cell::sync::Lazy;
+use once_cell::sync::OnceCell;
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use serde::Serialize;
 use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
@@ -28,24 +28,24 @@ use tokio::{
 };
 use toml::Table;
 
+mod config;
 mod server;
 
-const SITE_TITLE: &str = "sulami's blog";
-const SITE_DESCRIPTION: &str = "Weak Opinions, Strongly Held";
-const SITE_AUTHOR: &str = "Robin Schroer";
-const SITE_EMAIL: &str = "blog@sulami.xyz";
-const SITE_URL: &str = "https://blog.sulami.xyz";
-const CODE_THEME: &str = "Solarized (light)";
-const DEFAULT_PORT: u16 = 8080;
-const INPUT_DIR: &str = "/Users/sulami/src/blog/input";
-const OUTPUT_DIR: &str = "/Users/sulami/src/blog/output";
-
-static SITE: Lazy<Mutex<Site>> = Lazy::new(|| Mutex::new(Site::new()));
+static SITE: OnceCell<Mutex<Site>> = OnceCell::new();
 
 #[derive(Debug, Parser)]
 struct Cli {
     #[command(subcommand)]
     command: Command,
+
+    #[clap(long, short, default_value = "site.toml")]
+    config: PathBuf,
+
+    #[clap(long, short, default_value = "input")]
+    input: PathBuf,
+
+    #[clap(long, short, default_value = "output")]
+    output: PathBuf,
 }
 
 #[derive(Clone, Copy, Debug, Subcommand)]
@@ -55,7 +55,8 @@ enum Command {
     /// Starts a development server
     Serve {
         /// The port to listen on
-        port: Option<u16>,
+        #[clap(long, short, default_value = "8080")]
+        port: u16,
     },
     /// Removes the output directory
     Clean,
@@ -65,6 +66,10 @@ enum Command {
 async fn main() -> Result<()> {
     color_eyre::install()?;
     let args = Cli::parse();
+    let config = config::load_config(&args.config).await?;
+
+    let site = Site::new(&args.input, &args.output, &config.site);
+    SITE.set(Mutex::new(site)).unwrap();
 
     match args.command {
         Command::Render => {
@@ -72,15 +77,11 @@ async fn main() -> Result<()> {
         }
         Command::Serve { port } => {
             render_site().await.wrap_err("failed to render site")?;
-            server::development_server(
-                port.unwrap_or(DEFAULT_PORT),
-                Path::new(INPUT_DIR),
-                Path::new(OUTPUT_DIR),
-            )
-            .await?;
+            server::development_server(port, Path::new(&args.input), Path::new(&args.output))
+                .await?;
         }
         Command::Clean => {
-            remove_dir_all(OUTPUT_DIR)
+            remove_dir_all(&args.output)
                 .await
                 .wrap_err("failed to remove output directory")?;
         }
@@ -91,18 +92,21 @@ async fn main() -> Result<()> {
 
 /// Renders the entire site once.
 async fn render_site() -> Result<()> {
-    let mut site = SITE.lock().await;
+    let mut site = SITE.get().unwrap().lock().await;
+    let input = site.input_path.clone();
+    let output = site.output_path.clone();
 
-    create_dir_all(OUTPUT_DIR)
+    create_dir_all(&output)
         .await
         .wrap_err("failed to create output directory")?;
 
-    copy_css().await.wrap_err("failed to copy css")?;
-    copy_raw_files()
+    copy_css(&input, &output)
+        .await
+        .wrap_err("failed to copy css")?;
+    copy_raw_files(&input, &output)
         .await
         .wrap_err("failed to copy static files")?;
-
-    site.load_pages(&PathBuf::from(INPUT_DIR).join("content"))
+    site.load_pages(&input.join("content"))
         .await
         .wrap_err("failed to load pages")?;
 
@@ -115,7 +119,7 @@ async fn render_site() -> Result<()> {
     let feed_page = atom_feed(&site).wrap_err("failed to render feed")?;
     site.insert_page(feed_page);
 
-    site.render_pages()
+    site.render_pages(&output)
         .await
         .wrap_err("failed to render site pages")?;
 
@@ -218,9 +222,8 @@ fn atom_feed(site: &Site) -> Result<Page> {
 }
 
 /// Copies all raw files to the output directory.
-async fn copy_raw_files() -> Result<()> {
-    let source_dir = PathBuf::from(INPUT_DIR).join("raw");
-    let output_dir = PathBuf::from(OUTPUT_DIR);
+async fn copy_raw_files(input: &Path, output: &Path) -> Result<()> {
+    let source_dir = input.join("raw");
 
     let mut source_files = read_dir(&source_dir)
         .await
@@ -229,7 +232,7 @@ async fn copy_raw_files() -> Result<()> {
         if !path.file_type().await?.is_file() {
             continue;
         }
-        let target = output_dir.join(path.file_name());
+        let target = output.join(path.file_name());
         copy(path.path(), target).await?;
     }
 
@@ -237,15 +240,14 @@ async fn copy_raw_files() -> Result<()> {
 }
 
 /// Copies all CSS files to stylesheet.css in the output directory.
-async fn copy_css() -> Result<()> {
-    let source_dir = PathBuf::from(INPUT_DIR).join("css");
-    let output_dir = PathBuf::from(OUTPUT_DIR);
+async fn copy_css(input: &Path, output: &Path) -> Result<()> {
+    let source_dir = input.join("css");
 
     let mut source_files = read_dir(&source_dir)
         .await
         .wrap_err("failed to read source directory")?;
 
-    let target = output_dir.join("stylesheet.css");
+    let target = output.join("stylesheet.css");
     let mut output_file = File::create(&target).await?;
 
     while let Some(path) = source_files.next_entry().await? {
@@ -286,6 +288,9 @@ struct Site {
     author: String,
     email: String,
     url: String,
+    code_theme: String,
+    input_path: PathBuf,
+    output_path: PathBuf,
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
     #[serde(skip)]
@@ -294,17 +299,20 @@ struct Site {
 
 impl Site {
     /// Creates a new site.
-    fn new() -> Self {
-        let mut tera =
-            Tera::new(&format!("{INPUT_DIR}/templates/**/*")).expect("failed to load templates");
+    fn new(input: &Path, output: &Path, site_config: &config::Site) -> Self {
+        let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
+            .expect("failed to load templates");
         tera.autoescape_on(vec![]);
 
         Self {
-            title: SITE_TITLE.into(),
-            description: SITE_DESCRIPTION.into(),
-            author: SITE_AUTHOR.into(),
-            email: SITE_EMAIL.into(),
-            url: SITE_URL.into(),
+            title: site_config.title.clone(),
+            description: site_config.description.clone(),
+            author: site_config.author.clone(),
+            email: site_config.email.clone(),
+            url: site_config.url.clone(),
+            code_theme: site_config.code_theme.clone(),
+            input_path: input.to_path_buf(),
+            output_path: output.to_path_buf(),
             menu: vec![
                 MenuItem::new("Home", PageSource::new_virtual("index")),
                 MenuItem::new("Archive", PageSource::new_virtual("archive")),
@@ -342,9 +350,7 @@ impl Site {
     }
 
     /// Renders all pages and writes them to the output directory.
-    async fn render_pages(&mut self) -> Result<()> {
-        let output_dir = PathBuf::from(OUTPUT_DIR);
-
+    async fn render_pages(&mut self, output: &Path) -> Result<()> {
         // NB Reload the url_for function with new pages.
         self.tera
             .register_function("url_for", make_url_for(self.pages.clone()));
@@ -354,7 +360,7 @@ impl Site {
                 .render(self)
                 .await
                 .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
-            create_and_write(&output_dir.join(page.output_path()), &rendered)
+            create_and_write(&output.join(page.output_path()), &rendered)
                 .await
                 .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
         }
@@ -556,7 +562,7 @@ impl Page {
                         text,
                         &ss,
                         syntax,
-                        &theme_set.themes[CODE_THEME],
+                        &theme_set.themes[&site.code_theme],
                     )
                     .expect("failed to highlight code");
                     Some(Event::Html(code.into()))

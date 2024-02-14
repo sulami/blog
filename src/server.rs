@@ -1,8 +1,9 @@
 use std::path::{Path, PathBuf};
 
+use axum::Router;
 use color_eyre::{eyre::WrapErr, Result};
 use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
-use tokio::{signal, spawn};
+use tokio::{net::TcpListener, select, signal, spawn};
 use tower_http::services::ServeDir;
 
 /// Handles a notify event, i.e. a file on disk has changed.
@@ -31,26 +32,20 @@ async fn handle_notify_event(res: notify::Result<Event>) {
 /// Runs a development server.
 pub async fn development_server(port: u16, input_dir: &Path, output_dir: &Path) -> Result<()> {
     let output_dir = output_dir.to_path_buf();
-    let server = spawn(async move {
-        if let Err(err) = serve(port, output_dir).await {
-            eprintln!("Error: {err:?}");
-        }
-    });
+    let server = spawn(async move { serve(port, output_dir).await });
 
     let mut watcher = recommended_watcher(handle_notify_event)?;
     watcher.watch(input_dir, RecursiveMode::Recursive)?;
 
-    server.await?;
+    server.await??;
 
     Ok(())
 }
 
 /// Serves the site output.
 async fn serve(port: u16, output_dir: PathBuf) -> Result<()> {
-    let app = axum::Router::new().nest_service("/", ServeDir::new(output_dir));
-    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{port}"))
-        .await
-        .unwrap();
+    let app = Router::new().nest_service("/", ServeDir::new(output_dir));
+    let listener = TcpListener::bind(format!("0.0.0.0:{port}")).await.unwrap();
     println!("Listening on http://0.0.0.0:{port}");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
@@ -78,7 +73,7 @@ async fn shutdown_signal() {
     #[cfg(not(unix))]
     let terminate = std::future::pending::<()>();
 
-    tokio::select! {
+    select! {
         _ = ctrl_c => {},
         _ = terminate => {},
     }

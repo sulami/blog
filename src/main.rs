@@ -8,9 +8,14 @@ use std::{
 
 use async_recursion::async_recursion;
 use clap::{Parser, Subcommand};
-use color_eyre::{eyre::WrapErr, Report, Result};
+use color_eyre::{
+    eyre::{eyre, WrapErr},
+    Report, Result,
+};
 use once_cell::sync::Lazy;
+use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use serde::Serialize;
+use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 use tera::{to_value, Function, Tera, Value};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, remove_dir_all, File},
@@ -24,6 +29,7 @@ mod server;
 const SITE_TITLE: &str = "sulami's blog";
 const SITE_DESCRIPTION: &str = "Weak Opinions, Strongly Held";
 const SITE_AUTHOR: &str = "Robin Schroer";
+const CODE_THEME: &str = "Solarized (light)";
 const DEFAULT_PORT: u16 = 8080;
 const INPUT_DIR: &str = "/Users/sulami/src/blog/input";
 const OUTPUT_DIR: &str = "/Users/sulami/src/blog/output";
@@ -102,7 +108,7 @@ async fn render_site() -> Result<()> {
 
     site.render_pages()
         .await
-        .wrap_err("failed to render site")?;
+        .wrap_err("failed to render site pages")?;
 
     Ok(())
 }
@@ -262,11 +268,6 @@ impl Site {
         self.pages.insert(page.source.clone(), page);
     }
 
-    /// Returns a page by its key.
-    fn get_page(&self, key: &PageSource) -> Option<&Page> {
-        self.pages.get(key)
-    }
-
     /// Loads all pages from the given directory.
     #[async_recursion]
     async fn load_pages(&mut self, dir: &Path) -> Result<()> {
@@ -298,10 +299,13 @@ impl Site {
             .register_function("url_for", make_url_for(self.pages.clone()));
 
         for page in self.pages.values() {
-            let rendered = page.render(self).await.wrap_err("failed to render page")?;
+            let rendered = page
+                .render(self)
+                .await
+                .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
             create_and_write(&output_dir.join(page.output_path()), &rendered)
                 .await
-                .wrap_err("failed to write page")?;
+                .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
         }
 
         Ok(())
@@ -383,7 +387,7 @@ impl FromStr for PageKind {
         match s {
             "post" => Ok(Self::Post),
             "page" => Ok(Self::Page),
-            _ => Err(Report::msg("invalid page kind")),
+            _ => Err(eyre!("invalid page kind")),
         }
     }
 }
@@ -398,20 +402,20 @@ impl Page {
 
         let (metadata_section, content_section) = file_string
             .split_once("---")
-            .ok_or(Report::msg("no metadata divider found"))?;
+            .ok_or(eyre!("no metadata divider found"))?;
         let metadata = metadata_section.parse::<Table>()?;
         let title = metadata
             .get("title")
-            .ok_or(Report::msg("no title found in metadata"))?
+            .ok_or(eyre!("no title found in metadata"))?
             .as_str()
-            .ok_or(Report::msg("invalid type for title"))?
+            .ok_or(eyre!("invalid type for title"))?
             .to_string();
         let slug = metadata
             .get("slug")
             .map(|slug| -> Result<String> {
                 Ok(slug
                     .as_str()
-                    .ok_or(Report::msg("invalid type for slug"))?
+                    .ok_or(eyre!("invalid type for slug"))?
                     .to_string())
             })
             .transpose()?
@@ -420,7 +424,7 @@ impl Page {
             .get("kind")
             .map(|kind| -> Result<PageKind> {
                 kind.as_str()
-                    .ok_or(Report::msg("invalid type for kind"))?
+                    .ok_or(eyre!("invalid type for kind"))?
                     .parse::<PageKind>()
             })
             .transpose()?
@@ -430,7 +434,7 @@ impl Page {
             .map(|timestamp| -> Result<String> {
                 Ok(timestamp
                     .as_str()
-                    .ok_or(Report::msg("invalid type for timestamp"))?
+                    .ok_or(eyre!("invalid type for timestamp"))?
                     .to_string())
             })
             .transpose()?;
@@ -438,12 +442,12 @@ impl Page {
             .get("tags")
             .map(|tags| -> Result<Vec<String>> {
                 tags.as_array()
-                    .ok_or(Report::msg("invalid type for tags"))?
+                    .ok_or(eyre!("invalid type for tags"))?
                     .iter()
                     .map(|tag| -> Result<String> {
                         Ok(tag
                             .as_str()
-                            .ok_or(Report::msg("invalid type for tag"))?
+                            .ok_or(eyre!("invalid type for tag"))?
                             .to_string())
                     })
                     .collect::<Result<Vec<String>>>()
@@ -458,10 +462,43 @@ impl Page {
         };
 
         let mut content = String::new();
+        let mut code_language: Option<String> = None;
+        let ss = SyntaxSet::load_defaults_newlines();
+        let theme_set = ThemeSet::load_defaults();
+
         let parser = pulldown_cmark::Parser::new_ext(
             content_section,
             pulldown_cmark::Options::ENABLE_FOOTNOTES,
-        );
+        )
+        .filter_map(|mut ev| match ev {
+            Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(ref lang))) => {
+                code_language = Some(lang.to_string());
+                None
+            }
+            Event::End(TagEnd::CodeBlock) => {
+                code_language = None;
+                None
+            }
+            Event::Text(ref mut text) => {
+                if let Some(lang) = &code_language {
+                    let syntax = ss
+                        .find_syntax_by_token(lang)
+                        .unwrap_or_else(|| ss.find_syntax_plain_text());
+                    let code = highlighted_html_for_string(
+                        text,
+                        &ss,
+                        syntax,
+                        &theme_set.themes[CODE_THEME],
+                    )
+                    .expect("failed to highlight code");
+                    Some(Event::Html(code.into()))
+                } else {
+                    Some(ev)
+                }
+            }
+            _ => Some(ev),
+        });
+
         pulldown_cmark::html::push_html(&mut content, parser);
 
         Ok(Self {

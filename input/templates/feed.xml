@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{{ site.title }}</title>
+    <link href="{{ page.url }}" rel="self"/>
+    <link href="{{ site.url }}"/>
+    <id>{{ page.url }}</id>
+    <author>
+        <name>{{ site.author }}</name>
+        <email>{{ site.email }}</email>
+    </author>
+    <updated>{{ page.timestamp }}</updated>
+   {% for post in page.extra_context.posts %}
+    <entry>
+        <title>{{ post.title }}</title>
+        <link href="{{ post.url }}"/>
+        <id>{{ post.url }}</id>
+        <published>{{ post.timestamp }}</published>
+        <updated>{{ post.timestamp }}</updated>
+        <summary type="html">
+        {{ post.content }}
+        </summary>
+    </entry>
+    {% endfor %}
+</feed>

@@ -18,7 +18,7 @@
         <div id="container">
             <div id="navigation">
                 {% for menu_item in site.menu %}
-                <a href="{{ menu_item.link }}">{{ menu_item.title }}</a>
+                <a href="{{ url_for(link=menu_item.link) }}">{{ menu_item.title }}</a>
                 {% endfor %}
             </div>
             <div id="content">
@@ -26,7 +26,7 @@
                     <h1>{{ page.title }}</h1>
                     {% if page.timestamp %}
                     <div class="info">
-                        Published on {{ page.timestamp }}
+                        Published on {{ page.timestamp | date(format="%Y-%m-%d") }}
                     </div>
                     {% endif %}
                     {% if page.tags %}

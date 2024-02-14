@@ -17,6 +17,10 @@ use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use serde::Serialize;
 use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 use tera::{to_value, Function, Tera, Value};
+use time::{
+    format_description::well_known::{Iso8601, Rfc3339},
+    OffsetDateTime,
+};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, remove_dir_all, File},
     io::{AsyncReadExt, AsyncWriteExt},
@@ -29,6 +33,8 @@ mod server;
 const SITE_TITLE: &str = "sulami's blog";
 const SITE_DESCRIPTION: &str = "Weak Opinions, Strongly Held";
 const SITE_AUTHOR: &str = "Robin Schroer";
+const SITE_EMAIL: &str = "blog@sulami.xyz";
+const SITE_URL: &str = "https://blog.sulami.xyz";
 const CODE_THEME: &str = "Solarized (light)";
 const DEFAULT_PORT: u16 = 8080;
 const INPUT_DIR: &str = "/Users/sulami/src/blog/input";
@@ -106,6 +112,9 @@ async fn render_site() -> Result<()> {
     let archive_page = archive_page(&site);
     site.insert_page(archive_page);
 
+    let feed_page = atom_feed(&site).wrap_err("failed to render feed")?;
+    site.insert_page(feed_page);
+
     site.render_pages()
         .await
         .wrap_err("failed to render site pages")?;
@@ -116,14 +125,15 @@ async fn render_site() -> Result<()> {
 /// Creates the index page. Should be called after all regular pages have been loaded.
 fn index_page(site: &Site) -> Page {
     let mut page = Page {
-        title: "Welcome".to_string(),
+        title: "Welcome".into(),
         kind: PageKind::Custom {
             template: "index.html",
             destination: "index.html",
         },
         source: PageSource::new_virtual("index"),
         slug: String::new(),
-        link: "/".to_string(),
+        link: "/".into(),
+        url: site.url.clone(),
         tags: vec![],
         timestamp: None,
         content: String::new(),
@@ -135,7 +145,7 @@ fn index_page(site: &Site) -> Page {
         .values()
         .filter(|p| p.kind == PageKind::Post)
         .collect();
-    posts.sort_by_cached_key(|p| p.timestamp.clone());
+    posts.sort_unstable_by_key(|p| p.timestamp);
     posts = posts.into_iter().rev().take(5).collect();
     page.insert_context("recent_posts", &posts);
 
@@ -144,15 +154,18 @@ fn index_page(site: &Site) -> Page {
 
 /// Renders the archive page.
 fn archive_page(site: &Site) -> Page {
+    let link = "/posts/".into();
+    let url = format!("{}{}", site.url, link);
     let mut page = Page {
-        title: "Archive".to_string(),
+        title: "Archive".into(),
         kind: PageKind::Custom {
             template: "archive.html",
             destination: "posts/index.html",
         },
         source: PageSource::new_virtual("archive"),
-        slug: "archive".to_string(),
-        link: "/posts/".to_string(),
+        slug: "archive".into(),
+        link,
+        url,
         tags: vec![],
         timestamp: None,
         content: String::new(),
@@ -164,11 +177,44 @@ fn archive_page(site: &Site) -> Page {
         .values()
         .filter(|p| p.kind == PageKind::Post)
         .collect();
-    posts.sort_by_cached_key(|p| p.timestamp.clone());
+    posts.sort_unstable_by_key(|p| p.timestamp);
     posts.reverse();
     page.insert_context("posts", &posts);
 
     page
+}
+
+/// Renders the Atom feed.
+fn atom_feed(site: &Site) -> Result<Page> {
+    let link = "/atom.xml".into();
+    let url = format!("{}{}", site.url, link);
+    let mut page = Page {
+        title: "Archive".into(),
+        kind: PageKind::Custom {
+            template: "feed.xml",
+            destination: "atom.xml",
+        },
+        source: PageSource::new_virtual("feed"),
+        slug: "feed".into(),
+        link,
+        url,
+        tags: vec![],
+        timestamp: Some(OffsetDateTime::now_utc()),
+        content: String::new(),
+        extra_context: HashMap::default(),
+    };
+
+    let mut posts: Vec<&Page> = site
+        .pages
+        .values()
+        .filter(|p| p.kind == PageKind::Post)
+        .collect();
+    posts.sort_unstable_by_key(|p| p.timestamp);
+    posts.reverse();
+    posts = posts.into_iter().take(10).collect();
+    page.insert_context("posts", &posts);
+
+    Ok(page)
 }
 
 /// Copies all raw files to the output directory.
@@ -238,6 +284,8 @@ struct Site {
     title: String,
     description: String,
     author: String,
+    email: String,
+    url: String,
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
     #[serde(skip)]
@@ -247,17 +295,20 @@ struct Site {
 impl Site {
     /// Creates a new site.
     fn new() -> Self {
-        let mut tera = Tera::new(&format!("{INPUT_DIR}/templates/**/*.html"))
-            .expect("failed to load templates");
+        let mut tera =
+            Tera::new(&format!("{INPUT_DIR}/templates/**/*")).expect("failed to load templates");
         tera.autoescape_on(vec![]);
 
         Self {
-            title: SITE_TITLE.to_string(),
-            description: SITE_DESCRIPTION.to_string(),
-            author: SITE_AUTHOR.to_string(),
+            title: SITE_TITLE.into(),
+            description: SITE_DESCRIPTION.into(),
+            author: SITE_AUTHOR.into(),
+            email: SITE_EMAIL.into(),
+            url: SITE_URL.into(),
             menu: vec![
                 MenuItem::new("Home", PageSource::new_virtual("index")),
                 MenuItem::new("Archive", PageSource::new_virtual("archive")),
+                MenuItem::new("Feed", PageSource::new_virtual("feed")),
             ],
             pages: HashMap::default(),
             tera,
@@ -281,7 +332,7 @@ impl Site {
             };
             self.pages.insert(
                 PageSource::File(path.path().clone()),
-                Page::new(path.path())
+                Page::new(path.path(), self)
                     .await
                     .wrap_err(format!("failed to load page {}", path.path().display()))?,
             );
@@ -322,7 +373,7 @@ struct MenuItem {
 impl MenuItem {
     fn new(title: &str, link: PageSource) -> Self {
         Self {
-            title: title.to_string(),
+            title: title.into(),
             link,
         }
     }
@@ -336,10 +387,29 @@ struct Page {
     title: String,
     slug: String,
     link: String,
+    url: String,
     tags: Vec<String>,
-    timestamp: Option<String>,
+    #[serde(serialize_with = "serialize_optional_timestamp")]
+    timestamp: Option<OffsetDateTime>,
     content: String,
     extra_context: HashMap<String, Value>,
+}
+
+fn serialize_optional_timestamp<S>(
+    timestamp: &Option<OffsetDateTime>,
+    serializer: S,
+) -> Result<S::Ok, S::Error>
+where
+    S: serde::ser::Serializer,
+{
+    match timestamp {
+        Some(ts) => ts
+            .format(&Rfc3339)
+            .unwrap()
+            .to_string()
+            .serialize(serializer),
+        None => "".serialize(serializer),
+    }
 }
 
 /// The type of a page.
@@ -364,7 +434,7 @@ impl Serialize for PageSource {
 impl PageSource {
     /// Creates a new virtual page source.
     fn new_virtual(name: &str) -> Self {
-        Self::Virtual(name.to_string())
+        Self::Virtual(name.into())
     }
 }
 
@@ -394,7 +464,7 @@ impl FromStr for PageKind {
 
 impl Page {
     /// Creates a new page from the given source file.
-    async fn new(source: PathBuf) -> Result<Self> {
+    async fn new(source: PathBuf, site: &Site) -> Result<Self> {
         let mut fp = File::open(&source).await?;
         let mut file_contents = vec![];
         fp.read_to_end(&mut file_contents).await?;
@@ -404,19 +474,16 @@ impl Page {
             .split_once("---")
             .ok_or(eyre!("no metadata divider found"))?;
         let metadata = metadata_section.parse::<Table>()?;
-        let title = metadata
+        let title: String = metadata
             .get("title")
             .ok_or(eyre!("no title found in metadata"))?
             .as_str()
             .ok_or(eyre!("invalid type for title"))?
-            .to_string();
+            .into();
         let slug = metadata
             .get("slug")
             .map(|slug| -> Result<String> {
-                Ok(slug
-                    .as_str()
-                    .ok_or(eyre!("invalid type for slug"))?
-                    .to_string())
+                Ok(slug.as_str().ok_or(eyre!("invalid type for slug"))?.into())
             })
             .transpose()?
             .unwrap_or(slugify(&title));
@@ -431,11 +498,14 @@ impl Page {
             .unwrap_or_default();
         let timestamp = metadata
             .get("timestamp")
-            .map(|timestamp| -> Result<String> {
-                Ok(timestamp
-                    .as_str()
-                    .ok_or(eyre!("invalid type for timestamp"))?
-                    .to_string())
+            .map(|timestamp| -> Result<OffsetDateTime> {
+                OffsetDateTime::parse(
+                    timestamp
+                        .as_str()
+                        .ok_or(eyre!("invalid type for timestamp"))?,
+                    &Iso8601::PARSING,
+                )
+                .wrap_err("failed to parse timestamp")
             })
             .transpose()?;
         let tags = metadata
@@ -445,10 +515,7 @@ impl Page {
                     .ok_or(eyre!("invalid type for tags"))?
                     .iter()
                     .map(|tag| -> Result<String> {
-                        Ok(tag
-                            .as_str()
-                            .ok_or(eyre!("invalid type for tag"))?
-                            .to_string())
+                        Ok(tag.as_str().ok_or(eyre!("invalid type for tag"))?.into())
                     })
                     .collect::<Result<Vec<String>>>()
             })
@@ -458,8 +525,9 @@ impl Page {
         let link = match kind {
             PageKind::Post => format!("/posts/{}/", slug),
             PageKind::Page => format!("/{}/", slug),
-            PageKind::Custom { destination, .. } => destination.to_string(),
+            PageKind::Custom { destination, .. } => destination.into(),
         };
+        let url = format!("{}{}", site.url, link);
 
         let mut content = String::new();
         let mut code_language: Option<String> = None;
@@ -507,6 +575,7 @@ impl Page {
             title,
             slug,
             link,
+            url,
             tags,
             timestamp,
             content,
@@ -526,8 +595,8 @@ impl Page {
     /// Returns the template to use for rendering the page.
     fn template(&self) -> String {
         match &self.kind {
-            PageKind::Post => "post.html".to_string(),
-            PageKind::Page => "page.html".to_string(),
+            PageKind::Post => "post.html".into(),
+            PageKind::Page => "page.html".into(),
             PageKind::Custom { template, .. } => template.to_string(),
         }
     }
@@ -577,12 +646,12 @@ fn slugify(title: &str) -> String {
 fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
     Box::new(
         move |args: &HashMap<String, Value>| -> Result<Value, tera::Error> {
-            let link = args
+            let link: String = args
                 .get("link")
                 .expect("argument link not found")
                 .as_str()
                 .unwrap()
-                .to_string();
+                .into();
             let (kind, name) = link
                 .split_once(':')
                 .ok_or(tera::Error::from("invalid link format"))?;

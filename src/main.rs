@@ -27,7 +27,13 @@ use tokio::{
 mod config;
 mod server;
 
+// Keeping the site in this static mutex so that the development server can access it when it needs
+// to re-render.
 static SITE: OnceCell<Mutex<Site>> = OnceCell::new();
+
+// These are somewhat expensive to load, so we use a lazy static to only load them once.
+static SS: Lazy<SyntaxSet> = Lazy::new(SyntaxSet::load_defaults_newlines);
+static TS: Lazy<ThemeSet> = Lazy::new(ThemeSet::load_defaults);
 
 #[derive(Debug, Parser)]
 struct Cli {
@@ -442,10 +448,6 @@ impl FromStr for PageKind {
     }
 }
 
-// NB These are somewhat expensive to load, so we use a lazy static to only load them once.
-static SS: Lazy<SyntaxSet> = Lazy::new(SyntaxSet::load_defaults_newlines);
-static TS: Lazy<ThemeSet> = Lazy::new(ThemeSet::load_defaults);
-
 impl Page {
     /// Creates a new page from the given source file.
     async fn new(source: PathBuf, site: &Site) -> Result<Self> {
@@ -511,7 +513,7 @@ impl Page {
         }
     }
 
-    /// Renders the page using the given template and Tera instance.
+    /// Renders the page in the context of the given site.
     async fn render(&self, site: &Site) -> Result<String> {
         // println!("Rendering page {:?}", self.source);
         let ctx = Context { page: self, site };
@@ -567,6 +569,7 @@ fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
     )
 }
 
+/// The frontmatter of a page.
 struct Frontmatter {
     title: String,
     slug: String,
@@ -621,6 +624,7 @@ impl FromStr for Frontmatter {
     }
 }
 
+/// Renders the given markdown source.
 fn render_markdown(source: &str, site: &Site) -> String {
     let mut rendered = String::new();
     let mut code_language: Option<String> = None;

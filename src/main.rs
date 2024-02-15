@@ -12,21 +12,17 @@ use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
-use once_cell::sync::OnceCell;
+use once_cell::sync::{Lazy, OnceCell};
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 use tera::{to_value, Function, Tera, Value};
-use time::{
-    format_description::well_known::{Iso8601, Rfc3339},
-    OffsetDateTime,
-};
+use time::{format_description::well_known::Rfc3339, Date, OffsetDateTime};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, remove_dir_all, File},
     io::{AsyncReadExt, AsyncWriteExt},
     sync::Mutex,
 };
-use toml::Table;
 
 mod config;
 mod server;
@@ -446,6 +442,10 @@ impl FromStr for PageKind {
     }
 }
 
+// NB These are somewhat expensive to load, so we use a lazy static to only load them once.
+static SS: Lazy<SyntaxSet> = Lazy::new(SyntaxSet::load_defaults_newlines);
+static TS: Lazy<ThemeSet> = Lazy::new(ThemeSet::load_defaults);
+
 impl Page {
     /// Creates a new page from the given source file.
     async fn new(source: PathBuf, site: &Site) -> Result<Self> {
@@ -454,73 +454,29 @@ impl Page {
         fp.read_to_end(&mut file_contents).await?;
         let file_string = String::from_utf8(file_contents)?;
 
-        let (metadata_section, content_section) = file_string
+        let (frontmatter_section, content_section) = file_string
             .split_once("---")
-            .ok_or(eyre!("no metadata divider found"))?;
-        let metadata = metadata_section.parse::<Table>()?;
-        let title: String = metadata
-            .get("title")
-            .ok_or(eyre!("no title found in metadata"))?
-            .as_str()
-            .ok_or(eyre!("invalid type for title"))?
-            .into();
-        let slug = metadata
-            .get("slug")
-            .map(|slug| -> Result<String> {
-                Ok(slug.as_str().ok_or(eyre!("invalid type for slug"))?.into())
-            })
-            .transpose()?
-            .unwrap_or(slugify(&title));
-        let kind = metadata
-            .get("kind")
-            .map(|kind| -> Result<PageKind> {
-                kind.as_str()
-                    .ok_or(eyre!("invalid type for kind"))?
-                    .parse::<PageKind>()
-            })
-            .transpose()?
-            .unwrap_or_default();
-        let timestamp = metadata
-            .get("timestamp")
-            .map(|timestamp| -> Result<OffsetDateTime> {
-                OffsetDateTime::parse(
-                    timestamp
-                        .as_str()
-                        .ok_or(eyre!("invalid type for timestamp"))?,
-                    &Iso8601::PARSING,
-                )
-                .wrap_err("failed to parse timestamp")
-            })
-            .transpose()?;
-        let tags = metadata
-            .get("tags")
-            .map(|tags| -> Result<Vec<String>> {
-                tags.as_array()
-                    .ok_or(eyre!("invalid type for tags"))?
-                    .iter()
-                    .map(|tag| -> Result<String> {
-                        Ok(tag.as_str().ok_or(eyre!("invalid type for tag"))?.into())
-                    })
-                    .collect::<Result<Vec<String>>>()
-            })
-            .transpose()?
-            .unwrap_or_default();
+            .ok_or(eyre!("no frontmatter divider found"))?;
 
-        let link = match kind {
-            PageKind::Post => format!("/posts/{}/", slug),
-            PageKind::Page => format!("/{}/", slug),
+        let frontmatter: Frontmatter = frontmatter_section
+            .parse()
+            .wrap_err("failed to parse frontmatter")?;
+
+        let link = match frontmatter.kind {
+            PageKind::Post => format!("/posts/{}/", frontmatter.slug),
+            PageKind::Page => format!("/{}/", frontmatter.slug),
             PageKind::Custom { destination, .. } => destination.into(),
         };
         let url = format!("{}{}", site.url, link);
 
         let mut content = String::new();
         let mut code_language: Option<String> = None;
-        let ss = SyntaxSet::load_defaults_newlines();
-        let theme_set = ThemeSet::load_defaults();
+        let ss = &SS;
+        let theme_set = &TS;
 
         let parser = pulldown_cmark::Parser::new_ext(
             content_section,
-            pulldown_cmark::Options::ENABLE_FOOTNOTES,
+            pulldown_cmark::Options::ENABLE_FOOTNOTES | pulldown_cmark::Options::ENABLE_TABLES,
         )
         .filter_map(|mut ev| match ev {
             Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(ref lang))) => {
@@ -538,7 +494,7 @@ impl Page {
                         .unwrap_or_else(|| ss.find_syntax_plain_text());
                     let code = highlighted_html_for_string(
                         text,
-                        &ss,
+                        ss,
                         syntax,
                         &theme_set.themes[&site.code_theme],
                     )
@@ -548,20 +504,38 @@ impl Page {
                     Some(ev)
                 }
             }
+            // Event::FootnoteReference(ref label) => {
+            //     ev = Event::Html(
+            //         format!(
+            //             r##"<input type="checkbox" id="fnr{label}" /><label for="fnr{label}"><sup></sup></label>"##,
+            //         )
+            //         .into(),
+            //     );
+            //     Some(ev)
+            // }
+            // Event::Start(Tag::FootnoteDefinition(ref label)) => {
+            //     ev = Event::Html(
+            //         format!(
+            //             r##"<div class="footnote-definition" id="fnd{label}">"##,
+            //         )
+            //         .into(),
+            //     );
+            //     Some(ev)
+            // }
             _ => Some(ev),
         });
 
         pulldown_cmark::html::push_html(&mut content, parser);
 
         Ok(Self {
-            kind,
+            kind: frontmatter.kind,
             source: PageSource::File(source),
-            title,
-            slug,
+            title: frontmatter.title,
+            slug: frontmatter.slug,
             link,
             url,
-            tags,
-            timestamp,
+            tags: frontmatter.tags,
+            timestamp: frontmatter.timestamp,
             content,
             extra_context: HashMap::default(),
         })
@@ -596,7 +570,7 @@ impl Page {
 
     /// Renders the page using the given template and Tera instance.
     async fn render(&self, site: &Site) -> Result<String> {
-        println!("Rendering page {:?}", self.source);
+        // println!("Rendering page {:?}", self.source);
         let ctx = Context { page: self, site };
         let rendered = site.tera.render(
             &self.template(),
@@ -648,4 +622,58 @@ fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
             Ok(to_value(page.link.clone()).unwrap())
         },
     )
+}
+
+struct Frontmatter {
+    title: String,
+    slug: String,
+    kind: PageKind,
+    timestamp: Option<OffsetDateTime>,
+    tags: Vec<String>,
+}
+
+impl FromStr for Frontmatter {
+    type Err = Report;
+
+    fn from_str(s: &str) -> Result<Self> {
+        #[derive(Default, Deserialize)]
+        enum DeserializedPageKind {
+            #[default]
+            #[serde(rename = "post")]
+            Post,
+            #[serde(rename = "page")]
+            Page,
+        }
+
+        impl From<DeserializedPageKind> for PageKind {
+            fn from(kind: DeserializedPageKind) -> Self {
+                match kind {
+                    DeserializedPageKind::Post => Self::Post,
+                    DeserializedPageKind::Page => Self::Page,
+                }
+            }
+        }
+
+        #[derive(Deserialize)]
+        struct DeserializedFrontmatter {
+            title: String,
+            slug: Option<String>,
+            kind: Option<DeserializedPageKind>,
+            timestamp: Option<Date>,
+            tags: Option<Vec<String>>,
+        }
+
+        let deserialized: DeserializedFrontmatter = toml::from_str(s)?;
+        let slug = deserialized
+            .slug
+            .unwrap_or_else(|| slugify(&deserialized.title));
+
+        Ok(Self {
+            title: deserialized.title,
+            slug,
+            kind: deserialized.kind.unwrap_or_default().into(),
+            timestamp: deserialized.timestamp.map(|d| d.midnight().assume_utc()),
+            tags: deserialized.tags.unwrap_or_default(),
+        })
+    }
 }

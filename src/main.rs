@@ -116,9 +116,6 @@ async fn render_site() -> Result<()> {
     let index_page = index_page(&site);
     site.insert_page(index_page);
 
-    let archive_page = archive_page(&site);
-    site.insert_page(archive_page);
-
     let feed_page = atom_feed(&site).wrap_err("failed to render feed")?;
     site.insert_page(feed_page);
 
@@ -160,38 +157,6 @@ fn index_page(site: &Site) -> Page {
         .collect();
     posts.sort_unstable_by_key(|p| p.timestamp);
     posts = posts.into_iter().rev().take(5).collect();
-    page.insert_context("recent_posts", &posts);
-
-    page
-}
-
-/// Renders the archive page.
-fn archive_page(site: &Site) -> Page {
-    let link = "/posts/".into();
-    let url = format!("{}{}", site.url, link);
-    let mut page = Page {
-        title: "Archive".into(),
-        kind: PageKind::Custom {
-            template: "archive.html",
-            destination: "posts/index.html",
-        },
-        source: PageSource::new_virtual("archive"),
-        slug: "archive".into(),
-        link,
-        url,
-        tags: vec![],
-        timestamp: None,
-        content: String::new(),
-        extra_context: HashMap::default(),
-    };
-
-    let mut posts: Vec<&Page> = site
-        .pages
-        .values()
-        .filter(|p| p.kind == PageKind::Post)
-        .collect();
-    posts.sort_unstable_by_key(|p| p.timestamp);
-    posts.reverse();
     page.insert_context("posts", &posts);
 
     page
@@ -323,9 +288,8 @@ impl Site {
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
             menu: vec![
-                MenuItem::new("Home", PageSource::new_virtual("index")),
-                MenuItem::new("Archive", PageSource::new_virtual("archive")),
                 MenuItem::new("Feed", PageSource::new_virtual("feed")),
+                MenuItem::new("About", PageSource::new_file("input/content/about.md")),
             ],
             pages: HashMap::default(),
             tera,
@@ -451,10 +415,15 @@ impl PageSource {
     fn new_virtual(name: &str) -> Self {
         Self::Virtual(name.into())
     }
+
+    /// Creates a new file page source.
+    fn new_file(name: impl Into<PathBuf>) -> Self {
+        Self::File(name.into())
+    }
 }
 
 /// The type of a page.
-#[derive(Default, Debug, Serialize, PartialEq, Eq, Clone)]
+#[derive(Default, Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
 enum PageKind {
     #[default]
     Post,

@@ -468,64 +468,7 @@ impl Page {
             PageKind::Custom { destination, .. } => destination.into(),
         };
         let url = format!("{}{}", site.url, link);
-
-        let mut content = String::new();
-        let mut code_language: Option<String> = None;
-        let ss = &SS;
-        let theme_set = &TS;
-
-        let parser = pulldown_cmark::Parser::new_ext(
-            content_section,
-            pulldown_cmark::Options::ENABLE_FOOTNOTES | pulldown_cmark::Options::ENABLE_TABLES,
-        )
-        .filter_map(|mut ev| match ev {
-            Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(ref lang))) => {
-                code_language = Some(lang.to_string());
-                None
-            }
-            Event::End(TagEnd::CodeBlock) => {
-                code_language = None;
-                None
-            }
-            Event::Text(ref mut text) => {
-                if let Some(lang) = &code_language {
-                    let syntax = ss
-                        .find_syntax_by_token(lang)
-                        .unwrap_or_else(|| ss.find_syntax_plain_text());
-                    let code = highlighted_html_for_string(
-                        text,
-                        ss,
-                        syntax,
-                        &theme_set.themes[&site.code_theme],
-                    )
-                    .expect("failed to highlight code");
-                    Some(Event::Html(code.into()))
-                } else {
-                    Some(ev)
-                }
-            }
-            // Event::FootnoteReference(ref label) => {
-            //     ev = Event::Html(
-            //         format!(
-            //             r##"<input type="checkbox" id="fnr{label}" /><label for="fnr{label}"><sup></sup></label>"##,
-            //         )
-            //         .into(),
-            //     );
-            //     Some(ev)
-            // }
-            // Event::Start(Tag::FootnoteDefinition(ref label)) => {
-            //     ev = Event::Html(
-            //         format!(
-            //             r##"<div class="footnote-definition" id="fnd{label}">"##,
-            //         )
-            //         .into(),
-            //     );
-            //     Some(ev)
-            // }
-            _ => Some(ev),
-        });
-
-        pulldown_cmark::html::push_html(&mut content, parser);
+        let content = render_markdown(content_section, site);
 
         Ok(Self {
             kind: frontmatter.kind,
@@ -676,4 +619,66 @@ impl FromStr for Frontmatter {
             tags: deserialized.tags.unwrap_or_default(),
         })
     }
+}
+
+fn render_markdown(source: &str, site: &Site) -> String {
+    let mut rendered = String::new();
+    let mut code_language: Option<String> = None;
+    let ss = &SS;
+    let theme_set = &TS;
+
+    let parser = pulldown_cmark::Parser::new_ext(
+        source,
+        pulldown_cmark::Options::ENABLE_FOOTNOTES | pulldown_cmark::Options::ENABLE_TABLES,
+    )
+    .filter_map(|mut ev| match ev {
+        Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(ref lang))) => {
+            code_language = Some(lang.to_string());
+            None
+        }
+        Event::End(TagEnd::CodeBlock) => {
+            code_language = None;
+            None
+        }
+        Event::Text(ref mut text) => {
+            if let Some(lang) = &code_language {
+                let syntax = ss
+                    .find_syntax_by_token(lang)
+                    .unwrap_or_else(|| ss.find_syntax_plain_text());
+                let code = highlighted_html_for_string(
+                    text,
+                    ss,
+                    syntax,
+                    &theme_set.themes[&site.code_theme],
+                )
+                .expect("failed to highlight code");
+                Some(Event::Html(code.into()))
+            } else {
+                Some(ev)
+            }
+        }
+        // Event::FootnoteReference(ref label) => {
+        //     ev = Event::Html(
+        //         format!(
+        //             r##"<input type="checkbox" id="fnr{label}" /><label for="fnr{label}"><sup></sup></label>"##,
+        //         )
+        //         .into(),
+        //     );
+        //     Some(ev)
+        // }
+        // Event::Start(Tag::FootnoteDefinition(ref label)) => {
+        //     ev = Event::Html(
+        //         format!(
+        //             r##"<div class="footnote-definition" id="fnd{label}">"##,
+        //         )
+        //         .into(),
+        //     );
+        //     Some(ev)
+        // }
+        _ => Some(ev),
+    });
+
+    pulldown_cmark::html::push_html(&mut rendered, parser);
+
+    rendered
 }

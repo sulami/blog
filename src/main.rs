@@ -96,6 +96,8 @@ async fn render_site() -> Result<()> {
     let input = site.input_path.clone();
     let output = site.output_path.clone();
 
+    let start = time::Instant::now();
+
     create_dir_all(&output)
         .await
         .wrap_err("failed to create output directory")?;
@@ -106,6 +108,7 @@ async fn render_site() -> Result<()> {
     copy_raw_files(&input, &output)
         .await
         .wrap_err("failed to copy static files")?;
+
     site.load_pages(&input.join("content"))
         .await
         .wrap_err("failed to load pages")?;
@@ -122,6 +125,12 @@ async fn render_site() -> Result<()> {
     site.render_pages(&output)
         .await
         .wrap_err("failed to render site pages")?;
+
+    let finish = time::Instant::now();
+    println!(
+        "Rendered site in {:.3} seconds",
+        (finish - start).as_seconds_f32()
+    );
 
     Ok(())
 }

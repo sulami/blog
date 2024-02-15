@@ -17,9 +17,11 @@ async fn handle_notify_event(res: notify::Result<Event>) {
         ..
     }) = res
     {
-        let mut site = crate::SITE.get().unwrap().lock().await;
-        if let Err(err) = site.tera.full_reload() {
-            eprintln!("Error: {err:?}");
+        {
+            let mut site = crate::SITE.get().unwrap().lock().await;
+            if let Err(err) = site.tera.full_reload() {
+                eprintln!("Error: {err:?}");
+            }
         }
         if let Err(err) = crate::render_site()
             .await

@@ -7,21 +7,23 @@
 {% endblock head %}
 
 {% block content %}
-Welcome chump
+<p>
+    Some recent posts:
+</p>
 
-Some recent posts:
-
-<ul>
-    {% for post in page.extra_context.recent_posts %}
-    <li>
-        <a href="{{ post.link }}">{{ post.title }}</a> - {{ post.timestamp }}
-        {% if post.tags %}
-        {{ post.tags }}
-        {% endif %}
-    </li>
+<table>
+    {% for post in page.extra_context.posts %}
+    <tr>
+        <td>
+            <a href="{{ post.link }}">{{ post.title }}</a>
+            {% if post.tags %}
+            ({{ post.tags | join(sep=", ") }})
+            {% endif %}
+        </td>
+        <td>
+            {{ post.timestamp | date(format="%Y-%m-%d") }}
+        </td>
+    </tr>
     {% endfor %}
-</ul>
-
-Otherwise check out the <a href="{{ url_for(link="virtual:archive") }}">archive</a>.
-
+</table>
 {% endblock content %}

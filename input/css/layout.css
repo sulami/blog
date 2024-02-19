@@ -1,39 +1,28 @@
-/* use a body div for theming */
 body {
     margin: 0;
     max-width: 100%;
     padding: 0;
     width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: var(--extra-light);
+    color: var(--dark);
 }
 
-div#body {
-    min-height: calc(100vh - 4em);
-    padding-bottom: 2em;
-    padding-top: 2em;
-    overflow-y: auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-div#container {
-     margin-left: auto;
-     margin-right: auto;
-     max-width: 1400px;
-     padding-left: 12.5%;
-     width: 87.5%;
+div#content>*:not(pre),
+div#heading {
+    margin-inline: auto;
+    max-width: calc(min(100% - 20px, var(--mobile-cutoff)));
 }
 
-article {
-    padding-top: 0;
-}
-
-/* Mobile view with collapsed sidenotes */
-@media (max-width: 760px) {
-    body {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    div#body {
-        width: 92%;
-        padding-right: 8%;
-    }
+div.info {
+    color: var(--gray);
 }

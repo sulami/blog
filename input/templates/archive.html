@@ -7,14 +7,19 @@
 {% endblock head %}
 
 {% block content %}
-<ul>
+<table>
     {% for post in page.extra_context.posts %}
-    <li>
-        <a href="{{ post.link }}">{{ post.title }}</a> - {{ post.timestamp }}
-        {% if post.tags %}
-        {{ post.tags }}
-        {% endif %}
-    </li>
+    <tr>
+        <td>
+            <a href="{{ post.link }}">{{ post.title }}</a>
+            {% if post.tags %}
+            ({{ post.tags | join(sep=", ") }})
+            {% endif %}
+        </td>
+        <td>
+            {{ post.timestamp | date(format="%Y-%m-%d") }}
+        </td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock content %}

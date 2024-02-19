@@ -1,10 +1,12 @@
 /* I like my links reasonably bare. */
 
-a:link {
+a:link,
+a:visited {
     text-decoration: underline;
     text-decoration-style: dotted;
     background: none;
     text-shadow: none;
+    color: inherit;
 }
 
 a:hover {

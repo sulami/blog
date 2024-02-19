@@ -1,0 +1,28 @@
+span.footnote {
+    padding: 10px;
+    font-style: italic;
+    font-family: sans-serif;
+    color: var(--gray);
+}
+
+input[type=checkbox]+label+span.footnote {
+    display: none;
+}
+
+input[type=checkbox]:checked+label+span.footnote {
+    display: block;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]~label {
+    display: inline;
+    cursor: pointer;
+}
+
+input[type=checkbox]~label:hover {
+    cursor: pointer;
+    color: var(--red);
+}

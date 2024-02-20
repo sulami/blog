@@ -2,7 +2,7 @@ title = "About"
 kind = "page"
 ---
 
-I'm a Robin Schroer, a human, located on the third planet, Sol system, Orion-Cygnus arm, Milky Way, Virgo supercluster.
+I am Robin Schroer, a human, located on the third planet, Sol system, Orion-Cygnus arm, Milky Way, Virgo supercluster.
 
 Sometimes I produce sequences of characters that can be meaningfully interpreted by humans and/or computers.
 

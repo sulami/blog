@@ -207,40 +207,6 @@ async fn copy_raw_files(input: &Path, output: &Path) -> Result<()> {
     deep_copy_dir(&input.join("raw"), output).await
 }
 
-/// Copies all CSS files to stylesheet.css in the output directory.
-async fn copy_css(input: &Path, output: &Path) -> Result<()> {
-    let source_dir = input.join("css");
-
-    let mut source_files = read_dir(&source_dir)
-        .await
-        .wrap_err("failed to read source directory")?;
-
-    let target = output.join("stylesheet.css");
-    let mut output_file = File::create(&target).await?;
-
-    while let Some(path) = source_files.next_entry().await? {
-        if !path.file_type().await?.is_file() {
-            continue;
-        }
-        let Some(Some("css")) = path.path().extension().map(OsStr::to_str) else {
-            continue;
-        };
-        let mut contents = vec![];
-        File::open(path.path())
-            .await
-            .wrap_err("failed to open source file")?
-            .read_to_end(&mut contents)
-            .await
-            .wrap_err("failed to read source file")?;
-        output_file
-            .write_all(&contents)
-            .await
-            .wrap_err("failed to write file contents")?;
-    }
-
-    Ok(())
-}
-
 /// The context for rendering a page.
 #[derive(Debug, Serialize)]
 struct Context<'a> {
@@ -283,6 +249,7 @@ impl Site {
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
             menu: vec![
+                // MenuItem::new("Uses", PageSource::new_file("input/content/uses.md")),
                 MenuItem::new("Feed", PageSource::new_virtual("feed")),
                 MenuItem::new("About", PageSource::new_file("input/content/about.md")),
             ],

@@ -1,4 +1,5 @@
 title = "Keyboardio Atreus Review"
+slug = "atreus"
 timestamp = "2020-07-10"
 tags = ["hardware", "review"]
 ---

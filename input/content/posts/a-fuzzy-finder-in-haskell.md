@@ -1,4 +1,5 @@
 title = "A Fuzzy Finder in Haskell"
+slug = "a-fuzzy-finder-in-haskell"
 timestamp = "2016-06-24"
 tags = ["haskell"]
 ---

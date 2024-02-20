@@ -1,4 +1,5 @@
 title = "React Native and ClojureScript - An obscure stack"
+slug = "react-native-and-clojurescript"
 timestamp = "2018-06-15"
 tags = ["clojure"]
 ---

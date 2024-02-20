@@ -1,4 +1,5 @@
 title = "Traps to Avoid When Reviewing Code Changes"
+slug = "code-reviews"
 timestamp = "2021-01-18"
 ---
 Reviewing code changes is an underappreciated art. It is part of most software engineers' daily routine, but as an industry we do little towards developing it as a skill, even though it contributes directly to the quality of the software we produce.
@@ -29,7 +30,7 @@ This forces you to actually understand the test code, assert that the checks per
 
 # The Iceberg Trap
 
-^7&frasl;<sub>8</sub> ths of an iceberg are famously below the water line and functionally invisible. Similarly some of the most important parts to pay attention to during reviews are not visible in the diff. This can range from introducing some avoidable duplication because the author was not aware of existing code with the same functionality, all the way to production outages because a remote piece of code made an assumption that does not hold anymore.[^4]
+⅞ths of an iceberg are famously below the water line and functionally invisible. Similarly some of the most important parts to pay attention to during reviews are not visible in the diff. This can range from introducing some avoidable duplication because the author was not aware of existing code with the same functionality, all the way to production outages because a remote piece of code made an assumption that does not hold anymore.[^4]
 
 It can be helpful to checkout the change locally and look at it in the context of the entire code base instead of in isolation. Asking others familiar with the code base or related ones to have a cursory look can also uncover a wide range of problems quickly.
 

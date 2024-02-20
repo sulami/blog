@@ -1,4 +1,5 @@
 title = "Convert KiCAD BOM to Manual Pick and Place Files"
+slug = "kicad-bom-to-pick-and-place"
 timestamp = "2023-04-10"
 tags = ["espresso", "hardware"]
 ---

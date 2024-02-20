@@ -1,4 +1,5 @@
 title = "What is Type-Level Programming?"
+slug = "type-level-programming"
 timestamp = "2023-05-02"
 tags = ["rust"]
 ---

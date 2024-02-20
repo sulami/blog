@@ -1,4 +1,5 @@
 title = "Lessons Learnt From Solving AoC in One Second"
+slug = "aoc-in-one-second"
 timestamp = "2022-12-27"
 ---
 In recent years, there have been several blog posts similar to the [original one](https://www.forrestthewoods.com/blog/solving-advent-of-code-in-under-a-second/) about solving all the puzzles in [Advent of Code](https://adventofcode.com/) in less than one second. Having some friendly competition this year, and using [Rust](https://www.rust-lang.org/),[^1] I thought I would give this [a shot](https://github.com/sulami/advent-of-code-2022) as well.

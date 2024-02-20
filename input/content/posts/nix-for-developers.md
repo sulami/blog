@@ -1,4 +1,5 @@
 title = "Lightning Introduction to Nix for Developers"
+slug = "nix-for-developers"
 timestamp = "2020-11-27"
 tags = ["nix", "best-of"]
 ---

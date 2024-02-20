@@ -9,7 +9,7 @@ Sometimes I produce sequences of characters that can be meaningfully interpreted
 ## Contact / Links
 
 - Email: [blog@sulami.xyz](mailto:blog@sulami.xyz)
-- PGP: A1418106
+- PGP: [A1418106](/pubkey.txt)
 - Github: [sulami](https://github.com/sulami)
 - Lobsters: [sulami](https://lobste.rs/sulami)
 - Rands Leadership Slack: my name

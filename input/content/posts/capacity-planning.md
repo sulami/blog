@@ -1,4 +1,5 @@
 title = "Capacity Planning Handbook"
+slug = "capacity-planning"
 timestamp = "2022-05-11"
 tags = ["staff", "best-of"]
 ---

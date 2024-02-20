@@ -1,4 +1,5 @@
 title = "Lisp-1 Has Won"
+slug = "lisp-1"
 timestamp = "2020-06-10"
 tags = ["lisp"]
 ---

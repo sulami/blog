@@ -1,4 +1,5 @@
 title = "Distractions, Productivity, and Working from Home"
+slug = "distractions"
 timestamp = "2017-12-20"
 ---
 I have been working from home more than usual recently, thanks to my employer, who understands that five days a week in an open office aren't the ideal environment for everyone. After mentioning that I noticed a perceived increase in productivity, I was asked to find out what it is that makes me so much more productive at home. The obvious answer is that there are fewer distracting factors at home than at the office[^1], which of course is true, but it is not necessarily the truth.

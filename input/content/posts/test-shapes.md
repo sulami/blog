@@ -1,4 +1,5 @@
 title = "The Shape of Tests"
+slug = "test-shapes"
 timestamp = "2021-03-03"
 tags = [ "clojure" ]
 ---

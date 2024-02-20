@@ -1,4 +1,5 @@
 title = "Raspberry Pi - Radio-Alarm"
+slug = "raspberry-pi-radio-alarm"
 timestamp = "2013-06-07"
 ---
 Some years ago I had the idea to use online radios as flexible alarm clocks, but the main problem was having to run the computer all night long, which results in high power consumption and noise. While netbooks can counter this to a certain degree, the Raspberry Pi is the optimal way of achieving our goal. You will need:

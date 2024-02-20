@@ -1,4 +1,5 @@
 title = "Restarts in Common Lisp"
+slug = "common-lisp-restarts"
 timestamp = "2020-04-01"
 tags = ["lisp"]
 ---

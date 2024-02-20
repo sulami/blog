@@ -1,4 +1,5 @@
 title = "Being a Journalist Within Your Organisation"
+slug = "being-a-journalist"
 timestamp = "2023-01-07"
 tags = ["staff"]
 ---

@@ -1,4 +1,5 @@
 title = "Concurrent I/O in Haskell"
+slug = "concurrent-io-in-haskell"
 timestamp = "2015-09-11"
 tags = ["haskell"]
 ---

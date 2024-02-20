@@ -1,4 +1,5 @@
 title = "Literate Calculations in Emacs"
+slug = "literate-calc-mode"
 timestamp = "2020-05-21"
 tags = ["emacs"]
 ---

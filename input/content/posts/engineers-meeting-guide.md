@@ -1,4 +1,5 @@
 title = "The Grumpy Developer's Guide to Meetings"
+slug = "engineers-meeting-guide"
 timestamp = "2020-04-21"
 ---
 While everyone is writing about remote meetings these days, I do not believe that successful remote meetings are actually meaningfully different from successful in-person meetings.[^1]

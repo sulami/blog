@@ -1,4 +1,5 @@
 title = "Find Out If .take_while() Reached The End"
+slug = "espresso-rust-take-while-end"
 timestamp = "2022-12-09"
 tags = ["espresso", "rust"]
 ---

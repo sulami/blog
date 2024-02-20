@@ -1,5 +1,5 @@
-
 title = "A* Pathfinding in Functional Languages"
+slug = "a-star-pathfinding-in-functional-languages"
 timestamp = "2015-07-23"
 tags = ["haskell"]
 ---

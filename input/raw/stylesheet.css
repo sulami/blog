@@ -1,0 +1,194 @@
+:root {
+    --mobile-cutoff: 768px;
+    --min-margin: 15px;
+    --dark: #282828;
+    --light: #fffdf8;
+    --extra-light: #fffff5;
+    --cream: #fffcf9;
+    --red: #cc241d;
+    --green: #98971a;
+    --yellow: #d79921;
+    --blue: #458588;
+    --purple: #b16286;
+    --aqua: #689d6a;
+    --orange: #d65d0e;
+    --gray: #a89984;
+}
+
+body {
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+a:link,
+a:visited {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    background: none;
+    text-shadow: none;
+    color: inherit;
+}
+
+a:hover {
+    color: var(--red);
+}
+
+div#header {
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
+    margin-inline: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+div#content>*:not(pre),
+div#heading {
+    margin-inline: auto;
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
+}
+
+div#heading>h1 {
+    font-size: 36px;
+}
+
+div.info {
+    color: var(--gray);
+}
+
+img {
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
+    height: auto;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-border-horizontal-spacing: 0px;
+    width: 100%;
+}
+
+th {
+    border-bottom: 1px solid;
+}
+
+th:nth-child(1) {
+    text-align: left;
+    border-right: 1px solid;
+}
+
+td:nth-child(1) {
+    text-align: left;
+    border-right: 1px solid;
+}
+
+td {
+    text-align: right;
+}
+
+pre {
+    font-family: "PragmataPro Liga", "Jetbrains Mono", "Fira Code", "Source Code Pro", "Menlo", "Courier New", monospace;
+    padding: 10px;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    display: block;
+    max-width: 100%;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    padding-inline: calc(max(var(--min-margin), (100% - var(--mobile-cutoff)) / 2));
+}
+
+code {
+    background-color: #fdf6e3;
+    color: #657b83;
+    padding: 2px;
+    border-radius: 2px;
+    border: 1px solid #d1d1d1;
+}
+
+span.footnote {
+    padding: 10px;
+    font-style: italic;
+    font-family: sans-serif;
+    color: var(--gray);
+}
+
+input[type=checkbox]+label+span.footnote {
+    display: none;
+}
+
+input[type=checkbox]:checked+label+span.footnote {
+    display: block;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]~label {
+    display: inline;
+    cursor: pointer;
+}
+
+input[type=checkbox]~label:hover {
+    cursor: pointer;
+    color: var(--red);
+}
+
+div#footer {
+    margin-top: var(--min-margin);
+    margin-inline: auto;
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: var(--gray);
+}
+
+/*
+For annoying reasons browsers like to add non-functional gray boxes
+underneath code blocks and such, even if there is nothing to scroll.
+This is the brute force approach of just hiding all scrollbars on the
+page.
+*/
+*::-webkit-scrollbar {
+    /* Safari & Chrome */
+    display: none;
+}
+
+* {
+    /* MS browsers */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+/*
+This below keeps the regular scrollbar for scrolling the page, if
+present, because that one makes sense to be there.
+*/
+
+html::-webkit-scrollbar {
+    display: inherit;
+}
+
+html {
+    -ms-overflow-style: inherit;
+    scrollbar-width: inherit;
+}

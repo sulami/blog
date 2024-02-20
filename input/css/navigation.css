@@ -1,9 +1,0 @@
-div#header {
-    max-width: calc(min(100% - 20px, var(--mobile-cutoff)));
-    margin-inline: auto;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    column-gap: 10px;
-}

@@ -70,14 +70,17 @@ async fn main() -> Result<()> {
     let args = Cli::parse();
     let config = config::load_config(&args.config).await?;
 
-    let site = Site::new(&args.input, &args.output, &config.site);
-    SITE.set(Mutex::new(site)).unwrap();
-
     match args.command {
         Command::Render => {
+            let site = Site::new(&args.input, &args.output, &config.site, true);
+            SITE.set(Mutex::new(site)).unwrap();
+
             render_site().await.wrap_err("failed to render site")?;
         }
         Command::Serve { port } => {
+            let site = Site::new(&args.input, &args.output, &config.site, false);
+            SITE.set(Mutex::new(site)).unwrap();
+
             render_site().await.wrap_err("failed to render site")?;
             server::development_server(port, Path::new(&args.input), Path::new(&args.output))
                 .await?;
@@ -104,9 +107,9 @@ async fn render_site() -> Result<()> {
         .await
         .wrap_err("failed to create output directory")?;
 
-    copy_css(&input, &output)
-        .await
-        .wrap_err("failed to copy css")?;
+    // copy_css(&input, &output)
+    //     .await
+    //     .wrap_err("failed to copy css")?;
     copy_raw_files(&input, &output)
         .await
         .wrap_err("failed to copy static files")?;
@@ -147,6 +150,7 @@ fn index_page(site: &Site) -> Page {
         link: "/".into(),
         url: site.url.clone(),
         tags: vec![],
+        draft: false,
         timestamp: None,
         content: String::new(),
         extra_context: HashMap::default(),
@@ -155,10 +159,10 @@ fn index_page(site: &Site) -> Page {
     let mut posts: Vec<&Page> = site
         .pages
         .values()
-        .filter(|p| p.kind == PageKind::Post)
+        .filter(|p| p.kind == PageKind::Post && (site.include_drafts || !p.draft))
         .collect();
     posts.sort_unstable_by_key(|p| p.timestamp);
-    posts = posts.into_iter().rev().take(5).collect();
+    posts.reverse();
     page.insert_context("posts", &posts);
 
     page
@@ -179,6 +183,7 @@ fn atom_feed(site: &Site) -> Result<Page> {
         link,
         url,
         tags: vec![],
+        draft: false,
         timestamp: Some(OffsetDateTime::now_utc()),
         content: String::new(),
         extra_context: HashMap::default(),
@@ -199,20 +204,7 @@ fn atom_feed(site: &Site) -> Result<Page> {
 
 /// Copies all raw files to the output directory.
 async fn copy_raw_files(input: &Path, output: &Path) -> Result<()> {
-    let source_dir = input.join("raw");
-
-    let mut source_files = read_dir(&source_dir)
-        .await
-        .wrap_err("failed to read source directory")?;
-    while let Some(path) = source_files.next_entry().await? {
-        if !path.file_type().await?.is_file() {
-            continue;
-        }
-        let target = output.join(path.file_name());
-        copy(path.path(), target).await?;
-    }
-
-    Ok(())
+    deep_copy_dir(&input.join("raw"), output).await
 }
 
 /// Copies all CSS files to stylesheet.css in the output directory.
@@ -269,13 +261,14 @@ struct Site {
     output_path: PathBuf,
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
+    include_drafts: bool,
     #[serde(skip)]
     tera: Tera,
 }
 
 impl Site {
     /// Creates a new site.
-    fn new(input: &Path, output: &Path, site_config: &config::Site) -> Self {
+    fn new(input: &Path, output: &Path, site_config: &config::Site, release_mode: bool) -> Self {
         let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
             .expect("failed to load templates");
         tera.autoescape_on(vec![]);
@@ -293,6 +286,7 @@ impl Site {
                 MenuItem::new("Feed", PageSource::new_virtual("feed")),
                 MenuItem::new("About", PageSource::new_file("input/content/about.md")),
             ],
+            include_drafts: !release_mode,
             pages: HashMap::default(),
             tera,
         }
@@ -370,6 +364,7 @@ struct Page {
     link: String,
     url: String,
     tags: Vec<String>,
+    draft: bool,
     #[serde(serialize_with = "serialize_optional_timestamp")]
     timestamp: Option<OffsetDateTime>,
     content: String,
@@ -480,6 +475,7 @@ impl Page {
             link,
             url,
             tags: frontmatter.tags,
+            draft: frontmatter.draft,
             timestamp: frontmatter.timestamp,
             content,
             extra_context: HashMap::default(),
@@ -576,6 +572,7 @@ struct Frontmatter {
     kind: PageKind,
     timestamp: Option<OffsetDateTime>,
     tags: Vec<String>,
+    draft: bool,
 }
 
 impl FromStr for Frontmatter {
@@ -607,6 +604,7 @@ impl FromStr for Frontmatter {
             kind: Option<DeserializedPageKind>,
             timestamp: Option<Date>,
             tags: Option<Vec<String>>,
+            draft: Option<bool>,
         }
 
         let deserialized: DeserializedFrontmatter = toml::from_str(s)?;
@@ -620,6 +618,7 @@ impl FromStr for Frontmatter {
             kind: deserialized.kind.unwrap_or_default().into(),
             timestamp: deserialized.timestamp.map(|d| d.midnight().assume_utc()),
             tags: deserialized.tags.unwrap_or_default(),
+            draft: deserialized.draft.unwrap_or(false),
         })
     }
 }
@@ -723,15 +722,12 @@ fn render_markdown(source: &str, site: &Site) -> String {
                 0,
                 Event::Html(
                     format!(
-                        // r#"<details class="footnote"><summary><sup>{label}</sup></summary><div class="footnote-definition">"#
                         r#"<input type="checkbox" id="cb-{label}" /><label for="cb-{label}"><sup>{label}</sup></label><span class="footnote">"#
                     )
                     .into(),
                 ),
             );
-            // <input type="checkbox" id="cb1" /><label for="cb1"><sup></sup></label><span><br><br>This is the footnote text.<br><br></span>
 
-            // definition.push(Event::Html("</div></details>".into()));
             definition.push(Event::Html("</span>".into()));
             let mut rendered_footnote = String::new();
             pulldown_cmark::html::push_html(&mut rendered_footnote, definition.into_iter());
@@ -744,4 +740,24 @@ fn render_markdown(source: &str, site: &Site) -> String {
     pulldown_cmark::html::push_html(&mut rendered, events);
 
     rendered
+}
+
+/// Deep-copies a directory from one location to another.
+#[async_recursion]
+async fn deep_copy_dir(from: &Path, to: &Path) -> Result<()> {
+    create_dir_all(to)
+        .await
+        .wrap_err("failed to create directory")?;
+
+    let mut source_files = read_dir(from).await?;
+    while let Some(path) = source_files.next_entry().await? {
+        let target = to.join(path.file_name());
+        if path.file_type().await?.is_dir() {
+            deep_copy_dir(&path.path(), &target).await?;
+        } else {
+            copy(path.path(), target).await?;
+        }
+    }
+
+    Ok(())
 }

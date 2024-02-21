@@ -6,34 +6,23 @@ orbs:
 jobs:
   build:
     docker:
-      - image: silex/emacs:28-ci
+      - image: cimg/rust:1.75
     steps:
       - checkout
-      - run:
-          name: Deep checkout
-          command: |
-            git submodule sync
-            git submodule update --init
-      - run:
-          name: Install LaTeX
-          command: |
-            apt update
-            apt install -y locales texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
       - restore_cache:
-          key: v1-{{ checksum "deps.el" }}
+          key: v1-{{ checksum "Cargo.lock" }}-{{ checksum "src" }}
+      - run:
+          name: Compile binary
+          command: cargo build --release
+      - save_cache:
+          key: v1-{{ checksum "Cargo.lock" }}-{{ checksum "src" }}
+          paths:
+            - "target"
       - run:
           name: Render output
-          command: |
-            export CI_PWD=$(pwd)
-            emacs --batch \
-                -l config.el \
-                --eval "(blog/render-all)"
-      - save_cache:
-          key: v1-{{ checksum "deps.el" }}
-          paths:
-            - '~/.emacs.d'
+          command: target/release/blog render
       - store_artifacts:
-          path: _site
+          path: output
           destination: '.'
       - when:
           condition:

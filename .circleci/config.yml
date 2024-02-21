@@ -10,12 +10,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-{{ checksum "Cargo.lock" }}
+          key: v2-{{ checksum "Cargo.lock" }}
       - run:
           name: Compile binary
           command: cargo build
       - save_cache:
-          key: v1-{{ checksum "Cargo.lock" }}
+          key: v2-{{ checksum "Cargo.lock" }}
           paths:
             - "target"
       - run:

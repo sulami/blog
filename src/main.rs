@@ -140,7 +140,7 @@ async fn render_site() -> Result<()> {
 /// Creates the index page. Should be called after all regular pages have been loaded.
 fn index_page(site: &Site) -> Page {
     let mut page = Page {
-        title: "Welcome".into(),
+        title: "Index".into(),
         kind: PageKind::Custom {
             template: "index.html",
             destination: "index.html",

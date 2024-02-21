@@ -192,7 +192,7 @@ fn atom_feed(site: &Site) -> Result<Page> {
     let mut posts: Vec<&Page> = site
         .pages
         .values()
-        .filter(|p| p.kind == PageKind::Post)
+        .filter(|p| p.kind == PageKind::Post && (site.include_drafts || !p.draft))
         .collect();
     posts.sort_unstable_by_key(|p| p.timestamp);
     posts.reverse();

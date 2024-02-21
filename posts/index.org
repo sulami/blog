@@ -1,6 +1,0 @@
-#+title: Archive
-#+macro: posts (eval (blog/post-list 255))
-
-Here you can find all my previous posts:
-
-{{{posts}}}

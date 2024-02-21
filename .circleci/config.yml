@@ -20,7 +20,7 @@ jobs:
             - "target"
       - run:
           name: Render output
-          command: target/release/blog render
+          command: target/debug/blog render
       - store_artifacts:
           path: output
           destination: '.'

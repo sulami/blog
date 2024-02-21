@@ -1,0 +1,24 @@
+[package]
+name = "blog"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-recursion = "1"
+axum = "0.7"
+clap = { version = "4", features = ["derive"] }
+color-eyre = "0.6"
+notify = { version = "6", default-features = false, features = [
+    "serde",
+    "macos_fsevent",
+    "macos_kqueue",
+] }
+once_cell = "1"
+pulldown-cmark = "0.10"
+serde = { version = "1", features = ["derive"] }
+syntect = "5"
+tera = "1"
+time = { version = "0.3", features = ["local-offset", "serde-human-readable"] }
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.5", features = ["fs"] }
+toml = "0.8"

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block content %}
+<table>
+    {% for post in page.extra_context.posts %}
+    <tr>
+        <td>
+            <a href="{{ post.link }}">{{ post.title }}</a>
+            {% if post.tags %}
+            ({{ post.tags | join(sep=", ") }})
+            {% endif %}
+        </td>
+        <td>
+            {{ post.timestamp | date(format="%Y-%m-%d") }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

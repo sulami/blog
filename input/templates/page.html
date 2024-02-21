@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
+
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block content %}
+{{ page.content }}
+{% endblock content %}

@@ -10,12 +10,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-{{ checksum "Cargo.lock" }}-{{ checksum "src" }}
+          key: v1-{{ checksum "Cargo.lock" }}
       - run:
           name: Compile binary
           command: cargo build --release
       - save_cache:
-          key: v1-{{ checksum "Cargo.lock" }}-{{ checksum "src" }}
+          key: v1-{{ checksum "Cargo.lock" }}
           paths:
             - "target"
       - run:
@@ -29,7 +29,7 @@ jobs:
             equal: [ develop, << pipeline.git.branch >> ]
           steps:
             - s3/sync:
-                from: _site
+                from: output
                 to: s3://blog.sulami.xyz
                 arguments: '--delete'
 

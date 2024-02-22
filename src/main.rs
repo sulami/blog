@@ -72,13 +72,13 @@ async fn main() -> Result<()> {
 
     match args.command {
         Command::Render => {
-            let site = Site::new(&args.input, &args.output, &config.site, true);
+            let site = Site::new(&args.input, &args.output, &config.site, Mode::Release);
             SITE.set(Mutex::new(site)).unwrap();
 
             render_site().await.wrap_err("failed to render site")?;
         }
         Command::Serve { port } => {
-            let site = Site::new(&args.input, &args.output, &config.site, false);
+            let site = Site::new(&args.input, &args.output, &config.site, Mode::Development);
             SITE.set(Mutex::new(site)).unwrap();
 
             render_site().await.wrap_err("failed to render site")?;
@@ -156,14 +156,7 @@ fn index_page(site: &Site) -> Page {
         extra_context: HashMap::default(),
     };
 
-    let mut posts: Vec<&Page> = site
-        .pages
-        .values()
-        .filter(|p| p.kind == PageKind::Post && (site.include_drafts || !p.draft))
-        .collect();
-    posts.sort_unstable_by_key(|p| p.timestamp);
-    posts.reverse();
-    page.insert_context("posts", &posts);
+    page.insert_context("posts", &site.posts());
 
     page
 }
@@ -189,14 +182,7 @@ fn atom_feed(site: &Site) -> Result<Page> {
         extra_context: HashMap::default(),
     };
 
-    let mut posts: Vec<&Page> = site
-        .pages
-        .values()
-        .filter(|p| p.kind == PageKind::Post && (site.include_drafts || !p.draft))
-        .collect();
-    posts.sort_unstable_by_key(|p| p.timestamp);
-    posts.reverse();
-    posts = posts.into_iter().take(10).collect();
+    let posts = site.posts().into_iter().take(10).collect::<Vec<_>>();
     page.insert_context("posts", &posts);
 
     Ok(page)
@@ -227,14 +213,21 @@ struct Site {
     output_path: PathBuf,
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
-    include_drafts: bool,
+    mode: Mode,
     #[serde(skip)]
     tera: Tera,
 }
 
+/// The mode the site is running in.
+#[derive(Debug, Serialize, Copy, Clone)]
+enum Mode {
+    Release,
+    Development,
+}
+
 impl Site {
     /// Creates a new site.
-    fn new(input: &Path, output: &Path, site_config: &config::Site, release_mode: bool) -> Self {
+    fn new(input: &Path, output: &Path, site_config: &config::Site, mode: Mode) -> Self {
         let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
             .expect("failed to load templates");
         tera.autoescape_on(vec![]);
@@ -253,7 +246,7 @@ impl Site {
                 MenuItem::new("Feed", PageSource::new_virtual("feed")),
                 MenuItem::new("About", PageSource::new_file("input/content/about.md")),
             ],
-            include_drafts: !release_mode,
+            mode,
             pages: HashMap::default(),
             tera,
         }
@@ -302,6 +295,23 @@ impl Site {
         }
 
         Ok(())
+    }
+
+    /// Returns all posts in the site, in reverse chronological order.
+    fn posts(&self) -> Vec<Page> {
+        let mut posts: Vec<Page> = self
+            .pages
+            .values()
+            .filter(|p| p.kind == PageKind::Post)
+            .filter(|p| match self.mode {
+                Mode::Development => true,
+                Mode::Release => !p.draft,
+            })
+            .cloned()
+            .collect();
+        posts.sort_unstable_by_key(|p| p.timestamp);
+        posts.reverse();
+        posts
     }
 }
 

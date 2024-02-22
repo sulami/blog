@@ -1,4 +1,5 @@
 use std::{
+    cmp::Reverse,
     collections::HashMap,
     ffi::OsStr,
     hash::Hash,
@@ -309,8 +310,7 @@ impl Site {
             })
             .cloned()
             .collect();
-        posts.sort_unstable_by_key(|p| p.timestamp);
-        posts.reverse();
+        posts.sort_unstable_by_key(|p| Reverse(p.timestamp));
         posts
     }
 }

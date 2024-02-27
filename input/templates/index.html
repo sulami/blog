@@ -11,16 +11,12 @@
     Welcome to my blog. I hope you enjoy your stay.
 </p>
 
-<table>
+<ul>
     {% for post in page.extra_context.posts %}
-    <tr>
-        <td>
-            <a href="{{ post.link }}">{{ post.title }}</a>
-        </td>
-        <td>
-            {{ post.timestamp | date(format="%Y-%m-%d") }}
-        </td>
-    </tr>
+    <li>
+        <a href="{{ post.link }}">{{ post.title }}</a>
+        <span class="info">({{ post.timestamp | date(format="%Y-%m-%d") }})</span>
+    </li>
     {% endfor %}
-</table>
+</ul>
 {% endblock content %}

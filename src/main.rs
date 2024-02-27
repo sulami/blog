@@ -1,3 +1,7 @@
+// TODO
+// - Exclude footnotes from feed
+// - Include tera in markdown
+
 use std::{
     cmp::Reverse,
     collections::HashMap,
@@ -108,9 +112,6 @@ async fn render_site() -> Result<()> {
         .await
         .wrap_err("failed to create output directory")?;
 
-    // copy_css(&input, &output)
-    //     .await
-    //     .wrap_err("failed to copy css")?;
     copy_raw_files(&input, &output)
         .await
         .wrap_err("failed to copy static files")?;

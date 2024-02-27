@@ -64,6 +64,20 @@ div.info {
     color: var(--gray);
 }
 
+span.info {
+    color: var(--gray);
+}
+
+ol,
+ul {
+    padding-left: 40px;
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)) - 40px) !important;
+}
+
+ul>li {
+    list-style: circle;
+}
+
 img {
     max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
     height: auto;

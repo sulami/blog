@@ -234,6 +234,7 @@ dependencies = [
  "notify",
  "once_cell",
  "pulldown-cmark",
+ "regex",
  "serde",
  "syntect",
  "tera",

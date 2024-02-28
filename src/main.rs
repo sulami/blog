@@ -19,6 +19,7 @@ use color_eyre::{
 };
 use once_cell::sync::{Lazy, OnceCell};
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
+use regex::Regex;
 use serde::{Deserialize, Serialize};
 use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 use tera::{to_value, Function, Tera, Value};
@@ -184,7 +185,17 @@ fn atom_feed(site: &Site) -> Result<Page> {
         extra_context: HashMap::default(),
     };
 
-    let posts = site.posts().into_iter().take(10).collect::<Vec<_>>();
+    // Strip the checkboxes from the content, they render weirdly in feed readers.
+    let re = Regex::new(r#"<input.+?/ ?>"#).unwrap();
+    let posts = site
+        .posts()
+        .into_iter()
+        .take(10)
+        .map(|mut post| {
+            post.content = re.replace_all(&post.content, "").to_string();
+            post
+        })
+        .collect::<Vec<_>>();
     page.insert_context("posts", &posts);
 
     Ok(page)

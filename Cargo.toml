@@ -8,6 +8,7 @@ async-recursion = "1"
 axum = "0.7"
 clap = { version = "4", features = ["derive"] }
 color-eyre = "0.6"
+itertools = "0.12"
 notify = { version = "6", default-features = false, features = [
     "serde",
     "macos_fsevent",
@@ -23,3 +24,8 @@ time = { version = "0.3", features = ["local-offset", "serde-human-readable"] }
 tokio = { version = "1", features = ["full"] }
 tower-http = { version = "0.5", features = ["fs"] }
 toml = "0.8"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1

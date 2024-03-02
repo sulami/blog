@@ -37,7 +37,11 @@
                 {% endif %}
                 {% if page.tags %}
                 <div class="info">
-                    Tags: {{ page.tags | join(sep=", ") }}
+                    Tags:
+                    {% for tag in page.tags %}
+                    <a href="{{ url_for(link="virtual:tags/" ~ tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif
+                    %}
+                    {% endfor %}
                 </div>
                 {% endif %}
             </div>

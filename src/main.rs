@@ -17,6 +17,7 @@ use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
+use itertools::Itertools;
 use once_cell::sync::{Lazy, OnceCell};
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use regex::Regex;
@@ -105,7 +106,7 @@ fn index_page(site: &Site) -> Page {
         title: "Index".into(),
         kind: PageKind::Custom {
             template: "index.html",
-            destination: "index.html",
+            destination: "index.html".into(),
         },
         source: PageSource::new_virtual("index"),
         slug: String::new(),
@@ -123,15 +124,15 @@ fn index_page(site: &Site) -> Page {
     page
 }
 
-/// Renders the Atom feed.
-fn atom_feed(site: &Site) -> Result<Page> {
+/// Creates the Atom feed.
+fn atom_feed(site: &Site) -> Page {
     let link = "/atom.xml".into();
     let url = format!("{}{}", site.url, link);
     let mut page = Page {
         title: "Archive".into(),
         kind: PageKind::Custom {
             template: "feed.xml",
-            destination: "atom.xml",
+            destination: "atom.xml".into(),
         },
         source: PageSource::new_virtual("feed"),
         slug: "feed".into(),
@@ -145,7 +146,7 @@ fn atom_feed(site: &Site) -> Result<Page> {
     };
 
     // Strip the checkboxes from the content, they render weirdly in feed readers.
-    let re = Regex::new(r#"<input.+?/ ?>"#).unwrap();
+    let re = Regex::new(r#"<input.+?/ ?>"#).expect("invalid regex");
     let posts = site
         .posts()
         .into_iter()
@@ -157,7 +158,64 @@ fn atom_feed(site: &Site) -> Result<Page> {
         .collect::<Vec<_>>();
     page.insert_context("posts", &posts);
 
-    Ok(page)
+    page
+}
+
+/// Creates the tags page.
+fn tags_page(site: &Site) -> Page {
+    let link = "/tags/".into();
+    let url = format!("{}{}", site.url, link);
+    let mut page = Page {
+        title: "Tags".into(),
+        kind: PageKind::Custom {
+            template: "tags.html",
+            destination: "tags/index.html".into(),
+        },
+        source: PageSource::new_virtual("tags"),
+        slug: "tags".into(),
+        link,
+        url,
+        tags: vec![],
+        draft: false,
+        timestamp: None,
+        content: String::new(),
+        extra_context: HashMap::default(),
+    };
+
+    page.insert_context("tags", &site.tags());
+    page
+}
+
+/// Creates a page for the given tag.
+fn tag_page(site: &Site, tag: &str) -> Page {
+    let destination = format!("tags/{}/index.html", tag);
+    let link = format!("/tags/{}/", tag);
+    let url = format!("{}{}", site.url, link);
+    let mut page = Page {
+        title: format!("Tag: {tag}"),
+        kind: PageKind::Custom {
+            template: "tag.html",
+            destination,
+        },
+        source: PageSource::new_virtual(&format!("tags/{}", tag)),
+        slug: tag.into(),
+        link,
+        url,
+        tags: vec![],
+        draft: false,
+        timestamp: None,
+        content: String::new(),
+        extra_context: HashMap::default(),
+    };
+
+    let posts = site
+        .posts()
+        .into_iter()
+        .filter(|p| p.tags.contains(&tag.to_string()))
+        .collect::<Vec<_>>();
+    page.insert_context("posts", &posts);
+
+    page
 }
 
 /// The context for rendering a page.
@@ -267,8 +325,15 @@ impl Site {
         let index_page = index_page(self);
         self.insert_page(index_page);
 
-        let feed_page = atom_feed(self).wrap_err("failed to render feed")?;
+        let feed_page = atom_feed(self);
         self.insert_page(feed_page);
+
+        self.tags()
+            .iter()
+            .for_each(|tag| self.insert_page(tag_page(self, tag)));
+
+        let tags_page = tags_page(self);
+        self.insert_page(tags_page);
 
         self.render_pages(&output)
             .await
@@ -316,6 +381,17 @@ impl Site {
             .collect();
         posts.sort_unstable_by_key(|p| Reverse(p.timestamp));
         posts
+    }
+
+    /// Returns all tags in the site, deduplicated, in alphabetical order.
+    fn tags(&self) -> Vec<String> {
+        self.posts()
+            .iter()
+            .flat_map(|p| p.tags.iter())
+            .unique()
+            .sorted()
+            .cloned()
+            .collect()
     }
 }
 
@@ -372,7 +448,9 @@ impl Page {
         let link = match frontmatter.kind {
             PageKind::Post => format!("/posts/{}/", frontmatter.slug),
             PageKind::Page => format!("/{}/", frontmatter.slug),
-            PageKind::Custom { destination, .. } => destination.into(),
+            PageKind::Custom {
+                ref destination, ..
+            } => destination.into(),
         };
         let url = format!("{}{}", site.url, link);
         let content = render_markdown(content_section, site);
@@ -476,7 +554,7 @@ enum PageKind {
     /// A custom page, located at the given destination.
     Custom {
         template: &'static str,
-        destination: &'static str,
+        destination: String,
     },
 }
 

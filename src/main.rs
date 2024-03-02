@@ -256,6 +256,7 @@ impl Site {
         let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
             .expect("failed to load templates");
         tera.autoescape_on(vec![]);
+        tera.register_filter("tag_link", tag_link_filter);
 
         Self {
             title: site_config.title.clone(),
@@ -611,6 +612,15 @@ fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
             Ok(to_value(page.link.clone()).unwrap())
         },
     )
+}
+
+/// Tera filter for converting a tag into a link to its tag page.
+fn tag_link_filter(
+    val: &tera::Value,
+    _args: &HashMap<String, tera::Value>,
+) -> tera::Result<tera::Value> {
+    let tag = val.as_str().unwrap();
+    Ok(to_value(format!("/tags/{}/", tag)).unwrap())
 }
 
 /// The frontmatter of a page.

@@ -23,7 +23,7 @@
             <div id="navigation">
                 {% for menu_item in site.menu %}
                 <a href="{{ url_for(link=menu_item.link) }}">{{ menu_item.title }}</a>
-                {% if loop.last %} {% else %} • {% endif %}
+                {% if loop.last %}{% else %} • {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -39,8 +39,7 @@
                 <div class="info">
                     Tags:
                     {% for tag in page.tags %}
-                    <a href="{{ url_for(link="virtual:tags/" ~ tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif
-                    %}
+                    <a href="{{ tag | tag_link }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
                     {% endfor %}
                 </div>
                 {% endif %}

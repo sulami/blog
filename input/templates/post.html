@@ -3,22 +3,22 @@
 {% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
 
 {% block heading %}
-<div id="heading">
-    <h1>{{ page.title }}</h1>
-    {% if page.timestamp %}
-    <div class="info">
-        Published on {{ page.timestamp | date(format="%Y-%m-%d") }}
-    </div>
-    {% endif %}
-    {% if page.tags %}
-    <div class="info">
-        Tags:
-        {% for tag in page.tags %}
-        <a href="{{ tag | tag_link }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
-        {% endfor %}
-    </div>
-    {% endif %}
+{{ super() }}
+
+{% if page.timestamp %}
+<div class="info">
+    Published on {{ page.timestamp | date(format="%Y-%m-%d") }}
 </div>
+{% endif %}
+
+{% if page.tags %}
+<div class="info">
+    Tags:
+    {% for tag in page.tags %}
+    <a href="{{ tag | tag_link }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock heading %}
 
 {% block content %}

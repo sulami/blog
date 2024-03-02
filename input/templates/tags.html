@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Tags - {{ super() }}{% endblock title %}
+{% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
 
 {% block content %}
 <ul>
     {% for tag in page.extra_context.tags %}
     <li>
-        <a href="/tags/{{ tag }}/">{{ tag }}</a>
+        <a href="{{ tag | tag_link }}">{{ tag }}</a>
     </li>
     {% endfor %}
 </ul>

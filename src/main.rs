@@ -160,11 +160,6 @@ fn atom_feed(site: &Site) -> Result<Page> {
     Ok(page)
 }
 
-/// Copies all raw files to the output directory.
-async fn copy_raw_files(input: &Path, output: &Path) -> Result<()> {
-    deep_copy_dir(&input.join("raw"), output).await
-}
-
 /// The context for rendering a page.
 #[derive(Debug, Serialize)]
 struct Context<'a> {
@@ -190,7 +185,7 @@ struct Site {
     tera: Tera,
 }
 
-/// The mode the site is running in.
+/// The mode the site is running in. Controls if drafts are rendered or not.
 #[derive(Debug, Serialize, Copy, Clone)]
 enum Mode {
     Release,
@@ -261,9 +256,9 @@ impl Site {
             .await
             .wrap_err("failed to create output directory")?;
 
-        copy_raw_files(&input, &output)
+        deep_copy_dir(&input.join("raw"), &output)
             .await
-            .wrap_err("failed to copy static files")?;
+            .wrap_err("failed to copy raw files")?;
 
         self.load_pages(&input.join("content"))
             .await
@@ -332,6 +327,7 @@ struct MenuItem {
 }
 
 impl MenuItem {
+    /// Creates a new menu item.
     fn new(title: &str, link: PageSource) -> Self {
         Self {
             title: title.into(),
@@ -436,10 +432,12 @@ impl Page {
     }
 }
 
-/// The type of a page.
+/// The source of a page.
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 enum PageSource {
+    /// A markdown file with the content.
     File(PathBuf),
+    /// A virtual page created in code.
     Virtual(String),
 }
 
@@ -467,12 +465,15 @@ impl PageSource {
     }
 }
 
-/// The type of a page.
+/// The kind of a page.
 #[derive(Default, Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
 enum PageKind {
+    /// A blog post, located at /posts/.
     #[default]
     Post,
+    /// A regular page, located at /.
     Page,
+    /// A custom page, located at the given destination.
     Custom {
         template: &'static str,
         destination: &'static str,

@@ -357,78 +357,6 @@ struct Page {
     extra_context: HashMap<String, Value>,
 }
 
-fn serialize_optional_timestamp<S>(
-    timestamp: &Option<OffsetDateTime>,
-    serializer: S,
-) -> Result<S::Ok, S::Error>
-where
-    S: serde::ser::Serializer,
-{
-    match timestamp {
-        Some(ts) => ts
-            .format(&Rfc3339)
-            .unwrap()
-            .to_string()
-            .serialize(serializer),
-        None => "".serialize(serializer),
-    }
-}
-
-/// The type of a page.
-#[derive(Debug, PartialEq, Eq, Hash, Clone)]
-enum PageSource {
-    File(PathBuf),
-    Virtual(String),
-}
-
-impl Serialize for PageSource {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::ser::Serializer,
-    {
-        match self {
-            Self::File(path) => format!("file:{}", path.display()).serialize(serializer),
-            Self::Virtual(name) => format!("virtual:{name}").serialize(serializer),
-        }
-    }
-}
-
-impl PageSource {
-    /// Creates a new virtual page source.
-    fn new_virtual(name: &str) -> Self {
-        Self::Virtual(name.into())
-    }
-
-    /// Creates a new file page source.
-    fn new_file(name: impl Into<PathBuf>) -> Self {
-        Self::File(name.into())
-    }
-}
-
-/// The type of a page.
-#[derive(Default, Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
-enum PageKind {
-    #[default]
-    Post,
-    Page,
-    Custom {
-        template: &'static str,
-        destination: &'static str,
-    },
-}
-
-impl FromStr for PageKind {
-    type Err = Report;
-
-    fn from_str(s: &str) -> Result<Self> {
-        match s {
-            "post" => Ok(Self::Post),
-            "page" => Ok(Self::Page),
-            _ => Err(eyre!("invalid page kind")),
-        }
-    }
-}
-
 impl Page {
     /// Creates a new page from the given source file.
     async fn new(source: PathBuf, site: &Site) -> Result<Self> {
@@ -505,6 +433,61 @@ impl Page {
         )?;
 
         Ok(rendered)
+    }
+}
+
+/// The type of a page.
+#[derive(Debug, PartialEq, Eq, Hash, Clone)]
+enum PageSource {
+    File(PathBuf),
+    Virtual(String),
+}
+
+impl Serialize for PageSource {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::ser::Serializer,
+    {
+        match self {
+            Self::File(path) => format!("file:{}", path.display()).serialize(serializer),
+            Self::Virtual(name) => format!("virtual:{name}").serialize(serializer),
+        }
+    }
+}
+
+impl PageSource {
+    /// Creates a new virtual page source.
+    fn new_virtual(name: &str) -> Self {
+        Self::Virtual(name.into())
+    }
+
+    /// Creates a new file page source.
+    fn new_file(name: impl Into<PathBuf>) -> Self {
+        Self::File(name.into())
+    }
+}
+
+/// The type of a page.
+#[derive(Default, Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
+enum PageKind {
+    #[default]
+    Post,
+    Page,
+    Custom {
+        template: &'static str,
+        destination: &'static str,
+    },
+}
+
+impl FromStr for PageKind {
+    type Err = Report;
+
+    fn from_str(s: &str) -> Result<Self> {
+        match s {
+            "post" => Ok(Self::Post),
+            "page" => Ok(Self::Page),
+            _ => Err(eyre!("invalid page kind")),
+        }
     }
 }
 
@@ -726,6 +709,24 @@ fn render_markdown(source: &str, site: &Site) -> String {
     pulldown_cmark::html::push_html(&mut rendered, events);
 
     rendered
+}
+
+/// Serializes an optional timestamp, defaulting to an empty string.
+fn serialize_optional_timestamp<S>(
+    timestamp: &Option<OffsetDateTime>,
+    serializer: S,
+) -> Result<S::Ok, S::Error>
+where
+    S: serde::ser::Serializer,
+{
+    match timestamp {
+        Some(ts) => ts
+            .format(&Rfc3339)
+            .unwrap()
+            .to_string()
+            .serialize(serializer),
+        None => "".serialize(serializer),
+    }
 }
 
 /// Deep-copies a directory from one location to another.

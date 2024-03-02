@@ -2,9 +2,16 @@
 
 {% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
 
-{% block head %}
-{{ super() }}
-{% endblock head %}
+{% block heading %}
+<div id="heading">
+    <h1>{{ page.title }}</h1>
+    {% if page.timestamp %}
+    <div class="info">
+        Published on {{ page.timestamp | date(format="%Y-%m-%d") }}
+    </div>
+    {% endif %}
+</div>
+{% endblock heading %}
 
 {% block content %}
 {{ page.content }}

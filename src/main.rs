@@ -243,13 +243,6 @@ struct Site {
     tera: Tera,
 }
 
-/// The mode the site is running in. Controls if drafts are rendered or not.
-#[derive(Debug, Serialize, Copy, Clone)]
-enum Mode {
-    Release,
-    Development,
-}
-
 impl Site {
     /// Creates a new site.
     fn new(input: &Path, output: &Path, site_config: &config::Site, mode: Mode) -> Self {
@@ -394,6 +387,13 @@ impl Site {
             .cloned()
             .collect()
     }
+}
+
+/// The mode the site is running in. Controls if drafts are rendered or not.
+#[derive(Debug, Serialize, Copy, Clone)]
+enum Mode {
+    Release,
+    Development,
 }
 
 /// An item in the navigation menu.

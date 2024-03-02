@@ -38,7 +38,7 @@
             &copy; {{ site.author }}
         </div>
 
-        {% if not site.include_drafts %}
+        {% if site.mode | as_str == 'Release' %}
         <!-- Privacy-aware analytics by https://www.goatcounter.com/ -->
         <!-- Stats are publicly available at https://stats.sulami.xyz/ -->
         <script data-goatcounter="https://stats.sulami.xyz/count" async="" src="https://gc.zgo.at/count.js"></script>

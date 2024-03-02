@@ -78,16 +78,14 @@ async fn main() -> Result<()> {
 
     match args.command {
         Command::Render => {
-            let site = Site::new(&args.input, &args.output, &config.site, Mode::Release);
-            SITE.set(Mutex::new(site)).unwrap();
-
-            render_site().await.wrap_err("failed to render site")?;
+            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Release);
+            site.render().await.wrap_err("failed to render site")?;
         }
         Command::Serve { port } => {
-            let site = Site::new(&args.input, &args.output, &config.site, Mode::Development);
-            SITE.set(Mutex::new(site)).unwrap();
+            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development);
+            site.render().await.wrap_err("failed to render site")?;
 
-            render_site().await.wrap_err("failed to render site")?;
+            SITE.set(Mutex::new(site)).unwrap();
             server::development_server(port, Path::new(&args.input), Path::new(&args.output))
                 .await?;
         }
@@ -97,45 +95,6 @@ async fn main() -> Result<()> {
                 .wrap_err("failed to remove output directory")?;
         }
     }
-
-    Ok(())
-}
-
-/// Renders the entire site once.
-async fn render_site() -> Result<()> {
-    let mut site = SITE.get().unwrap().lock().await;
-    let input = site.input_path.clone();
-    let output = site.output_path.clone();
-
-    let start = time::Instant::now();
-
-    create_dir_all(&output)
-        .await
-        .wrap_err("failed to create output directory")?;
-
-    copy_raw_files(&input, &output)
-        .await
-        .wrap_err("failed to copy static files")?;
-
-    site.load_pages(&input.join("content"))
-        .await
-        .wrap_err("failed to load pages")?;
-
-    let index_page = index_page(&site);
-    site.insert_page(index_page);
-
-    let feed_page = atom_feed(&site).wrap_err("failed to render feed")?;
-    site.insert_page(feed_page);
-
-    site.render_pages(&output)
-        .await
-        .wrap_err("failed to render site pages")?;
-
-    let finish = time::Instant::now();
-    println!(
-        "Rendered site in {:.3} seconds",
-        (finish - start).as_seconds_f32()
-    );
 
     Ok(())
 }
@@ -287,6 +246,44 @@ impl Site {
                     .wrap_err(format!("failed to load page {}", path.path().display()))?,
             );
         }
+
+        Ok(())
+    }
+
+    /// Renders the site.
+    async fn render(&mut self) -> Result<()> {
+        let input = self.input_path.clone();
+        let output = self.output_path.clone();
+
+        let start = time::Instant::now();
+
+        create_dir_all(&output)
+            .await
+            .wrap_err("failed to create output directory")?;
+
+        copy_raw_files(&input, &output)
+            .await
+            .wrap_err("failed to copy static files")?;
+
+        self.load_pages(&input.join("content"))
+            .await
+            .wrap_err("failed to load pages")?;
+
+        let index_page = index_page(self);
+        self.insert_page(index_page);
+
+        let feed_page = atom_feed(self).wrap_err("failed to render feed")?;
+        self.insert_page(feed_page);
+
+        self.render_pages(&output)
+            .await
+            .wrap_err("failed to render site pages")?;
+
+        let finish = time::Instant::now();
+        println!(
+            "Rendered site in {:.3} seconds",
+            (finish - start).as_seconds_f32()
+        );
 
         Ok(())
     }

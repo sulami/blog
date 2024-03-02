@@ -19,15 +19,16 @@ async fn handle_notify_event(res: notify::Result<Event>) {
     {
         {
             let mut site = crate::SITE.get().unwrap().lock().await;
-            if let Err(err) = site.tera.full_reload() {
+            if let Err(err) = site
+                .tera
+                .full_reload()
+                .wrap_err("failed to reload Tera templates")
+            {
                 eprintln!("Error: {err:?}");
             }
-        }
-        if let Err(err) = crate::render_site()
-            .await
-            .wrap_err("failed to re-render site")
-        {
-            eprintln!("Error: {err:?}");
+            if let Err(err) = site.render().await.wrap_err("failed to re-render site") {
+                eprintln!("Error: {err:?}");
+            }
         }
     }
 }

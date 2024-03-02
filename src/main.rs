@@ -413,9 +413,9 @@ impl Page {
     /// Returns the path where the page should be written to.
     fn output_path(&self) -> PathBuf {
         match &self.kind {
-            PageKind::Post => PathBuf::from(format!("posts/{}/index.html", self.slug)),
-            PageKind::Page => PathBuf::from(format!("{}/index.html", self.slug)),
-            PageKind::Custom { destination, .. } => destination.into(),
+            PageKind::Post => PathBuf::from(format!("{}/index.html", self.link)),
+            PageKind::Page => PathBuf::from(format!("{}/index.html", self.link)),
+            PageKind::Custom { .. } => self.link.clone().into(),
         }
     }
 

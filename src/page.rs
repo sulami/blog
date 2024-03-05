@@ -214,7 +214,7 @@ impl Page {
                 template: "tag.html",
                 destination,
             },
-            source: PageSource::new_virtual(&format!("tags/{}", tag)),
+            source: PageSource::new_virtual(format!("tags/{}", tag)),
             slug: tag.into(),
             link,
             url,
@@ -264,15 +264,25 @@ impl Serialize for PageSource {
     }
 }
 
+impl FromStr for PageSource {
+    type Err = Report;
+
+    fn from_str(s: &str) -> std::prelude::v1::Result<Self, Self::Err> {
+        let (kind, name) = s
+            .split_once(':')
+            .ok_or(eyre!("invalid page source format"))?;
+        match kind {
+            "file" => Ok(Self::File(name.into())),
+            "virtual" => Ok(Self::Virtual(name.into())),
+            _ => Err(eyre!("invalid kind")),
+        }
+    }
+}
+
 impl PageSource {
     /// Creates a new virtual page source.
-    pub fn new_virtual(name: &str) -> Self {
+    pub fn new_virtual(name: impl Into<String>) -> Self {
         Self::Virtual(name.into())
-    }
-
-    /// Creates a new file page source.
-    pub fn new_file(name: impl Into<PathBuf>) -> Self {
-        Self::File(name.into())
     }
 }
 

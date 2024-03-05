@@ -5,3 +5,11 @@ author = "Robin Schroer"
 email = "blog@sulami.xyz"
 url = "https://blog.sulami.xyz"
 code_theme = "Solarized (light)"
+
+[[site.menu]]
+title = "Feed"
+link = "virtual:feed"
+
+[[site.menu]]
+title = "About"
+link = "file:input/content/about.md"

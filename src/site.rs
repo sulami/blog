@@ -55,10 +55,12 @@ impl Site {
             code_theme: site_config.code_theme.clone(),
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
-            menu: vec![
-                MenuItem::new("Feed", PageSource::new_virtual("feed")),
-                MenuItem::new("About", PageSource::new_file("input/content/about.md")),
-            ],
+            menu: site_config
+                .menu
+                .iter()
+                .map(std::convert::TryInto::try_into)
+                .try_collect()
+                .unwrap(),
             mode,
             pages: HashMap::default(),
             tera,
@@ -200,13 +202,14 @@ struct MenuItem {
     link: PageSource,
 }
 
-impl MenuItem {
-    /// Creates a new menu item.
-    fn new(title: &str, link: PageSource) -> Self {
-        Self {
-            title: title.into(),
-            link,
-        }
+impl TryFrom<&config::MenuItem> for MenuItem {
+    type Error = Report;
+
+    fn try_from(item: &config::MenuItem) -> Result<Self, Report> {
+        Ok(Self {
+            title: item.title.clone(),
+            link: item.link.parse()?,
+        })
     }
 }
 

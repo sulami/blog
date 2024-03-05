@@ -22,4 +22,11 @@ pub struct Site {
     pub author: String,
     pub email: String,
     pub code_theme: String,
+    pub menu: Vec<MenuItem>,
+}
+
+#[derive(Deserialize)]
+pub struct MenuItem {
+    pub title: String,
+    pub link: String,
 }

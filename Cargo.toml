@@ -9,6 +9,7 @@ axum = "0.7"
 clap = { version = "4", features = ["derive"] }
 color-eyre = "0.6"
 itertools = "0.12"
+futures = "0.3"
 notify = { version = "6", default-features = false, features = [
     "serde",
     "macos_fsevent",
@@ -27,5 +28,5 @@ toml = "0.8"
 
 [profile.release]
 strip = true
-lto = true
-codegen-units = 1
+# lto = true
+# codegen-units = 1

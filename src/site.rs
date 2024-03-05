@@ -6,14 +6,17 @@ use std::{
 };
 
 use async_recursion::async_recursion;
-use color_eyre::{eyre::WrapErr, Result};
+use color_eyre::{eyre::WrapErr, Report, Result};
+use futures::future::try_join_all;
 use itertools::Itertools;
 use serde::Serialize;
 use tera::{to_value, Function, Tera, Value};
+use time::Instant;
 use tokio::fs::{create_dir_all, read_dir};
 
 use crate::{
     config,
+    fs::{create_and_write, deep_copy_dir},
     page::{tag_link_filter, Page, PageKind, PageSource},
 };
 
@@ -93,13 +96,13 @@ impl Site {
         let input = self.input_path.clone();
         let output = self.output_path.clone();
 
-        let start = time::Instant::now();
+        let start = Instant::now();
 
         create_dir_all(&output)
             .await
             .wrap_err("failed to create output directory")?;
 
-        crate::fs::deep_copy_dir(&input.join("raw"), &output)
+        deep_copy_dir(&input.join("raw"), &output)
             .await
             .wrap_err("failed to copy raw files")?;
 
@@ -124,7 +127,7 @@ impl Site {
             .await
             .wrap_err("failed to render site pages")?;
 
-        let finish = time::Instant::now();
+        let finish = Instant::now();
         println!(
             "Rendered site in {:.3} seconds",
             (finish - start).as_seconds_f32()
@@ -139,15 +142,18 @@ impl Site {
         self.tera
             .register_function("url_for", make_url_for(self.pages.clone()));
 
-        for page in self.pages.values() {
+        let tasks = self.pages.values().map(|page| async {
             let rendered = page
                 .render(self)
                 .await
                 .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
-            crate::fs::create_and_write(&output.join(page.output_path()), &rendered)
+            create_and_write(&output.join(page.output_path()), &rendered)
                 .await
                 .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
-        }
+            Ok::<(), Report>(())
+        });
+
+        try_join_all(tasks).await?;
 
         Ok(())
     }

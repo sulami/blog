@@ -4,6 +4,7 @@ use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
+use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 use tera::{to_value, Value};
@@ -13,6 +14,12 @@ use tokio::{fs::File, io::AsyncReadExt};
 use crate::Site;
 
 pub mod markdown;
+
+/// Regex used to strip footnotes from rendered output.
+static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r#"(?s)<input type="checkbox".+?/>.+?<span class="footnote">.+?</span>"#)
+        .expect("invalid footnote regex")
+});
 
 /// A page on the site.
 #[derive(Debug, Serialize, Clone)]
@@ -155,14 +162,14 @@ impl Page {
             extra_context: HashMap::default(),
         };
 
-        // Strip the checkboxes from the content, they render weirdly in feed readers.
-        let re = Regex::new(r#"<input.+?/ ?>"#).expect("invalid regex");
+        // Strip the footnotes from the content, the checkboxes render weirdly in feed readers, and
+        // the footnotes don't fit in inline without CSS.
         let posts = site
             .posts()
             .into_iter()
             .take(10)
             .map(|mut post| {
-                post.content = re.replace_all(&post.content, "").to_string();
+                post.content = FOOTNOTE_RE.replace_all(&post.content, "").to_string();
                 post
             })
             .collect::<Vec<_>>();

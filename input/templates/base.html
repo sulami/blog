@@ -11,6 +11,16 @@
     <link rel="alternate" href="{{ url_for(link='virtual:feed') }}" type="application/atom+xml"
         title="{{ site.title }}" />
     <title>{% block title %}{{ site.title }}{% endblock title %}</title>
+    {% if site.mode | as_str == 'Development' %}
+    <script>
+        const socket = new WebSocket(`ws://${location.host}/live-reload`);
+        socket.addEventListener("message", (event) => {
+            if (event.data === 'reload') {
+                window.location.reload();
+            }
+        });
+    </script>
+    {% endif %}
     {% endblock head %}
 </head>
 

@@ -25,7 +25,7 @@ use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
 use tokio::{
     net::TcpListener,
     select, signal, spawn,
-    sync::{mpsc, watch},
+    sync::{broadcast, mpsc},
 };
 use tower_http::services::ServeDir;
 
@@ -33,7 +33,7 @@ use crate::site::Site;
 
 /// Development server state that gets injected into handlers.
 struct ServerState {
-    live_reload_signal: watch::Receiver<()>,
+    live_reload_signal: broadcast::Sender<()>,
 }
 
 /// Runs a development server.
@@ -42,9 +42,9 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
     let output_dir = site.output_path.clone();
 
     let (rerender_tx, rerender_rx) = mpsc::unbounded_channel();
-    let (reload_tx, reload_rx) = watch::channel(());
+    let (reload_tx, _reload_rx) = broadcast::channel(1);
 
-    let server = spawn(serve(port, output_dir, reload_rx));
+    let server = spawn(serve(port, output_dir, reload_tx.clone()));
 
     let rerenderer = spawn(rerender(site, rerender_rx, reload_tx));
 
@@ -84,7 +84,7 @@ fn handle_notify_event(res: notify::Result<Event>, tx: mpsc::UnboundedSender<()>
 async fn rerender(
     mut site: Site,
     mut rerender_rx: mpsc::UnboundedReceiver<()>,
-    reload_tx: watch::Sender<()>,
+    reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.recv().await.is_some() {
         site.tera
@@ -99,7 +99,7 @@ async fn rerender(
 }
 
 /// Serves the site output.
-async fn serve(port: u16, output_dir: PathBuf, reload_tx: watch::Receiver<()>) -> Result<()> {
+async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>) -> Result<()> {
     let state = Arc::new(ServerState {
         live_reload_signal: reload_tx,
     });
@@ -127,10 +127,10 @@ async fn live_reload_handler(
 /// Websocket handler for live reload, sends out reload messages until the connection is closed.
 async fn live_reload(stream: WebSocket, state: Arc<ServerState>) {
     let (mut ws_tx, mut ws_rx) = stream.split();
-    let mut rx = state.live_reload_signal.clone();
+    let mut rx = state.live_reload_signal.subscribe();
     loop {
         select! {
-            _ = rx.changed() => {
+            _ = rx.recv() => {
                 ws_tx.send("reload".into()).await.unwrap();
             },
             msg = ws_rx.next() => {

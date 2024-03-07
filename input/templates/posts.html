@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
-
 {% block content %}
 <ul>
     {% for post in page.extra_context.posts %}

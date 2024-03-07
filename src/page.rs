@@ -137,6 +137,41 @@ impl Page {
             content: String::new(),
             extra_context: HashMap::default(),
         };
+        page.insert_context(
+            "recent_posts",
+            &site.posts().iter().take(5).collect::<Vec<_>>(),
+        );
+        page.insert_context(
+            "best_posts",
+            &site
+                .posts()
+                .iter()
+                .filter(|p| p.tags.contains(&"best-of".into()))
+                .take(5)
+                .collect::<Vec<_>>(),
+        );
+        page
+    }
+
+    pub fn posts_page(site: &Site) -> Self {
+        let link = "/posts/".into();
+        let url = format!("{}{}", site.url, link);
+        let mut page = Self {
+            title: "Archive".into(),
+            kind: PageKind::Custom {
+                template: "posts.html".into(),
+                destination: "posts/index.html".into(),
+            },
+            source: PageSource::new_virtual("posts"),
+            slug: String::new(),
+            link,
+            url,
+            tags: vec![],
+            draft: false,
+            timestamp: None,
+            content: String::new(),
+            extra_context: HashMap::default(),
+        };
         page.insert_context("posts", &site.posts());
         page
     }

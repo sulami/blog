@@ -1,7 +1,6 @@
 title = "About"
 kind = "page"
 ---
-
 My name is Robin, and I currently live in Tokyo, Japan. In the past I have also lived in Amsterdam and London, which are both amazing cities in their own rights. I was born and raised in Germany, and will always consider myself [a European](https://en.wikipedia.org/wiki/The_World_of_Yesterday).
 
 I enjoy challenging myself and growing contiuously. Following stereotypes, I do enjoy rock climbing, as well as hiking, camping, and endurance running. In contrast to that, considerable amounts of my youth have been spent either in Azeroth or on `de_dust2`.

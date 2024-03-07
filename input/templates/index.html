@@ -1,18 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}{{ super() }}{% endblock title %}
+{% block heading %}{% endblock heading %}
 
 {% block content %}
-<p>
-    Welcome to my blog. I hope you enjoy your stay.
-</p>
-
+<h3>Recent Posts</h3>
 <ul>
-    {% for post in page.extra_context.posts %}
+    {% for post in page.extra_context.recent_posts %}
     <li>
         <a href="{{ post.link }}">{{ post.title }}</a>
         <span class="info">({{ post.timestamp | date(format="%Y-%m-%d") }})</span>
     </li>
     {% endfor %}
 </ul>
+
+<h3>Best Posts</h3>
+<ul>
+    {% for post in page.extra_context.best_posts %}
+    <li>
+        <a href="{{ post.link }}">{{ post.title }}</a>
+        <span class="info">({{ post.timestamp | date(format="%Y-%m-%d") }})</span>
+    </li>
+    {% endfor %}
+</ul>
+
+<p>
+    ... or visit
+    <a href="{{ url_for(link='virtual:posts') }}">the archive</a>
+    for all posts.
+</p>
 {% endblock content %}

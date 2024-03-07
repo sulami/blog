@@ -11,5 +11,9 @@ title = "Feed"
 link = "virtual:feed"
 
 [[site.menu]]
+title = "Uses"
+link = "file:input/content/uses.md"
+
+[[site.menu]]
 title = "About"
 link = "file:input/content/about.md"

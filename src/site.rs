@@ -112,18 +112,13 @@ impl Site {
             .await
             .wrap_err("failed to load pages")?;
 
-        let index_page = Page::index_page(self);
-        self.insert_page(index_page);
-
-        let feed_page = Page::atom_feed(self);
-        self.insert_page(feed_page);
-
+        self.insert_page(Page::index_page(self));
+        self.insert_page(Page::posts_page(self));
+        self.insert_page(Page::atom_feed(self));
+        self.insert_page(Page::tags_page(self));
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
-
-        let tags_page = Page::tags_page(self);
-        self.insert_page(tags_page);
 
         self.render_pages(&output)
             .await

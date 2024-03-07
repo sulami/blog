@@ -19,7 +19,10 @@ use axum::{
     routing::get,
     Router,
 };
-use color_eyre::{eyre::WrapErr, Result};
+use color_eyre::{
+    eyre::{Report, WrapErr},
+    Result,
+};
 use futures::{SinkExt, StreamExt};
 use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
 use tokio::{
@@ -87,13 +90,22 @@ async fn rerender(
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.recv().await.is_some() {
-        site.tera
+        if let Err(err) = site
+            .tera
             .full_reload()
-            .wrap_err("failed to reload Tera templates")?;
-        site.render().await.wrap_err("failed to re-render site")?;
-        reload_tx
+            .wrap_err("failed to reload Tera templates")
+        {
+            eprintln!("Error: {err:?}");
+        };
+        if let Err(err) = site.render().await.wrap_err("failed to re-render site") {
+            eprintln!("Error: {err:?}");
+        }
+        if let Err(err) = reload_tx
             .send(())
-            .wrap_err("failed to send live reload signal")?;
+            .wrap_err("failed to send live reload signal")
+        {
+            eprintln!("Error: {err:?}");
+        }
     }
     Ok(())
 }

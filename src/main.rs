@@ -1,9 +1,8 @@
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
 use color_eyre::{eyre::WrapErr, Result};
-use once_cell::sync::OnceCell;
-use tokio::{fs::remove_dir_all, sync::Mutex};
+use tokio::fs::remove_dir_all;
 
 use site::{Mode, Site};
 
@@ -12,10 +11,6 @@ mod fs;
 mod page;
 mod server;
 mod site;
-
-// Keeping the site in this static mutex so that the development server can access it when it needs
-// to re-render.
-static SITE: OnceCell<Mutex<site::Site>> = OnceCell::new();
 
 #[derive(Debug, Parser)]
 struct Cli {
@@ -60,10 +55,7 @@ async fn main() -> Result<()> {
         Command::Serve { port } => {
             let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development);
             site.render().await.wrap_err("failed to render site")?;
-
-            SITE.set(Mutex::new(site)).unwrap();
-            server::development_server(port, Path::new(&args.input), Path::new(&args.output))
-                .await?;
+            server::development_server(port, site).await?;
         }
         Command::Clean => {
             remove_dir_all(&args.output)

@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
-{% block heading %}{% endblock heading %}
+{% block heading %}
+<h2>Welcome</h2>
+{% endblock heading %}
 
 {% block content %}
+<p>
+    Hi, my name is {{ site.author }}, and this is my blog. Find out more about
+    me on the <a href="{{ url_for(link='file:input/content/about.md') }}">about
+        page</a>.
+</p>
+
 <h3>Recent Posts</h3>
 <ul>
     {% for post in page.extra_context.recent_posts %}

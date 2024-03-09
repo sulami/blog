@@ -116,12 +116,14 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
         .route("/live-reload", get(live_reload_handler))
         .with_state(state)
         .nest_service("/", ServeDir::new(output_dir));
-    let listener = TcpListener::bind(format!("0.0.0.0:{port}")).await.unwrap();
+    let listener = TcpListener::bind(format!("0.0.0.0:{port}"))
+        .await
+        .wrap_err("failed to bind to port")?;
     println!("Listening on http://0.0.0.0:{port}");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await
-        .unwrap();
+        .wrap_err("failed to run server")?;
     Ok(())
 }
 
@@ -140,7 +142,7 @@ async fn live_reload(stream: WebSocket, state: Arc<ServerState>) {
     loop {
         select! {
             _ = rx.recv() => {
-                ws_tx.send("reload".into()).await.unwrap();
+                ws_tx.send("reload".into()).await.expect("failed to send reload message");
             },
             msg = ws_rx.next() => {
                 if matches!(msg, Some(Ok(Message::Close(_)))) {

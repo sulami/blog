@@ -422,7 +422,7 @@ where
     match timestamp {
         Some(ts) => ts
             .format(&Rfc3339)
-            .unwrap()
+            .expect("failed to format timestamp")
             .to_string()
             .serialize(serializer),
         None => "".serialize(serializer),
@@ -431,6 +431,6 @@ where
 
 /// Tera filter for converting a tag into a link to its tag page.
 pub fn tag_link_filter(val: &Value, _args: &HashMap<String, Value>) -> tera::Result<Value> {
-    let tag = val.as_str().unwrap();
+    let tag = val.as_str().expect("tag is not a string");
     Ok(to_value(format!("/tags/{}/", tag)).unwrap())
 }

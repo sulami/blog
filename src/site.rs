@@ -40,13 +40,18 @@ pub struct Site {
 
 impl Site {
     /// Creates a new site.
-    pub fn new(input: &Path, output: &Path, site_config: &config::Site, mode: Mode) -> Self {
+    pub fn new(
+        input: &Path,
+        output: &Path,
+        site_config: &config::Site,
+        mode: Mode,
+    ) -> Result<Self> {
         let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
             .expect("failed to load templates");
         tera.autoescape_on(vec![]);
         tera.register_filter("tag_link", tag_link_filter);
 
-        Self {
+        Ok(Self {
             title: site_config.title.clone(),
             description: site_config.description.clone(),
             author: site_config.author.clone(),
@@ -60,11 +65,11 @@ impl Site {
                 .iter()
                 .map(std::convert::TryInto::try_into)
                 .try_collect()
-                .unwrap(),
+                .wrap_err("failed to convert menu items")?,
             mode,
             pages: HashMap::default(),
             tera,
-        }
+        })
     }
     /// Inserts a page into the site.
     fn insert_page(&mut self, page: Page) {
@@ -203,7 +208,10 @@ impl TryFrom<&config::MenuItem> for MenuItem {
     fn try_from(item: &config::MenuItem) -> Result<Self, Report> {
         Ok(Self {
             title: item.title.clone(),
-            link: item.link.parse()?,
+            link: item
+                .link
+                .parse()
+                .wrap_err("failed to parse menu item link")?,
         })
     }
 }
@@ -216,7 +224,7 @@ fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
                 .get("link")
                 .expect("argument link not found")
                 .as_str()
-                .unwrap()
+                .expect("argument link is not a string")
                 .into();
             let (kind, name) = link
                 .split_once(':')

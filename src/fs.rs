@@ -1,7 +1,10 @@
 use std::path::Path;
 
 use async_recursion::async_recursion;
-use color_eyre::{eyre::WrapErr, Result};
+use color_eyre::{
+    eyre::{OptionExt, WrapErr},
+    Result,
+};
 use tokio::{
     fs::{copy, create_dir_all, read_dir, File},
     io::AsyncWriteExt,
@@ -29,7 +32,7 @@ pub async fn deep_copy_dir(from: &Path, to: &Path) -> Result<()> {
 
 /// Creates a file and all required parent directories, then writes the given content to it.
 pub async fn create_and_write(path: &Path, content: &str) -> Result<()> {
-    create_dir_all(path.parent().unwrap())
+    create_dir_all(path.parent().ok_or_eyre("failed to get path parent")?)
         .await
         .wrap_err("failed to create parent directory")?;
     File::create(path)

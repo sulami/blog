@@ -49,11 +49,13 @@ async fn main() -> Result<()> {
 
     match args.command {
         Command::Render => {
-            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Release);
+            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Release)
+                .wrap_err("failed to create site")?;
             site.render().await.wrap_err("failed to render site")?;
         }
         Command::Serve { port } => {
-            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development);
+            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development)
+                .wrap_err("failed to create site")?;
             site.render().await.wrap_err("failed to render site")?;
             server::development_server(port, site).await?;
         }

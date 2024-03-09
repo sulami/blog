@@ -159,7 +159,7 @@ impl Page {
         let mut page = Self {
             title: "Archive".into(),
             kind: PageKind::Custom {
-                template: "posts.html".into(),
+                template: "posts.html",
                 destination: "posts/index.html".into(),
             },
             source: PageSource::new_virtual("posts"),

@@ -19,10 +19,7 @@ use axum::{
     routing::get,
     Router,
 };
-use color_eyre::{
-    eyre::{Report, WrapErr},
-    Result,
-};
+use color_eyre::{eyre::WrapErr, Result};
 use futures::{SinkExt, StreamExt};
 use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
 use tokio::{

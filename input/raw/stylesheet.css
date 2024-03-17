@@ -68,6 +68,10 @@ span.info {
     color: var(--gray);
 }
 
+p {
+    line-height: 1.5;
+}
+
 ol,
 ul {
     padding-left: 40px;

@@ -8,7 +8,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 use tera::{to_value, Value};
-use time::{format_description::well_known::Rfc3339, Date, OffsetDateTime};
+use time::{Date, OffsetDateTime};
 use tokio::{fs::File, io::AsyncReadExt};
 
 use crate::Site;
@@ -32,7 +32,7 @@ pub struct Page {
     url: String,
     pub tags: Vec<String>,
     pub draft: bool,
-    #[serde(serialize_with = "serialize_optional_timestamp")]
+    #[serde(serialize_with = "time::serde::rfc3339::option::serialize")]
     pub timestamp: Option<OffsetDateTime>,
     content: String,
     extra_context: HashMap<String, Value>,
@@ -408,24 +408,6 @@ impl FromStr for Frontmatter {
             tags: deserialized.tags.unwrap_or_default(),
             draft: deserialized.draft.unwrap_or(false),
         })
-    }
-}
-
-/// Serializes an optional timestamp, defaulting to an empty string.
-fn serialize_optional_timestamp<S>(
-    timestamp: &Option<OffsetDateTime>,
-    serializer: S,
-) -> Result<S::Ok, S::Error>
-where
-    S: serde::ser::Serializer,
-{
-    match timestamp {
-        Some(ts) => ts
-            .format(&Rfc3339)
-            .expect("failed to format timestamp")
-            .to_string()
-            .serialize(serializer),
-        None => "".serialize(serializer),
     }
 }
 

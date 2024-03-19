@@ -8,25 +8,23 @@
 //! 3. A web server that serves the site output and sends out a reload message via a websocket if
 //!    it receives a reload signal.
 
-use std::{path::PathBuf, sync::Arc};
+use std::{convert::Infallible, path::PathBuf, sync::Arc};
 
 use axum::{
-    extract::{
-        ws::{Message, WebSocket},
-        State, WebSocketUpgrade,
-    },
-    response::IntoResponse,
+    extract::State,
+    response::{sse::Event as SseEvent, Sse},
     routing::get,
     Router,
 };
 use color_eyre::{eyre::WrapErr, Result};
-use futures::{SinkExt, StreamExt};
-use notify::{recommended_watcher, Event, EventKind, RecursiveMode, Watcher};
+use futures::{Stream, StreamExt};
+use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
 use tokio::{
     net::TcpListener,
     select, signal, spawn,
     sync::{broadcast, mpsc},
 };
+use tokio_stream::wrappers::BroadcastStream;
 use tower_http::services::ServeDir;
 
 use crate::site::Site;
@@ -65,8 +63,8 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
 ///
 /// Reloads Tera templates and re-renders all pages. Then sends out a reload signal to all
 /// connected clients.
-fn handle_notify_event(res: notify::Result<Event>, tx: mpsc::UnboundedSender<()>) {
-    if let Ok(Event {
+fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: mpsc::UnboundedSender<()>) {
+    if let Ok(NotifyEvent {
         kind: EventKind::Modify(_),
         ..
     }) = res
@@ -127,30 +125,13 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
     Ok(())
 }
 
-/// Handler for live reload endpoint, upgrades to websocket connection.
+/// Handler for live reload endpoint, sends out Server-Sent Events.
 async fn live_reload_handler(
-    ws: WebSocketUpgrade,
     State(state): State<Arc<ServerState>>,
-) -> impl IntoResponse {
-    ws.on_upgrade(|socket| live_reload(socket, state))
-}
-
-/// Websocket handler for live reload, sends out reload messages until the connection is closed.
-async fn live_reload(stream: WebSocket, state: Arc<ServerState>) {
-    let (mut ws_tx, mut ws_rx) = stream.split();
-    let mut rx = state.live_reload_signal.subscribe();
-    loop {
-        select! {
-            _ = rx.recv() => {
-                ws_tx.send("reload".into()).await.expect("failed to send reload message");
-            },
-            msg = ws_rx.next() => {
-                if matches!(msg, Some(Ok(Message::Close(_)))) {
-                    break;
-                }
-            },
-        }
-    }
+) -> Sse<impl Stream<Item = Result<SseEvent, Infallible>>> {
+    let stream = BroadcastStream::new(state.live_reload_signal.subscribe())
+        .map(|_| Ok(SseEvent::default().data("reload")));
+    Sse::new(stream)
 }
 
 /// Shutdown handler.

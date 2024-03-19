@@ -13,12 +13,12 @@
     <title>{% block title %}{{ site.title }}{% endblock title %}</title>
     {% if site.mode | as_str == 'Development' %}
     <script>
-        const socket = new WebSocket(`ws://${location.host}/live-reload`);
-        socket.addEventListener("message", (event) => {
-            if (event.data === 'reload') {
+        const source = new EventSource(`/live-reload`);
+        source.onmessage = (e) => {
+            if (e.data === 'reload') {
                 window.location.reload();
             }
-        });
+        };
     </script>
     {% endif %}
     {% endblock head %}

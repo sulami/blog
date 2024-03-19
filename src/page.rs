@@ -1,4 +1,4 @@
-use std::{collections::HashMap, hash::Hash, path::PathBuf, str::FromStr};
+use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
 
 use color_eyre::{
     eyre::{eyre, WrapErr},
@@ -9,7 +9,6 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 use tera::{to_value, Value};
 use time::{Date, OffsetDateTime};
-use tokio::{fs::File, io::AsyncReadExt};
 
 use crate::Site;
 
@@ -40,10 +39,10 @@ pub struct Page {
 
 impl Page {
     /// Creates a new page from the given source file.
-    pub async fn new(source: PathBuf, site: &Site) -> Result<Self> {
-        let mut fp = File::open(&source).await?;
+    pub fn new(source: PathBuf, site: &Site) -> Result<Self> {
+        let mut fp = File::open(&source)?;
         let mut file_contents = vec![];
-        fp.read_to_end(&mut file_contents).await?;
+        fp.read_to_end(&mut file_contents)?;
         let file_string = String::from_utf8(file_contents)?;
 
         let (frontmatter_section, content_section) = file_string

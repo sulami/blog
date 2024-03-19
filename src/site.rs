@@ -9,6 +9,7 @@ use async_recursion::async_recursion;
 use color_eyre::{eyre::WrapErr, Report, Result};
 use futures::future::try_join_all;
 use itertools::Itertools;
+use rayon::prelude::*;
 use serde::Serialize;
 use tera::{to_value, Function, Tera, Value};
 use time::{Instant, OffsetDateTime};
@@ -79,25 +80,46 @@ impl Site {
         self.pages.insert(page.source.clone(), page);
     }
 
-    /// Loads all pages from the given directory.
+    /// Finds all pages sources in the given directory and its subdirectories, adding them to
+    /// `acc`.
     #[async_recursion]
-    async fn load_pages(&mut self, dir: &Path) -> Result<()> {
+    async fn find_page_sources(dir: &Path, acc: &mut Vec<PageSource>) -> Result<()> {
         let mut source_files = read_dir(dir).await?;
         while let Some(path) = source_files.next_entry().await? {
             if path.file_type().await?.is_dir() {
-                self.load_pages(&path.path()).await?;
+                Self::find_page_sources(&path.path(), acc).await?;
             }
             let Some(Some("md")) = path.path().extension().map(OsStr::to_str) else {
                 continue;
             };
-            self.pages.insert(
-                PageSource::File(path.path().clone()),
-                Page::new(path.path(), self)
-                    .await
-                    .wrap_err(format!("failed to load page {}", path.path().display()))?,
-            );
+            acc.push(PageSource::File(path.path().clone()));
         }
 
+        Ok(())
+    }
+
+    /// Loads all pages in the given directory and its subdirectories.
+    async fn load_pages(&mut self, dir: &Path) -> Result<()> {
+        let mut sources = vec![];
+        Self::find_page_sources(&dir.join("content"), &mut sources)
+            .await
+            .wrap_err("failed to find page sources")?;
+        self.pages = sources
+            .into_iter()
+            .par_bridge()
+            .map(|source| {
+                let path = match source {
+                    PageSource::File(ref path) => path,
+                    _ => unreachable!(),
+                };
+                (
+                    source.clone(),
+                    Page::new(path.to_path_buf(), self)
+                        .wrap_err(format!("failed to load page {}", path.display()))
+                        .unwrap(),
+                )
+            })
+            .collect();
         Ok(())
     }
 
@@ -117,7 +139,7 @@ impl Site {
             .await
             .wrap_err("failed to copy raw files")?;
 
-        self.load_pages(&input.join("content"))
+        self.load_pages(&input)
             .await
             .wrap_err("failed to load pages")?;
 

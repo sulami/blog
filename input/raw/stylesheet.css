@@ -72,6 +72,13 @@ p {
     line-height: 1.5;
 }
 
+blockquote {
+    font-style: italic;
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)) - 13px) !important;
+    padding-left: 10px;
+    border-left: 3px var(--gray) solid;
+}
+
 ol,
 ul {
     padding-left: 40px;

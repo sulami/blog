@@ -11,7 +11,7 @@ use futures::future::try_join_all;
 use itertools::Itertools;
 use serde::Serialize;
 use tera::{to_value, Function, Tera, Value};
-use time::Instant;
+use time::{Instant, OffsetDateTime};
 use tokio::fs::{create_dir_all, read_dir};
 
 use crate::{
@@ -34,6 +34,8 @@ pub struct Site {
     menu: Vec<MenuItem>,
     pages: HashMap<PageSource, Page>,
     mode: Mode,
+    #[serde(serialize_with = "time::serde::rfc3339::serialize")]
+    build_time: OffsetDateTime,
     #[serde(skip)]
     pub tera: Tera,
 }
@@ -60,6 +62,7 @@ impl Site {
             code_theme: site_config.code_theme.clone(),
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
+            build_time: OffsetDateTime::now_utc(),
             menu: site_config
                 .menu
                 .iter()
@@ -104,6 +107,7 @@ impl Site {
         let output = self.output_path.clone();
 
         let start = Instant::now();
+        self.build_time = OffsetDateTime::now_utc();
 
         create_dir_all(&output)
             .await

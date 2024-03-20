@@ -121,7 +121,7 @@ td {
 }
 
 pre {
-    font-family: "PragmataPro Liga", "Jetbrains Mono", "Fira Code", "Source Code Pro", "Menlo", "Courier New", monospace;
+    font-family: "PragmataPro Liga", "Jetbrains Mono", "Fira Code", "Source Code Pro", monospace;
     padding: 10px;
     font-size: 0.9rem;
     overflow-x: auto;

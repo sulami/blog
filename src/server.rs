@@ -12,12 +12,12 @@ use std::{convert::Infallible, path::PathBuf, sync::Arc};
 
 use axum::{
     extract::State,
-    response::{sse::Event as SseEvent, Sse},
+    response::{sse::Event as SseEvent, IntoResponse, Sse},
     routing::get,
     Router,
 };
 use color_eyre::{eyre::WrapErr, Result};
-use futures::{Stream, StreamExt};
+use futures::StreamExt;
 use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
 use tokio::{
     net::TcpListener,
@@ -126,11 +126,9 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
 }
 
 /// Handler for live reload endpoint, sends out Server-Sent Events.
-async fn live_reload_handler(
-    State(state): State<Arc<ServerState>>,
-) -> Sse<impl Stream<Item = Result<SseEvent, Infallible>>> {
+async fn live_reload_handler(State(state): State<Arc<ServerState>>) -> impl IntoResponse {
     let stream = BroadcastStream::new(state.live_reload_signal.subscribe())
-        .map(|_| Ok(SseEvent::default().data("reload")));
+        .map(|_| Ok::<_, Infallible>(SseEvent::default().data("reload")));
     Sse::new(stream)
 }
 

@@ -44,6 +44,7 @@ enum Command {
 #[tokio::main]
 async fn main() -> Result<()> {
     color_eyre::install()?;
+    env_logger::init();
     let args = Cli::parse();
     let config = config::load_config(&args.config).await?;
 

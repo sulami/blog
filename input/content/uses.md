@@ -23,6 +23,8 @@ I try to only buy USB-C based devices at this point, which means I can use the s
 
 As I am on a MacBook, I use macOS, which to me is the only viable OS at this point.[^1]
 
+If I write software for my personal use, chances are it is written in [Rust](https://www.rust-lang.org/).
+
 My browser of choice is [Firefox Developer Edition](https://mozilla.org/en_US/firefox/developer/).
 
 I am using a variety of text editors:

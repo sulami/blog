@@ -8,9 +8,8 @@ async-recursion = "1"
 axum = "0.7"
 clap = { version = "4", features = ["derive"] }
 color-eyre = "0.6"
-env_logger = "0.11"
-itertools = "0.12"
 futures = "0.3"
+itertools = "0.12"
 notify = { version = "6", default-features = false, features = [
     "serde",
     "macos_fsevent",
@@ -24,10 +23,12 @@ serde = { version = "1", features = ["derive"] }
 syntect = "5"
 tera = "1"
 time = { version = "0.3", features = ["local-offset", "serde-human-readable"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
 tokio = { version = "1", features = ["full"] }
 tokio-stream = { version = "0.1", features = ["sync"] }
-tower-http = { version = "0.5", features = ["fs"] }
 toml = "0.8"
+tower-http = { version = "0.5", features = ["fs"] }
 
 [profile.release]
 strip = true

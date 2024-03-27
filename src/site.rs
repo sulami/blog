@@ -49,7 +49,7 @@ impl Site {
         site_config: &config::Site,
         mode: Mode,
     ) -> Result<Self> {
-        let mut tera = Tera::new(&format!("{}/templates/**/*", input.display()))
+        let mut tera = Tera::new(&format!("{}/templates/*", input.display()))
             .expect("failed to load templates");
         tera.autoescape_on(vec![]);
         tera.register_filter("tag_link", tag_link_filter);
@@ -156,7 +156,7 @@ impl Site {
             .wrap_err("failed to render site pages")?;
 
         let finish = Instant::now();
-        println!(
+        tracing::info!(
             "Rendered site in {:.3} seconds",
             (finish - start).as_seconds_f32()
         );

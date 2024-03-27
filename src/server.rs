@@ -71,7 +71,7 @@ fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: mpsc::UnboundedSend
     {
         {
             if let Err(err) = tx.send(()).wrap_err("failed to send rerender signal") {
-                eprintln!("Error: {err:?}");
+                tracing::error!("Error: {err:?}");
             }
         }
     }
@@ -90,16 +90,16 @@ async fn rerender(
             .full_reload()
             .wrap_err("failed to reload Tera templates")
         {
-            eprintln!("Error: {err:?}");
+            tracing::error!("Error: {err:?}");
         };
         if let Err(err) = site.render().await.wrap_err("failed to re-render site") {
-            eprintln!("Error: {err:?}");
+            tracing::error!("Error: {err:?}");
         }
         if let Err(err) = reload_tx
             .send(())
             .wrap_err("failed to send live reload signal")
         {
-            eprintln!("Error: {err:?}");
+            tracing::error!("Error: {err:?}");
         }
     }
     Ok(())
@@ -112,8 +112,8 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
     });
     let app = Router::new()
         .route("/live-reload", get(live_reload_handler))
-        .with_state(state)
-        .nest_service("/", ServeDir::new(output_dir));
+        .nest_service("/", ServeDir::new(output_dir))
+        .with_state(state);
     let listener = TcpListener::bind(format!("0.0.0.0:{port}"))
         .await
         .wrap_err("failed to bind to port")?;

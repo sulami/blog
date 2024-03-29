@@ -17,14 +17,13 @@ use axum::{
     Router,
 };
 use color_eyre::{eyre::WrapErr, Result};
-use futures::StreamExt;
 use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
 use tokio::{
     net::TcpListener,
     select, signal, spawn,
     sync::{broadcast, mpsc},
 };
-use tokio_stream::wrappers::BroadcastStream;
+use tokio_stream::{wrappers::BroadcastStream, StreamExt};
 use tower_http::services::ServeDir;
 
 use crate::site::Site;
@@ -35,6 +34,7 @@ struct ServerState {
 }
 
 /// Runs a development server.
+#[tokio::main]
 pub async fn development_server(port: u16, site: Site) -> Result<()> {
     let input_dir = site.input_path.clone();
     let output_dir = site.output_path.clone();
@@ -92,7 +92,7 @@ async fn rerender(
         {
             tracing::error!("Error: {err:?}");
         };
-        if let Err(err) = site.render().await.wrap_err("failed to re-render site") {
+        if let Err(err) = site.render().wrap_err("failed to re-render site") {
             tracing::error!("Error: {err:?}");
         }
         if let Err(err) = reload_tx

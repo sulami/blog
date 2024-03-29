@@ -106,7 +106,7 @@ impl Page {
     }
 
     /// Renders the page in the context of the given site.
-    pub async fn render(&self, site: &Site) -> Result<String> {
+    pub fn render(&self, site: &Site) -> Result<String> {
         // println!("Rendering page {:?}", self.source);
         let ctx = Context { page: self, site };
         let rendered = site.tera.render(

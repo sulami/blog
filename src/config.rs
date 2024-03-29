@@ -3,8 +3,8 @@ use std::path::Path;
 use color_eyre::Result;
 use serde::Deserialize;
 
-pub async fn load_config(path: &Path) -> Result<Config> {
-    let config = tokio::fs::read_to_string(path).await?;
+pub fn load_config(path: &Path) -> Result<Config> {
+    let config = std::fs::read_to_string(path)?;
     let config: Config = toml::from_str(&config)?;
     Ok(config)
 }

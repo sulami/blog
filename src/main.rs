@@ -1,8 +1,7 @@
-use std::path::PathBuf;
+use std::{fs::remove_dir_all, path::PathBuf};
 
 use clap::{Parser, Subcommand};
 use color_eyre::{eyre::WrapErr, Result};
-use tokio::fs::remove_dir_all;
 
 use site::{Mode, Site};
 
@@ -41,29 +40,26 @@ enum Command {
     Clean,
 }
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     color_eyre::install()?;
     tracing_subscriber::fmt::init();
     let args = Cli::parse();
-    let config = config::load_config(&args.config).await?;
+    let config = config::load_config(&args.config)?;
 
     match args.command {
         Command::Render => {
             let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Release)
                 .wrap_err("failed to create site")?;
-            site.render().await.wrap_err("failed to render site")?;
+            site.render().wrap_err("failed to render site")?;
         }
         Command::Serve { port } => {
             let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development)
                 .wrap_err("failed to create site")?;
-            site.render().await.wrap_err("failed to render site")?;
-            server::development_server(port, site).await?;
+            site.render().wrap_err("failed to render site")?;
+            server::development_server(port, site)?;
         }
         Command::Clean => {
-            remove_dir_all(&args.output)
-                .await
-                .wrap_err("failed to remove output directory")?;
+            remove_dir_all(&args.output).wrap_err("failed to remove output directory")?;
         }
     }
 

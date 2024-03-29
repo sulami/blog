@@ -2,18 +2,16 @@ use std::{
     cmp::Reverse,
     collections::HashMap,
     ffi::OsStr,
+    fs::{create_dir_all, read_dir},
     path::{Path, PathBuf},
 };
 
-use async_recursion::async_recursion;
 use color_eyre::{eyre::WrapErr, Report, Result};
-use futures::future::try_join_all;
 use itertools::Itertools;
 use rayon::prelude::*;
 use serde::Serialize;
 use tera::{to_value, Function, Tera, Value};
 use time::{Instant, OffsetDateTime};
-use tokio::fs::{create_dir_all, read_dir};
 
 use crate::{
     config,
@@ -82,12 +80,11 @@ impl Site {
 
     /// Finds all pages sources in the given directory and its subdirectories, adding them to
     /// `acc`.
-    #[async_recursion]
-    async fn find_page_sources(dir: &Path, acc: &mut Vec<PageSource>) -> Result<()> {
-        let mut source_files = read_dir(dir).await?;
-        while let Some(path) = source_files.next_entry().await? {
-            if path.file_type().await?.is_dir() {
-                Self::find_page_sources(&path.path(), acc).await?;
+    fn find_page_sources(dir: &Path, acc: &mut Vec<PageSource>) -> Result<()> {
+        for path in read_dir(dir)? {
+            let path = path?;
+            if path.file_type()?.is_dir() {
+                Self::find_page_sources(&path.path(), acc)?;
             }
             let Some(Some("md")) = path.path().extension().map(OsStr::to_str) else {
                 continue;
@@ -99,10 +96,9 @@ impl Site {
     }
 
     /// Loads all pages in the given directory and its subdirectories.
-    async fn load_pages(&mut self, dir: &Path) -> Result<()> {
+    fn load_pages(&mut self, dir: &Path) -> Result<()> {
         let mut sources = vec![];
         Self::find_page_sources(&dir.join("content"), &mut sources)
-            .await
             .wrap_err("failed to find page sources")?;
         self.pages = sources
             .into_iter()
@@ -124,24 +120,18 @@ impl Site {
     }
 
     /// Renders the site.
-    pub async fn render(&mut self) -> Result<()> {
+    pub fn render(&mut self) -> Result<()> {
         let input = self.input_path.clone();
         let output = self.output_path.clone();
 
         let start = Instant::now();
         self.build_time = OffsetDateTime::now_utc();
 
-        create_dir_all(&output)
-            .await
-            .wrap_err("failed to create output directory")?;
+        create_dir_all(&output).wrap_err("failed to create output directory")?;
 
-        deep_copy_dir(&input.join("raw"), &output)
-            .await
-            .wrap_err("failed to copy raw files")?;
+        deep_copy_dir(&input.join("raw"), &output).wrap_err("failed to copy raw files")?;
 
-        self.load_pages(&input)
-            .await
-            .wrap_err("failed to load pages")?;
+        self.load_pages(&input).wrap_err("failed to load pages")?;
 
         self.insert_page(Page::index_page(self));
         self.insert_page(Page::posts_page(self));
@@ -152,7 +142,6 @@ impl Site {
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
 
         self.render_pages(&output)
-            .await
             .wrap_err("failed to render site pages")?;
 
         let finish = Instant::now();
@@ -165,23 +154,23 @@ impl Site {
     }
 
     /// Renders all pages and writes them to the output directory.
-    async fn render_pages(&mut self, output: &Path) -> Result<()> {
+    fn render_pages(&mut self, output: &Path) -> Result<()> {
         // NB Reload the url_for function with new pages.
         self.tera
             .register_function("url_for", make_url_for(self.pages.clone()));
 
-        let tasks = self.pages.values().map(|page| async {
-            let rendered = page
-                .render(self)
-                .await
-                .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
-            create_and_write(&output.join(page.output_path()), &rendered)
-                .await
-                .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
-            Ok::<(), Report>(())
-        });
-
-        try_join_all(tasks).await?;
+        self.pages
+            .values()
+            .par_bridge()
+            .map(|page| {
+                let rendered = page
+                    .render(self)
+                    .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
+                create_and_write(&output.join(page.output_path()), &rendered)
+                    .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
+                Ok::<(), Report>(())
+            })
+            .collect::<Result<()>>()?;
 
         Ok(())
     }

@@ -249,7 +249,9 @@ fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
                 "virtual" => Ok(PageSource::Virtual(name.into())),
                 _ => Err(tera::Error::from("invalid kind")),
             }?;
-            let page = pages.get(&key).ok_or(tera::Error::from("page not found"))?;
+            let page = pages
+                .get(&key)
+                .ok_or_else(|| tera::Error::from(format!("page '{:?}' not found", &key)))?;
             Ok(to_value(page.link.clone()).unwrap())
         },
     )

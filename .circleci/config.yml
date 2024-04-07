@@ -27,7 +27,7 @@ jobs:
           destination: '.'
       - when:
           condition:
-            equal: [ develop, << pipeline.git.branch >> ]
+            equal: [ trunk, << pipeline.git.branch >> ]
           steps:
             - aws/setup
             - s3/sync:

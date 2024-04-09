@@ -16,9 +16,9 @@
         <id>{{ post.url }}</id>
         <published>{{ post.timestamp }}</published>
         <updated>{{ post.timestamp }}</updated>
-        <summary type="html">
+        <content type="html">
         {{ post.content }}
-        </summary>
+        </content>
     </entry>
     {% endfor %}
 </feed>

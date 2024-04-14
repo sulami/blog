@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for p in page.extra_context.pages %}
+    <url>
+        <loc>{{ p.url }}</loc>
+        <lastmod>{% if p.timestamp %}{{ p.timestamp }}{% else %}{{ site.build_time }}{% endif %}</lastmod>
+    </url>
+    {% endfor %}
+</urlset>

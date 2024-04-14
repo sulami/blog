@@ -180,7 +180,7 @@ impl Page {
         let link = "/atom.xml".into();
         let url = format!("{}{}", site.url, link);
         let mut page = Self {
-            title: "Archive".into(),
+            title: "Feed".into(),
             kind: PageKind::Custom {
                 template: "feed.xml",
                 destination: "atom.xml".into(),
@@ -209,6 +209,30 @@ impl Page {
             .collect::<Vec<_>>();
         page.insert_context("posts", &posts);
 
+        page
+    }
+
+    /// Creates the sitemap. Should be called after all posts have been loaded into `site`.
+    pub fn sitemap(site: &Site) -> Self {
+        let link = "/sitemap.xml".into();
+        let url = format!("{}{}", site.url, link);
+        let mut page = Self {
+            title: "Sitemap".into(),
+            kind: PageKind::Custom {
+                template: "sitemap.xml",
+                destination: "sitemap.xml".into(),
+            },
+            source: PageSource::new_virtual("sitemap"),
+            slug: "feed".into(),
+            link,
+            url,
+            tags: vec![],
+            draft: false,
+            timestamp: Some(OffsetDateTime::now_utc()),
+            content: String::new(),
+            extra_context: HashMap::default(),
+        };
+        page.insert_context("pages", &site.pages.values().collect::<Vec<_>>());
         page
     }
 

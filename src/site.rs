@@ -31,7 +31,7 @@ pub struct Site {
     pub input_path: PathBuf,
     pub output_path: PathBuf,
     menu: Vec<MenuItem>,
-    pages: HashMap<PageSource, Page>,
+    pub pages: HashMap<PageSource, Page>,
     mode: Mode,
     #[serde(serialize_with = "time::serde::rfc3339::serialize")]
     build_time: OffsetDateTime,
@@ -133,13 +133,16 @@ impl Site {
 
         self.load_pages(&input).wrap_err("failed to load pages")?;
 
+        // NB Ordering here is important. Sitemap after all regular content pages, Atom feed after
+        // that so it's not included in the sitemap.
         self.insert_page(Page::index_page(self));
         self.insert_page(Page::posts_page(self));
-        self.insert_page(Page::atom_feed(self));
         self.insert_page(Page::tags_page(self));
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
+        self.insert_page(Page::sitemap(self));
+        self.insert_page(Page::atom_feed(self));
 
         self.render_pages(&output)
             .wrap_err("failed to render site pages")?;

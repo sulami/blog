@@ -1,4 +1,5 @@
 title = "Emacs From a Vim Addict's Perspective"
+slug = "emacs-from-a-vim-addict%27s-perspective"
 timestamp = "2016-03-03"
 tags = ["vim", "emacs"]
 ---

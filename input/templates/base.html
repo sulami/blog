@@ -57,12 +57,6 @@
         <div id="footer">
             Built {{ site.build_time | date(format="%Y-%m-%d %H:%M") }}
         </div>
-
-        {% if site.mode | as_str == 'Release' %}
-        <!-- Privacy-aware analytics by https://www.goatcounter.com/ -->
-        <!-- Stats are publicly available at https://stats.sulami.xyz/ -->
-        <script data-goatcounter="https://stats.sulami.xyz/count" async="" src="https://gc.zgo.at/count.js"></script>
-        {% endif %}
     </div>
 </body>
 

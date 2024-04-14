@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="/stylesheet.css" />
     <link rel="alternate" href="{{ url_for(link='virtual:feed') }}" type="application/atom+xml"
         title="{{ site.title }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon/android-chrome-256x256.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg">
     <title>{% block title %}{{ site.title }}{% endblock title %}</title>
     {% if site.mode | as_str == 'Development' %}
     <script>

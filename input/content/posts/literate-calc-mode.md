@@ -17,7 +17,7 @@ But enough talk, this is what the result looks like in action:
 
 <video controls proload="none" alt="Demo Video">
 
-<source src="/raw/literate-calc-demo.webm" type="video/webm">
+<source src="/media/literate-calc-demo.webm" type="video/webm">
 
 </video>
 

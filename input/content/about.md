@@ -12,6 +12,13 @@ I have been a software engineer for over a decade, and a staff+ engineer for abo
 - [Komoju](https://komoju.com)
 - [BBC Player](https://en.wikipedia.org/wiki/BBC_Player) (not to be confused with BBC iPlayer)
 
+Occasionally I also make other cool stuff, such as:
+
+- [Three Body Simulation](https://three-bodies.sulami.xyz) (Rust/WebAssembly)
+- [Literate Calc Mode](https://github.com/sulami/literate-calc-mode.el) (Emacs
+  Lisp)
+- [FrankenWM](https://github.com/sulami/frankenwm) (C)
+
 ## Contact
 
 Feel free to contact me [via email](mailto:blog@sulami.xyz) if you like what I write, do not like what I write, or just want to chat. I'm notoriously bad at responding in a timely manner, consider yourself warned. I also have [a PGP public key](/pubkey.txt) if that tickles your fancy.

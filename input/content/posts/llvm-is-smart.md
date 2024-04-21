@@ -30,7 +30,7 @@ fn sum() -> u32 {
 }
 ```
 
-To make sure I the compiler would feel safe to use SIMD instructions, I used `-C
+To make sure the compiler would feel safe to use SIMD instructions, I used `-C
 opt-level=3 -C target-cpu=skylake`, telling it that the target CPU supports
 them. But instead of SIMD instructions I got this assembly:
 

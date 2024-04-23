@@ -56,6 +56,10 @@ div#heading {
     max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)));
 }
 
+div.figure>* {
+  max-width: 100%;
+}
+
 div#heading>h1 {
     font-size: 36px;
 }

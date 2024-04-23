@@ -102,7 +102,7 @@ The key here is that the sum of consecutive integers from zero to n has a
 closed form solution, which I only realized after looking more closely at the
 assembly:
 
-$$\sum^n_{i=0}{i} = \frac{n (n-1)}{2}$$
+$$\sum^n_{i=0}{i} = \frac{n (n+1)}{2}$$
 
 LLVM apparently detects that that is exactly what we are trying to do, and as a
 result it can do away with the looping altogether and directly calculate the

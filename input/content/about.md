@@ -15,9 +15,9 @@ I have been a software engineer for over a decade, and a staff+ engineer for abo
 Occasionally I also make other cool stuff, such as:
 
 - [Three Body Simulation](https://three-bodies.sulami.xyz) (Rust/WebAssembly)
-- [Literate Calc Mode](https://github.com/sulami/literate-calc-mode.el) (Emacs
-  Lisp)
+- [Literate Calc Mode](https://github.com/sulami/literate-calc-mode.el) (Emacs Lisp) - [post](/posts/literate-calc-mode/)
 - [FrankenWM](https://github.com/sulami/frankenwm) (C)
+- [Advent of Code 2022 in under one second](git@github.com:sulami/1brc.rs.git) (Rust) - [post](/posts/aoc-in-one-second/)
 
 ## Contact
 

@@ -4,19 +4,20 @@ use std::{
     ffi::OsStr,
     fs::{create_dir_all, read_dir},
     path::{Path, PathBuf},
+    time::Instant,
 };
 
 use color_eyre::{eyre::WrapErr, Report, Result};
 use itertools::Itertools;
 use rayon::prelude::*;
 use serde::Serialize;
-use tera::{to_value, Function, Tera, Value};
-use time::{Instant, OffsetDateTime};
+use tera::{Function, Tera, to_value, Value};
+use time::OffsetDateTime;
 
 use crate::{
     config,
     fs::{create_and_write, deep_copy_dir},
-    page::{tag_link_filter, Page, PageKind, PageSource},
+    page::{Page, PageKind, PageSource, tag_link_filter},
 };
 
 /// Site metadata.
@@ -150,7 +151,7 @@ impl Site {
         let finish = Instant::now();
         tracing::info!(
             "Rendered site in {:.3} seconds",
-            (finish - start).as_seconds_f32()
+            (finish - start).as_secs_f32()
         );
 
         Ok(())

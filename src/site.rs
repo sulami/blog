@@ -24,7 +24,6 @@ use crate::{
 #[derive(Debug, Serialize)]
 pub struct Site {
     title: String,
-    description: String,
     author: String,
     email: String,
     pub url: String,
@@ -55,7 +54,6 @@ impl Site {
 
         Ok(Self {
             title: site_config.title.clone(),
-            description: site_config.description.clone(),
             author: site_config.author.clone(),
             email: site_config.email.clone(),
             url: site_config.url.clone(),

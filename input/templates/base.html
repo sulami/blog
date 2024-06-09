@@ -3,13 +3,13 @@
 
 <head>
     {% block head %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="{{ site.description }}" />
-    <meta name="author" content="{{ site.author }}" />
-    <link rel="stylesheet" href="/stylesheet.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="{{ site.title }}"/>
+    <meta name="author" content="{{ site.author }}"/>
+    <link rel="stylesheet" href="/stylesheet.css"/>
     <link rel="alternate" href="{{ url_for(link='virtual:feed') }}" type="application/atom+xml"
-        title="{{ site.title }}" />
+          title="{{ site.title }}"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
@@ -31,33 +31,33 @@
 </head>
 
 <body>
-    <div id="container">
-        <div id="header">
-            <div id="logo">
-                <a href="{{ url_for(link='virtual:index') }}">{{ site.description }}</a>
-            </div>
-            <div id="navigation">
-                {% for menu_item in site.menu %}
-                <a href="{{ url_for(link=menu_item.link) }}">{{ menu_item.title }}</a>
-                {% if loop.last %}{% else %} • {% endif %}
-                {% endfor %}
-            </div>
+<div id="container">
+    <div id="header">
+        <div id="logo">
+            <a href="{{ url_for(link='virtual:index') }}">{{ site.title }}</a>
         </div>
-        <div id="main">
-            <div id="heading">
-                {% block heading %}
-                <h1>{{ page.title }}</h1>
-                {% endblock heading %}
-            </div>
-            <div id="content">
-                {% block content %}{% endblock content %}
-            </div>
-        </div>
-
-        <div id="footer">
-            Built {{ site.build_time | date(format="%Y-%m-%d %H:%M") }}
+        <div id="navigation">
+            {% for menu_item in site.menu %}
+            <a href="{{ url_for(link=menu_item.link) }}">{{ menu_item.title }}</a>
+            {% if loop.last %}{% else %} • {% endif %}
+            {% endfor %}
         </div>
     </div>
+    <div id="main">
+        <div id="heading">
+            {% block heading %}
+            <h1>{{ page.title }}</h1>
+            {% endblock heading %}
+        </div>
+        <div id="content">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+    <div id="footer">
+        Built {{ site.build_time | date(format="%Y-%m-%d %H:%M") }}
+    </div>
+</div>
 </body>
 
 </html>

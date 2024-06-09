@@ -17,7 +17,6 @@ pub struct Config {
 #[derive(Deserialize)]
 pub struct Site {
     pub title: String,
-    pub description: String,
     pub url: String,
     pub author: String,
     pub email: String,

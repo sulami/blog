@@ -6,6 +6,10 @@ url = "https://blog.sulami.xyz"
 code_theme = "Solarized (light)"
 
 [[site.menu]]
+title = "Lab Notebook"
+link = "virtual:lab"
+
+[[site.menu]]
 title = "Feed"
 link = "virtual:feed"
 

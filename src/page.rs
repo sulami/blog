@@ -40,10 +40,12 @@ pub struct Page {
 impl Page {
     /// Creates a new page from the given source file.
     pub fn new(source: PathBuf, site: &Site) -> Result<Self> {
-        let mut fp = File::open(&source)?;
-        let mut file_contents = vec![];
-        fp.read_to_end(&mut file_contents)?;
-        let file_string = String::from_utf8(file_contents)?;
+        let file_string = {
+            let mut fp = File::open(&source)?;
+            let mut file_contents = vec![];
+            fp.read_to_end(&mut file_contents)?;
+            String::from_utf8(file_contents)?
+        };
 
         let (frontmatter_section, content_section) = file_string
             .split_once("---")

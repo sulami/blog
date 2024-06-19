@@ -89,6 +89,10 @@ ul {
     max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)) - 40px) !important;
 }
 
+li {
+    line-height: 1.5;
+}
+
 ul>li {
     list-style: circle;
 }

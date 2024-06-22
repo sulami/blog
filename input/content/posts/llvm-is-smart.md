@@ -3,10 +3,7 @@ timestamp = "2024-04-19"
 tags = ["rust", "compilers", "espresso"]
 ---
 
-<script
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-  type="text/javascript">
-</script>
+<script src="/mathjax-3.2.2/tex-chtml.js" async></script>
 
 I was reading [Algorithms for Modern Hardware](https://en.algorithmica.org/hpc/)
 recently, specifically [the chapter on

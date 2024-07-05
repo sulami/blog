@@ -20,6 +20,12 @@ static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
         .expect("invalid footnote regex")
 });
 
+/// Regex used to `script` tags from rendered output.
+static SCRIPT_RE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r#"(?s)<script.+?</script>"#)
+        .expect("invalid script regex")
+});
+
 /// A page on the site.
 #[derive(Debug, Serialize, Clone)]
 pub struct Page {
@@ -234,6 +240,7 @@ impl Page {
             .take(10)
             .map(|mut post| {
                 post.content = FOOTNOTE_RE.replace_all(&post.content, "").to_string();
+                post.content = SCRIPT_RE.replace_all(&post.content, "").to_string();
                 post
             })
             .collect::<Vec<_>>();

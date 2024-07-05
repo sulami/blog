@@ -1,7 +1,7 @@
 title = "What is Type-Level Programming?"
 slug = "type-level-programming"
 timestamp = "2023-05-02"
-tags = ["rust"]
+tags = ["rust", "software-design"]
 ---
 In programming languages with an emphasis strong type systems, such as Rust or Haskell, there exists a technique called type-level programming. I think TLP is an interesting solution for some class of problems, so I am sharing a very brief introduction to the concepts involved.
 

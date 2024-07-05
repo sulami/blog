@@ -1,6 +1,6 @@
 title = "Invalid States"
 timestamp = "2024-01-13"
-tags = ["rust"]
+tags = ["rust", "software-design"]
 ---
 I'm currently working on a package manager, and some old wisdom came back to me: making invalid program states impossible to represent.
 

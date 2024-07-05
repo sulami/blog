@@ -1,6 +1,6 @@
 title = "Testing Hexagonal Architecture"
 timestamp = "2020-10-11"
-tags = ["clojure", "best-of"]
+tags = ["clojure", "best-of", "software-design"]
 ---
 [*Hexagonal Architecture*](https://web.archive.org/web/20180822100852/http://alistair.cockburn.us/Hexagonal+architecture), also known as *Ports and Adapters*, was first conceived by Cockburn in 2005, and popularised by Freeman & Pryce's [*Growing Object-Oriented Software, Guided by Tests*](http://www.growing-object-oriented-software.com/) in 2009. For those unfamiliar, it describes an application architecture entirely comprised of ports, which are interfaces, and adaptors, which are implementations for those interfaces. The adaptors can depend on other ports, but not on other adaptors. A system is then constructed by selecting a full set of adaptors, depending on the requirements, and composing them using [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
 

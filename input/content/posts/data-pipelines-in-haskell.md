@@ -1,6 +1,6 @@
 title = "Data-Pipelines in Haskell"
 timestamp = "2015-12-07"
-tags = ["haskell"]
+tags = ["haskell", "softfware-design"]
 ---
 Today I was writing some code in Golang and thought about why Haskell feels so much more powerful and expressive. Then I had a revelation. Haskell follows the UNIX philosophy, focussing on small functions that do exactly one thing (at least good Haskell code does so). It also makes these functions easily combinable without leading to syntastic noise like parenthesis-mountains. So I thought I might just write a post highlighting that, which is what you are currently reading.
 

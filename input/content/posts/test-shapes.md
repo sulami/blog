@@ -1,7 +1,7 @@
 title = "The Shape of Tests"
 slug = "test-shapes"
 timestamp = "2021-03-03"
-tags = [ "clojure" ]
+tags = ["clojure", "software-design"]
 ---
 Many tests for an operation iterate over a mapping of different inputs to expected outcomes. By looking at the tests for a single operation as the same test with different inputs and output expectations, we can start to question how we should model those tests.
 

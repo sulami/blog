@@ -1,7 +1,7 @@
 title = "Synchronous Core, Asynchronous Shell"
 slug = "sync-core-async-shell"
 timestamp = "2024-07-05"
-tags = ["rust"]
+tags = ["rust", "software-design"]
 ---
 
 A bit over a decade ago, Gary Bernhardt published [Functional Core, 

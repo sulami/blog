@@ -11,4 +11,5 @@ updates:
       interval: "weekly"
     groups:
       dependencies:
-        applies-to: version-updates
+        patterns:
+          - "*"

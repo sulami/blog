@@ -10,4 +10,5 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies: {}
+      dependencies:
+        applies-to: version-updates

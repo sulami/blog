@@ -136,7 +136,6 @@ impl Site {
         // that so it's not included in the sitemap.
         self.insert_page(Page::index_page(self));
         self.insert_page(Page::posts_page(self));
-        self.insert_page(Page::lab_notebook_page(self));
         self.insert_page(Page::tags_page(self));
         self.tags()
             .iter()
@@ -184,22 +183,6 @@ impl Site {
             .pages
             .values()
             .filter(|p| p.kind == PageKind::Post)
-            .filter(|p| match self.mode {
-                Mode::Development => true,
-                Mode::Release => !p.draft,
-            })
-            .cloned()
-            .collect();
-        posts.sort_unstable_by_key(|p| Reverse(p.timestamp));
-        posts
-    }
-
-    /// Returns all lab notebook entries in the site, in reverse chronological order.
-    pub fn lab_notebook_entries(&self) -> Vec<Page> {
-        let mut posts: Vec<Page> = self
-            .pages
-            .values()
-            .filter(|p| p.kind == PageKind::LabNotebookEntry)
             .filter(|p| match self.mode {
                 Mode::Development => true,
                 Mode::Release => !p.draft,

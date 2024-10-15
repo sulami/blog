@@ -64,7 +64,6 @@ impl Page {
         let link = match frontmatter.kind {
             PageKind::Post => format!("/posts/{}/", frontmatter.slug),
             PageKind::Page => format!("/{}/", frontmatter.slug),
-            PageKind::LabNotebookEntry => format!("/lab/{}/", frontmatter.slug),
             PageKind::Custom {
                 ref destination, ..
             } => destination.into(),
@@ -101,7 +100,6 @@ impl Page {
         match &self.kind {
             PageKind::Post => "post.html".into(),
             PageKind::Page => "page.html".into(),
-            PageKind::LabNotebookEntry => "post.html".into(),
             PageKind::Custom { template, .. } => template.to_string(),
         }
     }
@@ -111,7 +109,6 @@ impl Page {
         match &self.kind {
             PageKind::Post => PathBuf::from(format!("posts/{}/index.html", self.slug)),
             PageKind::Page => PathBuf::from(format!("{}/index.html", self.slug)),
-            PageKind::LabNotebookEntry => PathBuf::from(format!("lab/{}/index.html", self.slug)),
             PageKind::Custom { destination, .. } => destination.into(),
         }
     }
@@ -184,30 +181,6 @@ impl Page {
             extra_context: HashMap::default(),
         };
         page.insert_context("posts", &site.posts());
-        page
-    }
-
-    /// Creates a page like [`posts_page`], but for the lab notebook entries.
-    pub fn lab_notebook_page(site: &Site) -> Self {
-        let link = "/lab/".into();
-        let url = format!("{}{}", site.url, link);
-        let mut page = Self {
-            title: "Lab Notebook".into(),
-            kind: PageKind::Custom {
-                template: "posts.html",
-                destination: "lab/index.html".into(),
-            },
-            source: PageSource::new_virtual("lab"),
-            slug: String::new(),
-            link,
-            url,
-            tags: vec![],
-            draft: false,
-            timestamp: None,
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-        page.insert_context("posts", &site.lab_notebook_entries());
         page
     }
 
@@ -389,8 +362,6 @@ pub enum PageKind {
     Post,
     /// A regular page, located at /.
     Page,
-    /// A special kind of post, the lab notebook entry.
-    LabNotebookEntry,
     /// A custom page, located at the given destination.
     Custom {
         template: &'static str,
@@ -405,7 +376,6 @@ impl FromStr for PageKind {
         match s {
             "post" => Ok(Self::Post),
             "page" => Ok(Self::Page),
-            "lab" => Ok(Self::LabNotebookEntry),
             _ => Err(eyre!("invalid page kind")),
         }
     }
@@ -437,8 +407,6 @@ impl FromStr for Frontmatter {
             Post,
             #[serde(rename = "page")]
             Page,
-            #[serde(rename = "lab")]
-            Lab,
         }
 
         impl From<DeserializedPageKind> for PageKind {
@@ -446,7 +414,6 @@ impl FromStr for Frontmatter {
                 match kind {
                     DeserializedPageKind::Post => Self::Post,
                     DeserializedPageKind::Page => Self::Page,
-                    DeserializedPageKind::Lab => Self::LabNotebookEntry,
                 }
             }
         }

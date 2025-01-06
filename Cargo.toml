@@ -4,10 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = "0.7"
+axum = "0.8"
 clap = { version = "4", features = ["derive"] }
 color-eyre = "0.6"
-itertools = "0.13"
+itertools = "0.14"
 notify = { version = "7", default-features = false, features = [
     "macos_kqueue",
 ] }

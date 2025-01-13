@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/rust:1.75
+      - image: cimg/rust:1.84
     steps:
       - checkout
       - restore_cache:

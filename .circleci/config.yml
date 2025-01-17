@@ -8,7 +8,7 @@ jobs:
   build:
     docker:
       - image: cimg/rust:1.84
-      resource_class: arm.medium
+    resource_class: arm.medium
     steps:
       - checkout
       - restore_cache:

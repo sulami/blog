@@ -238,6 +238,7 @@ impl Site {
 
 /// The mode the site is running in. Controls if drafts are rendered or not.
 #[derive(Debug, Serialize, Copy, Clone)]
+#[cfg_attr(not(feature = "server"), allow(dead_code))]
 pub enum Mode {
     Release,
     Development,

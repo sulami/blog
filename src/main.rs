@@ -2,12 +2,12 @@ use std::{fs::remove_dir_all, path::PathBuf};
 
 use clap::{Parser, Subcommand};
 use color_eyre::{eyre::WrapErr, Result};
-
 use site::{Mode, Site};
 
 mod config;
 mod fs;
 mod page;
+#[cfg(feature = "server")]
 mod server;
 mod site;
 mod template;
@@ -53,11 +53,18 @@ fn main() -> Result<()> {
                 .wrap_err("failed to create site")?;
             site.render().wrap_err("failed to render site")?;
         }
+        #[cfg(feature = "server")]
         Command::Serve { port } => {
             let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development)
                 .wrap_err("failed to create site")?;
             site.render().wrap_err("failed to render site")?;
             server::development_server(port, site)?;
+        }
+        #[cfg(not(feature = "server"))]
+        Command::Serve { .. } => {
+            return Err(color_eyre::eyre::eyre!(
+                "Server disabled, enable the 'server' feature to run this command"
+            ));
         }
         Command::Clean => {
             remove_dir_all(&args.output).wrap_err("failed to remove output directory")?;

@@ -3,13 +3,18 @@ name = "blog"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = ["server"]
+server = ["dep:axum", "dep:notify", "dep:tokio", "dep:tokio-stream", "dep:tower-http"]
+
 [dependencies]
-axum = "0.8"
+axum = { version = "0.8", optional = true }
 clap = { version = "4", features = ["derive"] }
 color-eyre = { version = "0.6", default-features = false }
 itertools = "0.14"
 minijinja = { version = "2", features = ["loader"] }
-notify = { version = "8", default-features = false, features = [
+minijinja-contrib = { version = "2", features = ["datetime"] }
+notify = { version = "8", optional = true, default-features = false, features = [
     "macos_kqueue",
 ] }
 once_cell = "1"
@@ -21,11 +26,10 @@ syntect = "5"
 time = { version = "0.3", features = ["serde-human-readable"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
-tokio = { version = "1", features = ["full"] }
-tokio-stream = { version = "0.1", features = ["sync"] }
+tokio = { version = "1", optional = true, features = ["full"] }
+tokio-stream = { version = "0.1", optional = true, features = ["sync"] }
 toml = "0.8"
-tower-http = { version = "0.6", features = ["fs"] }
-minijinja-contrib = { version = "2", features = ["datetime"] }
+tower-http = { version = "0.6", optional = true, features = ["fs"] }
 
 [profile.release]
 strip = true

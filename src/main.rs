@@ -13,6 +13,7 @@ mod site;
 mod template;
 
 #[derive(Debug, Parser)]
+#[clap(author, version, about)]
 struct Cli {
     #[command(subcommand)]
     command: Command,
@@ -32,6 +33,7 @@ enum Command {
     /// Renders the site and exits
     Render,
     /// Starts a development server
+    #[cfg(feature = "server")]
     Serve {
         /// The port to listen on
         #[clap(long, short, default_value = "8080")]
@@ -59,12 +61,6 @@ fn main() -> Result<()> {
                 .wrap_err("failed to create site")?;
             site.render().wrap_err("failed to render site")?;
             server::development_server(port, site)?;
-        }
-        #[cfg(not(feature = "server"))]
-        Command::Serve { .. } => {
-            return Err(color_eyre::eyre::eyre!(
-                "Server disabled, enable the 'server' feature to run this command"
-            ));
         }
         Command::Clean => {
             remove_dir_all(&args.output).wrap_err("failed to remove output directory")?;

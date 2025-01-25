@@ -2,6 +2,8 @@
 name = "blog"
 version = "0.1.0"
 edition = "2021"
+authors = ["Robin Schroer"]
+description = "Static site generator"
 
 [features]
 default = ["server"]

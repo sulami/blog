@@ -85,13 +85,6 @@ async fn rerender(
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.recv().await.is_some() {
-        if let Err(err) = site
-            .tera
-            .full_reload()
-            .wrap_err("failed to reload Tera templates")
-        {
-            tracing::error!("Error: {err:?}");
-        };
         if let Err(err) = site.render().wrap_err("failed to re-render site") {
             tracing::error!("Error: {err:?}");
         }
@@ -112,7 +105,7 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
     });
     let app = Router::new()
         .route("/live-reload", get(live_reload_handler))
-        .nest_service("/", ServeDir::new(output_dir))
+        .fallback_service(ServeDir::new(output_dir))
         .with_state(state);
     let listener = TcpListener::bind(format!("0.0.0.0:{port}"))
         .await

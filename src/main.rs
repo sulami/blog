@@ -10,6 +10,7 @@ mod fs;
 mod page;
 mod server;
 mod site;
+mod template;
 
 #[derive(Debug, Parser)]
 struct Cli {

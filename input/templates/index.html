@@ -7,7 +7,7 @@
 {% block content %}
 <p>
     Hi, my name is {{ site.author }}, and this is my blog. Find out more about
-    me on the <a href="{{ url_for(link='file:input/content/about.md') }}">about
+    me on the <a href="{{ url_for('file:input/content/about.md') }}">about
         page</a>.
 </p>
 
@@ -15,8 +15,8 @@
 <ul>
     {% for post in page.extra_context.recent_posts %}
     <li>
-        <a href="{{ post.link }}">{{ post.title }}</a>
-        <span class="info">({{ post.timestamp | date(format="%Y-%m-%d") }})</span>
+        <a href="{{ post.link | safe }}">{{ post.title }}</a>
+        <span class="info">({{ post.timestamp | dateformat(format="[year]-[month]-[day]") }})</span>
     </li>
     {% endfor %}
 </ul>
@@ -25,15 +25,15 @@
 <ul>
     {% for post in page.extra_context.best_posts %}
     <li>
-        <a href="{{ post.link }}">{{ post.title }}</a>
-        <span class="info">({{ post.timestamp | date(format="%Y-%m-%d") }})</span>
+        <a href="{{ post.link | safe }}">{{ post.title }}</a>
+        <span class="info">({{ post.timestamp | dateformat(format="[year]-[month]-[day]") }})</span>
     </li>
     {% endfor %}
 </ul>
 
 <p>
     ... or visit
-    <a href="{{ url_for(link='virtual:posts') }}">the archive</a>
+    <a href="{{ url_for('virtual:posts') }}">the archive</a>
     for all posts.
 </p>
 {% endblock content %}

@@ -1,13 +1,12 @@
-use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
-
 use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
+use minijinja::Value;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use tera::{to_value, Value};
+use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
 use time::{Date, OffsetDateTime};
 
 use crate::Site;
@@ -21,10 +20,8 @@ static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
 });
 
 /// Regex used to `script` tags from rendered output.
-static SCRIPT_RE: Lazy<Regex> = Lazy::new(|| {
-    Regex::new(r#"(?s)<script.+?</script>"#)
-        .expect("invalid script regex")
-});
+static SCRIPT_RE: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// A page on the site.
 #[derive(Debug, Serialize, Clone)]
@@ -92,15 +89,15 @@ impl Page {
         T: Serialize + ?Sized,
     {
         self.extra_context
-            .insert(key.into(), to_value(val).unwrap());
+            .insert(key.into(), Value::from_serialize(val));
     }
 
     /// Returns the template to use for rendering the page.
-    fn template(&self) -> String {
+    fn template(&self) -> &str {
         match &self.kind {
-            PageKind::Post => "post.html".into(),
-            PageKind::Page => "page.html".into(),
-            PageKind::Custom { template, .. } => template.to_string(),
+            PageKind::Post => "post.html",
+            PageKind::Page => "page.html",
+            PageKind::Custom { template, .. } => template,
         }
     }
 
@@ -115,12 +112,13 @@ impl Page {
 
     /// Renders the page in the context of the given site.
     pub fn render(&self, site: &Site) -> Result<String> {
-        // println!("Rendering page {:?}", self.source);
+        tracing::debug!("Rendering page {}", self.output_path().display());
         let ctx = Context { page: self, site };
-        let rendered = site.tera.render(
-            &self.template(),
-            &tera::Context::from_serialize(ctx).wrap_err("failed to create context")?,
-        )?;
+        let template = site
+            .jinja
+            .get_template(self.template())
+            .wrap_err("template not found")?;
+        let rendered = template.render(&ctx).wrap_err("failed to render page")?;
 
         Ok(rendered)
     }
@@ -442,10 +440,4 @@ impl FromStr for Frontmatter {
             draft: deserialized.draft.unwrap_or(false),
         })
     }
-}
-
-/// Tera filter for converting a tag into a link to its tag page.
-pub fn tag_link_filter(val: &Value, _args: &HashMap<String, Value>) -> tera::Result<Value> {
-    let tag = val.as_str().expect("tag is not a string");
-    Ok(to_value(format!("/tags/{}/", tag)).unwrap())
 }

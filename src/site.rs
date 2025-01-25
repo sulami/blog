@@ -1,23 +1,26 @@
+use color_eyre::{
+    eyre::{OptionExt, WrapErr},
+    Report, Result,
+};
+use itertools::Itertools;
+use minijinja::Value;
+use rayon::prelude::*;
+use serde::Serialize;
 use std::{
     cmp::Reverse,
     collections::HashMap,
     ffi::OsStr,
-    fs::{create_dir_all, read_dir},
+    fs::{create_dir_all, read_to_string},
     path::{Path, PathBuf},
     time::Instant,
 };
-
-use color_eyre::{eyre::WrapErr, Report, Result};
-use itertools::Itertools;
-use rayon::prelude::*;
-use serde::Serialize;
-use tera::{Function, Tera, to_value, Value};
 use time::OffsetDateTime;
 
 use crate::{
     config,
-    fs::{create_and_write, deep_copy_dir},
-    page::{Page, PageKind, PageSource, tag_link_filter},
+    fs::{collect_files, create_and_write, deep_copy_dir},
+    page::{Page, PageKind, PageSource},
+    template::{tag_link_filter, UrlFor},
 };
 
 /// Site metadata.
@@ -36,7 +39,7 @@ pub struct Site {
     #[serde(serialize_with = "time::serde::rfc3339::serialize")]
     build_time: OffsetDateTime,
     #[serde(skip)]
-    pub tera: Tera,
+    pub jinja: minijinja::Environment<'static>,
 }
 
 impl Site {
@@ -47,10 +50,9 @@ impl Site {
         site_config: &config::Site,
         mode: Mode,
     ) -> Result<Self> {
-        let mut tera = Tera::new(&format!("{}/templates/*", input.display()))
-            .expect("failed to load templates");
-        tera.autoescape_on(vec![]);
-        tera.register_filter("tag_link", tag_link_filter);
+        let mut jinja = minijinja::Environment::new();
+        minijinja_contrib::add_to_environment(&mut jinja);
+        jinja.add_filter("tag_link", tag_link_filter);
 
         Ok(Self {
             title: site_config.title.clone(),
@@ -69,7 +71,7 @@ impl Site {
                 .wrap_err("failed to convert menu items")?,
             mode,
             pages: HashMap::default(),
-            tera,
+            jinja,
         })
     }
     /// Inserts a page into the site.
@@ -79,26 +81,29 @@ impl Site {
 
     /// Finds all pages sources in the given directory and its subdirectories, adding them to
     /// `acc`.
-    fn find_page_sources(dir: &Path, acc: &mut Vec<PageSource>) -> Result<()> {
-        for path in read_dir(dir)? {
-            let path = path?;
-            if path.file_type()?.is_dir() {
-                Self::find_page_sources(&path.path(), acc)?;
-            }
-            let Some(Some("md")) = path.path().extension().map(OsStr::to_str) else {
-                continue;
-            };
-            acc.push(PageSource::File(path.path().clone()));
-        }
+    fn find_page_sources(dir: &Path) -> Result<Vec<PageSource>> {
+        Ok(collect_files(dir, |p| {
+            matches!(p.extension().map(OsStr::to_str), Some(Some("md")))
+        })?
+        .into_iter()
+        .map(PageSource::File)
+        .collect())
+    }
 
-        Ok(())
+    /// Returns the template directory for the site.
+    fn template_dir(&self) -> PathBuf {
+        self.input_path.join("templates")
+    }
+
+    /// Returns the content directory for the site.
+    fn content_dir(&self) -> PathBuf {
+        self.input_path.join("content")
     }
 
     /// Loads all pages in the given directory and its subdirectories.
-    fn load_pages(&mut self, dir: &Path) -> Result<()> {
-        let mut sources = vec![];
-        Self::find_page_sources(&dir.join("content"), &mut sources)
-            .wrap_err("failed to find page sources")?;
+    fn load_pages(&mut self) -> Result<()> {
+        let sources =
+            Self::find_page_sources(&self.content_dir()).wrap_err("failed to find page sources")?;
         self.pages = sources
             .into_iter()
             .par_bridge()
@@ -118,6 +123,31 @@ impl Site {
         Ok(())
     }
 
+    /// Loads all templates from the given directory and its subdirectories.
+    ///
+    /// Clears all pre-existing templates.
+    pub fn load_templates(&mut self) -> Result<()> {
+        self.jinja.clear_templates();
+
+        let template_paths = collect_files(&self.template_dir(), |_| true)?;
+        for template_path in template_paths {
+            tracing::debug!(
+                "Loading template {}",
+                template_path.strip_prefix(self.template_dir())?.display()
+            );
+            self.jinja.add_template_owned(
+                template_path
+                    .strip_prefix(self.template_dir())?
+                    .to_str()
+                    .ok_or_eyre("non-UTF8 template path")?
+                    .to_string(),
+                read_to_string(&template_path)?,
+            )?;
+        }
+
+        Ok(())
+    }
+
     /// Renders the site.
     pub fn render(&mut self) -> Result<()> {
         let input = self.input_path.clone();
@@ -130,9 +160,10 @@ impl Site {
 
         deep_copy_dir(&input.join("raw"), &output).wrap_err("failed to copy raw files")?;
 
-        self.load_pages(&input).wrap_err("failed to load pages")?;
+        self.load_templates().wrap_err("failed to load templates")?;
+        self.load_pages().wrap_err("failed to load pages")?;
 
-        // NB Ordering here is important. Sitemap after all regular content pages, Atom feed after
+        // Ordering here is important. Sitemap after all regular content pages, Atom feed after
         // that so it's not included in the sitemap.
         self.insert_page(Page::index_page(self));
         self.insert_page(Page::posts_page(self));
@@ -143,7 +174,7 @@ impl Site {
         self.insert_page(Page::sitemap(self));
         self.insert_page(Page::atom_feed(self));
 
-        self.render_pages(&output)
+        self.render_pages()
             .wrap_err("failed to render site pages")?;
 
         let finish = Instant::now();
@@ -156,10 +187,10 @@ impl Site {
     }
 
     /// Renders all pages and writes them to the output directory.
-    fn render_pages(&mut self, output: &Path) -> Result<()> {
-        // NB Reload the url_for function with new pages.
-        self.tera
-            .register_function("url_for", make_url_for(self.pages.clone()));
+    fn render_pages(&mut self) -> Result<()> {
+        // Reload the url_for filter with new pages.
+        self.jinja
+            .add_global("url_for", Value::from_object(UrlFor::new(&self.pages)));
 
         self.pages
             .values()
@@ -168,7 +199,7 @@ impl Site {
                 let rendered = page
                     .render(self)
                     .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
-                create_and_write(&output.join(page.output_path()), &rendered)
+                create_and_write(&self.output_path.join(page.output_path()), &rendered)
                     .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
                 Ok::<(), Report>(())
             })
@@ -231,30 +262,4 @@ impl TryFrom<&config::MenuItem> for MenuItem {
                 .wrap_err("failed to parse menu item link")?,
         })
     }
-}
-
-/// Creates the url_for template filter.
-fn make_url_for(pages: HashMap<PageSource, Page>) -> impl Function {
-    Box::new(
-        move |args: &HashMap<String, Value>| -> Result<Value, tera::Error> {
-            let link: String = args
-                .get("link")
-                .expect("argument link not found")
-                .as_str()
-                .expect("argument link is not a string")
-                .into();
-            let (kind, name) = link
-                .split_once(':')
-                .ok_or(tera::Error::from("invalid link format"))?;
-            let key = match kind {
-                "file" => Ok(PageSource::File(name.into())),
-                "virtual" => Ok(PageSource::Virtual(name.into())),
-                _ => Err(tera::Error::from("invalid kind")),
-            }?;
-            let page = pages
-                .get(&key)
-                .ok_or_else(|| tera::Error::from(format!("page '{:?}' not found", &key)))?;
-            Ok(to_value(page.link.clone()).unwrap())
-        },
-    )
 }

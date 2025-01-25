@@ -7,11 +7,11 @@
 
 {% if page.timestamp %}
 <div class="info">
-    Published on {{ page.timestamp | date(format="%Y-%m-%d") }}
+    Published on {{ page.timestamp | dateformat(format="[year]-[month]-[day]") }}
 </div>
 {% endif %}
 {% endblock heading %}
 
 {% block content %}
-{{ page.content }}
+{{ page.content | safe }}
 {% endblock content %}

@@ -1,12 +1,11 @@
-use std::{
-    fs::{copy, create_dir_all, read_dir, File},
-    io::Write,
-    path::Path,
-};
-
 use color_eyre::{
     eyre::{OptionExt, WrapErr},
     Result,
+};
+use std::{
+    fs::{copy, create_dir_all, read_dir, File},
+    io::Write,
+    path::{Path, PathBuf},
 };
 
 /// Deep-copies a directory from one location to another.
@@ -35,4 +34,29 @@ pub fn create_and_write(path: &Path, content: &str) -> Result<()> {
         .write_all(content.as_bytes())
         .wrap_err("failed to write file contents")?;
     Ok(())
+}
+
+/// Recursively collects all file paths within `dir` matching `pred`.
+///
+/// `pred` is only evaluated for files, not directories.
+pub fn collect_files(dir: &Path, pred: fn(&Path) -> bool) -> Result<Vec<PathBuf>> {
+    let mut acc = Vec::new();
+
+    fn inner(dir: &Path, pred: fn(&Path) -> bool, acc: &mut Vec<PathBuf>) -> Result<()> {
+        for path in read_dir(dir)? {
+            let path = path?;
+            if path.file_type()?.is_dir() {
+                inner(&path.path(), pred, acc)?;
+            }
+            if !pred(&path.path()) {
+                continue;
+            }
+            acc.push(path.path().clone());
+        }
+        Ok(())
+    }
+
+    inner(dir, pred, &mut acc)?;
+
+    Ok(acc)
 }

@@ -10,16 +10,11 @@ default = ["server"]
 server = ["dep:axum", "dep:notify", "dep:tokio", "dep:tokio-stream", "dep:tower-http"]
 
 [dependencies]
-axum = { version = "0.8", optional = true }
 clap = { version = "4", features = ["derive"] }
 color-eyre = { version = "0.6", default-features = false }
 itertools = "0.14"
 minijinja = { version = "2", features = ["loader"] }
 minijinja-contrib = { version = "2", features = ["datetime"] }
-notify = { version = "8", optional = true, default-features = false, features = [
-    "macos_kqueue",
-] }
-once_cell = "1"
 pulldown-cmark = "0.12"
 rayon = "1"
 regex = "1"
@@ -30,12 +25,13 @@ syntect = { version = "5", default-features = false, features = [
 time = { version = "0.3", features = ["serde-human-readable"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
+toml = "0.8"
+
+# Live server dependencies
+axum = { version = "0.8", optional = true }
+notify = { version = "8", optional = true, default-features = false, features = [
+    "macos_kqueue",
+] }
 tokio = { version = "1", optional = true, features = ["full"] }
 tokio-stream = { version = "0.1", optional = true, features = ["sync"] }
-toml = "0.8"
 tower-http = { version = "0.6", optional = true, features = ["fs"] }
-
-[profile.release]
-strip = true
-# lto = true
-# codegen-units = 1

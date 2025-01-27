@@ -189,7 +189,6 @@ dependencies = [
  "minijinja",
  "minijinja-contrib",
  "notify",
- "once_cell",
  "pulldown-cmark",
  "rayon",
  "regex",

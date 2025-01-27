@@ -1,14 +1,12 @@
-use std::collections::HashMap;
-
-use once_cell::sync::Lazy;
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
+use std::{collections::HashMap, sync::LazyLock};
 use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 
 use crate::site::Site;
 
 // These are somewhat expensive to load, so we use a lazy static to only load them once.
-static SS: Lazy<SyntaxSet> = Lazy::new(SyntaxSet::load_defaults_newlines);
-static TS: Lazy<ThemeSet> = Lazy::new(ThemeSet::load_defaults);
+static SS: LazyLock<SyntaxSet> = LazyLock::new(SyntaxSet::load_defaults_newlines);
+static TS: LazyLock<ThemeSet> = LazyLock::new(ThemeSet::load_defaults);
 
 /// Renders the given markdown source to a string.
 pub fn render(source: &str, site: &Site) -> String {

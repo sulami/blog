@@ -3,10 +3,12 @@ use color_eyre::{
     Report, Result,
 };
 use minijinja::Value;
-use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
+use std::{
+    collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr,
+    sync::LazyLock,
+};
 use time::{Date, OffsetDateTime};
 
 use crate::Site;
@@ -14,14 +16,14 @@ use crate::Site;
 pub mod markdown;
 
 /// Regex used to strip footnotes from rendered output.
-static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
+static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"(?s)<input type="checkbox".+?/>.+?<span class="footnote">.+?</span>"#)
         .expect("invalid footnote regex")
 });
 
 /// Regex used to `script` tags from rendered output.
-static SCRIPT_RE: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
+static SCRIPT_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// A page on the site.
 #[derive(Debug, Serialize, Clone)]

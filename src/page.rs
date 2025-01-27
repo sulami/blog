@@ -335,7 +335,7 @@ impl Serialize for PageSource {
 impl FromStr for PageSource {
     type Err = Report;
 
-    fn from_str(s: &str) -> std::prelude::v1::Result<Self, Self::Err> {
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
         let (kind, name) = s
             .split_once(':')
             .ok_or(eyre!("invalid page source format"))?;
@@ -355,10 +355,9 @@ impl PageSource {
 }
 
 /// The kind of page.
-#[derive(Default, Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
 pub enum PageKind {
     /// A blog post, located at /posts/.
-    #[default]
     Post,
     /// A regular page, located at /.
     Page,

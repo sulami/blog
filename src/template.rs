@@ -38,21 +38,13 @@ impl minijinja::value::Object for UrlFor {
                 "argument is not a string",
             ))?
             .into();
-        let (kind, name) = link.split_once(':').ok_or(Error::new(
-            ErrorKind::InvalidOperation,
-            "invalid link format",
-        ))?;
-        let key = match kind {
-            "file" => Ok(PageSource::File(name.into())),
-            "virtual" => Ok(PageSource::Virtual(name.into())),
-            _ => Err(Error::new(ErrorKind::InvalidOperation, "invalid kind")),
-        }?;
-        let page = self.pages.get(&key).ok_or_else(|| {
-            Error::new(
-                ErrorKind::InvalidOperation,
-                format!("page '{:?}' not found", &key),
-            )
+        let key: PageSource = link.parse().map_err(|_| {
+            Error::new(ErrorKind::InvalidOperation, format!("invalid link: {link}"))
         })?;
+        let page = self.pages.get(&key).ok_or(Error::new(
+            ErrorKind::InvalidOperation,
+            format!("page '{:?}' not found", &key),
+        ))?;
         Ok(Value::from_safe_string(page.link.clone()))
     }
 }

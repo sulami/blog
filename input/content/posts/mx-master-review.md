@@ -48,6 +48,17 @@ and 40% for the entire time, so no complaints about the battery life at all.
 
 # Software
 
+---
+
+_Update 2025-01-28:_ I have discovered[^1] [BetterMouse](https://better-mouse.com/)
+as a vastly superior alternative software to Logitech's own software. 
+Instead of a bloated, flaky mess that for some reason needs to include an 
+"AI prompt builder," it is just a small menu bar app that provides more 
+fine-grained control of the settings. I consider the $7.99 part of the 
+mouse's cost.
+
+---
+
 While I had an overall positive impression of the hardware, I am not sure yet
 about the software. Technically the mouse functions without any software
 support, but realistically one wants to install the Logitech app. Note that
@@ -60,7 +71,7 @@ the sensor sensitivity, adjusting scroll direction and speed, and rebinding all
 but the two main buttons.
 
 The second scroll wheel can be used for horizontal scrolling, which is what I
-do, but it can also be used for switching applications or application tabs.[^1]
+do, but it can also be used for switching applications or application tabs.[^2]
 Both of those uses are hampered a bit by the lack of tactile indents, but they
 are usable. A better alternative in my opinion is using it for zooming in and
 out, which works just like pinch-to-zoom.
@@ -109,6 +120,8 @@ functionality to the host software, but I think it would be nice to at least
 have the option to persist some settings in mouse storage. That way at least
 some of those bumps could be smoothed over.
 
-[^1]: Tab switching surprisingly worked in every single app I tried, not just
+[^1]: Thank you, [Luke](https://www.lkhrs.com/uses/).
+
+[^2]: Tab switching surprisingly worked in every single app I tried, not just
     browsers, but also code editors and terminals. I suspect that macOS has a
     generic tab selection API.

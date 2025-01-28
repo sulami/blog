@@ -11,7 +11,8 @@ My workstation is optimised for portability, so everything is relatively small a
 - Apple MacBook Pro 16" (2021 model) - Competent computer, no complaints
 - [Roost Laptop Stand](https://www.therooststand.com/) - Saves my neck and posture
 - [Keyboardio Atreus Keyboard](/posts/atreus/) - Using the [Colemak layout](https://colemak.com); read my review [here](/posts/atreus/)
-- Apple Magic Trackpad - Better for RSI, for me at least
+- [Logitech MX Master](/posts/logitech-mx-master-3s-review/) - with 
+  [BetterMouse](https://better-mouse.com/)
 - iPhone 15 Pro - Finally on USB-C
 - Apple Airpods Pro (2nd Gen) - Not perfect, but pretty good
 

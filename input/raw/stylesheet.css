@@ -83,6 +83,11 @@ blockquote {
     border-left: 3px var(--gray) solid;
 }
 
+hr {
+    color: var(--cream);
+    max-width: calc(min(100% - 2*var(--min-margin), var(--mobile-cutoff)) - 180px) !important;
+}
+
 ol,
 ul {
     padding-left: 40px;

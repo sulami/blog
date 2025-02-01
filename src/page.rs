@@ -2,6 +2,7 @@ use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
+use itertools::Itertools;
 use minijinja::Value;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -135,7 +136,7 @@ impl Page {
                 destination: "index.html".into(),
             },
             source: PageSource::new_virtual("index"),
-            slug: String::new(),
+            slug: "index".into(),
             link: "/".into(),
             url: site.url.clone(),
             tags: vec![],
@@ -171,7 +172,7 @@ impl Page {
                 destination: "posts/index.html".into(),
             },
             source: PageSource::new_virtual("posts"),
-            slug: String::new(),
+            slug: "archive".into(),
             link,
             url,
             tags: vec![],
@@ -242,7 +243,14 @@ impl Page {
             content: String::new(),
             extra_context: HashMap::default(),
         };
-        page.insert_context("pages", &site.pages.values().collect::<Vec<_>>());
+        page.insert_context(
+            "pages",
+            &site
+                .pages
+                .values()
+                .sorted_unstable_by_key(|p| &p.slug)
+                .collect::<Vec<_>>(),
+        );
         page
     }
 

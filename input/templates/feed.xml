@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>{{ site.title }}</title>
-    <link href="{{ page.url | safe }}" rel="self"/>
+    <link href="{{ site.url | safe }}{{ page.link | safe }}" rel="self"/>
     <link href="{{ site.url | safe }}"/>
-    <id>{{ page.url | safe }}</id>
+    <id>{{ site.url | safe }}{{ page.link | safe }}</id>
     <author>
         <name>{{ site.author }}</name>
         <email>{{ site.email }}</email>
     </author>
     <updated>{{ page.timestamp }}</updated>
-   {% for post in page.extra_context.posts %}
+    {% for post in page.extra_context.posts %}
     <entry>
         <title>{{ post.title }}</title>
-        <link href="{{ post.url | safe }}"/>
-        <id>{{ post.url | safe }}</id>
+        <link href="{{ site.url | safe }}{{ post.link | safe }}"/>
+        <id>{{ site.url | safe }}{{ post.link | safe }}</id>
         <published>{{ post.timestamp }}</published>
         <updated>{{ post.timestamp }}</updated>
         <content type="html">
-        {{ post.content | safe }}
+            {{ post.content | safe }}
         </content>
     </entry>
     {% endfor %}

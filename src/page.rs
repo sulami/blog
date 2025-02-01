@@ -34,7 +34,6 @@ pub struct Page {
     title: String,
     slug: String,
     pub link: String,
-    url: String,
     pub tags: Vec<String>,
     pub draft: bool,
     #[serde(serialize_with = "time::serde::rfc3339::option::serialize")]
@@ -68,7 +67,6 @@ impl Page {
                 ref destination, ..
             } => destination.into(),
         };
-        let url = format!("{}{}", site.url, link);
         let content = markdown::render(content_section, site);
 
         Ok(Self {
@@ -77,7 +75,6 @@ impl Page {
             title: frontmatter.title,
             slug: frontmatter.slug,
             link,
-            url,
             tags: frontmatter.tags,
             draft: frontmatter.draft,
             timestamp: frontmatter.timestamp,
@@ -138,7 +135,6 @@ impl Page {
             source: PageSource::new_virtual("index"),
             slug: "index".into(),
             link: "/".into(),
-            url: site.url.clone(),
             tags: vec![],
             draft: false,
             timestamp: None,
@@ -163,8 +159,6 @@ impl Page {
 
     /// Creates the posts page, i.e. the archive.
     pub fn posts_page(site: &Site) -> Self {
-        let link = "/posts/".into();
-        let url = format!("{}{}", site.url, link);
         let mut page = Self {
             title: "Archive".into(),
             kind: PageKind::Custom {
@@ -173,8 +167,7 @@ impl Page {
             },
             source: PageSource::new_virtual("posts"),
             slug: "archive".into(),
-            link,
-            url,
+            link: "/posts/".into(),
             tags: vec![],
             draft: false,
             timestamp: None,
@@ -187,8 +180,6 @@ impl Page {
 
     /// Creates the Atom feed. Should be called after all posts have been loaded into `site`.
     pub fn atom_feed(site: &Site) -> Self {
-        let link = "/atom.xml".into();
-        let url = format!("{}{}", site.url, link);
         let mut page = Self {
             title: "Feed".into(),
             kind: PageKind::Custom {
@@ -197,8 +188,7 @@ impl Page {
             },
             source: PageSource::new_virtual("feed"),
             slug: "feed".into(),
-            link,
-            url,
+            link: "/atom.xml".into(),
             tags: vec![],
             draft: false,
             timestamp: Some(OffsetDateTime::now_utc()),
@@ -225,8 +215,6 @@ impl Page {
 
     /// Creates the sitemap. Should be called after all posts have been loaded into `site`.
     pub fn sitemap(site: &Site) -> Self {
-        let link = "/sitemap.xml".into();
-        let url = format!("{}{}", site.url, link);
         let mut page = Self {
             title: "Sitemap".into(),
             kind: PageKind::Custom {
@@ -235,8 +223,7 @@ impl Page {
             },
             source: PageSource::new_virtual("sitemap"),
             slug: "feed".into(),
-            link,
-            url,
+            link: "/sitemap.xml".into(),
             tags: vec![],
             draft: false,
             timestamp: Some(OffsetDateTime::now_utc()),
@@ -256,8 +243,6 @@ impl Page {
 
     /// Creates the tags page. Should be called after all posts have been loaded into `site`.
     pub fn tags_page(site: &Site) -> Self {
-        let link = "/tags/".into();
-        let url = format!("{}{}", site.url, link);
         let mut page = Self {
             title: "Tags".into(),
             kind: PageKind::Custom {
@@ -266,8 +251,7 @@ impl Page {
             },
             source: PageSource::new_virtual("tags"),
             slug: "tags".into(),
-            link,
-            url,
+            link: "/tags/".into(),
             tags: vec![],
             draft: false,
             timestamp: None,
@@ -281,19 +265,15 @@ impl Page {
 
     /// Creates a page for the given tag.
     pub fn tag_page(site: &Site, tag: &str) -> Self {
-        let destination = format!("tags/{}/index.html", tag);
-        let link = format!("/tags/{}/", tag);
-        let url = format!("{}{}", site.url, link);
         let mut page = Self {
             title: format!("Tag: {tag}"),
             kind: PageKind::Custom {
                 template: "tag.html",
-                destination,
+                destination: format!("tags/{}/index.html", tag),
             },
             source: PageSource::new_virtual(format!("tags/{}", tag)),
             slug: tag.into(),
-            link,
-            url,
+            link: format!("/tags/{}/", tag),
             tags: vec![],
             draft: false,
             timestamp: None,

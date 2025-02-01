@@ -45,6 +45,6 @@ impl minijinja::value::Object for UrlFor {
             ErrorKind::InvalidOperation,
             format!("page '{:?}' not found", &key),
         ))?;
-        Ok(Value::from_safe_string(page.link.clone()))
+        Ok(Value::from_safe_string(page.link.to_owned()))
     }
 }

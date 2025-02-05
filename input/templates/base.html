@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width"/>
     <meta name="description" content="{{ site.title }}"/>
     <meta name="author" content="{{ site.author }}"/>
+    <meta property="og:title" content="{% block title %}{{ site.title }}{% endblock title %}"/>
+    <meta property="og:description" content="{{ site.title }}"/>
+    <meta property="og:type" content="{% block type %}website{% endblock type %}"/>
+    <meta property="og:url" content="{{ site.url }}{{ page.link }}"/>
+    <meta property="og:image" content="{{site.url}}/favicon/android-chrome-256x256.png"/>
     <link rel="stylesheet" href="/stylesheet.css"/>
     <link rel="alternate" href="{{ url_for('virtual:feed') }}" type="application/atom+xml"
           title="{{ site.title }}"/>
@@ -14,9 +19,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon/android-chrome-256x256.png">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180"
+          href="/favicon/apple-touch-icon.png">
     <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg">
-    <title>{% block title %}{{ site.title }}{% endblock title %}</title>
+    <title>{{ self.title() }}</title>
     {% if site.mode == 'Development' %}
     <script>
         const source = new EventSource(`/live-reload`);

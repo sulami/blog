@@ -61,23 +61,20 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
 
 /// Handles a notify event, i.e. a file on disk has changed.
 ///
-/// Reloads Tera templates and re-renders all pages. Then sends out a reload signal to all
-/// connected clients.
+/// Re-renders all pages, then sends out a reload signal to all connected clients.
 fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: mpsc::UnboundedSender<()>) {
     if let Ok(NotifyEvent {
-        kind: EventKind::Modify(_),
+        kind: EventKind::Modify(_) | EventKind::Create(_) | EventKind::Remove(_),
         ..
     }) = res
     {
-        {
-            if let Err(err) = tx.send(()).wrap_err("failed to send rerender signal") {
-                tracing::error!("Error: {err:?}");
-            }
+        if let Err(err) = tx.send(()).wrap_err("failed to send rerender signal") {
+            tracing::error!("Error: {err:?}");
         }
     }
 }
 
-/// Rerender task, listens for rerender signals and rerenders the site when it receives one. Also
+/// Rerender task, listens for rerender signals and re-renders the site when it receives one. Also
 /// sends out a reload signal to all connected clients.
 async fn rerender(
     mut site: Site,

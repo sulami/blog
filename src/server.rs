@@ -8,8 +8,6 @@
 //! 3. A web server that serves the site output and sends out a reload message via a websocket if
 //!    it receives a reload signal.
 
-use std::{convert::Infallible, path::PathBuf, sync::Arc};
-
 use axum::{
     extract::State,
     response::{sse::Event as SseEvent, IntoResponse, Sse},
@@ -18,11 +16,13 @@ use axum::{
 };
 use color_eyre::{eyre::WrapErr, Result};
 use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
+use std::{convert::Infallible, path::PathBuf, sync::Arc, time::Duration};
 use tokio::{
     fs::remove_dir_all,
     net::TcpListener,
     select, signal, spawn,
     sync::{broadcast, watch},
+    time::sleep,
 };
 use tokio_stream::{wrappers::BroadcastStream, StreamExt};
 use tower_http::services::ServeDir;
@@ -83,6 +83,10 @@ async fn rerender(
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.changed().await.is_ok() {
+        // Debounce the signal, only grab the latest within a window.
+        sleep(Duration::from_millis(1000)).await;
+        rerender_rx.mark_unchanged();
+
         if let Err(err) = remove_dir_all(&site.output_path).await {
             tracing::error!("Error: {err:?}");
         }

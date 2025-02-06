@@ -22,7 +22,7 @@ use tokio::{
     fs::remove_dir_all,
     net::TcpListener,
     select, signal, spawn,
-    sync::{broadcast, mpsc},
+    sync::{broadcast, watch},
 };
 use tokio_stream::{wrappers::BroadcastStream, StreamExt};
 use tower_http::services::ServeDir;
@@ -40,7 +40,7 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
     let input_dir = site.input_path.clone();
     let output_dir = site.output_path.clone();
 
-    let (rerender_tx, rerender_rx) = mpsc::unbounded_channel();
+    let (rerender_tx, rerender_rx) = watch::channel(());
     let (reload_tx, _reload_rx) = broadcast::channel(1);
 
     let server = spawn(serve(port, output_dir, reload_tx.clone()));
@@ -63,7 +63,7 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
 /// Handles a notify event, i.e. a file on disk has changed.
 ///
 /// Re-renders all pages, then sends out a reload signal to all connected clients.
-fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: mpsc::UnboundedSender<()>) {
+fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: watch::Sender<()>) {
     if let Ok(NotifyEvent {
         kind: EventKind::Modify(_) | EventKind::Create(_) | EventKind::Remove(_),
         ..
@@ -79,10 +79,10 @@ fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: mpsc::UnboundedSend
 /// sends out a reload signal to all connected clients.
 async fn rerender(
     mut site: Site,
-    mut rerender_rx: mpsc::UnboundedReceiver<()>,
+    mut rerender_rx: watch::Receiver<()>,
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
-    while rerender_rx.recv().await.is_some() {
+    while rerender_rx.changed().await.is_ok() {
         if let Err(err) = remove_dir_all(&site.output_path).await {
             tracing::error!("Error: {err:?}");
         }

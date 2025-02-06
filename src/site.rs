@@ -112,14 +112,13 @@ impl Site {
                     PageSource::File(ref path) => path,
                     _ => unreachable!(),
                 };
-                (
+                Ok((
                     source.clone(),
                     Page::new(path.to_path_buf(), self)
-                        .wrap_err(format!("failed to load page {}", path.display()))
-                        .unwrap(),
-                )
+                        .wrap_err(format!("failed to load page {}", path.display()))?,
+                ))
             })
-            .collect();
+            .collect::<Result<_, Report>>()?;
         Ok(())
     }
 

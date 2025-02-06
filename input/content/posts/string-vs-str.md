@@ -42,11 +42,12 @@ show("foo");
 show(&String::from("foo"));
 ```
 
-This works because `String` has an implementation for
-[`Borrow<str>`](https://doc.rust-lang.org/stable/alloc/borrow/trait.Borrow.html),
-which means it can be borrowed into a `&str` that is just a pointer to its
+This works because `String` has an implementation for [`Deref<Target =
+str>`](https://dev-doc.rust-lang.org/stable/core/ops/trait.Deref.html), which
+means it can be dereferenced into a `&str` that is just a pointer to its
 internal string slice. This in turn implies that the `&str` generated from
-borrowing is only alive as long as the `String` is alive, as discussed above.
+dereferencing is only alive as long as the `String` is alive, as discussed
+above.
 
 Should the function require a `String`, for example to insert it into a struct,
 the best solution is to accept an [`impl

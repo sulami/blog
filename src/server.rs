@@ -19,6 +19,7 @@ use axum::{
 use color_eyre::{eyre::WrapErr, Result};
 use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
 use tokio::{
+    fs::remove_dir_all,
     net::TcpListener,
     select, signal, spawn,
     sync::{broadcast, mpsc},
@@ -82,6 +83,9 @@ async fn rerender(
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.recv().await.is_some() {
+        if let Err(err) = remove_dir_all(&site.output_path).await {
+            tracing::error!("Error: {err:?}");
+        }
         if let Err(err) = site.render().wrap_err("failed to re-render site") {
             tracing::error!("Error: {err:?}");
         }

@@ -17,7 +17,7 @@
         <published>{{ post.timestamp }}</published>
         <updated>{{ post.timestamp }}</updated>
         <content type="html">
-            {{ post.content | safe }}
+            {{ post.content }}
         </content>
     </entry>
     {% endfor %}

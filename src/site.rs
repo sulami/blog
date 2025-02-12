@@ -229,8 +229,21 @@ impl Site {
             .iter()
             .flat_map(|p| p.tags.iter())
             .unique()
-            .sorted()
+            .sorted_unstable()
             .cloned()
+            .collect()
+    }
+
+    /// Returns all tags in the site with their respective counts, deduplicated, in alphabetical
+    /// order.
+    pub fn tag_counts(&self) -> Vec<(String, usize)> {
+        self.posts()
+            .iter()
+            .flat_map(|p| p.tags.iter())
+            .sorted_unstable()
+            .dedup_with_count()
+            .map(|(count, s)| (s.clone(), count))
+            .sorted_unstable()
             .collect()
     }
 }

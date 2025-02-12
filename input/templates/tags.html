@@ -4,9 +4,10 @@
 
 {% block content %}
 <ul>
-    {% for tag in page.extra_context.tags %}
+    {% for tag, count in page.extra_context.tags %}
     <li>
         <a href="{{ tag | tag_link }}">{{ tag }}</a>
+        <span class="info">({{ count }} post{% if count > 1 %}s{% endif %})</span>
     </li>
     {% endfor %}
 </ul>

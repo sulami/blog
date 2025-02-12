@@ -259,7 +259,7 @@ impl Page {
             extra_context: HashMap::default(),
         };
 
-        page.insert_context("tags", &site.tags());
+        page.insert_context("tags", &site.tag_counts());
         page
     }
 

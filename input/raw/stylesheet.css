@@ -151,6 +151,8 @@ code {
     padding: 2px;
     border-radius: 2px;
     border: 1px solid #d1d1d1;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 span.footnote {

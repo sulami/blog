@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
 
     target_origin_id       = resource.aws_s3_bucket.site.bucket_domain_name
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "https-only"
   }
 
   enabled         = "true"

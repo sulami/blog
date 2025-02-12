@@ -9,5 +9,8 @@ format, with [TOML](https://toml.io) frontmatter, and
 a development
 server with live-reload on file changes.
 
+Infrastructure is currently AWS + Cloudflare, managed through
+[OpenTofu](https://opentofu.org/).
+
 While some efforts have been made to make this generally useful, a lot of the
 code is tailored towards my own needs.

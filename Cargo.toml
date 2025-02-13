@@ -30,7 +30,7 @@ toml = "0.8"
 # Live server dependencies
 axum = { version = "0.8", optional = true }
 notify = { version = "8", optional = true, default-features = false, features = [
-    "macos_kqueue",
+    "macos_fsevent",
 ] }
 tokio = { version = "1", optional = true, features = ["full"] }
 tokio-stream = { version = "0.1", optional = true, features = ["sync"] }

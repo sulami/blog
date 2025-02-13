@@ -162,6 +162,10 @@ span.footnote {
     color: var(--gray);
 }
 
+sub, sup {
+  line-height: 0;
+}
+
 input[type=checkbox]+label+span.footnote {
     display: none;
 }

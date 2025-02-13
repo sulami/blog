@@ -13,8 +13,8 @@ server = ["dep:axum", "dep:notify", "dep:tokio", "dep:tokio-stream", "dep:tower-
 clap = { version = "4", features = ["derive"] }
 color-eyre = { version = "0.6", default-features = false }
 itertools = "0.14"
+jiff = { version = "0.2", features = ["serde"] }
 minijinja = { version = "2", features = ["loader"] }
-minijinja-contrib = { version = "2", features = ["datetime"] }
 pulldown-cmark = "0.12"
 rayon = "1"
 regex = "1"
@@ -22,7 +22,6 @@ serde = { version = "1", features = ["derive"] }
 syntect = { version = "5", default-features = false, features = [
     "default-syntaxes", "default-themes", "html", "regex-onig"
 ] }
-time = { version = "0.3", features = ["serde-human-readable"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
 toml = "0.8"

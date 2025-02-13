@@ -1,13 +1,30 @@
 //! Template engine support
 
 use crate::page::{Page, PageSource};
+use jiff::{civil::Date, Zoned};
 use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
-use std::{collections::HashMap, sync::Arc};
+use std::{collections::HashMap, str::FromStr, sync::Arc};
 
 /// Template filter for converting a tag into a link to its tag page.
 pub fn tag_link_filter(tag: &str) -> String {
     format!("/tags/{}/", tag)
+}
+
+/// Template filter for printing a [`Date`] as `YYYY-mm-dd`.
+pub fn format_date_filter(date: &str) -> String {
+    Date::from_str(date)
+        .expect("invalid date")
+        .strftime("%Y-%m-%d")
+        .to_string()
+}
+
+/// Template filter for printing a [`Zoned`] as `YYYY-mm-dd HH:MM`.
+pub fn format_date_time_filter(date: &str) -> String {
+    Zoned::from_str(date)
+        .expect("invalid datetime")
+        .strftime("%Y-%m-%d %H:%M")
+        .to_string()
 }
 
 /// The `url_for` template function supporting links to all supplied pages.

@@ -1,8 +1,16 @@
+use crate::template::{format_date_filter, format_date_time_filter};
+use crate::{
+    config,
+    fs::{collect_files, create_and_write, deep_copy_dir},
+    page::{Page, PageKind, PageSource},
+    template::{tag_link_filter, UrlFor},
+};
 use color_eyre::{
     eyre::{OptionExt, WrapErr},
     Report, Result,
 };
 use itertools::Itertools;
+use jiff::{tz::TimeZone, Zoned};
 use minijinja::Value;
 use rayon::prelude::*;
 use serde::Serialize;
@@ -13,14 +21,6 @@ use std::{
     fs::{create_dir_all, read_to_string},
     path::{Path, PathBuf},
     time::Instant,
-};
-use time::OffsetDateTime;
-
-use crate::{
-    config,
-    fs::{collect_files, create_and_write, deep_copy_dir},
-    page::{Page, PageKind, PageSource},
-    template::{tag_link_filter, UrlFor},
 };
 
 /// Site metadata.
@@ -36,8 +36,7 @@ pub struct Site {
     menu: Vec<MenuItem>,
     pub pages: HashMap<PageSource, Page>,
     mode: Mode,
-    #[serde(serialize_with = "time::serde::rfc3339::serialize")]
-    build_time: OffsetDateTime,
+    build_time: Zoned,
     #[serde(skip)]
     pub jinja: minijinja::Environment<'static>,
 }
@@ -51,8 +50,9 @@ impl Site {
         mode: Mode,
     ) -> Result<Self> {
         let mut jinja = minijinja::Environment::new();
-        minijinja_contrib::add_to_environment(&mut jinja);
         jinja.add_filter("tag_link", tag_link_filter);
+        jinja.add_filter("format_date", format_date_filter);
+        jinja.add_filter("format_date_time", format_date_time_filter);
 
         Ok(Self {
             title: site_config.title.clone(),
@@ -62,7 +62,7 @@ impl Site {
             code_theme: site_config.code_theme.clone(),
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
-            build_time: OffsetDateTime::now_utc(),
+            build_time: Zoned::now().with_time_zone(TimeZone::UTC),
             menu: site_config
                 .menu
                 .iter()
@@ -153,7 +153,7 @@ impl Site {
         let output = self.output_path.clone();
 
         let start = Instant::now();
-        self.build_time = OffsetDateTime::now_utc();
+        self.build_time = Zoned::now().with_time_zone(TimeZone::UTC);
 
         create_dir_all(&output).wrap_err("failed to create output directory")?;
 

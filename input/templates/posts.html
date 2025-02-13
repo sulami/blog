@@ -5,7 +5,7 @@
     {% for post in page.extra_context.posts %}
     <li>
         <a href="{{ post.link }}">{{ post.title }}</a>
-        <span class="info">({{ post.timestamp | dateformat(format="[year]-[month]-[day]") }})</span>
+        <span class="info">({{ post.timestamp | format_date }})</span>
     </li>
     {% endfor %}
 </ul>

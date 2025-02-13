@@ -9,7 +9,7 @@
 
 {% if page.timestamp %}
 <div class="info">
-    Published on {{ page.timestamp | dateformat(format="[year]-[month]-[day]") }}
+    Published on {{ page.timestamp | format_date }}
 </div>
 {% endif %}
 

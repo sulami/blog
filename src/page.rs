@@ -1,8 +1,10 @@
+use crate::Site;
 use color_eyre::{
     eyre::{eyre, WrapErr},
     Report, Result,
 };
 use itertools::Itertools;
+use jiff::{civil::Date, Zoned};
 use minijinja::Value;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -10,9 +12,6 @@ use std::{
     collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr,
     sync::LazyLock,
 };
-use time::{Date, OffsetDateTime};
-
-use crate::Site;
 
 pub mod markdown;
 
@@ -36,8 +35,7 @@ pub struct Page {
     pub link: String,
     pub tags: Vec<String>,
     pub draft: bool,
-    #[serde(serialize_with = "time::serde::rfc3339::option::serialize")]
-    pub timestamp: Option<OffsetDateTime>,
+    pub timestamp: Option<Date>,
     content: String,
     extra_context: HashMap<String, Value>,
 }
@@ -191,7 +189,7 @@ impl Page {
             link: "/atom.xml".into(),
             tags: vec![],
             draft: false,
-            timestamp: Some(OffsetDateTime::now_utc()),
+            timestamp: Some(Zoned::now().date()),
             content: String::new(),
             extra_context: HashMap::default(),
         };
@@ -226,7 +224,7 @@ impl Page {
             link: "/sitemap.xml".into(),
             tags: vec![],
             draft: false,
-            timestamp: Some(OffsetDateTime::now_utc()),
+            timestamp: Some(Zoned::now().date()),
             content: String::new(),
             extra_context: HashMap::default(),
         };
@@ -378,7 +376,7 @@ struct Frontmatter {
     title: String,
     slug: String,
     kind: PageKind,
-    timestamp: Option<OffsetDateTime>,
+    timestamp: Option<Date>,
     tags: Vec<String>,
     draft: bool,
 }
@@ -424,7 +422,7 @@ impl FromStr for Frontmatter {
             title: deserialized.title,
             slug,
             kind: deserialized.kind.unwrap_or_default().into(),
-            timestamp: deserialized.timestamp.map(|d| d.midnight().assume_utc()),
+            timestamp: deserialized.timestamp,
             tags: deserialized.tags.unwrap_or_default(),
             draft: deserialized.draft.unwrap_or(false),
         })

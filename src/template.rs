@@ -1,7 +1,7 @@
 //! Template engine support
 
 use crate::page::{Page, PageSource};
-use jiff::{civil::Date, Zoned};
+use jiff::{civil::Date, tz::TimeZone, Zoned};
 use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
 use std::{collections::HashMap, str::FromStr, sync::Arc};
@@ -24,6 +24,16 @@ pub fn format_date_time_filter(date: &str) -> String {
     Zoned::from_str(date)
         .expect("invalid datetime")
         .strftime("%Y-%m-%d %H:%M")
+        .to_string()
+}
+
+/// Template filter for printing a [`Date`] as RFC-3339 datetime, assuming midnight.
+pub fn format_rfc3339_filter(date: &str) -> String {
+    Date::from_str(date)
+        .expect("invalid date")
+        .to_zoned(TimeZone::UTC)
+        .expect("date could not be represented as timestamp")
+        .strftime("%Y-%m-%dT%H:%M:%SZ")
         .to_string()
 }
 

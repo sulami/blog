@@ -1,4 +1,4 @@
-use crate::template::{format_date_filter, format_date_time_filter};
+use crate::template::{format_date_filter, format_date_time_filter, format_rfc3339_filter};
 use crate::{
     config,
     fs::{collect_files, create_and_write, deep_copy_dir},
@@ -53,6 +53,7 @@ impl Site {
         jinja.add_filter("tag_link", tag_link_filter);
         jinja.add_filter("format_date", format_date_filter);
         jinja.add_filter("format_date_time", format_date_time_filter);
+        jinja.add_filter("format_rfc3339", format_rfc3339_filter);
 
         Ok(Self {
             title: site_config.title.clone(),

@@ -8,14 +8,14 @@
         <name>{{ site.author }}</name>
         <email>{{ site.email }}</email>
     </author>
-    <updated>{{ page.timestamp }}</updated>
+    <updated>{{ page.timestamp | format_rfc3339 }}</updated>
     {% for post in page.extra_context.posts %}
     <entry>
         <title>{{ post.title }}</title>
         <link href="{{ site.url | safe }}{{ post.link | safe }}"/>
         <id>{{ site.url | safe }}{{ post.link | safe }}</id>
-        <published>{{ post.timestamp }}</published>
-        <updated>{{ post.timestamp }}</updated>
+        <published>{{ post.timestamp | format_rfc3339 }}</published>
+        <updated>{{ post.timestamp | format_rfc3339 }}</updated>
         <content type="html">
             {{ post.content }}
         </content>

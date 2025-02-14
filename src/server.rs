@@ -8,6 +8,7 @@
 //! 3. A web server that serves the site output and sends out a reload message via a websocket if
 //!    it receives a reload signal.
 
+use crate::site::Site;
 use axum::{
     extract::State,
     response::{sse::Event as SseEvent, IntoResponse, Sse},
@@ -26,8 +27,7 @@ use tokio::{
 };
 use tokio_stream::{wrappers::BroadcastStream, StreamExt};
 use tower_http::services::ServeDir;
-
-use crate::site::Site;
+use tracing::log::info;
 
 /// Development server state that gets injected into handlers.
 struct ServerState {
@@ -108,6 +108,7 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
     let state = Arc::new(ServerState {
         live_reload_signal: reload_tx,
     });
+    let shutdown_signal = shutdown_signal(Duration::from_secs(1)).await;
     let app = Router::new()
         .route("/live-reload", get(live_reload_handler))
         .fallback_service(ServeDir::new(output_dir))
@@ -115,11 +116,32 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
     let listener = TcpListener::bind(format!("0.0.0.0:{port}"))
         .await
         .wrap_err("failed to bind to port")?;
-    println!("Listening on http://0.0.0.0:{port}");
-    axum::serve(listener, app)
-        .with_graceful_shutdown(shutdown_signal())
-        .await
-        .wrap_err("failed to run server")?;
+
+    info!("Listening on http://0.0.0.0:{port}");
+
+    let mut server_shutdown_signal = shutdown_signal.subscribe();
+    let server = axum::serve(listener, app).with_graceful_shutdown(async move {
+        let _ = server_shutdown_signal.recv().await;
+    });
+
+    let mut outer_shutdown_signal = shutdown_signal.subscribe();
+    select! {
+        // Server shutdown by itself.
+        res = server => {
+            if let Err(err) = res {
+                tracing::error!("Server error: {err:?}");
+                return Err(err.into());
+            }
+        },
+        // Hard shutdown.
+        _ = async {
+            loop {
+                if let Ok(Shutdown::Hard) = outer_shutdown_signal.recv().await {
+                    break;
+                }
+            }
+        } => {},
+    }
     Ok(())
 }
 
@@ -130,8 +152,20 @@ async fn live_reload_handler(State(state): State<Arc<ServerState>>) -> impl Into
     Sse::new(stream)
 }
 
-/// Shutdown handler.
-async fn shutdown_signal() {
+/// Type of server shutdown.
+#[derive(Copy, Clone, Debug)]
+enum Shutdown {
+    /// Graceful shutdown, finish handling in-flight requests.
+    Graceful,
+    /// Hard shutdown, abort immediately.
+    Hard,
+}
+
+/// Installs the shutdown handler and returns a sender which can be subscribed to for shutdown signals.
+///
+/// The channel will receive two signals, an initial [`Shutdown::Graceful`], a [`Shutdown::Hard`] at least
+/// `grace_period` later.
+async fn shutdown_signal(grace_period: Duration) -> broadcast::Sender<Shutdown> {
     let ctrl_c = async {
         signal::ctrl_c()
             .await
@@ -149,8 +183,23 @@ async fn shutdown_signal() {
     #[cfg(not(unix))]
     let terminate = std::future::pending::<()>();
 
-    select! {
-        _ = ctrl_c => {},
-        _ = terminate => {},
-    }
+    let (tx, _rx) = broadcast::channel(2);
+    let sender = tx.clone();
+
+    spawn(async move {
+        select! {
+            _ = ctrl_c => {},
+            _ = terminate => {},
+        }
+
+        info!("Initiating graceful shutdown");
+        sender.send(Shutdown::Graceful).unwrap();
+
+        sleep(grace_period).await;
+
+        info!("Grace period elapsed, shutting down hard");
+        sender.send(Shutdown::Hard).unwrap();
+    });
+
+    tx
 }

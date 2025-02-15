@@ -6,13 +6,21 @@ use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
 use std::{collections::HashMap, str::FromStr, sync::Arc};
 
+/// Loads all custom filters into the Jinja environment.
+pub fn load_filters(env: &mut minijinja::Environment) {
+    env.add_filter("tag_link", tag_link_filter);
+    env.add_filter("format_date", format_date_filter);
+    env.add_filter("format_date_time", format_date_time_filter);
+    env.add_filter("format_rfc3339", format_rfc3339_filter);
+}
+
 /// Template filter for converting a tag into a link to its tag page.
-pub fn tag_link_filter(tag: &str) -> String {
+fn tag_link_filter(tag: &str) -> String {
     format!("/tags/{}/", tag)
 }
 
 /// Template filter for printing a [`Date`] as `YYYY-mm-dd`.
-pub fn format_date_filter(date: &str) -> String {
+fn format_date_filter(date: &str) -> String {
     Date::from_str(date)
         .expect("invalid date")
         .strftime("%Y-%m-%d")
@@ -20,7 +28,7 @@ pub fn format_date_filter(date: &str) -> String {
 }
 
 /// Template filter for printing a [`Zoned`] as `YYYY-mm-dd HH:MM`.
-pub fn format_date_time_filter(date: &str) -> String {
+fn format_date_time_filter(date: &str) -> String {
     Zoned::from_str(date)
         .expect("invalid datetime")
         .strftime("%Y-%m-%d %H:%M")
@@ -28,7 +36,7 @@ pub fn format_date_time_filter(date: &str) -> String {
 }
 
 /// Template filter for printing a [`Date`] as RFC-3339 datetime, assuming midnight.
-pub fn format_rfc3339_filter(date: &str) -> String {
+fn format_rfc3339_filter(date: &str) -> String {
     Date::from_str(date)
         .expect("invalid date")
         .to_zoned(TimeZone::UTC)

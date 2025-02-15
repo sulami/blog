@@ -34,5 +34,3 @@ notify = { version = "8", optional = true, default-features = false, features = 
 tokio = { version = "1", optional = true, features = ["full"] }
 tokio-stream = { version = "0.1", optional = true, features = ["sync"] }
 tower-http = { version = "0.6", optional = true, features = ["fs"] }
-walkdir = "2"
-ignore = "0.4"

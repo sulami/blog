@@ -3,8 +3,10 @@ use eyre::{eyre, Report, Result, WrapErr};
 use jiff::civil::Date;
 use minijinja::Value;
 use serde::{Deserialize, Serialize};
-use std::ffi::OsString;
-use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
+use std::{
+    collections::HashMap, ffi::OsString, fs::File, hash::Hash, io::Read, path::PathBuf,
+    str::FromStr,
+};
 use tracing::{debug, instrument};
 
 pub mod markdown;

@@ -176,7 +176,6 @@ impl Site {
         // that so it's not included in the sitemap.
         self.insert_page(Page::index_page(self));
         self.insert_page(Page::posts_page(self));
-        self.insert_page(Page::tags_page(self));
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
@@ -202,6 +201,10 @@ impl Site {
         // Reload the url_for filter with new pages.
         self.jinja
             .add_global("url_for", Value::from_object(UrlFor::new(&self.pages)));
+        self.jinja
+            .add_global("posts", Value::from_serialize(self.posts()));
+        self.jinja
+            .add_global("tag_counts", Value::from_serialize(self.tag_counts()));
 
         self.pages
             .values()

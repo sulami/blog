@@ -24,7 +24,7 @@ static SCRIPT_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// A page on the site.
-#[derive(Debug, Serialize, Clone)]
+#[derive(Clone, Debug, Serialize)]
 pub struct Page {
     pub kind: PageKind,
     pub source: PageSource,
@@ -264,29 +264,6 @@ impl Page {
                 .sorted_unstable_by_key(|p| &p.slug)
                 .collect::<Vec<_>>(),
         );
-        page
-    }
-
-    /// Creates the tags page. Should be called after all posts have been loaded into `site`.
-    pub fn tags_page(site: &Site) -> Self {
-        let mut page = Self {
-            title: "Tags".into(),
-            kind: PageKind::Custom {
-                template: "tags.html",
-                destination: "tags/index.html".into(),
-            },
-            source: PageSource::new_virtual("tags"),
-            slug: "tags".into(),
-            link: "/tags/".into(),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            timestamp: None,
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-
-        page.insert_context("tags", &site.tag_counts());
         page
     }
 

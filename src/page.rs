@@ -33,6 +33,7 @@ pub struct Page {
     pub link: String,
     pub tags: Vec<String>,
     pub draft: bool,
+    templated: bool,
     pub timestamp: Option<Date>,
     content: String,
     extra_context: HashMap<String, Value>,
@@ -41,7 +42,7 @@ pub struct Page {
 impl Page {
     /// Creates a new page from the given source file.
     #[instrument(skip(site))]
-    pub fn new(source: PathBuf, site: &Site) -> Result<Self> {
+    pub fn new(source: PathBuf) -> Result<Self> {
         let file_string = {
             debug!("Loading page file");
             let mut fp = File::open(&source)?;
@@ -65,7 +66,6 @@ impl Page {
                 ref destination, ..
             } => destination.into(),
         };
-        let content = markdown::render(content_section, site);
 
         Ok(Self {
             kind: frontmatter.kind,
@@ -75,8 +75,9 @@ impl Page {
             link,
             tags: frontmatter.tags,
             draft: frontmatter.draft,
+            templated: frontmatter.templated,
             timestamp: frontmatter.timestamp,
-            content,
+            content: content_section.to_string(),
             extra_context: HashMap::default(),
         })
     }
@@ -117,7 +118,24 @@ impl Page {
     #[instrument(skip_all, fields(source = ?self.source, output = ?self.output_path()))]
     pub fn render(&self, site: &Site) -> Result<String> {
         debug!("Rendering page");
-        let ctx = Context { page: self, site };
+
+        let mut ctx = Context {
+            page: self,
+            site,
+            rendered_content: None,
+        };
+
+        let templated_content = if self.templated {
+            &site
+                .jinja
+                .render_str(&self.content, &ctx)
+                .wrap_err("failed to render content Jinja")?
+        } else {
+            &self.content
+        };
+
+        let rendered_content = markdown::render(templated_content, site);
+        ctx.rendered_content = Some(&rendered_content);
         let template = site
             .jinja
             .get_template(self.template())
@@ -141,6 +159,7 @@ impl Page {
             link: "/".into(),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: None,
             content: String::new(),
             extra_context: HashMap::default(),
@@ -174,6 +193,7 @@ impl Page {
             link: "/posts/".into(),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: None,
             content: String::new(),
             extra_context: HashMap::default(),
@@ -195,6 +215,7 @@ impl Page {
             link: "/atom.xml".into(),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: Some(Zoned::now().date()),
             content: String::new(),
             extra_context: HashMap::default(),
@@ -230,6 +251,7 @@ impl Page {
             link: "/sitemap.xml".into(),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: Some(Zoned::now().date()),
             content: String::new(),
             extra_context: HashMap::default(),
@@ -258,6 +280,7 @@ impl Page {
             link: "/tags/".into(),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: None,
             content: String::new(),
             extra_context: HashMap::default(),
@@ -280,6 +303,7 @@ impl Page {
             link: format!("/tags/{}/", tag),
             tags: vec![],
             draft: false,
+            templated: true,
             timestamp: None,
             content: String::new(),
             extra_context: HashMap::default(),
@@ -301,6 +325,8 @@ impl Page {
 struct Context<'a> {
     site: &'a Site,
     page: &'a Page,
+    /// Only present in the second render pass, when rendering into the template.
+    rendered_content: Option<&'a str>,
 }
 
 /// The source of a page.
@@ -385,6 +411,7 @@ struct Frontmatter {
     timestamp: Option<Date>,
     tags: Vec<String>,
     draft: bool,
+    templated: bool,
 }
 
 impl FromStr for Frontmatter {
@@ -417,6 +444,7 @@ impl FromStr for Frontmatter {
             timestamp: Option<Date>,
             tags: Option<Vec<String>>,
             draft: Option<bool>,
+            templated: Option<bool>,
         }
 
         let deserialized: DeserializedFrontmatter = toml::from_str(s)?;
@@ -431,6 +459,7 @@ impl FromStr for Frontmatter {
             timestamp: deserialized.timestamp,
             tags: deserialized.tags.unwrap_or_default(),
             draft: deserialized.draft.unwrap_or(false),
+            templated: deserialized.templated.unwrap_or(false),
         })
     }
 }

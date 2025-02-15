@@ -180,28 +180,6 @@ impl Page {
         page
     }
 
-    /// Creates the posts page, i.e. the archive.
-    pub fn posts_page(site: &Site) -> Self {
-        let mut page = Self {
-            title: "Archive".into(),
-            kind: PageKind::Custom {
-                template: "posts.html",
-                destination: "posts/index.html".into(),
-            },
-            source: PageSource::new_virtual("posts"),
-            slug: "archive".into(),
-            link: "/posts/".into(),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            timestamp: None,
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-        page.insert_context("posts", &site.posts());
-        page
-    }
-
     /// Creates the Atom feed. Should be called after all posts have been loaded into `site`.
     pub fn atom_feed(site: &Site) -> Self {
         let mut page = Self {

@@ -175,7 +175,6 @@ impl Site {
         // Ordering here is important. Sitemap after all regular content pages, Atom feed after
         // that so it's not included in the sitemap.
         self.insert_page(Page::index_page(self));
-        self.insert_page(Page::posts_page(self));
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));

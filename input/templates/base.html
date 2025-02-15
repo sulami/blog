@@ -61,7 +61,25 @@
     </div>
 
     <div id="footer">
-        Built {{ site.build_time | format_date_time }}
+        {% if site.source_sha %}
+        {% if site.source_url %}
+        <a href="{{ site.source_url }}">
+            {% endif %}
+            {{ site.source_sha | take(7) }}
+            {% if site.source_url %}
+        </a>
+        {% endif %}
+        {% endif %}
+
+        built
+
+        {% if site.build_url %}
+        <a href="{{ site.build_url }}">
+            {% endif %}
+            {{ site.build_time | format_date }}
+            {% if site.build_url %}
+        </a>
+        {% endif %}
     </div>
 </div>
 </body>

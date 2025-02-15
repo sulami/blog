@@ -35,6 +35,9 @@ pub struct Site {
     menu: Vec<MenuItem>,
     pub pages: HashMap<PageSource, Page>,
     mode: Mode,
+    source_sha: Option<String>,
+    source_url: Option<String>,
+    build_url: Option<String>,
     build_time: Zoned,
     #[serde(skip)]
     pub jinja: minijinja::Environment<'static>,
@@ -47,6 +50,9 @@ impl Site {
         output: &Path,
         site_config: &config::Site,
         mode: Mode,
+        source_sha: Option<impl Into<String>>,
+        source_url: Option<impl Into<String>>,
+        build_url: Option<impl Into<String>>,
     ) -> Result<Self> {
         let mut jinja = minijinja::Environment::new();
         load_filters(&mut jinja);
@@ -59,6 +65,9 @@ impl Site {
             code_theme: site_config.code_theme.clone(),
             input_path: input.to_path_buf(),
             output_path: output.to_path_buf(),
+            source_sha: source_sha.map(Into::into),
+            source_url: source_url.map(Into::into),
+            build_url: build_url.map(Into::into),
             build_time: Zoned::now().with_time_zone(TimeZone::UTC),
             menu: site_config
                 .menu

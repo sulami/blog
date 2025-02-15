@@ -18,14 +18,29 @@ struct Cli {
     #[command(subcommand)]
     command: Command,
 
+    /// Site config file
     #[clap(long, short, default_value = "site.toml")]
     config: PathBuf,
 
+    /// Input directory
     #[clap(long, short, default_value = "input")]
     input: PathBuf,
 
+    /// Output directory
     #[clap(long, short, default_value = "output")]
     output: PathBuf,
+
+    /// Git SHA of the site source
+    #[clap(long)]
+    source_sha: Option<String>,
+
+    /// URL of the site source
+    #[clap(long)]
+    source_url: Option<String>,
+
+    /// URL of the current build
+    #[clap(long)]
+    build_url: Option<String>,
 }
 
 #[derive(Clone, Copy, Debug, Subcommand)]
@@ -51,14 +66,30 @@ fn main() -> Result<()> {
 
     match args.command {
         Command::Render => {
-            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Release)
-                .wrap_err("failed to create site")?;
+            let mut site = Site::new(
+                &args.input,
+                &args.output,
+                &config.site,
+                Mode::Release,
+                args.source_sha,
+                args.source_url,
+                args.build_url,
+            )
+            .wrap_err("failed to create site")?;
             site.render().wrap_err("failed to render site")?;
         }
         #[cfg(feature = "server")]
         Command::Serve { port } => {
-            let mut site = Site::new(&args.input, &args.output, &config.site, Mode::Development)
-                .wrap_err("failed to create site")?;
+            let mut site = Site::new(
+                &args.input,
+                &args.output,
+                &config.site,
+                Mode::Development,
+                args.source_sha,
+                args.source_url,
+                args.build_url,
+            )
+            .wrap_err("failed to create site")?;
             site.render().wrap_err("failed to render site")?;
             server::development_server(port, site)?;
         }

@@ -21,7 +21,12 @@ jobs:
             - "target"
       - run:
           name: Render output
-          command: target/debug/blog render
+          command: >
+            target/debug/blog
+            --source-sha << pipeline.git.revision >>
+            --source-url "<< pipeline.project.git_url >>/tree/<< pipeline.git.revision >>"
+            --build-url "$CIRCLE_BUILD_URL"
+            render
       - store_artifacts:
           path: output
           destination: '.'

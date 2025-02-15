@@ -7,7 +7,7 @@ code_theme = "Solarized (light)"
 
 [[site.menu]]
 title = "Feed"
-link = "virtual:feed"
+link = "file:input/content/atom.xml"
 
 [[site.menu]]
 title = "Now"

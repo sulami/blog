@@ -65,7 +65,7 @@
         {% if site.source_url %}
         <a href="{{ site.source_url }}">
             {% endif %}
-            {{ site.source_sha | take(7) }}
+            {{ site.source_sha[:7] }}
             {% if site.source_url %}
         </a>
         {% endif %}

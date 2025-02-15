@@ -12,7 +12,6 @@ pub fn load_filters(env: &mut minijinja::Environment) {
     env.add_filter("format_date", format_date_filter);
     env.add_filter("format_date_time", format_date_time_filter);
     env.add_filter("format_rfc3339", format_rfc3339_filter);
-    env.add_filter("take", take);
 }
 
 /// Template filter for converting a tag into a link to its tag page.
@@ -44,11 +43,6 @@ fn format_rfc3339_filter(date: &str) -> String {
         .expect("date could not be represented as timestamp")
         .strftime("%Y-%m-%dT%H:%M:%SZ")
         .to_string()
-}
-
-/// Template filter that takes the first `n` characters.
-fn take(s: &str, n: usize) -> String {
-    s[..n].to_string()
 }
 
 /// The `url_for` template function supporting links to all supplied pages.

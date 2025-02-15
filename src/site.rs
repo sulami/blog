@@ -122,7 +122,7 @@ impl Site {
                 };
                 Ok((
                     source.clone(),
-                    Page::new(path.to_path_buf(), self)
+                    Page::new(path.to_path_buf())
                         .wrap_err(format!("failed to load page {}", path.display()))?,
                 ))
             })

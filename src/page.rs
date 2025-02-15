@@ -145,41 +145,6 @@ impl Page {
         Ok(rendered)
     }
 
-    /// Creates the index page. Should be called after all regular pages have been loaded into
-    /// `site`.
-    pub fn index_page(site: &Site) -> Self {
-        let mut page = Self {
-            title: "Index".into(),
-            kind: PageKind::Custom {
-                template: "index.html",
-                destination: "index.html".into(),
-            },
-            source: PageSource::new_virtual("index"),
-            slug: "index".into(),
-            link: "/".into(),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            timestamp: None,
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-        page.insert_context(
-            "recent_posts",
-            &site.posts().iter().take(5).collect::<Vec<_>>(),
-        );
-        page.insert_context(
-            "best_posts",
-            &site
-                .posts()
-                .iter()
-                .filter(|p| p.tags.contains(&"best-of".into()))
-                .take(5)
-                .collect::<Vec<_>>(),
-        );
-        page
-    }
-
     /// Creates the Atom feed. Should be called after all posts have been loaded into `site`.
     pub fn atom_feed(site: &Site) -> Self {
         let mut page = Self {

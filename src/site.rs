@@ -174,7 +174,6 @@ impl Site {
 
         // Ordering here is important. Sitemap after all regular content pages, Atom feed after
         // that so it's not included in the sitemap.
-        self.insert_page(Page::index_page(self));
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
@@ -204,6 +203,16 @@ impl Site {
             .add_global("posts", Value::from_serialize(self.posts()));
         self.jinja
             .add_global("tag_counts", Value::from_serialize(self.tag_counts()));
+        self.jinja.add_global(
+            "best_posts",
+            Value::from_serialize(
+                self.posts()
+                    .iter()
+                    .filter(|p| p.tags.contains(&"best-of".into()))
+                    .take(5)
+                    .collect::<Vec<_>>(),
+            ),
+        );
 
         self.pages
             .values()

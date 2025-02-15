@@ -9,15 +9,27 @@ use itertools::Itertools;
 use jiff::{tz::TimeZone, Zoned};
 use minijinja::Value;
 use rayon::prelude::*;
+use regex::Regex;
 use serde::Serialize;
 use std::{
     cmp::Reverse,
     collections::HashMap,
     fs::{create_dir_all, read_to_string},
     path::{Path, PathBuf},
+    sync::LazyLock,
     time::Instant,
 };
 use tracing::{info, instrument};
+
+/// Regex used to strip footnotes from rendered output.
+static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r#"(?s)<input type="checkbox".+?/>.+?<span class="footnote">.+?</span>"#)
+        .expect("invalid footnote regex")
+});
+
+/// Regex used to `script` tags from rendered output.
+static SCRIPT_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// Site metadata.
 #[derive(Debug, Serialize)]
@@ -174,7 +186,6 @@ impl Site {
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
-        self.insert_page(Page::atom_feed(self));
 
         self.render_pages()
             .wrap_err("failed to render site pages")?;
@@ -215,6 +226,21 @@ impl Site {
                     .iter()
                     .filter(|p| p.tags.contains(&"best-of".into()))
                     .take(5)
+                    .collect::<Vec<_>>(),
+            ),
+        );
+        self.jinja.add_global(
+            "feed_posts",
+            Value::from_serialize(
+                self.posts()
+                    .into_iter()
+                    .take(10)
+                    .map(|mut post| {
+                        post.content = post.render_content(self).unwrap();
+                        post.content = FOOTNOTE_RE.replace_all(&post.content, "").to_string();
+                        post.content = SCRIPT_RE.replace_all(&post.content, "").to_string();
+                        post
+                    })
                     .collect::<Vec<_>>(),
             ),
         );

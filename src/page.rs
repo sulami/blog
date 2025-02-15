@@ -1,27 +1,13 @@
 use crate::Site;
 use eyre::{eyre, Report, Result, WrapErr};
-use jiff::{civil::Date, Zoned};
+use jiff::civil::Date;
 use minijinja::Value;
-use regex::Regex;
 use serde::{Deserialize, Serialize};
 use std::ffi::OsString;
-use std::{
-    collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr,
-    sync::LazyLock,
-};
+use std::{collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr};
 use tracing::{debug, instrument};
 
 pub mod markdown;
-
-/// Regex used to strip footnotes from rendered output.
-static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r#"(?s)<input type="checkbox".+?/>.+?<span class="footnote">.+?</span>"#)
-        .expect("invalid footnote regex")
-});
-
-/// Regex used to `script` tags from rendered output.
-static SCRIPT_RE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// A page on the site.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
@@ -36,7 +22,7 @@ pub struct Page {
     templated: bool,
     markdown: bool,
     pub timestamp: Option<Date>,
-    content: String,
+    pub(crate) content: String,
     extra_context: HashMap<String, Value>,
 }
 
@@ -126,8 +112,32 @@ impl Page {
     #[instrument(skip_all, fields(source = ?self.source, output = ?self.output_path()))]
     pub fn render(&self, site: &Site) -> Result<String> {
         debug!("Rendering page");
+        let ctx = Context {
+            page: self,
+            site,
+            rendered_content: Some(
+                self.render_content(site)
+                    .wrap_err("failed to render page content")?,
+            ),
+        };
 
-        let mut ctx = Context {
+        if let Some(tmpl) = self.template() {
+            let template = site
+                .jinja
+                .get_template(tmpl)
+                .wrap_err("template not found")?;
+            let rendered = template.render(&ctx).wrap_err("failed to render page")?;
+            Ok(rendered)
+        } else {
+            Ok(ctx.rendered_content.unwrap().to_string())
+        }
+    }
+
+    /// Renders only the content of the page, without insertion into a template.
+    ///
+    /// This is mainly useful for feed generation.
+    pub fn render_content(&self, site: &Site) -> Result<String> {
+        let ctx = Context {
             page: self,
             site,
             rendered_content: None,
@@ -147,55 +157,8 @@ impl Page {
         } else {
             templated_content.to_string()
         };
-        ctx.rendered_content = Some(&rendered_content);
 
-        if let Some(tmpl) = self.template() {
-            let template = site
-                .jinja
-                .get_template(tmpl)
-                .wrap_err("template not found")?;
-            let rendered = template.render(&ctx).wrap_err("failed to render page")?;
-            Ok(rendered)
-        } else {
-            Ok(rendered_content)
-        }
-    }
-
-    /// Creates the Atom feed. Should be called after all posts have been loaded into `site`.
-    pub fn atom_feed(site: &Site) -> Self {
-        let mut page = Self {
-            title: "Feed".into(),
-            kind: PageKind::Custom {
-                template: "feed.xml",
-                destination: "atom.xml".into(),
-            },
-            source: PageSource::new_virtual("feed"),
-            slug: "feed".into(),
-            link: "/atom.xml".into(),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            markdown: false,
-            timestamp: Some(Zoned::now().date()),
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-
-        // Strip the footnotes from the content, the checkboxes render weirdly in feed readers, and
-        // the footnotes don't fit in inline without CSS.
-        let posts = site
-            .posts()
-            .into_iter()
-            .take(10)
-            .map(|mut post| {
-                post.content = FOOTNOTE_RE.replace_all(&post.content, "").to_string();
-                post.content = SCRIPT_RE.replace_all(&post.content, "").to_string();
-                post
-            })
-            .collect::<Vec<_>>();
-        page.insert_context("posts", &posts);
-
-        page
+        Ok(rendered_content)
     }
 
     /// Creates a page for the given tag.
@@ -235,7 +198,7 @@ struct Context<'a> {
     site: &'a Site,
     page: &'a Page,
     /// Only present in the second render pass, when rendering into the template.
-    rendered_content: Option<&'a str>,
+    rendered_content: Option<String>,
 }
 
 /// The source of a page.

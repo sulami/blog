@@ -1,6 +1,11 @@
+title = "Feed"
+kind = "other"
+slug = "atom.xml"
+templated = true
+---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>{{ site.title }}</title>
+    <title>{{ site.title | escape }}</title>
     <link href="{{ site.url | safe }}{{ page.link | safe }}" rel="self"/>
     <link href="{{ site.url | safe }}"/>
     <id>{{ site.url | safe }}{{ page.link | safe }}</id>
@@ -8,16 +13,16 @@
         <name>{{ site.author }}</name>
         <email>{{ site.email }}</email>
     </author>
-    <updated>{{ page.timestamp | format_rfc3339 }}</updated>
-    {% for post in posts[:10] %}
+    <updated>{{ site.build_time | format_rfc3339 }}</updated>
+    {% for post in feed_posts %}
     <entry>
-        <title>{{ post.title }}</title>
+        <title>{{ post.title | escape }}</title>
         <link href="{{ site.url | safe }}{{ post.link | safe }}"/>
         <id>{{ site.url | safe }}{{ post.link | safe }}</id>
         <published>{{ post.timestamp | format_rfc3339 }}</published>
         <updated>{{ post.timestamp | format_rfc3339 }}</updated>
         <content type="html">
-            {{ post.content }}
+            {{ post.content | escape }}
         </content>
     </entry>
     {% endfor %}

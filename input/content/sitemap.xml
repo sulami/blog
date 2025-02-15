@@ -1,0 +1,14 @@
+title = "Sitemap"
+kind = "other"
+slug = "sitemap.xml"
+templated = true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {%- for page in pages %}
+    <url>
+        <loc>{{ site.url | safe }}{{ page.link | safe }}</loc>
+        <lastmod>{% if page.timestamp %}{{ page.timestamp | format_rfc3339 }}{% else %}{{ site.build_time | format_rfc3339 }}{% endif %}</lastmod>
+    </url>
+    {%- endfor %}
+</urlset>

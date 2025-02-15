@@ -40,24 +40,15 @@ pub fn create_and_write(path: &Path, content: &str) -> Result<()> {
 ///
 /// `pred` is only evaluated for files, not directories.
 #[instrument]
-pub fn collect_files(dir: &Path, pred: fn(&Path) -> bool) -> Result<Vec<PathBuf>> {
-    let mut acc = Vec::new();
+pub fn collect_files(dir: &Path) -> Result<Vec<PathBuf>> {
+    use ignore::Walk;
 
-    fn inner(dir: &Path, pred: fn(&Path) -> bool, acc: &mut Vec<PathBuf>) -> Result<()> {
-        for path in read_dir(dir)? {
-            let path = path?;
-            if path.file_type()?.is_dir() {
-                inner(&path.path(), pred, acc)?;
-            }
-            if !pred(&path.path()) {
-                continue;
-            }
-            acc.push(path.path().clone());
+    let mut rv = vec![];
+    for entry in Walk::new(dir) {
+        let entry = entry?;
+        if entry.file_type().unwrap().is_file() {
+            rv.push(entry.into_path());
         }
-        Ok(())
     }
-
-    inner(dir, pred, &mut acc)?;
-
-    Ok(acc)
+    Ok(rv)
 }

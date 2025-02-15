@@ -13,7 +13,6 @@ use serde::Serialize;
 use std::{
     cmp::Reverse,
     collections::HashMap,
-    ffi::OsStr,
     fs::{create_dir_all, read_to_string},
     path::{Path, PathBuf},
     time::Instant,
@@ -89,12 +88,11 @@ impl Site {
     /// `acc`.
     #[instrument]
     fn find_page_sources(dir: &Path) -> Result<Vec<PageSource>> {
-        Ok(collect_files(dir, |p| {
-            matches!(p.extension().map(OsStr::to_str), Some(Some("md")))
-        })?
-        .into_iter()
-        .map(PageSource::File)
-        .collect())
+        Ok(collect_files(&dir)
+            .wrap_err("failed to collect page sources")?
+            .into_iter()
+            .map(PageSource::File)
+            .collect())
     }
 
     /// Returns the template directory for the site.
@@ -114,7 +112,6 @@ impl Site {
             Self::find_page_sources(&self.content_dir()).wrap_err("failed to find page sources")?;
         self.pages = sources
             .into_iter()
-            .par_bridge()
             .map(|source| {
                 let path = match source {
                     PageSource::File(ref path) => path,
@@ -137,7 +134,7 @@ impl Site {
     pub fn load_templates(&mut self) -> Result<()> {
         self.jinja.clear_templates();
 
-        let template_paths = collect_files(&self.template_dir(), |_| true)?;
+        let template_paths = collect_files(&self.template_dir())?;
         for template_path in template_paths {
             tracing::debug!(
                 template = ?template_path.strip_prefix(self.template_dir())?,
@@ -177,7 +174,6 @@ impl Site {
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
-        self.insert_page(Page::sitemap(self));
         self.insert_page(Page::atom_feed(self));
 
         self.render_pages()
@@ -199,6 +195,15 @@ impl Site {
         // Reload the url_for filter with new pages.
         self.jinja
             .add_global("url_for", Value::from_object(UrlFor::new(&self.pages)));
+        self.jinja.add_global(
+            "pages",
+            Value::from_serialize(
+                self.pages
+                    .values()
+                    .sorted_unstable_by_key(|p| &p.link)
+                    .collect_vec(),
+            ),
+        );
         self.jinja
             .add_global("posts", Value::from_serialize(self.posts()));
         self.jinja

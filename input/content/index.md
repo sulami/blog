@@ -1,5 +1,5 @@
 title = "Welcome"
-slug = "./"
+slug = "/"
 kind = "page"
 templated = true
 ---

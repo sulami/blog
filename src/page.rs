@@ -1,10 +1,10 @@
 use crate::Site;
 use eyre::{eyre, Report, Result, WrapErr};
-use itertools::Itertools;
 use jiff::{civil::Date, Zoned};
 use minijinja::Value;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+use std::ffi::OsString;
 use std::{
     collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr,
     sync::LazyLock,
@@ -24,7 +24,7 @@ static SCRIPT_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"(?s)<script.+?</script>"#).expect("invalid script regex"));
 
 /// A page on the site.
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct Page {
     pub kind: PageKind,
     pub source: PageSource,
@@ -34,6 +34,7 @@ pub struct Page {
     pub tags: Vec<String>,
     pub draft: bool,
     templated: bool,
+    markdown: bool,
     pub timestamp: Option<Date>,
     content: String,
     extra_context: HashMap<String, Value>,
@@ -41,7 +42,7 @@ pub struct Page {
 
 impl Page {
     /// Creates a new page from the given source file.
-    #[instrument(skip(site))]
+    #[instrument]
     pub fn new(source: PathBuf) -> Result<Self> {
         let file_string = {
             debug!("Loading page file");
@@ -61,11 +62,14 @@ impl Page {
 
         let link = match frontmatter.kind {
             PageKind::Post => format!("/posts/{}/", frontmatter.slug),
+            PageKind::Page if frontmatter.slug == "/" => String::from("/"),
             PageKind::Page => format!("/{}/", frontmatter.slug),
+            PageKind::Other => format!("/{}", frontmatter.slug),
             PageKind::Custom {
                 ref destination, ..
             } => destination.into(),
         };
+        let markdown = source.extension() == Some(&OsString::from("md"));
 
         Ok(Self {
             kind: frontmatter.kind,
@@ -76,8 +80,9 @@ impl Page {
             tags: frontmatter.tags,
             draft: frontmatter.draft,
             templated: frontmatter.templated,
+            markdown,
             timestamp: frontmatter.timestamp,
-            content: content_section.to_string(),
+            content: content_section.trim().to_string(),
             extra_context: HashMap::default(),
         })
     }
@@ -92,11 +97,12 @@ impl Page {
     }
 
     /// Returns the template to use for rendering the page.
-    fn template(&self) -> &str {
+    fn template(&self) -> Option<&str> {
         match &self.kind {
-            PageKind::Post => "post.html",
-            PageKind::Page => "page.html",
-            PageKind::Custom { template, .. } => template,
+            PageKind::Post => Some("post.html"),
+            PageKind::Page => Some("page.html"),
+            PageKind::Other => None,
+            PageKind::Custom { template, .. } => Some(template),
         }
     }
 
@@ -104,7 +110,9 @@ impl Page {
     pub fn output_path(&self) -> PathBuf {
         match &self.kind {
             PageKind::Post => PathBuf::from(format!("posts/{}/index.html", self.slug)),
+            PageKind::Page if self.slug == "/" => PathBuf::from("index.html"),
             PageKind::Page => PathBuf::from(format!("{}/index.html", self.slug)),
+            PageKind::Other => PathBuf::from(&self.slug),
             PageKind::Custom { destination, .. } => destination.into(),
         }
     }
@@ -134,15 +142,23 @@ impl Page {
             &self.content
         };
 
-        let rendered_content = markdown::render(templated_content, site);
+        let rendered_content = if self.markdown {
+            markdown::render(templated_content, site)
+        } else {
+            templated_content.to_string()
+        };
         ctx.rendered_content = Some(&rendered_content);
-        let template = site
-            .jinja
-            .get_template(self.template())
-            .wrap_err("template not found")?;
-        let rendered = template.render(&ctx).wrap_err("failed to render page")?;
 
-        Ok(rendered)
+        if let Some(tmpl) = self.template() {
+            let template = site
+                .jinja
+                .get_template(tmpl)
+                .wrap_err("template not found")?;
+            let rendered = template.render(&ctx).wrap_err("failed to render page")?;
+            Ok(rendered)
+        } else {
+            Ok(rendered_content)
+        }
     }
 
     /// Creates the Atom feed. Should be called after all posts have been loaded into `site`.
@@ -159,6 +175,7 @@ impl Page {
             tags: vec![],
             draft: false,
             templated: true,
+            markdown: false,
             timestamp: Some(Zoned::now().date()),
             content: String::new(),
             extra_context: HashMap::default(),
@@ -181,35 +198,6 @@ impl Page {
         page
     }
 
-    /// Creates the sitemap. Should be called after all posts have been loaded into `site`.
-    pub fn sitemap(site: &Site) -> Self {
-        let mut page = Self {
-            title: "Sitemap".into(),
-            kind: PageKind::Custom {
-                template: "sitemap.xml",
-                destination: "sitemap.xml".into(),
-            },
-            source: PageSource::new_virtual("sitemap"),
-            slug: "feed".into(),
-            link: "/sitemap.xml".into(),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            timestamp: Some(Zoned::now().date()),
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-        page.insert_context(
-            "pages",
-            &site
-                .pages
-                .values()
-                .sorted_unstable_by_key(|p| &p.slug)
-                .collect::<Vec<_>>(),
-        );
-        page
-    }
-
     /// Creates a page for the given tag.
     pub fn tag_page(site: &Site, tag: &str) -> Self {
         let mut page = Self {
@@ -224,6 +212,7 @@ impl Page {
             tags: vec![],
             draft: false,
             templated: true,
+            markdown: true,
             timestamp: None,
             content: String::new(),
             extra_context: HashMap::default(),
@@ -299,6 +288,8 @@ pub enum PageKind {
     Post,
     /// A regular page, located at /.
     Page,
+    /// Not a HTML page to be rendered with a template.
+    Other,
     /// A custom page, located at the given destination.
     Custom {
         template: &'static str,
@@ -345,6 +336,8 @@ impl FromStr for Frontmatter {
             Post,
             #[serde(rename = "page")]
             Page,
+            #[serde(rename = "other")]
+            Other,
         }
 
         impl From<DeserializedPageKind> for PageKind {
@@ -352,6 +345,7 @@ impl FromStr for Frontmatter {
                 match kind {
                     DeserializedPageKind::Post => Self::Post,
                     DeserializedPageKind::Page => Self::Page,
+                    DeserializedPageKind::Other => Self::Other,
                 }
             }
         }

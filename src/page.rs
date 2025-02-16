@@ -9,7 +9,7 @@ use std::{
 };
 use tracing::{debug, instrument};
 
-pub mod markdown;
+mod markdown;
 
 /// A page on the site.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]

@@ -182,8 +182,6 @@ impl Site {
         self.load_templates().wrap_err("failed to load templates")?;
         self.load_pages().wrap_err("failed to load pages")?;
 
-        // Ordering here is important. Sitemap after all regular content pages, Atom feed after
-        // that so it's not included in the sitemap.
         self.tags()
             .iter()
             .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
@@ -204,7 +202,26 @@ impl Site {
     /// Renders all pages and writes them to the output directory.
     #[instrument(skip(self))]
     fn render_pages(&mut self) -> Result<()> {
-        // Reload the url_for filter with new pages.
+        self.load_globals();
+
+        self.pages
+            .values()
+            .par_bridge()
+            .map(|page| {
+                let rendered = page
+                    .render(self)
+                    .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
+                create_and_write(&self.output_path.join(page.output_path()), &rendered)
+                    .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
+                Ok::<(), Report>(())
+            })
+            .collect::<Result<()>>()?;
+
+        Ok(())
+    }
+
+    /// Loads global values for templating, e.g. a list of all posts.
+    fn load_globals(&mut self) {
         self.jinja
             .add_global("url_for", Value::from_object(UrlFor::new(&self.pages)));
         self.jinja.add_global(
@@ -245,21 +262,6 @@ impl Site {
                     .collect::<Vec<_>>(),
             ),
         );
-
-        self.pages
-            .values()
-            .par_bridge()
-            .map(|page| {
-                let rendered = page
-                    .render(self)
-                    .wrap_err_with(|| format!("failed to render page {:?}", page.source))?;
-                create_and_write(&self.output_path.join(page.output_path()), &rendered)
-                    .wrap_err_with(|| format!("failed to write page {:?}", page.output_path()))?;
-                Ok::<(), Report>(())
-            })
-            .collect::<Result<()>>()?;
-
-        Ok(())
     }
 
     /// Returns all posts in the site, in reverse chronological order.
@@ -277,7 +279,7 @@ impl Site {
     }
 
     /// Returns all tags in the site, deduplicated, in alphabetical order.
-    pub fn tags(&self) -> Vec<String> {
+    fn tags(&self) -> Vec<String> {
         self.posts()
             .iter()
             .flat_map(|p| p.tags.iter())
@@ -289,7 +291,7 @@ impl Site {
 
     /// Returns all tags in the site with their respective counts, deduplicated, in alphabetical
     /// order.
-    pub fn tag_counts(&self) -> Vec<(String, usize)> {
+    fn tag_counts(&self) -> Vec<(String, usize)> {
         self.posts()
             .iter()
             .flat_map(|p| p.tags.iter())

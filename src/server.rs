@@ -27,7 +27,7 @@ use tokio::{
 };
 use tokio_stream::{wrappers::BroadcastStream, StreamExt};
 use tower_http::services::ServeDir;
-use tracing::log::info;
+use tracing::{debug, error, info, instrument};
 
 /// Development server state that gets injected into handlers.
 struct ServerState {
@@ -46,7 +46,7 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
 
     let server = spawn(serve(port, output_dir, reload_tx.clone()));
 
-    let rerenderer = spawn(rerender(site, rerender_rx, reload_tx));
+    let re_renderer = spawn(re_render(site, rerender_rx, reload_tx));
 
     let mut watcher = recommended_watcher(move |ev| {
         handle_notify_event(ev, rerender_tx.clone());
@@ -54,7 +54,7 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
     watcher.watch(&input_dir, RecursiveMode::Recursive)?;
 
     select! {
-        res = rerenderer => res??,
+        res = re_renderer => res??,
         res = server => res??,
     }
 
@@ -67,25 +67,31 @@ pub async fn development_server(port: u16, site: Site) -> Result<()> {
 fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: watch::Sender<()>) {
     if let Ok(NotifyEvent {
         kind: EventKind::Modify(_) | EventKind::Create(_) | EventKind::Remove(_),
+        mut paths,
         ..
     }) = res
     {
-        if let Err(err) = tx.send(()).wrap_err("failed to send rerender signal") {
-            tracing::error!("Error: {err:?}");
+        paths.retain(|path| !path.as_os_str().to_str().unwrap().ends_with("~"));
+        if !paths.is_empty() {
+            debug!(paths = ?paths, "Notify event received");
+            if let Err(err) = tx.send(()).wrap_err("failed to send rerender signal") {
+                error!("Error: {err:?}");
+            }
         }
     }
 }
 
-/// Rerender task, listens for rerender signals and re-renders the site when it receives one. Also
+/// Re-render task, listens for rerender signals and re-renders the site when it receives one. Also
 /// sends out a reload signal to all connected clients.
-async fn rerender(
+#[instrument(skip_all)]
+async fn re_render(
     mut site: Site,
     mut rerender_rx: watch::Receiver<()>,
     reload_tx: broadcast::Sender<()>,
 ) -> Result<()> {
     while rerender_rx.changed().await.is_ok() {
         // Debounce the signal, only grab the latest within a window.
-        sleep(Duration::from_millis(1000)).await;
+        sleep(Duration::from_millis(500)).await;
         rerender_rx.mark_unchanged();
 
         info!("Sources changed, re-rendering site");

@@ -1,7 +1,7 @@
 use std::{fs::remove_dir_all, path::PathBuf};
 
 use clap::{Parser, Subcommand};
-use color_eyre::{eyre::WrapErr, Result};
+use eyre::{Result, WrapErr};
 use site::{Mode, Site};
 
 mod config;
@@ -59,8 +59,8 @@ enum Command {
 }
 
 fn main() -> Result<()> {
-    color_eyre::install()?;
     tracing_subscriber::fmt::init();
+
     let args = Cli::parse();
     let config = config::load_config(&args.config)?;
 

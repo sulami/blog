@@ -1,7 +1,4 @@
-use color_eyre::{
-    eyre::{OptionExt, WrapErr},
-    Result,
-};
+use eyre::{OptionExt, Result, WrapErr};
 use std::{
     fs::{copy, create_dir_all, read_dir, File},
     io::Write,

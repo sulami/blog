@@ -4,10 +4,7 @@ use crate::{
     page::{Page, PageKind, PageSource},
     template::{load_filters, UrlFor},
 };
-use color_eyre::{
-    eyre::{OptionExt, WrapErr},
-    Report, Result,
-};
+use eyre::{OptionExt, Report, Result, WrapErr};
 use itertools::Itertools;
 use jiff::{tz::TimeZone, Zoned};
 use minijinja::Value;

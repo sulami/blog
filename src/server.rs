@@ -15,7 +15,7 @@ use axum::{
     routing::get,
     Router,
 };
-use color_eyre::{eyre::WrapErr, Result};
+use eyre::{Result, WrapErr};
 use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
 use std::{convert::Infallible, path::PathBuf, sync::Arc, time::Duration};
 use tokio::{

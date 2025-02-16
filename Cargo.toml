@@ -11,7 +11,7 @@ server = ["dep:axum", "dep:notify", "dep:tokio", "dep:tokio-stream", "dep:tower-
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
-color-eyre = { version = "0.6", default-features = false }
+eyre = "0.6"
 itertools = "0.14"
 jiff = { version = "0.2", features = ["serde"] }
 minijinja = { version = "2", features = ["loader"] }

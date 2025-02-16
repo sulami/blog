@@ -1,10 +1,7 @@
 use crate::Site;
-use color_eyre::{
-    eyre::{eyre, WrapErr},
-    Report, Result,
-};
-use itertools::Itertools;
+use eyre::{eyre, Report, Result, WrapErr};
 use jiff::{civil::Date, Zoned};
+use itertools::Itertools;
 use minijinja::Value;
 use regex::Regex;
 use serde::{Deserialize, Serialize};

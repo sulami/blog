@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use color_eyre::Result;
+use eyre::Result;
 use serde::Deserialize;
 
 pub fn load_config(path: &Path) -> Result<Config> {

@@ -17,7 +17,10 @@ pub fn render(source: &str, site: &Site) -> String {
 
     let events = pulldown_cmark::Parser::new_ext(
         source,
-        pulldown_cmark::Options::ENABLE_FOOTNOTES | pulldown_cmark::Options::ENABLE_TABLES,
+        pulldown_cmark::Options::ENABLE_FOOTNOTES
+            | pulldown_cmark::Options::ENABLE_TABLES
+            | pulldown_cmark::Options::ENABLE_SMART_PUNCTUATION
+            | pulldown_cmark::Options::ENABLE_HEADING_ATTRIBUTES,
     )
     .filter_map(|mut ev| match ev {
         // Syntax highlighting for code blocks.

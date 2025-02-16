@@ -20,5 +20,5 @@ the [about page]({{ url_for('file:input/content/about.md') }}).
 {%- endfor %}
 
 ... or visit [the archive]({{ url_for('file:input/content/posts.md') }}) 
-for all
-posts.
+for all posts, or [the tags page]({{ url_for('file:input/content/tags.md') }}
+) for an overview of topics.

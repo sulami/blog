@@ -4,8 +4,10 @@ use std::{
     io::Write,
     path::{Path, PathBuf},
 };
+use tracing::instrument;
 
 /// Deep-copies a directory from one location to another.
+#[instrument]
 pub fn deep_copy_dir(from: &Path, to: &Path) -> Result<()> {
     create_dir_all(to).wrap_err("failed to create directory")?;
 
@@ -23,6 +25,7 @@ pub fn deep_copy_dir(from: &Path, to: &Path) -> Result<()> {
 }
 
 /// Creates a file and all required parent directories, then writes the given content to it.
+#[instrument]
 pub fn create_and_write(path: &Path, content: &str) -> Result<()> {
     create_dir_all(path.parent().ok_or_eyre("failed to get path parent")?)
         .wrap_err("failed to create parent directory")?;
@@ -36,6 +39,7 @@ pub fn create_and_write(path: &Path, content: &str) -> Result<()> {
 /// Recursively collects all file paths within `dir` matching `pred`.
 ///
 /// `pred` is only evaluated for files, not directories.
+#[instrument]
 pub fn collect_files(dir: &Path, pred: fn(&Path) -> bool) -> Result<Vec<PathBuf>> {
     let mut acc = Vec::new();
 

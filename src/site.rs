@@ -18,6 +18,7 @@ use std::{
     path::{Path, PathBuf},
     time::Instant,
 };
+use tracing::{info, instrument};
 
 /// Site metadata.
 #[derive(Debug, Serialize)]
@@ -42,6 +43,7 @@ pub struct Site {
 
 impl Site {
     /// Creates a new site.
+    #[instrument(skip_all)]
     pub fn new(
         input: &Path,
         output: &Path,
@@ -77,6 +79,7 @@ impl Site {
             jinja,
         })
     }
+
     /// Inserts a page into the site.
     fn insert_page(&mut self, page: Page) {
         self.pages.insert(page.source.clone(), page);
@@ -84,6 +87,7 @@ impl Site {
 
     /// Finds all pages sources in the given directory and its subdirectories, adding them to
     /// `acc`.
+    #[instrument]
     fn find_page_sources(dir: &Path) -> Result<Vec<PageSource>> {
         Ok(collect_files(dir, |p| {
             matches!(p.extension().map(OsStr::to_str), Some(Some("md")))
@@ -104,6 +108,7 @@ impl Site {
     }
 
     /// Loads all pages in the given directory and its subdirectories.
+    #[instrument(skip(self))]
     fn load_pages(&mut self) -> Result<()> {
         let sources =
             Self::find_page_sources(&self.content_dir()).wrap_err("failed to find page sources")?;
@@ -128,14 +133,15 @@ impl Site {
     /// Loads all templates from the given directory and its subdirectories.
     ///
     /// Clears all pre-existing templates.
+    #[instrument(skip(self))]
     pub fn load_templates(&mut self) -> Result<()> {
         self.jinja.clear_templates();
 
         let template_paths = collect_files(&self.template_dir(), |_| true)?;
         for template_path in template_paths {
             tracing::debug!(
-                "Loading template {}",
-                template_path.strip_prefix(self.template_dir())?.display()
+                template = ?template_path.strip_prefix(self.template_dir())?,
+                "Loading template"
             );
             self.jinja.add_template_owned(
                 template_path
@@ -151,6 +157,7 @@ impl Site {
     }
 
     /// Renders the site.
+    #[instrument(skip(self))]
     pub fn render(&mut self) -> Result<()> {
         let input = self.input_path.clone();
         let output = self.output_path.clone();
@@ -180,7 +187,8 @@ impl Site {
             .wrap_err("failed to render site pages")?;
 
         let finish = Instant::now();
-        tracing::info!(
+        info!(
+            page_count = self.pages.len(),
             "Rendered site in {:.3} seconds",
             (finish - start).as_secs_f32()
         );
@@ -189,6 +197,7 @@ impl Site {
     }
 
     /// Renders all pages and writes them to the output directory.
+    #[instrument(skip(self))]
     fn render_pages(&mut self) -> Result<()> {
         // Reload the url_for filter with new pages.
         self.jinja

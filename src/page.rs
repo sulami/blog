@@ -1,7 +1,7 @@
 use crate::Site;
 use eyre::{eyre, Report, Result, WrapErr};
-use jiff::{civil::Date, Zoned};
 use itertools::Itertools;
+use jiff::{civil::Date, Zoned};
 use minijinja::Value;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -9,6 +9,7 @@ use std::{
     collections::HashMap, fs::File, hash::Hash, io::Read, path::PathBuf, str::FromStr,
     sync::LazyLock,
 };
+use tracing::{debug, instrument};
 
 pub mod markdown;
 
@@ -39,8 +40,10 @@ pub struct Page {
 
 impl Page {
     /// Creates a new page from the given source file.
+    #[instrument(skip(site))]
     pub fn new(source: PathBuf, site: &Site) -> Result<Self> {
         let file_string = {
+            debug!("Loading page file");
             let mut fp = File::open(&source)?;
             let mut file_contents = vec![];
             fp.read_to_end(&mut file_contents)?;
@@ -106,8 +109,14 @@ impl Page {
     }
 
     /// Renders the page in the context of the given site.
+    ///
+    /// This is a multi-pass process:
+    /// 1. If `self.templated` is true, render the content in-place as Jinja.
+    /// 2. If `self.markdown` is true, render the content from Markdown to HTML.
+    /// 3. If `self.template()` is Some, render to it with the rendered content.
+    #[instrument(skip_all, fields(source = ?self.source, output = ?self.output_path()))]
     pub fn render(&self, site: &Site) -> Result<String> {
-        tracing::debug!("Rendering page {}", self.output_path().display());
+        debug!("Rendering page");
         let ctx = Context { page: self, site };
         let template = site
             .jinja

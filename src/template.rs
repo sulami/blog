@@ -5,8 +5,10 @@ use jiff::{civil::Date, tz::TimeZone, Zoned};
 use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
 use std::{collections::HashMap, str::FromStr, sync::Arc};
+use tracing::instrument;
 
 /// Loads all custom filters into the Jinja environment.
+#[instrument(skip_all)]
 pub fn load_filters(env: &mut minijinja::Environment) {
     env.add_filter("tag_link", tag_link_filter);
     env.add_filter("format_date", format_date_filter);

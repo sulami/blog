@@ -36,6 +36,7 @@ struct ServerState {
 
 /// Runs a development server.
 #[tokio::main]
+#[instrument(skip(site))]
 pub async fn development_server(port: u16, site: Site) -> Result<()> {
     let input_dir = site.input_path.clone();
     let output_dir = site.output_path.clone();
@@ -87,23 +88,26 @@ async fn rerender(
         sleep(Duration::from_millis(1000)).await;
         rerender_rx.mark_unchanged();
 
+        info!("Sources changed, re-rendering site");
+
         if let Err(err) = remove_dir_all(&site.output_path).await {
-            tracing::error!("Error: {err:?}");
+            error!("Error: {err:?}");
         }
         if let Err(err) = site.render().wrap_err("failed to re-render site") {
-            tracing::error!("Error: {err:?}");
+            error!("Error: {err:?}");
         }
         if let Err(err) = reload_tx
             .send(())
             .wrap_err("failed to send live reload signal")
         {
-            tracing::error!("Error: {err:?}");
+            error!("Error: {err:?}");
         }
     }
     Ok(())
 }
 
 /// Serves the site output.
+#[instrument(skip(reload_tx))]
 async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>) -> Result<()> {
     let state = Arc::new(ServerState {
         live_reload_signal: reload_tx,
@@ -129,7 +133,7 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
         // Server shutdown by itself.
         res = server => {
             if let Err(err) = res {
-                tracing::error!("Server error: {err:?}");
+                error!("Server error: {err:?}");
                 return Err(err.into());
             }
         },

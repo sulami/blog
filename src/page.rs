@@ -30,6 +30,8 @@ pub struct Page {
 
 impl Page {
     /// Creates a new page from the given source file.
+    ///
+    /// This reads the source file into memory.
     #[instrument]
     pub fn new(source: PathBuf) -> Result<Self> {
         let file_string = {
@@ -114,13 +116,14 @@ impl Page {
     #[instrument(skip_all, fields(source = ?self.source, output = ?self.output_path()))]
     pub fn render(&self, site: &Site) -> Result<String> {
         debug!("Rendering page");
+
+        let rendered_content = self
+            .render_content(site)
+            .wrap_err("failed to render page content")?;
         let ctx = Context {
             page: self,
             site,
-            rendered_content: Some(
-                self.render_content(site)
-                    .wrap_err("failed to render page content")?,
-            ),
+            rendered_content: Some(&rendered_content),
         };
 
         if let Some(tmpl) = self.template() {
@@ -131,7 +134,7 @@ impl Page {
             let rendered = template.render(&ctx).wrap_err("failed to render page")?;
             Ok(rendered)
         } else {
-            Ok(ctx.rendered_content.unwrap().to_string())
+            Ok(rendered_content)
         }
     }
 
@@ -200,7 +203,7 @@ struct Context<'a> {
     site: &'a Site,
     page: &'a Page,
     /// Only present in the second render pass, when rendering into the template.
-    rendered_content: Option<String>,
+    rendered_content: Option<&'a str>,
 }
 
 /// The source of a page.

@@ -19,7 +19,7 @@ use std::{
     sync::LazyLock,
     time::Instant,
 };
-use tracing::{info, instrument};
+use tracing::{debug, info, instrument};
 
 /// Regex used to strip footnotes from rendered output.
 static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
@@ -100,7 +100,7 @@ impl Site {
     /// `acc`.
     #[instrument]
     fn find_page_sources(dir: &Path) -> Result<Vec<PageSource>> {
-        Ok(collect_files(&dir)
+        Ok(collect_files(dir)
             .wrap_err("failed to collect page sources")?
             .into_iter()
             .map(PageSource::File)
@@ -124,6 +124,7 @@ impl Site {
             Self::find_page_sources(&self.content_dir()).wrap_err("failed to find page sources")?;
         self.pages = sources
             .into_iter()
+            .par_bridge()
             .map(|source| {
                 let path = match source {
                     PageSource::File(ref path) => path,
@@ -148,7 +149,7 @@ impl Site {
 
         let template_paths = collect_files(&self.template_dir())?;
         for template_path in template_paths {
-            tracing::debug!(
+            debug!(
                 template = ?template_path.strip_prefix(self.template_dir())?,
                 "Loading template"
             );
@@ -233,7 +234,7 @@ impl Site {
             "feed_posts",
             Value::from_serialize(
                 self.posts()
-                    .into_iter()
+                    .into_par_iter()
                     .take(10)
                     .map(|mut post| {
                         post.content = post.render_content(self).unwrap();
@@ -263,8 +264,7 @@ impl Site {
 
     /// Returns all posts in the site, in reverse chronological order.
     pub fn posts(&self) -> Vec<Page> {
-        let mut posts: Vec<Page> = self
-            .pages
+        self.pages
             .values()
             .filter(|p| p.kind == PageKind::Post)
             .filter(|p| match self.mode {
@@ -272,9 +272,8 @@ impl Site {
                 Mode::Release => !p.draft,
             })
             .cloned()
-            .collect();
-        posts.sort_unstable_by_key(|p| Reverse(p.timestamp));
-        posts
+            .sorted_unstable_by_key(|p| Reverse(p.timestamp))
+            .collect()
     }
 
     /// Returns all tags in the site, deduplicated, in alphabetical order.

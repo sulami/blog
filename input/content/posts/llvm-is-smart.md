@@ -1,6 +1,6 @@
 title = "LLVM is Smarter Than Me"
 timestamp = "2024-04-19"
-tags = ["rust", "compilers", "espresso"]
+tags = ["rust", "compilers"]
 ---
 
 <script src="/mathjax-3.2.2/tex-chtml.js" async></script>

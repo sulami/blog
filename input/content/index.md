@@ -1,4 +1,4 @@
-title = "Welcome"
+title = "Weak Opinions, Strongly Held"
 slug = "/"
 kind = "page"
 templated = true

@@ -98,9 +98,11 @@ async fn re_render(
 
         if let Err(err) = remove_dir_all(&site.output_path).await {
             error!("Error: {err:?}");
+            continue;
         }
         if let Err(err) = site.render().wrap_err("failed to re-render site") {
             error!("Error: {err:?}");
+            continue;
         }
         if let Err(err) = reload_tx
             .send(())

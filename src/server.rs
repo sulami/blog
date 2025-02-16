@@ -31,7 +31,7 @@ use tracing::{debug, error, info, instrument};
 
 /// Development server state that gets injected into handlers.
 struct ServerState {
-    live_reload_signal: broadcast::Sender<()>,
+    live_reload_signal: broadcast::Sender<Option<String>>,
 }
 
 /// Runs a development server.
@@ -87,7 +87,7 @@ fn handle_notify_event(res: notify::Result<NotifyEvent>, tx: watch::Sender<()>) 
 async fn re_render(
     mut site: Site,
     mut rerender_rx: watch::Receiver<()>,
-    reload_tx: broadcast::Sender<()>,
+    reload_tx: broadcast::Sender<Option<String>>,
 ) -> Result<()> {
     while rerender_rx.changed().await.is_ok() {
         // Debounce the signal, only grab the latest within a window.
@@ -102,10 +102,11 @@ async fn re_render(
         }
         if let Err(err) = site.render().wrap_err("failed to re-render site") {
             error!("Error: {err:?}");
+            let _ = reload_tx.send(Some(format!("{err:?}")));
             continue;
         }
         if let Err(err) = reload_tx
-            .send(())
+            .send(None)
             .wrap_err("failed to send live reload signal")
         {
             error!("Error: {err:?}");
@@ -116,7 +117,11 @@ async fn re_render(
 
 /// Serves the site output.
 #[instrument(skip(reload_tx))]
-async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>) -> Result<()> {
+async fn serve(
+    port: u16,
+    output_dir: PathBuf,
+    reload_tx: broadcast::Sender<Option<String>>,
+) -> Result<()> {
     let state = Arc::new(ServerState {
         live_reload_signal: reload_tx,
     });
@@ -159,8 +164,15 @@ async fn serve(port: u16, output_dir: PathBuf, reload_tx: broadcast::Sender<()>)
 
 /// Handler for live reload endpoint, sends out Server-Sent Events.
 async fn live_reload_handler(State(state): State<Arc<ServerState>>) -> impl IntoResponse {
-    let stream = BroadcastStream::new(state.live_reload_signal.subscribe())
-        .map(|_| Ok::<_, Infallible>(SseEvent::default().data("reload")));
+    let stream =
+        BroadcastStream::new(state.live_reload_signal.subscribe()).filter_map(|ev| match ev {
+            Ok(Some(err)) => Some(Ok::<_, Infallible>(SseEvent::default().data(err))),
+            Ok(None) => Some(Ok::<_, Infallible>(SseEvent::default().data("reload"))),
+            Err(err) => {
+                error!("Error: {err:?}");
+                None
+            }
+        });
     Sse::new(stream)
 }
 

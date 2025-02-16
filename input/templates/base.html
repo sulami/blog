@@ -30,6 +30,10 @@
         source.onmessage = (e) => {
             if (e.data === 'reload') {
                 window.location.reload();
+            } else {
+                const error_container = document.getElementById('error');
+                error_container.innerText = e.data;
+                error_container.style.display = 'block';
             }
         };
     </script>
@@ -39,6 +43,9 @@
 
 <body>
 <div id="container">
+    {% if site.mode == 'Development' %}
+    <div id="error" style="background-color: rgba(255, 0, 0, 0.42)"></div>
+    {% endif %}
     <div id="header">
         <div id="logo">
             <a href="{{ url_for('file:input/content/index.md') }}">{{ site.title }}</a>

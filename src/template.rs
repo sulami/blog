@@ -1,10 +1,10 @@
 //! Template engine support
 
-use crate::page::{Page, PageSource};
+use crate::page::Page;
 use jiff::{civil::Date, tz::TimeZone, Zoned};
 use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
-use std::{collections::HashMap, str::FromStr, sync::Arc};
+use std::{collections::HashMap, path::PathBuf, str::FromStr, sync::Arc};
 use tracing::instrument;
 
 /// Loads all custom filters into the Jinja environment.
@@ -18,7 +18,7 @@ pub fn load_filters(env: &mut minijinja::Environment) {
 
 /// Template filter for converting a tag into a link to its tag page.
 fn tag_link_filter(tag: &str) -> String {
-    format!("/tags/{}/", tag)
+    format!("/tags/#{}", tag)
 }
 
 /// Template filter for printing a [`Date`] as `YYYY-mm-dd`.
@@ -52,12 +52,12 @@ fn format_rfc3339_filter(date: &str) -> String {
 /// This is a custom, callable object because it needs to hold state to do its job.
 #[derive(Debug, Serialize)]
 pub struct UrlFor {
-    pages: HashMap<PageSource, Page>,
+    pages: HashMap<PathBuf, Page>,
 }
 
 impl UrlFor {
     /// Create a new instance of [`UrlFor`] supporting links to all pages passed.
-    pub fn new(pages: &HashMap<PageSource, Page>) -> Self {
+    pub fn new(pages: &HashMap<PathBuf, Page>) -> Self {
         Self {
             pages: pages.clone(),
         }
@@ -75,7 +75,7 @@ impl minijinja::value::Object for UrlFor {
                 "argument is not a string",
             ))?
             .into();
-        let key: PageSource = link.parse().map_err(|_| {
+        let key: PathBuf = link.parse().map_err(|_| {
             Error::new(ErrorKind::InvalidOperation, format!("invalid link: {link}"))
         })?;
         let page = self.pages.get(&key).ok_or(Error::new(

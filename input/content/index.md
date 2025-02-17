@@ -5,7 +5,7 @@ templated = true
 ---
 
 Hi, my name is {{ site.author }}, and this is my blog. Find out more about me on
-the [about page]({{ url_for('file:input/content/about.md') }}).
+the [about page]({{ url_for('input/content/about.md') }}).
 
 ### Recent Posts
 
@@ -19,6 +19,6 @@ the [about page]({{ url_for('file:input/content/about.md') }}).
 - [{{ post.title }}]({{ post.link }}) <span class="info">({{ post.timestamp | format_date }})</span>
 {%- endfor %}
 
-... or visit [the archive]({{ url_for('file:input/content/archive.md') }}) 
-for all posts, or [the tags page]({{ url_for('file:input/content/tags.md') }}
+... or visit [the archive]({{ url_for('input/content/archive.md') }}) 
+for all posts, or [the tags page]({{ url_for('input/content/tags.md') }}
 ) for an overview of topics.

@@ -1,7 +1,7 @@
 use crate::{
     config,
     fs::{collect_files, create_and_write, deep_copy_dir},
-    page::{Page, PageKind, PageSource},
+    page::{Page, PageKind},
     template::{load_filters, UrlFor},
 };
 use eyre::{OptionExt, Report, Result, WrapErr};
@@ -42,7 +42,7 @@ pub struct Site {
     pub input_path: PathBuf,
     pub output_path: PathBuf,
     menu: Vec<MenuItem>,
-    pub pages: HashMap<PageSource, Page>,
+    pub pages: HashMap<PathBuf, Page>,
     mode: Mode,
     source_sha: Option<String>,
     source_url: Option<String>,
@@ -91,20 +91,11 @@ impl Site {
         })
     }
 
-    /// Inserts a page into the site.
-    fn insert_page(&mut self, page: Page) {
-        self.pages.insert(page.source.clone(), page);
-    }
-
     /// Finds all pages sources in the given directory and its subdirectories, adding them to
     /// `acc`.
     #[instrument]
-    fn find_page_sources(dir: &Path) -> Result<Vec<PageSource>> {
-        Ok(collect_files(dir)
-            .wrap_err("failed to collect page sources")?
-            .into_iter()
-            .map(PageSource::File)
-            .collect())
+    fn find_page_sources(dir: &Path) -> Result<Vec<PathBuf>> {
+        collect_files(dir).wrap_err("failed to collect page sources")
     }
 
     /// Returns the template directory for the site.
@@ -126,14 +117,10 @@ impl Site {
             .into_iter()
             .par_bridge()
             .map(|source| {
-                let path = match source {
-                    PageSource::File(ref path) => path,
-                    _ => unreachable!(),
-                };
                 Ok((
                     source.clone(),
-                    Page::new(path.to_path_buf())
-                        .wrap_err(format!("failed to load page {}", path.display()))?,
+                    Page::new(&source)
+                        .wrap_err(format!("failed to load page {}", source.display()))?,
                 ))
             })
             .collect::<Result<_, Report>>()?;
@@ -181,10 +168,6 @@ impl Site {
 
         self.load_templates().wrap_err("failed to load templates")?;
         self.load_pages().wrap_err("failed to load pages")?;
-
-        self.tags()
-            .iter()
-            .for_each(|tag| self.insert_page(Page::tag_page(self, tag)));
 
         self.render_pages()
             .wrap_err("failed to render site pages")?;
@@ -278,17 +261,6 @@ impl Site {
             .collect()
     }
 
-    /// Returns all tags in the site, deduplicated, in alphabetical order.
-    fn tags(&self) -> Vec<String> {
-        self.posts()
-            .iter()
-            .flat_map(|p| p.tags.iter())
-            .unique()
-            .sorted_unstable()
-            .cloned()
-            .collect()
-    }
-
     /// Returns all tags in the site with their respective counts, deduplicated, in alphabetical
     /// order.
     fn tag_counts(&self) -> HashMap<String, usize> {
@@ -314,7 +286,7 @@ pub enum Mode {
 #[derive(Debug, Serialize)]
 struct MenuItem {
     title: String,
-    link: PageSource,
+    link: PathBuf,
 }
 
 impl TryFrom<&config::MenuItem> for MenuItem {

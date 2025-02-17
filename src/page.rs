@@ -1,12 +1,8 @@
 use crate::Site;
 use eyre::{eyre, Report, Result, WrapErr};
 use jiff::civil::Date;
-use minijinja::Value;
 use serde::{Deserialize, Serialize};
-use std::{
-    collections::HashMap, ffi::OsString, fs::File, hash::Hash, io::Read, path::PathBuf,
-    str::FromStr,
-};
+use std::{ffi::OsString, fmt::Debug, fs::File, io::Read, path::PathBuf, str::FromStr};
 use tracing::{debug, instrument};
 
 mod markdown;
@@ -15,7 +11,7 @@ mod markdown;
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct Page {
     pub kind: PageKind,
-    pub source: PageSource,
+    pub source: PathBuf,
     title: String,
     slug: String,
     pub link: String,
@@ -24,8 +20,7 @@ pub struct Page {
     templated: bool,
     markdown: bool,
     pub timestamp: Option<Date>,
-    pub(crate) content: String,
-    extra_context: HashMap<String, Value>,
+    pub content: String,
 }
 
 impl Page {
@@ -33,7 +28,8 @@ impl Page {
     ///
     /// This reads the source file into memory.
     #[instrument]
-    pub fn new(source: PathBuf) -> Result<Self> {
+    pub fn new(source: impl Into<PathBuf> + Debug) -> Result<Self> {
+        let source = source.into();
         let file_string = {
             debug!("Loading page file");
             let mut fp = File::open(&source)?;
@@ -55,15 +51,12 @@ impl Page {
             PageKind::Page if frontmatter.slug == "/" => String::from("/"),
             PageKind::Page => format!("/{}/", frontmatter.slug),
             PageKind::Other => format!("/{}", frontmatter.slug),
-            PageKind::Custom {
-                ref destination, ..
-            } => destination.into(),
         };
         let markdown = source.extension() == Some(&OsString::from("md"));
 
         Ok(Self {
             kind: frontmatter.kind,
-            source: PageSource::File(source),
+            source,
             title: frontmatter.title,
             slug: frontmatter.slug,
             link,
@@ -73,17 +66,7 @@ impl Page {
             markdown,
             timestamp: frontmatter.timestamp,
             content: content_section.trim().to_string(),
-            extra_context: HashMap::default(),
         })
-    }
-
-    /// Inserts a key-value-pair into the extra context.
-    fn insert_context<T>(&mut self, key: &str, val: &T)
-    where
-        T: Serialize + ?Sized,
-    {
-        self.extra_context
-            .insert(key.into(), Value::from_serialize(val));
     }
 
     /// Returns the template to use for rendering the page.
@@ -92,7 +75,6 @@ impl Page {
             PageKind::Post => Some("post.html"),
             PageKind::Page => Some("page.html"),
             PageKind::Other => None,
-            PageKind::Custom { template, .. } => Some(template),
         }
     }
 
@@ -103,7 +85,6 @@ impl Page {
             PageKind::Page if self.slug == "/" => PathBuf::from("index.html"),
             PageKind::Page => PathBuf::from(format!("{}/index.html", self.slug)),
             PageKind::Other => PathBuf::from(&self.slug),
-            PageKind::Custom { destination, .. } => destination.into(),
         }
     }
 
@@ -165,36 +146,6 @@ impl Page {
 
         Ok(rendered_content)
     }
-
-    /// Creates a page for the given tag.
-    pub fn tag_page(site: &Site, tag: &str) -> Self {
-        let mut page = Self {
-            title: format!("Tag: {tag}"),
-            kind: PageKind::Custom {
-                template: "tag.html",
-                destination: format!("tags/{}/index.html", tag),
-            },
-            source: PageSource::new_virtual(format!("tags/{}", tag)),
-            slug: tag.into(),
-            link: format!("/tags/{}/", tag),
-            tags: vec![],
-            draft: false,
-            templated: true,
-            markdown: true,
-            timestamp: None,
-            content: String::new(),
-            extra_context: HashMap::default(),
-        };
-
-        let posts = site
-            .posts()
-            .into_iter()
-            .filter(|p| p.tags.contains(&tag.to_string()))
-            .collect::<Vec<_>>();
-        page.insert_context("posts", &posts);
-
-        page
-    }
 }
 
 /// The context for rendering a page.
@@ -206,49 +157,6 @@ struct Context<'a> {
     rendered_content: Option<&'a str>,
 }
 
-/// The source of a page.
-#[derive(Debug, PartialEq, Eq, Hash, Clone)]
-pub enum PageSource {
-    /// A markdown file with the content.
-    File(PathBuf),
-    /// A virtual page created in code.
-    Virtual(String),
-}
-
-impl Serialize for PageSource {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::ser::Serializer,
-    {
-        match self {
-            Self::File(path) => format!("file:{}", path.display()).serialize(serializer),
-            Self::Virtual(name) => format!("virtual:{name}").serialize(serializer),
-        }
-    }
-}
-
-impl FromStr for PageSource {
-    type Err = Report;
-
-    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-        let (kind, name) = s
-            .split_once(':')
-            .ok_or(eyre!("invalid page source format"))?;
-        match kind {
-            "file" => Ok(Self::File(name.into())),
-            "virtual" => Ok(Self::Virtual(name.into())),
-            _ => Err(eyre!("invalid kind")),
-        }
-    }
-}
-
-impl PageSource {
-    /// Creates a new virtual page source.
-    pub fn new_virtual(name: impl Into<String>) -> Self {
-        Self::Virtual(name.into())
-    }
-}
-
 /// The kind of page.
 #[derive(Debug, Deserialize, Serialize, PartialEq, Eq, Clone)]
 pub enum PageKind {
@@ -256,25 +164,8 @@ pub enum PageKind {
     Post,
     /// A regular page, located at /.
     Page,
-    /// Not a HTML page to be rendered with a template.
+    /// Not an HTML page to be rendered with a template.
     Other,
-    /// A custom page, located at the given destination.
-    Custom {
-        template: &'static str,
-        destination: String,
-    },
-}
-
-impl FromStr for PageKind {
-    type Err = Report;
-
-    fn from_str(s: &str) -> Result<Self> {
-        match s {
-            "post" => Ok(Self::Post),
-            "page" => Ok(Self::Page),
-            _ => Err(eyre!("invalid page kind")),
-        }
-    }
 }
 
 /// Converts a title into a slug.

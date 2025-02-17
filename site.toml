@@ -7,16 +7,16 @@ code_theme = "Solarized (light)"
 
 [[site.menu]]
 title = "Feed"
-link = "file:input/content/atom.xml"
+link = "input/content/atom.xml"
 
 [[site.menu]]
 title = "Now"
-link = "file:input/content/now.md"
+link = "input/content/now.md"
 
 [[site.menu]]
 title = "Uses"
-link = "file:input/content/uses.md"
+link = "input/content/uses.md"
 
 [[site.menu]]
 title = "About"
-link = "file:input/content/about.md"
+link = "input/content/about.md"

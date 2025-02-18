@@ -1,8 +1,7 @@
-use std::{fs::remove_dir_all, path::PathBuf};
-
 use clap::{Parser, Subcommand};
 use eyre::{Result, WrapErr};
 use site::{Mode, Site};
+use std::{fs::remove_dir_all, path::PathBuf};
 
 mod config;
 mod fs;

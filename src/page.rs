@@ -94,7 +94,7 @@ impl Page {
     /// 1. If `self.templated` is true, render the content in-place as Jinja.
     /// 2. If `self.markdown` is true, render the content from Markdown to HTML.
     /// 3. If `self.template()` is Some, render to it with the rendered content.
-    #[instrument(skip_all, fields(source = ?self.source, output = ?self.output_path()))]
+    #[instrument(skip_all, fields(source = ?self.source))]
     pub fn render(&self, site: &Site) -> Result<String> {
         debug!("Rendering page");
 

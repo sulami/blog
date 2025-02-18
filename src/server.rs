@@ -92,7 +92,6 @@ async fn re_render(
     while rerender_rx.changed().await.is_ok() {
         // Debounce the signal, only grab the latest within a window.
         sleep(Duration::from_millis(500)).await;
-        rerender_rx.mark_unchanged();
 
         info!("Sources changed, re-rendering site");
 
@@ -111,6 +110,7 @@ async fn re_render(
         {
             error!("Error: {err:?}");
         }
+        rerender_rx.mark_unchanged();
     }
     Ok(())
 }

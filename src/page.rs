@@ -139,7 +139,7 @@ impl Page {
         };
 
         let rendered_content = if self.markdown {
-            markdown::render(templated_content, site)
+            markdown::render(templated_content)
         } else {
             templated_content.to_string()
         };

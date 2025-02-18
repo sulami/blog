@@ -1,19 +1,17 @@
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use std::{collections::HashMap, sync::LazyLock};
-use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
-
-use crate::site::Site;
+use syntect::html::{ClassStyle, ClassedHTMLGenerator};
+use syntect::util::LinesWithEndings;
+use syntect::parsing::SyntaxSet;
 
 // These are somewhat expensive to load, so we use a lazy static to only load them once.
 static SS: LazyLock<SyntaxSet> = LazyLock::new(SyntaxSet::load_defaults_newlines);
-static TS: LazyLock<ThemeSet> = LazyLock::new(ThemeSet::load_defaults);
 
 /// Renders the given markdown source to a string.
-pub fn render(source: &str, site: &Site) -> String {
+pub fn render(source: &str) -> String {
     let mut rendered = String::new();
     let mut code_language: Option<String> = None;
     let ss = &SS;
-    let theme_set = &TS;
 
     let events = pulldown_cmark::Parser::new_ext(
         source,
@@ -37,13 +35,17 @@ pub fn render(source: &str, site: &Site) -> String {
                 let syntax = ss
                     .find_syntax_by_token(lang)
                     .unwrap_or_else(|| ss.find_syntax_plain_text());
-                let code = highlighted_html_for_string(
-                    text,
-                    ss,
+                let mut generator = ClassedHTMLGenerator::new_with_class_style(
                     syntax,
-                    &theme_set.themes[&site.code_theme],
-                )
-                .expect("failed to highlight code");
+                    ss,
+                    ClassStyle::SpacedPrefixed { prefix: "c-" },
+                );
+                for line in LinesWithEndings::from(text) {
+                    generator
+                        .parse_html_for_line_which_includes_newline(line)
+                        .expect("oh no");
+                }
+                let code = format!("<pre>{}</pre>", generator.finalize());
                 Some(Event::Html(code.into()))
             } else {
                 Some(ev)

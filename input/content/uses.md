@@ -66,7 +66,6 @@ I am using a variety of text editors:
 - Emacs is the most setup one
 - Neovim for small editing tasks
 - IntelliJ IDEA with IdeaVim for some large projects
-- Visual Studio Code with the neovim plugin in some situations[^3]
 
 All my configuration is [available online](https://github.com/sulami/dotfiles).
 
@@ -91,6 +90,3 @@ once I cannot source tips anymore.
 
 [^2]: Windows is just plain unusable in my opinion, and while I have a soft spot
 for Linux/BSD, they just require too much upkeep.
-
-[^3]: For example the Rust debugger is pretty good, though not as nice as
-IntelliJ's

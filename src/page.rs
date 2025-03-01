@@ -170,7 +170,10 @@ pub enum PageKind {
 
 /// Converts a title into a slug.
 fn slugify(title: &str) -> String {
-    title.to_lowercase().replace(' ', "-")
+    title
+        .to_lowercase()
+        .replace(r"?!#/\,.:;<>~", "")
+        .replace(' ', "-")
 }
 
 /// The frontmatter of a page.

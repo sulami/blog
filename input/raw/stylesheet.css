@@ -71,11 +71,19 @@ a:hover {
 }
 
 @media screen and (min-width: calc(768px + 50px)) {
-  h3 > a:hover::before {
-      content: "❡";
-      position: absolute;
-      margin-left: -20px;
-  }
+    :is(h1, h2, h3, h4, h5, h6) > a:hover::before {
+        content: "❡";
+        position: absolute;
+        margin-left: -20px;
+    }
+
+    h1 > a:hover::before {
+        margin-left: -30px !important;
+    }
+
+    h2 > a:hover::before {
+        margin-left: -25px !important;
+    }
 }
 
 div#header {
@@ -236,19 +244,19 @@ a code:hover {
 }
 
 .c-control {
-  color: var(--solarized-green);
+    color: var(--solarized-green);
 }
 
 .c-constant {
-  color: var(--solarized-orange);
+    color: var(--solarized-orange);
 }
 
 .c-numeric {
-  color: var(--solarized-violet);
+    color: var(--solarized-violet);
 }
 
 .c-language {
-  color: var(--solarized-magenta);
+    color: var(--solarized-magenta);
 }
 
 span.footnote {

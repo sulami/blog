@@ -1,8 +1,11 @@
+use crate::page::slugify;
 use pulldown_cmark::{CodeBlockKind, Event, Tag, TagEnd};
 use std::{collections::HashMap, sync::LazyLock};
-use syntect::html::{ClassStyle, ClassedHTMLGenerator};
-use syntect::util::LinesWithEndings;
-use syntect::parsing::SyntaxSet;
+use syntect::{
+    html::{ClassStyle, ClassedHTMLGenerator},
+    parsing::SyntaxSet,
+    util::LinesWithEndings,
+};
 
 // These are somewhat expensive to load, so we use a lazy static to only load them once.
 static SS: LazyLock<SyntaxSet> = LazyLock::new(SyntaxSet::load_defaults_newlines);
@@ -12,6 +15,8 @@ pub fn render(source: &str) -> String {
     let mut rendered = String::new();
     let mut code_language: Option<String> = None;
     let ss = &SS;
+
+    let mut current_heading = None;
 
     let events = pulldown_cmark::Parser::new_ext(
         source,
@@ -50,6 +55,30 @@ pub fn render(source: &str) -> String {
             } else {
                 Some(ev)
             }
+        }
+        _ => Some(ev),
+    })
+    .filter_map(|mut ev| match ev {
+        // Create linked anchors for headings that aren't manually linked.
+        Event::Start(Tag::Heading {
+            level, id: None, ..
+        }) => {
+            current_heading = Some(level);
+            None
+        }
+        Event::End(TagEnd::Heading(level)) if current_heading == Some(level) => {
+            current_heading = None;
+            None
+        }
+        Event::Text(ref mut text) if current_heading.is_some() => {
+            let slug = slugify(text);
+            Some(Event::Html(
+                format!(
+                    r##"<{level} id="{slug}"><a href="#{slug}">{text}</a></{level}>"##,
+                    level = current_heading.unwrap()
+                )
+                .into(),
+            ))
         }
         _ => Some(ev),
     })

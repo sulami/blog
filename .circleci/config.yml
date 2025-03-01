@@ -38,10 +38,10 @@ jobs:
             - s3/sync:
                 from: output
                 to: s3://blog.sulami.xyz
-                arguments: '--delete'
-            - run:
-                name: Invalidate CloudFront
-                command: aws cloudfront create-invalidation --distribution=E26ZR38R58OFSG --paths "/*"
+                arguments: >
+                  --endpoint-url https://s3.nl-ams.scw.cloud
+                  --delete
+                  --checksum-algorithm SHA256
 
 workflows:
   build-and-deploy:

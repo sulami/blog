@@ -1,5 +1,5 @@
 title = "Cleaning Up Git History"
-timestamp = "2021-07-26"
+created_at ="2021-07-26"
 tags = ["git", "best-of"]
 ---
 A clean git commit history is often underrated and can be immensely useful to ease code reviews and understand changes in the future (potentially in the midst of an outage).

@@ -1,5 +1,5 @@
 title = "How to Read a Book"
-timestamp = "2020-03-14"
+created_at ="2020-03-14"
 tags = ["best-of"]
 ---
 A while ago I read *[How to Read a Book](https://www.goodreads.com/book/show/567610.How_to_Read_a_Book)*, the guide to extracting information from non-fiction books first published in 1940. Like many older books, there are parts of it that haven't aged well, and in a particularly ironic fashion the book is quite verbose. I thought it might be useful to compile a short and simple step-by-step guide to efficiently reading non-fiction.

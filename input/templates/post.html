@@ -7,9 +7,9 @@
 {% block heading %}
 {{ super() }}
 
-{% if page.timestamp %}
+{% if page.created_at %}
 <div class="info">
-    Published on {{ page.timestamp | format_date }}
+    Published on {{ page.created_at | format_date }}
 </div>
 {% endif %}
 

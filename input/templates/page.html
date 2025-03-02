@@ -5,9 +5,17 @@
 {% block heading %}
 {{ super() }}
 
-{% if page.timestamp %}
+{% if page.created_at or page.updated_at %}
 <div class="info">
-    Published on {{ page.timestamp | format_date }}
+    {% if page.created_at %}
+    Published on {{ page.created_at | format_date }}
+    {% endif %}
+    {% if page.created_at and page.updated_at %}
+    |
+    {% endif %}
+    {% if page.updated_at %}
+    Updated on {{ page.updated_at | format_date }}
+    {% endif %}
 </div>
 {% endif %}
 {% endblock heading %}

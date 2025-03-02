@@ -1,6 +1,6 @@
 title = "Convert KiCAD BOM to Manual Pick and Place Files"
 slug = "kicad-bom-to-pick-and-place"
-timestamp = "2023-04-10"
+created_at ="2023-04-10"
 tags = ["espresso", "hardware"]
 ---
 When I assemble a PCB by hand, I like to have a list of all footprints and their respective components on hand. My PCB usually has designators on it, R1, R2, and so on, but not the actual component values, in this case resistances, mostly for space reasons. KiCAD can generate a BOM CSV, but that is more focused on purchasing, so components are grouped together by type, and not listed by designator, which makes the lookup tedious. Here I am sharing a small awk program which converts that BOM into a more useful format for this purpose:

@@ -1,6 +1,6 @@
 title = "Literate Calculations in Emacs"
 slug = "literate-calc-mode"
-timestamp = "2020-05-21"
+created_at ="2020-05-21"
 tags = ["emacs"]
 ---
 It is no secret that I am a big fan of [literate programming](https://en.wikipedia.org/wiki/Literate_programming) for many use cases. I think it is a great match for investigative or exploratory notes, research, and [configuration](https://github.com/sulami/dotfiles/blob/master/emacs/.emacs/README.org).

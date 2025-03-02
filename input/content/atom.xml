@@ -19,8 +19,8 @@ templated = true
         <title>{{ post.title | escape }}</title>
         <link href="{{ site.url | safe }}{{ post.link | safe }}"/>
         <id>{{ site.url | safe }}{{ post.link | safe }}</id>
-        <published>{{ post.timestamp | format_rfc3339 }}</published>
-        <updated>{{ post.timestamp | format_rfc3339 }}</updated>
+        <published>{{ post.created_at | format_rfc3339 }}</published>
+        <updated>{{ (post.updated_at or post.created_at) | format_rfc3339 }}</updated>
         <content type="html">
             {{ post.content | escape }}
         </content>

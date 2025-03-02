@@ -1,6 +1,6 @@
 title = "What is in a Rust Allocator?"
 slug = "what-is-in-a-rust-allocator"
-timestamp = "2024-05-06"
+created_at ="2024-05-06"
 tags = ["rust"]
 ---
 

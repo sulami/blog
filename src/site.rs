@@ -257,7 +257,7 @@ impl Site {
                 Mode::Release => !p.draft,
             })
             .cloned()
-            .sorted_unstable_by_key(|p| Reverse(p.timestamp))
+            .sorted_unstable_by_key(|p| Reverse(p.created_at))
             .collect()
     }
 

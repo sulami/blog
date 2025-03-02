@@ -1,6 +1,6 @@
 title = "Find Out If .take_while() Reached The End"
 slug = "espresso-rust-take-while-end"
-timestamp = "2022-12-09"
+created_at ="2022-12-09"
 tags = ["espresso", "rust"]
 ---
 In yesterday's Advent of Code (**mild spoilers ahead**), there was a section where one had to figure out how far the elves can see, based on the height of a line of trees in that direction. The answer was to be given in the number of trees they see.

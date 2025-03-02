@@ -1,5 +1,5 @@
 title = "Pipes in Python"
-timestamp = "2018-08-21"
+created_at ="2018-08-21"
 tags = ["python"]
 ---
 I just found [an article about pipes in Python](https://hackernoon.com/adding-a-pipe-operator-to-python-19a3aa295642) on lobste.rs and was reminded that I was toying with the exact same thing recently. Using a lot of functional languages (mainly Haskell, Clojure, Elixir)[^1] and also a fair bit of bash, I am very used to streaming data through chains of functions using pipe-like constructs. Python does make this quite difficult and encourages a more imperative approach with intermediate variables.

@@ -1,5 +1,5 @@
 title = "Haskell Flood Fills"
-timestamp = "2015-07-21"
+created_at ="2015-07-21"
 tags = ["haskell"]
 ---
 Over the past two days, I played a bit with the [hackthe.computer contest](https://hackthe.computer/). It is a contest with a couple of problems/tasks where you have one week to write up the best solutions in terms of speed. Part of the difficulty comes from the fact, that you push git commits to their server and do not get to to see the output of their test runs, which you only know if you program produces the correct output within a reasonable time frame (one minute per test?) or not. It is quite fun, also because the problems are nicely chosen, with a lot of data interpretation, but also a need for efficient algorithms, and they all have nice back stories to explain why we are dealing with seemingly random input.

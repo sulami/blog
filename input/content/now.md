@@ -1,6 +1,6 @@
 title = "Now"
 kind = "page"
-timestamp = "2025-02-13"
+updated_at ="2025-02-13"
 ---
 
 Back into software engineering after the holiday slump, recently read

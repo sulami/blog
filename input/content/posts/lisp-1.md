@@ -1,6 +1,6 @@
 title = "Lisp-1 Has Won"
 slug = "lisp-1"
-timestamp = "2020-06-10"
+created_at ="2020-06-10"
 tags = ["lisp"]
 ---
 I am currently working on a compiler for a new programming language which has been in the making for a few months at this point. There is nothing public to show yet, everything is very early stage, and there are plenty of decisions to make and work to be done before I will publish anything.

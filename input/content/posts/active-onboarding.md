@@ -1,5 +1,5 @@
 title = "Active Onboarding"
-timestamp = "2023-03-29"
+created_at ="2023-03-29"
 ---
 Having recently changed jobs, I had the pleasure of onboarding for the first time in four years again, definitely a change of pace. Being quite senior at this point, I have been worrying a bit about how to join a new organisation and perform on my level, not having benefited from working directly on the ground for a long time, thus lacking direct technical experience and also social legitimacy.
 

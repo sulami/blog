@@ -1,5 +1,5 @@
 title = "Using Hoogle for Your Project"
-timestamp = "2015-11-26"
+created_at ="2015-11-26"
 tags = ["haskell"]
 ---
 [Hoogle](https://github.com/ndmitchell/hoogle) is a fantastic tool that uses Haskell's type system to build a searchable index of types, functions and constants, connecting with [Haddock](https://www.haskell.org/haddock/) to provide documentation. It can be used to host browsable websites, like the [Hackage instance](https://www.haskell.org/hoogle/) or the [Stackage instance](http://www.stackage.org/lts-3.15/hoogle), or used for editor integration, like in [vim](https://github.com/Twinside/vim-hoogle) or [emacs](https://github.com/haskell/haskell-mode). Overall pretty great stuff.

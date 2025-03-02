@@ -1,6 +1,6 @@
 title = "React Native and ClojureScript - An obscure stack"
 slug = "react-native-and-clojurescript"
-timestamp = "2018-06-15"
+created_at ="2018-06-15"
 tags = ["clojure"]
 ---
 I have been working on a new side project for about two months now, a task manager app which is primarily aimed at iOS. This is a typical "scratching my own itch" side project. There are plenty of task manager apps on the App Store, but none of them seems to do exactly what I would like mine to do.[^1]

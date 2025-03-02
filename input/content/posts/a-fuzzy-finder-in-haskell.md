@@ -1,6 +1,6 @@
 title = "A Fuzzy Finder in Haskell"
 slug = "a-fuzzy-finder-in-haskell"
-timestamp = "2016-06-24"
+created_at ="2016-06-24"
 tags = ["haskell"]
 ---
 This is a response to *[FuzzyFinder - in 10 lines of Python](http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python)*, which was posted to reddit yesterday.

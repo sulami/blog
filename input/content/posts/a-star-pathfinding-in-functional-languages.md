@@ -1,6 +1,6 @@
 title = "A* Pathfinding in Functional Languages"
 slug = "a-star-pathfinding-in-functional-languages"
-timestamp = "2015-07-23"
+created_at ="2015-07-23"
 tags = ["haskell"]
 ---
 &#x2026; like, you guessed it, Haskell. But this should translate to Lisp quite well. [A\* (A star)](https://en.wikipedia.org/wiki/A*_search_algorithm) is a graph traversal algorithm that is commonly used for pathfinding in video games, and probably also things like navigational software. It is an extension to [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dtra%27s_algorithm). If you do not know how they work, there is a really nice interactive explanation over on [Red Blob Games](http://www.redblobgames.com/pathfinding/a-star/introduction.html). There are a lot of examples around how to implement it in imperative languages, including the pseudo code on Wikipedia, but it is actually difficult to find an example for functional programming languages, where the approach differs a bit. As you will see, the general structure will be very close to the one used for [breadth-first traversal](https://github.com/sulami/spielwiese/blob/master/hUtil/BTree.hs#L69), the reason for this being that both algorithms essentially are breadth-first traversal with a weighting function that decides where to traverse deeper. With all paths having equal weights, they will behave exactly like breadth-first.

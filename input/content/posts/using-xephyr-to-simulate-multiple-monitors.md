@@ -1,5 +1,5 @@
 title = "Using Xephyr to Simulate Multiple Monitors"
-timestamp = "2014-12-19"
+created_at ="2014-12-19"
 ---
 One of the most requested features in [FrankenWM](https://github.com/sulami/frankenwm) is support for multiple monitors. I currently only use one monitor, mostly because I do not need more right now (there have been time where I have been using 4 monitors at the same time, all connected to one machine). This situation makes it quite difficult for me to develop such a rather big feature, simply because I cannot test it at all. I have tried to figure out how to use nested X servers to simulate multiple monitors on a single screen for a few weeks now, finally finding the solution today.
 

@@ -1,5 +1,5 @@
 title = "Make the Right Thing the Easy Thing to Do"
-timestamp = "2024-03-20"
+created_at ="2024-03-20"
 tags = ["staff"]
 ---
 

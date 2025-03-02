@@ -1,5 +1,5 @@
 title = "In Praise of Boxes and Arrows"
-timestamp = "2024-03-05"
+created_at ="2024-03-05"
 tags = ["staff"]
 ---
 One of my most versatile tools is also one of the simplest, a diagram I

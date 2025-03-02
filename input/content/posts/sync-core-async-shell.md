@@ -1,6 +1,6 @@
 title = "Synchronous Core, Asynchronous Shell"
 slug = "sync-core-async-shell"
-timestamp = "2024-07-05"
+created_at ="2024-07-05"
 tags = ["rust", "software-design"]
 ---
 

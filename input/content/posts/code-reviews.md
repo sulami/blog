@@ -1,6 +1,6 @@
 title = "Traps to Avoid When Reviewing Code Changes"
 slug = "code-reviews"
-timestamp = "2021-01-18"
+created_at ="2021-01-18"
 ---
 Reviewing code changes is an underappreciated art. It is part of most software engineers' daily routine, but as an industry we do little towards developing it as a skill, even though it contributes directly to the quality of the software we produce.
 

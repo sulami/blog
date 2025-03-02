@@ -1,6 +1,6 @@
 title = "Demystifying Rust's ? Operator"
 slug = "demystifying-rusts-questionmark-operator"
-timestamp = "2024-06-19"
+created_at ="2024-06-19"
 tags = ["rust"]
 ---
 

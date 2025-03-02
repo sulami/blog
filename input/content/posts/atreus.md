@@ -1,6 +1,6 @@
 title = "Keyboardio Atreus Review"
 slug = "atreus"
-timestamp = "2020-07-10"
+created_at ="2020-07-10"
 tags = ["hardware", "review"]
 ---
 I recently received my early bird [Keybardio Atreus](https://shop.keyboard.io/products/keyboardio-atreus)[^1] from [the Kickstarter](https://www.kickstarter.com/projects/keyboardio/atreus/description) and have now been using it for about three weeks, so I am writing a review for folks considering buying one after release.

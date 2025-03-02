@@ -1,5 +1,5 @@
 title = "Counting Digits in Rust"
-timestamp = "2025-01-04"
+created_at ="2025-01-04"
 tags = ["rust"]
 ---
 

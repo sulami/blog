@@ -1,5 +1,5 @@
 title = "Test-Driven Development in Vim"
-timestamp = "2014-05-05"
+created_at ="2014-05-05"
 tags = ["vim"]
 ---
 [Test-driven development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) is a way of developing software by using tests over and over again. When I first was introduced to this concept, I thought, automated tests are a nice idea, why not? Then I read a book about TDD, which proceeded to explain how you start your project by writing a test that (obviously) fails, then start your actual project, and test again. At this point in time, we have a something that returns a default webpage, or zero. Not even printing "Hello World" or "Success!". The next step is to write another test, which checks for some actual content or functionality. After this test fails (which by the way is important, as it shows that the test will hopefully not produce false positives), we write the piece of content or functionality.

@@ -1,7 +1,7 @@
 title = "String vs &str"
 slug = "string-vs-str"
 tags = ["rust", "software-design"]
-timestamp = "2025-02-06"
+created_at ="2025-02-06"
 
 ---
 

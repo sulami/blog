@@ -1,6 +1,6 @@
 title = "Concurrent I/O in Haskell"
 slug = "concurrent-io-in-haskell"
-timestamp = "2015-09-11"
+created_at ="2015-09-11"
 tags = ["haskell"]
 ---
 Today just after waking up, I have been tweaking the last bits and bops of [TinfoilSub](https://github.com/sulami/tinfoilsub), a satiric fun/learning project of mine that scrapes YouTube channels to replicate a subscriptions page without requiring a Google account. The core of this little program is the `runServer` function that uses [Scotty](https://hackage.haskell.org/package/scotty) to host a local page that displays the results, while the list of channels is read from a file. In the beginning, this function looked something like this:

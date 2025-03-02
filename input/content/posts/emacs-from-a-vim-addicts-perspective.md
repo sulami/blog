@@ -1,6 +1,6 @@
 title = "Emacs From a Vim Addict's Perspective"
 slug = "emacs-from-a-vim-addicts-perspective"
-timestamp = "2016-03-03"
+created_at ="2016-03-03"
 tags = ["vim", "emacs"]
 ---
 I have been playing around in Emacs lately. Vim has been the core of my workflow for half a decade now, and I just cannot imagine going back to non-modal editing anymore. I will now explain, why I might just switch to emacs in the long-term.

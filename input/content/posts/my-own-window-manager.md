@@ -1,5 +1,5 @@
 title = "My Own Window Manager"
-timestamp = "2014-07-05"
+created_at ="2014-07-05"
 ---
 I accidentaly wrote a [window manager](https://github.com/sulami/frankenwm). It started out by cloning [cloudef's monsterwm-xcb](https://github.com/cloudef/monsterwm-xcb) to apply some smaller fixes, maybe opening a pull request to merge them upstream again. But I quickly found more and more things to fix, then I started to add some smaller features I missed from other window managers. And thus, FrankenWM was made, pieced together from monsterwm-xcb and other window managers. I stole some of the ewmh-related code from [2bwm](https://github.com/venam/2bwm), and adapted features from [dwm](http://dwm.suckless.org), [i3](http://i3wm.org) and others. The name is an obvious play on words.
 

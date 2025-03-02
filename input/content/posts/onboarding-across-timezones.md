@@ -1,5 +1,5 @@
 title = "Onboarding Across Timezones"
-timestamp = "2021-05-06"
+created_at ="2021-05-06"
 tags = ["staff"]
 ---
 Even in a fully distributed organisation, teams are often clustered in timezones to facilitate collaboration. Another model is the deliberate spreading of teams to enable *[Follow the Sun](https://en.wikipedia.org/wiki/Follow-the-sun)* workflows, which can also improve pager rotations.

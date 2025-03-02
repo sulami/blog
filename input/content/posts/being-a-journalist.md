@@ -1,6 +1,6 @@
 title = "Being a Journalist Within Your Organisation"
 slug = "being-a-journalist"
-timestamp = "2023-01-07"
+created_at ="2023-01-07"
 tags = ["staff"]
 ---
 Having been a staff+ engineer located in Europe while working at a primarily North-American company last year, one piece of feedback I regularly got was that I seemed to know about many things happening, but many folks in my domain who got less synchronous time with me felt like they could not benefit from that. The teams I was directly working with were split roughly 60-40 between North America (East coast) and Europe, so more than half of the team members only overlapped with me during my already busy afternoons.

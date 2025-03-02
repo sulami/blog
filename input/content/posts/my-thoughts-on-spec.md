@@ -1,5 +1,5 @@
 title = "My Thoughts on spec"
-timestamp = "2019-07-01"
+created_at ="2019-07-01"
 tags = ["clojure"]
 ---
 In the beginning of this year I started a new job, and I am now fortunate enough to be writing [Clojure](https://clojure.org) full-time. I believe that Clojure is a very well crafted language and enables developers like few others, but I have also some grievances to report. I want to prefix this by saying that I love Clojure despite its faults, and this is more of a constructive criticism piece than anything else.

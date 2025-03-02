@@ -15,6 +15,6 @@ templated = true
 {% for tag, count in tag_counts | dictsort %}
 ### {{ linked_heading(tag, extra=info(count)) }}
 {% for post in posts if tag in post.tags %}
-- [{{ post.title }}]({{ post.link }}) <span class="info">({{ post.timestamp | format_date }})</span>
+- [{{ post.title }}]({{ post.link }}) <span class="info">({{ post.created_at | format_date }})</span>
 {%- endfor %}
 {%- endfor %}

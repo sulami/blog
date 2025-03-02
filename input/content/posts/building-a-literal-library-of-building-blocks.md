@@ -1,5 +1,5 @@
 title = "Building a Literal Library of Building Blocks"
-timestamp = "2019-02-02"
+created_at ="2019-02-02"
 ---
 This post[^1] is heavily inspired by [a remark Zach Tellman made on the defn podcast](https://soundcloud.com/defn-771544745/30-zach-tellman-aka-ztellman), where he says:
 

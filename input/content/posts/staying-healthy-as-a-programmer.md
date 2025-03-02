@@ -1,5 +1,5 @@
 title = "Staying Healthy as a Programmer"
-timestamp = "2016-06-22"
+created_at ="2016-06-22"
 ---
 *Disclaimer* In this post I link to some specific products. These links serve as examples and are by no means direct reccomendations. Some of these are just the result of a quick web search. If you decide to buy stuff, do your research, figure out what exactly you need and choose a product based on that.
 

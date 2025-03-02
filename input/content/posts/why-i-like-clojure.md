@@ -1,5 +1,5 @@
 title = "Why I like Clojure"
-timestamp = "2019-08-30"
+created_at ="2019-08-30"
 tags = ["clojure"]
 ---
 This is somewhat of a response to Uncle Bob's [post of similar nature](http://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html), which I would say has gotten a mixed to positive reception. I had planned a similar post a week or two before the release of his, but archived the idea upon reading his post. But after having read it over a couple of times I have now decided that I still have something meaningful to write. What follows are the purely subjective reasons for which *I* enjoy using Clojure. Some have criticised Bob for being very absolute and not giving up any screen estate for more nuanced viewpoints, something I will try to avoid.

@@ -1,5 +1,5 @@
 title = "Using Git Locally"
-timestamp = "2014-07-15"
+created_at ="2014-07-15"
 tags = ["git"]
 ---
 When you write your code, using a version control mechanism like git is crucial, even more than writing proper unit tests, even when working on your own, even when it is only your evening project. Just use git and commit regularly, it will not hurt you (unless your workflow is inherently broken, but then fix you have to fix it anyway). Committing after every logical change and pushing when finishing the session is something I practice almost like a religion. Not only does it keep my history accessible and enables me easy branching and stashing (read up on [git-branch(1)](http://linux.die.net/man/1/git-branch) and [git-stash(1)](http://linux.die.net/man/1/git-stash) if you do not already use them), it also serves as simple way to mirror my repositories to other machines and backup them this way.

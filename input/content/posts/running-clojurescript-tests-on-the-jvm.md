@@ -1,5 +1,5 @@
 title = "Running Clojurescript Tests on the JVM"
-timestamp = "2018-10-01"
+created_at ="2018-10-01"
 tags = ["clojure"]
 ---
 Recently I have been writing a lot of Clojure and Clojurescript for my side projects. This is my first post on the language & ecosystem, so I what follows below might be very wrong in places. Nontheless I want to share something I worked out myself and might be useful to someone else. The topic we're going to be looking at is running (unit) tests for a [re-frame](https://github.com/Day8/re-frame)-based Clojurescript application, though it actually applies to almost any CLJS application.

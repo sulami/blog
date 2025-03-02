@@ -9,8 +9,5 @@ and [Jinja2](https://jinja.palletsprojects.com/en/stable/) templates. It also
 includes a development server with auto-reload on file changes and in-browser
 error reporting.
 
-Infrastructure is currently AWS + Cloudflare, managed through
-[OpenTofu](https://opentofu.org/).
-
 While some efforts have been made to make this generally useful, a lot of the
 code is tailored towards my own needs.

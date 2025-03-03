@@ -1,18 +1,17 @@
 title = "Now"
 kind = "page"
-updated_at ="2025-02-13"
+updated_at ="2025-03-03"
 ---
 
-Back into software engineering after the holiday slump, recently read
-[Architecting for
-Scale](https://www.oreilly.com/library/view/architecting-for-scale/9781492057161/)
-(not great) and [Release
-It!](https://pragprog.com/titles/mnee2/release-it-second-edition/) (not bad).
+Doing more technical reading, recently read:
+- [Architecting for Scale](https://www.oreilly.com/library/view/architecting-for-scale/9781492057161/) (not great)
+- [Release It!](https://pragprog.com/titles/mnee2/release-it-second-edition/) (not bad)
+- Currently [Systems Performance](https://www.brendangregg.com/systems-performance-2nd-edition-book.html) (promising)
 
-Ran one mile every day for all of January to get a stupid challenge badge,
-making good use of the mild winter here. Also getting back into strength
-training and trying to find a partner for outdoor rock climbing.
+Exercise is going alright, weather is currently very unpredictable, but I'm
+trying to do some longer runs and work my way back to one arm pull-ups.
 
 Making an effort to eat more and better, especially more fruit & vegetables.
 
-Struggling to reduce video consumption in favour of more reading.
+I bought [Balatro](https://www.playbalatro.com/) for a long train ride down to
+Kyushuu, and am properly addicted.

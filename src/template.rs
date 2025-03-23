@@ -1,7 +1,7 @@
 //! Template engine support
 
 use crate::page::Page;
-use jiff::{civil::Date, tz::TimeZone, Zoned};
+use jiff::{Zoned, civil::Date, tz::TimeZone};
 use minijinja::{Error, ErrorKind, State, Value};
 use serde::Serialize;
 use std::{collections::HashMap, path::PathBuf, str::FromStr, sync::Arc};

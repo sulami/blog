@@ -2,11 +2,11 @@ use crate::{
     config,
     fs::{collect_files, create_and_write, deep_copy_dir},
     page::{Page, PageKind},
-    template::{load_filters, UrlFor},
+    template::{UrlFor, load_filters},
 };
 use eyre::{OptionExt, Report, Result, WrapErr};
 use itertools::Itertools;
-use jiff::{tz::TimeZone, Zoned};
+use jiff::{Zoned, tz::TimeZone};
 use minijinja::Value;
 use rayon::prelude::*;
 use regex::Regex;

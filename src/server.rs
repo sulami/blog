@@ -10,13 +10,13 @@
 
 use crate::site::Site;
 use axum::{
-    extract::State,
-    response::{sse::Event as SseEvent, IntoResponse, Sse},
-    routing::get,
     Router,
+    extract::State,
+    response::{IntoResponse, Sse, sse::Event as SseEvent},
+    routing::get,
 };
 use eyre::{Result, WrapErr};
-use notify::{recommended_watcher, Event as NotifyEvent, EventKind, RecursiveMode, Watcher};
+use notify::{Event as NotifyEvent, EventKind, RecursiveMode, Watcher, recommended_watcher};
 use std::{convert::Infallible, path::PathBuf, sync::Arc, time::Duration};
 use tokio::{
     fs::remove_dir_all,
@@ -25,7 +25,7 @@ use tokio::{
     sync::{broadcast, watch},
     time::sleep,
 };
-use tokio_stream::{wrappers::BroadcastStream, StreamExt};
+use tokio_stream::{StreamExt, wrappers::BroadcastStream};
 use tower_http::services::ServeDir;
 use tracing::{debug, error, info, instrument};
 

@@ -1,5 +1,5 @@
 use crate::Site;
-use eyre::{eyre, Report, Result, WrapErr};
+use eyre::{Report, Result, WrapErr, eyre};
 use jiff::civil::Date;
 use serde::{Deserialize, Serialize};
 use std::{ffi::OsString, fmt::Debug, fs::File, io::Read, path::PathBuf, str::FromStr};

@@ -1,6 +1,6 @@
 use eyre::{OptionExt, Result, WrapErr};
 use std::{
-    fs::{copy, create_dir_all, read_dir, File},
+    fs::{File, copy, create_dir_all, read_dir},
     io::Write,
     path::{Path, PathBuf},
 };

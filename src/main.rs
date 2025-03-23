@@ -58,7 +58,9 @@ enum Command {
 }
 
 fn main() -> Result<()> {
-    tracing_subscriber::fmt::init();
+    tracing_subscriber::fmt()
+        .event_format(tracing_subscriber::fmt::format().pretty())
+        .init();
 
     let args = Cli::parse();
     let config = config::load_config(&args.config)?;

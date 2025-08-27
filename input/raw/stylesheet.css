@@ -57,6 +57,7 @@ a:link,
 a:visited {
     text-decoration: underline;
     text-decoration-style: dotted;
+    text-underline-offset: 3px;
     background: none;
     text-shadow: none;
     color: inherit;

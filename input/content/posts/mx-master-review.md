@@ -1,5 +1,6 @@
 title = "Logitech MX Master 3S Review"
 created_at ="2024-06-09"
+updated_at = "2025-01-28"
 tags = ["review"]
 ---
 

@@ -13,7 +13,7 @@ server = ["dep:axum", "dep:notify", "dep:tokio", "dep:tokio-stream", "dep:tower-
 clap = { version = "4", features = ["derive"] }
 eyre = "0.6"
 itertools = "0.15"
-jiff = { version = "0.2", features = ["serde"] }
+jiff = { version = "1.0", features = ["serde"] }
 minijinja = { version = "2", features = ["loader"] }
 pulldown-cmark = "0.13"
 rayon = "1"
